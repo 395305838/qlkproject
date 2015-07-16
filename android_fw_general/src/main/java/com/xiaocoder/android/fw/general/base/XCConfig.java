@@ -1,6 +1,6 @@
 package com.xiaocoder.android.fw.general.base;
 
-public class XCBaseConfig {
+public class XCConfig {
 	/*
 	 * TAG
 	 */

@@ -7,7 +7,7 @@ import android.net.wifi.WifiManager;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBaseConfig;
+import com.xiaocoder.android.fw.general.base.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.http.XCHttpResponseHandler;
 import com.xiaocoder.android.fw.general.http.XCIHttpResult;
@@ -83,7 +83,7 @@ public class QlkHttpResponseHandler extends XCHttpResponseHandler {
 //            params.put("sig", sig);
 //            params.put("ts", ts);
 //        }
-        XCApplication.printi(XCBaseConfig.TAG_HTTP, "plus public params-->" + params.toString());
+        XCApplication.printi(XCConfig.TAG_HTTP, "plus public params-->" + params.toString());
     }
 
 }

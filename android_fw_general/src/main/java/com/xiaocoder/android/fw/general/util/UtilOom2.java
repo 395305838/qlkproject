@@ -19,7 +19,7 @@ package com.xiaocoder.android.fw.general.util;
 //import android.os.Environment;
 //
 //import com.xiaocoder.android.fw.general.application.XCApplication;
-//import com.xiaocoder.android.fw.general.application.XCBaseConfig;
+//import com.xiaocoder.android.fw.general.application.XCConfig;
 //
 //public class UtilImage2 {
 //
@@ -142,14 +142,14 @@ package com.xiaocoder.android.fw.general.util;
 //		Bitmap bitmap = getimage(fileName);
 //	    int width = bitmap.getWidth();
 //	    int height = bitmap.getHeight();
-//	    XCApplication.base_log.i(XCBaseConfig.TAG_SYSTEM_OUT, "按比例缩小后宽度--" + width);
-//	    XCApplication.base_log.i(XCBaseConfig.TAG_SYSTEM_OUT, "按比例缩小后高度--" + height);
+//	    XCApplication.base_log.i(XCConfig.TAG_SYSTEM_OUT, "按比例缩小后宽度--" + width);
+//	    XCApplication.base_log.i(XCConfig.TAG_SYSTEM_OUT, "按比例缩小后高度--" + height);
 //	    
-//	    File dir = new File(XCBaseConfig.CACHE_DIRECTORY);
+//	    File dir = new File(XCConfig.CACHE_DIRECTORY);
 //	    if (!dir.exists()) {
 //	        dir.mkdir();
 //	    }
-//	    String newFileName = XCBaseConfig.CACHE_DIRECTORY + System.currentTimeMillis() + ".jpg";
+//	    String newFileName = XCConfig.CACHE_DIRECTORY + System.currentTimeMillis() + ".jpg";
 //	    File f = new File(newFileName);
 //	    try {
 //	        f.createNewFile();
@@ -168,18 +168,18 @@ package com.xiaocoder.android.fw.general.util;
 //	
 //	
 //	public static Bitmap loadImageFromUrl(String url) throws IOException {
-//		 XCApplication.base_log.i(XCBaseConfig.TAG_SYSTEM_OUT,url);
+//		 XCApplication.base_log.i(XCConfig.TAG_SYSTEM_OUT,url);
 //		if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
-//			File dir = new File(XCBaseConfig.CACHE_DIRECTORY);
+//			File dir = new File(XCConfig.CACHE_DIRECTORY);
 //			if(!dir.exists()){
 //				dir.mkdir();
 //			}
-//			File f = new File(XCBaseConfig.CACHE_DIRECTORY+UtilMd5.MD5Encode(url));
+//			File f = new File(XCConfig.CACHE_DIRECTORY+UtilMd5.MD5Encode(url));
 //			if(f.exists()){
 ////				FileInputStream fis = new FileInputStream(f);
 ////				Drawable d = Drawable.createFromStream(fis, "src");
 //				Bitmap bitmap = getimage(f);
-//				 XCApplication.base_log.i(XCBaseConfig.TAG_SYSTEM_OUT,"Load image from SD :" + url);
+//				 XCApplication.base_log.i(XCConfig.TAG_SYSTEM_OUT,"Load image from SD :" + url);
 //				return bitmap;
 //			}
 //			URL m = new URL(url);
@@ -191,7 +191,7 @@ package com.xiaocoder.android.fw.general.util;
 //			while ((byteread = in.read(buffer)) != -1) {
 //				out.write(buffer, 0, byteread);
 //			}
-//			 XCApplication.base_log.i(XCBaseConfig.TAG_SYSTEM_OUT,"Save image to SD :" + url);
+//			 XCApplication.base_log.i(XCConfig.TAG_SYSTEM_OUT,"Save image to SD :" + url);
 //			in.close();
 //			out.close();
 //			return loadImageFromUrl(url);

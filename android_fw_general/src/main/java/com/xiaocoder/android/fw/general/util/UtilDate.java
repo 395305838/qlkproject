@@ -1,7 +1,6 @@
 package com.xiaocoder.android.fw.general.util;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBaseConfig;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

@@ -38,7 +38,6 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBaseConfig;
 import com.xiaocoder.android_fw_general.R;
 
 import java.io.IOException;

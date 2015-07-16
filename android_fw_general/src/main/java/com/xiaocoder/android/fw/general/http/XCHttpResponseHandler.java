@@ -7,8 +7,8 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseAbsListFragment;
+import com.xiaocoder.android.fw.general.base.XCConfig;
 import com.xiaocoder.android.fw.general.base.XLBaseExpandAbsListFragment;
-import com.xiaocoder.android.fw.general.base.XCBaseConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonParse;
@@ -73,15 +73,15 @@ public abstract class XCHttpResponseHandler extends AsyncHttpResponseHandler {
 
     @Override
     public void onFailure(int code, Header[] headers, byte[] arg2, Throwable e) {
-        XCApplication.printi(XCBaseConfig.TAG_HTTP, "onFailure----->status code " + code);
+        XCApplication.printi(XCConfig.TAG_HTTP, "onFailure----->status code " + code);
 
         e.printStackTrace();
 
-        XCApplication.printi(XCBaseConfig.TAG_HTTP, e.toString());
+        XCApplication.printi(XCConfig.TAG_HTTP, e.toString());
 
         if (headers != null) {
             for (Header header : headers) {
-                XCApplication.printi(XCBaseConfig.TAG_HTTP, "headers----->" + header.toString());
+                XCApplication.printi(XCConfig.TAG_HTTP, "headers----->" + header.toString());
             }
         }
 
@@ -100,11 +100,11 @@ public abstract class XCHttpResponseHandler extends AsyncHttpResponseHandler {
 
     @Override
     public void onSuccess(int code, Header[] headers, byte[] arg2) {
-        XCApplication.printi(XCBaseConfig.TAG_HTTP, "onSuccess----->status code " + code);
+        XCApplication.printi(XCConfig.TAG_HTTP, "onSuccess----->status code " + code);
 
         if (headers != null) {
             for (Header header : headers) {
-                XCApplication.printi(XCBaseConfig.TAG_HTTP, "headers----->" + header.toString());
+                XCApplication.printi(XCConfig.TAG_HTTP, "headers----->" + header.toString());
             }
         }
 
@@ -122,7 +122,7 @@ public abstract class XCHttpResponseHandler extends AsyncHttpResponseHandler {
     @Override
     public void onFinish() {
         super.onFinish();
-        XCApplication.printi(XCBaseConfig.TAG_HTTP, "onFinish");
+        XCApplication.printi(XCConfig.TAG_HTTP, "onFinish");
         if (refresh_fragment instanceof XCBaseAbsListFragment) {
             XCBaseAbsListFragment f1 = (XCBaseAbsListFragment) refresh_fragment;
             if (refresh_fragment != null && f1.whichMode != XCBaseAbsListFragment.MODE_NOT_PULL) {
@@ -160,7 +160,7 @@ public abstract class XCHttpResponseHandler extends AsyncHttpResponseHandler {
                 // 解析数据
                 String response = new String(response_bytes, "utf-8");
                 // 把json串打印到控制台
-                XCApplication.printi(XCBaseConfig.TAG_HTTP, response);
+                XCApplication.printi(XCConfig.TAG_HTTP, response);
 
                 // 打印bean到控制台， 然后复制
                 XCJsonParse.json2Bean(response);
@@ -169,7 +169,7 @@ public abstract class XCHttpResponseHandler extends AsyncHttpResponseHandler {
 
                 if (result_bean == null) {
                     result_boolean = false;
-                    XCApplication.printi(XCBaseConfig.TAG_HTTP, "onSuccess , 解析数据失败");
+                    XCApplication.printi(XCConfig.TAG_HTTP, "onSuccess , 解析数据失败");
                     return;
                 }
 

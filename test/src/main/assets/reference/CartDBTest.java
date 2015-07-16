@@ -5,7 +5,7 @@ package reference;
 //
 //import android.test.AndroidTestCase;
 //
-//import com.xiaocoder.android.fw.general.application.XCBaseConfig;
+//import com.xiaocoder.android.fw.general.application.XCConfig;
 //
 //public class CartDBTest extends AndroidTestCase {
 //
@@ -21,7 +21,7 @@ package reference;
 //	}
 //
 //	public void testInsert2() {
-//		IDao<CartBean> dao = DaoFactory.getDaoInstance(getContext(), XCBaseConfig.CARTDAO);
+//		IDao<CartBean> dao = DaoFactory.getDaoInstance(getContext(), XCConfig.CARTDAO);
 //		for (int i = 0; i <= 6; i++) {
 //			dao.insert(new CartBean(i + "activity_id", i + "goods_id", i + "sku_attr_ids", 123456, 22, i + "sku_items", i + "goods_number", i + "goods_name", i + "restriction_number", i
 //					+ "buy_number", i + "to_db_price", i + "goods_img", System.currentTimeMillis() + "", 0));
@@ -45,7 +45,7 @@ package reference;
 //	}
 //
 //	public void testQuery() {
-//		IDao<CartBean> dao = DaoFactory.getDaoInstance(getContext(), XCBaseConfig.CARTDAO);
+//		IDao<CartBean> dao = DaoFactory.getDaoInstance(getContext(), XCConfig.CARTDAO);
 //		System.out.println(dao.query("2goods_img"));
 //	}
 //
@@ -58,7 +58,7 @@ package reference;
 //	}
 //
 //	public void testQueryCount() {
-//		IDao<CartBean> dao = DaoFactory.getDaoInstance(getContext(), XCBaseConfig.CARTDAO);
+//		IDao<CartBean> dao = DaoFactory.getDaoInstance(getContext(), XCConfig.CARTDAO);
 //
 //		// CartDaoImpl dao = new CartDaoImpl(getContext());
 //		System.out.println(dao.queryCount());

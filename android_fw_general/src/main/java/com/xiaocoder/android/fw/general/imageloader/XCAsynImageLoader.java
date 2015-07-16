@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBaseConfig;
 import com.xiaocoder.android.fw.general.io.XCIO;
 
 import java.io.File;
@@ -453,13 +452,13 @@ public class XCAsynImageLoader {
 								"net file size of bitmap------ "
 										+ options.outWidth * options.outHeight
 										* 4);
-						// XCApplication.base_log.i(XCBaseConfig.TAG_SYSTEM_OUT,options.inDensity+"------------options.inDensity");
-						// XCApplication.base_log.i(XCBaseConfig.TAG_SYSTEM_OUT,options.inScreenDensity+"------------options.inScreenDensity");
-						// XCApplication.base_log.i(XCBaseConfig.TAG_SYSTEM_OUT,options.outWidth+"------------options.outWidth");
-						// XCApplication.base_log.i(XCBaseConfig.TAG_SYSTEM_OUT,options.outHeight+"------------options.outHeight");
-						// XCApplication.base_log.i(XCBaseConfig.TAG_SYSTEM_OUT,options.inTargetDensity+"------------options.inTargetDensity");
-						// XCApplication.base_log.i(XCBaseConfig.TAG_SYSTEM_OUT,options.inDensity+"------------options.inDensity");
-						// XCApplication.base_log.i(XCBaseConfig.TAG_SYSTEM_OUT,options.inPreferredConfig+"------------options.inPreferredConfig");
+						// XCApplication.printi(options.inDensity+"------------options.inDensity");
+						// XCApplication.printi(options.inScreenDensity+"------------options.inScreenDensity");
+						// XCApplication.printi(options.outWidth+"------------options.outWidth");
+						// XCApplication.printi(options.outHeight+"------------options.outHeight");
+						// XCApplication.printi(options.inTargetDensity+"------------options.inTargetDensity");
+						// XCApplication.printi(options.inDensity+"------------options.inDensity");
+						// XCApplication.printi(options.inPreferredConfig+"------------options.inPreferredConfig");
 						int ratio = (int) Math.round(Math.sqrt(options.outWidth
 								* options.outHeight * 4
 								/ image_size_limit_by_byte));

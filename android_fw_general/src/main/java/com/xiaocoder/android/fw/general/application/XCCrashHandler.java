@@ -11,8 +11,6 @@ import android.os.Environment;
 import android.os.Looper;
 import android.widget.Toast;
 
-import com.xiaocoder.android.fw.general.base.XCBaseConfig;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;

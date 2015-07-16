@@ -5,7 +5,7 @@ import android.content.Context;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBaseConfig;
+import com.xiaocoder.android.fw.general.base.XCConfig;
 import com.xiaocoder.android.fw.general.dialog.XCdialog;
 
 /*单例
@@ -42,11 +42,11 @@ public class XCHttpAsyn {
 
     // universe_asyn框架内部开启线程访问了  第一个参数不为空的时候，取消secret参数
     public static void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, RequestParams params, XCHttpResponseHandler res) {
-        XCApplication.printi(XCBaseConfig.TAG_HTTP, params.toString());
+        XCApplication.printi(XCConfig.TAG_HTTP, params.toString());
         if (isAllowConcurrent || !isNeting) {
             isNeting = true;
             showLoadingDialog(isShowDialog, context);
-            XCApplication.printi(XCBaseConfig.TAG_HTTP, urlString + "------>get http url");
+            XCApplication.printi(XCConfig.TAG_HTTP, urlString + "------>get http url");
             res.setContext(context);
             res.yourCompanySecret(params, client, needSecret);
             client.get(urlString, params, res);
@@ -65,11 +65,11 @@ public class XCHttpAsyn {
 
     // universe_asyn框架内部开启线程访问了
     public static void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, RequestParams params, XCHttpResponseHandler res) {
-        XCApplication.printi(XCBaseConfig.TAG_HTTP, params.toString());
+        XCApplication.printi(XCConfig.TAG_HTTP, params.toString());
         if (isAllowConcurrent || !isNeting) {
             isNeting = true;
             showLoadingDialog(isShowDialog, context);
-            XCApplication.printi(XCBaseConfig.TAG_HTTP, urlString + "------>post http url");
+            XCApplication.printi(XCConfig.TAG_HTTP, urlString + "------>post http url");
             res.setContext(context);
             res.yourCompanySecret(params, client, needSecret);
             client.post(urlString, params, res);
@@ -89,7 +89,7 @@ public class XCHttpAsyn {
     public static void closeLoadingDialog() {
         if (XCApplication.getBase_dialog() != null) {
             XCApplication.getBase_dialog().dismiss();
-            XCApplication.printi(XCBaseConfig.TAG_HTTP, "closeLoadingDialog");
+            XCApplication.printi(XCConfig.TAG_HTTP, "closeLoadingDialog");
         }
     }
 
@@ -102,7 +102,7 @@ public class XCHttpAsyn {
         if (isShowDialog) {
             XCApplication.getBase_dialog().getWaitingDialog(context, XCdialog.SYSTEM_CIRCLE_DIALOG_V, null, false, null, null);
             XCApplication.getBase_dialog().show();
-            XCApplication.printi(XCBaseConfig.TAG_HTTP, "showLoadingDialog");
+            XCApplication.printi(XCConfig.TAG_HTTP, "showLoadingDialog");
 
             // 自定义的圈圈
             // MyApplication.base_logs.i(MyConfig.TAG_HTTP,

@@ -79,6 +79,8 @@ public class XCApplication extends Application {
         base_handler = new Handler();
         base_io = new XCIOAndroid(getApplicationContext());
 
+        // 涉及到路径的初始化，在子类中
+
     }
 
     // 添加Activity到栈中

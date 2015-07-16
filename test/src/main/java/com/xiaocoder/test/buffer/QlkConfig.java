@@ -1,8 +1,6 @@
 package com.xiaocoder.test.buffer;
 
-import com.xiaocoder.android.fw.general.base.XCBaseConfig;
-
-public class QlkConfig extends XCBaseConfig {
+public class QlkConfig {
     /*
      * url
      */

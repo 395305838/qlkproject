@@ -24,8 +24,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBaseConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilDate;
 import com.xiaocoder.android.fw.general.util.UtilOom;
@@ -203,7 +201,7 @@ public class XCLocalPhotoFragment extends XCBaseFragment {
         }
     }
 
-    public String save_photo_path = ""; // XCBaseConfig.CHAT_PHOTO_FILE
+    public String save_photo_path = ""; // XCConfig.CHAT_PHOTO_FILE
 
     public void setSave_photo_path(String save_photo_path) {
         this.save_photo_path = save_photo_path;

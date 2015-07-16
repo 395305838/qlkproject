@@ -1,7 +1,7 @@
 package com.xiaocoder.android.fw.general.jsonxml;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBaseConfig;
+import com.xiaocoder.android.fw.general.base.XCConfig;
 import com.xiaocoder.android.fw.general.io.XCIO;
 
 import org.json.JSONArray;
@@ -59,13 +59,13 @@ public class XCJsonParse {
                 } else {
                     if (XCApplication.getBase_log().is_OutPut()) {
                         if (o instanceof Boolean) {
-                            XCApplication.printi(XCBaseConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is boolean");
+                            XCApplication.printi(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is boolean");
                         } else if (o instanceof Integer) {
-                            XCApplication.printi(XCBaseConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is Integer");
+                            XCApplication.printi(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is Integer");
                         } else if (o instanceof String) {
-                            XCApplication.printi(XCBaseConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is String");
+                            XCApplication.printi(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is String");
                         } else {
-                            XCApplication.printi(XCBaseConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is Else Type");
+                            XCApplication.printi(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is Else Type");
                         }
                     }
                     result.set(key, o);
@@ -125,7 +125,7 @@ public class XCJsonParse {
                 }
                 builder.append("public String " + keyvalues[0].trim() + "=" + "\"" + keyvalues[0].trim() + "\"" + ";");
             }
-            XCApplication.printi(XCBaseConfig.TAG_JSON_BEAN, builder.toString());
+            XCApplication.printi(XCConfig.TAG_JSON_BEAN, builder.toString());
         }
     }
 
@@ -180,13 +180,13 @@ public class XCJsonParse {
                 } else {
                     if (XCApplication.getBase_log().is_OutPut()) {
                         if (o instanceof Boolean) {
-                            XCApplication.printi(XCBaseConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is boolean");
+                            XCApplication.printi(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is boolean");
                         } else if (o instanceof Integer) {
-                            XCApplication.printi(XCBaseConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is Integer");
+                            XCApplication.printi(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is Integer");
                         } else if (o instanceof String) {
-                            XCApplication.printi(XCBaseConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is String");
+                            XCApplication.printi(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is String");
                         } else {
-                            XCApplication.printi(XCBaseConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is Else Type");
+                            XCApplication.printi(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is Else Type");
                         }
                     }
                     result.set(key, o);

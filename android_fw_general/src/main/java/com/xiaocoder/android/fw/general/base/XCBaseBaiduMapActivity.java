@@ -15,6 +15,7 @@ import com.xiaocoder.android.fw.general.util.UtilString;
  * Created by xiaocoder on 2015/5/27.
  */
 public abstract class XCBaseBaiduMapActivity extends XCBaseActivity {
+
     private LocationClientOption.LocationMode tempMode = LocationClientOption.LocationMode.Hight_Accuracy;
     private String tempcoor = "gcj02"; // bd09ll  , bd09
     private LocationClient mLocationClient;
@@ -36,7 +37,6 @@ public abstract class XCBaseBaiduMapActivity extends XCBaseActivity {
         mLocationClient.start();
 
     }
-
 
     String address;
 

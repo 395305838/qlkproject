@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBaseConfig;
 import com.xiaocoder.android.fw.general.util.UtilDate;
 import com.xiaocoder.android_fw_general.R;
 
@@ -311,7 +310,7 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
         }
     }
 
-    // save_path = XCBaseConfig.CHAT_VIDEO_FILE
+    // save_path = XCConfig.CHAT_VIDEO_FILE
     private String save_path = "";
 
     public void setSavePath(String save_path) {

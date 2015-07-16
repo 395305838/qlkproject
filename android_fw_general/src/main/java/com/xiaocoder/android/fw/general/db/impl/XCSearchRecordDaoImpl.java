@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBaseConfig;
 import com.xiaocoder.android.fw.general.db.XCIDao;
 import com.xiaocoder.android.fw.general.db.helper.XCSearchRecordDBHelper;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;

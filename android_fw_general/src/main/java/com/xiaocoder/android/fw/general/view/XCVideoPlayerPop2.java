@@ -39,7 +39,6 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBaseConfig;
 import com.xiaocoder.android.fw.general.util.UtilImage;
 import com.xiaocoder.android_fw_general.R;
 
@@ -599,14 +598,14 @@ public class XCVideoPlayerPop2 implements OnErrorListener, OnCompletionListener,
 //        if (popController != null && surface_view.isShown()) {
 //            popController.showAsDropDown(parent_of_surface_view, 0, -popHeight);
 //        }
-//        XCApplication.base_log.i(XCBaseConfig.TAG_SYSTEM_OUT, "showController");
+//        XCApplication.base_log.i(XCConfig.TAG_SYSTEM_OUT, "showController");
     }
 
     private void dismissControlPop() {
 //        if (popController != null && surface_view.isShown()) {
 //            popController.dismiss();
 //        }
-//        XCApplication.base_log.i(XCBaseConfig.TAG_SYSTEM_OUT, "dismissController");
+//        XCApplication.base_log.i(XCConfig.TAG_SYSTEM_OUT, "dismissController");
     }
 
     private boolean isPopShowing() {

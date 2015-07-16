@@ -11,7 +11,7 @@ import com.xiaocoder.android_fw_general.R;
 /**
  * Created by xilinch on 2015/5/20.
  */
-public class XL_ShowExceptionsActivity extends Activity{
+public class XL_ShowExceptionsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,8 +19,8 @@ public class XL_ShowExceptionsActivity extends Activity{
         setContentView(R.layout.activity_show_exception);
         TextView tv = (TextView) findViewById(R.id.tv);
         Bundle bundle = getIntent().getExtras();
-        if(bundle != null){
-            String text  = bundle.getString("text");
+        if (bundle != null) {
+            String text = bundle.getString("text");
             tv.setText(text);
         }
     }

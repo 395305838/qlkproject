@@ -14,7 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import com.xiaocoder.android.fw.general.base.XCBaseConfig;
+import com.xiaocoder.android.fw.general.base.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCTitleFragment;
 import com.xiaocoder.android.fw.general.db.XCDaoFactory;
 import com.xiaocoder.android.fw.general.db.XCIDao;
@@ -166,7 +166,7 @@ public class XCTitleSearchFragment extends XCTitleFragment {
             xc_id_fragment_search_edittext.setFocusable(false);
         }
         xc_id_fragment_search_cancle = getViewById(R.id.xc_id_fragment_search_cancle);
-        dao = XCDaoFactory.getDaoInstanceForSearch(getActivity(), XCBaseConfig.XC_SEARCH_RECODER_DAO_CLASS,tabName);
+        dao = XCDaoFactory.getDaoInstanceForSearch(getActivity(), XCConfig.XC_SEARCH_RECODER_DAO_CLASS,tabName);
         if (hint != null) {
             xc_id_fragment_search_edittext.setHint(hint);
         }
