@@ -1,0 +1,56 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/xc_id_model_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_white_ffffff" >
+
+    <!-- title -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/c_red_ff0000"
+        android:visibility="gone" >
+    </RelativeLayout>
+
+    <!-- 内容 -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/xc_id_model_bottombar"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:background="@color/c_red_ff0000"
+        android:visibility="invisible" >
+    </RelativeLayout>
+
+    <!-- 无网络的背景 -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_no_net"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/xc_id_model_bottombar"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:background="@color/c_blue_0000ff"
+        android:visibility="invisible" >
+
+        <include layout="@layout/xc_l_view_no_net" />
+    </RelativeLayout>
+
+    <!-- bottom -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/c_red_ff0000"
+        android:visibility="gone" >
+    </RelativeLayout>
+
+</RelativeLayout>

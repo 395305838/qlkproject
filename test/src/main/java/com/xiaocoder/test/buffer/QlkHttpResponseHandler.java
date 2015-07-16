@@ -1,0 +1,89 @@
+package com.xiaocoder.test.buffer;
+
+import android.content.Context;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.RequestParams;
+import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.base.XCBaseConfig;
+import com.xiaocoder.android.fw.general.base.XCBaseFragment;
+import com.xiaocoder.android.fw.general.http.XCHttpResponseHandler;
+import com.xiaocoder.android.fw.general.http.XCIHttpResult;
+import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
+
+/**
+ * @author xiaocoder
+ * @date 2014-12-30 下午5:04:48
+ */
+public class QlkHttpResponseHandler extends XCHttpResponseHandler {
+
+
+    public QlkHttpResponseHandler(XCIHttpResult result_http, int content_type, boolean show_background_when_net_fail, XCBaseFragment refresh_fragment) {
+        super(result_http, content_type, show_background_when_net_fail, refresh_fragment);
+    }
+
+    public QlkHttpResponseHandler(XCIHttpResult result_http) {
+        super(result_http);
+    }
+
+    public QlkHttpResponseHandler(XCIHttpResult result_http, XCBaseFragment refresh_fragment) {
+        super(result_http, refresh_fragment);
+    }
+
+
+    // 需要根据公司业务重写
+    public void yourCompanyLogic() {
+
+        XCApplication.printi("yourCompanyLogic");
+
+        if (YES.equals(result_bean.getString(XCJsonBean.CODE))) {
+            result_boolean = true;
+        } else {
+            result_boolean = false;
+            XCApplication.shortToast(result_bean.getString(XCJsonBean.MSG));
+        }
+
+    }
+
+    @Override
+    public void yourCompanySecret(RequestParams params, AsyncHttpClient client, boolean needSecret) {
+
+        XCApplication.printi("yourCompanySecret");
+
+        int versionCode = 1;
+        String mac = "111";
+        if (context != null) {
+            try {
+                versionCode = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
+
+            } catch (Exception e) {
+
+            } finally {
+
+            }
+            WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
+            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
+            mac = wifiInfo.getMacAddress();
+        }
+
+        client.addHeader("_v", versionCode + "");// 版本号，必填
+        client.addHeader("_m", mac);// 设备的mac地址，选填
+        client.addHeader("_c", "2222");// JSONP的回调函数名 ,可选
+        client.addHeader("_p", "1"); // 平台，必填
+
+
+//        String token = Qlk
+//        params.put("token", token);
+//        if (params != null && params.has("token")) {
+//            String ts = System.currentTimeMillis() + "";
+//            String sig = UtilMd5.sortAddMD5Params(ts, params);
+//            //有token的接口需要添加sig
+//            params.put("sig", sig);
+//            params.put("ts", ts);
+//        }
+        XCApplication.printi(XCBaseConfig.TAG_HTTP, "plus public params-->" + params.toString());
+    }
+
+}

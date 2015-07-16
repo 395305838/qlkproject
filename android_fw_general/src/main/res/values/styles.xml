@@ -1,0 +1,115 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:windowNoTitle">true</item>
+
+        <!-- Customize your theme here. -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="xc_s_pop_from_down_to_up">
+        <item name="android:windowEnterAnimation">@anim/xc_anim_pop_enter</item>
+        <item name="android:windowExitAnimation">@anim/xc_anim_pop_exit</item>
+    </style>
+
+    <style name="xc_s_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- 无边界 ,否则会出现框框的线条 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 悬浮在activity上 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <!-- 默认都是有title -->
+        <item name="android:windowBackground">@drawable/default_ptr_rotate2</item>
+        <!-- 这句不能少,否则还是有边框 -->
+    </style>
+
+    <!-- 线 -->
+    <style name="xc_h_line_red_ff0000_1">
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/c_red_ff0000</item>
+    </style>
+
+    <style name="xc_v_line_red_ff0000_1">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">1dp</item>
+        <item name="android:background">@color/c_red_ff0000</item>
+    </style>
+
+    <style name="xc_h_line_gray_bebebe_1">
+        <item name="android:layout_height">1px</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/c_gray_bebebe</item>
+    </style>
+    <style name="xc_h_line_gray_cccccc">
+        <item name="android:layout_height">1px</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/c_gray_cccccc</item>
+    </style>
+    <style name="xc_h_line_gray_cccccc_dp">
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/c_gray_cccccc</item>
+    </style>
+
+    <style name="xc_h_line_gray_e8e8e8">
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/c_gray_e8e8e8</item>
+    </style>
+
+    <style name="xc_v_line_gray_bebebe_1">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">1dp</item>
+        <item name="android:background">@color/c_gray_bebebe</item>
+    </style>
+
+    <style name="xc_v_line_gray_d8d8d8">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">0.5dp</item>
+        <item name="android:background">@color/c_gray_d8d8d8</item>
+    </style>
+    <!-- 虚线 -->
+    <style name="xc_h_line_point">
+        <item name="android:layout_height">2dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/xc_dd_line_gray_e1e1e1_point</item>
+        <!-- <item name="android:layerType">software</item> -->
+        <!-- line.setLayerType(View.LAYER_TYPE_SOFTWARE, null); 或者代码设置 -->
+    </style>
+
+    <!-- radiobutton -->
+    <style name="xc_main_bottom_tab_item">
+        <item name="android:background">#f7f7f8</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@color/c_black_000000</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
+    <!-- radiobutton -->
+    <style name="xc_main_bottom_tab_item_number">
+        <item name="android:background">#f7f7f8</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@color/c_black_000000</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
+    <!-- 视频播放的主控制器pop的动画 -->
+    <style name="pop">
+        <item name="android:windowEnterAnimation">@anim/xc_anim_videopopenter</item>
+        <item name="android:windowExitAnimation">@anim/xc_anim_videopopexit</item>
+    </style>
+
+</resources>

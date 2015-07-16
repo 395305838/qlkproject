@@ -1,0 +1,111 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/xc_id_model_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_white_ffffff" >
+
+    <!-- title -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/c_red_ff0000"
+        android:visibility="gone" >
+    </RelativeLayout>
+
+    <!-- 内容 -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/xc_id_model_bottombar"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:background="@color/c_red_ff0000" >
+    </RelativeLayout>
+
+    <!-- 无网络的背景 -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_no_net"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/xc_id_model_bottombar"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:background="@color/c_blue_0000ff"
+        android:visibility="invisible" >
+
+        <include layout="@layout/xc_l_view_no_net" />
+    </RelativeLayout>
+
+    <!-- bottom -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/c_red_ff0000"
+        android:visibility="gone" >
+
+        <RadioGroup
+            android:id="@+id/xc_id_tab_group"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/c_trans"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/xc_id_tab_item1"
+                style="@style/xc_main_bottom_tab_item"
+                android:layout_height="49dp"
+                android:layout_gravity="bottom"
+                android:checked="true"
+                android:drawableTop="@drawable/xc_dd_selector_image"
+                android:padding="5dp"
+                android:text="item1" />
+
+            <RadioButton
+                android:id="@+id/xc_id_tab_item2"
+                style="@style/xc_main_bottom_tab_item"
+                android:layout_height="49dp"
+                android:layout_gravity="bottom"
+                android:drawableTop="@drawable/xc_dd_selector_image"
+                android:padding="5dp"
+                android:text="item2" />
+
+            <!-- android:background="@drawable/ic" -->
+
+            <RadioButton
+                android:id="@+id/xc_id_tab_item3"
+                style="@style/xc_main_bottom_tab_item"
+                android:layout_height="56dp"
+                android:drawableTop="@drawable/xc_dd_selector_image"
+                android:paddingTop="7dp"
+                android:text="item3" />
+
+            <RadioButton
+                android:id="@+id/xc_id_tab_item4"
+                style="@style/xc_main_bottom_tab_item"
+                android:layout_height="49dp"
+                android:layout_gravity="bottom"
+                android:drawableTop="@drawable/xc_dd_selector_image"
+                android:padding="5dp"
+                android:text="item4" />
+
+            <RadioButton
+                android:id="@+id/xc_id_tab_item5"
+                style="@style/xc_main_bottom_tab_item"
+                android:layout_height="49dp"
+                android:layout_gravity="bottom"
+                android:drawableTop="@drawable/xc_dd_selector_image"
+                android:padding="5dp"
+                android:text="item5" />
+        </RadioGroup>
+    </RelativeLayout>
+
+</RelativeLayout>

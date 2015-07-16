@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/xc_d_patient_pop"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
+
+    <TextView
+        android:id="@+id/xc_id_patient_1"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:text="￥1"
+        android:textSize="17sp" />
+
+    <View
+        style="@style/xc_h_line_point"
+        android:layerType="software" />
+
+    <TextView
+        android:id="@+id/xc_id_patient_2"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:text="￥2"
+        android:textSize="17sp" />
+
+    <View
+        style="@style/xc_h_line_point"
+        android:layerType="software" />
+
+    <TextView
+        android:id="@+id/xc_id_patient_3"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:text="￥3"
+        android:textSize="17sp" />
+
+</LinearLayout>

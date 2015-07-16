@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/xc_id_adapter_right_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$2015-4-16"
+        android:gravity="center"
+        android:textSize="17sp"
+        android:paddingBottom="3dp"
+        android:paddingTop="5dp"
+        android:layout_gravity="center" />
+
+    <RelativeLayout
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/xc_id_adapter_right_head"
+            android:layout_alignParentRight="true"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_centerInParent="true"
+            />
+
+        <TextView
+            android:id="@+id/xc_id_adapter_right_content"
+            android:layout_toLeftOf="@+id/xc_id_adapter_right_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:gravity="center_vertical"
+            android:paddingBottom="10dp"
+            android:textSize="18sp"
+            android:textColor="@color/c_black_000000"
+            android:text="#测试"
+            android:background="@drawable/qlk_d_message_right1" />
+
+        <ImageView
+            android:id="@+id/xc_id_adapter_right_content_imageview"
+            android:layout_toLeftOf="@+id/xc_id_adapter_right_head"
+            android:layout_width="dp"
+            android:layout_height="90dp"
+            android:visibility="gone"
+            android:layout_marginRight="5dp"
+            android:layout_centerInParent="true"
+            android:background="#ffffff"
+             />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

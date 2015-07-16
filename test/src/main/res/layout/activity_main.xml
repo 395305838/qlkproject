@@ -1,0 +1,177 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_white_ffffff"
+    android:orientation="vertical"
+    tools:context=".XCBaseMainTabActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/test_dialog"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="dialog" />
+
+            <Button
+                android:id="@+id/test_dialog2"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="dialog2" />
+
+            <Button
+                android:id="@+id/test_point_line"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="point_line" />
+
+            <Button
+                android:id="@+id/test_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="scan" />
+
+            <Button
+                android:id="@+id/test_http"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="http" />
+
+            <Button
+                android:id="@+id/test_http_download"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="http_download" />
+
+            <Button
+                android:id="@+id/test_pop"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="pop" />
+
+            <Button
+                android:id="@+id/test_webview"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="webview" />
+
+            <Button
+                android:id="@+id/test_viewpager"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="viewpager" />
+
+            <Button
+                android:id="@+id/test_move_block"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="move_block" />
+
+            <Button
+                android:id="@+id/test_camare"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="camare" />
+
+            <Button
+                android:id="@+id/test_search"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="search" />
+
+            <Button
+                android:id="@+id/test_scroll"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="scroll" />
+
+            <Button
+                android:id="@+id/test_pop2"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="pop2" />
+
+            <Button
+                android:id="@+id/test_contacts"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="contacts" />
+
+            <com.xiaocoder.android.fw.general.view.XCRecordVoiceButton
+                android:id="@+id/test_recodervoice"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="recodervoice"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/test_chat_bottom"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="chat_bottom" />
+
+            <Button
+                android:id="@+id/test_list_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="list_fragment" />
+
+            <Button
+                android:id="@+id/test_grid_fragment"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="grid_fragment" />
+
+            <Button
+                android:id="@+id/test_sliding_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="sliding_menu" />
+
+            <Button
+                android:id="@+id/test_sliding_menu2"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="sliding_menu2" />
+
+            <Button
+                android:id="@+id/test_viewpager_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="viewpager_indicator" />
+
+            <Button
+                android:id="@+id/test_anim"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="test_anim" />
+
+            <Button
+                android:id="@+id/test_code"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="test_code" />
+
+            <Button
+                android:id="@+id/xc_id_test"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="test" />
+            <Button
+                android:id="@+id/xc_id_anim"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="anim" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

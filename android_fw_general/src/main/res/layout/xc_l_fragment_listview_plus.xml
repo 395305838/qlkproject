@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <com.xiaocoder.android.fw.general.view.XCListView
+        android:id="@+id/xc_id_listview_plus"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layoutAnimation="@anim/list_animation"
+        />
+
+    <include
+        android:id="@+id/xc_id_listview_plus_zero_bg"
+        layout="@layout/xc_l_view_data_zero"
+        android:visibility="gone" />
+
+</RelativeLayout>

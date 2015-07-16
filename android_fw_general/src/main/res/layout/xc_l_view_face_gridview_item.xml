@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="25dp"
+    android:layout_height="25dp"
+    android:gravity="center"
+    android:background="@color/c_gray_f9f9f9">
+
+    <ImageView
+        android:id="@+id/xc_id_face_item_imageview"
+        android:layout_width="25dp"
+        android:layout_height="25dp" />
+
+</LinearLayout>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="266dp"
+    android:layout_height="match_parent"
+    android:background="@drawable/xc_dd_bg_white_ffffff_5"
+    android:orientation="vertical" >
+
+    <!-- 动态代码添加item -->
+
+    <TextView
+        android:id="@+id/xc_id_dialog_items_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="2dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:textColor="@color/c_black_000000"
+        android:textSize="19sp" />
+
+</LinearLayout>

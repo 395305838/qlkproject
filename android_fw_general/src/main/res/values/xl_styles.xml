@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="text_size_super_big">
+        <item name="android:textSize">38sp</item>
+    </style>
+    <style name="text_size_big">
+        <item name="android:textSize">24sp</item>
+    </style>
+    <style name="text_size_normal">
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="text_size_menu">
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="text_size_title">
+        <item name="android:textSize">18sp</item>
+    </style>
+    <style name="text_size_small">
+        <item name="android:textSize">13sp</item>
+    </style>
+    <style name="text_size_normal_color_f96b05" parent="text_size_normal">
+        <item name="android:textColor">@color/c_orange_f96b05</item>
+    </style>
+    <style name="text_size_big_color_f96b05" parent="text_size_big">
+        <item name="android:textColor">@color/c_orange_f96b05</item>
+    </style>
+    <style name="text_size_super_big_color_f96b05" parent="text_size_super_big">
+        <item name="android:textColor">@color/c_orange_f96b05</item>
+    </style>
+    <style name="text_size_normal_white" parent="text_size_normal">
+        <item name="android:textColor">@color/c_white_ffffff</item>
+    </style>
+    <style name="text_size_title_white" parent="text_size_title">
+        <item name="android:textColor">@color/c_white_ffffff</item>
+    </style>
+    <style name="text_size_normal_gray" parent="text_size_normal">
+        <item name="android:textColor">@color/c_gray_bebebe</item>
+    </style>
+    <style name="text_size_normal_gray_999999" parent="text_size_normal">
+        <item name="android:textColor">@color/c_gray_999999</item>
+    </style>
+    <style name="text_size_small_gray_6a6a6a" parent="text_size_small">
+        <item name="android:textColor">@color/c_gray_6a6a6a</item>
+    </style>
+
+    <style name="text_size_normal_gray_6a6a6a" parent="text_size_normal">
+        <item name="android:textColor">@color/c_gray_6a6a6a</item>
+    </style>
+    <style name="text_size_titile_gray_6a6a6a" parent="text_size_title">
+        <item name="android:textColor">@color/c_gray_6a6a6a</item>
+    </style>
+    <style name="text_size_title_gray" parent="text_size_title">
+        <item name="android:textColor">@color/c_gray_bebebe</item>
+    </style>
+    <style name="text_size_title_gray_6a6a6a" parent="text_size_title">
+        <item name="android:textColor">@color/c_gray_6a6a6a</item>
+    </style>
+    <style name="text_size_title_orange" parent="text_size_title">
+        <item name="android:textColor">@color/c_orange_ff6600</item>
+    </style>
+    <style name="text_size_big_gray" parent="text_size_big">
+        <item name="android:textColor">@color/c_gray_bebebe</item>
+    </style>
+    <style name="text_size_big_gray_6a6a6a" parent="text_size_big">
+        <item name="android:textColor">@color/c_gray_6a6a6a</item>
+    </style>
+    <style name="text_size_big_white" parent="text_size_big">
+        <item name="android:textColor">@color/c_white_ffffff</item>
+    </style>
+    <style name="text_size_big_blue" parent="text_size_big">
+        <item name="android:textColor">@color/c_bg_288DE5</item>
+    </style>
+    <style name="text_size_title_blue" parent="text_size_title">
+        <item name="android:textColor">@color/c_bg_288DE5</item>
+    </style>
+    <style name="text_size_title_white_bold" parent="text_size_title_white">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text_size_big_white_bold" parent="text_size_big_white">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="text_size_big_gray_bold" parent="text_size_big_gray">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="text_size_big_gray_6a6a6a_bold" parent="text_size_big_gray_6a6a6a">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="shape_round_bg"  >
+        <item name="android:background">@drawable/xl_dd_c_round_bg</item>
+    </style>
+    <style name="shape_round_bg_big"  parent="shape_round_bg">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:height">25dp</item>
+        <item name="android:width">25dp</item>
+        <item name="android:padding">3dp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/c_white_ffffff</item>
+    </style>
+    <style name="shape_round_bg_big_tab"  parent="shape_round_bg">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:height">20dp</item>
+        <item name="android:width">20dp</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_marginTop">1dp</item>
+        <item name="android:textColor">@color/c_white_ffffff</item>
+    </style>
+    <style name="shape_round_bg_small"  parent="shape_round_bg">
+        <item name="android:width">20dp</item>
+        <item name="android:height">20dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:layout_marginTop">1dp</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:textColor">@color/c_white_ffffff</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="shape_round_bg_point"  parent="shape_round_bg">
+        <item name="android:width">10dp</item>
+        <item name="android:height">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginRight">3dp</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:textColor">@color/c_white_ffffff</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+    <style name="ll_style" >
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginBottom">14dp</item>
+        <item name="android:layout_marginTop">14dp</item>
+    </style>
+</resources>

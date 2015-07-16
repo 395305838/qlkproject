@@ -1,0 +1,13 @@
+ // requestWindowFeature(Window.FEATURE_NO_TITLE);//设置没有标题,一定要在setContentView的前面设置
+    setContentView(R.layout.main);
+    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);//全屏显示
+ 
+ // setTheme(android.R.style.Theme_Black_NoTitleBar_Fullscreen);//在super之前设置
+ 
+// private void scrollUp(final ScrollView view) {
+view.post(new Runnable() {
+public void run() {
+view.fullScroll(ScrollView.FOCUS_UP); // 进入页面就滑到最开始处
+}
+});
+}

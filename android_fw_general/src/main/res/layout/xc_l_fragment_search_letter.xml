@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/xc_id_fragment_search_brand_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/c_gray_f9f9f9" >
+
+    <ListView
+        android:id="@+id/xc_id_fragment_search_slide_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:id="@+id/xc_id_fragment_search_slide_dialog"
+        android:layout_width="80.0dip"
+        android:layout_height="80.0dip"
+        android:layout_gravity="center"
+        android:background="@drawable/xc_d_search_letter_toast_bg"
+        android:gravity="center"
+        android:textColor="#ffffffff"
+        android:textSize="30sp"
+        android:visibility="invisible" />
+
+    <com.xiaocoder.android.fw.general.view.XCSlideBar
+        android:id="@+id/xc_id_fragment_search_slide_slidebar"
+        android:layout_width="29.0dip"
+        android:layout_height="fill_parent"
+        android:layout_gravity="right|center" />
+
+</FrameLayout>

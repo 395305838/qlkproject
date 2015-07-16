@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_white_ffffff"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/xc_d_bg_fail" />
+
+    <Button
+        android:id="@+id/xc_id_no_net_button"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:background="@color/c_trans"
+        android:text="加载失败，请重新进入或刷新界面"
+        android:textSize="17sp"
+         />
+
+</LinearLayout>

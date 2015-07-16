@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/xc_id_model_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_black_000000" >
+
+    <!-- title 不用该布局的话，可以删除该布局 -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:visibility="gone" >
+    </RelativeLayout>
+
+    <!-- bottom 不用该布局的话，可以删除该布局 ,这里某些情况下，可能会用到wrapcontent，比如聊天 -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone" >
+    </RelativeLayout>
+
+    <!-- 内容   不用该布局的话，可以删除该布局 -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/xc_id_model_bottombar"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:visibility="invisible" >
+    </RelativeLayout>
+
+    <!-- 无网络的背景   不用该布局的话，可以删除该布局 -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_no_net"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/xc_id_model_bottombar"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:visibility="gone" >
+
+        <include layout="@layout/xc_l_view_no_net" />
+    </RelativeLayout>
+
+</RelativeLayout>

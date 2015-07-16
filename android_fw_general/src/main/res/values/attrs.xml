@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- These are the standard attributes that make up a complete theme. -->
+    <!-- 自定义控件的属性 -->
+    <declare-styleable name="XCImageView">
+        <!-- 文本 -->
+        <attr name="xc_radio_for_width_height" format="string|reference" />
+    </declare-styleable>
+</resources>

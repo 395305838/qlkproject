@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/c_white_ffffff"
+    android:orientation="vertical" >
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#aaa" />
+
+    <TextView
+        android:id="@+id/xc_id_pop_photoUpload"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/xc_dd_bg_gray_bc202020_8"
+        android:gravity="center"
+        android:text="拍照上传"
+        android:textColor="@color/c_white_ffffff"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/xc_id_pop_localAlbum"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/xc_dd_bg_gray_bc202020_8"
+        android:gravity="center"
+        android:text="本地相册"
+        android:textColor="@color/c_white_ffffff"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/xc_id_pop_net_prescrition"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/xc_dd_bg_gray_bc202020_8"
+        android:gravity="center"
+        android:text="从我的处方单选择"
+        android:visibility="gone"
+        android:textColor="@color/c_gray_bc202020"
+        android:textSize="18sp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:text="从我的处方单选择"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/xc_id_pop_cancel"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/xc_dd_bg_gray_bc202020_8"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/c_white_ffffff"
+        android:textSize="18sp" />
+
+</LinearLayout>

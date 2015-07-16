@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/xc_id_model_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <!-- title -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/c_red_ff0000"
+        android:visibility="gone" >
+    </RelativeLayout>
+
+    <!-- 内容 -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/xc_id_model_bottombar"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:background="@color/c_red_ff0000"
+        android:visibility="invisible" >
+
+        <LinearLayout
+            android:id="@+id/xc_id_fragment_test_local"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/xc_id_fragment_test_camera"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/xc_id_fragment_test_local"
+            android:orientation="horizontal" >
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/test_imageview"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            android:layout_below="@+id/xc_id_fragment_test_camera"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/ic_launcher" />
+    </RelativeLayout>
+
+    <!-- 无网络的背景 -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_no_net"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/xc_id_model_bottombar"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:background="#0000ff"
+        android:visibility="invisible" >
+
+        <include layout="@layout/xc_l_view_no_net" />
+    </RelativeLayout>
+
+
+    <!-- bottom -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/c_red_ff0000"
+        android:orientation="vertical"
+        android:visibility="gone" >
+    </RelativeLayout>
+
+</RelativeLayout>

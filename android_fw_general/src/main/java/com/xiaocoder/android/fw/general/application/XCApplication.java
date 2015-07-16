@@ -1,0 +1,361 @@
+package com.xiaocoder.android.fw.general.application;
+
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.Application;
+import android.content.Context;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.os.Handler;
+import android.widget.ImageView;
+
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.xiaocoder.android.fw.general.base.XCBaseMainActivity;
+import com.xiaocoder.android.fw.general.dialog.XCdialog;
+import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
+import com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper;
+import com.xiaocoder.android.fw.general.io.XCIOAndroid;
+import com.xiaocoder.android.fw.general.io.XCLog;
+import com.xiaocoder.android.fw.general.io.XCSP;
+import com.xiaocoder.android.fw.general.util.UtilImage;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Stack;
+import java.util.concurrent.ExecutorService;
+
+// 1 版本号等信息
+// 2 存储activity ， 回到首页activity， 弹出指定activity等
+// 3 屏幕的像素 dp 密度
+// 4 线程池    handler  图片加载  log等
+public class XCApplication extends Application {
+
+
+    private Stack<Activity> stack;
+
+    private static int versionCode;
+    private static String versionName;
+    private static int screenHeightPx;
+    private static int screenWidthPx;
+    private static float density;
+    private static int screenHeightDP;
+    private static int screenWidthDP;
+
+    protected static XCLog base_log;
+    protected static XCSP base_sp;
+    protected static ImageLoader base_imageloader;
+    protected static Handler base_handler;
+    protected static ExecutorService base_cache_threadpool;
+    protected static XCIOAndroid base_io;
+    protected static XCdialog base_dialog;
+
+    public Stack<Activity> getStack() {
+        return stack;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        stack = new Stack<Activity>();
+
+        versionCode = getCurrentVersionCode(getApplicationContext().getPackageName(), getApplicationContext());
+        versionName = getCurrentVersionName(getApplicationContext().getPackageName(), getApplicationContext());
+
+        screenHeightPx = UtilImage.getScreenSize(getApplicationContext())[0];
+        screenWidthPx = UtilImage.getScreenSize(getApplicationContext())[1];
+
+        density = getApplicationContext().getResources().getDisplayMetrics().density;
+
+        screenHeightDP = UtilImage.px2dip(getApplicationContext(), screenHeightPx);
+        screenWidthDP = UtilImage.px2dip(getApplicationContext(), screenWidthPx);
+
+        // 线程池
+        base_cache_threadpool = XCExecutorHelper.getExecutorHelperInstance().getCache();
+        // dialog , 这个给activity的context
+        base_dialog = XCdialog.getXCDialogInstance();
+        base_handler = new Handler();
+        base_io = new XCIOAndroid(getApplicationContext());
+
+    }
+
+    // 添加Activity到栈中
+    public void addActivityToStack(Activity activity) {
+        stack.add(activity);
+    }
+
+    // 把Activity移出栈
+    public void delActivityFromStack(Activity activity) {
+        stack.remove(activity);
+    }
+
+    /**
+     * 获取当前Activity（堆栈中最后一个压入的）
+     */
+    public Activity getCurrentActivity() {
+        return stack.lastElement();
+    }
+
+    // 判断某个acivity实例是否存在
+    public boolean isActivityExist(Class<?> cls) {
+        for (Activity activity : stack) {
+            if (activity.getClass().equals(cls)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 获取某个activity（activity不删除）
+    public List<Activity> getActivity(Class<?> cls) {
+        List<Activity> list = new ArrayList<Activity>();
+        for (Activity activity : stack) {
+            if (activity.getClass().equals(cls)) {
+                list.add(activity);
+            }
+        }
+        return list;
+    }
+
+    /**
+     * 结束指定的Activity
+     */
+    public void finishActivity(Activity activity) {
+        if (activity != null) {
+            stack.remove(activity);
+            activity.finish();
+            activity = null;
+        }
+    }
+
+    /**
+     * 获取当前Activity（堆栈中最后一个压入的）
+     */
+    public void finishCurrentActivity() {
+        finishActivity(stack.lastElement());
+    }
+
+    /**
+     * 通过class ， 结束指定类名的Activity
+     */
+    public void finishActivities(Class<?> cls) {
+        for (Activity activity : stack) {
+            if (activity.getClass().equals(cls)) {
+                finishActivity(activity);
+            }
+        }
+    }
+
+    // 关闭所有的activity,finish()会调用destroy()方法
+    public void finishAllActivity() {
+        for (Activity activity : stack) {
+            if (activity != null) {
+                activity.finish();// 销毁
+            }
+        }
+        stack.clear();
+    }
+
+    // 回到首页 , 并返回首页的activity
+    public XCBaseMainActivity toXCMainActivity() {
+        XCBaseMainActivity main_activity = null;
+
+        for (Iterator<Activity> it = stack.iterator(); it.hasNext(); ) {
+            Activity item = it.next();
+            if (item instanceof XCBaseMainActivity) {
+                main_activity = (XCBaseMainActivity) item;
+                continue;
+            } else {
+                item.finish();
+                it.remove();
+            }
+        }
+        return main_activity;
+    }
+
+    /**
+     * 退出应用程序
+     */
+    public void AppExit(Context context) {
+        try {
+            finishAllActivity();
+            ActivityManager activityMgr = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+            activityMgr.restartPackage(context.getPackageName());
+            System.exit(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public int getCurrentVersionCode(String packageName, Context context) {
+        try {
+            return context.getPackageManager().getPackageInfo(packageName, 0).versionCode;
+        } catch (NameNotFoundException e) {
+            return -1;
+        }
+    }
+
+    public String getCurrentVersionName(String packageName, Context context) {
+        try {
+            return context.getPackageManager().getPackageInfo(packageName, 0).versionName;
+        } catch (NameNotFoundException e) {
+            return "-1";
+        }
+    }
+
+    public static int getVersionCode() {
+        return versionCode;
+    }
+
+    public static String getVersionName() {
+        return versionName;
+    }
+
+    public static float getDensity() {
+        return density;
+    }
+
+    public static int getScreenHeightPx() {
+        return screenHeightPx;
+    }
+
+    public static int getScreenWidthPx() {
+        return screenWidthPx;
+    }
+
+    public static int getScreenHeightDP() {
+        return screenHeightDP;
+    }
+
+    public static int getScreenWidthDP() {
+        return screenWidthDP;
+    }
+
+    public static XCLog getBase_log() {
+        return base_log;
+    }
+
+    public static XCSP getBase_sp() {
+        return base_sp;
+    }
+
+    public static ImageLoader getBase_imageloader() {
+        return base_imageloader;
+    }
+
+    public static Handler getBase_handler() {
+        return base_handler;
+    }
+
+    public static ExecutorService getBase_cache_threadpool() {
+        return base_cache_threadpool;
+    }
+
+    public static XCIOAndroid getBase_io() {
+        return base_io;
+    }
+
+    public static XCdialog getBase_dialog() {
+        return base_dialog;
+    }
+
+    public static void printi(String msg) {
+        base_log.i(msg);
+    }
+
+    public static void printi(String tag, String msg) {
+        base_log.i(tag, msg);
+    }
+
+    public static void dShortToast(String msg) {
+        base_log.debugShortToast(msg);
+    }
+
+    public static void dLongToast(String msg) {
+        base_log.debugLongToast(msg);
+    }
+
+    public static void tempPrint(String msg) {
+        base_log.tempPrint(msg);
+    }
+
+    public static void shortToast(String msg) {
+        base_log.shortToast(msg);
+    }
+
+    public static void longToast(String msg) {
+        base_log.longToast(msg);
+    }
+
+    public static void printe(Context context, Exception e) {
+        base_log.e(context, e);
+    }
+
+    public static void printe(Context context, String msg) {
+        base_log.e(context, msg);
+    }
+
+    public static void printe(String hint, Exception e) {
+        base_log.e(hint, e);
+    }
+
+    public static void printe(Context context, String hint, Exception e) {
+        base_log.e(context, hint, e);
+    }
+
+    public static void spPut(String key, boolean value) {
+        base_sp.putBoolean(key, value);
+    }
+
+    public static void spPut(String key, int value) {
+        base_sp.putInt(key, value);
+    }
+
+    public static void spPut(String key, long value) {
+        base_sp.putLong(key, value);
+    }
+
+    public static void spPut(String key, float value) {
+        base_sp.putFloat(key, value);
+    }
+
+    public static void spPut(String key, String value) {
+        base_sp.putString(key, value);
+    }
+
+    public static String spGet(String key, String default_value) {
+        return base_sp.getString(key, default_value);
+    }
+
+    public static int spGet(String key, int default_value) {
+        return base_sp.getInt(key, default_value);
+    }
+
+    public static long spGet(String key, long default_value) {
+        return base_sp.getLong(key, default_value);
+    }
+
+    public static boolean spGet(String key, boolean default_value) {
+        return base_sp.getBoolean(key, default_value);
+    }
+
+    public static float spGet(String key, float default_value) {
+        return base_sp.getFloat(key, default_value);
+    }
+
+    public static Map<String, ?> spGetAll() {
+        return base_sp.getAll();
+    }
+
+    public static void displayImage(String uri, ImageView imageView, DisplayImageOptions options) {
+        base_imageloader.displayImage(uri, imageView, options);
+    }
+
+    public static void displayImage(String uri, ImageView imageView) {
+        displayImage(uri, imageView, XCImageLoaderHelper.getDisplayImageOptions());
+    }
+
+
+}

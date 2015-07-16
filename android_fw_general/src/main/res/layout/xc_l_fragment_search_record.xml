@@ -1,0 +1,61 @@
+<com.xiaocoder.android.fw.general.view.XCKeyBoardLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/xc_id_fragment_search_record_keyboard_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <RelativeLayout
+        android:id="@+id/xc_id_fragment_search_record_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="#F7F7F8"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/xc_id_fragment_search_record_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="搜索历史"
+            android:textColor="@color/c_gray_333333"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/xc_id_fragment_search_record_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:textColor="@color/c_blue_1988ea"
+            android:textSize="18sp"
+
+            />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/xc_id_fragment_search_record_clear_button"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/xc_dd_line_gray_e1e1e1_bg_white_ffffff_5"
+        android:gravity="center"
+        android:textSize="15sp" />
+
+    <ListView
+        android:id="@+id/xc_id_fragment_search_record_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/xc_id_fragment_search_record_clear_button"
+        android:layout_below="@+id/xc_id_fragment_search_record_title" />
+
+</com.xiaocoder.android.fw.general.view.XCKeyBoardLayout>
