@@ -582,7 +582,7 @@ public class XCBottomChatFragment extends XCBottomFragment {
     public void onDestroy() {
         super.onDestroy();
         if (xc_id_fragment_bottom_recoder_button != null) {
-            xc_id_fragment_bottom_recoder_button.endTime();
+            xc_id_fragment_bottom_recoder_button.closetDialog();
         }
     }
 }

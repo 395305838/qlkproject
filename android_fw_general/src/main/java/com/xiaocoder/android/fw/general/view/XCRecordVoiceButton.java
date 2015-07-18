@@ -1,5 +1,9 @@
 package com.xiaocoder.android.fw.general.view;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.media.MediaRecorder;
@@ -16,18 +20,14 @@ import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.util.UtilDate;
 import com.xiaocoder.android_fw_general.R;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-
 // 可以录音的button
 public class XCRecordVoiceButton extends Button implements OnTouchListener {
 
     private MediaRecorder media_recorder;
     private File save_file;
 
-    public static final int MIN_TIME = 3000; // 录音最短时间
-    public static final int MAX_TIME = 45000; // 录音最长时间
+    public static final int MIN_TIME = 3000; // 录音最短时间，毫秒
+    public static final int MAX_TIME = 45000; // 录音最长时间,毫秒
     public static final int FAKE_TIME = 60; // 假的录音最长时间，秒
 
     private long start_time; // 记录录音的开始时间
@@ -67,31 +67,37 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
     }
 
     TimeRunnable timeRunnable;
-    boolean isQuitNow;
 
-    public void startTime() {
-        isQuitNow = false;
-        XCApplication.getBase_cache_threadpool().execute(new Runnable() {
-            @Override
-            public void run() {
-                int i = FAKE_TIME;
-                while (!isQuitNow && i >= 0) {
-                    try {
-                        Thread.sleep(750);
-                        i--;
-                        timeRunnable.update(i, time);
-                        XCApplication.getBase_handler().post(timeRunnable);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+    public class UpdateRunnable implements Runnable {
+
+        public boolean isQuitNow = false;
+
+        @Override
+        public void run() {
+            int i = FAKE_TIME;
+            while (!isQuitNow && i >= 0) {
+                try {
+                    timeRunnable.update(i--, time);
+                    XCApplication.getBase_handler().post(timeRunnable);
+                    Thread.sleep(750);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    isQuitNow = true;
                 }
             }
-        });
+        }
+    }
+
+    public UpdateRunnable current_time_runnable;
+
+    public void startTime() {
+        XCApplication.getBase_cache_threadpool().execute(current_time_runnable = new UpdateRunnable());
     }
 
     public void endTime() {
-        isQuitNow = true;
-        time.setText(FAKE_TIME + "");
+        if (current_time_runnable != null) {
+            current_time_runnable.isQuitNow = true;
+        }
     }
 
     public void createDialog(Context context) {
@@ -125,6 +131,7 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
     private boolean isDialogShow;
 
     public void showDialog(String hint_text) {
+        setBackgroundResource(R.drawable.xc_dd_line_gray_e1e1e1_bg_gray_cccccc_8);
         hint.setText(hint_text);
         startTime();
         dialog.show();
@@ -132,11 +139,12 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
     }
 
     public void closetDialog() {
+        endTime();//该方法放前面
         if (dialog != null) {
             dialog.dismiss();
         }
-        endTime();
         isDialogShow = false;
+        setBackgroundResource(R.drawable.xc_dd_line_gray_e1e1e1_bg_white_ffffff_8);
     }
 
     public boolean isDialogShow() {
@@ -156,7 +164,7 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
     @Override
     public boolean onTouch(View arg0, MotionEvent event) {
         // 防止连续快速的点击
-        if (System.currentTimeMillis() - record_last_time < 360) {
+        if (System.currentTimeMillis() - record_last_time < 250) {
             record_last_time = System.currentTimeMillis();
             return false;
         }
@@ -168,7 +176,7 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
                     onTouchRecoderListener.onTouchRecoderListener();
                 }
                 boundary_flag = false;
-                XCApplication.printi( "down");
+                XCApplication.printi("down");
                 forceStop();// 确保停止了
                 showDialog("松开发送");
                 startRecording();
@@ -245,13 +253,13 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
     }
 
     private void lessTimeOrExceptionDialog() {
-        showDialog("说话时间太短!");
+        hint.setText("说话时间太短!");
         XCApplication.getBase_handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 closetDialog();
             }
-        }, 700);
+        }, 500);
     }
 
     // 取消录制 ， 根据文件时间的长度决定是否上传
@@ -310,15 +318,14 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
         }
     }
 
-    // save_path = XCConfig.CHAT_VIDEO_FILE
-    private String save_path = "";
+    public String save_dir; //XCConfig.CHAT_VIDEO_FILE,
 
-    public void setSavePath(String save_path) {
-        this.save_path = save_path;
+    public void setSave_dir(String save_dir) {
+        this.save_dir = save_dir;
     }
 
     private void startRecording() {
-        save_file = XCApplication.getBase_io().createFileInAndroid(save_path, "voice" + UtilDate.format(new Date(), UtilDate.FORMAT_FULL_S), getContext());
+        save_file = XCApplication.getBase_io().createFileInAndroid(save_dir, "voice" + UtilDate.format(new Date(), UtilDate.FORMAT_FULL_S), getContext());
         media_recorder = getPreparedRecorder(save_file);
         start_time = System.currentTimeMillis();
         media_recorder.start();
@@ -347,7 +354,7 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
             // 开始缓冲
             recorder.prepare();
         } catch (IOException e) {
-            XCApplication.printi( "prepare() failed");
+            XCApplication.printi("prepare() failed");
         }
         return recorder;
     }
