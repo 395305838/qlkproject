@@ -15,7 +15,7 @@ import com.xiaocoder.android.fw.general.view.XCVideoPlayerPop;
 import com.xiaocoder.android_fw_general.R;
 
 
-public class XC_VideoActivity extends XCBaseActivity {
+public class XCVideoActivity extends XCBaseActivity {
     private SurfaceView surface_view;
     private SurfaceHolder surface_holder;
     private Intent mIntent;
@@ -86,7 +86,7 @@ public class XC_VideoActivity extends XCBaseActivity {
             public void surfaceCreated(SurfaceHolder holder) {
                 printi("surfaceCreated");
                 if (player_controller_pop == null) {
-                    player_controller_pop = new XCVideoPlayerPop(XC_VideoActivity.this, uri, surface_view);//这里是创建播放器,非得放这里,因为只有surface创建好了后,才可以player.setDisplay(surface_holder);,否则报错 surface has beeb release
+                    player_controller_pop = new XCVideoPlayerPop(XCVideoActivity.this, uri, surface_view);//这里是创建播放器,非得放这里,因为只有surface创建好了后,才可以player.setDisplay(surface_holder);,否则报错 surface has beeb release
                     printi("player_controller_pop created");
                 } else {
                     player_controller_pop.launchMediaPlayer(uri);

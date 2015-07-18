@@ -3,7 +3,7 @@ package com.xiaocoder.test.buffer;
 import android.content.Context;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.application.XCCrashHandler;
+import com.xiaocoder.android.fw.general.exception.XLCrashHandler;
 import com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper;
 import com.xiaocoder.android.fw.general.io.XCLog;
 import com.xiaocoder.android.fw.general.io.XCSP;
@@ -41,7 +41,7 @@ public class QlkApplication extends XCApplication {
                 + "--screenHeightPx , " + getScreenWidthPx() + "--screenWidthPx , " + getDensity() + "--density , " + getScreenHeightDP() + "--screenHeightDP , " + getScreenWidthPx() + "--screenWidthDP");
 
         // 异常日志捕获的存储路径
-        XCCrashHandler crashHandler = XCCrashHandler.getInstance();
+        XLCrashHandler crashHandler = XLCrashHandler.getInstance();
         crashHandler.init(getApplicationContext(), QlkConfig.CRASH_FILE);
 
     }

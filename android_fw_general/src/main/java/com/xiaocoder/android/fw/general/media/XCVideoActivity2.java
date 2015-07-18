@@ -13,7 +13,7 @@ import com.xiaocoder.android.fw.general.view.XCVideoPlayerPop2;
 import com.xiaocoder.android_fw_general.R;
 
 
-public class XC_VideoActivity2 extends XCBaseActivity {
+public class XCVideoActivity2 extends XCBaseActivity {
     private SurfaceView surface_view;
     private SurfaceHolder surface_holder;
     public Uri uri;

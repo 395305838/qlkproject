@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.application;
+package com.xiaocoder.android.fw.general.exception;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import com.xiaocoder.android_fw_general.R;
 /**
  * Created by xilinch on 2015/5/20.
  */
-public class XL_ShowExceptionsActivity extends Activity {
+public class XLShowExceptionsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

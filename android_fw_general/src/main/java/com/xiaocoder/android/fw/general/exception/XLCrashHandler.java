@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.application;
+package com.xiaocoder.android.fw.general.exception;
 
 import android.app.Application;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.os.Looper;
 import android.widget.Toast;
+
+import com.xiaocoder.android.fw.general.application.XCApplication;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,10 +29,10 @@ import java.util.Map;
 /**
  * UncaughtException处理类,当程序发生Uncaught异常的时候,有该类来接管程序,并记录发送错误报告.
  */
-public class XCCrashHandler implements UncaughtExceptionHandler {
+public class XLCrashHandler implements UncaughtExceptionHandler {
 
     // CrashHandler 实例
-    private static XCCrashHandler INSTANCE = new XCCrashHandler();
+    private static XLCrashHandler INSTANCE = new XLCrashHandler();
 
     // 程序的 Context 对象
     private Context mContext;
@@ -49,13 +51,13 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
     /**
      * 保证只有一个 CrashHandler 实例
      */
-    private XCCrashHandler() {
+    private XLCrashHandler() {
     }
 
     /**
      * 获取 CrashHandler 实例 ,单例模式
      */
-    public static XCCrashHandler getInstance() {
+    public static XLCrashHandler getInstance() {
         return INSTANCE;
     }
 
@@ -190,7 +192,7 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
         String result = writer.toString();
         sb.append(result);
 
-        Intent intent = new Intent(mContext, XL_ShowExceptionsActivity.class);
+        Intent intent = new Intent(mContext, XLShowExceptionsActivity.class);
         intent.putExtra("text", sb.toString());
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         mContext.startActivity(intent);
