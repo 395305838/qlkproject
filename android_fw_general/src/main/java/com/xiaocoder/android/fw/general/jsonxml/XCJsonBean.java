@@ -41,22 +41,7 @@ public class XCJsonBean implements Serializable {
     }
 
     public Integer getInt(String name) {
-        Object value = paraMap.get(name.toLowerCase());
-        if (value == null) {
-            return 0;
-        }
-        try {
-            if (value instanceof Integer) {
-                return (Integer) value;
-            } else if (value instanceof String) {
-                return Integer.parseInt((String) value);
-            } else {
-                return 0;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
+        return getInt(name, 0);
     }
 
     public Integer getInt(String name, int default_value) {
@@ -78,6 +63,10 @@ public class XCJsonBean implements Serializable {
         }
     }
 
+    public Long getLong(String name) {
+        return getLong(name, 0);
+    }
+
     public Long getLong(String name, long default_value) {
         Object value = paraMap.get(name.toLowerCase());
         if (value == null)
@@ -94,6 +83,10 @@ public class XCJsonBean implements Serializable {
             e.printStackTrace();
             return default_value;
         }
+    }
+
+    public Double getDouble(String name) {
+        return getDouble(name, 0);
     }
 
     public Double getDouble(String name, double default_value) {
