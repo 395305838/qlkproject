@@ -113,9 +113,9 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
         if (base_abs_listview instanceof ExpandableListView) {
             setExpandGridViewStyle(((ExpandableListView) base_abs_listview), show_bar, 0);
             ((ExpandableListView) base_abs_listview).setAdapter(base_adapter);
-            if(base_adapter != null && base_adapter.list !=null && base_adapter.list.size() > 0){
-                for(int i = 0; i< base_adapter.list.size() ; i ++){
-                    ((ExpandableListView)base_abs_listview).expandGroup(i);
+            if (base_adapter != null && base_adapter.list != null && base_adapter.list.size() > 0) {
+                for (int i = 0; i < base_adapter.list.size(); i++) {
+                    ((ExpandableListView) base_abs_listview).expandGroup(i);
                 }
             }
         }
@@ -267,8 +267,8 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
             if (onBgZeroButtonClickToDoListener != null) {
                 onBgZeroButtonClickToDoListener.onBgZeroButtonClickToDo();
             }
-        }else if(id == R.id.xc_id_data_zero_hint_textview){
-            if(onBgZeroTextViewClickToDoListener != null){
+        } else if (id == R.id.xc_id_data_zero_hint_textview) {
+            if (onBgZeroTextViewClickToDoListener != null) {
                 onBgZeroTextViewClickToDoListener.onBgZeroButtonClickToDo();
             }
         }
@@ -282,7 +282,6 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
             base_zero_button.setText(button_text);
             base_zero_imageview.setImageResource(drawable_id);
             base_zero_textview.setText(text);
-
 
 
             setViewGone(true, base_listview_zero_bg);
@@ -384,17 +383,22 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
         base_adapter.notifyDataSetChanged();
 
         ((ExpandableListView) base_abs_listview).setAdapter(base_adapter);
-        if(base_adapter != null && base_adapter.list !=null && base_adapter.list.size() > 0){
-            for(int i = 0; i< base_adapter.list.size() ; i ++){
-                ((ExpandableListView)base_abs_listview).expandGroup(i);
+        if (base_adapter != null && base_adapter.list != null && base_adapter.list.size() > 0) {
+            for (int i = 0; i < base_adapter.list.size(); i++) {
+                ((ExpandableListView) base_abs_listview).expandGroup(i);
             }
         }
-}
+    }
 
-    public void updateSpecialList(List list){
+    public void reset() {
+        base_currentPage = 1;
+        base_all_beans.clear();
+    }
+
+    public void updateSpecialList(List list) {
         if (base_all_beans == null) {
             base_all_beans = new ArrayList();
-        }else{
+        } else {
             base_all_beans.clear();
             base_all_beans.addAll(list);
             base_adapter.update(base_all_beans);
