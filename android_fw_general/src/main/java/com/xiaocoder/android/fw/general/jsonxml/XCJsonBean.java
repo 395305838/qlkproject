@@ -46,34 +46,71 @@ public class XCJsonBean implements Serializable {
             return 0;
         }
         try {
-            return (Integer) value;
+            if (value instanceof Integer) {
+                return (Integer) value;
+            } else if (value instanceof String) {
+                return Integer.parseInt((String) value);
+            } else {
+                return 0;
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
         }
     }
 
-    public Long getLong(String name) {
+    public Integer getInt(String name, int default_value) {
         Object value = paraMap.get(name.toLowerCase());
-        if (value == null)
-            return null;
+        if (value == null) {
+            return default_value;
+        }
         try {
-            return (Long) value;
+            if (value instanceof Integer) {
+                return (Integer) value;
+            } else if (value instanceof String) {
+                return Integer.parseInt((String) value);
+            } else {
+                return default_value;
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return Long.parseLong(value + "");
+            return default_value;
         }
     }
 
-    public Double getDouble(String name) {
+    public Long getLong(String name, long default_value) {
         Object value = paraMap.get(name.toLowerCase());
         if (value == null)
-            return null;
+            return default_value;
         try {
-            return (Double) value;
+            if (value instanceof Long) {
+                return (Long) value;
+            } else if (value instanceof String) {
+                return Long.parseLong((String) value);
+            } else {
+                return default_value;
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return Double.parseDouble(value + "");
+            return default_value;
+        }
+    }
+
+    public Double getDouble(String name, double default_value) {
+        Object value = paraMap.get(name.toLowerCase());
+        if (value == null)
+            return default_value;
+        try {
+            if (value instanceof Double) {
+                return (Double) value;
+            } else if (value instanceof String) {
+                return Double.parseDouble((String) value);
+            } else {
+                return default_value;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return default_value;
         }
     }
 
