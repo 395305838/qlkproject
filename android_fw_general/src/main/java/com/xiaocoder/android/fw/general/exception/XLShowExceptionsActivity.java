@@ -10,6 +10,8 @@ import com.xiaocoder.android_fw_general.R;
 
 /**
  * Created by xilinch on 2015/5/20.
+ * <p/>
+ * 记得在清单文件中注册啊
  */
 public class XLShowExceptionsActivity extends Activity {
 

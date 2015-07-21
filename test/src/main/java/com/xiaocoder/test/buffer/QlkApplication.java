@@ -31,6 +31,8 @@ public class QlkApplication extends XCApplication {
         base_io.createDirInAndroid(QlkConfig.CHAT_MOIVE_FILE, getApplicationContext());
         base_io.createDirInAndroid(QlkConfig.CHAT_VIDEO_FILE, getApplicationContext());
         base_io.createDirInAndroid(QlkConfig.CHAT_PHOTO_FILE, getApplicationContext());
+        base_io.createDirInAndroid(QlkConfig.CRASH_FILE, getApplicationContext());
+
 
         // log , 可以打印日志 与 toast
         base_log = new XCLog(getApplicationContext(),
@@ -41,9 +43,8 @@ public class QlkApplication extends XCApplication {
                 + "--screenHeightPx , " + getScreenWidthPx() + "--screenWidthPx , " + getDensity() + "--density , " + getScreenHeightDP() + "--screenHeightDP , " + getScreenWidthPx() + "--screenWidthDP");
 
         // 异常日志捕获的存储路径
-        base_io.createDirInAndroid(QlkConfig.CRASH_FILE, getApplicationContext());
-//        XLCrashHandler crashHandler = XLCrashHandler.getInstance();
-//        crashHandler.init(getApplicationContext(), QlkConfig.CRASH_FILE);
+        XLCrashHandler crashHandler = XLCrashHandler.getInstance();
+        crashHandler.init(getApplicationContext(), QlkConfig.CRASH_FILE);
 
     }
 }

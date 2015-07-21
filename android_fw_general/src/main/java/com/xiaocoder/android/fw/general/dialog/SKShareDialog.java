@@ -84,6 +84,7 @@ public class SKShareDialog extends XCBaseDialog {
         Window window = getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
         window.setGravity(Gravity.BOTTOM);
+        window.setWindowAnimations(R.style.pop);
         window.setAttributes(lp);
     }
 
