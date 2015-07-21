@@ -25,15 +25,15 @@ public class QlkAccount {
 
     }
 
-    public String getUserId(XCBaseActivity baseActivity) {
+    public String getUserId() {
         return "";
     }
 
-    public String getUserToken(XCBaseActivity baseActivity) {
+    public String getUserToken() {
         return "";
     }
 
-    public String getUserName(XCBaseActivity baseActivity) {
+    public String getUserName() {
         return "";
     }
 }

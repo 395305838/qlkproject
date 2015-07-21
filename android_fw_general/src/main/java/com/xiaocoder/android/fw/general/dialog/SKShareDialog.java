@@ -13,14 +13,12 @@ import com.xiaocoder.android_fw_general.R;
 /**
  * Created by xiaocoder on 2015/7/15.
  */
-public class SKShareDialog extends Dialog {
+public class SKShareDialog extends XCBaseDialog {
 
     public SKShareDialog(Context context) {
         super(context);
     }
 
-
-    // R.style.xc_s_dialog
     public SKShareDialog(Context context, int style) {
         super(context, style);
     }
@@ -73,10 +71,13 @@ public class SKShareDialog extends Dialog {
             public void onClick(View view) {
                 //取消
                 dismiss();
-
             }
         });
         setContentView(view);
+        setWindowLayoutStyle();
+    }
+
+    public void setWindowLayoutStyle() {
         Window window = getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
 //        lp.width = 100;
