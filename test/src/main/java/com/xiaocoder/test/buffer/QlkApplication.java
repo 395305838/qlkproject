@@ -35,7 +35,7 @@ public class QlkApplication extends XCApplication {
         // log , 可以打印日志 与 toast
         base_log = new XCLog(getApplicationContext(),
                 QlkConfig.IS_DTOAST, QlkConfig.IS_OUTPUT, QlkConfig.IS_PRINTLOG,
-                QlkConfig.APP_ROOT, QlkConfig.LOG_FILE, QlkConfig.TEMP_PRINT_FILE, QlkConfig.ENCODING);
+                QlkConfig.APP_ROOT, QlkConfig.LOG_FILE, QlkConfig.TEMP_PRINT_FILE, QlkConfig.ENCODING_UTF8);
 
         printi(UtilSystem.getDeviceId(getApplicationContext()) + "--deviceId , " + getVersionCode() + "--versionCode , " + getVersionName() + "--versionName , " + getScreenHeightPx()
                 + "--screenHeightPx , " + getScreenWidthPx() + "--screenWidthPx , " + getDensity() + "--density , " + getScreenHeightDP() + "--screenHeightDP , " + getScreenWidthPx() + "--screenWidthDP");

@@ -1,17 +1,62 @@
 package com.xiaocoder.test.buffer;
 
-public class QlkConfig {
+import com.xiaocoder.android.fw.general.base.XCConfig;
+
+/*
+ * 改类配置开发环境  ， 调试开关  ，路径  ，url等
+ */
+public class QlkConfig extends XCConfig {
+
+    /*
+     * 当前的运行环境
+     */
+    public static RunEnvironment CURRENT_RUN_ENVIRONMENT = RunEnvironment.DEV;
     /*
      * url
      */
-    public static final String DOMAIN = "api.123.cn";
-    public static final String PORT = "";
-    public static final String VERSION = "/app/v1.0";
-    public static final String SERVER_IP = "http://" + DOMAIN + VERSION;
-    /*
-     * 编码格式
-     */
-    public static String ENCODING = "utf-8";
+    private static String ONLINE_HOST = "online.123.cn";
+    private static String ONLINE_PORT = "12345";
+    private static String ONLINE_ADDR = ONLINE_HOST + ":" + ONLINE_PORT;
+
+    private static String TEST_HOST = "test.123.cn";
+    private static String TEST_PORT = "12345";
+    private static String TEST_ADDR = TEST_HOST + ":" + TEST_PORT;
+
+    private static String DEV_HOST = "dev.123.cn";
+    private static String DEV_PORT = "12345";
+    private static String DEV_ADDR = DEV_HOST + ":" + DEV_PORT;
+
+
+    public static String getUrl(String key) {
+
+        if (CURRENT_RUN_ENVIRONMENT == RunEnvironment.ONLINE) {
+
+            return ONLINE_ADDR + key;
+
+        } else if (CURRENT_RUN_ENVIRONMENT == RunEnvironment.TEST) {
+
+            return TEST_ADDR + key;
+
+        } else if (CURRENT_RUN_ENVIRONMENT == RunEnvironment.DEV) {
+
+            return DEV_ADDR + key;
+
+        } else {
+
+            throw new RuntimeException("Config中没有找到匹配的url");
+        }
+    }
+
+
+    // ----------------------------------补充接口url---------------------------------------
+
+
+
+
+
+    // ----------------------------------补充接口url---------------------------------------
+
+
     /*
      * 是否打印日志到控制台
      */
@@ -60,6 +105,5 @@ public class QlkConfig {
      * 打印测试的文件
      */
     public static String TEMP_PRINT_FILE = APP_ROOT + "/temp_print_file";
-
 
 }
