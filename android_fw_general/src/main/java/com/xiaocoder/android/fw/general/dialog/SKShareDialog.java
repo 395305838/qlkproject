@@ -15,18 +15,15 @@ import com.xiaocoder.android_fw_general.R;
  */
 public class SKShareDialog extends XCBaseDialog {
 
-    public SKShareDialog(Context context) {
-        super(context);
-    }
-
     public SKShareDialog(Context context, int style) {
         super(context, style);
+        initDialog();
     }
 
     /**
      * 初始化分享dialog
      */
-    public void initShareDialog(final onShareListener shareListener) {
+    public void initDialog() {
 
         View view = getLayoutInflater().inflate(R.layout.sk_l_dialog_share, null);
 
@@ -44,7 +41,9 @@ public class SKShareDialog extends XCBaseDialog {
             @Override
             public void onClick(View view) {
                 //分享到微信好友
-                shareListener.shareFriend();
+                if (shareListener != null) {
+                    shareListener.shareFriend();
+                }
                 dismiss();
             }
         });
@@ -52,7 +51,9 @@ public class SKShareDialog extends XCBaseDialog {
             @Override
             public void onClick(View view) {
                 //分享到微信朋友圈
-                shareListener.shareFriends();
+                if (shareListener != null) {
+                    shareListener.shareFriends();
+                }
                 dismiss();
 
             }
@@ -61,7 +62,9 @@ public class SKShareDialog extends XCBaseDialog {
             @Override
             public void onClick(View view) {
                 //复制链接
-                shareListener.copyLink();
+                if (shareListener != null) {
+                    shareListener.copyLink();
+                }
                 dismiss();
 
             }
@@ -80,13 +83,11 @@ public class SKShareDialog extends XCBaseDialog {
     public void setWindowLayoutStyle() {
         Window window = getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
-//        lp.width = 100;
-//        lp.height = 200;
         window.setGravity(Gravity.BOTTOM);
         window.setAttributes(lp);
     }
 
-    public interface onShareListener {
+    public interface OnShareListener {
 
         void shareFriend();
 
@@ -94,6 +95,13 @@ public class SKShareDialog extends XCBaseDialog {
 
         void copyLink();
     }
+
+    public OnShareListener shareListener;
+
+    public void setOnShareListener(OnShareListener listener) {
+        shareListener = listener;
+    }
+
 }
 
 

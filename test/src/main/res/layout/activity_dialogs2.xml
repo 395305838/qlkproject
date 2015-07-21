@@ -1,9 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/xc_id_model_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/c_white_ffffff" >
+    android:background="@color/c_white_ffffff">
 
     <!-- 内容 -->
 
@@ -11,8 +10,7 @@
         android:id="@+id/xc_id_model_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/c_red_ff0000"
-        android:visibility="invisible" >
+        android:visibility="invisible">
 
         <Button
             android:id="@+id/dialog1"
