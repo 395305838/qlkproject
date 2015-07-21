@@ -3,6 +3,7 @@ package com.xiaocoder.android.fw.general.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
 import com.xiaocoder.android_fw_general.R;
 
@@ -19,14 +20,14 @@ public class XCBaseDialog extends Dialog {
      */
     public LayoutInflater dialogInflater;
 
-    public XCBaseDialog(Context context) {
-        super(context);
-        dialogInflater = LayoutInflater.from(context);
-    }
+    public ViewGroup dialogLayout;
+
+    public Context mContext;
 
     public XCBaseDialog(Context context, int theme) {
         super(context, theme);
         dialogInflater = LayoutInflater.from(context);
+        mContext = context;
     }
 
 }

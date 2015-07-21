@@ -21,12 +21,12 @@ public class XCSystemVDialog extends XCBaseDialog {
      * 初始化分享dialog
      */
     public void initDialog() {
-        ViewGroup view = (ViewGroup) dialogInflater.inflate(R.layout.xc_l_dialog_system_circle_v, null);
-        setContentView(view);
-        setWindowLayoutStyle();
+        dialogLayout = (ViewGroup) dialogInflater.inflate(R.layout.xc_l_dialog_system_circle_v, null);
+        setContentView(dialogLayout);
+        setWindowLayoutStyleAttr();
     }
 
-    public void setWindowLayoutStyle() {
+    public void setWindowLayoutStyleAttr() {
         setCanceledOnTouchOutside(true);
         Window window = getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();

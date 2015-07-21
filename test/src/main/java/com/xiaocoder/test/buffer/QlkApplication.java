@@ -41,8 +41,9 @@ public class QlkApplication extends XCApplication {
                 + "--screenHeightPx , " + getScreenWidthPx() + "--screenWidthPx , " + getDensity() + "--density , " + getScreenHeightDP() + "--screenHeightDP , " + getScreenWidthPx() + "--screenWidthDP");
 
         // 异常日志捕获的存储路径
-        XLCrashHandler crashHandler = XLCrashHandler.getInstance();
-        crashHandler.init(getApplicationContext(), QlkConfig.CRASH_FILE);
+        base_io.createDirInAndroid(QlkConfig.CRASH_FILE, getApplicationContext());
+//        XLCrashHandler crashHandler = XLCrashHandler.getInstance();
+//        crashHandler.init(getApplicationContext(), QlkConfig.CRASH_FILE);
 
     }
 }

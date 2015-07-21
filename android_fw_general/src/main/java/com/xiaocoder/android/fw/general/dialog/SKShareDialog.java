@@ -1,9 +1,9 @@
 package com.xiaocoder.android.fw.general.dialog;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
@@ -25,17 +25,17 @@ public class SKShareDialog extends XCBaseDialog {
      */
     public void initDialog() {
 
-        View view = getLayoutInflater().inflate(R.layout.sk_l_dialog_share, null);
+        dialogLayout = (ViewGroup) dialogInflater.inflate(R.layout.sk_l_dialog_share, null);
 
         TextView sk_id_share_wx_friend_tv;
         TextView sk_id_share_wx_friends_tv;
         TextView sk_id_share_copy_link_tv;
         TextView sk_id_share_cancel_tv;
 
-        sk_id_share_wx_friend_tv = (TextView) view.findViewById(R.id.sk_id_share_wx_friend_tv);
-        sk_id_share_wx_friends_tv = (TextView) view.findViewById(R.id.sk_id_share_wx_friends_tv);
-        sk_id_share_copy_link_tv = (TextView) view.findViewById(R.id.sk_id_share_copy_link_tv);
-        sk_id_share_cancel_tv = (TextView) view.findViewById(R.id.sk_id_share_cancel_tv);
+        sk_id_share_wx_friend_tv = (TextView) dialogLayout.findViewById(R.id.sk_id_share_wx_friend_tv);
+        sk_id_share_wx_friends_tv = (TextView) dialogLayout.findViewById(R.id.sk_id_share_wx_friends_tv);
+        sk_id_share_copy_link_tv = (TextView) dialogLayout.findViewById(R.id.sk_id_share_copy_link_tv);
+        sk_id_share_cancel_tv = (TextView) dialogLayout.findViewById(R.id.sk_id_share_cancel_tv);
 
         sk_id_share_wx_friend_tv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,11 +76,11 @@ public class SKShareDialog extends XCBaseDialog {
                 dismiss();
             }
         });
-        setContentView(view);
-        setWindowLayoutStyle();
+        setContentView(dialogLayout);
+        setWindowLayoutStyleAttr();
     }
 
-    public void setWindowLayoutStyle() {
+    public void setWindowLayoutStyleAttr() {
         Window window = getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
         window.setGravity(Gravity.BOTTOM);

@@ -21,4 +21,16 @@
         android:layout_height="40dp"
         android:text="xc_id_dialog_systemv" />
 
+    <Button
+        android:id="@+id/xc_id_dialog_animframe_h"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:text="xc_id_dialog_animframe_h" />
+
+    <Button
+        android:id="@+id/xc_id_dialog_animframe_v"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:text="xc_id_dialog_animframe_v" />
+
 </LinearLayout>

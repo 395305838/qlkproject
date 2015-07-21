@@ -1,11 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- 动画和文字是水平排列的 -->
+<?xml version="1.0" encoding="utf-8"?><!-- 动画和文字是水平排列的 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/xc_dd_bg_white_ffffff_5"
     android:gravity="center_vertical|center_horizontal"
-    android:orientation="horizontal" >
+    android:orientation="horizontal">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -17,6 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
+        android:text="加载中.."
         android:textColor="@color/c_black_000000" />
 
 </LinearLayout>

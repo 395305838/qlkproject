@@ -6,6 +6,8 @@ import android.widget.Button;
 
 import com.xiaocoder.android.fw.general.dialog.SKShareDialog;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
+import com.xiaocoder.android.fw.general.dialog.XCFrameAnimHDialog;
+import com.xiaocoder.android.fw.general.dialog.XCFrameAnimVDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
 import com.xiaocoder.test.R;
@@ -22,6 +24,12 @@ public class DialogActivity3 extends QlkBaseActivity {
     Button systemv;
     XCSystemVDialog systemv_dialog;
 
+    Button animframe_h;
+    XCFrameAnimHDialog animframe_dialog_h;
+
+    Button animframe_v;
+    XCFrameAnimVDialog animframe_dialog_v;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_dialog_activity3);
@@ -34,6 +42,8 @@ public class DialogActivity3 extends QlkBaseActivity {
         share = getViewById(R.id.xc_id_dialog_share);
         systemh = getViewById(R.id.xc_id_dialog_systemh);
         systemv = getViewById(R.id.xc_id_dialog_systemv);
+        animframe_h = getViewById(R.id.xc_id_dialog_animframe_h);
+        animframe_v = getViewById(R.id.xc_id_dialog_animframe_v);
     }
 
     @Override
@@ -41,6 +51,8 @@ public class DialogActivity3 extends QlkBaseActivity {
         share.setOnClickListener(this);
         systemh.setOnClickListener(this);
         systemv.setOnClickListener(this);
+        animframe_h.setOnClickListener(this);
+        animframe_v.setOnClickListener(this);
     }
 
     @Override
@@ -60,6 +72,12 @@ public class DialogActivity3 extends QlkBaseActivity {
                 break;
             case R.id.xc_id_dialog_systemv:
                 showSystemVDialog();
+                break;
+            case R.id.xc_id_dialog_animframe_h:
+                showAnimFrameHDialog();
+                break;
+            case R.id.xc_id_dialog_animframe_v:
+                showAnimFrameVDialog();
                 break;
             default:
                 break;
@@ -96,5 +114,15 @@ public class DialogActivity3 extends QlkBaseActivity {
     public void showSystemVDialog() {
         systemv_dialog = new XCSystemVDialog(this, XCBaseDialog.TRAN_STYLE);
         systemv_dialog.show();
+    }
+
+    private void showAnimFrameHDialog() {
+        animframe_dialog_h = new XCFrameAnimHDialog(this, XCBaseDialog.TRAN_STYLE);
+        animframe_dialog_h.show();
+    }
+
+    private void showAnimFrameVDialog() {
+        animframe_dialog_v = new XCFrameAnimVDialog(this, XCBaseDialog.TRAN_STYLE);
+        animframe_dialog_v.show();
     }
 }
