@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.dialog.SKShareDialog;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCFrameAnimHDialog;
 import com.xiaocoder.android.fw.general.dialog.XCFrameAnimVDialog;
+import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
 import com.xiaocoder.test.R;
@@ -30,6 +32,9 @@ public class DialogActivity3 extends QlkBaseActivity {
     Button animframe_v;
     XCFrameAnimVDialog animframe_dialog_v;
 
+    Button query;
+    XCQueryDialog query_dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_dialog_activity3);
@@ -44,6 +49,7 @@ public class DialogActivity3 extends QlkBaseActivity {
         systemv = getViewById(R.id.xc_id_dialog_systemv);
         animframe_h = getViewById(R.id.xc_id_dialog_animframe_h);
         animframe_v = getViewById(R.id.xc_id_dialog_animframe_v);
+        query = getViewById(R.id.xc_id_dialog_query);
     }
 
     @Override
@@ -53,6 +59,7 @@ public class DialogActivity3 extends QlkBaseActivity {
         systemv.setOnClickListener(this);
         animframe_h.setOnClickListener(this);
         animframe_v.setOnClickListener(this);
+        query.setOnClickListener(this);
     }
 
     @Override
@@ -79,9 +86,29 @@ public class DialogActivity3 extends QlkBaseActivity {
             case R.id.xc_id_dialog_animframe_v:
                 showAnimFrameVDialog();
                 break;
+            case R.id.xc_id_dialog_query:
+                showQueryDialog();
             default:
                 break;
         }
+    }
+
+    private void showQueryDialog() {
+        query_dialog = new XCQueryDialog(this, XCBaseDialog.TRAN_STYLE, "温馨提示", "123456\r\n123456789", new String[]{"取消", "确定"}, false);
+        query_dialog.setOnDecideListener(new XCQueryDialog.OnDecideListener() {
+            @Override
+            public void confirm() {
+                XCApplication.dShortToast("confirm");
+                query_dialog.dismiss();
+            }
+
+            @Override
+            public void cancle() {
+                XCApplication.dShortToast("cancle");
+                query_dialog.dismiss();
+            }
+        });
+        query_dialog.show();
     }
 
     public void showShareDialog() {

@@ -63,7 +63,13 @@
         <item name="android:background">@color/c_gray_e8e8e8</item>
     </style>
 
-    <style name="xc_v_line_gray_bebebe_1">
+    <style name="xc_v_line_gray_bebebe_1px">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">1px</item>
+        <item name="android:background">@color/c_gray_bebebe</item>
+    </style>
+
+    <style name="xc_v_line_gray_bebebe_1dp">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">1dp</item>
         <item name="android:background">@color/c_gray_bebebe</item>

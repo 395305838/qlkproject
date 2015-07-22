@@ -64,7 +64,7 @@ public class QlkConfig extends XCConfig {
     /*
      * 是否弹出调试的土司
      */
-    public static boolean IS_DTOAST = false;
+    public static boolean IS_DTOAST = true;
     /*
      * 是否打印日志到手机文件中
      */
