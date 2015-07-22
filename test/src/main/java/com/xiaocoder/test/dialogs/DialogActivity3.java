@@ -1,5 +1,6 @@
 package com.xiaocoder.test.dialogs;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import com.xiaocoder.android.fw.general.dialog.SKShareDialog;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCFrameAnimHDialog;
 import com.xiaocoder.android.fw.general.dialog.XCFrameAnimVDialog;
+import com.xiaocoder.android.fw.general.dialog.XCMenuDialog;
 import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
@@ -35,6 +37,9 @@ public class DialogActivity3 extends QlkBaseActivity {
     Button query;
     XCQueryDialog query_dialog;
 
+    Button menu;
+    XCMenuDialog menu_dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_dialog_activity3);
@@ -50,6 +55,7 @@ public class DialogActivity3 extends QlkBaseActivity {
         animframe_h = getViewById(R.id.xc_id_dialog_animframe_h);
         animframe_v = getViewById(R.id.xc_id_dialog_animframe_v);
         query = getViewById(R.id.xc_id_dialog_query);
+        menu = getViewById(R.id.xc_id_dialog_menu);
     }
 
     @Override
@@ -60,6 +66,7 @@ public class DialogActivity3 extends QlkBaseActivity {
         animframe_h.setOnClickListener(this);
         animframe_v.setOnClickListener(this);
         query.setOnClickListener(this);
+        menu.setOnClickListener(this);
     }
 
     @Override
@@ -88,9 +95,18 @@ public class DialogActivity3 extends QlkBaseActivity {
                 break;
             case R.id.xc_id_dialog_query:
                 showQueryDialog();
+                break;
+            case R.id.xc_id_dialog_menu:
+                showMenuDialog();
+                break;
             default:
                 break;
         }
+    }
+
+    private void showMenuDialog() {
+        menu_dialog = new XCMenuDialog(this, XCBaseDialog.TRAN_STYLE, "菜单", new String[]{"android", "ios", "java", "switch", "c"});
+        menu_dialog.show();
     }
 
     private void showQueryDialog() {

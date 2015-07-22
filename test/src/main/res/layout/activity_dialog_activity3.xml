@@ -39,4 +39,10 @@
         android:layout_height="40dp"
         android:text="xc_id_dialog_query" />
 
+    <Button
+        android:id="@+id/xc_id_dialog_menu"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:text="xc_id_dialog_menu" />
+
 </LinearLayout>
