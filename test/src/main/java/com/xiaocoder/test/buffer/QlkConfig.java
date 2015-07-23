@@ -43,7 +43,7 @@ public class QlkConfig extends XCConfig {
 
         } else {
 
-            throw new RuntimeException("Config中没有找到匹配的url");
+            throw new RuntimeException("XCConfig中没有找到匹配的url");
         }
     }
 

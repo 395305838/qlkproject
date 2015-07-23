@@ -36,7 +36,7 @@ public abstract class XCHttpResponseHandler extends AsyncHttpResponseHandler {
     public boolean show_background_when_net_fail;
     // 可以下拉刷新的listview
     public XCBaseFragment refresh_fragment;
-    public Context context;
+    public Context mContext;
     public static String YES = "0"; // "0"表示成功 ，非“0”表示失败
 
     public Dialog httpDialog;
@@ -70,7 +70,7 @@ public abstract class XCHttpResponseHandler extends AsyncHttpResponseHandler {
     }
 
     public void setContext(Context context) {
-        this.context = context;
+        mContext = context;
     }
 
     @Override

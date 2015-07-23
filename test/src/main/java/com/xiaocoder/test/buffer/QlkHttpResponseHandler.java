@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.base.XCBaseMainActivity;
 import com.xiaocoder.android.fw.general.base.XCConfig;
@@ -19,6 +20,7 @@ import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.http.XCHttpResponseHandler;
 import com.xiaocoder.android.fw.general.http.XCIHttpResult;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
+import com.xiaocoder.android.fw.general.util.UtilSystem;
 
 /**
  * @author xiaocoder
@@ -46,6 +48,12 @@ public class QlkHttpResponseHandler extends XCHttpResponseHandler {
         XCApplication.printi("yourCompanyLogic");
 
         if (YES.equals(result_bean.getString(XCJsonBean.CODE))) {
+            if (mContext instanceof XCBaseActivity) {
+                if (((XCBaseActivity) mContext).isActivityDestroied()) {
+                    result_boolean = false;
+                    return;
+                }
+            }
             result_boolean = true;
         } else {
             result_boolean = false;
@@ -59,27 +67,10 @@ public class QlkHttpResponseHandler extends XCHttpResponseHandler {
 
         XCApplication.printi("yourCompanySecret");
 
-        int versionCode = 1;
-        String mac = "111";
-        if (context != null) {
-            try {
-                versionCode = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
-
-            } catch (Exception e) {
-
-            } finally {
-
-            }
-            WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-            WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-            mac = wifiInfo.getMacAddress();
-        }
-
-        client.addHeader("_v", versionCode + "");// 版本号，必填
-        client.addHeader("_m", mac);// 设备的mac地址，选填
+        client.addHeader("_v", XCApplication.getVersionCode() + "");// 版本号，必填
+        client.addHeader("_m", UtilSystem.getMacAddress(mContext));// 设备的mac地址，选填
         client.addHeader("_c", "2222");// JSONP的回调函数名 ,可选
         client.addHeader("_p", "1"); // 平台，必填
-
 
 //        String token = Qlk
 //        params.put("token", token);
@@ -106,15 +97,15 @@ public class QlkHttpResponseHandler extends XCHttpResponseHandler {
     @Override
     public void showHttpDialog() {
         if (httpDialog == null) {
-            httpDialog = new XCSystemHDialog(context, XCBaseDialog.TRAN_STYLE);
+            httpDialog = new XCSystemHDialog(mContext, XCBaseDialog.TRAN_STYLE);
             httpDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
                 @Override
                 public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
                     if (keyCode == KeyEvent.KEYCODE_BACK) {
                         closeHttpDialog();
                         XCHttpAsyn.resetNetingStatus();
-                        if (!(context instanceof XCBaseMainActivity)) {
-                            ((Activity) context).finish();
+                        if (!(mContext instanceof XCBaseMainActivity)) {
+                            ((Activity) mContext).finish();
                         }
                     }
                     return false;
