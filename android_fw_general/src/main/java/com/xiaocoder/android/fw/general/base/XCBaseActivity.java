@@ -1,6 +1,5 @@
 package com.xiaocoder.android.fw.general.base;
 
-import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,34 +8,27 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ExpandableListView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.umeng.analytics.MobclickAgent;
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.dialog.XCdialog;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.http.XCIHttpResult;
 import com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper;
-import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.util.UtilInputMethod;
 import com.xiaocoder.android_fw_general.R;
 
@@ -45,7 +37,6 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
 
 public abstract class XCBaseActivity extends FragmentActivity implements OnClickListener, XCIHttpResult {
 
@@ -181,10 +172,12 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
-        XCHttpAsyn.httpFinish();
-        getXCApplication().delActivityFromStack(this);
+
+        XCHttpAsyn.resetNetingStatus();
         isActivityDestroied = true;
+        super.onDestroy();
+        getXCApplication().delActivityFromStack(this);
+
     }
 
     public boolean isActivityDestroied() {
@@ -617,59 +610,6 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
     public void displayImage(String uri, ImageView imageView) {
         displayImage(uri, imageView, XCImageLoaderHelper.getDisplayImageOptions());
-    }
-
-
-    //-------------------------------------以下待改-------------------------------------------
-
-    public XCdialog getXCdialog() {
-        return XCApplication.getBase_dialog();
-    }
-
-    public void showSystemWaitingDialogH(String desc) {
-        getXCdialog().getWaitingDialog(this, XCdialog.SYSTEM_CIRCLE_DIALOG_H, desc, false, null, null);
-        getXCdialog().show();
-        printi("getSystemWaitingDialogH--" + desc);
-    }
-
-    public void showSystemWaitingDialogV(String desc) {
-        getXCdialog().getWaitingDialog(this, XCdialog.SYSTEM_CIRCLE_DIALOG_V, desc, false, null, null);
-        getXCdialog().show();
-        printi("getSystemWaitingDialogV--" + desc);
-    }
-
-    public void closeDialog() {
-        if (getXCdialog() != null) {
-            getXCdialog().dismiss();
-            printi("closeLoadingDialog");
-        }
-    }
-
-    /**
-     * @param titleHint  标题提示 ， 如 “温馨提示”
-     * @param desc       内容 "您好,以上药品为处方药,根据国家规定需要上传处方单或专业医师开单才可以购买"
-     * @param buttonHint 两个按钮 如 new String[] { "取消" ， "确定"}
-     * @param callBack   重写confirm 与 cancle方法
-     */
-
-    public void showQueryDialogTwoButton(String titleHint, String desc, String[] buttonHint, XCdialog.DialogCallBack callBack) {
-        getXCdialog().getDefineDialog(this, XCdialog.QUERY_DIALOG, titleHint, null, buttonHint, false, null, 0.5f);
-        getXCdialog().getContent_textview().setText(desc);
-        getXCdialog().setDialogCallBack(callBack);
-        getXCdialog().show();
-    }
-
-    /**
-     * @param titleHint  标题提示 ， 如 “温馨提示”
-     * @param desc       内容 "您好,以上药品为处方药,根据国家规定需要上传处方单或专业医师开单才可以购买"
-     * @param buttonHint 两个按钮 如 new String[] { "知道了"}
-     * @param callBack   只需要重写confirm方法
-     */
-    public void showQueryDialogOneButton(String titleHint, String desc, String[] buttonHint, XCdialog.DialogCallBack callBack) {
-        getXCdialog().getDefineDialog(this, XCdialog.QUERY_DIALOG, titleHint, null, buttonHint, false, null, 0.5f);
-        getXCdialog().getContent_textview().setText(desc);
-        getXCdialog().setDialogCallBack(callBack);
-        getXCdialog().show();
     }
 
 

@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xiaocoder.android.fw.general.base.XCBaseMainActivity;
-import com.xiaocoder.android.fw.general.dialog.XCdialog;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
 import com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
@@ -49,7 +48,6 @@ public class XCApplication extends Application {
     protected static Handler base_handler;
     protected static ExecutorService base_cache_threadpool;
     protected static XCIOAndroid base_io;
-    protected static XCdialog base_dialog;
 
     public Stack<Activity> getStack() {
         return stack;
@@ -74,8 +72,6 @@ public class XCApplication extends Application {
 
         // 线程池
         base_cache_threadpool = XCExecutorHelper.getExecutorHelperInstance().getCache();
-        // dialog , 这个给activity的context
-        base_dialog = XCdialog.getXCDialogInstance();
         base_handler = new Handler();
         base_io = new XCIOAndroid(getApplicationContext());
 
@@ -259,9 +255,6 @@ public class XCApplication extends Application {
         return base_io;
     }
 
-    public static XCdialog getBase_dialog() {
-        return base_dialog;
-    }
 
     public static void printi(String msg) {
         base_log.i(msg);

@@ -19,6 +19,11 @@ import com.xiaocoder.android_fw_general.R;
 public class XCQueryDialog extends XCBaseDialog {
 
     TextView title_textview;
+
+    public TextView getContent_textview() {
+        return content_textview;
+    }
+
     TextView content_textview;
     Button cancle;
     Button confirm;

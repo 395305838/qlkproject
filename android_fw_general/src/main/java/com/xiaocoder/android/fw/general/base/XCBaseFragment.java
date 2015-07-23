@@ -1,13 +1,9 @@
 package com.xiaocoder.android.fw.general.base;
 
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -20,9 +16,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.dialog.XCdialog;
-import com.xiaocoder.android.fw.general.io.XCIOAndroid;
+
+import java.util.List;
 
 /**
  * MyFragment onAttach() 粘贴到activity上
@@ -401,52 +396,6 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
     public void displayImage(String uri, ImageView imageView) {
         if (getBaseActivity() != null) {
             getBaseActivity().displayImage(uri, imageView);
-        }
-    }
-
-    // ----------------图片加载--------------------
-
-    public void showSystemWaitingDialogH(String desc) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().showSystemWaitingDialogH(desc);
-        }
-    }
-
-    public void showSystemWaitingDialogV(String desc) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().showSystemWaitingDialogV(desc);
-        }
-    }
-
-    public void closeDialog() {
-        if (getBaseActivity() != null) {
-            getBaseActivity().closeDialog();
-        }
-    }
-
-    /**
-     * @param titleHint  标题提示 ， 如 “温馨提示”
-     * @param desc       内容 "您好,以上药品为处方药,根据国家规定需要上传处方单或专业医师开单才可以购买"
-     * @param buttonHint 两个按钮 如 new String[] { "取消" ， "确定"}
-     * @param callBack   重写confirm 与 cancle方法
-     */
-
-    public void showQueryDialogTwoButton(String titleHint, String desc, String[] buttonHint, XCdialog.DialogCallBack callBack) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().showQueryDialogTwoButton(titleHint, desc, buttonHint, callBack);
-        }
-    }
-
-    /**
-     * @param titleHint  标题提示 ， 如 “温馨提示”
-     * @param desc       内容 "您好,以上药品为处方药,根据国家规定需要上传处方单或专业医师开单才可以购买"
-     * @param buttonHint 两个按钮 如 new String[] { "知道了"}
-     * @param callBack   只需要重写confirm方法
-     */
-
-    public void showQueryDialogOneButton(String titleHint, String desc, String[] buttonHint, XCdialog.DialogCallBack callBack) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().showQueryDialogOneButton(titleHint, desc, buttonHint, callBack);
         }
     }
 

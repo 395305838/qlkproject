@@ -1,5 +1,6 @@
 package com.xiaocoder.android.fw.general.http;
 
+import android.app.Dialog;
 import android.content.Context;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -38,6 +39,7 @@ public abstract class XCHttpResponseHandler extends AsyncHttpResponseHandler {
     public Context context;
     public static String YES = "0"; // "0"表示成功 ，非“0”表示失败
 
+    public Dialog httpDialog;
 
     // show_background_when_net_fail true 为展示背景和toast , false仅展示吐司
     @SuppressWarnings("rawtypes")
@@ -149,8 +151,7 @@ public abstract class XCHttpResponseHandler extends AsyncHttpResponseHandler {
             throw new RuntimeException("非法的fragment类型");
         }
 
-
-        XCHttpAsyn.httpFinish();
+        XCHttpAsyn.resetNetingStatus();
     }
 
     private void check(byte[] response_bytes) {
@@ -185,5 +186,9 @@ public abstract class XCHttpResponseHandler extends AsyncHttpResponseHandler {
     public abstract void yourCompanySecret(RequestParams params, AsyncHttpClient client, boolean needSecret);
 
     public abstract void yourCompanyLogic();
+
+    public abstract void showHttpDialog();
+
+    public abstract void closeHttpDialog();
 
 }

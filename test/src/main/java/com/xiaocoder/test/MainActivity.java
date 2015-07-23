@@ -14,12 +14,9 @@ import com.xiaocoder.android.fw.general.helper.XCTimeHelper.CustomTimer;
 import com.xiaocoder.android.fw.general.pop.XCPopupWindowPlus;
 import com.xiaocoder.android.fw.general.pop.XCPopupWindowPlus.onPhotoPopupItemClickListener;
 import com.xiaocoder.android.fw.general.util.UtilString;
-import com.xiaocoder.test.R;
 import com.xiaocoder.test.anim.AnimationActivity;
 import com.xiaocoder.test.contacts.ContactsActivity;
 import com.xiaocoder.test.dialogs.DialogActivity3;
-import com.xiaocoder.test.dialogs.DialogsActivity;
-import com.xiaocoder.test.dialogs.DialogsActivity2;
 import com.xiaocoder.test.fragment.CamareActivity;
 import com.xiaocoder.test.fragment.MoveBlockActivity;
 import com.xiaocoder.test.fragment.SearchActivity;
@@ -80,10 +77,6 @@ public class MainActivity extends Activity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        test_dialog = (Button) findViewById(R.id.test_dialog);
-        test_dialog.setOnClickListener(this);
-        test_dialog2 = (Button) findViewById(R.id.test_dialog2);
-        test_dialog2.setOnClickListener(this);
         test_dialog3 = (Button) findViewById(R.id.test_dialog3);
         test_dialog3.setOnClickListener(this);
         test_code = (Button) findViewById(R.id.test_code);
@@ -196,13 +189,7 @@ public class MainActivity extends Activity implements OnClickListener {
     public void onClick(View v) {
 
         int id = v.getId();
-        if (id == R.id.test_dialog) {
-            startActivity(new Intent(this, DialogsActivity.class));
-
-        } else if (id == R.id.test_dialog2) {
-            startActivity(new Intent(this, DialogsActivity2.class));
-
-        } else if (id == R.id.test_point_line) {
+        if (id == R.id.test_point_line) {
             startActivity(new Intent(this, LinePointActivity.class));
 
         } else if (id == R.id.test_scan) {

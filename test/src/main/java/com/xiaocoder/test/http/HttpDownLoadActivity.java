@@ -6,10 +6,9 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.loopj.android.http.RequestParams;
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
-import com.xiaocoder.android.fw.general.dialog.XCdialog;
+import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
+import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
-import com.xiaocoder.android.fw.general.http.XCHttpResponseHandler;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.test.MainActivity;
 import com.xiaocoder.test.R;
@@ -34,15 +33,18 @@ public class HttpDownLoadActivity extends QlkBaseActivity {
             @Override
             public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
                 super.onSuccess(arg0, arg1, arg2);
-                showQueryDialogOneButton("下载提示", "该文件大小为" + UtilString.getLengthText(arg2.length), new String[]{"下载", "取消"}, new XCdialog.DialogCallBack() {
+
+                final XCQueryDialog dialog = new XCQueryDialog(HttpDownLoadActivity.this, XCBaseDialog.TRAN_STYLE, "下载提示", "该文件大小为" + UtilString.getLengthText(arg2.length), new String[]{"下载", "取消"}, false);
+
+                dialog.setOnDecideListener(new XCQueryDialog.OnDecideListener() {
                     @Override
                     public void confirm() {
-                        closeDialog();
+                        dialog.dismiss();
                     }
 
                     @Override
                     public void cancle() {
-                        closeDialog();
+                        dialog.dismiss();
                     }
                 });
             }

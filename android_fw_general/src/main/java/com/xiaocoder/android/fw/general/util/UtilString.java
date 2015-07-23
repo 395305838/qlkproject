@@ -24,6 +24,24 @@ import com.xiaocoder.android.fw.general.io.XCIO;
 
 public class UtilString {
 
+    public static boolean equals(String str1, String str2) {
+
+        if (str1 == null && str2 == null) {
+
+            throw new RuntimeException("UtilString.equals()--传入了两个null字符串");
+
+        } else if (str1 != null) {
+
+            return str1.equals(str2);
+
+        } else {
+
+            return str2.equals(str1);
+
+        }
+
+    }
+
     public static String getStringFromLastIndex(String origin, String symbol) {
         if (isBlank(origin)) {
             return "";

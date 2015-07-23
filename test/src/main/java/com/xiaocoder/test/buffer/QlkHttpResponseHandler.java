@@ -1,14 +1,21 @@
 package com.xiaocoder.test.buffer;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.view.KeyEvent;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
+import com.xiaocoder.android.fw.general.base.XCBaseMainActivity;
+import com.xiaocoder.android.fw.general.base.XCConfig;
+import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
+import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
+import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.http.XCHttpResponseHandler;
 import com.xiaocoder.android.fw.general.http.XCIHttpResult;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
@@ -86,4 +93,34 @@ public class QlkHttpResponseHandler extends XCHttpResponseHandler {
         XCApplication.printi(XCConfig.TAG_HTTP, "plus public params-->" + params.toString());
     }
 
+
+    @Override
+    public void closeHttpDialog() {
+        if (httpDialog != null) {
+            httpDialog.dismiss();
+            httpDialog.setOnKeyListener(null);
+            httpDialog.cancel();
+        }
+    }
+
+    @Override
+    public void showHttpDialog() {
+        if (httpDialog == null) {
+            httpDialog = new XCSystemHDialog(context, XCBaseDialog.TRAN_STYLE);
+            httpDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                @Override
+                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                        closeHttpDialog();
+                        XCHttpAsyn.resetNetingStatus();
+                        if (!(context instanceof XCBaseMainActivity)) {
+                            ((Activity) context).finish();
+                        }
+                    }
+                    return false;
+                }
+            });
+            httpDialog.show();
+        }
+    }
 }
