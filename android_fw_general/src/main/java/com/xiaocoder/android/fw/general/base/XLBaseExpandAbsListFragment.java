@@ -25,6 +25,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.adapter.XLBaseExpandableListViewAdapter;
 import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.android_fw_general.R;
 
 import java.util.ArrayList;
@@ -111,7 +112,7 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
         base_refresh_abs_listview = getViewById(refresh_listview_id);
         base_abs_listview = base_refresh_abs_listview.getRefreshableView();
         if (base_abs_listview instanceof ExpandableListView) {
-            setExpandGridViewStyle(((ExpandableListView) base_abs_listview), show_bar, 0);
+            UtilAbsListStyle.setExpandListViewStyle(getBaseActivity(), ((ExpandableListView) base_abs_listview), show_bar, 0);
             ((ExpandableListView) base_abs_listview).setAdapter(base_adapter);
             if (base_adapter != null && base_adapter.list != null && base_adapter.list.size() > 0) {
                 for (int i = 0; i < base_adapter.list.size(); i++) {
@@ -390,12 +391,16 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
         }
     }
 
-    public void reset() {
+    public void resetCurrentPage() {
+        base_currentPage = 1;
+    }
+
+    public void resetCurrentPageAndList() {
         base_currentPage = 1;
         base_all_beans.clear();
     }
 
-    public void updateSpecialList(List list) {
+    public void updateListNoAdd(List list) {
         if (base_all_beans == null) {
             base_all_beans = new ArrayList();
         } else {

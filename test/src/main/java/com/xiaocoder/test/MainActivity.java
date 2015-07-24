@@ -180,7 +180,7 @@ public class MainActivity extends Activity implements OnClickListener {
             XCApplication.getBase_log().writeLog2File("678", true);
             int i = 1 / 0;
         } catch (Exception e) {
-            XCApplication.printe(this, e);
+            XCApplication.printe(this, "--oncreate()--",e);
         }
 
     }

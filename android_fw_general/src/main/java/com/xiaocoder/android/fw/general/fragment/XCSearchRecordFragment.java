@@ -20,6 +20,7 @@ import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.db.XCDaoFactory;
 import com.xiaocoder.android.fw.general.db.XCIDao;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;
+import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.android.fw.general.view.XCKeyBoardLayout;
 import com.xiaocoder.android_fw_general.R;
 
@@ -196,7 +197,7 @@ public class XCSearchRecordFragment extends XCBaseFragment implements AdapterVie
 
         dao = XCDaoFactory.getDaoInstance(getActivity(), XCConfig.XC_SEARCH_RECODER_DAO_CLASS);
         adapter = new SearchRecordAdapter(getActivity(), null);
-        getBaseActivity().setListViewStyle(xc_id_fragment_search_record_listview, null, 0, false);
+        UtilAbsListStyle.setListViewStyle(xc_id_fragment_search_record_listview, null, 0, false);
         xc_id_fragment_search_record_listview.setAdapter(adapter);
     }
 

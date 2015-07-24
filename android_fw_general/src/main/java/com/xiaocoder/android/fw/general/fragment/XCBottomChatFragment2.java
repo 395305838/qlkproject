@@ -31,6 +31,7 @@ import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBottomFragment;
 import com.xiaocoder.android.fw.general.listener.XCViewPagerListener;
+import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.android.fw.general.util.UtilImage;
 import com.xiaocoder.android.fw.general.util.UtilInputMethod;
 import com.xiaocoder.android.fw.general.util.UtilString;
@@ -489,7 +490,7 @@ public class XCBottomChatFragment2 extends XCBottomFragment {
             LinearLayout.LayoutParams ll_gridview = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, UtilImage.dip2px(getActivity(), 150));
             gridview.setLayoutParams(ll_gridview);
             gridview.setPadding(gap2, gap2, gap2, gap2);
-            getBaseActivity().setGridViewStyle(gridview, false, gap, gap, 7);
+            UtilAbsListStyle.setGridViewStyle(gridview, false, gap, gap, 7);
             // 设置表情点击的监听
             FaceAdapter face_adapter = new FaceAdapter(getActivity(), getFaceUrl(i + 1));
             gridview.setAdapter(face_adapter);

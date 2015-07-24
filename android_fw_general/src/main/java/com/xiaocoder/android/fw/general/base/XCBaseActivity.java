@@ -354,127 +354,12 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         }
     }
 
-    // 动态广播
-    public void myRegisterReceiver(int priority, String action, BroadcastReceiver receiver) {
-        IntentFilter filter = new IntentFilter();
-        filter.setPriority(priority);
-        filter.addAction(action);
-        registerReceiver(receiver, filter);
-    }
-
-    // 动态广播
-    public void myUnregisterReceiver(BroadcastReceiver receiver) {
-        unregisterReceiver(receiver);
-    }
-
-    /*
-     * 发送广播
-     */
-    public void mySendBroadcastReceiver(String action, String command_key, String command_value) {
-        Intent intent = new Intent();
-        intent.setAction(action);
-        intent.putExtra(command_key, command_value);
-        sendBroadcast(intent);
-    }
-
-    public void mySendBroadcastReceiver(String action, String[] command_keys, String[] command_values) {
-        Intent intent = new Intent();
-        intent.setAction(action);
-        int size = command_keys.length;
-        for (int i = 0; i < size; i++) {
-            intent.putExtra(command_keys[i], command_values[i]);
-        }
-        sendBroadcast(intent);
-    }
-
-    public void setGridViewStyle(GridView view, boolean show_bar, int num) {
-        setGridViewStyle(view, show_bar, 0, 0, num);
-    }
-
-    public void setGridViewStyle(GridView view, boolean show_bar) {
-        setGridViewStyle(view, show_bar, 0, 0, 1);
-    }
-
-    public void setGridViewStyle(GridView view, boolean show_bar, int space_h_px, int space_v_px, int num) {
-        view.setCacheColorHint(0x00000000);
-        view.setSelector(new ColorDrawable(0x00000000));
-        view.setVerticalScrollBarEnabled(show_bar);
-        view.setHorizontalSpacing(space_h_px);
-        view.setVerticalSpacing(space_v_px);
-//        view.setHorizontalSpacing(UtilImage.dip2px(this, space_h_px));
-//        view.setVerticalSpacing(UtilImage.dip2px(this, space_v_px));
-        view.setNumColumns(num);
-    }
-
-    public void setExpandListViewStyle(ExpandableListView view, boolean show_bar, int groupIndicate) {
-        view.setCacheColorHint(0x00000000);
-        view.setSelector(new ColorDrawable(0x00000000));
-        view.setVerticalScrollBarEnabled(show_bar);
-        if (groupIndicate <= 0) {
-            view.setGroupIndicator(null);
-        } else {
-            view.setGroupIndicator(getResources().getDrawable(groupIndicate));
-        }
-
-    }
-
-    public void setListViewStyle(ListView view, Drawable divider_drawable, int height_px, boolean show_bar) {
-        view.setCacheColorHint(0x00000000);
-        view.setSelector(new ColorDrawable(0x00000000));
-        view.setDivider(divider_drawable);
-        view.setDividerHeight(height_px);
-        view.setVerticalScrollBarEnabled(show_bar);
-    }
-
-    public void setListViewStyle(ListView view, boolean show_bar) {
-        setListViewStyle(view, null, 0, show_bar);
-    }
-
     // 在onCreate()中调用，默认在onCreate()中 只显示title和content的布局，根据需求是否重写
     public void showPage() {
         showTitleLayout(true);
         showContentLayout();
     }
 
-    public void myStartActivity(Class<? extends XCBaseActivity> activity_class, String[] command_keys, Object[] command_values) {
-        Intent intent = new Intent(this, activity_class);
-        int size = command_keys.length;
-        for (int i = 0; i < size; i++) {
-            Object obj = command_values[i];
-            if (obj instanceof String) {
-                intent.putExtra(command_keys[i], (String) obj);
-            } else if (obj instanceof Boolean) {
-                intent.putExtra(command_keys[i], (Boolean) obj);
-            } else if (obj instanceof Integer) {
-                intent.putExtra(command_keys[i], (Integer) obj);
-            } else if (obj instanceof Serializable) {
-                intent.putExtra(command_keys[i], (Serializable) obj);
-            } else if (obj instanceof Parcelable) {
-                intent.putExtra(command_keys[i], (Parcelable) obj);
-            } else {
-                throw new RuntimeException("myStartActivity()中intent的putExtra参数没有转型");
-            }
-        }
-        startActivity(intent);
-        activityAnimation();
-    }
-
-    public void myStartActivity(Class<? extends XCBaseActivity> activity_class, String key, ArrayList<String> command_values) {
-        Intent intent = new Intent(this, activity_class);
-        intent.putStringArrayListExtra(key, command_values);
-        startActivity(intent);
-        activityAnimation();
-    }
-
-    public void myStartActivity(Intent intent) {
-        startActivity(intent);
-        activityAnimation();
-    }
-
-    public void myStartActivity(Class<? extends XCBaseActivity> activity_class) {
-        myStartActivity(activity_class, new String[]{}, new String[]{});
-        activityAnimation();
-    }
 
     private void activityAnimation() {
         int version = Integer.valueOf(android.os.Build.VERSION.SDK);
@@ -485,8 +370,20 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         }
     }
 
-    public void myStartActivityForResult(Class<? extends XCBaseActivity> activity_class, int requestCode, String[] command_keys, Object[] command_values) {
+    /**
+     * @param activity_class
+     * @param requestCode    如果小于0，则startActivity   大于0 startActivityForResult
+     * @param flags          没有限制
+     * @param command_keys   可以传入null
+     * @param command_values 可以传入null
+     */
+    public void myStartActivity(Class<? extends XCBaseActivity> activity_class,
+                                int requestCode,
+                                int flags,
+                                String[] command_keys,
+                                Object[] command_values) {
         Intent intent = new Intent(this, activity_class);
+        intent.setFlags(flags);
         int size = command_keys.length;
         for (int i = 0; i < size; i++) {
             Object obj = command_values[i];
@@ -494,26 +391,42 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
                 intent.putExtra(command_keys[i], (String) obj);
             } else if (obj instanceof Boolean) {
                 intent.putExtra(command_keys[i], (Boolean) obj);
+            } else if (obj instanceof Integer) {
+                intent.putExtra(command_keys[i], (Integer) obj);
+            } else if (obj instanceof ArrayList) {
+                ArrayList list = (ArrayList) obj;
+                if (list.size() > 0) {
+                    Object o = list.get(0);
+                    if (o instanceof String) {
+                        intent.putStringArrayListExtra(command_keys[i], (ArrayList<String>) obj);
+                    } else if (o instanceof Integer) {
+                        intent.putIntegerArrayListExtra(command_keys[i], (ArrayList<Integer>) obj);
+                    }
+                }
+            } else if (obj instanceof Serializable) {
+                intent.putExtra(command_keys[i], (Serializable) obj);
             } else if (obj instanceof Parcelable) {
                 intent.putExtra(command_keys[i], (Parcelable) obj);
             } else {
                 throw new RuntimeException("myStartActivity()中intent的putExtra参数没有转型");
             }
         }
-        startActivityForResult(intent, requestCode);
+        if (requestCode >= 0) {
+            startActivityForResult(intent, requestCode);
+        } else {
+            startActivity(intent);
+        }
+        activityAnimation();
     }
 
-    public void myStartActivityForResult(Intent intent, Class<? extends XCBaseActivity> activity_class, int requestCode, int flags) {
-        intent.setClass(this, activity_class);
-        intent.setFlags(flags);
-        startActivityForResult(intent, requestCode);
+    public void myStartActivity(Class<? extends XCBaseActivity> activity_class) {
+        myStartActivity(activity_class, -1, -1, null, null);
     }
 
-    public void myStartActivityForResult(Class<? extends XCBaseActivity> activity_class, int requestCode) {
-        myStartActivityForResult(activity_class, requestCode, new String[]{}, new String[]{});
+    public void myStartActivity(Class<? extends XCBaseActivity> activity_class, int flags) {
+        myStartActivity(activity_class, -1, flags, null, null);
     }
 
-    // ------------------------------------调试-----------------------------------------------
     // 以下受debug控制的
     public void printi(String msg) {
         XCApplication.printi(msg);
@@ -544,20 +457,16 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         XCApplication.longToast(msg);
     }
 
-    public void printe(Context context, Exception e) {
-        XCApplication.printe(context, e);
-    }
-
-    public void printe(Context context, String msg) {
-        XCApplication.printe(context, msg);
-    }
-
     public void printe(String hint, Exception e) {
         XCApplication.printe(hint, e);
     }
 
     public void printe(Context context, String hint, Exception e) {
         XCApplication.printe(context, hint, e);
+    }
+
+    public void printe(Context context, String hint) {
+        XCApplication.printe(context, hint);
     }
 
     public void spPut(String key, boolean value) {
@@ -598,10 +507,6 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
     public float spGet(String key, float default_value) {
         return XCApplication.spGet(key, default_value);
-    }
-
-    public Map<String, ?> spGetAll() {
-        return XCApplication.spGetAll();
     }
 
     public void displayImage(String uri, ImageView imageView, DisplayImageOptions options) {

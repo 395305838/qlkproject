@@ -3,7 +3,10 @@ package com.xiaocoder.android.fw.general.application;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Handler;
 import android.widget.ImageView;
@@ -284,20 +287,16 @@ public class XCApplication extends Application {
         base_log.longToast(msg);
     }
 
-    public static void printe(Context context, Exception e) {
-        base_log.e(context, e);
-    }
-
-    public static void printe(Context context, String msg) {
-        base_log.e(context, msg);
-    }
-
     public static void printe(String hint, Exception e) {
         base_log.e(hint, e);
     }
 
     public static void printe(Context context, String hint, Exception e) {
         base_log.e(context, hint, e);
+    }
+
+    public static void printe(Context context, String hint) {
+        base_log.e(context, hint);
     }
 
     public static void spPut(String key, boolean value) {
@@ -351,8 +350,5 @@ public class XCApplication extends Application {
     public static void displayImage(String uri, ImageView imageView) {
         displayImage(uri, imageView, XCImageLoaderHelper.getDisplayImageOptions());
     }
-
-
-
 
 }

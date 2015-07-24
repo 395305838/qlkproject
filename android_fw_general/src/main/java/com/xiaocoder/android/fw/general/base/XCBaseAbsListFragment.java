@@ -20,6 +20,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.android_fw_general.R;
 
 import java.util.ArrayList;
@@ -106,10 +107,10 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
         base_refresh_abs_listview = getViewById(refresh_listview_id);
         base_abs_listview = base_refresh_abs_listview.getRefreshableView();
         if (base_abs_listview instanceof GridView) {
-            setGridViewStyle(((GridView) base_abs_listview), show_bar, grid_space_h_dp, grid_space_v_dp, grid_line_num);
+            UtilAbsListStyle.setGridViewStyle(((GridView) base_abs_listview), show_bar, grid_space_h_dp, grid_space_v_dp, grid_line_num);
             ((GridView) base_abs_listview).setAdapter(base_adapter);
         } else {
-            setListViewStyle(((ListView) base_abs_listview), list_divider_drawable, list_height_dp, show_bar);
+            UtilAbsListStyle.setListViewStyle(((ListView) base_abs_listview), list_divider_drawable, list_height_dp, show_bar);
             ((ListView) base_abs_listview).setAdapter(base_adapter);
         }
 
@@ -211,10 +212,15 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
         }
     }
 
-    public void reset(){
+    public void resetCurrentPage() {
+        base_currentPage = 1;
+    }
+
+    public void resetCurrentPageAndList() {
         base_currentPage = 1;
         base_all_beans.clear();
     }
+
 
     public boolean hasSetStyle;
 
@@ -363,12 +369,12 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
         base_all_beans.addAll(list);
         base_adapter.update(base_all_beans);
         base_adapter.notifyDataSetChanged();
-}
+    }
 
-    public void updateSpecialList(List list){
+    public void updateListNoAdd(List list) {
         if (base_all_beans == null) {
             base_all_beans = new ArrayList();
-        }else{
+        } else {
             base_all_beans.clear();
             base_all_beans.addAll(list);
             base_adapter.update(base_all_beans);
@@ -404,7 +410,7 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
     }
 
 
-    public void setBase_currentPage(int base_currentPage){
+    public void setBase_currentPage(int base_currentPage) {
         this.base_currentPage = base_currentPage;
     }
 

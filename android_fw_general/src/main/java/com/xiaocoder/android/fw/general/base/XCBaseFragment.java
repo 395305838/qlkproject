@@ -173,75 +173,28 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
         }
     }
 
-    public void setGridViewStyle(GridView view, boolean show_bar, int num) {
+    public void myStartActivity(Class<? extends XCBaseActivity> activity_class,
+                                int requestCode,
+                                int flags,
+                                String[] command_keys,
+                                Object[] command_values) {
         if (getBaseActivity() != null) {
-            getBaseActivity().setGridViewStyle(view, show_bar, num);
-        }
-    }
-
-    public void setGridViewStyle(GridView view, boolean show_bar) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().setGridViewStyle(view, show_bar);
-        }
-    }
-
-
-    public void setExpandGridViewStyle(ExpandableListView view, boolean show_bar, int groupIndicate) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().setExpandListViewStyle(view, show_bar, groupIndicate);
-        }
-    }
-
-    public void setGridViewStyle(GridView view, boolean show_bar, int space_h_dp, int space_v_dp, int num) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().setGridViewStyle(view, show_bar, space_h_dp, space_v_dp, num);
-        }
-    }
-
-    public void setListViewStyle(ListView view, Drawable divider_drawable, int height_dp, boolean show_bar) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().setListViewStyle(view, divider_drawable, height_dp, show_bar);
-        }
-    }
-
-    public void setListViewStyle(ListView view, boolean show_bar) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().setListViewStyle(view, show_bar);
-        }
-    }
-
-    public void myStartActivity(Intent intent) {
-
-        startActivity(intent);
-
-    }
-
-
-    public void myStartActivity(Class<? extends XCBaseActivity> activity_class, String[] command_keys, Object[] command_values) {
-        if (getActivity() != null) {
-            getBaseActivity().myStartActivity(activity_class, command_keys, command_values);
+            getBaseActivity().myStartActivity(activity_class, requestCode, flags, command_keys, command_values);
         }
     }
 
     public void myStartActivity(Class<? extends XCBaseActivity> activity_class) {
-        if (getActivity() != null) {
-            getBaseActivity().myStartActivity(activity_class, new String[]{}, new String[]{});
+        if (getBaseActivity() != null) {
+            getBaseActivity().myStartActivity(activity_class, -1, -1, null, null);
         }
     }
 
-    public void myStartActivityForResult(Class<? extends XCBaseActivity> activity_class, int requestCode) {
-        if (getActivity() != null) {
-            getBaseActivity().myStartActivityForResult(activity_class, requestCode, new String[]{}, new String[]{});
+    public void myStartActivity(Class<? extends XCBaseActivity> activity_class, int flags) {
+        if (getBaseActivity() != null) {
+            getBaseActivity().myStartActivity(activity_class, -1, flags, null, null);
         }
     }
 
-    public void myStartActivityForResult(Class<? extends XCBaseActivity> activity_class, int requestCode, String[] command_keys, String[] command_values) {
-        if (getActivity() != null) {
-            getBaseActivity().myStartActivityForResult(activity_class, requestCode, command_keys, command_values);
-        }
-    }
-
-    // ------------------------------------调试-----------------------------------------------
     // 以下受debug控制的
     public void printi(String msg) {
         if (getBaseActivity() != null) {
@@ -252,18 +205,6 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
     public void printi(String tag, String msg) {
         if (getBaseActivity() != null) {
             getBaseActivity().printi(tag, msg);
-        }
-    }
-
-    public void printe(String msg) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().printe(getBaseActivity(), msg);
-        }
-    }
-
-    public void printe(String tag, String msg) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().printe(getBaseActivity(), msg);
         }
     }
 
@@ -298,12 +239,6 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
         }
     }
 
-    public void printe(Context context, Exception e) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().printe(context, e);
-        }
-    }
-
     public void printe(String hint, Exception e) {
         if (getBaseActivity() != null) {
             getBaseActivity().printe(hint, e);
@@ -316,9 +251,12 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
         }
     }
 
-    // ----------------以上调试-----------------------------------
+    public void printe(Context context, String hint) {
+        if (getBaseActivity() != null) {
+            getBaseActivity().printe(context, hint);
+        }
+    }
 
-    // ----------------写入和获取配置文件的数据--------------------
     public void spPut(String key, boolean value) {
         if (getBaseActivity() != null) {
             getBaseActivity().spPut(key, value);
@@ -353,40 +291,38 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
         if (getBaseActivity() != null) {
             return getBaseActivity().spGet(key, default_value);
         }
-        return null;
+        return default_value;
     }
 
     public boolean spGet(String key, boolean default_value) {
         if (getBaseActivity() != null) {
             return getBaseActivity().spGet(key, default_value);
         }
-        return false;
+        return default_value;
     }
 
     public int spGet(String key, int default_value) {
         if (getBaseActivity() != null) {
             return getBaseActivity().spGet(key, default_value);
         }
-        return -1;
+        return default_value;
     }
 
     public long spGet(String key, long default_value) {
         if (getBaseActivity() != null) {
             return getBaseActivity().spGet(key, default_value);
         }
-        return -1;
+        return default_value;
     }
 
     public float spGet(String key, float default_value) {
         if (getBaseActivity() != null) {
             return getBaseActivity().spGet(key, default_value);
+        } else {
+            return default_value;
         }
-        return -1;
     }
 
-    // ----------------以上写入和获取配置文件的数据--------------------
-
-    // ----------------图片加载--------------------
     public void displayImage(String uri, ImageView imageView, DisplayImageOptions options) {
         if (getBaseActivity() != null) {
             getBaseActivity().displayImage(uri, imageView, options);

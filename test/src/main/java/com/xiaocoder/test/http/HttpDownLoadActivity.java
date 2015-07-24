@@ -28,11 +28,14 @@ public class HttpDownLoadActivity extends QlkBaseActivity {
     }
 
     public void request() {
-        XCHttpAsyn.getAsyn(true, this, "http://" + MainActivity.TEST_HOST + ":8080/qlktest/test.mp3", new RequestParams(), new QlkHttpResponseHandler(HttpDownLoadActivity.this) {
+//        XCHttpAsyn.getAsyn(true,true, this, "http://" + MainActivity.TEST_HOST + ":8080/qlktest/test.mp3", new RequestParams(), new QlkHttpResponseHandler(HttpDownLoadActivity.this) {
+        XCHttpAsyn.getAsyn(true, true, this, "http://www.baidu.com", new RequestParams(), new QlkHttpResponseHandler(HttpDownLoadActivity.this) {
 
             @Override
             public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
                 super.onSuccess(arg0, arg1, arg2);
+
+                closeHttpDialog();
 
                 final XCQueryDialog dialog = new XCQueryDialog(HttpDownLoadActivity.this, XCBaseDialog.TRAN_STYLE, "下载提示", "该文件大小为" + UtilString.getLengthText(arg2.length), new String[]{"下载", "取消"}, false);
 
@@ -47,6 +50,7 @@ public class HttpDownLoadActivity extends QlkBaseActivity {
                         dialog.dismiss();
                     }
                 });
+                dialog.show();
             }
 
             @Override

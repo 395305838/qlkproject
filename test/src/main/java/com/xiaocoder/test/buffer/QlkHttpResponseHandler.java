@@ -87,10 +87,11 @@ public class QlkHttpResponseHandler extends XCHttpResponseHandler {
 
     @Override
     public void closeHttpDialog() {
-        if (httpDialog != null) {
+        if (httpDialog != null && httpDialog.isShowing()) {
             httpDialog.dismiss();
             httpDialog.setOnKeyListener(null);
             httpDialog.cancel();
+            XCApplication.printi("closeHttpDialog()");
         }
     }
 
@@ -112,6 +113,7 @@ public class QlkHttpResponseHandler extends XCHttpResponseHandler {
                 }
             });
             httpDialog.show();
+            XCApplication.printi("showHttpDialog()");
         }
     }
 }

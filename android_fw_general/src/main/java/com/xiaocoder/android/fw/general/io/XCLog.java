@@ -157,23 +157,6 @@ public class XCLog {
         }
     }
 
-    // 以tag打印到控制台 和 文件， 该tag为activity的名字
-    public void e(Context context, String msg) {
-
-        Log.e(XCConfig.TAG_ANDROID_RUNTIME, "Exception-->" + context.getClass().getSimpleName() + "--" + msg);
-        if (IS_PRINTLOG) {
-            writeLog2File("Exception-->" + context.getClass().getSimpleName() + "--" + msg, true);
-        }
-    }
-
-    // 以tag打印到控制台 和 文件， 该tag为activity的名字
-    public void e(Context context, Exception e) {
-        e.printStackTrace();
-        Log.e(XCConfig.TAG_ANDROID_RUNTIME, "Exception-->" + context.getClass().getSimpleName() + "--" + e.toString() + "--" + e.getMessage());
-        if (IS_PRINTLOG) {
-            writeLog2File("Exception-->" + context.getClass().getSimpleName() + "--" + e.toString() + "--" + e.getMessage(), true);
-        }
-    }
 
     public void e(String hint, Exception e) {
         e.printStackTrace();
@@ -181,6 +164,15 @@ public class XCLog {
         if (IS_PRINTLOG) {
             writeLog2File("Exception-->" + hint + "-->" + e.toString() + "--" + e.getMessage(), true);
         }
+    }
+
+    public void e(Context context, String hint) {
+
+        Log.e(XCConfig.TAG_ANDROID_RUNTIME, "Exception-->" + context.getClass().getSimpleName() + "--" + hint);
+        if (IS_PRINTLOG) {
+            writeLog2File("Exception-->" + context.getClass().getSimpleName() + "--" + hint, true);
+        }
+
     }
 
     public void e(Context context, String hint, Exception e) {

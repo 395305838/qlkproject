@@ -5,6 +5,7 @@ package com.xiaocoder.android.fw.general.adapter;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
@@ -18,58 +19,12 @@ import com.xiaocoder.android.fw.general.listener.XCScrollListener;
 import java.util.ArrayList;
 import java.util.List;
 
-// T 为List集合中的model或bean的泛型 ，一般都是用通用XCJsonBean
-
-/*
-
- //继承之后拷贝这里，重写该getView方法， 与补充ViewHolder
-
- @Override
- public View getView(int position, View convertView, ViewGroup parent) {
-
- bean = list.get(position);
-
- ViewHolder holder = null;
-
- if (convertView == null) {
-
- convertView = LayoutInflater.from(context).inflate(R.layout.id, null);//填入布局id
- holder = new ViewHolder();//创建holder对象
- holder.imageView = (ImageView)convertView.findViewById(R.id.imageview);//初始化控件
- convertView.setTag(holder); // 设置标记
-
- } else {
-
- holder = (ViewHolder)convertView.getTag(); // 获取holder
-
- }
-
- // 获取和设置控件的显示值
-
- // 加载图片
-
- return convertView;
-
- }
-
- class ViewHolder{
-
- ImageView 
- TextView
-
- }
-
- public NameAdapter(Context context, List<XCJsonBean> list) {
- super(context, list);
- }
- */
-
 public abstract class XCBaseAdapter<T> extends BaseAdapter {
 
     public List<T> list;
     public Context context;
     public ImageLoader imageloader;
-    public XCScrollListener listener;
+    public AbsListView.OnScrollListener listener;
     public DisplayImageOptions options;
     public T bean;
 
@@ -127,7 +82,7 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
     }
 
     // 获取滚动的监听器
-    public XCScrollListener getXCScrollListener() {
+    public AbsListView.OnScrollListener getOnScrollListener() {
         return listener;
     }
 
@@ -166,7 +121,6 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
         }
     }
 
-    // ----------------图片加载--------------------
     public void displayImage(String uri, ImageView imageView, DisplayImageOptions options) {
         imageloader.displayImage(uri, imageView, options);
     }
@@ -175,9 +129,7 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
         imageloader.displayImage(uri, imageView, options);
     }
 
-    // ----------------图片加载--------------------
 
-    // ------------------------------------调试-----------------------------------------------
     // 以下受debug控制的
     public void printi(String msg) {
         if (context != null) {
@@ -222,12 +174,6 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
         }
     }
 
-    public void printe(Context context, Exception e) {
-        if (context != null) {
-            ((XCBaseActivity) context).printe(context, e);
-        }
-    }
-
     public void printe(String hint, Exception e) {
         if (context != null) {
             ((XCBaseActivity) context).printe(hint, e);
@@ -235,14 +181,17 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
     }
 
     public void printe(Context context, String hint, Exception e) {
-        if (context != null) {
-            ((XCBaseActivity) context).printe(context, hint, e);
+        if (this.context != null) {
+            ((XCBaseActivity) this.context).printe(context, hint, e);
         }
     }
 
-    // ----------------以上调试-----------------------------------
+    public void printe(Context context, String hint) {
+        if (this.context != null) {
+            ((XCBaseActivity) this.context).printe(context, hint);
+        }
+    }
 
-    // ----------------写入和获取配置文件的数据--------------------
     public void spPut(String key, boolean value) {
         if (context != null) {
             ((XCBaseActivity) context).spPut(key, value);
@@ -277,35 +226,82 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
         if (context != null) {
             return ((XCBaseActivity) context).spGet(key, default_value);
         }
-        return null;
+        return default_value;
     }
 
     public boolean spGet(String key, boolean default_value) {
         if (context != null) {
             return ((XCBaseActivity) context).spGet(key, default_value);
         }
-        return false;
+        return default_value;
     }
 
     public int spGet(String key, int default_value) {
         if (context != null) {
             return ((XCBaseActivity) context).spGet(key, default_value);
         }
-        return -1;
+        return default_value;
     }
 
     public long spGet(String key, long default_value) {
         if (context != null) {
             return ((XCBaseActivity) context).spGet(key, default_value);
         }
-        return -1;
+        return default_value;
     }
 
     public float spGet(String key, float default_value) {
         if (context != null) {
             return ((XCBaseActivity) context).spGet(key, default_value);
         }
-        return -1;
+        return default_value;
     }
 
 }
+
+
+// T 为List集合中的model或bean的泛型 ，一般都是用通用XCJsonBean
+
+/*
+
+ //继承之后拷贝这里，重写该getView方法， 与补充ViewHolder
+
+ @Override
+ public View getView(int position, View convertView, ViewGroup parent) {
+
+ bean = list.get(position);
+
+ ViewHolder holder = null;
+
+ if (convertView == null) {
+
+ convertView = LayoutInflater.from(context).inflate(R.layout.id, null);//填入布局id
+ holder = new ViewHolder();//创建holder对象
+ holder.imageView = (ImageView)convertView.findViewById(R.id.imageview);//初始化控件
+ convertView.setTag(holder); // 设置标记
+
+ } else {
+
+ holder = (ViewHolder)convertView.getTag(); // 获取holder
+
+ }
+
+ // 获取和设置控件的显示值
+
+ // 加载图片
+
+ return convertView;
+
+ }
+
+ class ViewHolder{
+
+ ImageView
+ TextView
+
+ }
+
+ public NameAdapter(Context context, List<XCJsonBean> list) {
+ super(context, list);
+ }
+ */

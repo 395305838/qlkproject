@@ -14,6 +14,7 @@ import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.fragment.XCTitleJustFragment;
 import com.xiaocoder.android.fw.general.helper.XCContactHelper;
 import com.xiaocoder.android.fw.general.model.XCContactModel;
+import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.buffer.QlkBaseActivity;
 
@@ -88,7 +89,7 @@ public class ContactsActivity extends QlkBaseActivity {
         addFragment(R.id.xc_id_model_titlebar, title);
         // listview
         contacts_listview = getViewById(R.id.contacts_list);
-        setListViewStyle(contacts_listview, null, 1, false);
+        UtilAbsListStyle.setListViewStyle(contacts_listview, null, 1, false);
 
         // 获取联系人
         XCContactHelper contact_helper = new XCContactHelper(this);

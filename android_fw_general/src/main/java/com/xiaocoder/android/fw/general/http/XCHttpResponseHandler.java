@@ -124,34 +124,34 @@ public abstract class XCHttpResponseHandler extends AsyncHttpResponseHandler {
     @Override
     public void onFinish() {
         super.onFinish();
+        XCHttpAsyn.resetNetingStatus();
         XCApplication.printi(XCConfig.TAG_HTTP, "onFinish");
         if (refresh_fragment instanceof XCBaseAbsListFragment) {
-            XCBaseAbsListFragment f1 = (XCBaseAbsListFragment) refresh_fragment;
-            if (refresh_fragment != null && f1.whichMode != XCBaseAbsListFragment.MODE_NOT_PULL) {
-                f1.completeRefresh();
+            XCBaseAbsListFragment f = (XCBaseAbsListFragment) refresh_fragment;
+            if (refresh_fragment != null && f.whichMode != XCBaseAbsListFragment.MODE_NOT_PULL) {
+                f.completeRefresh();
                 XCApplication.printi("completeRefresh()");
             }
 
             if (refresh_fragment != null) {
-                f1.whichShow(f1.base_all_beans.size(), f1.zero_text_hint, f1.zero_imageview_hint, f1.zero_button_hint);
+                f.whichShow(f.base_all_beans.size(), f.zero_text_hint, f.zero_imageview_hint, f.zero_button_hint);
             }
         } else if (refresh_fragment instanceof XLBaseExpandAbsListFragment) {
-            XLBaseExpandAbsListFragment f1 = (XLBaseExpandAbsListFragment) refresh_fragment;
-            if (refresh_fragment != null && f1.whichMode != XCBaseAbsListFragment.MODE_NOT_PULL) {
-                f1.completeRefresh();
+            XLBaseExpandAbsListFragment f = (XLBaseExpandAbsListFragment) refresh_fragment;
+            if (refresh_fragment != null && f.whichMode != XCBaseAbsListFragment.MODE_NOT_PULL) {
+                f.completeRefresh();
                 XCApplication.printi("completeRefresh()");
             }
 
             if (refresh_fragment != null) {
-                f1.whichShow(f1.base_all_beans.size(), f1.zero_text_hint, f1.zero_imageview_hint, f1.zero_button_hint);
+                f.whichShow(f.base_all_beans.size(), f.zero_text_hint, f.zero_imageview_hint, f.zero_button_hint);
             }
         } else if (refresh_fragment == null) {
 
         } else {
             throw new RuntimeException("非法的fragment类型");
         }
-
-        XCHttpAsyn.resetNetingStatus();
+        closeHttpDialog();
     }
 
     private void check(byte[] response_bytes) {

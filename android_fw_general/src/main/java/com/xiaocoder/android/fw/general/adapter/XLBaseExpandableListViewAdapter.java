@@ -5,6 +5,7 @@ package com.xiaocoder.android.fw.general.adapter;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 
@@ -69,10 +70,9 @@ public abstract class XLBaseExpandableListViewAdapter extends BaseExpandableList
     public List<XCJsonBean> list;
     public Context context;
     public ImageLoader imageloader;
-    public XCScrollListener listener;
+    public AbsListView.OnScrollListener listener;
     public DisplayImageOptions options;
     public XCJsonBean bean;
-    public XCJsonBean childBean;
 
     /**
      * @param context
@@ -161,7 +161,7 @@ public abstract class XLBaseExpandableListViewAdapter extends BaseExpandableList
     }
 
     // 获取滚动的监听器
-    public XCScrollListener getXCScrollListener() {
+    public AbsListView.OnScrollListener getOnScrollListener() {
         return listener;
     }
 
@@ -178,7 +178,6 @@ public abstract class XLBaseExpandableListViewAdapter extends BaseExpandableList
         }
     }
 
-    // ----------------图片加载--------------------
     public void displayImage(String uri, ImageView imageView, DisplayImageOptions options) {
         imageloader.displayImage(uri, imageView, options);
     }
@@ -187,9 +186,7 @@ public abstract class XLBaseExpandableListViewAdapter extends BaseExpandableList
         imageloader.displayImage(uri, imageView);
     }
 
-    // ----------------图片加载--------------------
 
-    // ------------------------------------调试-----------------------------------------------
     // 以下受debug控制的
     public void printi(String msg) {
         if (context != null) {
@@ -234,12 +231,6 @@ public abstract class XLBaseExpandableListViewAdapter extends BaseExpandableList
         }
     }
 
-    public void printe(Context context, Exception e) {
-        if (context != null) {
-            ((XCBaseActivity) context).printe(context, e);
-        }
-    }
-
     public void printe(String hint, Exception e) {
         if (context != null) {
             ((XCBaseActivity) context).printe(hint, e);
@@ -247,14 +238,17 @@ public abstract class XLBaseExpandableListViewAdapter extends BaseExpandableList
     }
 
     public void printe(Context context, String hint, Exception e) {
-        if (context != null) {
-            ((XCBaseActivity) context).printe(context, hint, e);
+        if (this.context != null) {
+            ((XCBaseActivity) this.context).printe(context, hint, e);
         }
     }
 
-    // ----------------以上调试-----------------------------------
+    public void printe(Context context, String hint) {
+        if (this.context != null) {
+            ((XCBaseActivity) this.context).printe(context, hint);
+        }
+    }
 
-    // ----------------写入和获取配置文件的数据--------------------
     public void spPut(String key, boolean value) {
         if (context != null) {
             ((XCBaseActivity) context).spPut(key, value);
@@ -289,35 +283,35 @@ public abstract class XLBaseExpandableListViewAdapter extends BaseExpandableList
         if (context != null) {
             return ((XCBaseActivity) context).spGet(key, default_value);
         }
-        return null;
+        return default_value;
     }
 
     public boolean spGet(String key, boolean default_value) {
         if (context != null) {
             return ((XCBaseActivity) context).spGet(key, default_value);
         }
-        return false;
+        return default_value;
     }
 
     public int spGet(String key, int default_value) {
         if (context != null) {
             return ((XCBaseActivity) context).spGet(key, default_value);
         }
-        return -1;
+        return default_value;
     }
 
     public long spGet(String key, long default_value) {
         if (context != null) {
             return ((XCBaseActivity) context).spGet(key, default_value);
         }
-        return -1;
+        return default_value;
     }
 
     public float spGet(String key, float default_value) {
         if (context != null) {
             return ((XCBaseActivity) context).spGet(key, default_value);
         }
-        return -1;
+        return default_value;
     }
 
 }
