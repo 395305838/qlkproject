@@ -5,6 +5,7 @@ import android.content.Context;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.base.XCConfig;
 
 /*单例
@@ -49,15 +50,15 @@ public class XCHttpAsyn {
         }
     }
 
-    public static void getAsyn(boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, RequestParams params, XCHttpResponseHandler res) {
+    public static void getAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCHttpResponseHandler res) {
         getAsyn(true, isAllowConcurrent, isShowDialog, context, urlString, params, res);
     }
 
-    public static void getAsyn(boolean isShowDialog, Context context, String urlString, RequestParams params, XCHttpResponseHandler res) {
+    public static void getAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCHttpResponseHandler res) {
         getAsyn(true, false, isShowDialog, context, urlString, params, res);
     }
 
-    public static void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, RequestParams params, XCHttpResponseHandler res) {
+    public static void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCHttpResponseHandler res) {
         XCApplication.printi(XCConfig.TAG_HTTP, params.toString());
         if (isAllowConcurrent || !isNeting) {
             isNeting = true;
@@ -71,12 +72,12 @@ public class XCHttpAsyn {
         }
     }
 
-    public static void postAsyn(boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, RequestParams params, XCHttpResponseHandler res) {
+    public static void postAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCHttpResponseHandler res) {
         postAsyn(true, isAllowConcurrent, isShowDialog, context, urlString, params, res);
 
     }
 
-    public static void postAsyn(boolean isShowDialog, Context context, String urlString, RequestParams params, XCHttpResponseHandler res) {
+    public static void postAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCHttpResponseHandler res) {
         postAsyn(true, false, isShowDialog, context, urlString, params, res);
     }
 

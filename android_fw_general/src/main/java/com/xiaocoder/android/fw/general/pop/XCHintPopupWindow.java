@@ -1,6 +1,7 @@
 package com.xiaocoder.android.fw.general.pop;
 
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ public class XCHintPopupWindow extends XCBasePopupWindow implements View.OnClick
 
     public XCHintPopupWindow(Context context, int width, int height) {
         super((ViewGroup) LayoutInflater.from(context).inflate(R.layout.xc_l_view_pop_hint, null), width, height);
+        setFocusable(true);
+        setBackgroundDrawable(new BitmapDrawable());
     }
 
     @Override

@@ -99,6 +99,7 @@ public class QlkHttpResponseHandler extends XCHttpResponseHandler {
     public void showHttpDialog() {
         if (httpDialog == null) {
             httpDialog = new XCSystemHDialog(mContext, XCBaseDialog.TRAN_STYLE);
+            httpDialog.setCanceledOnTouchOutside(false);
             httpDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
                 @Override
                 public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {

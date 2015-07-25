@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
 
 public class XCReflectPopupWindow extends XCBasePopupWindow implements View.OnClickListener {
 
-    // 改pop所属的activity销毁时，才会消失
+    // pop所属的activity销毁时，才会消失
 
     public XCReflectPopupWindow(Context context, int width, int height) {
         super((ViewGroup) LayoutInflater.from(context).inflate(R.layout.xc_l_view_reflect_pop, null), width, height);
@@ -25,6 +25,7 @@ public class XCReflectPopupWindow extends XCBasePopupWindow implements View.OnCl
     @Override
     public void initWidgets() {
         setAllTime(this);
+        setFocusable(false);
         setOutsideTouchable(false);
     }
 
