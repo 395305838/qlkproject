@@ -16,16 +16,11 @@ import com.xiaocoder.android.fw.general.base.XCConfig;
  * 3下载数据可以用byte[]
  * 
  * 4是异步的
- * 
- */
-
-/*
- * params.put("字段", new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/0912/compass.png"));
-
- * isShowDialog 是否在加载网络时显示dialog
+ *  * isShowDialog 是否在加载网络时显示dialog
  * isNeting 是只有当前网络请求完了, 再点击访问网络时才有效, 如果正在请求网络或者说网络访问没有结束,那么此时点击访问网络无效 , 默认是同一时刻只能有一个网络在请求
- * isAllowConcurrent 当设置了该参数时 ,isNeting就无效了 ,如果isAllowConcurrent为true ,则默认同一时刻可以访问很多请求, 如果为false,则只有前一个网络请求完成了,再点击时才有效
+ * isAllowCon
  */
+
 public class XCHttpAsyn {
 
     private static AsyncHttpClient client = new AsyncHttpClient();

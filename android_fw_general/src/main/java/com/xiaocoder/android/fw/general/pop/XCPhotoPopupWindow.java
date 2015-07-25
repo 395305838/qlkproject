@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.xiaocoder.android_fw_general.R;
 
 /**
- * Created by xiaocoder on 14-1-21. 多了一个从我的处方单中获取的button
+ * Created by xiaocoder on 14-1-21
  */
 public class XCPhotoPopupWindow extends XCBasePopupWindow implements View.OnClickListener {
 

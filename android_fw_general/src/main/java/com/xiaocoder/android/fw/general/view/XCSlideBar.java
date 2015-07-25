@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.util.UtilImage;
 import com.xiaocoder.android_fw_general.R;
 
@@ -55,15 +56,13 @@ public class XCSlideBar extends View {
             paint.setTypeface(Typeface.DEFAULT_BOLD);
             paint.setAntiAlias(true);
 
-            if (getContext() != null) {
-                // 2k屏的适配
-                if (UtilImage.getScreenSize(getContext())[0] == 2560) {
-                    paint.setTextSize(36);
-                } else if (UtilImage.getScreenSize(getContext())[0] == 1920) {
-                    paint.setTextSize(30);
-                } else {
-                    paint.setTextSize(20);
-                }
+            // 2k屏的适配
+            if (XCApplication.getScreenHeightPx() >= 2560) {
+                paint.setTextSize(36);
+            } else if (XCApplication.getScreenHeightPx() >= 1920) {
+                paint.setTextSize(30);
+            } else if (XCApplication.getScreenHeightPx() >= 1080) {
+                paint.setTextSize(25);
             } else {
                 paint.setTextSize(20);
             }
