@@ -11,8 +11,8 @@ import android.widget.Button;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.helper.XCTimeHelper;
 import com.xiaocoder.android.fw.general.helper.XCTimeHelper.CustomTimer;
-import com.xiaocoder.android.fw.general.pop.XCPopupWindowPlus;
-import com.xiaocoder.android.fw.general.pop.XCPopupWindowPlus.onPhotoPopupItemClickListener;
+import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow;
+import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow.onPhotoPopupItemClickListener;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.test.anim.AnimationActivity;
 import com.xiaocoder.test.contacts.ContactsActivity;
@@ -220,7 +220,7 @@ public class MainActivity extends Activity implements OnClickListener {
             startActivity(new Intent(this, ContactsActivity.class));
 
         } else if (id == R.id.test_pop2) {
-            XCPopupWindowPlus pop = new XCPopupWindowPlus(MainActivity.this, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            XCPhotoPopupWindow pop = new XCPhotoPopupWindow(MainActivity.this, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             pop.setOnPhotoPopupItemClickListener(new onPhotoPopupItemClickListener() {
 
                 @Override

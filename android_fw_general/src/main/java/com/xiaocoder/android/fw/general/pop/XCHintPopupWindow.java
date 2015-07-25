@@ -3,39 +3,35 @@ package com.xiaocoder.android.fw.general.pop;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.xiaocoder.android_fw_general.R;
 
 
-public class XC_HintPopupWindow extends XCBasePopupWindow implements View.OnClickListener {
+public class XCHintPopupWindow extends XCBasePopupWindow implements View.OnClickListener {
 
     private TextView xc_id_patient_1;
     private TextView xc_id_patient_2;
     private TextView xc_id_patient_3;
 
-    public XC_HintPopupWindow(Context context, int width, int height) {
-        super(LayoutInflater.from(context).inflate(R.layout.xc_l_view_pop_hint, null), width, height);
+    public XCHintPopupWindow(Context context, int width, int height) {
+        super((ViewGroup) LayoutInflater.from(context).inflate(R.layout.xc_l_view_pop_hint, null), width, height);
     }
 
     @Override
-    public void initViews() {
-        xc_id_patient_1 = (TextView) findViewById(R.id.xc_id_patient_1);
-        xc_id_patient_2 = (TextView) findViewById(R.id.xc_id_patient_2);
-        xc_id_patient_3 = (TextView) findViewById(R.id.xc_id_patient_3);
+    public void initWidgets() {
+        xc_id_patient_1 = (TextView) popFindViewById(R.id.xc_id_patient_1);
+        xc_id_patient_2 = (TextView) popFindViewById(R.id.xc_id_patient_2);
+        xc_id_patient_3 = (TextView) popFindViewById(R.id.xc_id_patient_3);
 
     }
 
     @Override
-    public void initEvents() {
+    public void listener() {
         xc_id_patient_1.setOnClickListener(this);
         xc_id_patient_2.setOnClickListener(this);
         xc_id_patient_3.setOnClickListener(this);
-    }
-
-    @Override
-    public void init() {
-
     }
 
     @Override
