@@ -50,6 +50,8 @@ public class XCSlideBar extends View {
         int width = getWidth();
         int singleHeight = height / b.length;
 
+        int screenHeight = UtilImage.getScreenSize(getContext())[0];
+
         for (int i = 0; i < b.length; i++) {
             paint.setColor(Color.rgb(33, 65, 98));
             // paint.setColor(Color.WHITE);
@@ -57,11 +59,11 @@ public class XCSlideBar extends View {
             paint.setAntiAlias(true);
 
             // 2k屏的适配
-            if (XCApplication.getScreenHeightPx() >= 2560) {
+            if (screenHeight >= 2560) {
                 paint.setTextSize(36);
-            } else if (XCApplication.getScreenHeightPx() >= 1920) {
+            } else if (screenHeight >= 1920) {
                 paint.setTextSize(30);
-            } else if (XCApplication.getScreenHeightPx() >= 1080) {
+            } else if (screenHeight >= 1080) {
                 paint.setTextSize(25);
             } else {
                 paint.setTextSize(20);
