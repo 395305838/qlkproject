@@ -47,11 +47,11 @@ public class LinePointActivityGC extends QlkBaseActivity {
                 XCApplication.getBase_handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        System.out.println("handler --" + test_imageview);
-                        System.out.println("handler --" + i);
+                        System.out.println("handler --" + test_imageview); // 不为空
+                        System.out.println("handler --" + i);// 不为空
 
-                        System.out.println("handler --" + fragment.toString());
-                        System.out.println("handler --" + fragment.getActivity());
+                        System.out.println("handler --" + fragment.toString()); // 不为空
+                        System.out.println("handler --" + fragment.getActivity()); // 空
                     }
                 }, 10000);
 
