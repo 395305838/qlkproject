@@ -80,7 +80,7 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
-            android:name=".line_point.LinePointActivity"
+            android:name=".line_point.LinePointActivityGC"
             android:label="@string/title_activity_line_point"
             android:screenOrientation="portrait" />
         <activity

@@ -26,6 +26,7 @@ import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.adapter.XLBaseExpandableListViewAdapter;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
+import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.android_fw_general.R;
 
 import java.util.ArrayList;
@@ -376,6 +377,11 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
     // 需要在http请求的返回结果中调用该方法
     @SuppressWarnings({"unchecked", "rawtypes"})
     public void updateList(List list) {
+
+        if (list == null) {
+            list = new ArrayList();
+        }
+
         if (base_all_beans == null) {
             base_all_beans = new ArrayList();
         }
@@ -401,6 +407,11 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
     }
 
     public void updateListNoAdd(List list) {
+
+        if (list == null) {
+            list = new ArrayList();
+        }
+
         if (base_all_beans == null) {
             base_all_beans = new ArrayList();
         } else {
@@ -433,9 +444,20 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
 
     // 设置数据为零时候的背景
     public void setBgZeroHintInfo(CharSequence zero_text_hint, CharSequence zero_button_hint, int zero_imageview_hint) {
-        this.zero_button_hint = zero_button_hint;
+
+        if (UtilString.isNull(zero_button_hint)) {
+            this.zero_button_hint = "";
+        } else {
+            this.zero_button_hint = zero_button_hint;
+        }
+
         this.zero_imageview_hint = zero_imageview_hint;
-        this.zero_text_hint = zero_text_hint;
+
+        if (UtilString.isNull(zero_text_hint)) {
+            this.zero_text_hint = "";
+        } else {
+            this.zero_text_hint = zero_text_hint;
+        }
 
     }
 

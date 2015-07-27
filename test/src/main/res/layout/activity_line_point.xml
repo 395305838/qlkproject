@@ -6,10 +6,23 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".LinePointActivity" >
+    tools:context=".LinePointActivity">
 
     <View
         style="@style/xc_h_line_point"
         android:layerType="software" />
+
+    <RelativeLayout
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></RelativeLayout>
+
+    <ImageView
+        android:id="@+id/test_imageview"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/ic_launcher" />
+
 
 </RelativeLayout>

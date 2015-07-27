@@ -24,7 +24,7 @@ import com.xiaocoder.test.fragment.ViewPagerActivity;
 import com.xiaocoder.test.fragment.WebActivity;
 import com.xiaocoder.test.http.HttpActivity;
 import com.xiaocoder.test.http.HttpDownLoadActivity;
-import com.xiaocoder.test.line_point.LinePointActivity;
+import com.xiaocoder.test.line_point.LinePointActivityGC;
 import com.xiaocoder.test.list.GridActivity;
 import com.xiaocoder.test.list.ListActivity;
 import com.xiaocoder.test.pop.PopActivity;
@@ -190,7 +190,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
         int id = v.getId();
         if (id == R.id.test_point_line) {
-            startActivity(new Intent(this, LinePointActivity.class));
+            startActivity(new Intent(this, LinePointActivityGC.class));
 
         } else if (id == R.id.test_scan) {
             startActivity(new Intent(this, ScanActivity.class));
