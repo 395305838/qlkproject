@@ -4,15 +4,12 @@ import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
-import com.xiaocoder.android.fw.general.fragment.XCMoveBlockFragment;
-import com.xiaocoder.android.fw.general.fragment.XCMoveBlockFragment.OnClickMoveListener;
 import com.xiaocoder.android.fw.general.fragment.XCMoveBlockPlusFragment;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.buffer.QlkBaseActivity;
 
 public class MoveBlockActivity extends QlkBaseActivity {
-    XCMoveBlockFragment fragment;
+    XCMoveBlockPlusFragment fragment;
     XCMoveBlockPlusFragment plus_fragment;
     XCMoveBlockPlusFragment plus_fragment2;
     XCMoveBlockPlusFragment plus_fragment3;
@@ -30,10 +27,10 @@ public class MoveBlockActivity extends QlkBaseActivity {
     @SuppressWarnings("deprecation")
     @Override
     public void initWidgets() {
-        fragment = new XCMoveBlockFragment();
+        fragment = new XCMoveBlockPlusFragment();
         // fragment.setContents(new String[] { "电影", "音乐", "游戏" }, 0, false);
-        fragment.setContents(new String[]{"电影", "音乐", "游戏", "软件", "学习"}, 10, true);
-        fragment.setInitSelected(2); // 默认选中第三个
+        fragment.setContents(new String[]{"电影", "音乐", "游戏", "软件", "学习"});
+        fragment.setInitSelected(2, 4, true, 10); // 默认选中第三个
         addFragment(R.id.test_moveblock_fragment, fragment);
 
         plus_fragment = new XCMoveBlockPlusFragment();
@@ -59,13 +56,11 @@ public class MoveBlockActivity extends QlkBaseActivity {
         addFragment(R.id.test_moveblock_fragment_plus3, plus_fragment3);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void listeners() {
-        fragment.setOnClickMoveListener(new OnClickMoveListener() {
-
+        fragment.setOnClickMoveListener(new XCMoveBlockPlusFragment.OnClickMoveListener() {
             @Override
-            public void onClickMoveListener(int position) {
+            public void onClickMoveListener(int position, ViewGroup current_item, ImageView current_imageview, ViewGroup last_item, ImageView last_imageview) {
                 // position 为点击了第几个
                 shortToast(position + "");
             }
