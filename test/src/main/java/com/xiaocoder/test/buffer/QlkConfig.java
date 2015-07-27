@@ -51,9 +51,6 @@ public class QlkConfig extends XCConfig {
     // ----------------------------------补充接口url---------------------------------------
 
 
-
-
-
     // ----------------------------------补充接口url---------------------------------------
 
 
@@ -68,7 +65,11 @@ public class QlkConfig extends XCConfig {
     /*
      * 是否打印日志到手机文件中
      */
-    public static boolean IS_PRINTLOG = false;
+    public static boolean IS_PRINTLOG = true;
+    /*
+     * 是否打印异常的日志到屏幕， 上线前得关
+     */
+    public static boolean IS_SHOW_EXCEPTION_ACTIVITY = false;
     /*
      * app的名字与根目录
      */

@@ -24,6 +24,15 @@ import com.xiaocoder.android.fw.general.io.XCIO;
 
 public class UtilString {
 
+    public static boolean isNull(Object obj) {
+
+        if (obj == null) {
+            return true;
+        }
+        return false;
+    }
+
+
     public static boolean equals(String str1, String str2) {
 
         if (str1 == null && str2 == null) {

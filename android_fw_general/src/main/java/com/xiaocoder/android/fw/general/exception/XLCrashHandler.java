@@ -28,7 +28,6 @@ import java.util.Map;
 
 /**
  * UncaughtException处理类,当程序发生Uncaught异常的时候,有该类来接管程序,并记录发送错误报告.
- *
  * 记得在清单文件中注册啊
  */
 public class XLCrashHandler implements UncaughtExceptionHandler {
@@ -63,23 +62,25 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
         return INSTANCE;
     }
 
+    private boolean mIsShowExceptionActivity;
+
     /**
      * 初始化
      *
      * @param context
      */
-    public void init(Context context, String crash_path) {
+    public void init(Context context, String crash_path, boolean isShowExceptionActivity) {
         if (context instanceof Application) {
             application = (Application) context;
         }
         mContext = context;
+        mIsShowExceptionActivity = isShowExceptionActivity;
 
         // 获取系统默认的 UncaughtException 处理器
         mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
 
         // 设置该 CrashHandler 为程序的默认处理器
         Thread.setDefaultUncaughtExceptionHandler(this);
-        XCApplication.printi("path:" + path);
         path = path + crash_path;
         XCApplication.printi("path:" + path);
     }
@@ -90,7 +91,6 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
         if (!handleException(ex) && mDefaultHandler != null) {
-            // 如果用户没有处理则让系统默认的异常处理器来处理
             mDefaultHandler.uncaughtException(thread, ex);
         } else {
             try {
@@ -119,14 +119,14 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
         }
 
         // 使用 Toast 来显示异常信息
-        new Thread() {
-            @Override
-            public void run() {
-                Looper.prepare();
-                Toast.makeText(mContext, "很抱歉，程序出现异常，即将退出。", Toast.LENGTH_LONG).show();
-                Looper.loop();
-            }
-        }.start();
+//        new Thread() {
+//            @Override
+//            public void run() {
+//                Looper.prepare();
+//                Toast.makeText(mContext, "很抱歉，程序出现异常，即将退出。", Toast.LENGTH_LONG).show();
+//                Looper.loop();
+//            }
+//        }.start();
 
         // 收集设备参数信息
         collectDeviceInfo(mContext);
@@ -194,10 +194,12 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
         String result = writer.toString();
         sb.append(result);
 
-        Intent intent = new Intent(mContext, XLShowExceptionsActivity.class);
-        intent.putExtra("text", sb.toString());
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        mContext.startActivity(intent);
+        if (mIsShowExceptionActivity) {
+            Intent intent = new Intent(mContext, XLShowExceptionsActivity.class);
+            intent.putExtra("text", sb.toString());
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            mContext.startActivity(intent);
+        }
 
         try {
             long timestamp = System.currentTimeMillis();

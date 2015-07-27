@@ -178,9 +178,9 @@ public class MainActivity extends Activity implements OnClickListener {
             XCApplication.getBase_log().writeLog2File("123", false);
             XCApplication.getBase_log().writeLog2File("345", true);
             XCApplication.getBase_log().writeLog2File("678", true);
-            int i = 1 / 0;
+//            int i = 1 / 0;
         } catch (Exception e) {
-            XCApplication.printe(this, "--oncreate()--",e);
+            XCApplication.printe(this, "--oncreate()--", e);
         }
 
     }

@@ -44,7 +44,7 @@ public class QlkApplication extends XCApplication {
 
         // 异常日志捕获的存储路径
         XLCrashHandler crashHandler = XLCrashHandler.getInstance();
-        crashHandler.init(getApplicationContext(), QlkConfig.CRASH_FILE);
+        crashHandler.init(getApplicationContext(), QlkConfig.CRASH_FILE, QlkConfig.IS_SHOW_EXCEPTION_ACTIVITY);
 
     }
 }
