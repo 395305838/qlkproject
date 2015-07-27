@@ -16,13 +16,14 @@ import android.widget.TextView.OnEditorActionListener;
 
 import com.xiaocoder.android.fw.general.base.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCTitleFragment;
-import com.xiaocoder.android.fw.general.db.XCDaoFactory;
-import com.xiaocoder.android.fw.general.db.XCIDao;
+import com.xiaocoder.android.fw.general.db.helper.XCDbHelper;
+import com.xiaocoder.android.fw.general.db.impl.XCSearchDao;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.android.fw.general.view.XCClearEditText;
 import com.xiaocoder.android_fw_general.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,7 +34,7 @@ import java.util.List;
 public class XCTitleSearchFragment extends XCTitleFragment {
     XCClearEditText xc_id_fragment_search_edittext;
     TextView xc_id_fragment_search_cancle;
-    XCIDao<XCSearchRecordModel> dao;
+    XCSearchDao dao;
     boolean isClickeble = true;
 
     public void setIsClickble(boolean isClickeble) {
@@ -125,7 +126,7 @@ public class XCTitleSearchFragment extends XCTitleFragment {
             return;
         }
 
-        List<XCSearchRecordModel> xcSearchRecordModels1 = dao.queryAll();
+        List<XCSearchRecordModel> xcSearchRecordModels1 = dao.queryAll(XCSearchDao.SORT_DESC);
         boolean is_exist = false;
         for (XCSearchRecordModel model : xcSearchRecordModels1) {
             if (keyword.equals(model.getKey_word())) {
@@ -142,7 +143,7 @@ public class XCTitleSearchFragment extends XCTitleFragment {
         int count = dao.queryCount();
 
         if (count > 10) {
-            List<XCSearchRecordModel> xcSearchRecordModels = dao.queryAll();
+            List<XCSearchRecordModel> xcSearchRecordModels = dao.queryAll(XCSearchDao.SORT_DESC);
             for (int i = 10; i < count; i++) {
                 XCSearchRecordModel model = xcSearchRecordModels.get(i);
                 if (model != null) {
@@ -152,11 +153,18 @@ public class XCTitleSearchFragment extends XCTitleFragment {
         }
     }
 
-    public String tabName;
+    String mDbName;
+    int mVersion;
+    String mTableName;
+    String[] mSqls;
 
-    public void setTabName(String tabName){
-        this.tabName = tabName;
+    public void setDbParams(String dbName, int version, String tabName, String[] sqls) {
+        mDbName = dbName;
+        mVersion = version;
+        mTableName = tabName;
+        mSqls = sqls;
     }
+
 
     @Override
     public void initWidgets() {
@@ -166,7 +174,10 @@ public class XCTitleSearchFragment extends XCTitleFragment {
             xc_id_fragment_search_edittext.setFocusable(false);
         }
         xc_id_fragment_search_cancle = getViewById(R.id.xc_id_fragment_search_cancle);
-        dao = XCDaoFactory.getDaoInstanceForSearch(getActivity(), XCConfig.XC_SEARCH_RECODER_DAO_CLASS,tabName);
+
+        XCDbHelper helper = new XCDbHelper(getBaseActivity(), mDbName, mVersion, mSqls);
+        dao = new XCSearchDao(getBaseActivity(), helper, mTableName);
+
         if (hint != null) {
             xc_id_fragment_search_edittext.setHint(hint);
         }

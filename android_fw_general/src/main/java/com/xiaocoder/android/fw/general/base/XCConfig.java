@@ -30,9 +30,4 @@ public class XCConfig {
    */
     public static String ENCODING_GBK = "gbk";
 
-    /*
-     * 搜索的dao路径
-     */
-    public static String XC_SEARCH_RECODER_DAO_CLASS = "com.xiaocoder.android.fw.general.db.impl.XCSearchRecordDaoImpl";
-
 }

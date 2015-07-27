@@ -384,6 +384,9 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
                                 Object[] command_values) {
         Intent intent = new Intent(this, activity_class);
         intent.setFlags(flags);
+        if (command_keys.length != command_values.length) {
+            throw new RuntimeException("myStartActivity中传入的keys 和 values的size不一致");
+        }
         int size = command_keys.length;
         for (int i = 0; i < size; i++) {
             Object obj = command_values[i];
@@ -420,11 +423,11 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
     }
 
     public void myStartActivity(Class<? extends XCBaseActivity> activity_class) {
-        myStartActivity(activity_class, -1, -1, null, null);
+        myStartActivity(activity_class, -1, -1, new String[]{}, new String[]{});
     }
 
     public void myStartActivity(Class<? extends XCBaseActivity> activity_class, int flags) {
-        myStartActivity(activity_class, -1, flags, null, null);
+        myStartActivity(activity_class, -1, flags, new String[]{}, new String[]{});
     }
 
     // 以下受debug控制的

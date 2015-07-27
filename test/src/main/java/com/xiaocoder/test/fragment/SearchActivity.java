@@ -17,6 +17,7 @@ import com.xiaocoder.android.fw.general.http.XCHttpResponseHandler;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.buffer.QlkBaseActivity;
+import com.xiaocoder.test.buffer.QlkConfig;
 import com.xiaocoder.test.buffer.QlkHttpResponseHandler;
 
 import org.apache.http.Header;
@@ -46,6 +47,9 @@ public class SearchActivity extends QlkBaseActivity {
     @Override
     public void initWidgets() {
         title_fragment = new XCTitleSearchFragment();
+        title_fragment.setDbParams(QlkConfig.DB_NAME, QlkConfig.DB_VERSION, QlkConfig.DB_TABLE_NAME_SEARCH_1,
+                new String[]{QlkConfig.DB_TABLE_SQL_SEARCH_1, QlkConfig.DB_TABLE_SQL_SEARCH_2, QlkConfig.DB_TABLE_SQL_SEARCH_3}
+        );
         addFragment(R.id.xc_id_model_titlebar, title_fragment);
 
         letter_fragment = new XCSearchLetterFragment();
@@ -65,6 +69,9 @@ public class SearchActivity extends QlkBaseActivity {
                 // 为空则创建并设置监听 , record_fragment里面的监听器可以监听键盘的显示到隐藏的状态
                 if (record_fragment == null) {
                     record_fragment = new XCSearchRecordFragment();
+                    record_fragment.setDbParams(QlkConfig.DB_NAME, QlkConfig.DB_VERSION, QlkConfig.DB_TABLE_NAME_SEARCH_1,
+                            new String[]{QlkConfig.DB_TABLE_SQL_SEARCH_1, QlkConfig.DB_TABLE_SQL_SEARCH_2, QlkConfig.DB_TABLE_SQL_SEARCH_3}
+                    );
                     // 点击键盘中的隐藏键盘按钮
                     record_fragment.setOnKeyBoardStatusListener(new XCSearchRecordFragment.OnKeyBoardStatusListener() {
                         @Override
@@ -94,7 +101,6 @@ public class SearchActivity extends QlkBaseActivity {
             @Override
             public void searchKeyDown(String key_word) {
                 XCApplication.shortToast("点击了");
-                myStartActivity(WebActivity.class);
             }
         });
 

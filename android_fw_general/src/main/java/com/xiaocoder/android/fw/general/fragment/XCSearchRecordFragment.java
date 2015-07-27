@@ -17,13 +17,14 @@ import android.widget.TextView;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.base.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
-import com.xiaocoder.android.fw.general.db.XCDaoFactory;
-import com.xiaocoder.android.fw.general.db.XCIDao;
+import com.xiaocoder.android.fw.general.db.helper.XCDbHelper;
+import com.xiaocoder.android.fw.general.db.impl.XCSearchDao;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.android.fw.general.view.XCKeyBoardLayout;
 import com.xiaocoder.android_fw_general.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -37,7 +38,7 @@ public class XCSearchRecordFragment extends XCBaseFragment implements AdapterVie
     // 记录界面不显示状态
     XCKeyBoardLayout xc_id_fragment_search_record_keyboard_layout;
 
-    XCIDao<XCSearchRecordModel> dao;
+    XCSearchDao dao;
     SearchRecordAdapter adapter;
     TextView xc_id_fragment_search_record_close;
 
@@ -96,7 +97,7 @@ public class XCSearchRecordFragment extends XCBaseFragment implements AdapterVie
             if ("清空所有历史记录".equals(xc_id_fragment_search_record_clear_button.getText())) {
                 dao.deleteAll();
                 // 查询数据库记录
-                List<XCSearchRecordModel> searchRecordBeans = dao.queryAll();
+                List<XCSearchRecordModel> searchRecordBeans = dao.queryAll(XCSearchDao.SORT_DESC);
                 if (searchRecordBeans != null && searchRecordBeans.size() > 0) {
                     xc_id_fragment_search_record_clear_button.setText("清空所有历史记录");
                 } else {
@@ -128,7 +129,7 @@ public class XCSearchRecordFragment extends XCBaseFragment implements AdapterVie
 
     public void update() {
         // 查询数据库记录 , 恢复查询历史记录
-        List<XCSearchRecordModel> searchRecordBeans = dao.queryAll();
+        List<XCSearchRecordModel> searchRecordBeans = dao.queryAll(XCSearchDao.SORT_DESC);
 
         if (searchRecordBeans != null && searchRecordBeans.size() > 0) {
             xc_id_fragment_search_record_clear_button.setText("清空所有历史记录");
@@ -188,6 +189,19 @@ public class XCSearchRecordFragment extends XCBaseFragment implements AdapterVie
         }
     }
 
+    String mDbName;
+    int mVersion;
+    String mTableName;
+    String[] mSqls;
+
+    public void setDbParams(String dbName, int version, String tabName, String[] sqls) {
+        mDbName = dbName;
+        mVersion = version;
+        mTableName = tabName;
+        mSqls = sqls;
+    }
+
+
     @Override
     public void initWidgets() {
         xc_id_fragment_search_record_clear_button = getViewById(R.id.xc_id_fragment_search_record_clear_button);
@@ -195,7 +209,9 @@ public class XCSearchRecordFragment extends XCBaseFragment implements AdapterVie
         xc_id_fragment_search_record_keyboard_layout = getViewById(R.id.xc_id_fragment_search_record_keyboard_layout);
         xc_id_fragment_search_record_close = getViewById(R.id.xc_id_fragment_search_record_close);
 
-        dao = XCDaoFactory.getDaoInstance(getActivity(), XCConfig.XC_SEARCH_RECODER_DAO_CLASS);
+        XCDbHelper helper = new XCDbHelper(getBaseActivity(), mDbName, mVersion, mSqls);
+        dao = new XCSearchDao(getBaseActivity(), helper, mTableName);
+
         adapter = new SearchRecordAdapter(getActivity(), null);
         UtilAbsListStyle.setListViewStyle(xc_id_fragment_search_record_listview, null, 0, false);
         xc_id_fragment_search_record_listview.setAdapter(adapter);

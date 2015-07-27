@@ -69,13 +69,35 @@ public class QlkConfig extends XCConfig {
     /*
      * 是否打印异常的日志到屏幕， 上线前得关
      */
-    public static boolean IS_SHOW_EXCEPTION_ACTIVITY = false;
+    public static boolean IS_SHOW_EXCEPTION_ACTIVITY = true;
+
     /*
      * app的名字与根目录
      */
     public static String APP_ROOT = "app_qlk_test";
+
     /*
-     * 打印到日志文件
+     * 数据库的名字
+     */
+    public static String DB_NAME = APP_ROOT + ".db";
+    /*
+     * 数据库版本号
+     */
+    public static int DB_VERSION = 1;
+    /*
+     * 数据库表名,支持多个表
+     */
+    public static String DB_TABLE_NAME_SEARCH_1 = "search_1";
+    public static String DB_TABLE_NAME_SEARCH_2 = "search_2";
+    public static String DB_TABLE_NAME_SEARCH_3 = "search_3";
+    /*
+     * SQL
+     */
+    public static String DB_TABLE_SQL_SEARCH_1 = "CREATE TABLE " + DB_TABLE_NAME_SEARCH_1 + "(_id integer primary key autoincrement," + "time text," + "keyword text)";
+    public static String DB_TABLE_SQL_SEARCH_2 = "CREATE TABLE " + DB_TABLE_NAME_SEARCH_2 + "(_id integer primary key autoincrement," + "time text," + "keyword text)";
+    public static String DB_TABLE_SQL_SEARCH_3 = "CREATE TABLE " + DB_TABLE_NAME_SEARCH_3 + "(_id integer primary key autoincrement," + "time text," + "keyword text)";
+    /*
+     * 打印到日志文件printe
      */
     public static String LOG_FILE = APP_ROOT + "/log";
     /*
@@ -106,5 +128,6 @@ public class QlkConfig extends XCConfig {
      * 打印测试的文件
      */
     public static String TEMP_PRINT_FILE = APP_ROOT + "/temp_print_file";
+
 
 }
