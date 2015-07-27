@@ -29,6 +29,8 @@ import java.util.Map;
 /**
  * UncaughtException处理类,当程序发生Uncaught异常的时候,有该类来接管程序,并记录发送错误报告.
  * 记得在清单文件中注册啊
+ *
+ * 有一个bug：如果实在显示打印的异常类的环境下，且mainactivity出现异常了，则会启动多次--待改
  */
 public class XLCrashHandler implements UncaughtExceptionHandler {
 

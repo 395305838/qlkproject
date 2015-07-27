@@ -4,8 +4,7 @@ import android.os.Bundle;
 import android.widget.RadioGroup;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.xiaocoder.android.fw.general.base.XCBaseMainActivity;
-import com.xiaocoder.android.fw.general.fragment.XCTitleJustFragment;
+import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.buffer.QlkBaseMainActivity;
 
@@ -25,8 +24,9 @@ public class SlidingMenuActivity2 extends QlkBaseMainActivity {
         base_tab_group = getViewById(R.id.xc_id_tab_group);
         addFragment(R.id.xc_id_model_content, new SlidingFragment1());
 
-        XCTitleJustFragment title = new XCTitleJustFragment();
-        title.setTitle("title menu");
+        XCTitleCommonFragment title = new XCTitleCommonFragment();
+        title.setTitleCenter(true, "嗯嗯");
+        title.setTitleLeft(false, "");
         addFragment(R.id.xc_id_model_titlebar, title);
 
         createSlidingMenu();

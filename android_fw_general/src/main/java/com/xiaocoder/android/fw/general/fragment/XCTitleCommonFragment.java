@@ -21,7 +21,7 @@ import com.xiaocoder.android_fw_general.R;
 /**
  * @author xiaocoder
  * @Description:该类是一个通用的title , 结构为 左边一个imageview + textview
- * ,中间一个textview(可以设置最右边的drawable) ,
+ * ,中间一个textview(可以设置最右边的drawable)
  * 右边一个textview+imageview
  * @date 2014-12-31 上午11:31:25
  */
@@ -31,10 +31,6 @@ public class XCTitleCommonFragment extends XCTitleFragment {
     ImageView xc_id_titlebar_left_imageview;
     TextView xc_id_titlebar_left_textview;
     TextView xc_id_titlebar_center_textview;
-
-    public TextView getXc_id_titlebar_center_textview() {
-        return xc_id_titlebar_center_textview;
-    }
 
     LinearLayout xc_id_titlebar_right_layout;
     ImageView xc_id_titlebar_right_imageview;
@@ -46,6 +42,8 @@ public class XCTitleCommonFragment extends XCTitleFragment {
     RelativeLayout xc_id_titlebar_right3_layout;
     TextView xc_id_titlebar_right3_textview_number;
     ImageView xc_id_titlebar_right3_imageView;
+
+    RelativeLayout xc_id_titlebar_common_layout;
 
     Bundle init_bundle; // 在activity的oncreate方法中调用如setTitleCenter,会null指针,即控件还没有找到引用,所以先保存,在onActvitiyCreated中再初始化
 
@@ -121,6 +119,11 @@ public class XCTitleCommonFragment extends XCTitleFragment {
     public interface RightClickListener {
         void onRightClickListener();
     }
+
+    public TextView getXc_id_titlebar_center_textview() {
+        return xc_id_titlebar_center_textview;
+    }
+
 
     // 设置title的中心的标题
     public void setTitleCenter(boolean isCenterShow, String title) {
@@ -297,6 +300,13 @@ public class XCTitleCommonFragment extends XCTitleFragment {
         }
     }
 
+    public int colorLayout;
+
+    public void setColorLayout(int color) {
+        colorLayout = color;
+    }
+
+
     @Override
     public void initWidgets() {
         xc_id_titlebar_left_layout = getViewById(R.id.xc_id_titlebar_left_layout);
@@ -312,6 +322,7 @@ public class XCTitleCommonFragment extends XCTitleFragment {
         xc_id_titlebar_right3_textview_number = getViewById(R.id.xc_id_titlebar_right3_textview_number);
         xc_id_titlebar_right3_imageView = getViewById(R.id.xc_id_titlebar_right3_imageView);
         xc_id_titlebar_right3_layout = getViewById(R.id.xc_id_titlebar_right3_layout);
+        xc_id_titlebar_common_layout = getViewById(R.id.xc_id_titlebar_common_layout);
 
         if (init_bundle == null) {
             init_bundle = new Bundle();
@@ -377,6 +388,8 @@ public class XCTitleCommonFragment extends XCTitleFragment {
             } else {
                 getBaseActivity().setViewGone(false, xc_id_titlebar_right3_textview_number);
             }
+
+            xc_id_titlebar_common_layout.setBackgroundColor(colorLayout);
 
             init_bundle = null;
         }

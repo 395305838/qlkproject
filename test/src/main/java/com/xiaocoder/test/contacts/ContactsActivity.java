@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.fragment.XCTitleJustFragment;
+import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.helper.XCContactHelper;
 import com.xiaocoder.android.fw.general.model.XCContactModel;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
@@ -84,8 +84,11 @@ public class ContactsActivity extends QlkBaseActivity {
     @Override
     public void initWidgets() {
         // 初始化控件
-        XCTitleJustFragment title = new XCTitleJustFragment();
-        title.setTitle("通讯录");
+
+        XCTitleCommonFragment title = new XCTitleCommonFragment();
+        title.setTitleLeft(false, "");
+        title.setTitleCenter(true, "通讯录");
+        title.setColorLayout(0xff00cccc);
         addFragment(R.id.xc_id_model_titlebar, title);
         // listview
         contacts_listview = getViewById(R.id.contacts_list);

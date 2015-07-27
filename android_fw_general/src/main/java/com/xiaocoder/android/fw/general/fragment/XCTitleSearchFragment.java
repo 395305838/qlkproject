@@ -14,7 +14,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import com.xiaocoder.android.fw.general.base.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCTitleFragment;
 import com.xiaocoder.android.fw.general.db.helper.XCDbHelper;
 import com.xiaocoder.android.fw.general.db.impl.XCSearchDao;
@@ -23,7 +22,6 @@ import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.android.fw.general.view.XCClearEditText;
 import com.xiaocoder.android_fw_general.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,6 +30,7 @@ import java.util.List;
  * @date 2015-1-16 下午1:50:08
  */
 public class XCTitleSearchFragment extends XCTitleFragment {
+
     XCClearEditText xc_id_fragment_search_edittext;
     TextView xc_id_fragment_search_cancle;
     XCSearchDao dao;
@@ -120,11 +119,38 @@ public class XCTitleSearchFragment extends XCTitleFragment {
         }
     }
 
+    public int mRecoderNumMax = 10;
+
+    public void setRecoderNumMax(int recoderNumMax) {
+        mRecoderNumMax = recoderNumMax;
+    }
+
     public void save(String keyword) {
 
         if (UtilString.isBlank(keyword)) {
             return;
         }
+
+        checkRecoderExistAndSave(keyword);
+
+        checkRecoderMaxNum();
+    }
+
+    private void checkRecoderMaxNum() {
+        int count = dao.queryCount();
+
+        if (count > mRecoderNumMax) {
+            List<XCSearchRecordModel> xcSearchRecordModels = dao.queryAll(XCSearchDao.SORT_DESC);
+            for (int i = mRecoderNumMax; i < count; i++) {
+                XCSearchRecordModel model = xcSearchRecordModels.get(i);
+                if (model != null) {
+                    dao.delete_unique(model.getTime());
+                }
+            }
+        }
+    }
+
+    private void checkRecoderExistAndSave(String keyword) {
 
         List<XCSearchRecordModel> xcSearchRecordModels1 = dao.queryAll(XCSearchDao.SORT_DESC);
         boolean is_exist = false;
@@ -138,18 +164,6 @@ public class XCTitleSearchFragment extends XCTitleFragment {
         // 记录存入数据库
         if (!is_exist) {
             dao.insert(new XCSearchRecordModel(keyword, System.currentTimeMillis() + ""));
-        }
-
-        int count = dao.queryCount();
-
-        if (count > 10) {
-            List<XCSearchRecordModel> xcSearchRecordModels = dao.queryAll(XCSearchDao.SORT_DESC);
-            for (int i = 10; i < count; i++) {
-                XCSearchRecordModel model = xcSearchRecordModels.get(i);
-                if (model != null) {
-                    dao.delete_unique(model.getTime());
-                }
-            }
         }
     }
 

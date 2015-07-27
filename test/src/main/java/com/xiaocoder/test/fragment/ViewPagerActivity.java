@@ -3,9 +3,7 @@ package com.xiaocoder.test.fragment;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
-import com.xiaocoder.android.fw.general.fragment.XCTitleJustFragment;
+import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment;
 import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment.OnImageClickListener;
 import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment.OnLoadImage;
@@ -15,7 +13,7 @@ import com.xiaocoder.test.buffer.QlkBaseActivity;
 import java.util.ArrayList;
 
 public class ViewPagerActivity extends QlkBaseActivity {
-    XCTitleJustFragment title_fragment;
+    XCTitleCommonFragment title_fragment;
     XCViewPagerFragment fragment;
 
     @Override
@@ -32,8 +30,9 @@ public class ViewPagerActivity extends QlkBaseActivity {
     @Override
     public void initWidgets() {
         // title
-        title_fragment = new XCTitleJustFragment();
-        title_fragment.setTitle("嗯嗯");
+        title_fragment = new XCTitleCommonFragment();
+        title_fragment.setTitleCenter(true, "嗯嗯");
+        title_fragment.setTitleLeft(false, "");
         addFragment(R.id.xc_id_model_titlebar, title_fragment);
         // viewpager
         fragment = new XCViewPagerFragment();
