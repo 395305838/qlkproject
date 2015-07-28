@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilDate;
 import com.xiaocoder.android.fw.general.util.UtilOom;
@@ -103,15 +104,34 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
                 case CAMERA_REQUEST_CODE:
                     if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                         if (temp_photo_file != null) {
-                            Uri uri = Uri.fromFile(temp_photo_file);
+                            final Uri uri = Uri.fromFile(temp_photo_file);
                             if (is_allow_resize) {
                                 resizeImage(uri);
                             } else {
-                                Bitmap bitmap = UtilOom.getBitmapFromUriForLarge(getActivity(), uri, 500, Bitmap.Config.RGB_565);
-                                getImage(bitmap);
+
+                                XCApplication.getBase_cache_threadpool().execute(new Runnable() {
+                                    Bitmap bitmap;
+
+                                    @Override
+                                    public void run() {
+                                        bitmap = UtilOom.getBitmapForLargeByUri(getActivity(), uri, 500, Bitmap.Config.RGB_565);
+
+                                        XCApplication.getBase_handler().post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                getImage(bitmap);
+                                                if (bitmap != null) {
+                                                    bitmap.recycle();
+                                                    bitmap = null;
+                                                }
+                                            }
+                                        });
+                                    }
+                                });
+
                             }
                         } else {
-                           shortToast("获取图片失败");
+                            shortToast("获取图片失败");
                         }
                     } else {
                         shortToast("未找到存储卡，无法存储照片！");

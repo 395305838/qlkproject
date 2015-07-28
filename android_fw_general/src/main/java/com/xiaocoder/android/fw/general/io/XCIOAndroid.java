@@ -349,7 +349,7 @@ public class XCIOAndroid {
         return file;
     }
 
-    public String getFileFromAssets(String fileName) throws IOException {
+    public String getStringFromAssets(String fileName) throws IOException {
         if (context == null || UtilString.isBlank(fileName)) {
             return null;
         }
@@ -363,14 +363,7 @@ public class XCIOAndroid {
         return s.toString();
     }
 
-    public InputStream getInputStreamFromAssets(String fileName) throws IOException {
-        if (context == null || UtilString.isBlank(fileName)) {
-            return null;
-        }
-        return context.getResources().getAssets().open(fileName);
-    }
-
-    public String getFileFromRaw(int resId) {
+    public String getStringFromRaw(int resId) {
         if (context == null) {
             return null;
         }

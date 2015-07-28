@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilDate;
 import com.xiaocoder.android.fw.general.util.UtilOom;
@@ -103,9 +104,27 @@ public class XCLocalPhotoFragment extends XCBaseFragment {
                         if (is_allow_resize) {
                             resizeImage(data.getData());
                         } else {
-                            Uri uri = data.getData();
-                            Bitmap bitmap = UtilOom.getBitmapFromUriForLarge(getActivity(), uri, 500, Bitmap.Config.RGB_565);
-                            getImage(bitmap);
+                            final Uri uri = data.getData();
+                            XCApplication.getBase_cache_threadpool().execute(new Runnable() {
+                                Bitmap bitmap;
+
+                                @Override
+                                public void run() {
+                                    bitmap = UtilOom.getBitmapForLargeByUri(getActivity(), uri, 500, Bitmap.Config.RGB_565);
+
+                                    XCApplication.getBase_handler().post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            getImage(bitmap);
+                                            if (bitmap != null) {
+                                                bitmap.recycle();
+                                                bitmap = null;
+                                            }
+                                        }
+                                    });
+                                }
+                            });
+
                         }
                     }
                     break;
