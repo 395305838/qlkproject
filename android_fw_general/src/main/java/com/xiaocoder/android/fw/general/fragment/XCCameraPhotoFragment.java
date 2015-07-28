@@ -107,7 +107,7 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
                             if (is_allow_resize) {
                                 resizeImage(uri);
                             } else {
-                                Bitmap bitmap = UtilOom.getBitmapFromUriForLarge(getActivity(), uri, 500);
+                                Bitmap bitmap = UtilOom.getBitmapFromUriForLarge(getActivity(), uri, 500, Bitmap.Config.RGB_565);
                                 getImage(bitmap);
                             }
                         } else {

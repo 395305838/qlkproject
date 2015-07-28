@@ -6,7 +6,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
-import com.xiaocoder.android.fw.general.base.XCConfig;
+import com.xiaocoder.android.fw.general.application.XCConfig;
 
 /*单例
  * 1如果是上传文件:

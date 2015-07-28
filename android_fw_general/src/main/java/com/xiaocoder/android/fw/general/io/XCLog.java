@@ -7,7 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCConfig;
+import com.xiaocoder.android.fw.general.application.XCConfig;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -239,7 +239,7 @@ public class XCLog {
         if (IS_OUTPUT) {
             FileOutputStream fos = null;
             try {
-                fos = new FileOutputStream(XCApplication.getBase_io().createFileInSDCard(null, app_temp_file_name, context));
+                fos = new FileOutputStream(XCApplication.getBase_io().createFileInSDCard(null, app_temp_file_name));
                 fos.write(str.getBytes());
             } catch (Exception e) {
                 e.printStackTrace();

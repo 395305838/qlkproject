@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.base;
+package com.xiaocoder.android.fw.general.base.function;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.ImageView;
 
+import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.view.XCImageView;
 import com.xiaocoder.android_fw_general.R;
 

@@ -4,9 +4,6 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-/**
- * 网络监测工具类
- */
 public class UtilNet {
 
     /**

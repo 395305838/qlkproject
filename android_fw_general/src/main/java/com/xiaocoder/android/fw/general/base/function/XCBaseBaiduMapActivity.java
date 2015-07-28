@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.base;
+package com.xiaocoder.android.fw.general.base.function;
 
 import android.app.Service;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.GeofenceClient;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.util.UtilString;
 
 /**

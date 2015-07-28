@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.base;
+package com.xiaocoder.android.fw.general.base.function;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +11,7 @@ import com.umeng.update.UmengUpdateListener;
 import com.umeng.update.UpdateResponse;
 import com.umeng.update.UpdateStatus;
 import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android_fw_general.R;
 
 // 首页继承该类 

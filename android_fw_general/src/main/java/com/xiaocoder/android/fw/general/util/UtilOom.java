@@ -26,35 +26,24 @@ public class UtilOom {
 
     // 压缩 缩放 到指定文件中
     public static File compressBitmapJPEG(File file, Bitmap bitmap, int quailty, int scale_width, int scale_height) {
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            if (scale_height != 0 && scale_width != 0) {
-                bitmap = createScaledBitmap(bitmap, scale_width, scale_height);
-            }
-            bitmap.compress(Bitmap.CompressFormat.JPEG, quailty, fos);
-            fos.close();
-            return file;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        return compressBitmap(file, bitmap, quailty, scale_width, scale_height, Bitmap.CompressFormat.JPEG);
     }
 
+
     // 压缩 缩放 到指定文件中
-    public static File compressBitmapPNG(File file, Bitmap bitmap, int quailty, int scale_width, int scale_height) {
+    public static File compressBitmap(File file, Bitmap bitmap, int quailty, int scale_width, int scale_height, Bitmap.CompressFormat type) {
         try {
             FileOutputStream fos = new FileOutputStream(file);
             if (scale_height != 0 && scale_width != 0) {
                 bitmap = createScaledBitmap(bitmap, scale_width, scale_height);
             }
-            bitmap.compress(Bitmap.CompressFormat.PNG, quailty, fos);
+            bitmap.compress(type, quailty, fos);
             fos.close();
             return file;
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
-
     }
 
     // 缩放图片
@@ -64,7 +53,7 @@ public class UtilOom {
     }
 
 
-    public static int[] getBitmapHeightAndWidth(Context context, Uri uri) {
+    public static int[] getBitmapHeightAndWidth(Context context, Uri uri, Bitmap.Config type) {
 
         InputStream input = null;
 
@@ -72,7 +61,7 @@ public class UtilOom {
             input = context.getContentResolver().openInputStream(uri);
             BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
             onlyBoundsOptions.inJustDecodeBounds = true;
-            onlyBoundsOptions.inPreferredConfig = Bitmap.Config.RGB_565;
+            onlyBoundsOptions.inPreferredConfig = type;
             onlyBoundsOptions.inPurgeable = true;
             onlyBoundsOptions.inInputShareable = true;
             BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
@@ -97,13 +86,14 @@ public class UtilOom {
     }
 
     // 从uri获取到bitmap，适用于大图
-    public static Bitmap getBitmapFromUriForLarge(Context context, Uri uri, float pix) {
+    // type = Bitmap.Config.RGB_565
+    public static Bitmap getBitmapFromUriForLarge(Context context, Uri uri, float pix, Bitmap.Config type) {
         InputStream input = null;
         try {
             input = context.getContentResolver().openInputStream(uri);
             BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
             onlyBoundsOptions.inJustDecodeBounds = true;
-            onlyBoundsOptions.inPreferredConfig = Bitmap.Config.RGB_565;
+            onlyBoundsOptions.inPreferredConfig = type;
             onlyBoundsOptions.inPurgeable = true;
             onlyBoundsOptions.inInputShareable = true;
             BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
@@ -120,7 +110,7 @@ public class UtilOom {
 //            bitmapOptions.inSampleSize = (int) Math.round(ratio) <= 1 ? 1 : (int) Math.floor(ratio);
             bitmapOptions.inSampleSize = (int) ratio < 1 ? 1 : (int) Math.floor(ratio);
             bitmapOptions.inJustDecodeBounds = false;
-            bitmapOptions.inPreferredConfig = Bitmap.Config.RGB_565;
+            bitmapOptions.inPreferredConfig = type;
             bitmapOptions.inPurgeable = true;
             bitmapOptions.inInputShareable = true;
             input = context.getContentResolver().openInputStream(uri);

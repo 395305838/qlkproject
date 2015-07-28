@@ -5,7 +5,10 @@ import com.xiaocoder.android.fw.general.application.XCApplication;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class UtilTime {
+/**
+ * Created by xiaocoder on 2015/7/28.
+ */
+public class UtilTimeRange {
     public static void main(String[] args) {
 
         String timePoint = getCurrentTime();
@@ -107,6 +110,5 @@ public class UtilTime {
 
         return returnStr;
     }
+
 }
-
-

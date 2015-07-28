@@ -15,7 +15,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
-import com.xiaocoder.android.fw.general.base.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.db.helper.XCDbHelper;
 import com.xiaocoder.android.fw.general.db.impl.XCSearchDao;
@@ -24,7 +23,6 @@ import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.android.fw.general.view.XCKeyBoardLayout;
 import com.xiaocoder.android_fw_general.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /*

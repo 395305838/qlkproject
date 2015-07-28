@@ -44,9 +44,7 @@ public class UtilImage {
         try {
             InputStream inputStream = context.getAssets().open(name);
             return BitmapFactory.decodeStream(inputStream);
-            // return Bitmap.createScaledBitmap(bitmap,
-            // UtilImage.dip2px(context, 24), UtilImage.dip2px(context, 24),
-            // true);
+
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -209,14 +207,6 @@ public class UtilImage {
         return ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), Thumbnails.FULL_SCREEN_KIND);
     }
 
-//    public static Bitmap getVideoFirsrFrame(File file) {
-//
-//        MediaMetadataRetriever media = new MediaMetadataRetriever();
-//        media.setDataSource(file.getAbsolutePath());
-//        return media.getFrameAtTime();
-//
-//    }
-
     public static int dip2px(Context context, float dipValue) {
         float scale = context.getResources().getDisplayMetrics().density;
         return (int) (scale * dipValue + 0.5f);
@@ -374,9 +364,6 @@ public class UtilImage {
             throw new RuntimeException("IOException occurred. ", e);
         }
     }
-
-    // --------------------------------------------------------------------------------------------------------
-    // -------------------------------------------图片效果------------------------------------------------------
 
     /**
      * 图片旋转

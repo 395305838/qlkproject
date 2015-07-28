@@ -55,8 +55,7 @@ public class ViewPagerActivity extends QlkBaseActivity {
             public void onLoadImage(ImageView imageview, String url) {
                 // 这里用本地的图片模拟 ,
                 // ------------->补充这里即可--------->用你的图片加载方式加载--->url为图片的链接
-                // XCApplication.base_imageloader.displayImage(url, imageview,
-                // XCImageLoaderFactory.getDisplayImageOptions());
+                // XCApplication.displayImage(url, imageview);
                 //imageview.setImageResource(R.drawable.ic_launcher);
                 displayImage(url, imageview);
             }

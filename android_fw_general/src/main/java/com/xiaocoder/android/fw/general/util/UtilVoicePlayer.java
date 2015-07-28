@@ -2,7 +2,8 @@ package com.xiaocoder.android.fw.general.util;
 
 import android.media.MediaPlayer;
 
-public class UtilMedia {
+public class UtilVoicePlayer
+{
 
 	// 结束播放
 	public static void finishPlaying(MediaPlayer mediaplayer) {

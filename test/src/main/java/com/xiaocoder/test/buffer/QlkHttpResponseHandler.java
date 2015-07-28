@@ -1,10 +1,7 @@
 package com.xiaocoder.test.buffer;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.view.KeyEvent;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -12,8 +9,8 @@ import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
-import com.xiaocoder.android.fw.general.base.XCBaseMainActivity;
-import com.xiaocoder.android.fw.general.base.XCConfig;
+import com.xiaocoder.android.fw.general.base.function.XCBaseMainActivity;
+import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;

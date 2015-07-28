@@ -325,7 +325,7 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
     }
 
     private void startRecording() {
-        save_file = XCApplication.getBase_io().createFileInAndroid(save_dir, "voice" + UtilDate.format(new Date(), UtilDate.FORMAT_FULL_S), getContext());
+        save_file = XCApplication.getBase_io().createFileInAndroid(save_dir, "voice" + UtilDate.format(new Date(), UtilDate.FORMAT_FULL_S));
         media_recorder = getPreparedRecorder(save_file);
         start_time = System.currentTimeMillis();
         media_recorder.start();

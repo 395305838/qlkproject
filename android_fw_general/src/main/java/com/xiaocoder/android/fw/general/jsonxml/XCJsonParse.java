@@ -1,7 +1,7 @@
 package com.xiaocoder.android.fw.general.jsonxml;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCConfig;
+import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.io.XCIO;
 
 import org.json.JSONArray;

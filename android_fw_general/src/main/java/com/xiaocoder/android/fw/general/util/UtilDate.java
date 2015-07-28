@@ -9,92 +9,6 @@ import java.util.Date;
 
 public class UtilDate {
 
-    /**
-     * 将一个时间戳转换成提示性时间字符串，如刚刚，1秒前
-     *
-     * @param timeStamp
-     * @return
-     */
-    public static String convertTimeToFormat(long timeStamp) {
-
-        long curTime = System.currentTimeMillis() / (long) 1000;
-        long time = curTime - timeStamp;
-
-        XCApplication.printi(time + "---时间差");
-        XCApplication.printi(curTime + "---当前时间");
-        XCApplication.printi(timeStamp+"---timeStamp");
-
-        if (time < 60 && time >= 0) {
-            return "刚刚";
-        } else if (time >= 60 && time < 3600) {
-            return time / 60 + "分钟前";
-        } else if (time >= 3600 && time < 3600 * 24) {
-            return time / 3600 + "小时前";
-        } else if (time >= 3600 * 24 && time < 3600 * 24 * 30) {
-            return time / 3600 / 24 + "天前";
-        } else if (time >= 3600 * 24 * 30 && time < 3600 * 24 * 30 * 12) {
-            return time / 3600 / 24 / 30 + "个月前";
-        } else if (time >= 3600 * 24 * 30 * 12) {
-            return time / 3600 / 24 / 30 / 12 + "年前";
-        } else {
-            return "刚刚";
-        }
-    }
-
-
-    // 传入一个时间差， 获取剩余时间
-    public static String[] getRemainTime(long differ) {
-        differ = differ / 1000;
-        String[] result = new String[4];
-        long days = differ / (60 * 60 * 24); // 天
-        long hours = (differ - days * 60 * 60 * 24) / (60 * 60); // 小时
-        long minutes = (differ - days * (60 * 60 * 24) - hours * (60 * 60)) / (60); // 分
-        long seconds = (differ - (days * 60 * 60 * 24) - (hours * 60 * 60)) - minutes * (60); // 秒
-
-        if (days < 10) {
-            result[0] = ("0" + days);
-        } else {
-            result[0] = (days + "");
-        }
-
-        if (hours < 10) {
-            result[1] = ("0" + hours);
-        } else {
-            result[1] = (hours + "");
-        }
-
-        if (minutes < 10) {
-            result[2] = ("0" + minutes);
-        } else {
-            result[2] = (minutes + "");
-        }
-
-        if (seconds < 10) {
-            result[3] = ("0" + seconds);
-        } else {
-            result[3] = (seconds + "");
-        }
-        return result;
-    }
-
-    public static String getRemainTimeNoDay(long time) {
-        time = time / 1000;
-        String h = String.valueOf(time / 3600);
-        String m = String.valueOf(time % 3600 / 60);
-        String s = String.valueOf(time % 3600 % 60);
-
-        if (h.length() == 1) {
-            h = "0" + h;
-        }
-        if (m.length() == 1) {
-            m = "0" + m;
-        }
-        if (s.length() == 1) {
-            s = "0" + s;
-        }
-        return h + ":" + m + ":" + s;
-    }
-
 
     public static String FORMAT_VERY_SHORT = "MM月dd日";
 
@@ -386,21 +300,22 @@ public class UtilDate {
 
     /**
      * 类似微信发送时间的格式显示
+     *
      * @return
      */
-    public static String weixinTime(long receiverTime,long systemTime){
+    public static String weixinTime(long receiverTime, long systemTime) {
         String showTime = "刚刚";
-        long time = (systemTime - receiverTime)/1000;
+        long time = (systemTime - receiverTime) / 1000;
 
         if (time < 60 && time >= 0) {
-            showTime =  "刚刚";
+            showTime = "刚刚";
         } else if (time >= 60 && time < 3600) {
             showTime = time / 60 + "分钟前";
         } else if (time >= 3600 && time < 3600 * 24) {
             showTime = time / 3600 + "小时前";
         } else if (time >= 3600 * 24 && time < 3600 * 24 * 2) {
-            showTime =  "昨天";
-        } else if (time >= 3600 * 24 *2 && time < 3600 * 24 * 30) {
+            showTime = "昨天";
+        } else if (time >= 3600 * 24 * 2 && time < 3600 * 24 * 30) {
             showTime = time / 3600 / 24 + "天前";
         } else if (time >= 3600 * 24 * 30 && time < 3600 * 24 * 30 * 12) {
             showTime = time / 3600 / 24 / 30 + "个月前";
@@ -412,4 +327,91 @@ public class UtilDate {
         return showTime;
 
     }
+
+    /**
+     * 将一个时间戳转换成提示性时间字符串，如 刚刚，1秒前,10分钟前
+     *
+     * @param timeStamp
+     * @return
+     */
+    public static String convertTimeToFormat(long timeStamp) {
+
+        long curTime = System.currentTimeMillis() / (long) 1000;
+        long time = curTime - timeStamp;
+
+        XCApplication.printi(time + "---时间差");
+        XCApplication.printi(curTime + "---当前时间");
+        XCApplication.printi(timeStamp + "---传入的时间");
+
+        if (time < 60 && time >= 0) {
+            return "刚刚";
+        } else if (time >= 60 && time < 3600) {
+            return time / 60 + "分钟前";
+        } else if (time >= 3600 && time < 3600 * 24) {
+            return time / 3600 + "小时前";
+        } else if (time >= 3600 * 24 && time < 3600 * 24 * 30) {
+            return time / 3600 / 24 + "天前";
+        } else if (time >= 3600 * 24 * 30 && time < 3600 * 24 * 30 * 12) {
+            return time / 3600 / 24 / 30 + "个月前";
+        } else if (time >= 3600 * 24 * 30 * 12) {
+            return time / 3600 / 24 / 30 / 12 + "年前";
+        } else {
+            return "刚刚";
+        }
+    }
+
+
+    // 传入一个时间差， 获取剩余时间
+    public static String[] getRemainTime(long differ) {
+        differ = differ / 1000;
+        String[] result = new String[4];
+        long days = differ / (60 * 60 * 24); // 天
+        long hours = (differ - days * 60 * 60 * 24) / (60 * 60); // 小时
+        long minutes = (differ - days * (60 * 60 * 24) - hours * (60 * 60)) / (60); // 分
+        long seconds = (differ - (days * 60 * 60 * 24) - (hours * 60 * 60)) - minutes * (60); // 秒
+
+        if (days < 10) {
+            result[0] = ("0" + days);
+        } else {
+            result[0] = (days + "");
+        }
+
+        if (hours < 10) {
+            result[1] = ("0" + hours);
+        } else {
+            result[1] = (hours + "");
+        }
+
+        if (minutes < 10) {
+            result[2] = ("0" + minutes);
+        } else {
+            result[2] = (minutes + "");
+        }
+
+        if (seconds < 10) {
+            result[3] = ("0" + seconds);
+        } else {
+            result[3] = (seconds + "");
+        }
+        return result;
+    }
+
+    public static String getRemainTimeNoDay(long time) {
+        time = time / 1000;
+        String h = String.valueOf(time / 3600);
+        String m = String.valueOf(time % 3600 / 60);
+        String s = String.valueOf(time % 3600 % 60);
+
+        if (h.length() == 1) {
+            h = "0" + h;
+        }
+        if (m.length() == 1) {
+            m = "0" + m;
+        }
+        if (s.length() == 1) {
+            s = "0" + s;
+        }
+        return h + ":" + m + ":" + s;
+    }
+
 }

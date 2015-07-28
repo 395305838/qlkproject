@@ -35,9 +35,7 @@ public class XCDrawableHelper {
 	}
 
 	// 如果默认图片很大的话,在子线程中加载
-	// 因为是子线程加载的,所以不一定能即使获取到数据,这里通过监听器来获取
 	public void getDrawableByAsyn(final Context context, final int default_image_id) {
-		// 这里就直接用线程了,没有用线程池,毕竟用的也不多
 		new Thread() {
 			@Override
 			public void run() {

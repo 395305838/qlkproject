@@ -1,6 +1,6 @@
 package com.xiaocoder.test.buffer;
 
-import com.xiaocoder.android.fw.general.base.XCConfig;
+import com.xiaocoder.android.fw.general.application.XCConfig;
 
 /*
  * 改类配置开发环境  ， 调试开关  ，路径  ，url等

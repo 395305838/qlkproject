@@ -33,6 +33,10 @@ public class UtilSystem {
         return Thread.currentThread().getId();
     }
 
+    public static String getThreadName() {
+        return Thread.currentThread().getName();
+    }
+
 
     public void install(Context context, File file) {
 
@@ -60,7 +64,7 @@ public class UtilSystem {
         List<ActivityManager.RunningTaskInfo> localList = null;
         if (paramContext != null) {
             ActivityManager localActivityManager = (ActivityManager) paramContext
-                    .getSystemService("activity");
+                    .getSystemService(Context.ACTIVITY_SERVICE);
             if (localActivityManager != null) {
                 localList = localActivityManager.getRunningTasks(1);
 
@@ -73,31 +77,25 @@ public class UtilSystem {
         return localComponentName;
     }
 
-    /**
-     * 查看是否后台
-     *
-     * @param paramContext
-     * @return
-     */
-    public static boolean isAppRunningBackground(Context paramContext) {
-        String pkgName = null;
-        List<RunningAppProcessInfo> localList = null;
-        if (paramContext != null) {
-            pkgName = paramContext.getPackageName();
-            ActivityManager localActivityManager = (ActivityManager) paramContext
-                    .getSystemService("activity");
-            if (localActivityManager != null) {
-                localList = localActivityManager.getRunningAppProcesses();
-                if ((localList == null) || (localList.size() <= 0)) {
-                    return false;
-                }
+    // 判断app是否在后台，改方法在广播中可以判断
+    public static boolean isApplicationToBackground(Context context) {
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
+        if (!tasks.isEmpty()) {
+            ComponentName topActivity = tasks.get(0).topActivity;
+            if (!topActivity.getPackageName().equals(context.getPackageName())) {
+                return true;
             }
         }
+        return false;
+    }
 
-        for (Iterator<RunningAppProcessInfo> localIterator = localList
-                .iterator(); localIterator.hasNext(); ) {
-            ActivityManager.RunningAppProcessInfo info = localIterator.next();
-            if (info.processName.equals(pkgName) && info.importance != 100) {
+    // app是否启动
+    public static boolean isAppRunning(Context context, String pack_name) {
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(100);
+        for (ActivityManager.RunningTaskInfo info : list) {
+            if (info.topActivity.getPackageName().equals(pack_name) && info.baseActivity.getPackageName().equals(pack_name)) {
                 return true;
             }
         }
@@ -106,9 +104,6 @@ public class UtilSystem {
 
     /**
      * 检测手机是否已插入SIM卡
-     *
-     * @param context
-     * @return
      */
     public static boolean isCheckSimCardAvailable(Context context) {
         final TelephonyManager tm = (TelephonyManager) context
@@ -127,8 +122,6 @@ public class UtilSystem {
 
     /**
      * 获取android系统版本号
-     *
-     * @return
      */
     public static String getOSVersion() {
         String release = android.os.Build.VERSION.RELEASE; // android系统版本号
@@ -138,8 +131,6 @@ public class UtilSystem {
 
     /**
      * 获取设备系统SDK API号
-     *
-     * @return
      */
     public static int getOSVersionSDKINT() {
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;

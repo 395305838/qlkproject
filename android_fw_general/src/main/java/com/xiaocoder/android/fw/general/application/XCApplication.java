@@ -3,17 +3,14 @@ package com.xiaocoder.android.fw.general.application;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Handler;
 import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.xiaocoder.android.fw.general.base.XCBaseMainActivity;
+import com.xiaocoder.android.fw.general.base.function.XCBaseMainActivity;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
 import com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;

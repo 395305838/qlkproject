@@ -33,6 +33,7 @@ import com.xiaocoder.android.fw.general.io.XCIO;
  *  
  *  该类含有 get和post方式的提交请求以及文件上传
  */
+@Deprecated
 public class XCHttpOrigin {
 
 	/**

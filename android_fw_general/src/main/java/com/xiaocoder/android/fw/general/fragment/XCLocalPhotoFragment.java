@@ -104,7 +104,7 @@ public class XCLocalPhotoFragment extends XCBaseFragment {
                             resizeImage(data.getData());
                         } else {
                             Uri uri = data.getData();
-                            Bitmap bitmap = UtilOom.getBitmapFromUriForLarge(getActivity(), uri, 500);
+                            Bitmap bitmap = UtilOom.getBitmapFromUriForLarge(getActivity(), uri, 500, Bitmap.Config.RGB_565);
                             getImage(bitmap);
                         }
                     }

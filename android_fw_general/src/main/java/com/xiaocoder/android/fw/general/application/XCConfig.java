@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.base;
+package com.xiaocoder.android.fw.general.application;
 
 public class XCConfig {
     /*

@@ -20,24 +20,19 @@ import android.text.style.ForegroundColorSpan;
 import android.text.style.StrikethroughSpan;
 import android.widget.TextView;
 
+import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.io.XCIO;
 
 public class UtilString {
 
-    public static boolean isNull(Object obj) {
-
-        if (obj == null) {
-            return true;
-        }
-        return false;
-    }
-
-
-    public static boolean equals(String str1, String str2) {
+    /*
+     * 比较两个字符串
+     */
+    public static boolean equalsString(String str1, String str2) {
 
         if (str1 == null && str2 == null) {
 
-            throw new RuntimeException("UtilString.equals()--传入了两个null字符串");
+            throw new RuntimeException("UtilString.equalsString()--传入了两个null字符串");
 
         } else if (str1 != null) {
 
@@ -51,23 +46,16 @@ public class UtilString {
 
     }
 
-    public static String getStringFromLastIndex(String origin, String symbol) {
-        if (isBlank(origin)) {
-            return "";
-        }
-        return origin.substring(origin.lastIndexOf(symbol) + 1, origin.length());
-    }
-
-    // 去除最后一个，
+    /**
+     * 去除最后一个 " , "
+     */
     public static String getStringWithoutLast(String origin) {
-        if (origin.lastIndexOf(",") > 0) {
-            origin = origin.substring(0, origin.lastIndexOf(","));
-            return origin;
-        }
-        return "";
+        return getStringWithoutLast(origin, ",");
     }
 
-    // 去除最后一个符号后面的
+    /**
+     * 去除最后一个符号后面的
+     */
     public static String getStringWithoutLast(String origin, String symbol) {
         int position = origin.lastIndexOf(symbol);
         if (position > 0) {
@@ -77,6 +65,9 @@ public class UtilString {
         return "";
     }
 
+    /**
+     * 获取一个url的最后的文件名， 不带文件后缀名
+     */
     public static String getHttplastnameWithoutDotAndLine(String http_url) {
         int last_dot_position = http_url.lastIndexOf(".");
 
@@ -92,132 +83,44 @@ public class UtilString {
         return http_url;
     }
 
-    /**
-     * 给String高亮显示
-     *
-     * @param str
-     * @param textview
-     */
-    public static void setLightString(String str, TextView textview) {
-        // 实体对象值显示在控件上
-        SpannableString hightlight = new SpannableString(str);
-        // 高亮器
-        ForegroundColorSpan span = new ForegroundColorSpan(Color.parseColor("#184DA3"));
-        hightlight.setSpan(span, 0, (str).length(), SpannableString.SPAN_INCLUSIVE_INCLUSIVE);
-        textview.setText(hightlight);
-    }
-
-    public static void setLightString(String str, TextView textview, int start, int end, String color) {
-        // 实体对象值显示在控件上
-        SpannableString hightlight = new SpannableString(str);
-        // 高亮器
-        ForegroundColorSpan span = new ForegroundColorSpan(Color.parseColor(color));
-        hightlight.setSpan(span, start, end, SpannableString.SPAN_INCLUSIVE_INCLUSIVE);
-        textview.setText(hightlight);
-    }
-
-    public static void setLightAppendString(String str, TextView textview) {
-        // 实体对象值显示在控件上
-        SpannableString hightlight = new SpannableString(str);
-        // 高亮器
-        ForegroundColorSpan span = new ForegroundColorSpan(Color.parseColor("#FDC2B5"));
-        hightlight.setSpan(span, str.indexOf("：") + 1, (str).length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textview.append(hightlight);
-        textview.append(XCIO.LINE_SEPARATOR);
-    }
-
-    public static void setSizeAppendString(String str, TextView textview) {
-        // 实体对象值显示在控件上
-        SpannableString sizespan = new SpannableString(str);
-        // 字体大小
-        AbsoluteSizeSpan size_span = new AbsoluteSizeSpan(20);
-        sizespan.setSpan(size_span, 0, (str).length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textview.append(sizespan);
-        textview.append(XCIO.LINE_SEPARATOR);
-    }
-
-    /**
-     * 在String上添加删除线
-     *
-     * @param str
-     * @param textview
-     */
-    public static void setDeleteString(String str, TextView textview) {
-        // 删除线
-        SpannableString deleteLine = new SpannableString(str);
-        StrikethroughSpan delete = new StrikethroughSpan();
-        deleteLine.setSpan(delete, 0, str.length(), SpannableString.SPAN_INCLUSIVE_INCLUSIVE);
-        textview.setText(deleteLine);
-    }
-
-    public static void setDeleteString(TextView textview) {
-        textview.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
-    }
-
-    public static void slipString(String origin_string, TextView textview) {
-        String[] strs = origin_string.split("\n");
-        int i = 0;
-        for (String str : strs) {
-            if (i == 0) {
-                i = 1;
-                setSizeAppendString(str, textview);
-                continue;
-            }
-            if (str.indexOf("：") > 0) {
-                setLightAppendString(str, textview);
-            } else {
-                textview.append(str + XCIO.LINE_SEPARATOR);
-            }
-        }
-    }
 
     /**
      * 获取文件大小的 M/K/B表示方式
-     *
-     * @param contentLenght
-     * @return
      */
-    public static String getLengthText(long contentLenght) {
-        // b/k/M
+    public static String getFileSizeUnit(long contentLenght) {
 
         DecimalFormat format = new DecimalFormat("###.00");
         float result = 0.0f;
         String resultText = "";
-        if (contentLenght > 1024 * 1024)// 1M
-        {
+        if (contentLenght > 1024 * 1024) {
+            // 1M
             result = (float) (contentLenght / (1024 * 1024.00));
             resultText = format.format(result) + "M";
-        } else if (contentLenght > 1024)// 1K
-        {
+        } else if (contentLenght > 1024) {
+            // 1K
             result = (float) (contentLenght / (1024.00));
             resultText = format.format(result) + "K";
-        } else // 1B
-        {
+        } else {
+            // 1B
             result = (float) (contentLenght / (1.00));
             resultText = format.format(result) + "B";
         }
         return resultText;
+
     }
 
     /**
      * 获取两数相除的百分比
-     *
-     * @param progressBar
-     * @param contentLenght
-     * @return
      */
-    public static String getPercentText(double progressBar, double contentLenght) {
+    public static String getPercentText(double progress, double totalLenght) {
         DecimalFormat format = new DecimalFormat("###.00");
-        double resultSize = (double) (progressBar * 100 / contentLenght);
+        double resultSize = (double) (progress * 100 / totalLenght);
         String reusltText = format.format(resultSize);
         return reusltText + "%";
     }
 
     /**
      * 显示下载数量
-     *
-     * @param number
-     * @return
      */
     public static String getDownNumberText(long number) {
         double resultSize;
@@ -243,7 +146,7 @@ public class UtilString {
 
     public static final String encodeURL(String str) {
         try {
-            return URLEncoder.encode(str, "utf-8");
+            return URLEncoder.encode(str, XCConfig.ENCODING_UTF8);
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
@@ -251,7 +154,7 @@ public class UtilString {
 
     public static final String decodeURL(String str) {
         try {
-            return URLDecoder.decode(str, "utf-8");
+            return URLDecoder.decode(str, XCConfig.ENCODING_UTF8);
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
@@ -275,6 +178,9 @@ public class UtilString {
         return false;
     }
 
+    /*
+     * 只判断空 和 空格
+     */
     public static boolean isBlank(String str) {
         return (str == null || str.trim().length() == 0);// trim()也可以去除制表符
     }
@@ -298,46 +204,58 @@ public class UtilString {
         return false;
     }
 
+    /**
+     * 该方法只判断银行卡是否为16-19位
+     */
+    public static boolean isValidBankCard(String card) {
+        if (TextUtils.isEmpty(card)) {
+            return false;
+        }
+        card = card.replace(" ", "");
+        int length = card.length();
+        if (length >= 16 && length <= 19) {
+            return true;
+        }
+        return false;
+
+    }
+
     public static int toInt(String str, int defValue) {
+
         try {
             return Integer.parseInt(str);
         } catch (Exception e) {
             return defValue;
         }
-//        return defValue;
+
     }
 
-    public static int toInt(Object obj) {
-        if (obj == null) {
-            return 0;
-        } else if (obj.toString().toString().trim().replace(" ", "").equals("")) {
-            return 0;
-        }
-        return toInt(obj.toString(), 0);
-    }
+    public static long toLong(String obj, long defValue) {
 
-    public static long toLong(String obj) {
         try {
             return Long.parseLong(obj);
         } catch (Exception e) {
+            return defValue;
         }
-        return 0;
+
     }
 
-    public static double toDouble(String obj) {
+    public static double toDouble(String obj, double defValue) {
+
         try {
             return Double.parseDouble(obj);
         } catch (Exception e) {
+            return defValue;
         }
-        return 0D;
+
     }
 
-    public static boolean toBool(String b) {
+    public static boolean toBool(String b, boolean defValue) {
         try {
             return Boolean.parseBoolean(b);
         } catch (Exception e) {
+            return defValue;
         }
-        return false;
     }
 
     public static boolean isNumber(String str) {
@@ -370,6 +288,7 @@ public class UtilString {
     }
 
     public String discount(String price_orign, String price_sell, int keep_dot) {
+
         double discount_num = Double.parseDouble(price_sell) / Double.parseDouble(price_orign);
         discount_num = discount_num * Math.pow(10, keep_dot + 2);// 显示如6.22则,但是6.226可以进一位
         String discount_text = discount_num + "";
@@ -388,22 +307,92 @@ public class UtilString {
         return discount_text.substring(0, keep_dot + 2);
     }
 
+
     /**
-     * 该方法只判断银行卡是否为16-19位
-     *
-     * @param card
-     * @return
+     * 给String高亮显示 颜色的格式 #184DA3
      */
-    public static boolean isValidBankCard(String card) {
-        if (TextUtils.isEmpty(card)) {
-            return false;
-        }
-        card = card.replace(" ", "");
-        int length = card.length();
-        if (length >= 16 && length <= 19) {
-            return true;
-        }
-        return false;
+    public static void setLightString(String str, TextView textview, String color) {
+
+        // 实体对象值显示在控件上
+        SpannableString hightlight = new SpannableString(str);
+        // 高亮器
+        ForegroundColorSpan span = new ForegroundColorSpan(Color.parseColor(color));
+        hightlight.setSpan(span, 0, (str).length(), SpannableString.SPAN_INCLUSIVE_INCLUSIVE);
+        textview.setText(hightlight);
 
     }
+
+    /*
+     * 指定 位置和 颜色   ，颜色的格式  #184DA3
+     */
+    public static void setLightString(String str, TextView textview, int start, int end, String color) {
+        // 实体对象值显示在控件上
+        SpannableString hightlight = new SpannableString(str);
+        // 高亮器
+        ForegroundColorSpan span = new ForegroundColorSpan(Color.parseColor(color));
+        hightlight.setSpan(span, start, end, SpannableString.SPAN_INCLUSIVE_INCLUSIVE);
+        textview.setText(hightlight);
+    }
+
+    /**
+     * 颜色的格式  "#184DA3"
+     */
+    public static void setLightAppendString(String str, TextView textview, String color) {
+        // 实体对象值显示在控件上
+        SpannableString hightlight = new SpannableString(str);
+        // 高亮器
+        ForegroundColorSpan span = new ForegroundColorSpan(Color.parseColor(color));
+        hightlight.setSpan(span, str.indexOf("：") + 1, (str).length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textview.append(hightlight);
+        textview.append(XCIO.LINE_SEPARATOR);
+    }
+
+    /*
+     * 设置textview的文本的尺寸
+     */
+    public static void setSizeAppendString(String str, TextView textview, int size) {
+        // 实体对象值显示在控件上
+        SpannableString sizespan = new SpannableString(str);
+        // 字体大小
+        AbsoluteSizeSpan size_span = new AbsoluteSizeSpan(size);
+        sizespan.setSpan(size_span, 0, (str).length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textview.append(sizespan);
+        textview.append(XCIO.LINE_SEPARATOR);
+    }
+
+    /**
+     * 在String上添加删除线
+     */
+    public static void setDeleteString(String str, TextView textview) {
+        // 删除线
+        SpannableString deleteLine = new SpannableString(str);
+        StrikethroughSpan delete = new StrikethroughSpan();
+        deleteLine.setSpan(delete, 0, str.length(), SpannableString.SPAN_INCLUSIVE_INCLUSIVE);
+        textview.setText(deleteLine);
+    }
+
+    /**
+     * 在String上添加删除线
+     */
+    public static void setDeleteString(TextView textview) {
+        textview.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
+    }
+
+//    public static void sizeLightSpanAppend(String origin_string, TextView textview) {
+//        String[] strs = origin_string.split("\n");
+//        int i = 0;
+//        for (String str : strs) {
+//            if (i == 0) {
+//                i = 1;
+//                setSizeAppendString(str, textview, 20);
+//                continue;
+//            }
+//            if (str.indexOf("：") > 0) {
+//                setLightAppendString(str, textview, "#184DA3");
+//            } else {
+//                textview.append(str + XCIO.LINE_SEPARATOR);
+//            }
+//        }
+//    }
+
 }

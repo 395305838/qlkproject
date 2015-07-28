@@ -15,13 +15,16 @@ import java.net.URL;
 
 public class XCDownloadHelper implements Runnable {
 
+    String tag = "tag_chat";
     String url = "";
     File file;
 
     public interface DownloadListener {
+
         void downloadFinished(File file);
 
         void netFail(File file);
+
     }
 
     public DownloadListener downloadListener;
@@ -40,16 +43,16 @@ public class XCDownloadHelper implements Runnable {
     public void run() {
         InputStream in = null;
         try {
-            XCApplication.printi("tag_chat", "----进入下载的run方法");
+            XCApplication.printi(tag, "----进入下载的run方法");
             HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
             conn.setRequestMethod("GET");
             conn.setConnectTimeout(9000);
             if (HttpURLConnection.HTTP_OK == conn.getResponseCode()) {
                 in = conn.getInputStream();
-                XCApplication.printi("tag_chat", "----开始下载了");
+                XCApplication.printi(tag, "----开始下载了");
                 XCIO.toFileByInputStream(in, file);
                 if (downloadListener != null) {
-                    XCApplication.printi("tag_chat", "----下载完成，进入监听----" + Thread.currentThread());
+                    XCApplication.printi(tag, "----下载完成，进入监听----" + Thread.currentThread());
                     downloadListener.downloadFinished(file);
                 }
             } else {
@@ -62,7 +65,7 @@ public class XCDownloadHelper implements Runnable {
             if (downloadListener != null) {
                 downloadListener.netFail(file);
             }
-            XCApplication.printi("tag_chat", "--下载excpetion---" + e.getMessage());
+            XCApplication.printi(tag, "--下载excpetion---" + e.getMessage());
         } finally {
             if (in != null) {
                 try {

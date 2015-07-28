@@ -125,7 +125,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
         test_camare = (Button) findViewById(R.id.test_camare);
         test_camare.setOnClickListener(this);
-        UtilString.setLightAppendString("你好:123", test_camare);
+        UtilString.setLightAppendString("你好:123", test_camare,"#ff00cccc");
 
         test_search = (Button) findViewById(R.id.test_search);
         test_search.setOnClickListener(this);

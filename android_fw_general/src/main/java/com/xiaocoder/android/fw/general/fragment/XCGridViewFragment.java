@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
-import com.xiaocoder.android.fw.general.base.XCBaseAbsListFragment;
+import com.xiaocoder.android.fw.general.base.function.XCBaseAbsListFragment;
 import com.xiaocoder.android_fw_general.R;
 
 public class XCGridViewFragment extends XCBaseAbsListFragment<GridView> {
