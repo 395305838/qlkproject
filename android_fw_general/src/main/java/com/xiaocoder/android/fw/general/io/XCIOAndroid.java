@@ -12,7 +12,6 @@ import java.io.InputStreamReader;
 import android.content.Context;
 import android.os.Environment;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.util.UtilString;
 
 /**
@@ -83,7 +82,7 @@ public class XCIOAndroid {
         if (content == null) {
             content = "";
         }
-        File file = createFileInSDCard(dirName, fileName, context);
+        File file = createFileInSDCard(dirName, fileName);
         if (file == null) {
             throw new RuntimeException("未检测到sd卡");
         }
@@ -107,7 +106,7 @@ public class XCIOAndroid {
         if (content == null) {
             content = "";
         }
-        File file = createFileInSDCard(dirName, fileName, context);
+        File file = createFileInSDCard(dirName, fileName);
         if (file == null) {
             throw new RuntimeException("未检测到sd卡");
         }
@@ -231,15 +230,14 @@ public class XCIOAndroid {
      * 现在sd卡中创建，如果没有sd卡， 则在内部存储中创建
      *
      * @param dirName
-     * @param context
      * @return
      */
-    public File createDirInAndroid(String dirName, Context context) {
+    public File createDirInAndroid(String dirName) {
         try {
             if (isSDcardExist()) {
-                return createDirInSDCard(dirName, context);
+                return createDirInSDCard(dirName);
             } else {
-                return createDirInside(dirName, context);
+                return createDirInside(dirName);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -254,10 +252,9 @@ public class XCIOAndroid {
      *                则返回的file为Environment.getExternalStorageState()目录 如果传入的为
      *                "aa/bb" 或"aa"
      *                则返回的是在Environment.getExternalStorageState()目录下创建aa/bb 或aa文件夹
-     * @param context
      * @return
      */
-    public File createDirInSDCard(String dirName, Context context) {
+    public File createDirInSDCard(String dirName) {
         File dir = null;
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             // 传入"",或"     ",则返回file =
@@ -280,10 +277,9 @@ public class XCIOAndroid {
      *
      * @param dirName 如果传入的为 null或""或"   ", 则返回的file为context.getCacheDir()目录 如果传入的为
      *                "aa/bb" 或"aa" 则在context.getCacheDir()目录下创建aa/bb或aa文件夹
-     * @param context
      * @return
      */
-    public File createDirInside(String dirName, Context context) {
+    public File createDirInside(String dirName) {
         File dir = null;
         if (dirName == null || dirName.trim().length() == 0) {
             return context.getCacheDir();// 内部存储下的/data/data/<package name>/cache
@@ -301,15 +297,14 @@ public class XCIOAndroid {
      *
      * @param dirName
      * @param fileName
-     * @param context
      * @return
      */
-    public File createFileInAndroid(String dirName, String fileName, Context context) {
+    public File createFileInAndroid(String dirName, String fileName) {
         try {
             if (isSDcardExist()) {
-                return createFileInSDCard(dirName, fileName, context);
+                return createFileInSDCard(dirName, fileName);
             } else {
-                return createFileInside(dirName, fileName, context);
+                return createFileInside(dirName, fileName);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -323,12 +318,11 @@ public class XCIOAndroid {
      * @param dirName  "aa/bb" "aa"都可,如果是null
      *                 或""默认为在Environment.getExternalStorageState()目录下创建文件
      * @param fileName 文件名-->"abc.txt"格式, 不可写成"abc/ed.txt"
-     * @param context
      * @return 返回一个创建了文件夹和文件的目录, 如果没有SD卡, 返回null
      * @throws java.io.IOException
      */
-    public File createFileInSDCard(String dirName, String fileName, Context context) throws IOException {
-        File dir = createDirInSDCard(dirName, context);
+    public File createFileInSDCard(String dirName, String fileName) throws IOException {
+        File dir = createDirInSDCard(dirName);
         if (dir == null) {
             return null;
         }
@@ -344,12 +338,11 @@ public class XCIOAndroid {
      *
      * @param dirName  "aa/bb","aa"都可,如果是null 或""默认为在context.getCacheDir()目录下创建文件
      * @param fileName 文件名-->"abc.txt"格式, 不可写成"abc/ed.txt"
-     * @param context
      * @return 返回一个创建了文件夹和文件的目录
      * @throws java.io.IOException
      */
-    public File createFileInside(String dirName, String fileName, Context context) throws IOException {
-        File file = new File(createDirInside(dirName, context), fileName);
+    public File createFileInside(String dirName, String fileName) throws IOException {
+        File file = new File(createDirInside(dirName), fileName);
         if (!file.exists()) {
             file.createNewFile();
         }
@@ -377,7 +370,7 @@ public class XCIOAndroid {
         return context.getResources().getAssets().open(fileName);
     }
 
-    public String getFileFromRaw(Context context, int resId) {
+    public String getFileFromRaw(int resId) {
         if (context == null) {
             return null;
         }

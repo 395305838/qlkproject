@@ -85,7 +85,7 @@ public class QlkConfig extends XCConfig {
      */
     public static int DB_VERSION = 1;
     /*
-     * 数据库表名,支持多个表
+     * 数据库表名,支持创建多个表
      */
     public static String DB_TABLE_NAME_SEARCH_1 = "search_1";
     public static String DB_TABLE_NAME_SEARCH_2 = "search_2";
@@ -117,7 +117,7 @@ public class QlkConfig extends XCConfig {
     public static String CHAT_MOIVE_FILE = CHAT_FILE + "/moive";
 
     /*
-     * 缓存目录的路径
+     * 图片加载缓存目录的路径
      */
     public static String CACHE_DIRECTORY = APP_ROOT + "/cache";
     /*

@@ -23,15 +23,15 @@ public class QlkApplication extends XCApplication {
         base_imageloader = XCImageLoaderHelper
                 .getInitedImageLoader
                         (XCImageLoaderHelper.getImageLoaderConfiguration
-                                (getApplicationContext(), base_io.createDirInSDCard(QlkConfig.CACHE_DIRECTORY, getApplicationContext())));
+                                (getApplicationContext(), base_io.createDirInSDCard(QlkConfig.CACHE_DIRECTORY)));
         // sp保存路径
         base_sp = new XCSP(getApplicationContext(), QlkConfig.SP_SETTING, Context.MODE_APPEND);// Context.MODE_MULTI_PROCESS
 
         // 图片视频等保存的路径
-        base_io.createDirInAndroid(QlkConfig.CHAT_MOIVE_FILE, getApplicationContext());
-        base_io.createDirInAndroid(QlkConfig.CHAT_VIDEO_FILE, getApplicationContext());
-        base_io.createDirInAndroid(QlkConfig.CHAT_PHOTO_FILE, getApplicationContext());
-        base_io.createDirInAndroid(QlkConfig.CRASH_FILE, getApplicationContext());
+        base_io.createDirInAndroid(QlkConfig.CHAT_MOIVE_FILE);
+        base_io.createDirInAndroid(QlkConfig.CHAT_VIDEO_FILE);
+        base_io.createDirInAndroid(QlkConfig.CHAT_PHOTO_FILE);
+        base_io.createDirInAndroid(QlkConfig.CRASH_FILE);
 
 
         // log , 可以打印日志 与 toast
