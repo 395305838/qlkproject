@@ -416,7 +416,7 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
 
     // 设置数据为零时候的背景
     public void setBgZeroHintInfo(String zero_text_hint, String zero_button_hint, int zero_imageview_hint) {
-        if (UtilCommon.isNull(zero_button_hint)) {
+        if (zero_button_hint == null) {
             this.zero_button_hint = "";
         } else {
             this.zero_button_hint = zero_button_hint;
@@ -424,7 +424,7 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
 
         this.zero_imageview_hint = zero_imageview_hint;
 
-        if (UtilCommon.isNull(zero_text_hint)) {
+        if (zero_text_hint == null) {
             this.zero_text_hint = "";
         } else {
             this.zero_text_hint = zero_text_hint;

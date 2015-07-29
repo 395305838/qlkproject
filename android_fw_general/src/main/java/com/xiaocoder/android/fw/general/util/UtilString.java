@@ -28,7 +28,7 @@ public class UtilString {
     /*
      * 比较两个字符串
      */
-    public static boolean equalsString(String str1, String str2) {
+    public static boolean equalsStr(String str1, String str2) {
 
         if (str1 == null && str2 == null) {
 
@@ -40,10 +40,83 @@ public class UtilString {
 
         } else {
 
-            return str2.equals(str1);
+            return false;
 
         }
 
+    }
+
+    /**
+     * 判断给定字符串是否包含空白符
+     * 空白串是指含有空格、制表符、回车符、换行符组成的字符串
+     * 若输入字符串为null或空字符串，也返回true
+     */
+    public static boolean isIncludeBlank(String input) {
+        if (input == null || "".equals(input))
+            return true;
+
+        for (int i = 0; i < input.length(); i++) {
+            char c = input.charAt(i);
+            if (c == ' ' || c == '\t' || c != '\r' || c != '\n') {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /*
+     * 只判断空 和 空格
+     */
+    public static boolean isBlank(String str) {
+        return (str == null || str.trim().length() == 0);// trim()也可以去除制表符
+    }
+
+
+    public static int toInt(String str, int defValue) {
+
+        try {
+            return Integer.parseInt(str);
+        } catch (Exception e) {
+            return defValue;
+        }
+
+    }
+
+    public static long toLong(String obj, long defValue) {
+
+        try {
+            return Long.parseLong(obj);
+        } catch (Exception e) {
+            return defValue;
+        }
+
+    }
+
+    public static double toDouble(String obj, double defValue) {
+
+        try {
+            return Double.parseDouble(obj);
+        } catch (Exception e) {
+            return defValue;
+        }
+
+    }
+
+    public static boolean toBool(String b, boolean defValue) {
+        try {
+            return Boolean.parseBoolean(b);
+        } catch (Exception e) {
+            return defValue;
+        }
+    }
+
+    public static boolean isNumber(String str) {
+        try {
+            Integer.parseInt(str);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -160,31 +233,6 @@ public class UtilString {
         }
     }
 
-    /**
-     * 判断给定字符串是否包含空白符<br>
-     * 空白串是指含有空格、制表符、回车符、换行符组成的字符串<br>
-     * 若输入字符串为null或空字符串，也返回true
-     */
-    public static boolean isIncludeBlank(String input) {
-        if (input == null || "".equals(input))
-            return true;
-
-        for (int i = 0; i < input.length(); i++) {
-            char c = input.charAt(i);
-            if (c == ' ' || c == '\t' || c != '\r' || c != '\n') {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /*
-     * 只判断空 和 空格
-     */
-    public static boolean isBlank(String str) {
-        return (str == null || str.trim().length() == 0);// trim()也可以去除制表符
-    }
-
     // ------------------------------------------------------------------
     private final static Pattern emailer = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
 
@@ -218,53 +266,6 @@ public class UtilString {
         }
         return false;
 
-    }
-
-    public static int toInt(String str, int defValue) {
-
-        try {
-            return Integer.parseInt(str);
-        } catch (Exception e) {
-            return defValue;
-        }
-
-    }
-
-    public static long toLong(String obj, long defValue) {
-
-        try {
-            return Long.parseLong(obj);
-        } catch (Exception e) {
-            return defValue;
-        }
-
-    }
-
-    public static double toDouble(String obj, double defValue) {
-
-        try {
-            return Double.parseDouble(obj);
-        } catch (Exception e) {
-            return defValue;
-        }
-
-    }
-
-    public static boolean toBool(String b, boolean defValue) {
-        try {
-            return Boolean.parseBoolean(b);
-        } catch (Exception e) {
-            return defValue;
-        }
-    }
-
-    public static boolean isNumber(String str) {
-        try {
-            Integer.parseInt(str);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
     }
 
     public static String getMetaValue(Context context, String metaKey) {

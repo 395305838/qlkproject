@@ -2,29 +2,22 @@ package com.xiaocoder.android.fw.general.base.function;
 
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.text.Html;
-import android.text.SpannableString;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
-import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.adapter.XLBaseExpandableListViewAdapter;
-import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.android.fw.general.util.UtilCommon;
@@ -445,9 +438,9 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
     }
 
     // 设置数据为零时候的背景
-    public void setBgZeroHintInfo(CharSequence zero_text_hint, CharSequence zero_button_hint, int zero_imageview_hint) {
+    public void setBgZeroHintInfo(String zero_text_hint, String zero_button_hint, int zero_imageview_hint) {
 
-        if (UtilCommon.isNull(zero_button_hint)) {
+        if (zero_button_hint == null) {
             this.zero_button_hint = "";
         } else {
             this.zero_button_hint = zero_button_hint;
@@ -455,7 +448,7 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
 
         this.zero_imageview_hint = zero_imageview_hint;
 
-        if (UtilCommon.isNull(zero_text_hint)) {
+        if (zero_text_hint == null) {
             this.zero_text_hint = "";
         } else {
             this.zero_text_hint = zero_text_hint;

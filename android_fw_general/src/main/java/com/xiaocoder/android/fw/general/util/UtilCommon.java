@@ -1,18 +1,23 @@
 package com.xiaocoder.android.fw.general.util;
 
+import java.util.List;
+
 /**
- * Created by fengjingyu on 2015/7/28.
+ * Created by xiaocoder on 2015/7/28.
  */
 public class UtilCommon {
 
-    public static boolean isNull(Object obj) {
+    /*
+     * 判断list是不是空的
+     */
+    public static boolean isListBlank(List list) {
 
-        if (obj == null) {
+        if (list == null || list.size() < 1) {
             return true;
         }
+
         return false;
     }
-
 
 
 }

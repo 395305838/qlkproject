@@ -126,7 +126,7 @@ package reference;
 //		// try {
 //		// JSONObject obj = new JSONObject(customContent);
 //		// // key1为前台配置的key
-//		// if (!obj.isNull("key")) {
+//		// if (!obj.isListBlank("key")) {
 //		// String value = obj.getString("key");
 //		// Log.d(LogTag, "get custom value:" + value);
 //		// }
