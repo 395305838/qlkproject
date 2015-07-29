@@ -1,6 +1,5 @@
 package com.xiaocoder.test.bean;
 
-import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.test.buffer.QlkBean;
 
 /**
@@ -10,7 +9,7 @@ import com.xiaocoder.test.buffer.QlkBean;
  * <p/>
  * -------------------------->该类的代码是自动生成的  在JsonBean的tag中打印  复制 格式化
  */
-public class TestBean extends QlkBean {
+public class TestBean extends QlkBean<TestBean> {
     public String msg = "msg";
     public String data = "data";
     public String result = "result";

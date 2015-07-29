@@ -55,14 +55,28 @@ public class GridActivity extends QlkActivity {
                     @Override
                     public void onSuccess(int code, Header[] headers, byte[] arg2) {
                         super.onSuccess(code, headers, arg2);
-                        if (result_boolean) {
-                            if (!grid_fragment.checkGoOn()) {
-                                return;
-                            }
-//                    // grid_fragment.setTotalNum("100");// 或者setTotalPage也可以
-//                    grid_fragment.setTotalPage(result_bean.obtString("totalpage"));
-//                    grid_fragment.updateList(result_bean.obtList("data", new ArrayList<XCJsonBean>()));
+                        if (!grid_fragment.checkGoOn()) {
+                            return;
                         }
+
+                        String msg = result_bean.getMsg();
+                        printi("---第一层---->" + msg);
+
+                        TestBean testBean = result_bean.obtModel(result_bean.data);
+                        printi("---第二层---->" + testBean.toString());
+
+                        List<TestBean> testBeans = testBean.obtList(result_bean.result);
+                        printi("---第三层---->" + testBeans.toString());
+
+                        for (TestBean bean : testBeans) {
+                            printi("getCommission()--->" + bean.getCommission());
+                            printi("getMarketPrice()--->" + bean.getMarketPrice());
+                            printi("getProudctId()--->" + bean.getProudctId());
+                        }
+
+                        // grid_fragment.setTotalNum("100");// 或者setTotalPage也可以
+                        grid_fragment.setTotalPage("3");
+                        grid_fragment.updateList(testBeans);
                     }
 
                     @Override
@@ -116,14 +130,14 @@ public class GridActivity extends QlkActivity {
     @Override
     public void initWidgets() {
         grid_fragment = new XCGridViewFragment();
-//		grid_fragment.setAdapter(new TestAdatpter(this, null));
-        grid_fragment.setAdapter(new XCAdapterTest(this, null));
+		grid_fragment.setAdapter(new TestAdatpter(this, null));
+//        grid_fragment.setAdapter(new XCAdapterTest(this, null));
         // 可以不设置Mode， 默认是不可以拉的listview
         grid_fragment.setMode(XCListViewFragment.MODE_UP_DOWN);
         grid_fragment.setBgZeroHintInfo("数据为0", "重新加载", R.drawable.xc_d_chat_face);
         grid_fragment.setGridViewStyleParam(false, 1, 1, 2);
         addFragment(R.id.xc_id_model_content, grid_fragment);
-//		request();
+		request();
     }
 
     @Override

@@ -25,7 +25,6 @@ import com.xiaocoder.test.buffer.QlkHttpResponseHandler;
 
 import org.apache.http.Header;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -61,12 +60,25 @@ public class ListActivity extends QlkActivity {
                                 return;
                             }
 
-                            printi(result_bean.getMsg());
+                            String msg = result_bean.getMsg();
+                            printi("---第一层---->" + msg);
+
+                            TestBean testBean = result_bean.obtModel(result_bean.data);
+                            printi("---第二层---->" + testBean.toString());
+
+                            List<TestBean> testBeans = testBean.obtList(result_bean.result);
+                            printi("---第三层---->" + testBeans.toString());
+
+                            for (TestBean bean : testBeans) {
+                                printi("getCommission()--->" + bean.getCommission());
+                                printi("getMarketPrice()--->" + bean.getMarketPrice());
+                                printi("getProudctId()--->" + bean.getProudctId());
+                            }
 
 
-//                            // grid_fragment.setTotalNum("100");// 或者setTotalPage也可以
-//                            list_fragment.setTotalPage(result_bean.obtString("totalpage", ""));
-//                            list_fragment.updateList(result_bean.obtList("data", new ArrayList<XCJsonBean>()));
+                            // grid_fragment.setTotalNum("100");// 或者setTotalPage也可以
+                            list_fragment.setTotalPage("3");
+                            list_fragment.updateList(testBeans);
                         }
                     }
 
@@ -86,7 +98,7 @@ public class ListActivity extends QlkActivity {
         request();
     }
 
-    class TestAdatpter extends XCBaseAdapter<XCJsonBean> {
+    class TestAdatpter extends XCBaseAdapter<TestBean> {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -103,12 +115,12 @@ public class ListActivity extends QlkActivity {
             }
 
             // 获取和设置控件的显示值
-            holder.xc_id_adapter_test_textview.setText(bean.obtString("content", ""));
+            holder.xc_id_adapter_test_textview.setText(bean.getCommission());
             // 加载图片
             return convertView;
         }
 
-        public TestAdatpter(Context context, List<XCJsonBean> list) {
+        public TestAdatpter(Context context, List<TestBean> list) {
             super(context, list);
         }
 
@@ -120,14 +132,14 @@ public class ListActivity extends QlkActivity {
     @Override
     public void initWidgets() {
         list_fragment = new XCListViewFragment();
-        // list_fragment.setAdapter(new TestAdatpter(this, null));
-        list_fragment.setAdapter(new XCAdapterTest(this, null));
+        list_fragment.setAdapter(new TestAdatpter(this, null));
+//        list_fragment.setAdapter(new XCAdapterTest(this, null));
         // 可以不设置Mode， 默认是不可以拉的listview
         list_fragment.setMode(XCListViewFragment.MODE_UP_DOWN);
         list_fragment.setBgZeroHintInfo("数据为0", "重新加载", R.drawable.xc_d_chat_face);
         list_fragment.setListViewStyleParam(false);
         addFragment(R.id.xc_id_model_content, list_fragment);
-//		request();
+        request();
     }
 
     @Override

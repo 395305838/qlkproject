@@ -17,6 +17,7 @@ import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.http.XCHttpResponseHandler;
 import com.xiaocoder.android.fw.general.http.XCIHttpResult;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
+import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
 
 /**
@@ -41,7 +42,7 @@ public class QlkHttpResponseHandler<T extends XCJsonBean> extends XCHttpResponse
 
         XCApplication.printi("yourCompanyLogic");
 
-        if (YES.equals(result_bean.obtString(QlkBean.CODE, ""))) {
+        if (!UtilString.isBlank(result_bean.obtString(QlkBean.MSG, ""))) {
             if (mContext instanceof XCBaseActivity) {
                 if (((XCBaseActivity) mContext).isActivityDestroied()) {
                     result_boolean = false;

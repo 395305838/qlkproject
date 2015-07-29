@@ -1,17 +1,12 @@
 package com.xiaocoder.android.fw.general.jsonxml;
 
-import android.util.Log;
-
-import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.util.UtilCommon;
 import com.xiaocoder.android.fw.general.util.UtilString;
 
 import org.json.JSONObject;
 
 import java.io.Serializable;
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -19,7 +14,7 @@ import java.util.List;
 // 1 JsonType 的过滤标记可以打印出 返回的json串的每个字段的 类型
 // 2 解析的时候如解析的类型错误了， 该bean里内置了try catch，并会返回正确的类型，仅 int String  long  double
 // 3 bean内的字段可以自动生成， JsonBean的标记中可以 打印出bean， 复制后格式化即可
-public class XCJsonBean implements Serializable {
+public class XCJsonBean<T extends XCJsonBean> implements Serializable {
 
     private static final long serialVersionUID = 8461633826093329307L;
 
@@ -125,25 +120,41 @@ public class XCJsonBean implements Serializable {
         }
     }
 
-    public XCJsonBean obtModel(String name, XCJsonBean default_value) {
+    public T instanceModel() {
+        try {
+            Constructor constructor = this.getClass().getConstructor();
+            Object o = constructor.newInstance();
+            return (T) o;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public T obtModel(String name, T default_value) {
         Object value = paraMap.get(name.toLowerCase());
         if (value == null || value.equals(JSONObject.NULL)) {
             return default_value;
         }
-        return (XCJsonBean) value;
+        return (T) value;
     }
 
+    public T obtModel(String name) {
+        return obtModel(name, instanceModel());
+    }
 
-    @SuppressWarnings("unchecked")
-    public List<XCJsonBean> obtList(String name, List<XCJsonBean> defualt_value) {
+    public List<T> obtList(String name, List<T> defualt_value) {
         Object value = paraMap.get(name.toLowerCase());
         if (value == null || value.equals(JSONObject.NULL)) {
             return defualt_value;
         }
-        return (List<XCJsonBean>) value;
+        return (List<T>) value;
     }
 
-    @SuppressWarnings("unchecked")
+    public List<T> obtList(String name) {
+        return obtList(name, new ArrayList<T>());
+    }
+
     public List<String> obtStringList(String name, List<String> default_value) {
         Object value = paraMap.get(name.toLowerCase());
         if (value == null || value.equals(JSONObject.NULL)) {
@@ -152,7 +163,6 @@ public class XCJsonBean implements Serializable {
         return (List<String>) value;
     }
 
-    @SuppressWarnings("unchecked")
     public List<ArrayList> obtListList(String name, List<ArrayList> default_value) {
         Object value = paraMap.get(name.toLowerCase());
         if (value == null || value.equals(JSONObject.NULL)) {
