@@ -44,7 +44,7 @@ public class TextActivity extends QlkBaseActivity {
 
         String str2 = " {\"code\":0,\"msg\":\"成功\",\"data\":[[\"板蓝根\",\"白云山\"]]}";
 
-        XCJsonBean bean = XCJsonParse.getJsonParseData(str2);
+        XCJsonBean bean = XCJsonParse.getJsonParseData(str2 , XCJsonBean.class);
         List beans = bean.obtListList("data", new ArrayList<ArrayList>());
 
         try {
@@ -68,7 +68,6 @@ public class TextActivity extends QlkBaseActivity {
             e.printStackTrace();
             printi("exception");
         }
-
 
         printi(UtilSystem.getDeviceId(this)+"--------------deviceId");
 

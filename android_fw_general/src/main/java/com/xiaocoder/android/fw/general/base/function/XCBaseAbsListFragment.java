@@ -339,13 +339,13 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
         if (TextUtils.isEmpty(total_page)) {
             total_page = 1 + "";
         }
-        base_totalPage = Integer.parseInt(total_page);
+        base_totalPage = UtilString.toInt(total_page, 0);
     }
 
     public void setPerPageNum(String num) {
 
         // 默认是每页20个
-        PER_PAGE_NUM = Integer.parseInt(num);
+        PER_PAGE_NUM = UtilString.toInt(num, PER_PAGE_NUM);
     }
 
     // 设置总数，会自动计算总页数
@@ -358,7 +358,7 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
 
     public void setTotalNum(String page_size, String total_num) {
         setPerPageNum(page_size);
-        Integer total = Integer.parseInt(total_num);
+        Integer total = UtilString.toInt(total_num, 0);
         base_totalPage = total % PER_PAGE_NUM == 0 ? total / PER_PAGE_NUM : (total / PER_PAGE_NUM) + 1;
     }
 

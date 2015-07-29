@@ -47,7 +47,7 @@ public class GridActivity extends QlkBaseActivity {
     public void request() {
 
         RequestParams params = new RequestParams();
-        XCHttpAsyn.getAsyn(true, this, "http://" + MainActivity.TEST_HOST + ":8080/qlktest/listdata.json", params, new QlkHttpResponseHandler(this, grid_fragment) {
+        XCHttpAsyn.getAsyn(true, this, "http://ad.test.7lk.cn" + "/medicationGroup/list", params, new QlkHttpResponseHandler(this, grid_fragment) {
             @Override
             public void onSuccess(int code, Header[] headers, byte[] arg2) {
                 super.onSuccess(code, headers, arg2);
@@ -86,7 +86,7 @@ public class GridActivity extends QlkBaseActivity {
             }
 
             // 获取和设置控件的显示值
-            holder.xc_id_adapter_test_textview.setText(bean.obtString("content",""));
+            holder.xc_id_adapter_test_textview.setText(bean.obtString("content", ""));
             // 加载图片
             return convertView;
         }
@@ -129,7 +129,7 @@ public class GridActivity extends QlkBaseActivity {
 
             @Override
             public void onRefreshNextPageListener(int current_page) {
-				request();
+                request();
             }
         });
 

@@ -379,6 +379,22 @@ public class UtilString {
         textview.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
+    public static String setFirstLetterBig(String origin) {
+
+        if (isBlank(origin)) {
+            return origin;
+        }
+
+        char[] chars = origin.toCharArray();
+
+        if (chars[0] >= 97) {
+            chars[0] = (char) (chars[0] - 32);
+        }
+
+        return new String(chars);
+
+    }
+
 //    public static void sizeLightSpanAppend(String origin_string, TextView textview) {
 //        String[] strs = origin_string.split("\n");
 //        int i = 0;

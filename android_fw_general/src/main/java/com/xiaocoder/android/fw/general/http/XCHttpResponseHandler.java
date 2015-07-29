@@ -166,7 +166,7 @@ public abstract class XCHttpResponseHandler extends AsyncHttpResponseHandler {
                 // 打印bean到控制台， 然后复制
                 XCJsonParse.json2Bean(response);
 
-                result_bean = XCJsonParse.getJsonParseData(response);
+                result_bean = XCJsonParse.getJsonParseData(response , XCJsonBean.class);
 
                 if (result_bean == null) {
                     result_boolean = false;

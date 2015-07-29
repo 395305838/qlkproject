@@ -25,8 +25,8 @@ public class XCLog {
     public Context context;
     public long last_time;
     public File file;
-    public final int TOAST_SHORT_TIME_GAP;
-    public final int TOAST_LONG_TIME_GAP;
+    public int TOAST_SHORT_TIME_GAP;
+    public int TOAST_LONG_TIME_GAP;
 
     public boolean IS_DTOAST;
     public boolean IS_PRINTLOG;

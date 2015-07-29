@@ -25,6 +25,10 @@ public class XCJsonBean implements Serializable {
 
     private HashMap<String, Object> paraMap = new HashMap<String, Object>();
 
+    public Boolean obtBoolean(String name) {
+        return obtBoolean(name, false);
+    }
+
     public Boolean obtBoolean(String name, boolean default_value) {
         Object value = paraMap.get(name.toLowerCase());
 
@@ -35,6 +39,10 @@ public class XCJsonBean implements Serializable {
         } else {
             return default_value;
         }
+    }
+
+    public String obtString(String name) {
+        return obtString(name, "");
     }
 
     public String obtString(String name, String default_value) {
@@ -48,6 +56,9 @@ public class XCJsonBean implements Serializable {
         return value + "";
     }
 
+    public Integer obtInt(String name) {
+        return obtInt(name, 0);
+    }
 
     public Integer obtInt(String name, int default_value) {
         Object value = paraMap.get(name.toLowerCase());
@@ -68,6 +79,10 @@ public class XCJsonBean implements Serializable {
         }
     }
 
+    public Long obtLong(String name) {
+        return obtLong(name, 0);
+    }
+
     public Long obtLong(String name, long default_value) {
         Object value = paraMap.get(name.toLowerCase());
         if (value == null || value.equals(JSONObject.NULL)) {
@@ -85,6 +100,10 @@ public class XCJsonBean implements Serializable {
             e.printStackTrace();
             return default_value;
         }
+    }
+
+    public Double obtDouble(String name) {
+        return obtDouble(name, 0);
     }
 
     public Double obtDouble(String name, double default_value) {
