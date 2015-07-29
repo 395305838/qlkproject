@@ -15,8 +15,9 @@ import com.xiaocoder.android.fw.general.base.function.XCBaseAbsListFragment.OnAb
 import com.xiaocoder.android.fw.general.base.function.XCBaseAbsListFragment.OnRefreshNextPageListener;
 import com.xiaocoder.android.fw.general.fragment.XCListViewFragment;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
+import com.xiaocoder.android.fw.general.http.XCHttpResponseHandler;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
-import com.xiaocoder.test.MainActivity;
+import com.xiaocoder.android.fw.general.view.XCGridView;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.bean.TestBean;
 import com.xiaocoder.test.buffer.QlkActivity;
@@ -55,10 +56,12 @@ public class ListActivity extends QlkActivity {
                     public void onSuccess(int code, Header[] headers, byte[] arg2) {
                         super.onSuccess(code, headers, arg2);
                         if (result_boolean) {
+
                             if (!list_fragment.checkGoOn()) {
                                 return;
                             }
 
+                            printi(result_bean.getMsg());
 
 
 //                            // grid_fragment.setTotalNum("100");// 或者setTotalPage也可以

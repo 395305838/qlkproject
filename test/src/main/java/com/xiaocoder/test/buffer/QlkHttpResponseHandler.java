@@ -23,7 +23,7 @@ import com.xiaocoder.android.fw.general.util.UtilSystem;
  * @author xiaocoder
  * @date 2014-12-30 下午5:04:48
  */
-public class QlkHttpResponseHandler <T extends XCJsonBean> extends XCHttpResponseHandler {
+public class QlkHttpResponseHandler<T extends XCJsonBean> extends XCHttpResponseHandler<T> {
 
 
     public QlkHttpResponseHandler(XCIHttpResult result_http, int content_type, boolean show_background_when_net_fail,

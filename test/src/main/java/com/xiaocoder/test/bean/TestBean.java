@@ -5,9 +5,12 @@ import com.xiaocoder.test.buffer.QlkBean;
 
 /**
  * Created by xiaocoder on 2015/7/29.
+ * <p/>
+ * <p/>
+ * <p/>
+ * -------------------------->该类的代码是自动生成的  在JsonBean的tag中打印  复制 格式化
  */
 public class TestBean extends QlkBean {
-
     public String msg = "msg";
     public String data = "data";
     public String result = "result";
@@ -34,22 +37,6 @@ public class TestBean extends QlkBean {
 
     public void setMsg(Object value) {
         add(msg, value);
-    }
-
-    public String getData() {
-        return obtString(data);
-    }
-
-    public void setData(Object value) {
-        add(data, value);
-    }
-
-    public String getResult() {
-        return obtString(result);
-    }
-
-    public void setResult(Object value) {
-        add(result, value);
     }
 
     public String getName() {
@@ -114,14 +101,6 @@ public class TestBean extends QlkBean {
 
     public void setImgUrl(Object value) {
         add(imgUrl, value);
-    }
-
-    public String getShare() {
-        return obtString(share);
-    }
-
-    public void setShare(Object value) {
-        add(share, value);
     }
 
     public String getBaseUrl() {

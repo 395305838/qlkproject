@@ -42,6 +42,9 @@ public abstract class XCHttpResponseHandler<T extends XCJsonBean> extends AsyncH
     public static int XML = 2;
     public static int ELSE = 3;
 
+    public T getResult_bean() {
+        return result_bean;
+    }
 
     // show_background_when_net_fail true 为展示背景和toast , false仅展示吐司
     @SuppressWarnings("rawtypes")

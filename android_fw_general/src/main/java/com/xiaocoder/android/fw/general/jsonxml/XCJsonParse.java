@@ -119,12 +119,15 @@ public class XCJsonParse {
         if (XCApplication.getBase_log().is_OutPut() && json != null) {
             LinkedHashSet<String> set = new LinkedHashSet<String>();
             json = json.replace("\"", "");
-            json = json.replace("{", ",");
-            json = json.replace("[", "");
+            json = json.replace(" ", "");
+            json = json.replace("{", "{,");
+            json = json.replace("[", "[,");
             String[] items = json.split(",");
             StringBuilder builder = new StringBuilder("");
 
             builder.append("public class  文件名  extends QlkBean {");
+
+            LinkedHashSet<String> sub = new LinkedHashSet<String>();
 
             for (String item : items) {
 
@@ -135,12 +138,24 @@ public class XCJsonParse {
 
                 String[] keyvalues = item.split(":");
 
-                if ("".equals(keyvalues[0]) || set.contains(keyvalues[0])) {
+                if (UtilString.isBlank(keyvalues[0]) || set.contains(keyvalues[0])) {
+                    // key为空  或者  已经加入了集合,则返回
                     continue;
                 } else {
+                    // 未加入集合
+                    if (keyvalues[1] != null && (keyvalues[1].contains("[") || keyvalues[1].contains("{"))) {
+                        // do nothing
+                        // 表示该字段是 如  list：{}  ， list：[]  set 和 get方法不需要该字段，先记录这些字段
+                        sub.add(keyvalues[0]);
+                    }
                     set.add(keyvalues[0]);
+                    builder.append("public String " + keyvalues[0].trim() + "=" + "\"" + keyvalues[0].trim() + "\"" + ";");
                 }
-                builder.append("public String " + keyvalues[0].trim() + "=" + "\"" + keyvalues[0].trim() + "\"" + ";");
+            }
+
+            // 把get 与 set 不需要的key删除
+            for (String sub_key : sub) {
+                set.remove(sub_key);
             }
 
             for (String key : set) {
