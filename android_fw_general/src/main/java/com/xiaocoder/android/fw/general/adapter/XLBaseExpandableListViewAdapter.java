@@ -17,6 +17,7 @@ import com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.listener.XCScrollListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 // T 为List集合中的model或bean的泛型 ，一般都是用通用XCJsonBean
@@ -115,7 +116,7 @@ public abstract class XLBaseExpandableListViewAdapter extends BaseExpandableList
     public int getChildrenCount(int i) {
         if (list != null) {
             XCJsonBean childBean = list.get(i);
-            List<XCJsonBean> childList = childBean.getList("list");
+            List<XCJsonBean> childList = childBean.obtList("list", new ArrayList<XCJsonBean>());
             if (childList != null) {
                 return childList.size();
             }
@@ -134,7 +135,7 @@ public abstract class XLBaseExpandableListViewAdapter extends BaseExpandableList
     @Override
     public XCJsonBean getChild(int i, int i1) {
         if (list != null) {
-            return list.get(i).getList("list").get(i1);
+            return list.get(i).obtList("list", new ArrayList<XCJsonBean>()).get(i1);
         }
         return null;
     }

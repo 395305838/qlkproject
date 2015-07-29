@@ -41,11 +41,11 @@ public class XCJsonParse {
                 if (o instanceof JSONObject) {
                     XCJsonBean bean = new XCJsonBean();
                     parse(bean, (JSONObject) o);
-                    result.set(key, bean);
+                    result.add(key, bean);
                 } else if (o instanceof JSONArray) {
                     array = (JSONArray) o;
                     List list = new ArrayList();
-                    result.set(key, list);
+                    result.add(key, list);
                     for (int i = 0; i < array.length(); i++) {
                         object = array.get(i);
                         if (object instanceof JSONObject) {
@@ -68,7 +68,7 @@ public class XCJsonParse {
                             XCApplication.printi(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is Else Type");
                         }
                     }
-                    result.set(key, o);
+                    result.add(key, o);
                 }
             }
         } catch (JSONException e) {
@@ -162,11 +162,11 @@ public class XCJsonParse {
                 if (o instanceof JSONObject) {
                     T bean = getJsonBean(jsonbean_classs);
                     parse(bean, (JSONObject) o);
-                    result.set(key, bean);
+                    result.add(key, bean);
                 } else if (o instanceof JSONArray) {
                     array = (JSONArray) o;
                     List list = new ArrayList();
-                    result.set(key, list);
+                    result.add(key, list);
                     for (int i = 0; i < array.length(); i++) {
                         object = array.get(i);
                         if (object instanceof JSONObject) {
@@ -189,7 +189,7 @@ public class XCJsonParse {
                             XCApplication.printi(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is Else Type");
                         }
                     }
-                    result.set(key, o);
+                    result.add(key, o);
                 }
             }
         } catch (JSONException e) {

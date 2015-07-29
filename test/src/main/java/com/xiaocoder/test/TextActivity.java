@@ -45,7 +45,7 @@ public class TextActivity extends QlkBaseActivity {
         String str2 = " {\"code\":0,\"msg\":\"成功\",\"data\":[[\"板蓝根\",\"白云山\"]]}";
 
         XCJsonBean bean = XCJsonParse.getJsonParseData(str2);
-        List beans = bean.getListList("data");
+        List beans = bean.obtListList("data", new ArrayList<ArrayList>());
 
         try {
             printi(beans.toString());

@@ -23,6 +23,7 @@ import com.xiaocoder.test.buffer.QlkHttpResponseHandler;
 
 import org.apache.http.Header;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -54,8 +55,8 @@ public class ListActivity extends QlkBaseActivity {
                         return;
                     }
                     // grid_fragment.setTotalNum("100");// 或者setTotalPage也可以
-                    list_fragment.setTotalPage(result_bean.getString("totalpage"));
-                    list_fragment.updateList(result_bean.getList("data"));
+                    list_fragment.setTotalPage(result_bean.obtString("totalpage", ""));
+                    list_fragment.updateList(result_bean.obtList("data", new ArrayList<XCJsonBean>()));
                 }
             }
         });
@@ -84,7 +85,7 @@ public class ListActivity extends QlkBaseActivity {
             }
 
             // 获取和设置控件的显示值
-            holder.xc_id_adapter_test_textview.setText(bean.getString("content"));
+            holder.xc_id_adapter_test_textview.setText(bean.obtString("content",""));
             // 加载图片
             return convertView;
         }

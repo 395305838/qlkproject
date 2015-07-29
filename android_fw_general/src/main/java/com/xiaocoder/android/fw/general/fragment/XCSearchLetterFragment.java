@@ -92,7 +92,7 @@ public class XCSearchLetterFragment extends XCBaseFragment {
 
     // 设置数据
     public void setData(XCJsonBean origin_bean) {
-        out_jsons = (ArrayList<XCJsonBean>) origin_bean.getList("sections");
+        out_jsons = (ArrayList<XCJsonBean>) origin_bean.obtList("sections" , new ArrayList<XCJsonBean>());
         // 解析第一层的数据
         out_adapter.update(out_jsons);
         out_adapter.notifyDataSetChanged();
@@ -120,7 +120,7 @@ public class XCSearchLetterFragment extends XCBaseFragment {
                 holder = (InnerSearchLetterViewHolder) convertView.getTag();
             }
             // 获取和设置控件的显示值
-            holder.xc_id_fragment_search_letter_content2.setText(bean.getString("brand_name"));
+            holder.xc_id_fragment_search_letter_content2.setText(bean.obtString("brand_name", ""));
             // 加载图片
             return convertView;
         }
@@ -166,11 +166,11 @@ public class XCSearchLetterFragment extends XCBaseFragment {
 
             // 获取和设置控件的显示值
 
-            holder.xc_id_fragment_search_letter_view.setText(bean.getString("index"));
+            holder.xc_id_fragment_search_letter_view.setText(bean.obtString("index", ""));
             holder.xc_id_fragment_search_letter_view.setTag(position);
 
             // 解析第二层的数据
-            ArrayList<XCJsonBean> inner_jsons = (ArrayList<XCJsonBean>) bean.getList("brands");
+            ArrayList<XCJsonBean> inner_jsons = (ArrayList<XCJsonBean>) bean.obtList("brands", new ArrayList<XCJsonBean>());
             UtilAbsListStyle.setGridViewStyle(holder.xc_id_fragment_search_content_gridview, false, 2, UtilImage.dip2px(context, 1), UtilImage.dip2px(context, 1));
             holder.xc_id_fragment_search_content_gridview.setOnItemClickListener(new OnItemClickListener() {
 
@@ -219,7 +219,7 @@ public class XCSearchLetterFragment extends XCBaseFragment {
             // 获取每个字母首次出现的位置
             for (int i = 0; i < list.size(); i++) {
                 XCJsonBean sort_bean = list.get(i);
-                String temp = sort_bean.getString("index");
+                String temp = sort_bean.obtString("index","");
                 // 可能接口是 [{index:A , 品牌1} , {index:A, 品牌2} , {index:B,品牌1}]
                 // 可能接口是[{index:A , brands:[品牌1 , 品牌2]}]
                 if (!temp.equals(record_last_letter)) {

@@ -125,7 +125,7 @@ public class SearchActivity extends QlkBaseActivity {
                         @Override
                         public void onInnerItemClick(AdapterView<?> parent, View view, int position, long id) {
                             XCJsonBean bean = (XCJsonBean) parent.getItemAtPosition(position);
-                            shortToast(bean.getString("brand_name"));
+                            shortToast(bean.obtString("brand_name", ""));
                         }
                     });
                     letter_fragment.setData(result_bean);

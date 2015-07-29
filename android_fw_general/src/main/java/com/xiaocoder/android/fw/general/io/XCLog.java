@@ -166,6 +166,12 @@ public class XCLog {
         }
     }
 
+    public void e(String hint) {
+        if (IS_PRINTLOG) {
+            writeLog2File(XCConfig.TAG_LOG + "--->" + hint, true);
+        }
+    }
+
     public void e(Context context, String hint) {
 
         Log.e(XCConfig.TAG_ANDROID_RUNTIME, "Exception-->" + context.getClass().getSimpleName() + "--" + hint);

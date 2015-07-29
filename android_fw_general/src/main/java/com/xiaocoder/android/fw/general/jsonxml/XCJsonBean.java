@@ -2,6 +2,11 @@ package com.xiaocoder.android.fw.general.jsonxml;
 
 import android.util.Log;
 
+import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCConfig;
+import com.xiaocoder.android.fw.general.util.UtilCommon;
+import com.xiaocoder.android.fw.general.util.UtilString;
+
 import org.json.JSONObject;
 
 import java.io.Serializable;
@@ -18,35 +23,35 @@ public class XCJsonBean implements Serializable {
 
     private static final long serialVersionUID = 8461633826093329307L;
 
-    public static String CODE = "code";
-    public static String MSG = "msg";
-
-    /*
-     * 对对象的操作
-     */
     private HashMap<String, Object> paraMap = new HashMap<String, Object>();
 
-    public Boolean getBoolean(String name) {
+    public Boolean obtBoolean(String name, boolean default_value) {
         Object value = paraMap.get(name.toLowerCase());
-        return (Boolean) value;
+
+        if (value == null || value.equals(JSONObject.NULL)) {
+            return default_value;
+        } else if (value instanceof Boolean) {
+            return (Boolean) value;
+        } else {
+            return default_value;
+        }
     }
 
-    public String getString(String name) {
+    public String obtString(String name, String default_value) {
+
         Object value = paraMap.get(name.toLowerCase());
-        if (value == null || value.equals(JSONObject.NULL))
-            return "";
+
+        if (value == null || value.equals(JSONObject.NULL)) {
+            return default_value;
+        }
 
         return value + "";
-
     }
 
-    public Integer getInt(String name) {
-        return getInt(name, 0);
-    }
 
-    public Integer getInt(String name, int default_value) {
+    public Integer obtInt(String name, int default_value) {
         Object value = paraMap.get(name.toLowerCase());
-        if (value == null) {
+        if (value == null || value.equals(JSONObject.NULL)) {
             return default_value;
         }
         try {
@@ -63,14 +68,11 @@ public class XCJsonBean implements Serializable {
         }
     }
 
-    public Long getLong(String name) {
-        return getLong(name, 0);
-    }
-
-    public Long getLong(String name, long default_value) {
+    public Long obtLong(String name, long default_value) {
         Object value = paraMap.get(name.toLowerCase());
-        if (value == null)
+        if (value == null || value.equals(JSONObject.NULL)) {
             return default_value;
+        }
         try {
             if (value instanceof Long) {
                 return (Long) value;
@@ -85,14 +87,11 @@ public class XCJsonBean implements Serializable {
         }
     }
 
-    public Double getDouble(String name) {
-        return getDouble(name, 0);
-    }
-
-    public Double getDouble(String name, double default_value) {
+    public Double obtDouble(String name, double default_value) {
         Object value = paraMap.get(name.toLowerCase());
-        if (value == null)
+        if (value == null || value.equals(JSONObject.NULL)) {
             return default_value;
+        }
         try {
             if (value instanceof Double) {
                 return (Double) value;
@@ -107,51 +106,44 @@ public class XCJsonBean implements Serializable {
         }
     }
 
-    public Date getDate(String name) {
+    public XCJsonBean obtModel(String name, XCJsonBean default_value) {
         Object value = paraMap.get(name.toLowerCase());
-        if (value == null)
-            return null;
-        return (Date) value;
+        if (value == null || value.equals(JSONObject.NULL)) {
+            return default_value;
+        }
+        return (XCJsonBean) value;
     }
 
-    public void setString(String name, String value) {
-        if (value == null)
-            return;
-        paraMap.put(name.toLowerCase(), value);
+
+    @SuppressWarnings("unchecked")
+    public List<XCJsonBean> obtList(String name, List<XCJsonBean> defualt_value) {
+        Object value = paraMap.get(name.toLowerCase());
+        if (value == null || value.equals(JSONObject.NULL)) {
+            return defualt_value;
+        }
+        return (List<XCJsonBean>) value;
     }
 
-    public void setBoolean(String name, Boolean value) {
-        if (value == null)
-            return;
-        paraMap.put(name.toLowerCase(), value);
+    @SuppressWarnings("unchecked")
+    public List<String> obtStringList(String name, List<String> default_value) {
+        Object value = paraMap.get(name.toLowerCase());
+        if (value == null || value.equals(JSONObject.NULL)) {
+            return default_value;
+        }
+        return (List<String>) value;
     }
 
-    public void setDouble(String name, Double value) {
-        if (value == null)
-            return;
-        paraMap.put(name.toLowerCase(), value);
+    @SuppressWarnings("unchecked")
+    public List<ArrayList> obtListList(String name, List<ArrayList> default_value) {
+        Object value = paraMap.get(name.toLowerCase());
+        if (value == null || value.equals(JSONObject.NULL)) {
+            return default_value;
+        }
+        return (List<ArrayList>) value;
     }
 
-    public void setLong(String name, Long value) {
-        if (value == null)
-            return;
-        paraMap.put(name.toLowerCase(), value);
-    }
-
-    public void setInt(String name, Integer value) {
-        if (value == null)
-            return;
-        paraMap.put(name.toLowerCase(), value);
-    }
-
-    public void setDate(String name, Date value) {
-        if (value == null)
-            return;
-        paraMap.put(name.toLowerCase(), value);
-    }
-
-    public void set(String name, Object value) {
-        if (value == null)
+    public void add(String name, Object value) {
+        if (UtilString.isBlank(name))
             return;
         paraMap.put(name.toLowerCase(), value);
     }
@@ -161,132 +153,12 @@ public class XCJsonBean implements Serializable {
         paraMap.remove(name.toLowerCase());
     }
 
-    public Object get(String name) {
-        Object value = paraMap.get(name.toLowerCase());
-        return value;
-    }
-
     public Iterator<String> keys() {
         return paraMap.keySet().iterator();
     }
 
     public void clear() {
         paraMap.clear();
-    }
-
-    public XCJsonBean getModel(String name) {
-        Object value = paraMap.get(name.toLowerCase());
-
-        if (null == value || value.equals(JSONObject.NULL))
-            return new XCJsonBean();
-        return (XCJsonBean) value;
-    }
-
-    public XCJsonBean optModel(String name) {
-        Object value = paraMap.get(name.toLowerCase());
-        if (null == value || value.equals(JSONObject.NULL))
-            return new XCJsonBean();
-        return (XCJsonBean) value;
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<XCJsonBean> getList(String name) {
-        Object value = paraMap.get(name.toLowerCase());
-        if (value == null)
-            return new ArrayList<XCJsonBean>();
-        return (List<XCJsonBean>) value;
-    }
-
-    public List<XCJsonBean> getListIsNull(String name) {
-        Object value = paraMap.get(name.toLowerCase());
-        if (value == null)
-            return null;
-        return (List<XCJsonBean>) value;
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<XCJsonBean> optList(String name) {
-        Object value = paraMap.get(name.toLowerCase());
-        if (value == null || value.equals(JSONObject.NULL))
-            return new ArrayList<XCJsonBean>();
-        return (List<XCJsonBean>) value;
-    }
-
-    public List<XCJsonBean> getList(String name, String itemName) {
-        XCJsonBean listObj = getModel(name);
-        if (listObj == null)
-            return new ArrayList<XCJsonBean>();
-        return listObj.getList(itemName);
-    }
-
-    public List<XCJsonBean> optList(String name, String itemName) {
-        XCJsonBean listObj = getModel(name);
-        if (listObj == null || listObj.equals(JSONObject.NULL))
-            return new ArrayList<XCJsonBean>();
-        return listObj.getList(itemName);
-    }
-
-    public List<String> getStringList(String name) {
-        Object value = paraMap.get(name.toLowerCase());
-        if (value == null)
-            return new ArrayList<String>();
-        return (List<String>) value;
-    }
-
-    public List<String> optStringList(String name) {
-        Object value = paraMap.get(name.toLowerCase());
-        if (value == null || value.equals(JSONObject.NULL))
-            return new ArrayList<String>();
-        return (List<String>) value;
-    }
-
-    public List<ArrayList> getListList(String name) {
-        Object value = paraMap.get(name.toLowerCase());
-        if (value == null)
-            return new ArrayList<ArrayList>();
-        return (List<ArrayList>) value;
-    }
-
-    public List<String> getStringList(String name, String itemName) {
-        XCJsonBean listObj = getModel(name);
-        if (listObj == null)
-            return new ArrayList<String>();
-        return listObj.getStringList(itemName);
-    }
-
-    public List<String> optStringList(String name, String itemName) {
-        XCJsonBean listObj = getModel(name);
-        if (listObj == null || listObj.equals(JSONObject.NULL))
-            return new ArrayList<String>();
-        return listObj.getStringList(itemName);
-    }
-
-    public List<Integer> getIntegerList(String name) {
-        Object value = paraMap.get(name.toLowerCase());
-        if (value == null)
-            return new ArrayList<Integer>();
-        return (List<Integer>) value;
-    }
-
-    public List<Integer> optIntegerList(String name) {
-        Object value = paraMap.get(name.toLowerCase());
-        if (value == null || value.equals(JSONObject.NULL))
-            return new ArrayList<Integer>();
-        return (List<Integer>) value;
-    }
-
-    public List<Integer> getIntegerList(String name, String itemName) {
-        XCJsonBean listObj = getModel(name);
-        if (listObj == null)
-            return new ArrayList<Integer>();
-        return listObj.getIntegerList(itemName);
-    }
-
-    public List<Integer> optIntegerList(String name, String itemName) {
-        XCJsonBean listObj = getModel(name);
-        if (listObj == null || listObj.equals(JSONObject.NULL))
-            return new ArrayList<Integer>();
-        return listObj.getIntegerList(itemName);
     }
 
     @Override

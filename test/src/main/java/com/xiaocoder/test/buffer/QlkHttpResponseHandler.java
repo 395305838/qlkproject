@@ -44,7 +44,7 @@ public class QlkHttpResponseHandler extends XCHttpResponseHandler {
 
         XCApplication.printi("yourCompanyLogic");
 
-        if (YES.equals(result_bean.getString(XCJsonBean.CODE))) {
+        if (YES.equals(result_bean.obtString(QlkBean.CODE, ""))) {
             if (mContext instanceof XCBaseActivity) {
                 if (((XCBaseActivity) mContext).isActivityDestroied()) {
                     result_boolean = false;
@@ -54,7 +54,7 @@ public class QlkHttpResponseHandler extends XCHttpResponseHandler {
             result_boolean = true;
         } else {
             result_boolean = false;
-            XCApplication.shortToast(result_bean.getString(XCJsonBean.MSG));
+            XCApplication.shortToast(result_bean.obtString(QlkBean.MSG, ""));
         }
 
     }

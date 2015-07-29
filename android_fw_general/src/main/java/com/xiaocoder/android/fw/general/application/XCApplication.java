@@ -288,6 +288,10 @@ public class XCApplication extends Application {
         base_log.e(hint, e);
     }
 
+    public static void printe(String hint) {
+        base_log.e(hint);
+    }
+
     public static void printe(Context context, String hint, Exception e) {
         base_log.e(context, hint, e);
     }
