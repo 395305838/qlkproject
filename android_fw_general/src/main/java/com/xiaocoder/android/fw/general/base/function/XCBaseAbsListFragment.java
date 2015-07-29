@@ -19,6 +19,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.android.fw.general.util.UtilCommon;
@@ -190,10 +191,16 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
 
     // 刷新完成
     public void completeRefresh() {
-        if (base_refresh_abs_listview != null) {
+
+        if (base_refresh_abs_listview != null && whichMode != XCBaseAbsListFragment.MODE_NOT_PULL) {
             base_refresh_abs_listview.onRefreshComplete();
+            XCApplication.printi("completeRefresh()");
         }
+
         base_isPullRefreshing = false;
+
+        whichShow(base_all_beans.size());
+
     }
 
     // 是否是底部
@@ -276,23 +283,19 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
         }
     }
 
-    public void whichShow(int size, String text, int drawable_id, String button_text) {
+    public void whichShow(int size) {
         if (size > 0) {
             setViewGone(false, base_listview_zero_bg);
             setViewVisible(true, base_refresh_abs_listview);
         } else {
-            base_zero_button.setText(button_text);
-            base_zero_imageview.setImageResource(drawable_id);
-            base_zero_textview.setText(text);
+            base_zero_button.setText(zero_button_hint);
+            base_zero_imageview.setImageResource(zero_imageview_hint);
+            base_zero_textview.setText(zero_text_hint);
 
             setViewGone(true, base_listview_zero_bg);
             setViewVisible(false, base_refresh_abs_listview);
         }
     }
-
-    // public abstract void requestForPage(int currentPage);
-    //
-    // public abstract void onBgZeroButtonClickToDo();
 
     // 分页监听
     public interface OnRefreshNextPageListener {
@@ -466,5 +469,11 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
 // List<JsonBean> beans = origin_bean.getList(orders_bean_flag.orders);
 // listgragment.updateList(beans);
 // }
+// }
+
+// onFinish(){
+//  if(result_boolean && listfragment != null){
+//      listfragment.complete();
+//  }
 // }
 // });

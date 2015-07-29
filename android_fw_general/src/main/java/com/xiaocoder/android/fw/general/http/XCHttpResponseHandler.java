@@ -20,54 +20,49 @@ import org.apache.http.Header;
  * @author xiaocoder
  * @date 2014-12-30 下午5:04:48
  */
-public abstract class XCHttpResponseHandler extends AsyncHttpResponseHandler {
+public abstract class XCHttpResponseHandler<T extends XCJsonBean> extends AsyncHttpResponseHandler {
     // 是json还是xml或图片等
     public int content_type;
-    public static int JSON = 1;
-    public static int XML = 2;
-    public static int ELSE = 3;
-    // 如果返回的是json格式,则内容都存在json_result中
-    public XCJsonBean result_bean;
-    // 回调的接口
-    public XCIHttpResult result_http;
     // 如果result_boolean为真就开始处理业务, 如果为false则不处理
     public boolean result_boolean;
     // 访问网络失败时,是否显示失败页面的背景
     public boolean show_background_when_net_fail;
-    // 可以下拉刷新的listview
-    public XCBaseFragment refresh_fragment;
     public Context mContext;
-    public static String YES = "0"; // "0"表示成功 ，非“0”表示失败
-
     public Dialog httpDialog;
+    // 如果返回的是json格式,则内容都存在json_result中
+    public T result_bean;
+    public Class<T> result_bean_class;
+    // 回调的接口
+    public XCIHttpResult result_http;
+
+    // "0"表示成功 ，非“0”表示失败
+    public static String YES = "0";
+
+    public static int JSON = 1;
+    public static int XML = 2;
+    public static int ELSE = 3;
+
 
     // show_background_when_net_fail true 为展示背景和toast , false仅展示吐司
     @SuppressWarnings("rawtypes")
-    public XCHttpResponseHandler(XCIHttpResult result_http, int content_type, boolean show_background_when_net_fail, XCBaseFragment refresh_fragment) {
+    public XCHttpResponseHandler(XCIHttpResult result_http,
+                                 int content_type,
+                                 boolean show_background_when_net_fail,
+                                 Class<T> result_bean_class) {
         super();
-        if (refresh_fragment == null || refresh_fragment instanceof XCBaseAbsListFragment || refresh_fragment instanceof XLBaseExpandAbsListFragment) {
-            this.result_boolean = false;
-            this.content_type = content_type;
-            this.result_http = result_http;
-            this.show_background_when_net_fail = show_background_when_net_fail;
-            this.refresh_fragment = refresh_fragment;
-        } else {
-            throw new RuntimeException("非法的fragment");
-        }
+        this.result_boolean = false;
+        this.content_type = content_type;
+        this.result_http = result_http;
+        this.show_background_when_net_fail = show_background_when_net_fail;
+        this.result_bean_class = result_bean_class;
 
     }
 
     // 默认是json格式 以及 网络访问失败时显示背景布局
-    public XCHttpResponseHandler(XCIHttpResult result_http) {
-        this(result_http, JSON, true, null);
+    public XCHttpResponseHandler(XCIHttpResult result_http, Class<T> result_bean_class) {
+        this(result_http, JSON, true, result_bean_class);
     }
 
-    // 默认是json格式 以及 网络访问失败时显示背景布局
-    @SuppressWarnings("rawtypes")
-    public XCHttpResponseHandler(XCIHttpResult result_http, XCBaseFragment refresh_fragment) {
-
-        this(result_http, JSON, true, refresh_fragment);
-    }
 
     public void setContext(Context context) {
         mContext = context;
@@ -124,33 +119,8 @@ public abstract class XCHttpResponseHandler extends AsyncHttpResponseHandler {
     @Override
     public void onFinish() {
         super.onFinish();
-        XCHttpAsyn.resetNetingStatus();
         XCApplication.printi(XCConfig.TAG_HTTP, "onFinish");
-        if (refresh_fragment instanceof XCBaseAbsListFragment) {
-            XCBaseAbsListFragment f = (XCBaseAbsListFragment) refresh_fragment;
-            if (refresh_fragment != null && f.whichMode != XCBaseAbsListFragment.MODE_NOT_PULL) {
-                f.completeRefresh();
-                XCApplication.printi("completeRefresh()");
-            }
-
-            if (refresh_fragment != null) {
-                f.whichShow(f.base_all_beans.size(), f.zero_text_hint, f.zero_imageview_hint, f.zero_button_hint);
-            }
-        } else if (refresh_fragment instanceof XLBaseExpandAbsListFragment) {
-            XLBaseExpandAbsListFragment f = (XLBaseExpandAbsListFragment) refresh_fragment;
-            if (refresh_fragment != null && f.whichMode != XCBaseAbsListFragment.MODE_NOT_PULL) {
-                f.completeRefresh();
-                XCApplication.printi("completeRefresh()");
-            }
-
-            if (refresh_fragment != null) {
-                f.whichShow(f.base_all_beans.size(), f.zero_text_hint, f.zero_imageview_hint, f.zero_button_hint);
-            }
-        } else if (refresh_fragment == null) {
-
-        } else {
-            throw new RuntimeException("非法的fragment类型");
-        }
+        XCHttpAsyn.resetNetingStatus();
         closeHttpDialog();
     }
 
@@ -166,7 +136,7 @@ public abstract class XCHttpResponseHandler extends AsyncHttpResponseHandler {
                 // 打印bean到控制台， 然后复制
                 XCJsonParse.json2Bean(response);
 
-                result_bean = XCJsonParse.getJsonParseData(response , XCJsonBean.class);
+                result_bean = XCJsonParse.getJsonParseData(response, result_bean_class);
 
                 if (result_bean == null) {
                     result_boolean = false;

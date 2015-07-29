@@ -1,5 +1,6 @@
 package com.xiaocoder.test.bean;
 
+import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.test.buffer.QlkBean;
 
 /**

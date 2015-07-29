@@ -9,6 +9,7 @@ import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
+import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.buffer.QlkActivity;
@@ -19,6 +20,7 @@ import org.apache.http.Header;
 public class HttpDownLoadActivity extends QlkActivity {
 
     Button button;
+    XCQueryDialog dialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,9 @@ public class HttpDownLoadActivity extends QlkActivity {
 
     public void request() {
 //        XCHttpAsyn.getAsyn(true,true, this, "http://" + MainActivity.TEST_HOST + ":8080/qlktest/test.mp3", new RequestParams(), new QlkHttpResponseHandler(HttpDownLoadActivity.this) {
-        XCHttpAsyn.getAsyn(true, true, this, "http://www.baidu.com", new RequestParams(), new QlkHttpResponseHandler(HttpDownLoadActivity.this) {
+        XCHttpAsyn.getAsyn(true, true, this, "http://www.baidu.com"
+                , new RequestParams()
+                , new QlkHttpResponseHandler<XCJsonBean>(this, XCJsonBean.class) {
 
             @Override
             public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
@@ -36,7 +40,7 @@ public class HttpDownLoadActivity extends QlkActivity {
 
                 closeHttpDialog();
 
-                final XCQueryDialog dialog = new XCQueryDialog(HttpDownLoadActivity.this, XCBaseDialog.TRAN_STYLE, "下载提示", "该文件大小为" + UtilString.getFileSizeUnit(arg2.length), new String[]{"下载", "取消"}, false);
+                dialog = new XCQueryDialog(HttpDownLoadActivity.this, XCBaseDialog.TRAN_STYLE, "下载提示", "该文件大小为" + UtilString.getFileSizeUnit(arg2.length), new String[]{"下载", "取消"}, false);
 
                 dialog.setOnDecideListener(new XCQueryDialog.OnDecideListener() {
                     @Override

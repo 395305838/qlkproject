@@ -10,4 +10,5 @@ public class QlkBean extends XCJsonBean {
 
     public static String CODE = "code";
     public static String MSG = "msg";
+
 }
