@@ -1,16 +1,14 @@
 package com.xiaocoder.test.line_point;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkBaseActivity;
+import com.xiaocoder.test.buffer.QlkActivity;
 
-public class LinePointActivityGC extends QlkBaseActivity {
+public class LinePointActivityGC extends QlkActivity {
     int i = 10;
     ImageView test_imageview;
     XCTitleCommonFragment fragment;

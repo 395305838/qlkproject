@@ -18,7 +18,7 @@ import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.test.MainActivity;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkBaseActivity;
+import com.xiaocoder.test.buffer.QlkActivity;
 import com.xiaocoder.test.buffer.QlkHttpResponseHandler;
 
 import org.apache.http.Header;
@@ -33,7 +33,7 @@ import java.util.List;
  android:screenOrientation="portrait"
  android:windowSoftInputMode="adjustResize|stateHidden" >
  </activity>*/
-public class ListActivity extends QlkBaseActivity {
+public class ListActivity extends QlkActivity {
     XCListViewFragment list_fragment;
 
     @Override

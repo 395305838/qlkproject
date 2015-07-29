@@ -16,7 +16,7 @@ import com.xiaocoder.android.fw.general.helper.XCContactHelper;
 import com.xiaocoder.android.fw.general.model.XCContactModel;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkBaseActivity;
+import com.xiaocoder.test.buffer.QlkActivity;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ import java.util.List;
  android:screenOrientation="portrait"
  android:windowSoftInputMode="adjustResize|stateHidden" >
  </activity>*/
-public class ContactsActivity extends QlkBaseActivity {
+public class ContactsActivity extends QlkActivity {
     ListView contacts_listview;
 
     @Override

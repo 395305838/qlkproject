@@ -14,9 +14,9 @@ import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow;
 import com.xiaocoder.android.fw.general.pop.XCReflectPopupWindow;
 import com.xiaocoder.android.fw.general.util.UtilImage;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkBaseActivity;
+import com.xiaocoder.test.buffer.QlkActivity;
 
-public class PopActivity extends QlkBaseActivity {
+public class PopActivity extends QlkActivity {
     Button test_pop_button;
     Button test_pop_button2;
     Button test_pop_button3;

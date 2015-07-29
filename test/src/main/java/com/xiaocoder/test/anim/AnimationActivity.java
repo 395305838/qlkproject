@@ -1,21 +1,18 @@
 package com.xiaocoder.test.anim;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkBaseActivity;
+import com.xiaocoder.test.buffer.QlkActivity;
 
 /**
  * Created by xilinch on 2015/7/13.
  */
-public class AnimationActivity extends QlkBaseActivity {
+public class AnimationActivity extends QlkActivity {
 
     private ImageView imageA;
     private ImageView imageB;

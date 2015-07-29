@@ -8,11 +8,11 @@ import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment;
 import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment.OnImageClickListener;
 import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment.OnLoadImage;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkBaseActivity;
+import com.xiaocoder.test.buffer.QlkActivity;
 
 import java.util.ArrayList;
 
-public class ViewPagerActivity extends QlkBaseActivity {
+public class ViewPagerActivity extends QlkActivity {
     XCTitleCommonFragment title_fragment;
     XCViewPagerFragment fragment;
 

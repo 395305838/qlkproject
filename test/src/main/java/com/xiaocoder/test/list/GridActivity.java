@@ -17,14 +17,12 @@ import com.xiaocoder.android.fw.general.fragment.XCGridViewFragment;
 import com.xiaocoder.android.fw.general.fragment.XCListViewFragment;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
-import com.xiaocoder.test.MainActivity;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkBaseActivity;
+import com.xiaocoder.test.buffer.QlkActivity;
 import com.xiaocoder.test.buffer.QlkHttpResponseHandler;
 
 import org.apache.http.Header;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -34,7 +32,7 @@ import java.util.List;
  android:screenOrientation="portrait"
  android:windowSoftInputMode="adjustResize|stateHidden" >
  </activity>*/
-public class GridActivity extends QlkBaseActivity {
+public class GridActivity extends QlkActivity {
     XCGridViewFragment grid_fragment;
 
     @Override

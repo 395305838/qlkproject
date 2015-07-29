@@ -6,6 +6,7 @@ import com.xiaocoder.test.buffer.QlkBean;
  * Created by xiaocoder on 2015/7/29.
  */
 public class TestBean extends QlkBean {
+
     public String msg = "msg";
     public String data = "data";
     public String result = "result";

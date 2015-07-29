@@ -11,12 +11,12 @@ import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkBaseActivity;
+import com.xiaocoder.test.buffer.QlkActivity;
 import com.xiaocoder.test.buffer.QlkHttpResponseHandler;
 
 import org.apache.http.Header;
 
-public class HttpDownLoadActivity extends QlkBaseActivity {
+public class HttpDownLoadActivity extends QlkActivity {
 
     Button button;
 

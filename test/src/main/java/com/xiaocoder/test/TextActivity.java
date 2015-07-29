@@ -1,15 +1,11 @@
 package com.xiaocoder.test;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonParse;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
-import com.xiaocoder.test.buffer.QlkBaseActivity;
+import com.xiaocoder.test.buffer.QlkActivity;
 
 import org.json.JSONArray;
 
@@ -17,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class TextActivity extends QlkBaseActivity {
+public class TextActivity extends QlkActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -6,17 +6,15 @@ import android.widget.AdapterView;
 
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.fragment.XCSearchLetterFragment;
 import com.xiaocoder.android.fw.general.fragment.XCSearchLetterFragment.OnInnerItemClickListener;
 import com.xiaocoder.android.fw.general.fragment.XCSearchLetterFragment.OnOutTitleClickListene;
 import com.xiaocoder.android.fw.general.fragment.XCSearchRecordFragment;
 import com.xiaocoder.android.fw.general.fragment.XCTitleSearchFragment;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
-import com.xiaocoder.android.fw.general.http.XCHttpResponseHandler;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkBaseActivity;
+import com.xiaocoder.test.buffer.QlkActivity;
 import com.xiaocoder.test.buffer.QlkConfig;
 import com.xiaocoder.test.buffer.QlkHttpResponseHandler;
 
@@ -25,7 +23,7 @@ import org.apache.http.Header;
 /*
  * 这个例子的恢复历史记录数据在onStart()方法中
  */
-public class SearchActivity extends QlkBaseActivity {
+public class SearchActivity extends QlkActivity {
 
     // 带有字母的两层listview列表
     XCSearchLetterFragment letter_fragment;

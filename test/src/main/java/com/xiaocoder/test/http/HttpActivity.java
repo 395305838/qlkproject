@@ -6,16 +6,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.loopj.android.http.RequestParams;
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
-import com.xiaocoder.android.fw.general.http.XCHttpResponseHandler;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkBaseActivity;
+import com.xiaocoder.test.buffer.QlkActivity;
 import com.xiaocoder.test.buffer.QlkHttpResponseHandler;
 
 import org.apache.http.Header;
 
-public class HttpActivity extends QlkBaseActivity {
+public class HttpActivity extends QlkActivity {
 
     Button button;
 

@@ -39,7 +39,6 @@ import com.xiaocoder.test.viewpagerindicator.ListSamples;
 public class MainActivity extends Activity implements OnClickListener {
 
     public static String TEST_HOST = "10.7.30.121";
-    Button test_dialog;
     Button test_point_line;
     Button test_scan;
     Button test_http;
@@ -60,7 +59,6 @@ public class MainActivity extends Activity implements OnClickListener {
     Button test_sliding_menu2;
     Button test_viewpager_indicator;
     Button test_anim;
-    Button test_dialog2;
     Button test_http_download;
     Button test_code;
 

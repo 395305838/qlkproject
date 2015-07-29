@@ -2,13 +2,12 @@ package com.xiaocoder.test.fragment;
 
 import android.os.Bundle;
 
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.fragment.XCWebViewFragment;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkBaseActivity;
+import com.xiaocoder.test.buffer.QlkActivity;
 
-public class WebActivity extends QlkBaseActivity {
+public class WebActivity extends QlkActivity {
 	XCWebViewFragment web_view_fragment;
 	XCTitleCommonFragment title_fragment_common;
 

@@ -1,17 +1,13 @@
 package com.xiaocoder.test.scan;
 
-import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.util.UtilGenerateCode;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkBaseActivity;
+import com.xiaocoder.test.buffer.QlkActivity;
 
-public class CodeActivity extends QlkBaseActivity {
+public class CodeActivity extends QlkActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

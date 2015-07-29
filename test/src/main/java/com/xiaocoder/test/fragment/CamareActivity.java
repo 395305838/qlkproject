@@ -4,18 +4,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.fragment.XCBottomChatFragment;
 import com.xiaocoder.android.fw.general.fragment.XCCameraPhotoFragment;
 import com.xiaocoder.android.fw.general.fragment.XCCameraPhotoFragment.OnCaremaSelectedFileListener;
 import com.xiaocoder.android.fw.general.fragment.XCLocalPhotoFragment;
 import com.xiaocoder.android.fw.general.fragment.XCLocalPhotoFragment.OnLocalSelectedFileListener;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkBaseActivity;
+import com.xiaocoder.test.buffer.QlkActivity;
 
 import java.io.File;
 
-public class CamareActivity extends QlkBaseActivity {
+public class CamareActivity extends QlkActivity {
 	XCCameraPhotoFragment camera_fragment;
 	XCLocalPhotoFragment local_fragment;
 	ImageView test_imageview;
