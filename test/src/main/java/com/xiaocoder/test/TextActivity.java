@@ -34,6 +34,16 @@ public class TextActivity extends QlkBaseActivity {
     // 初始化控件
     @Override
     public void initWidgets() {
+//        test1();
+        test2();
+
+    }
+
+    private void test2() {
+        String str = "";
+    }
+
+    private void test1() {
         String str = "{\n" +
                 "    \"code\": 0,\n" +
                 "    \"msg\": \"success\",\n" +
@@ -44,7 +54,7 @@ public class TextActivity extends QlkBaseActivity {
 
         String str2 = " {\"code\":0,\"msg\":\"成功\",\"data\":[[\"板蓝根\",\"白云山\"]]}";
 
-        XCJsonBean bean = XCJsonParse.getJsonParseData(str2 , XCJsonBean.class);
+        XCJsonBean bean = XCJsonParse.getJsonParseData(str2, XCJsonBean.class);
         List beans = bean.obtListList("data", new ArrayList<ArrayList>());
 
         try {
@@ -69,8 +79,7 @@ public class TextActivity extends QlkBaseActivity {
             printi("exception");
         }
 
-        printi(UtilSystem.getDeviceId(this)+"--------------deviceId");
-
+        printi(UtilSystem.getDeviceId(this) + "--------------deviceId");
     }
 
     // 设置监听

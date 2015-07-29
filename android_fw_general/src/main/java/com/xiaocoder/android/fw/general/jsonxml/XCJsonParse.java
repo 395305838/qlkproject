@@ -115,6 +115,7 @@ public class XCJsonParse {
 
     // 创建bean类 , 这里只是打印出来了而已,然后复制粘贴字段到bean
     public static void json2Bean(String json) {
+
         if (XCApplication.getBase_log().is_OutPut() && json != null) {
             LinkedHashSet<String> set = new LinkedHashSet<String>();
             json = json.replace("\"", "");
@@ -123,10 +124,17 @@ public class XCJsonParse {
             String[] items = json.split(",");
             StringBuilder builder = new StringBuilder("");
 
-            builder.append("public class bean的名字  extends QlkBean {");
+            builder.append("public class  文件名  extends QlkBean {");
 
             for (String item : items) {
+
+                //可能中文的语句之间有，
+                if (!item.contains(":")) {
+                    continue;
+                }
+
                 String[] keyvalues = item.split(":");
+
                 if ("".equals(keyvalues[0]) || set.contains(keyvalues[0])) {
                     continue;
                 } else {

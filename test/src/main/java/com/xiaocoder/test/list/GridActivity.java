@@ -47,17 +47,17 @@ public class GridActivity extends QlkBaseActivity {
     public void request() {
 
         RequestParams params = new RequestParams();
-        XCHttpAsyn.getAsyn(true, this, "http://ad.test.7lk.cn" + "/medicationGroup/list", params, new QlkHttpResponseHandler(this, grid_fragment) {
+        XCHttpAsyn.getAsyn(true, this, "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95", params, new QlkHttpResponseHandler(this, grid_fragment) {
             @Override
             public void onSuccess(int code, Header[] headers, byte[] arg2) {
                 super.onSuccess(code, headers, arg2);
                 if (result_boolean) {
-                    if (!grid_fragment.checkGoOn()) {
-                        return;
-                    }
-                    // grid_fragment.setTotalNum("100");// 或者setTotalPage也可以
-                    grid_fragment.setTotalPage(result_bean.obtString("totalpage", ""));
-                    grid_fragment.updateList(result_bean.obtList("data", new ArrayList<XCJsonBean>()));
+//                    if (!grid_fragment.checkGoOn()) {
+//                        return;
+//                    }
+//                    // grid_fragment.setTotalNum("100");// 或者setTotalPage也可以
+//                    grid_fragment.setTotalPage(result_bean.obtString("totalpage"));
+//                    grid_fragment.updateList(result_bean.obtList("data", new ArrayList<XCJsonBean>()));
                 }
             }
         });
