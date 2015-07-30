@@ -133,7 +133,7 @@ public class ListActivity extends QlkActivity {
     public void initWidgets() {
         list_fragment = new XCListViewFragment();
         list_fragment.setAdapter(new TestAdatpter(this, null));
-//        list_fragment.setAdapter(new XCAdapterTest(this, null));
+        // list_fragment.setAdapter(new XCAdapterTest(this, null));
         // 可以不设置Mode， 默认是不可以拉的listview
         list_fragment.setMode(XCListViewFragment.MODE_UP_DOWN);
         list_fragment.setBgZeroHintInfo("数据为0", "重新加载", R.drawable.xc_d_chat_face);

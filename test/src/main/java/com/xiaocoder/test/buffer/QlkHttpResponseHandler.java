@@ -46,6 +46,7 @@ public class QlkHttpResponseHandler<T extends XCJsonBean> extends XCHttpResponse
             if (mContext instanceof XCBaseActivity) {
                 if (((XCBaseActivity) mContext).isActivityDestroied()) {
                     result_boolean = false;
+                    XCApplication.printe("activity被销毁了，result_boolean = false");
                     return;
                 }
             }

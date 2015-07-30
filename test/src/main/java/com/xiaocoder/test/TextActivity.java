@@ -30,8 +30,8 @@ public class TextActivity extends QlkActivity {
     // 初始化控件
     @Override
     public void initWidgets() {
-//        test1();
-        test2();
+        test1();
+//        test2();
 
     }
 
