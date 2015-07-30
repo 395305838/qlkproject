@@ -157,6 +157,13 @@ public class XCLog {
         }
     }
 
+    public void e(String hint) {
+        i(XCConfig.TAG_LOG, hint);
+    }
+
+    public void e(Context context, String hint) {
+        i(XCConfig.TAG_LOG, context.getClass().getSimpleName() + "--" + hint);
+    }
 
     public void e(String hint, Exception e) {
         e.printStackTrace();
@@ -164,21 +171,6 @@ public class XCLog {
         if (IS_PRINTLOG) {
             writeLog2File("Exception-->" + hint + "-->" + e.toString() + "--" + e.getMessage(), true);
         }
-    }
-
-    public void e(String hint) {
-        if (IS_PRINTLOG) {
-            writeLog2File(XCConfig.TAG_LOG + "--->" + hint, true);
-        }
-    }
-
-    public void e(Context context, String hint) {
-
-        Log.e(XCConfig.TAG_ANDROID_RUNTIME, "Exception-->" + context.getClass().getSimpleName() + "--" + hint);
-        if (IS_PRINTLOG) {
-            writeLog2File("Exception-->" + context.getClass().getSimpleName() + "--" + hint, true);
-        }
-
     }
 
     public void e(Context context, String hint, Exception e) {
