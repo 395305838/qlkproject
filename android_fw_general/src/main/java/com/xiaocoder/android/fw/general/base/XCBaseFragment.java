@@ -2,7 +2,6 @@ package com.xiaocoder.android.fw.general.base;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,10 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ExpandableListView;
-import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 
@@ -254,6 +250,12 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
     public void printe(Context context, String hint) {
         if (getBaseActivity() != null) {
             getBaseActivity().printe(context, hint);
+        }
+    }
+
+    public void printe(String hint) {
+        if (getBaseActivity() != null) {
+            getBaseActivity().printe(hint);
         }
     }
 

@@ -241,11 +241,9 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
     }
 
     public void hideFragment(Fragment fragment) {
-        if (fragment != null) {
-            FragmentTransaction ft = base_fm.beginTransaction();
-            ft.hide(fragment);
-            ft.commitAllowingStateLoss();
-        }
+        FragmentTransaction ft = base_fm.beginTransaction();
+        ft.hide(fragment);
+        ft.commitAllowingStateLoss();
     }
 
     // 之前必须有add
@@ -470,6 +468,10 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
     public void printe(Context context, String hint) {
         XCApplication.printe(context, hint);
+    }
+
+    public void printe(String hint) {
+        XCApplication.printe(hint);
     }
 
     public void spPut(String key, boolean value) {

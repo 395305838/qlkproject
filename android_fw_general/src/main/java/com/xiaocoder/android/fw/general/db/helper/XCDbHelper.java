@@ -6,14 +6,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.xiaocoder.android.fw.general.util.UtilString;
 
-import java.util.ArrayList;
-
 // 搜索记录的数据库helper文件
 public class XCDbHelper extends SQLiteOpenHelper {
 
     public String[] mSqls;
 
-    // dbName = "qlk_wyd_.db" ,  version = 1
+    // 如 dbName = "qlk_wyd_.db" ,  version = 1 ， 该方法传入的值，在中间层的Config中找
     public XCDbHelper(Context context, String dbName, int version, String[] sqls) {
         super(context, dbName, null, version);
         if (UtilString.isBlank(dbName)) {

@@ -192,6 +192,12 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
         }
     }
 
+    public void printe(String hint) {
+        if (this.context != null) {
+            ((XCBaseActivity) this.context).printe(hint);
+        }
+    }
+
     public void spPut(String key, boolean value) {
         if (context != null) {
             ((XCBaseActivity) context).spPut(key, value);
