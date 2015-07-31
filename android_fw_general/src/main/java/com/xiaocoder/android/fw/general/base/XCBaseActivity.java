@@ -394,6 +394,12 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
                 intent.putExtra(command_keys[i], (Boolean) obj);
             } else if (obj instanceof Integer) {
                 intent.putExtra(command_keys[i], (Integer) obj);
+            } else if (obj instanceof Long) {
+                intent.putExtra(command_keys[i], (Long) obj);
+            } else if (obj instanceof Double) {
+                intent.putExtra(command_keys[i], (Double) obj);
+            } else if (obj instanceof Float) {
+                intent.putExtra(command_keys[i], (Float) obj);
             } else if (obj instanceof ArrayList) {
                 ArrayList list = (ArrayList) obj;
                 if (list.size() > 0) {
@@ -521,6 +527,5 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
     public void displayImage(String uri, ImageView imageView) {
         displayImage(uri, imageView, XCImageLoaderHelper.getDisplayImageOptions());
     }
-
 
 }
