@@ -10,6 +10,7 @@ public class XCConfig {
     public static String TAG_JSON_BEAN = "JsonBean";
     public static String TAG_ANDROID_RUNTIME = "AndroidRuntime";
     public static String TAG_LOG = "log";
+    public static String TAG_TEMP = "temp";
 
     /*
      * 分别代表开发 测试  线上的环境
