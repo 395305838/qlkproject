@@ -7,10 +7,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.function.XCBaseAbsListFragment;
 import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.base.function.XLBaseExpandAbsListFragment;
-import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonParse;
 
@@ -21,7 +18,7 @@ import org.apache.http.Header;
  * @date 2014-12-30 下午5:04:48
  */
 public abstract class XCHttpResponseHandler<T extends XCJsonBean> extends AsyncHttpResponseHandler {
-    // 是json还是xml或图片等
+    // 是json还是xml或图片等,默认是json
     public int content_type;
     // 如果result_boolean为真就开始处理业务, 如果为false则不处理
     public boolean result_boolean;
@@ -42,10 +39,6 @@ public abstract class XCHttpResponseHandler<T extends XCJsonBean> extends AsyncH
     public static int XML = 2;
     public static int ELSE = 3;
 
-    public T getResult_bean() {
-        return result_bean;
-    }
-
     // show_background_when_net_fail true 为展示背景和toast , false仅展示吐司
     @SuppressWarnings("rawtypes")
     public XCHttpResponseHandler(XCIHttpResult result_http,
@@ -61,9 +54,12 @@ public abstract class XCHttpResponseHandler<T extends XCJsonBean> extends AsyncH
 
     }
 
-    // 默认是json格式 以及 网络访问失败时显示背景布局
     public XCHttpResponseHandler(XCIHttpResult result_http, Class<T> result_bean_class) {
         this(result_http, JSON, true, result_bean_class);
+    }
+
+    public XCHttpResponseHandler(XCIHttpResult result_http) {
+        this(result_http, JSON, true, (Class<T>) XCJsonBean.class);
     }
 
 
