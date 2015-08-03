@@ -167,7 +167,10 @@ public abstract class XCResponseHandler<T extends XCJsonBean> extends AsyncHttpR
         }
     }
 
-    private void parse(byte[] response_bytes) {
+    /**
+     * 改方法是在子线程运行的，所以不要有ui或toast等操作
+     */
+    private final void parse(byte[] response_bytes) {
         try {
             // 这里仅提供通用的json格式的解析 ，有些不通用的json
             if (content_type == JSON) {
