@@ -1,6 +1,5 @@
-package com.xiaocoder.test.buffer;
+package http;
 
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.view.KeyEvent;
 
@@ -13,11 +12,11 @@ import com.xiaocoder.android.fw.general.base.function.XCBaseMainActivity;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
-import com.xiaocoder.android.fw.general.http.XCHttpResponseHandler;
 import com.xiaocoder.android.fw.general.http.XCIHttpResult;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
+import com.xiaocoder.test.buffer.QlkBean;
 
 /**
  * @author xiaocoder
@@ -39,7 +38,7 @@ public class QlkHttpResponseHandler<T extends XCJsonBean> extends XCHttpResponse
     // 需要根据公司业务重写
     public void yourCompanyLogic() {
 
-        XCApplication.printi("yourCompanyLogic");
+        XCApplication.printi("yourCompanyResultRule()");
 
         if (!UtilString.isBlank(result_bean.obtString(QlkBean.MSG, ""))) {
             if (mContext instanceof XCBaseActivity) {
@@ -60,7 +59,7 @@ public class QlkHttpResponseHandler<T extends XCJsonBean> extends XCHttpResponse
     @Override
     public void yourCompanySecret(RequestParams params, AsyncHttpClient client, boolean needSecret) {
 
-        XCApplication.printi("yourCompanySecret");
+        XCApplication.printi("yourCompanySecret()");
 
         client.addHeader("_v", UtilSystem.getVersionCode(mContext) + "");// 版本号，必填
         client.addHeader("_m", UtilSystem.getMacAddress(mContext));// 设备的mac地址，选填
@@ -102,7 +101,7 @@ public class QlkHttpResponseHandler<T extends XCJsonBean> extends XCHttpResponse
                         closeHttpDialog();
                         XCHttpAsyn.resetNetingStatus();
                         if (!(mContext instanceof XCBaseMainActivity)) {
-                            ((Activity) mContext).finish();
+                            ((XCBaseActivity) mContext).myFinish();
                         }
                     }
                     return false;

@@ -13,7 +13,7 @@ import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.buffer.QlkActivity;
-import com.xiaocoder.test.buffer.QlkHttpResponseHandler;
+import com.xiaocoder.test.buffer.QlkResponseHandler;
 
 import org.apache.http.Header;
 
@@ -32,12 +32,11 @@ public class HttpDownLoadActivity extends QlkActivity {
 //        XCHttpAsyn.getAsyn(true,true, this, "http://" + MainActivity.TEST_HOST + ":8080/qlktest/test.mp3", new RequestParams(), new QlkHttpResponseHandler(HttpDownLoadActivity.this) {
         XCHttpAsyn.getAsyn(true, true, this, "http://www.baidu.com"
                 , new RequestParams()
-                , new QlkHttpResponseHandler<XCJsonBean>(this, XCJsonBean.class) {
+                , new QlkResponseHandler<XCJsonBean>(this, XCJsonBean.class) {
 
             @Override
-            public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
-                super.onSuccess(arg0, arg1, arg2);
-
+            public void success(int code, Header[] headers, byte[] arg2) {
+                super.success(code, headers, arg2);
                 closeHttpDialog();
 
                 dialog = new XCQueryDialog(HttpDownLoadActivity.this, XCBaseDialog.TRAN_STYLE, "下载提示", "该文件大小为" + UtilString.getFileSizeUnit(arg2.length), new String[]{"下载", "取消"}, false);
@@ -57,7 +56,7 @@ public class HttpDownLoadActivity extends QlkActivity {
             }
 
             @Override
-            public void onFinish() {
+            public void finish() {
 
             }
         });

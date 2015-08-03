@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.http;
+package http;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -8,6 +8,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.application.XCConfig;
+import com.xiaocoder.android.fw.general.http.*;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonParse;
 
@@ -69,11 +70,9 @@ public abstract class XCHttpResponseHandler<T extends XCJsonBean> extends AsyncH
 
     @Override
     public void onFailure(int code, Header[] headers, byte[] arg2, Throwable e) {
-        XCApplication.printi(XCConfig.TAG_HTTP, "onFailure----->status code " + code);
+        XCApplication.printi(XCConfig.TAG_HTTP, "onFailure----->status code " + code + "----e.toString()" + e.toString());
 
         e.printStackTrace();
-
-        XCApplication.printi(XCConfig.TAG_HTTP, e.toString());
 
         if (headers != null) {
             for (Header header : headers) {
@@ -119,7 +118,7 @@ public abstract class XCHttpResponseHandler<T extends XCJsonBean> extends AsyncH
     public void onFinish() {
         super.onFinish();
         XCApplication.printi(XCConfig.TAG_HTTP, "onFinish");
-        XCHttpAsyn.resetNetingStatus();
+        com.xiaocoder.android.fw.general.http.XCHttpAsyn.resetNetingStatus();
         closeHttpDialog();
     }
 
@@ -154,6 +153,7 @@ public abstract class XCHttpResponseHandler<T extends XCJsonBean> extends AsyncH
 
     public abstract void yourCompanySecret(RequestParams params, AsyncHttpClient client, boolean needSecret);
 
+    // 对返回状态码的一个判断，每个项目的认定操作成功的状态码或结构可能不同，在这里统一拦截
     public abstract void yourCompanyLogic();
 
     public abstract void showHttpDialog();

@@ -36,6 +36,7 @@ public class XCApplication extends Application {
     protected static ImageLoader base_imageloader;
     protected static Handler base_handler;
     protected static ExecutorService base_cache_threadpool;
+    protected static ExecutorService base_fix_threadpool;
     protected static XCIOAndroid base_io;
 
     public Stack<Activity> getStack() {
@@ -50,6 +51,7 @@ public class XCApplication extends Application {
 
         // 线程池
         base_cache_threadpool = XCExecutorHelper.getExecutorHelperInstance().getCache();
+        base_fix_threadpool = XCExecutorHelper.getExecutorHelperInstance().getFix(50);
         base_handler = new Handler();
         base_io = new XCIOAndroid(getApplicationContext());
 
@@ -125,7 +127,7 @@ public class XCApplication extends Application {
     }
 
     /**
-     *关闭所有的activity,finish()会调用destroy()方法
+     * 关闭所有的activity,finish()会调用destroy()方法
      */
     public void finishAllActivity() {
         for (Activity activity : stack) {
@@ -194,6 +196,9 @@ public class XCApplication extends Application {
         return base_io;
     }
 
+    public static ExecutorService getBase_fix_threadpool() {
+        return base_fix_threadpool;
+    }
 
     public static void printi(String msg) {
         base_log.i(msg);

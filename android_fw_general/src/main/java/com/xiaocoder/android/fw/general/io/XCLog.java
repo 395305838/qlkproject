@@ -235,20 +235,22 @@ public class XCLog {
     // ---------------------------测试打印字符串到XCConfig.TEMP_PRINT_FILE文件中，会覆盖之前的---------------------------
     public void tempPrint(String str) {
         if (IS_OUTPUT) {
-            FileOutputStream fos = null;
-            try {
-                fos = new FileOutputStream(XCApplication.getBase_io().createFileInSDCard(null, app_temp_file_name));
-                fos.write(str.getBytes());
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                if (fos != null) {
-                    try {
-                        fos.close();
-                    } catch (Exception e2) {
-                        e2.printStackTrace();
-                    } finally {
-                        fos = null;
+            synchronized (this) {
+                FileOutputStream fos = null;
+                try {
+                    fos = new FileOutputStream(XCApplication.getBase_io().createFileInSDCard(null, app_temp_file_name));
+                    fos.write(str.getBytes());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    if (fos != null) {
+                        try {
+                            fos.close();
+                        } catch (Exception e2) {
+                            e2.printStackTrace();
+                        } finally {
+                            fos = null;
+                        }
                     }
                 }
             }

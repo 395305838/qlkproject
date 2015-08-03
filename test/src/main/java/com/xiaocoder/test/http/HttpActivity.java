@@ -10,7 +10,7 @@ import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.bean.TestBean;
 import com.xiaocoder.test.buffer.QlkActivity;
-import com.xiaocoder.test.buffer.QlkHttpResponseHandler;
+import com.xiaocoder.test.buffer.QlkResponseHandler;
 
 import org.apache.http.Header;
 
@@ -28,14 +28,13 @@ public class HttpActivity extends QlkActivity {
     public void request() {
         XCHttpAsyn.getAsyn(true, this, "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95"
                 , new RequestParams(),
-                new QlkHttpResponseHandler<TestBean>(this, TestBean.class) {
+                new QlkResponseHandler<TestBean>(this, TestBean.class) {
 
                     @Override
-                    public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
-                        super.onSuccess(arg0, arg1, arg2);
+                    public void success(int code, Header[] headers, byte[] arg2) {
+                        super.success(code, headers, arg2);
                         shortToast("success");
                     }
-
                 });
     }
 

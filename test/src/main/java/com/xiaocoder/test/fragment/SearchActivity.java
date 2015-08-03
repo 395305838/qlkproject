@@ -14,10 +14,9 @@ import com.xiaocoder.android.fw.general.fragment.XCTitleSearchFragment;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.bean.TestBean;
 import com.xiaocoder.test.buffer.QlkActivity;
 import com.xiaocoder.test.buffer.QlkConfig;
-import com.xiaocoder.test.buffer.QlkHttpResponseHandler;
+import com.xiaocoder.test.buffer.QlkResponseHandler;
 
 import org.apache.http.Header;
 
@@ -114,11 +113,11 @@ public class SearchActivity extends QlkActivity {
 
     public void request() {
         XCHttpAsyn.getAsyn(true, this, "http://18620909598.sinaapp.com/pinpailiebiao.json",
-                new RequestParams(), new QlkHttpResponseHandler<XCJsonBean>(this, XCJsonBean.class) {
+                new RequestParams(), new QlkResponseHandler<XCJsonBean>(this, XCJsonBean.class) {
 
                     @Override
-                    public void onSuccess(int arg0, Header[] arg1, byte[] arg2) {
-                        super.onSuccess(arg0, arg1, arg2);
+                    public void success(int code, Header[] headers, byte[] arg2) {
+                        super.success(code, headers, arg2);
                         if (result_boolean) {
                             letter_fragment.setOnInnerItemClickListener(new OnInnerItemClickListener() {
 

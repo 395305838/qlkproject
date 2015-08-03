@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.http;
+package http;
 
 import android.content.Context;
 
@@ -36,7 +36,7 @@ public class XCHttpAsyn {
         return client;
     }
 
-    public static void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, RequestParams params, XCResponseHandler res) {
+    public static void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, RequestParams params, XCHttpResponseHandler res) {
         XCApplication.printi(XCConfig.TAG_HTTP, params.toString());
         if (isAllowConcurrent || !isNeting) {
             isNeting = true;
@@ -50,15 +50,15 @@ public class XCHttpAsyn {
         }
     }
 
-    public static void getAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
+    public static void getAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCHttpResponseHandler res) {
         getAsyn(true, isAllowConcurrent, isShowDialog, context, urlString, params, res);
     }
 
-    public static void getAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
+    public static void getAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCHttpResponseHandler res) {
         getAsyn(true, false, isShowDialog, context, urlString, params, res);
     }
 
-    public static void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
+    public static void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCHttpResponseHandler res) {
         XCApplication.printi(XCConfig.TAG_HTTP, params.toString());
         if (isAllowConcurrent || !isNeting) {
             isNeting = true;
@@ -72,12 +72,12 @@ public class XCHttpAsyn {
         }
     }
 
-    public static void postAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
+    public static void postAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCHttpResponseHandler res) {
         postAsyn(true, isAllowConcurrent, isShowDialog, context, urlString, params, res);
 
     }
 
-    public static void postAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
+    public static void postAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCHttpResponseHandler res) {
         postAsyn(true, false, isShowDialog, context, urlString, params, res);
     }
 
