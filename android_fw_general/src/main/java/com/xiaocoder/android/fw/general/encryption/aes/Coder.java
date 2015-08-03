@@ -33,8 +33,6 @@ public abstract class Coder {
 
 	/**
 	 * MD5加密
-	 * @param data
-	 * @return
 	 * @throws Exception
 	 */
 	public static byte[] encryptMD5(byte[] data) throws Exception {
