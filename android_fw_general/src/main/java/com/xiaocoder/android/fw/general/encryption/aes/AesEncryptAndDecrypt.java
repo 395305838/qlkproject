@@ -1,4 +1,4 @@
-package com.xjs.android.encryption.aes;
+package com.xiaocoder.android.fw.general.encryption.aes;
 
 /**
  * AES加密解密类

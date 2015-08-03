@@ -1,4 +1,4 @@
-package com.xjs.android.encryption.des;
+package com.xiaocoder.android.fw.general.encryption.des;
 
 /**
  * DES加密解密类

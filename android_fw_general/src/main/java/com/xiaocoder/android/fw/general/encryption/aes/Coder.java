@@ -1,4 +1,4 @@
-package com.xjs.android.encryption.aes;
+package com.xiaocoder.android.fw.general.encryption.aes;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -25,9 +25,7 @@ public abstract class Coder {
 
 	/**
 	 * BASE64加密
-	 * @param data
-	 * @return 
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public static String encryptBASE64(byte[] data) throws UnsupportedEncodingException {
 		return new String(Base64.encode(data, Base64.DEFAULT), "UTF-8");

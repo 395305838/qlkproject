@@ -5,6 +5,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.util.Log;
+
+import com.xiaocoder.android.fw.general.application.XCApplication;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -15,7 +18,7 @@ import java.util.Enumeration;
 public class UtilNet {
 
     /**
-     * @return true|false
+     * 网络是否可用
      */
     public static boolean isNetworkAvailable(Context context) {
 
@@ -36,6 +39,9 @@ public class UtilNet {
         return false;
     }
 
+    /**
+     * 是否是wifi
+     */
     public static boolean isNetWorkWifi(Context context) {
         if (isNetworkAvailable(context)) {
             ConnectivityManager conManager = (ConnectivityManager) context
@@ -82,4 +88,64 @@ public class UtilNet {
         }
         return ip;
     }
+
+    /**
+     * 获取网络类型
+     *
+     * @return String 返回网络类型
+     */
+    public static String getAccessNetworkType(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        int type = cm.getActiveNetworkInfo().getType();
+        if (type == ConnectivityManager.TYPE_WIFI) {
+            return "wifi";
+        } else if (type == ConnectivityManager.TYPE_MOBILE) {
+            return "phone";
+        }
+        return "";
+    }
+
+    /**
+     * 获得当前网络类型
+     *
+     * @return TYPE_MOBILE_CMNET:1 TYPE_MOBILE_CMWAP:2 TYPE_WIFI:3 TYPE_NO:0(未知类型)
+     */
+    public static int getNetWorkType(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        // 获得当前网络信息
+        NetworkInfo ni = cm.getActiveNetworkInfo();
+        if (ni != null && ni.isAvailable()) {
+            int currentNetWork = ni.getType();
+            if (currentNetWork == ConnectivityManager.TYPE_MOBILE) {
+                if (ni.getExtraInfo() != null && ni.getExtraInfo().equals("cmwap")) {
+                    XCApplication.printi("", "当前网络为:cmwap网络");
+                    return TYPE_MOBILE_CMWAP;
+                } else if (ni.getExtraInfo() != null && ni.getExtraInfo().equals("uniwap")) {
+                    XCApplication.printi("", "当前网络为:uniwap网络");
+                    return TYPE_MOBILE_CMWAP;
+                } else if (ni.getExtraInfo() != null && ni.getExtraInfo().equals("3gwap")) {
+                    XCApplication.printi("", "当前网络为:3gwap网络");
+                    return TYPE_MOBILE_CMWAP;
+                } else if (ni.getExtraInfo() != null && ni.getExtraInfo().contains("ctwap")) {
+                    XCApplication.printi("", "当前网络为:" + ni.getExtraInfo() + "网络");
+                    return TYPE_MOBILE_CTWAP;
+                } else {
+                    XCApplication.printi("", "当前网络为:net网络");
+                    return TYPE_MOBILE_CMNET;
+                }
+
+            } else if (currentNetWork == ConnectivityManager.TYPE_WIFI) {
+                XCApplication.printi("", "当前网络为:WIFI网络");
+                return TYPE_WIFI;
+            }
+        }
+        XCApplication.printi("", "当前网络为:不是我们考虑的网络");
+        return TYPE_NO;
+    }
+
+    public static int TYPE_NO = 0;
+    public static int TYPE_MOBILE_CMNET = 1;
+    public static int TYPE_MOBILE_CMWAP = 2;
+    public static int TYPE_WIFI = 3;
+    public static int TYPE_MOBILE_CTWAP = 4; // 移动梦网代理
 }

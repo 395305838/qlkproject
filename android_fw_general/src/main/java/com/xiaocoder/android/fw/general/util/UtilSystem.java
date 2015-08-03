@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 
 public class UtilSystem {
@@ -124,12 +125,6 @@ public class UtilSystem {
         return true;
     }
 
-    public static String getPhoneIMEI(Activity aty) {
-        TelephonyManager tm = (TelephonyManager) aty
-                .getSystemService(Activity.TELEPHONY_SERVICE);
-        return tm.getDeviceId();
-    }
-
     /**
      * 包名
      */
@@ -172,8 +167,7 @@ public class UtilSystem {
      * 获取设备系统SDK API号
      */
     public static int getOSVersionSDKINT() {
-        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
-        return currentapiVersion;
+        return android.os.Build.VERSION.SDK_INT;
     }
 
     /**
@@ -244,7 +238,7 @@ public class UtilSystem {
         // 没有设备id，则生成保存
         TelephonyManager tm = (TelephonyManager) context
                 .getSystemService(Context.TELEPHONY_SERVICE);
-        String deviceId = tm.getDeviceId();
+        String deviceId = tm.getDeviceId(); // 这里的deviceId为IMEI
         // 防止刷机和山寨机 http://www.lexun.cn/thread-22891880-1-1.html
         if (deviceId != null) {
             char[] chs = deviceId.toCharArray();
@@ -294,6 +288,53 @@ public class UtilSystem {
      */
     private String getAndroidId(Context context) {
         return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+    }
+
+
+    /**
+     * 获取当前操作系统的语言
+     */
+    public static String getSysLanguage() {
+        return Locale.getDefault().getLanguage();
+    }
+
+    /**
+     * 获取手机型号
+     */
+    public static String getModel() {
+        return android.os.Build.MODEL;
+    }
+
+
+    /**
+     * 读取sim卡序列号
+     */
+    public static String getSimSerialNum(Context context) {
+        if (context == null) {
+            return "";
+        }
+        return ((TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE))
+                .getSimSerialNumber();
+    }
+
+    /**
+     * 获取运营商信息
+     * @param con 上下文
+     * @return String 运营商信息
+     */
+    public static String getCarrier(Context con) {
+        TelephonyManager telManager = (TelephonyManager) con.getSystemService(Context.TELEPHONY_SERVICE);
+        String imsi = telManager.getSubscriberId();
+        if (imsi != null && !"".equals(imsi)) {
+            if (imsi.startsWith("46000") || imsi.startsWith("46002")) {// 因为移动网络编号46000下的IMSI已经用完，所以虚拟了一个46002编号，134/159号段使用了此编号
+                return "中国移动";
+            } else if (imsi.startsWith("46001")) {
+                return "中国联通";
+            } else if (imsi.startsWith("46003")) {
+                return "中国电信";
+            }
+        }
+        return "";
     }
 
 }

@@ -1,11 +1,5 @@
 package com.xiaocoder.android.fw.general.util;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.text.DecimalFormat;
-import java.util.regex.Pattern;
-
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -23,9 +17,16 @@ import android.widget.TextView;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.io.XCIO;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.text.DecimalFormat;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class UtilString {
 
-    /*
+    /**
      * 比较两个字符串
      */
     public static boolean equalsStr(String str1, String str2) {
@@ -64,7 +65,7 @@ public class UtilString {
         return false;
     }
 
-    /*
+    /**
      * 只判断空 和 空格
      */
     public static boolean isBlank(String str) {
@@ -233,15 +234,29 @@ public class UtilString {
         }
     }
 
-    // ------------------------------------------------------------------
-    private final static Pattern emailer = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
-
+    /**
+     * 是否是邮件
+     */
     public static boolean isEmail(String email) {
         if (email == null || email.trim().length() == 0)
             return false;
+        Pattern emailer = Pattern.compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
         return emailer.matcher(email).matches();
     }
 
+    /**
+     * 检测输入的邮箱是否符合要求.
+     */
+    public static boolean validateEmail(String number) {
+        Pattern p = Pattern
+                .compile("^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$");
+        Matcher m = p.matcher(number);
+        return m.matches();
+    }
+
+    /**
+     * 是否是电话号码
+     */
     public static boolean isPhoneNum(String num) {
         if (num != null && num.length() == 11) {
             // if (num.matches("1[34568]\\d{9}")) {
@@ -250,6 +265,16 @@ public class UtilString {
             // }
         }
         return false;
+    }
+
+    /**
+     * 判断固定电话
+     */
+    public static boolean isFixPhoneNumber(String gnumber) {
+        Pattern pattern = Pattern
+                .compile("0\\d{2,3}(\\(\\d{3,4}\\)|\\d{3,4}-|\\s)?\\d{8}");
+        Matcher matcher = pattern.matcher(gnumber);
+        return matcher.matches();
     }
 
     /**
@@ -288,25 +313,25 @@ public class UtilString {
         return apiKey;
     }
 
-    public String discount(String price_orign, String price_sell, int keep_dot) {
-
-        double discount_num = Double.parseDouble(price_sell) / Double.parseDouble(price_orign);
-        discount_num = discount_num * Math.pow(10, keep_dot + 2);// 显示如6.22则,但是6.226可以进一位
-        String discount_text = discount_num + "";
-        char c = discount_text.charAt(keep_dot + 2);
-        // 四舍五入
-        if (Integer.parseInt(c + "") >= 5) {
-            discount_num = (discount_num + 10.0) / Math.pow(10, keep_dot + 1);
-        } else {
-            discount_num = discount_num / Math.pow(10, keep_dot + 1);
-        }
-        if ((discount_num + "").length() < 4) {
-            discount_text = discount_num + "0";
-        } else {
-            discount_text = discount_num + "";
-        }
-        return discount_text.substring(0, keep_dot + 2);
-    }
+//    public String discount(String price_orign, String price_sell, int keep_dot) {
+//
+//        double discount_num = Double.parseDouble(price_sell) / Double.parseDouble(price_orign);
+//        discount_num = discount_num * Math.pow(10, keep_dot + 2);// 显示如6.22则,但是6.226可以进一位
+//        String discount_text = discount_num + "";
+//        char c = discount_text.charAt(keep_dot + 2);
+//        // 四舍五入
+//        if (Integer.parseInt(c + "") >= 5) {
+//            discount_num = (discount_num + 10.0) / Math.pow(10, keep_dot + 1);
+//        } else {
+//            discount_num = discount_num / Math.pow(10, keep_dot + 1);
+//        }
+//        if ((discount_num + "").length() < 4) {
+//            discount_text = discount_num + "0";
+//        } else {
+//            discount_text = discount_num + "";
+//        }
+//        return discount_text.substring(0, keep_dot + 2);
+//    }
 
 
     /**
@@ -323,7 +348,7 @@ public class UtilString {
 
     }
 
-    /*
+    /**
      * 指定 位置和 颜色   ，颜色的格式  #184DA3
      */
     public static void setLightString(String str, TextView textview, int start, int end, String color) {
@@ -348,7 +373,7 @@ public class UtilString {
         textview.append(XCIO.LINE_SEPARATOR);
     }
 
-    /*
+    /**
      * 设置textview的文本的尺寸
      */
     public static void setSizeAppendString(String str, TextView textview, int size) {
@@ -379,6 +404,9 @@ public class UtilString {
         textview.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);
     }
 
+    /**
+     * 设置第一个字母为大写
+     */
     public static String setFirstLetterBig(String origin) {
 
         if (isBlank(origin)) {
@@ -411,5 +439,105 @@ public class UtilString {
 //            }
 //        }
 //    }
+
+
+    /**
+     * 加密手机号码
+     *
+     * @return 加密处理后的手机号码（当手机号码长度不是11位时，不进行加密处理）
+     */
+    public static String encrypPhoneNumber(String number) {
+        String newnumber = number;
+        if (number.trim().length() == 11) {
+            newnumber = number.substring(0, 3) + "****" + number.substring(number.length() - 4, number.length());
+        } else {
+            newnumber = number;
+        }
+        return newnumber;
+    }
+
+    /**
+     * 加密用户名
+     *
+     * @return 加密处理后的用户名（当用户名是一个字符时，不进行加密处理）
+     */
+    public static String encrypName(String name) {
+        String newName = name;
+        if (null != name && name.trim().length() > 1) {
+            if (name.length() == 2) {
+                newName = "*" + name.substring(name.length() - 1, name.length());
+            } else {
+                newName = "*" + name.substring(name.length() - 2, name.length());
+            }
+        }
+        return newName;
+    }
+
+    /**
+     * 加密邮箱
+     */
+    public static String encrypEmail(String email) {
+
+        String newemail = "";
+        if (email == null || "".equals(email.trim())) {
+            return newemail;
+        }
+        String[] subemail = email.split("@");
+        if (subemail[0].length() <= 3) {
+//    		newemail = subemail[0].substring(0)  + "***" + "@" + subemail[1];
+            newemail = subemail[0].substring(0, 1) + "***" + "@" + subemail[1];
+        } else {
+            newemail = subemail[0].substring(0, subemail[0].length() - 3) + "***" + "@" + subemail[1];
+        }
+        return newemail;
+    }
+
+    /**
+     * 加密其它证件号
+     */
+    public static String encrypCard(String cardnum) {
+        String newcardnum = "";
+        if (cardnum == null || "".equals(cardnum.trim())) {
+            return newcardnum;
+        }
+        if (cardnum.length() >= 12) {
+            newcardnum = cardnum.substring(0, cardnum.length() - 11) + "********" + cardnum.substring(cardnum.length() - 3, cardnum.length());
+        } else {
+            newcardnum = cardnum.substring(0, 1) + "********" + cardnum.substring(cardnum.length() - 3, cardnum.length());
+        }
+        return newcardnum;
+    }
+
+    /**
+     * 加密身份证(仅显示后四位)
+     */
+    public static String encrypAuthenCard(String authencardnum) {
+        String newauthencardnum = "";
+        if (authencardnum == null || "".equals(authencardnum.trim())) {
+            return newauthencardnum;
+        }
+        if (authencardnum.length() == 18) {
+            newauthencardnum = "******" + "********" + authencardnum.substring(authencardnum.length() - 4, authencardnum.length());
+        } else if (authencardnum.length() == 15) {
+            newauthencardnum = "******" + "*****" + authencardnum.substring(authencardnum.length() - 4, authencardnum.length());
+        }
+        return newauthencardnum;
+    }
+
+    /**
+     * 加密身份证
+     */
+    public static String encrypAuthenCardV2(String authencardnum) {
+        String newauthencardnum = "";
+        if (authencardnum == null || "".equals(authencardnum.trim())) {
+            return newauthencardnum;
+        }
+        if (authencardnum.length() == 18) {
+            newauthencardnum = authencardnum.substring(0, 6) + "**********" + authencardnum.substring(authencardnum.length() - 2, authencardnum.length());
+        } else if (authencardnum.length() == 15) {
+            newauthencardnum = authencardnum.substring(0, 6) + "********" + authencardnum.substring(authencardnum.length() - 1, authencardnum.length());
+        }
+        return newauthencardnum;
+    }
 
 }

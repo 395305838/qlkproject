@@ -1,4 +1,4 @@
-package com.xjs.android.encryption.des;
+package com.xiaocoder.android.fw.general.encryption.des;
 
 import java.security.Key;
 import java.security.spec.AlgorithmParameterSpec;
