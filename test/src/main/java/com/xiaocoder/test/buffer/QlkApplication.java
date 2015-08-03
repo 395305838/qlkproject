@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.exception.XLCrashHandler;
+import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper;
 import com.xiaocoder.android.fw.general.io.XCLog;
 import com.xiaocoder.android.fw.general.io.XCSP;
@@ -39,8 +40,10 @@ public class QlkApplication extends XCApplication {
                 QlkConfig.IS_DTOAST, QlkConfig.IS_OUTPUT, QlkConfig.IS_PRINTLOG,
                 QlkConfig.APP_ROOT, QlkConfig.LOG_FILE, QlkConfig.TEMP_PRINT_FILE, QlkConfig.ENCODING_UTF8);
 
-        printi(UtilSystem.getDeviceId(getApplicationContext()) + "--deviceId , " + getVersionCode() + "--versionCode , " + getVersionName() + "--versionName , " + getScreenHeightPx()
-                + "--screenHeightPx , " + getScreenWidthPx() + "--screenWidthPx , " + getDensity() + "--density , " + getScreenHeightDP() + "--screenHeightDP , " + getScreenWidthPx() + "--screenWidthDP");
+        printi(UtilSystem.getDeviceId(getApplicationContext()) + "--deviceId , " + UtilSystem.getVersionCode(getApplicationContext())
+                + "--versionCode , " + UtilSystem.getVersionName(getApplicationContext()) + "--versionName , "
+                + UtilScreen.getScreenHeightPx(getApplicationContext())
+                + "--screenHeightPx , " + UtilScreen.getScreenWidthPx(getApplicationContext()) + "--screenWidthPx , " + UtilScreen.getDensity(getApplicationContext()) + "--density , " + UtilScreen.getScreenHeightDP(getApplicationContext()) + "--screenHeightDP , " + UtilScreen.getScreenWidthPx(getApplicationContext()) + "--screenWidthDP");
 
         // 异常日志捕获的存储路径
         XLCrashHandler crashHandler = XLCrashHandler.getInstance();

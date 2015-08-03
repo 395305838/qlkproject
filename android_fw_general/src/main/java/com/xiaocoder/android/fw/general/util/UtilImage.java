@@ -37,6 +37,7 @@ import java.io.InputStream;
  * @date 2014-10-23 下午10:38:26
  */
 public class UtilImage {
+
     public static int STROKE_WIDTH = 4;
 
     // 从资产目录里获取bitmap
@@ -49,16 +50,6 @@ public class UtilImage {
             e.printStackTrace();
             return null;
         }
-    }
-
-    public static int[] getScreenSize(Context context) {
-        // 获取屏幕分辨率
-        WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        Display display = manager.getDefaultDisplay();
-        int[] size = new int[2];
-        size[0] = display.getHeight();
-        size[1] = display.getWidth();
-        return size;
     }
 
     /*
@@ -205,16 +196,6 @@ public class UtilImage {
 
     public static Bitmap getVideoFirstFrameFull(File file) {
         return ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), Thumbnails.FULL_SCREEN_KIND);
-    }
-
-    public static int dip2px(Context context, float dipValue) {
-        float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (scale * dipValue + 0.5f);
-    }
-
-    public static int px2dip(Context context, float pxValue) {
-        float scale = context.getResources().getDisplayMetrics().density;
-        return (int) (pxValue / scale + 0.5f);
     }
 
     /**

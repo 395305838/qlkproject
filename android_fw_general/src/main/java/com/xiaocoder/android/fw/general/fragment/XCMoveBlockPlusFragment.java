@@ -14,7 +14,7 @@ import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
-import com.xiaocoder.android.fw.general.util.UtilImage;
+import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android_fw_general.R;
 
 /*
@@ -126,12 +126,12 @@ public class XCMoveBlockPlusFragment extends XCBaseFragment {
         if (contents != null && per_line_size > 0) {
             Context context = getActivity();
             // 计算每个item的宽度
-            int perWidth = (int) (UtilImage.getScreenSize(context)[1] / per_line_size);
+            int perWidth = (int) (UtilScreen.getScreenSize(context)[1] / per_line_size);
             perItemWidth = perWidth;
             // 分隔线
-            int lineWidth = UtilImage.dip2px(context, 1);
-            int lineMarginTop = UtilImage.dip2px(context, line_margin_top);
-            int lineMarginBottom = UtilImage.dip2px(context, line_margin_bottom);
+            int lineWidth = UtilScreen.dip2px(context, 1);
+            int lineMarginTop = UtilScreen.dip2px(context, line_margin_top);
+            int lineMarginBottom = UtilScreen.dip2px(context, line_margin_bottom);
             // 从第0个位置开始添加
             int position = 0;
             int index = 0;
@@ -168,7 +168,7 @@ public class XCMoveBlockPlusFragment extends XCBaseFragment {
                 LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(perWidth, LinearLayout.LayoutParams.WRAP_CONTENT);
                 item.setLayoutParams(ll);
                 // 水平线的宽度
-                int gap_h_line = UtilImage.dip2px(context, gap_margin);
+                int gap_h_line = UtilScreen.dip2px(context, gap_margin);
                 LinearLayout.LayoutParams ll2 = (LayoutParams) xc_id_move_block_line.getLayoutParams();
                 ll2.setMargins(gap_h_line, 0, gap_h_line, 0);
                 xc_id_move_block_line.setLayoutParams(ll2);

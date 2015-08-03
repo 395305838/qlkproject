@@ -7,10 +7,9 @@ import android.view.KeyEvent;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
-import com.xiaocoder.android.fw.general.base.XCBaseFragment;
-import com.xiaocoder.android.fw.general.base.function.XCBaseMainActivity;
 import com.xiaocoder.android.fw.general.application.XCConfig;
+import com.xiaocoder.android.fw.general.base.XCBaseActivity;
+import com.xiaocoder.android.fw.general.base.function.XCBaseMainActivity;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
@@ -63,7 +62,7 @@ public class QlkHttpResponseHandler<T extends XCJsonBean> extends XCHttpResponse
 
         XCApplication.printi("yourCompanySecret");
 
-        client.addHeader("_v", XCApplication.getVersionCode() + "");// 版本号，必填
+        client.addHeader("_v", UtilSystem.getVersionCode(mContext) + "");// 版本号，必填
         client.addHeader("_m", UtilSystem.getMacAddress(mContext));// 设备的mac地址，选填
         client.addHeader("_c", "2222");// JSONP的回调函数名 ,可选
         client.addHeader("_p", "1"); // 平台，必填

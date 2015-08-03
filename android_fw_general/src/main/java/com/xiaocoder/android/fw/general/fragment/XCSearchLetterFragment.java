@@ -20,9 +20,9 @@ import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
+import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
-import com.xiaocoder.android.fw.general.util.UtilImage;
 import com.xiaocoder.android.fw.general.view.XCNoScrollGridView;
 import com.xiaocoder.android.fw.general.view.XCSlideBar;
 import com.xiaocoder.android.fw.general.view.XCSlideBar.OnTouchingLetterChangedListener;
@@ -171,7 +171,7 @@ public class XCSearchLetterFragment extends XCBaseFragment {
 
             // 解析第二层的数据
             ArrayList<XCJsonBean> inner_jsons = (ArrayList<XCJsonBean>) bean.obtList("brands", new ArrayList<XCJsonBean>());
-            UtilAbsListStyle.setGridViewStyle(holder.xc_id_fragment_search_content_gridview, false, 2, UtilImage.dip2px(context, 1), UtilImage.dip2px(context, 1));
+            UtilAbsListStyle.setGridViewStyle(holder.xc_id_fragment_search_content_gridview, false, 2, UtilScreen.dip2px(context, 1), UtilScreen.dip2px(context, 1));
             holder.xc_id_fragment_search_content_gridview.setOnItemClickListener(new OnItemClickListener() {
 
                 @Override

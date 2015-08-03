@@ -10,8 +10,8 @@ import com.umeng.update.UmengUpdateAgent;
 import com.umeng.update.UmengUpdateListener;
 import com.umeng.update.UpdateResponse;
 import com.umeng.update.UpdateStatus;
-import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
+import com.xiaocoder.android.fw.general.util.UtilSystem;
 import com.xiaocoder.android_fw_general.R;
 
 // 首页继承该类 
@@ -73,7 +73,7 @@ public abstract class XCBaseMainActivity extends XCBaseActivity implements Radio
         UmengUpdateAgent.update(this);
         UmengUpdateAgent.forceUpdate(this);
         for (String mode : upgrade_mode_array) {
-            String versionName = ((XCApplication) getApplication()).getVersionName();
+            String versionName = UtilSystem.getVersionName(getApplication());
             versionName = versionName + "f";
             if (mode.equals(versionName)) {
                 //进入强制更新

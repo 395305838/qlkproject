@@ -30,9 +30,9 @@ import com.xiaocoder.android.fw.general.adapter.XCAdapterViewPager;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBottomFragment;
+import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android.fw.general.listener.XCViewPagerListener;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
-import com.xiaocoder.android.fw.general.util.UtilImage;
 import com.xiaocoder.android.fw.general.util.UtilInputMethod;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.android.fw.general.view.XCRecordVoiceButton;
@@ -478,8 +478,8 @@ public class XCBottomChatFragment2 extends XCBottomFragment {
         // 创建gridview
         face_view_layout = new ArrayList<LinearLayout>();
         face_view_gridview = new ArrayList<GridView>();
-        int gap = UtilImage.dip2px(getActivity(), 6);
-        int gap2 = UtilImage.dip2px(getActivity(), 12);
+        int gap = UtilScreen.dip2px(getActivity(), 6);
+        int gap2 = UtilScreen.dip2px(getActivity(), 12);
         // 创建dots
         dots = new ArrayList<View>();
         total_images = TOTAL_FACE_NUM / PAGE_NUM + 1; // 85/20 + 1
@@ -487,7 +487,7 @@ public class XCBottomChatFragment2 extends XCBottomFragment {
             // 创建gridview
             LinearLayout include_gridview_layout = (LinearLayout) getBaseActivity().base_inflater.inflate(R.layout.xc_l_view_face_gridview, null);
             GridView gridview = (GridView) include_gridview_layout.findViewById(R.id.xc_id_fragment_face_gridview);
-            LinearLayout.LayoutParams ll_gridview = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, UtilImage.dip2px(getActivity(), 150));
+            LinearLayout.LayoutParams ll_gridview = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, UtilScreen.dip2px(getActivity(), 150));
             gridview.setLayoutParams(ll_gridview);
             gridview.setPadding(gap2, gap2, gap2, gap2);
             UtilAbsListStyle.setGridViewStyle(gridview, false, gap, gap, 7);
@@ -507,8 +507,8 @@ public class XCBottomChatFragment2 extends XCBottomFragment {
             face_view_layout.add(include_gridview_layout);
             // 创建dots
             View view = LayoutInflater.from(getActivity()).inflate(R.layout.xc_l_view_viewpager_dot, null);
-            LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(UtilImage.dip2px(getActivity(), 7), UtilImage.dip2px(getActivity(), 7));
-            ll.setMargins(UtilImage.dip2px(getActivity(), 3), 0, UtilImage.dip2px(getActivity(), 3), 0);
+            LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(UtilScreen.dip2px(getActivity(), 7), UtilScreen.dip2px(getActivity(), 7));
+            ll.setMargins(UtilScreen.dip2px(getActivity(), 3), 0, UtilScreen.dip2px(getActivity(), 3), 0);
             view.setLayoutParams(ll);
             dots.add(view);
             if (i == 0) {
@@ -545,7 +545,7 @@ public class XCBottomChatFragment2 extends XCBottomFragment {
             InputStream inputStream = getActivity().getAssets().open(FACE_PATH_DIR + name);
             Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
 
-            bitmap = Bitmap.createScaledBitmap(bitmap, UtilImage.dip2px(getActivity(), 24), UtilImage.dip2px(getActivity(), 24), true);
+            bitmap = Bitmap.createScaledBitmap(bitmap, UtilScreen.dip2px(getActivity(), 24), UtilScreen.dip2px(getActivity(), 24), true);
 
             name = "[" + name + "]";
             ImageSpan image_span = new ImageSpan(getActivity(), bitmap);
@@ -576,7 +576,7 @@ public class XCBottomChatFragment2 extends XCBottomFragment {
                 convertView = LayoutInflater.from(context).inflate(R.layout.xc_l_view_face_gridview_item, null);
                 holder.xc_jzh_face_item_imageview = (ImageView) convertView.findViewById(R.id.xc_id_face_item_imageview);
                 // 设置每个表情的大小， 这里可以根据不同手机屏幕做判断后再设置值
-                LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(UtilImage.dip2px(context, 30), UtilImage.dip2px(context, 30));
+                LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(UtilScreen.dip2px(context, 30), UtilScreen.dip2px(context, 30));
                 holder.xc_jzh_face_item_imageview.setLayoutParams(ll);
                 convertView.setTag(holder);
             } else {

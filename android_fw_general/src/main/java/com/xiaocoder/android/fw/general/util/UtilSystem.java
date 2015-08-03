@@ -1,27 +1,27 @@
 package com.xiaocoder.android.fw.general.util;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
-import java.util.UUID;
-
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.ActivityManager.RunningAppProcessInfo;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.List;
+import java.util.UUID;
 
 public class UtilSystem {
 
@@ -38,6 +38,9 @@ public class UtilSystem {
     }
 
 
+    /**
+     * 安装应用
+     */
     public void install(Context context, File file) {
 
         // 安装应用软件的模块在系统已经存在,所以只要激活就可以了
@@ -50,6 +53,9 @@ public class UtilSystem {
 
     }
 
+    /**
+     * 卸载应用
+     */
     public void uninstall(Context context) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_DELETE);
@@ -77,7 +83,9 @@ public class UtilSystem {
         return localComponentName;
     }
 
-    // 判断app是否在后台，改方法在广播中可以判断
+    /**
+     * 判断app是否在后台，改方法在广播中可以判断
+     */
     public static boolean isApplicationToBackground(Context context) {
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
@@ -90,7 +98,9 @@ public class UtilSystem {
         return false;
     }
 
-    // app是否启动
+    /**
+     * app是否启动
+     */
     public static boolean isAppRunning(Context context, String pack_name) {
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(100);
@@ -121,6 +131,35 @@ public class UtilSystem {
     }
 
     /**
+     * 包名
+     */
+    public static String getPackageName(Context context) {
+        return context.getPackageName();
+    }
+
+    /**
+     * 获取版本号
+     */
+    public static int getVersionCode(Context context) {
+        try {
+            return context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            return -1;
+        }
+    }
+
+    /**
+     * 获取版本名字
+     */
+    public static String getVersionName(Context context) {
+        try {
+            return context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            return "-1";
+        }
+    }
+
+    /**
      * 获取android系统版本号
      */
     public static String getOSVersion() {
@@ -137,6 +176,9 @@ public class UtilSystem {
         return currentapiVersion;
     }
 
+    /**
+     * 获取手机的一些信息
+     */
     private static String getCPUInfos() {
         String str1 = "/proc/cpuinfo";
         String str2 = "";
@@ -160,7 +202,9 @@ public class UtilSystem {
         return resualStr;
     }
 
-    // 检查某个应用是否安装
+    /**
+     * 检查某个应用是否安装
+     */
     public static boolean checkAPP(Context context, String packageName) {
         if (packageName == null || "".equals(packageName))
             return false;
@@ -175,11 +219,26 @@ public class UtilSystem {
     }
 
     /**
+     * 检测某类应用是否安装
+     */
+    public static boolean checkApp2(Context context, String packageContent) {
+        PackageManager pageManage = context.getPackageManager();
+        List<PackageInfo> packages = pageManage.getInstalledPackages(0);
+        String pagName = "";
+        for (int i = 0; i < packages.size(); i++) {
+            PackageInfo packageInfo = packages.get(i);
+            pagName = packageInfo.packageName;
+            //判断是否为QQ包名
+            if (pagName.contains(packageContent)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * 首先取imei，如果没有取macAddress，再没有就自定义一个变量 规则：id开头的一个32位字符串，根据java.util.UUID类生成，
      * 防止重复 如果到java.util.uuid生成的时候，数据被清掉后会被清除。 但对于这样的设备，比较罕见，模拟器是一类
-     *
-     * @param context
-     * @return
      */
     public static String getDeviceId(Context context) {
         // 没有设备id，则生成保存
@@ -207,7 +266,7 @@ public class UtilSystem {
         return deviceId;
     }
 
-    /*
+    /**
      * 获取mac地址，获取不到则生成一个
      */
     public static String getMacAddress(Context context) {
@@ -228,6 +287,13 @@ public class UtilSystem {
             String uuid = "id" + u.toString().replaceAll("-", "").substring(2);
             return uuid;
         }
+    }
+
+    /**
+     * 获得设备id
+     */
+    private String getAndroidId(Context context) {
+        return Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
     }
 
 }

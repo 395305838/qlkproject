@@ -11,13 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xiaocoder.android.fw.general.adapter.XCAdapterViewPager;
-import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
-import com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper;
-import com.xiaocoder.android.fw.general.util.UtilImage;
+import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android_fw_general.R;
 
 import java.util.ArrayList;
@@ -111,8 +107,8 @@ public class XCViewPagerFragment extends XCBaseFragment {
     private void createDots(int i) {
         // 创建dots
         View view = LayoutInflater.from(getActivity()).inflate(R.layout.xc_l_view_viewpager_dot, null);
-        LayoutParams ll = new LayoutParams(UtilImage.dip2px(getActivity(), 7), UtilImage.dip2px(getActivity(), 7));
-        ll.setMargins(UtilImage.dip2px(getActivity(), 3), 0, UtilImage.dip2px(getActivity(), 3), 0);
+        LayoutParams ll = new LayoutParams(UtilScreen.dip2px(getActivity(), 7), UtilScreen.dip2px(getActivity(), 7));
+        ll.setMargins(UtilScreen.dip2px(getActivity(), 3), 0, UtilScreen.dip2px(getActivity(), 3), 0);
         view.setLayoutParams(ll);
         dots.add(view);
         if (i == 0) {

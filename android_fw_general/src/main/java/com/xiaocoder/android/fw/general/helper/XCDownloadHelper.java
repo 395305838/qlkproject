@@ -1,6 +1,7 @@
 package com.xiaocoder.android.fw.general.helper;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.io.XCIO;
 
 import java.io.File;
@@ -15,7 +16,7 @@ import java.net.URL;
 
 public class XCDownloadHelper implements Runnable {
 
-    String tag = "tag_chat";
+    String tag = XCConfig.TAG_TEMP;
     String url = "";
     File file;
 
@@ -49,6 +50,7 @@ public class XCDownloadHelper implements Runnable {
             conn.setConnectTimeout(9000);
             if (HttpURLConnection.HTTP_OK == conn.getResponseCode()) {
                 in = conn.getInputStream();
+                // conn.getContentLength();
                 XCApplication.printi(tag, "----开始下载了");
                 XCIO.toFileByInputStream(in, file);
                 if (downloadListener != null) {

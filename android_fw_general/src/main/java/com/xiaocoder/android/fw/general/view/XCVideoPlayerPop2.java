@@ -39,7 +39,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.util.UtilImage;
+import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android_fw_general.R;
 
 import java.io.IOException;
@@ -168,7 +168,7 @@ public class XCVideoPlayerPop2 implements OnErrorListener, OnCompletionListener,
         screenHeight = manager.getDefaultDisplay().getHeight();
 
         popWidth = screenWidth;
-        popHeight = UtilImage.dip2px(context, 70);
+        popHeight = UtilScreen.dip2px(context, 70);
         // 如果是播放视频才需要该字段
         threadpool = Executors.newSingleThreadExecutor();
         parent_of_surface_view = (ViewGroup) surface_view.getParent();

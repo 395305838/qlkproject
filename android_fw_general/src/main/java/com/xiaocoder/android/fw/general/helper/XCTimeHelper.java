@@ -2,7 +2,7 @@ package com.xiaocoder.android.fw.general.helper;
 
 import android.os.CountDownTimer;
 
-// 该类似handler机制的
+// 该类似handler机制的倒计时
 public class XCTimeHelper extends CountDownTimer {
 
 	public interface CustomTimer {

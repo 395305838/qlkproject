@@ -11,8 +11,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.util.UtilImage;
+import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android_fw_general.R;
 
 /*
@@ -50,7 +49,7 @@ public class XCSlideBar extends View {
         int width = getWidth();
         int singleHeight = height / b.length;
 
-        int screenHeight = UtilImage.getScreenSize(getContext())[0];
+        int screenHeight = UtilScreen.getScreenSize(getContext())[0];
 
         for (int i = 0; i < b.length; i++) {
             paint.setColor(Color.rgb(33, 65, 98));

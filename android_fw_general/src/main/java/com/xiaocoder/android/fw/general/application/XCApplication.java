@@ -25,22 +25,11 @@ import java.util.Map;
 import java.util.Stack;
 import java.util.concurrent.ExecutorService;
 
-// 1 版本号等信息
-// 2 存储activity ， 回到首页activity， 弹出指定activity等
-// 3 屏幕的像素 dp 密度
-// 4 线程池    handler  图片加载  log等
+// 1 存储activity ， 回到首页activity， 弹出指定activity等
+// 2 线程池    handler  图片加载  log等
 public class XCApplication extends Application {
 
-
     private Stack<Activity> stack;
-
-    private static int versionCode;
-    private static String versionName;
-    private static int screenHeightPx;
-    private static int screenWidthPx;
-    private static float density;
-    private static int screenHeightDP;
-    private static int screenWidthDP;
 
     protected static XCLog base_log;
     protected static XCSP base_sp;
@@ -58,17 +47,6 @@ public class XCApplication extends Application {
         super.onCreate();
 
         stack = new Stack<Activity>();
-
-        versionCode = getCurrentVersionCode(getApplicationContext().getPackageName(), getApplicationContext());
-        versionName = getCurrentVersionName(getApplicationContext().getPackageName(), getApplicationContext());
-
-        screenHeightPx = UtilImage.getScreenSize(getApplicationContext())[0];
-        screenWidthPx = UtilImage.getScreenSize(getApplicationContext())[1];
-
-        density = getApplicationContext().getResources().getDisplayMetrics().density;
-
-        screenHeightDP = UtilImage.px2dip(getApplicationContext(), screenHeightPx);
-        screenWidthDP = UtilImage.px2dip(getApplicationContext(), screenWidthPx);
 
         // 线程池
         base_cache_threadpool = XCExecutorHelper.getExecutorHelperInstance().getCache();
@@ -146,7 +124,9 @@ public class XCApplication extends Application {
         }
     }
 
-    // 关闭所有的activity,finish()会调用destroy()方法
+    /**
+     *关闭所有的activity,finish()会调用destroy()方法
+     */
     public void finishAllActivity() {
         for (Activity activity : stack) {
             if (activity != null) {
@@ -156,7 +136,9 @@ public class XCApplication extends Application {
         stack.clear();
     }
 
-    // 回到首页 , 并返回首页的activity
+    /**
+     * 回到首页 , 并返回首页的activity
+     */
     public XCBaseMainActivity toXCMainActivity() {
         XCBaseMainActivity main_activity = null;
 
@@ -187,49 +169,6 @@ public class XCApplication extends Application {
         }
     }
 
-    public int getCurrentVersionCode(String packageName, Context context) {
-        try {
-            return context.getPackageManager().getPackageInfo(packageName, 0).versionCode;
-        } catch (NameNotFoundException e) {
-            return -1;
-        }
-    }
-
-    public String getCurrentVersionName(String packageName, Context context) {
-        try {
-            return context.getPackageManager().getPackageInfo(packageName, 0).versionName;
-        } catch (NameNotFoundException e) {
-            return "-1";
-        }
-    }
-
-    public static int getVersionCode() {
-        return versionCode;
-    }
-
-    public static String getVersionName() {
-        return versionName;
-    }
-
-    public static float getDensity() {
-        return density;
-    }
-
-    public static int getScreenHeightPx() {
-        return screenHeightPx;
-    }
-
-    public static int getScreenWidthPx() {
-        return screenWidthPx;
-    }
-
-    public static int getScreenHeightDP() {
-        return screenHeightDP;
-    }
-
-    public static int getScreenWidthDP() {
-        return screenWidthDP;
-    }
 
     public static XCLog getBase_log() {
         return base_log;

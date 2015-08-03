@@ -8,11 +8,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android.fw.general.pop.XCHintPopupWindow;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow;
 import com.xiaocoder.android.fw.general.pop.XCReflectPopupWindow;
-import com.xiaocoder.android.fw.general.util.UtilImage;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.buffer.QlkActivity;
 
@@ -43,10 +42,10 @@ public class PopActivity extends QlkActivity {
         test_pop_button2 = getViewById(R.id.test_pop_button2);
         test_pop_button3 = getViewById(R.id.test_pop_button3);
 
-        reflectPopupWindow = new XCReflectPopupWindow(this, XCApplication.getScreenWidthPx(), UtilImage.dip2px(this, 100));
+        reflectPopupWindow = new XCReflectPopupWindow(this, UtilScreen.getScreenWidthPx(this), UtilScreen.dip2px(this, 100));
 
         hintPopupWindow = new XCHintPopupWindow
-                (this, (int) (XCApplication.getScreenWidthPx() / 2.3), ViewGroup.LayoutParams.WRAP_CONTENT);
+                (this, (int) (UtilScreen.getScreenWidthPx(this) / 2.3), ViewGroup.LayoutParams.WRAP_CONTENT);
 
         photoPopupWindow = new XCPhotoPopupWindow
                 (this, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -58,7 +57,7 @@ public class PopActivity extends QlkActivity {
 
             @Override
             public void onClick(View v) {
-                reflectPopupWindow.showPopupWindow((View) (test_pop_button.getParent()), 0, -UtilImage.dip2px(PopActivity.this, 105));
+                reflectPopupWindow.showPopupWindow((View) (test_pop_button.getParent()), 0, -UtilScreen.dip2px(PopActivity.this, 105));
             }
         });
 
@@ -72,7 +71,7 @@ public class PopActivity extends QlkActivity {
         test_pop_button3.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                hintPopupWindow.showAtLocation(test_pop_button3, Gravity.CENTER_HORIZONTAL | Gravity.TOP, 0, UtilImage.dip2px(PopActivity.this, 75));
+                hintPopupWindow.showAtLocation(test_pop_button3, Gravity.CENTER_HORIZONTAL | Gravity.TOP, 0, UtilScreen.dip2px(PopActivity.this, 75));
             }
         });
 
