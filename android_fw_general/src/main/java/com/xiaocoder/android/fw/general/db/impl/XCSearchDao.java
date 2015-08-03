@@ -157,7 +157,7 @@ public class XCSearchDao {
     // Object[] { amount, from });
     // qlk_db.execSQL("UPDATE person SET balance=balance+? WHERE id=?", new
     // Object[] { amount, to });
-    // qlk_db.setTransactionSuccessful(); // 设置成功点, 在事务结束时, 成功点之前的操作会被提交
+    // qlk_db.setTransactionSuccessful(); // 事务结束时, 成功点之前的操作会被提交
     // } finally {
     // qlk_db.endTransaction(); // 结束事务, 将成功点之前的操作提交
     // qlk_db.close();
