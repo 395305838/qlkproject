@@ -10,7 +10,9 @@ import com.umeng.update.UmengUpdateAgent;
 import com.umeng.update.UmengUpdateListener;
 import com.umeng.update.UpdateResponse;
 import com.umeng.update.UpdateStatus;
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
+import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
 import com.xiaocoder.android_fw_general.R;
 
@@ -101,5 +103,11 @@ public abstract class XCBaseMainActivity extends XCBaseActivity implements Radio
                 break;
             }
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        XCExecutorHelper.getExecutorHelperInstance().close();
     }
 }

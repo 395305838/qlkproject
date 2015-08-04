@@ -1,5 +1,7 @@
 package com.xiaocoder.android.fw.general.helper;
 
+import com.xiaocoder.android.fw.general.application.XCApplication;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -72,7 +74,7 @@ public class XCExecutorHelper {
 
         } catch (Exception e) {
             e.printStackTrace();
-
+            XCApplication.printe("XCExecutorHelper()----线程池关闭异常");
         } finally {
             threadpool_cache = null;
             threadpool_single = null;
