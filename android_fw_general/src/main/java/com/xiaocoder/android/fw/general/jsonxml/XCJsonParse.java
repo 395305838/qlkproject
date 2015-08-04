@@ -33,6 +33,9 @@ public class XCJsonParse {
     public static <T extends XCJsonBean> T getJsonParseData(String json, Class<T> beanClass) {
         T result = getBean(beanClass);
         try {
+            if (UtilString.isBlank(json)) {
+                return null;
+            }
             JSONObject obj = new JSONObject(json);
             parse(result, obj, beanClass);
         } catch (JSONException e) {
