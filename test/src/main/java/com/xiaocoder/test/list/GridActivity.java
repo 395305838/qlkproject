@@ -78,7 +78,8 @@ public class GridActivity extends QlkActivity {
 
                     @Override
                     public void finish() {
-                        if (result_boolean && grid_fragment != null) {
+                        super.finish();
+                        if (grid_fragment != null) {
                             grid_fragment.completeRefresh();
                         }
                     }
@@ -91,7 +92,7 @@ public class GridActivity extends QlkActivity {
         request();
     }
 
-    class TestAdatpter extends XCBaseAdapter<XCJsonBean> {
+    class TestAdatpter extends XCBaseAdapter<TestBean> {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -108,12 +109,12 @@ public class GridActivity extends QlkActivity {
             }
 
             // 获取和设置控件的显示值
-            holder.xc_id_adapter_test_textview.setText(bean.obtString("content", ""));
+            holder.xc_id_adapter_test_textview.setText(bean.getCommission());
             // 加载图片
             return convertView;
         }
 
-        public TestAdatpter(Context context, List<XCJsonBean> list) {
+        public TestAdatpter(Context context, List<TestBean> list) {
             super(context, list);
         }
 
@@ -126,14 +127,14 @@ public class GridActivity extends QlkActivity {
     @Override
     public void initWidgets() {
         grid_fragment = new XCGridViewFragment();
-		grid_fragment.setAdapter(new TestAdatpter(this, null));
+        grid_fragment.setAdapter(new TestAdatpter(this, null));
 //        grid_fragment.setAdapter(new XCAdapterTest(this, null));
         // 可以不设置Mode， 默认是不可以拉的listview
         grid_fragment.setMode(XCListViewFragment.MODE_UP_DOWN);
         grid_fragment.setBgZeroHintInfo("数据为0", "重新加载", R.drawable.xc_d_chat_face);
         grid_fragment.setGridViewStyleParam(false, 1, 1, 2);
         addFragment(R.id.xc_id_model_content, grid_fragment);
-		request();
+        request();
     }
 
     @Override

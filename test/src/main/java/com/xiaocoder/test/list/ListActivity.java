@@ -1,7 +1,9 @@
 package com.xiaocoder.test.list;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +12,14 @@ import android.widget.TextView;
 
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
+import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.base.function.XCBaseAbsListFragment.OnAbsListItemClickListener;
 import com.xiaocoder.android.fw.general.base.function.XCBaseAbsListFragment.OnRefreshNextPageListener;
+import com.xiaocoder.android.fw.general.base.function.XCBaseMainActivity;
+import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
+import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
+import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
 import com.xiaocoder.android.fw.general.fragment.XCListViewFragment;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.test.R;
@@ -83,8 +91,32 @@ public class ListActivity extends QlkActivity {
                     @Override
                     public void finish() {
                         super.finish();
-                        if (result_boolean && list_fragment != null) {
+                        if (list_fragment != null) {
                             list_fragment.completeRefresh();
+                        }
+                    }
+
+                    // 更换一个dialog样式
+                    @Override
+                    public void showHttpDialog() {
+                        if (httpDialog == null) {
+                            httpDialog = new XCSystemVDialog(mContext, XCBaseDialog.TRAN_STYLE);
+                            httpDialog.setCanceledOnTouchOutside(false);
+                            httpDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
+                                @Override
+                                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                                    if (keyCode == KeyEvent.KEYCODE_BACK) {
+                                        closeHttpDialog();
+                                        XCHttpAsyn.resetNetingStatus();
+                                        if (!(mContext instanceof XCBaseMainActivity)) {
+                                            ((XCBaseActivity) mContext).myFinish();
+                                        }
+                                    }
+                                    return false;
+                                }
+                            });
+                            httpDialog.show();
+                            XCApplication.printi("showHttpDialog()");
                         }
                     }
                 });
