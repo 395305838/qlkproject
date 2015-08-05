@@ -147,7 +147,6 @@ public class XCJsonParse {
                 } else {
                     // 未加入集合
                     if (keyvalues[1] != null && (keyvalues[1].contains("[") || keyvalues[1].contains("{"))) {
-                        // do nothing
                         // 表示该字段是 如  list：{}  ， list：[]  set 和 get方法不需要该字段，先记录这些字段
                         sub.add(keyvalues[0]);
                     }
