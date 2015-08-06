@@ -105,6 +105,10 @@ public class XCLocalPhotoFragment extends XCBaseFragment {
                             resizeImage(data.getData());
                         } else {
                             final Uri uri = data.getData();
+                            if (uri == null) {
+                                shortToast("系统获取图片失败");
+                                return;
+                            }
                             XCApplication.getBase_cache_threadpool().execute(new Runnable() {
                                 Bitmap bitmap;
 

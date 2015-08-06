@@ -103,7 +103,7 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
             switch (requestCode) {
                 case CAMERA_REQUEST_CODE:
                     if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                        if (temp_photo_file != null) {
+                        if (temp_photo_file != null && temp_photo_file.exists()) {
                             final Uri uri = Uri.fromFile(temp_photo_file);
                             if (is_allow_resize) {
                                 resizeImage(uri);
