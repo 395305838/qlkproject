@@ -24,7 +24,7 @@ public class QlkApplication extends XCApplication {
         base_imageloader = XCImageLoaderHelper
                 .getInitedImageLoader
                         (XCImageLoaderHelper.getImageLoaderConfiguration
-                                (getApplicationContext(), base_io.createDirInSDCard(QlkConfig.CACHE_DIRECTORY)));
+                                (getApplicationContext(), base_io.createDirInAndroid(QlkConfig.CACHE_DIRECTORY)));
         // sp保存路径
         base_sp = new XCSP(getApplicationContext(), QlkConfig.SP_SETTING, Context.MODE_APPEND);// Context.MODE_MULTI_PROCESS
 
