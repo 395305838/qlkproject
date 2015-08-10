@@ -1,4 +1,4 @@
-package com.xiaocoder.qlkproject;
+package qlk.com.qlkproject;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

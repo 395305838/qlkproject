@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.xiaocoder.qlkproject"
+        applicationId "qlk.com.qlkproject"
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1
