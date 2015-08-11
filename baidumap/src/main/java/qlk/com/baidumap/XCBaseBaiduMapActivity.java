@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.base.function;
+package qlk.com.baidumap;
 
 import android.app.Service;
 import android.os.Bundle;
@@ -21,8 +21,16 @@ public abstract class XCBaseBaiduMapActivity extends XCBaseActivity {
     private String tempcoor = "gcj02"; // bd09ll  , bd09
     private LocationClient mLocationClient;
     private MyLocationListener mMyLocationListener;
-    private Vibrator mVibrator;
-    private GeofenceClient mGeofenceClient;
+
+    OnReceiverAddressListener addrListener;
+
+    public interface OnReceiverAddressListener {
+        void onReceiverAddressListener(String addr);
+    }
+
+    public void setOnReceiverAddressListener(OnReceiverAddressListener listener) {
+        addrListener = listener;
+    }
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +40,6 @@ public abstract class XCBaseBaiduMapActivity extends XCBaseActivity {
         mLocationClient = new LocationClient(this.getApplicationContext());
         mMyLocationListener = new MyLocationListener();
         mLocationClient.registerLocationListener(mMyLocationListener);
-        mGeofenceClient = new GeofenceClient(getApplicationContext());
-        mVibrator = (Vibrator) getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
         initLocation();
         mLocationClient.start();
 
@@ -79,8 +85,10 @@ public abstract class XCBaseBaiduMapActivity extends XCBaseActivity {
             address = location.getAddrStr();
             if (!UtilString.isBlank(address)) {
                 mLocationClient.stop();
+                if (addrListener != null) {
+                    addrListener.onReceiverAddressListener(address);
+                }
             }
-            printi(address + "-->address");
         }
     }
 
@@ -105,7 +113,7 @@ public abstract class XCBaseBaiduMapActivity extends XCBaseActivity {
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(tempMode);//设置定位模式
         option.setCoorType(tempcoor);//返回的定位结果是百度经纬度，默认值gcj02
-        int span = 1000;
+        int span = 2500;
         option.setScanSpan(span);//设置发起定位请求的间隔时间为5000ms
         option.setIsNeedAddress(true);
         mLocationClient.setLocOption(option);

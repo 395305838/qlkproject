@@ -15,6 +15,7 @@ import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow.onPhotoPopupItemClickListener;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.test.anim.AnimationActivity;
+import com.xiaocoder.test.baidumap.MapActivity;
 import com.xiaocoder.test.contacts.ContactsActivity;
 import com.xiaocoder.test.dialogs.DialogActivity3;
 import com.xiaocoder.test.fragment.CamareActivity;
@@ -65,6 +66,7 @@ public class MainActivity extends Activity implements OnClickListener {
     Button xc_id_test;
     Button xc_id_anim;
     Button test_dialog3;
+    Button test_baidumap;
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -79,6 +81,8 @@ public class MainActivity extends Activity implements OnClickListener {
         test_dialog3.setOnClickListener(this);
         test_code = (Button) findViewById(R.id.test_code);
         test_code.setOnClickListener(this);
+        test_baidumap = (Button) findViewById(R.id.test_baidumap);
+        test_baidumap.setOnClickListener(this);
 
         XCTimeHelper timeHelper = new XCTimeHelper(1000000, new CustomTimer() {
 
@@ -123,7 +127,7 @@ public class MainActivity extends Activity implements OnClickListener {
 
         test_camare = (Button) findViewById(R.id.test_camare);
         test_camare.setOnClickListener(this);
-        UtilString.setLightAppendString("你好:123", test_camare,"#ff00cccc");
+        UtilString.setLightAppendString("你好:123", test_camare, "#ff00cccc");
 
         test_search = (Button) findViewById(R.id.test_search);
         test_search.setOnClickListener(this);
@@ -264,6 +268,8 @@ public class MainActivity extends Activity implements OnClickListener {
             startActivity(new Intent(this, AnimationActivity.class));
         } else if (id == R.id.test_dialog3) {
             startActivity(new Intent(this, DialogActivity3.class));
+        } else if (id == R.id.test_baidumap) {
+            startActivity(new Intent(this, MapActivity.class));
         }
 
     }

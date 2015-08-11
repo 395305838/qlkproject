@@ -16,6 +16,12 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/test_baidumap"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="test_baidumap" />
+
+            <Button
                 android:id="@+id/test_dialog3"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"

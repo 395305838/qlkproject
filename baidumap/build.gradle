@@ -1,11 +1,10 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
 
     defaultConfig {
-        applicationId "com.xiaocoder.test"
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1
@@ -17,13 +16,17 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:22.0.0'
+    compile 'com.android.support:appcompat-v7:22.2.0'
     compile project(':android_fw_general')
-    compile project(':baidumap')
-    compile project(':slidingmenu')
-    compile project(':viewpagerindicator')
+    compile files('libs/locSDK_5.3.jar')
 }

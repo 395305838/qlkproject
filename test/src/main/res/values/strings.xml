@@ -19,5 +19,6 @@
     <string name="title_activity_code">CodeActivity</string>
     <string name="title_activity_text">TextActivity</string>
     <string name="title_activity_dialog_activity3">DialogActivity3</string>
+    <string name="title_activity_map">MapActivity</string>
 
 </resources>
