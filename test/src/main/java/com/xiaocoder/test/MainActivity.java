@@ -292,11 +292,6 @@ public class MainActivity extends QlkMainActivity {
     }
 
     @Override
-    public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
-    }
-
-    @Override
     public void onNetRefresh() {
 
     }

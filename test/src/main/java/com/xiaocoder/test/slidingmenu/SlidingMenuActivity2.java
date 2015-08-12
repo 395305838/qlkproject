@@ -9,8 +9,12 @@ import com.xiaocoder.buffer.QlkMainActivity;
 import com.xiaocoder.test.R;
 
 
-public class SlidingMenuActivity2 extends QlkMainActivity {
+public class SlidingMenuActivity2 extends QlkMainActivity implements RadioGroup.OnCheckedChangeListener {
+
     private SlidingMenu menu;
+
+    public RadioGroup base_tab_group;
+    public int base_recoder_selected_tab_item;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -1,15 +1,33 @@
 package com.xiaocoder.buffer;
 
 import android.os.Bundle;
+import android.widget.RadioGroup;
 
 import com.umeng.update.UmengUpdateAgent;
 import com.umeng.update.UpdateConfig;
-import com.xiaocoder.android.fw.general.base.function.XCBaseMainActivity;
 
 /**
  * Created by xiaocoder on 2015/7/15.
+ *
+ * 1 点击两次退出
+ * 2 友盟等
  */
-public abstract class QlkMainActivity extends XCBaseMainActivity {
+public abstract class QlkMainActivity extends QlkActivity {
+
+    // 双击两次返回键退出应用
+    long back_quit_time;
+
+    @Override
+    public void onBackPressed() {
+        long this_quit_time = System.currentTimeMillis();
+        if (this_quit_time - back_quit_time <= 1000) {
+            getXCApplication().AppExit(base_context);
+        } else {
+            back_quit_time = this_quit_time;
+            shortToast("快速再按一次退出");
+        }
+    }
+
 
     @Override
     protected void onResume() {
@@ -27,53 +45,6 @@ public abstract class QlkMainActivity extends XCBaseMainActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         umengUpdate();
-    }
-
-
-    /*
-    * 友盟更新
-    */
-    private void UMUpdate() {
-
-//        UmengUpdateAgent.setUpdateOnlyWifi(false);
-//
-//        String upgrade_mode = MobclickAgent.getConfigParams(this, "upgrade_mode");
-//        if (TextUtils.isEmpty(upgrade_mode)) {
-//            return;
-//        }
-//        String[] upgrade_mode_array = upgrade_mode.split(";");
-//        UmengUpdateAgent.setUpdateOnlyWifi(false);
-//        UmengUpdateAgent.update(this);
-//        UmengUpdateAgent.forceUpdate(this);
-//        for (String mode : upgrade_mode_array) {
-//            String versionName = UtilSystem.getVersionName(getApplication());
-//            versionName = versionName + "f";
-//            if (mode.equals(versionName)) {
-//                //进入强制更新
-//                UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
-//
-//                    @Override
-//                    public void onUpdateReturned(int updateStatus, UpdateResponse updateResponse) {
-//
-//                    }
-//                });
-//                UmengUpdateAgent.setDialogListener(new UmengDialogButtonListener() {
-//                    @Override
-//                    public void onClick(int status) {
-//                        printi("setDialogListener status:" + status);
-//                        switch (status) {
-//                            case UpdateStatus.Update:
-//                                break;
-//                            default:
-//                                //退出应用
-//                                shortToast(getString(com.xiaocoder.android_fw_general.R.string.force_update_toast_string));
-//                                (getXCApplication()).AppExit(QlkMainActivity.this);
-//                        }
-//                    }
-//                });
-//                break;
-//            }
-//        }
     }
 
     // 会弹出确认框，需要点击确认是否更新

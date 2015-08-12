@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.xiaocoder.android.fw.general.base.function.XCBaseMainActivity;
+import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
 import com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
@@ -139,15 +139,18 @@ public class XCApplication extends Application {
     }
 
     /**
-     * 回到首页 , 并返回首页的activity
+     * 回到首页
+     *
+     * @param main_activity_class 首页的activity的字节码
+     * @return
      */
-    public XCBaseMainActivity toXCMainActivity() {
-        XCBaseMainActivity main_activity = null;
+    public Object toMainActivity(Class<? extends XCBaseActivity> main_activity_class) {
+        Object main_activity = null;
 
         for (Iterator<Activity> it = stack.iterator(); it.hasNext(); ) {
             Activity item = it.next();
-            if (item instanceof XCBaseMainActivity) {
-                main_activity = (XCBaseMainActivity) item;
+            if (item.getClass().getName().equals(main_activity_class.getName())) {
+                main_activity = item;
                 continue;
             } else {
                 item.finish();

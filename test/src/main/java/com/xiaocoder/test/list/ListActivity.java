@@ -16,12 +16,12 @@ import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.base.function.XCBaseAbsListFragment.OnAbsListItemClickListener;
 import com.xiaocoder.android.fw.general.base.function.XCBaseAbsListFragment.OnRefreshNextPageListener;
-import com.xiaocoder.android.fw.general.base.function.XCBaseMainActivity;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
 import com.xiaocoder.android.fw.general.fragment.XCListViewFragment;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.buffer.QlkMainActivity;
 import com.xiaocoder.buffer.QlkResponseHandler;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.bean.TestBean;
@@ -107,7 +107,7 @@ public class ListActivity extends QlkActivity {
                                     if (keyCode == KeyEvent.KEYCODE_BACK) {
                                         closeHttpDialog();
                                         XCHttpAsyn.resetNetingStatus();
-                                        if (!(mContext instanceof XCBaseMainActivity)) {
+                                        if (!(mContext instanceof QlkMainActivity)) {
                                             ((XCBaseActivity) mContext).myFinish();
                                         }
                                     }

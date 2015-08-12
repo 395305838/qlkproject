@@ -8,7 +8,6 @@ import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
-import com.xiaocoder.android.fw.general.base.function.XCBaseMainActivity;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
@@ -93,7 +92,7 @@ public class QlkResponseHandler<T extends XCJsonBean> extends XCResponseHandler<
                     if (keyCode == KeyEvent.KEYCODE_BACK) {
                         closeHttpDialog();
                         XCHttpAsyn.resetNetingStatus();
-                        if (!(mContext instanceof XCBaseMainActivity)) {
+                        if (!(mContext instanceof QlkMainActivity)) {
                             ((XCBaseActivity) mContext).myFinish();
                         }
                     }
