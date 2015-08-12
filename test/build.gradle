@@ -1,6 +1,23 @@
 apply plugin: 'com.android.application'
 
 android {
+
+    productFlavors {
+
+        _7lk {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "channel_7lk"]
+        }
+        _qq {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "channel_qq"]
+        }
+        _360 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "channel_360"]
+        }
+        _xctest {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "channel_xctest"]
+        }
+    }
+
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
 
@@ -26,4 +43,5 @@ dependencies {
     compile project(':baidumap')
     compile project(':slidingmenu')
     compile project(':viewpagerindicator')
+    compile project(':umeng')
 }

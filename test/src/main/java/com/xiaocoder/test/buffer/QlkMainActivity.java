@@ -1,5 +1,9 @@
 package com.xiaocoder.test.buffer;
 
+import android.os.Bundle;
+
+import com.umeng.update.UmengUpdateAgent;
+import com.umeng.update.UpdateConfig;
 import com.xiaocoder.android.fw.general.base.function.XCBaseMainActivity;
 
 /**
@@ -7,5 +11,114 @@ import com.xiaocoder.android.fw.general.base.function.XCBaseMainActivity;
  */
 public abstract class QlkMainActivity extends XCBaseMainActivity {
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+//        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        umengUpdate();
+    }
+
+
+    /*
+    * 友盟更新
+    */
+    private void UMUpdate() {
+
+//        UmengUpdateAgent.setUpdateOnlyWifi(false);
+//
+//        String upgrade_mode = MobclickAgent.getConfigParams(this, "upgrade_mode");
+//        if (TextUtils.isEmpty(upgrade_mode)) {
+//            return;
+//        }
+//        String[] upgrade_mode_array = upgrade_mode.split(";");
+//        UmengUpdateAgent.setUpdateOnlyWifi(false);
+//        UmengUpdateAgent.update(this);
+//        UmengUpdateAgent.forceUpdate(this);
+//        for (String mode : upgrade_mode_array) {
+//            String versionName = UtilSystem.getVersionName(getApplication());
+//            versionName = versionName + "f";
+//            if (mode.equals(versionName)) {
+//                //进入强制更新
+//                UmengUpdateAgent.setUpdateListener(new UmengUpdateListener() {
+//
+//                    @Override
+//                    public void onUpdateReturned(int updateStatus, UpdateResponse updateResponse) {
+//
+//                    }
+//                });
+//                UmengUpdateAgent.setDialogListener(new UmengDialogButtonListener() {
+//                    @Override
+//                    public void onClick(int status) {
+//                        printi("setDialogListener status:" + status);
+//                        switch (status) {
+//                            case UpdateStatus.Update:
+//                                break;
+//                            default:
+//                                //退出应用
+//                                shortToast(getString(com.xiaocoder.android_fw_general.R.string.force_update_toast_string));
+//                                (getXCApplication()).AppExit(QlkMainActivity.this);
+//                        }
+//                    }
+//                });
+//                break;
+//            }
+//        }
+    }
+
+    // 会弹出确认框，需要点击确认是否更新
+    public void umengUpdate() {
+        umengUpdateConfig();
+        UmengUpdateAgent.update(this);
+    }
+
+    // 如 主动点击设置中的检测更新
+    public void umengCheckUpdate() {
+        umengUpdateConfig();
+        UmengUpdateAgent.forceUpdate(this);
+    }
+
+    public void umengSlientUdate() {
+        umengUpdateConfig();
+        UmengUpdateAgent.silentUpdate(this);
+    }
+
+    public void umengUpdateConfig() {
+        // 重置状态，如果每次的参数是不一样的，则很有必要调用这个方法
+        UmengUpdateAgent.setDefault();
+        // false为非wifi下也会更新，以及针对机顶盒等可能不支持或者没有无线网络的设备
+        // 该方法对于手动更新和静默更新无效
+        UmengUpdateAgent.setUpdateOnlyWifi(false);
+        // 可以提示umeng更新的配置是否正确
+        UmengUpdateAgent.setUpdateCheckConfig(true);
+        // true为增量更新,false为全量更新
+        UmengUpdateAgent.setDeltaUpdate(true);
+        // 通知栏显示高级样式，api14以上
+        UmengUpdateAgent.setRichNotification(true);
+        // 是否显示日志
+        UpdateConfig.setDebug(true);
+    }
+
+//    UmengUpdateAgent.setAppkey(null); //如果使用该方法设置，优先使用这里设置的值，如果为null则从AndroidManifest.xml里读取
+//    UmengUpdateAgent.setChannel(null);//如果使用该方法设置，优先使用这里设置的值，如果为null则从AndroidManifest.xml里读取。
+//    UmengUpdateAgent.setUpdateOnlyWifi(true);//针对机顶盒等可能不支持或者没有无线网络的设备，请同样将该参数设为false。 注意：该参数仅针对自动更新接口update(context)，对于手动更新接口（无视网络环境）和静默下载更新接口（仅WIFI）无效。
+//    UmengUpdateAgent.setDeltaUpdate(true);
+//    UmengUpdateAgent.setUpdateAutoPopup(true);//对于自动更新和手动更新接口，该参数控制检测到更新后自动弹出更新提示；对于静默下载更新，该参数控制检测到更新后如果未下载自动下载，如果已下载，自动弹出更新提示。
+//    UmengUpdateAgent.setRichNotification(true);//richNotification 布尔值true(默认)Android4.1及以上系统中通知栏显示暂停/取消按钮，false下载通知栏使用默认样式。
+//    UmengUpdateAgent.setUpdateUIStyle(UpdateStatus.STYLE_DIALOG);//更新提示的样式UpdateStatus.STYLE_DIALOG(默认)使用对话框进行更新提示，UpdateStatus.STYLE_NOTIFICATION使用通知栏进行更新提示。
+
+//    UmengUpdateAgent.setUpdateListener(null); // 监听是否是wifi是否有更新的监听
+//    UmengUpdateAgent.setDialogListener(null); // 监听dialog的按钮点击，返回键为用户选择以后再说，关闭对话框
+//    UmengUpdateAgent.setDownloadListener(null); // 下载进度的监听
 
 }

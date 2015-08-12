@@ -31,6 +31,5 @@ dependencies {
     compile files('libs/httpmime-4.1.3.jar')
     compile files('libs/universal-image-loader-1.9.0-with-sources.jar')
     compile files('libs/xUtils-2.6.14.jar')
-    compile files('umeng-update-v2.4.2.jar')
     compile 'com.android.support:support-v4:22.2.0'
 }

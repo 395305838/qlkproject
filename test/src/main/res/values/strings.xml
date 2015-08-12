@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">android_test</string>
+    <string name="app_name">xiaocoder_test</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_dialogs">DialogsActivity</string>
@@ -20,5 +20,6 @@
     <string name="title_activity_text">TextActivity</string>
     <string name="title_activity_dialog_activity3">DialogActivity3</string>
     <string name="title_activity_map">MapActivity</string>
+    <string name="title_activity_update">UpdateActivity</string>
 
 </resources>

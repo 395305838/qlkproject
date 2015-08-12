@@ -33,6 +33,7 @@ import com.xiaocoder.test.scan.CodeActivity;
 import com.xiaocoder.test.scan.ScanActivity;
 import com.xiaocoder.test.slidingmenu.SlidingMenuActivity;
 import com.xiaocoder.test.slidingmenu.SlidingMenuActivity2;
+import com.xiaocoder.test.update.UpdateActivity;
 import com.xiaocoder.test.view.ScrollActivity;
 import com.xiaocoder.test.viewpagerindicator.ListSamples;
 
@@ -67,6 +68,7 @@ public class MainActivity extends Activity implements OnClickListener {
     Button xc_id_anim;
     Button test_dialog3;
     Button test_baidumap;
+    Button test_umupdate;
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -83,6 +85,9 @@ public class MainActivity extends Activity implements OnClickListener {
         test_code.setOnClickListener(this);
         test_baidumap = (Button) findViewById(R.id.test_baidumap);
         test_baidumap.setOnClickListener(this);
+
+        test_umupdate = (Button) findViewById(R.id.test_umupdate);
+        test_umupdate.setOnClickListener(this);
 
         XCTimeHelper timeHelper = new XCTimeHelper(1000000, new CustomTimer() {
 
@@ -270,6 +275,8 @@ public class MainActivity extends Activity implements OnClickListener {
             startActivity(new Intent(this, DialogActivity3.class));
         } else if (id == R.id.test_baidumap) {
             startActivity(new Intent(this, MapActivity.class));
+        } else if (id == R.id.test_umupdate) {
+            startActivity(new Intent(this, UpdateActivity.class));
         }
 
     }
