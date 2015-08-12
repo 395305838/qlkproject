@@ -15,8 +15,8 @@ import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.helper.XCContactHelper;
 import com.xiaocoder.android.fw.general.model.XCContactModel;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
+import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkActivity;
 
 import java.util.List;
 

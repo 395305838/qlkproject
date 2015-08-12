@@ -30,10 +30,4 @@ public abstract class XCBaseMainActivity extends XCBaseActivity implements Radio
             shortToast("快速再按一次退出");
         }
     }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        XCExecutorHelper.getExecutorHelperInstance().close();
-    }
 }

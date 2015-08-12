@@ -6,8 +6,8 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
+import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkActivity;
 
 /**
  * Created by xilinch on 2015/7/13.

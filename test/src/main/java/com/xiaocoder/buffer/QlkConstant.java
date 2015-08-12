@@ -1,4 +1,4 @@
-package com.xiaocoder.test.buffer;
+package com.xiaocoder.buffer;
 
 /**
  * Created by xiaocoder on 2015/8/3.

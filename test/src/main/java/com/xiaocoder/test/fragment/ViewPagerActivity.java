@@ -7,8 +7,8 @@ import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment;
 import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment.OnImageClickListener;
 import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment.OnLoadImage;
+import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkActivity;
 
 import java.util.ArrayList;
 

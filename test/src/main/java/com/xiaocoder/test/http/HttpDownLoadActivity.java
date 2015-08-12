@@ -11,9 +11,9 @@ import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.util.UtilString;
+import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.buffer.QlkResponseHandler;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkActivity;
-import com.xiaocoder.test.buffer.QlkResponseHandler;
 
 import org.apache.http.Header;
 

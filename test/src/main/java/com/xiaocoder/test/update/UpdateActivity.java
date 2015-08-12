@@ -1,16 +1,10 @@
 package com.xiaocoder.test.update;
 
-import android.widget.RadioGroup;
-
-import com.xiaocoder.test.buffer.QlkMainActivity;
-
-public class UpdateActivity extends QlkMainActivity {
+import com.xiaocoder.buffer.QlkActivity;
 
 
-    @Override
-    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+public class UpdateActivity extends QlkActivity {
 
-    }
 
     @Override
     public void initWidgets() {

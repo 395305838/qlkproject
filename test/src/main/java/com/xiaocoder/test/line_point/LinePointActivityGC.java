@@ -5,8 +5,8 @@ import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
+import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkActivity;
 
 public class LinePointActivityGC extends QlkActivity {
     int i = 10;

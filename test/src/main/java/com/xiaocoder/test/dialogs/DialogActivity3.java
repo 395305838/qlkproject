@@ -13,8 +13,8 @@ import com.xiaocoder.android.fw.general.dialog.XCMenuDialog;
 import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
+import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkActivity;
 
 public class DialogActivity3 extends QlkActivity {
 

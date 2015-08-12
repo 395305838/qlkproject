@@ -5,7 +5,7 @@ import android.os.Bundle;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonParse;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
-import com.xiaocoder.test.buffer.QlkActivity;
+import com.xiaocoder.buffer.QlkActivity;
 
 import org.json.JSONArray;
 

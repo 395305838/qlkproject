@@ -1,4 +1,4 @@
-package com.xiaocoder.test.buffer;
+package com.xiaocoder.buffer;
 
 import android.os.Bundle;
 

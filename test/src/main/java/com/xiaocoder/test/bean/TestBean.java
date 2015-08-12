@@ -1,6 +1,7 @@
 package com.xiaocoder.test.bean;
 
-import com.xiaocoder.test.buffer.QlkBean;
+
+import com.xiaocoder.buffer.QlkBean;
 
 /**
  * Created by xiaocoder on 2015/7/29.

@@ -1,4 +1,4 @@
-package com.xiaocoder.test.buffer;
+package com.xiaocoder.buffer;
 
 import android.content.DialogInterface;
 import android.view.KeyEvent;
@@ -11,14 +11,12 @@ import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.base.function.XCBaseMainActivity;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
-import com.xiaocoder.android.fw.general.http.XCResponseHandler;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.http.XCIHttpResult;
+import com.xiaocoder.android.fw.general.http.XCResponseHandler;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
-
-import org.apache.http.Header;
 
 /**
  * @author xiaocoder

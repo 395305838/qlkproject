@@ -9,8 +9,8 @@ import com.xiaocoder.android.fw.general.fragment.XCCameraPhotoFragment;
 import com.xiaocoder.android.fw.general.fragment.XCCameraPhotoFragment.OnCaremaSelectedFileListener;
 import com.xiaocoder.android.fw.general.fragment.XCLocalPhotoFragment;
 import com.xiaocoder.android.fw.general.fragment.XCLocalPhotoFragment.OnLocalSelectedFileListener;
+import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkActivity;
 
 import java.io.File;
 

@@ -1,12 +1,11 @@
 package com.xiaocoder.test;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioGroup;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.helper.XCTimeHelper;
@@ -14,6 +13,7 @@ import com.xiaocoder.android.fw.general.helper.XCTimeHelper.CustomTimer;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow.onPhotoPopupItemClickListener;
 import com.xiaocoder.android.fw.general.util.UtilString;
+import com.xiaocoder.buffer.QlkMainActivity;
 import com.xiaocoder.test.anim.AnimationActivity;
 import com.xiaocoder.test.baidumap.MapActivity;
 import com.xiaocoder.test.contacts.ContactsActivity;
@@ -38,7 +38,7 @@ import com.xiaocoder.test.view.ScrollActivity;
 import com.xiaocoder.test.viewpagerindicator.ListSamples;
 
 
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends QlkMainActivity {
 
     public static String TEST_HOST = "10.7.30.121";
     Button test_point_line;
@@ -193,8 +193,18 @@ public class MainActivity extends Activity implements OnClickListener {
     }
 
     @Override
-    public void onClick(View v) {
+    public void initWidgets() {
 
+    }
+
+    @Override
+    public void listeners() {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        super.onClick(v);
         int id = v.getId();
         if (id == R.id.test_point_line) {
             startActivity(new Intent(this, LinePointActivityGC.class));
@@ -281,4 +291,13 @@ public class MainActivity extends Activity implements OnClickListener {
 
     }
 
+    @Override
+    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
+    }
+
+    @Override
+    public void onNetRefresh() {
+
+    }
 }

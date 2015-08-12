@@ -8,8 +8,8 @@ import android.view.View;
 import com.xiaocoder.android.fw.general.adapter.XCAdapterTest;
 import com.xiaocoder.android.fw.general.adapter.XCAdapterViewPager;
 import com.xiaocoder.android.fw.general.view.XCNoScrollListview;
+import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkActivity;
 
 import java.util.ArrayList;
 

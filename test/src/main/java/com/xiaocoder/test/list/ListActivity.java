@@ -18,14 +18,13 @@ import com.xiaocoder.android.fw.general.base.function.XCBaseAbsListFragment.OnAb
 import com.xiaocoder.android.fw.general.base.function.XCBaseAbsListFragment.OnRefreshNextPageListener;
 import com.xiaocoder.android.fw.general.base.function.XCBaseMainActivity;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
-import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
 import com.xiaocoder.android.fw.general.fragment.XCListViewFragment;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
+import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.buffer.QlkResponseHandler;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.bean.TestBean;
-import com.xiaocoder.test.buffer.QlkActivity;
-import com.xiaocoder.test.buffer.QlkResponseHandler;
 
 import org.apache.http.Header;
 

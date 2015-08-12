@@ -4,8 +4,8 @@ import android.os.Bundle;
 
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.fragment.XCWebViewFragment;
+import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkActivity;
 
 public class WebActivity extends QlkActivity {
 	XCWebViewFragment web_view_fragment;

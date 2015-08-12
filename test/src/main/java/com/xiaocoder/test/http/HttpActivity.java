@@ -7,10 +7,10 @@ import android.widget.Button;
 
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
+import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.buffer.QlkResponseHandler;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.bean.TestBean;
-import com.xiaocoder.test.buffer.QlkActivity;
-import com.xiaocoder.test.buffer.QlkResponseHandler;
 
 import org.apache.http.Header;
 

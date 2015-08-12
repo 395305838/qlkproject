@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.buffer.QlkActivity;
 
 public class SlidingMenuActivity extends QlkActivity {
 	private SlidingMenu menu;

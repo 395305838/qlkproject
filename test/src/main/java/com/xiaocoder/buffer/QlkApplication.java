@@ -1,13 +1,13 @@
-package com.xiaocoder.test.buffer;
+package com.xiaocoder.buffer;
 
 import android.content.Context;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.exception.XLCrashHandler;
-import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper;
 import com.xiaocoder.android.fw.general.io.XCLog;
 import com.xiaocoder.android.fw.general.io.XCSP;
+import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
 
 /**
