@@ -1,1 +1,1 @@
-include ':app', ':pulltorefresh', ':sharesdk', ':slidingmenu', ':viewpagerindicator', ':android_fw_general', ':test', ':baidumap'
+include ':pulltorefresh', ':sharesdk', ':slidingmenu', ':viewpagerindicator', ':android_fw_general', ':test', ':baidumap'
