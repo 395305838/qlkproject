@@ -67,6 +67,10 @@ public class QlkConfig extends XCConfig {
      */
     public static boolean IS_PRINTLOG = true;
     /*
+     * 是否初始化crashHandler
+     */
+    public static boolean IS_INIT_CRASH_HANDLER = true;
+    /*
      * 是否打印异常的日志到屏幕， 上线前得关
      */
     public static boolean IS_SHOW_EXCEPTION_ACTIVITY = true;

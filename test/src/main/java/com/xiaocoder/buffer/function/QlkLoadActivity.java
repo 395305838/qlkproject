@@ -15,20 +15,19 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.ImageView;
 
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.view.XCImageView;
 import com.xiaocoder.android_fw_general.R;
+import com.xiaocoder.buffer.QlkActivity;
 
 import java.util.ArrayList;
 
 /*
  * app启动时的页面
  */
-public abstract class QlkLoadActivity extends XCBaseActivity implements OnClickListener {
+public abstract class QlkLoadActivity extends QlkActivity implements OnClickListener {
 
     public ImageView load_image;
     private ViewPager mViewPager;
-    private ImageView imageView;
     public ArrayList<Integer> welcomeImgList;
     public ArrayList<Integer> bgColorList;
 
@@ -96,7 +95,7 @@ public abstract class QlkLoadActivity extends XCBaseActivity implements OnClickL
     /**
      * 更新后台请求地址
      */
-    public void reviewConnectApiUrl(){
+    public void reviewConnectApiUrl() {
 
     }
 
@@ -113,7 +112,7 @@ public abstract class QlkLoadActivity extends XCBaseActivity implements OnClickL
 
         ArrayList<View> views = new ArrayList<View>();
 
-        for(int i = 0; i < welcomeImgList.size() ; i++){
+        for (int i = 0; i < welcomeImgList.size(); i++) {
             View view = mLi.inflate(R.layout.sk_l_item_welcome, null);
             XCImageView imageView = (XCImageView) view.findViewById(R.id.sk_id_welcome_img);
             imageView.setBackgroundDrawable(new BitmapDrawable(BitmapFactory.decodeResource(getResources(), welcomeImgList.get(i), bitmapOptions)));
@@ -122,7 +121,7 @@ public abstract class QlkLoadActivity extends XCBaseActivity implements OnClickL
         }
 
 
-        views.get(welcomeImgList.size()-1).setOnClickListener(new OnClickListener() {
+        views.get(welcomeImgList.size() - 1).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 go2MainActivity();
