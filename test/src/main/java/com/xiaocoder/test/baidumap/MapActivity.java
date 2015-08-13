@@ -2,16 +2,16 @@ package com.xiaocoder.test.baidumap;
 
 import android.os.Bundle;
 
+import com.xiaocoder.buffer.function.QlkBaiduMapActivity;
 import com.xiaocoder.test.R;
 
-import qlk.com.baidumap.XCBaseBaiduMapActivity;
 
-public class MapActivity extends XCBaseBaiduMapActivity {
+public class MapActivity extends QlkBaiduMapActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+        super.onCreate(savedInstanceState);
     }
 
     @Override

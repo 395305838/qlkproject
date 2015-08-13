@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.base.function;
+package com.xiaocoder.android.fw.general.base.abslist;
 
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -8,19 +8,20 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
-import android.widget.ExpandableListView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
-import com.xiaocoder.android.fw.general.adapter.XLBaseExpandableListViewAdapter;
+import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
-import com.xiaocoder.android.fw.general.util.UtilCommon;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.android_fw_general.R;
 
@@ -28,15 +29,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author xilinch
- * @Description: 封装了分页 , 目前只支持一个页面中只有一个可下拉刷新的listview或gridview
+ * @author xiaocoder
+ * @Description: 封装了分页 ,下拉刷新，数据0背景的fragment
  * @date 2014-12-31 上午11:30:24
  */
-public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends XCBaseFragment implements OnItemClickListener, OnRefreshListener2<T> {
+public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBaseFragment implements OnItemClickListener, OnRefreshListener2<T> {
 
-    // 可以刷新的expandListView
+    // 可以刷新的listview或gridview
     public PullToRefreshAdapterViewBase<T> base_refresh_abs_listview;
-    // 就是一个expandListView
+    // 就是一个listview 或 gridview
     public T base_abs_listview;
     // 数据为0的背景
     public LinearLayout base_listview_zero_bg;
@@ -67,7 +68,7 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
     int refresh_listview_id;
 
     @SuppressWarnings("rawtypes")
-    public XLBaseExpandableListViewAdapter base_adapter;
+    public XCBaseAdapter base_adapter;
 
     // 滚动到最底部
     public void scrollToDown() {
@@ -90,12 +91,12 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
     }
 
     @SuppressWarnings("rawtypes")
-    public void setAdapter(XLBaseExpandableListViewAdapter adapter) {
+    public void setAdapter(XCBaseAdapter adapter) {
         base_adapter = adapter;
     }
 
     @SuppressWarnings("rawtypes")
-    public XLBaseExpandableListViewAdapter getAdapter() {
+    public XCBaseAdapter getAdapter() {
         return base_adapter;
     }
 
@@ -107,14 +108,12 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
 
         base_refresh_abs_listview = getViewById(refresh_listview_id);
         base_abs_listview = base_refresh_abs_listview.getRefreshableView();
-        if (base_abs_listview instanceof ExpandableListView) {
-            UtilAbsListStyle.setExpandListViewStyle(getBaseActivity(), ((ExpandableListView) base_abs_listview), show_bar, 0);
-            ((ExpandableListView) base_abs_listview).setAdapter(base_adapter);
-            if (base_adapter != null && base_adapter.list != null && base_adapter.list.size() > 0) {
-                for (int i = 0; i < base_adapter.list.size(); i++) {
-                    ((ExpandableListView) base_abs_listview).expandGroup(i);
-                }
-            }
+        if (base_abs_listview instanceof GridView) {
+            UtilAbsListStyle.setGridViewStyle(((GridView) base_abs_listview), show_bar, grid_space_h_dp, grid_space_v_dp, grid_line_num);
+            ((GridView) base_abs_listview).setAdapter(base_adapter);
+        } else {
+            UtilAbsListStyle.setListViewStyle(((ListView) base_abs_listview), list_divider_drawable, list_height_dp, show_bar);
+            ((ListView) base_abs_listview).setAdapter(base_adapter);
         }
 
         // 设置上下拉的模式
@@ -146,8 +145,8 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
     // 数据为0时，背景上显示的点击按钮
     public Button base_zero_button;
 
-    public CharSequence zero_text_hint;
-    public CharSequence zero_button_hint;
+    public String zero_text_hint;
+    public String zero_button_hint;
     public int zero_imageview_hint;
 
     public void init(int refresh_listview_id, int listview_zero_bg_layout, int model) {
@@ -162,7 +161,7 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
         base_zero_textview = (TextView) base_listview_zero_bg.findViewById(R.id.xc_id_data_zero_hint_textview);
         base_zero_button = (Button) base_listview_zero_bg.findViewById(R.id.xc_id_data_zero_do_button);
         base_zero_button.setOnClickListener(this);
-        base_zero_textview.setOnClickListener(this);
+        base_zero_imageview.setOnClickListener(this);
     }
 
     // 下拉刷新
@@ -191,10 +190,16 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
 
     // 刷新完成
     public void completeRefresh() {
-        if (base_refresh_abs_listview != null) {
+
+        if (base_refresh_abs_listview != null && whichMode != XCBaseAbsListFragment.MODE_NOT_PULL) {
             base_refresh_abs_listview.onRefreshComplete();
+            XCApplication.printi("completeRefresh()");
         }
+
         base_isPullRefreshing = false;
+
+        whichShow(base_all_beans.size());
+
     }
 
     // 是否是底部
@@ -214,6 +219,16 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
             base_all_beans.clear();
         }
     }
+
+    public void resetCurrentPage() {
+        base_currentPage = 1;
+    }
+
+    public void resetCurrentPageAndList() {
+        base_currentPage = 1;
+        base_all_beans.clear();
+    }
+
 
     public boolean hasSetStyle;
 
@@ -264,31 +279,22 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
             if (onBgZeroButtonClickToDoListener != null) {
                 onBgZeroButtonClickToDoListener.onBgZeroButtonClickToDo();
             }
-        } else if (id == R.id.xc_id_data_zero_hint_textview) {
-            if (onBgZeroTextViewClickToDoListener != null) {
-                onBgZeroTextViewClickToDoListener.onBgZeroButtonClickToDo();
-            }
         }
     }
 
-    public void whichShow(int size, CharSequence text, int drawable_id, CharSequence button_text) {
+    public void whichShow(int size) {
         if (size > 0) {
             setViewGone(false, base_listview_zero_bg);
             setViewVisible(true, base_refresh_abs_listview);
         } else {
-            base_zero_button.setText(button_text);
-            base_zero_imageview.setImageResource(drawable_id);
-            base_zero_textview.setText(text);
-
+            base_zero_button.setText(zero_button_hint);
+            base_zero_imageview.setImageResource(zero_imageview_hint);
+            base_zero_textview.setText(zero_text_hint);
 
             setViewGone(true, base_listview_zero_bg);
             setViewVisible(false, base_refresh_abs_listview);
         }
     }
-
-    // public abstract void requestForPage(int currentPage);
-    //
-    // public abstract void onBgZeroButtonClickToDo();
 
     // 分页监听
     public interface OnRefreshNextPageListener {
@@ -304,23 +310,12 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
     // 背景点击监听
     OnBgZeroButtonClickToDoListener onBgZeroButtonClickToDoListener;
 
-    // 文字点击
-    OnBgZeroTextViewClickToDoListener onBgZeroTextViewClickToDoListener;
-
     public interface OnBgZeroButtonClickToDoListener {
         void onBgZeroButtonClickToDo();
     }
 
     public void setOnBgZeroButtonClickToDoListener(OnBgZeroButtonClickToDoListener onBgZeroButtonClickToDoListener) {
         this.onBgZeroButtonClickToDoListener = onBgZeroButtonClickToDoListener;
-    }
-
-    public interface OnBgZeroTextViewClickToDoListener {
-        void onBgZeroButtonClickToDo();
-    }
-
-    public void OnBgZeroTextViewClickToDoListener(OnBgZeroTextViewClickToDoListener onBgZeroTextViewClickToDoListener) {
-        this.onBgZeroTextViewClickToDoListener = onBgZeroTextViewClickToDoListener;
     }
 
     // 点击item监听
@@ -346,13 +341,13 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
         if (TextUtils.isEmpty(total_page)) {
             total_page = 1 + "";
         }
-        base_totalPage = Integer.parseInt(total_page);
+        base_totalPage = UtilString.toInt(total_page, 0);
     }
 
     public void setPerPageNum(String num) {
 
         // 默认是每页20个
-        PER_PAGE_NUM = Integer.parseInt(num);
+        PER_PAGE_NUM = UtilString.toInt(num, PER_PAGE_NUM);
     }
 
     // 设置总数，会自动计算总页数
@@ -365,7 +360,7 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
 
     public void setTotalNum(String page_size, String total_num) {
         setPerPageNum(page_size);
-        Integer total = Integer.parseInt(total_num);
+        Integer total = UtilString.toInt(total_num, 0);
         base_totalPage = total % PER_PAGE_NUM == 0 ? total / PER_PAGE_NUM : (total / PER_PAGE_NUM) + 1;
     }
 
@@ -383,22 +378,6 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
         base_all_beans.addAll(list);
         base_adapter.update(base_all_beans);
         base_adapter.notifyDataSetChanged();
-
-        ((ExpandableListView) base_abs_listview).setAdapter(base_adapter);
-        if (base_adapter != null && base_adapter.list != null && base_adapter.list.size() > 0) {
-            for (int i = 0; i < base_adapter.list.size(); i++) {
-                ((ExpandableListView) base_abs_listview).expandGroup(i);
-            }
-        }
-    }
-
-    public void resetCurrentPage() {
-        base_currentPage = 1;
-    }
-
-    public void resetCurrentPageAndList() {
-        base_currentPage = 1;
-        base_all_beans.clear();
     }
 
     public void updateListNoAdd(List list) {
@@ -439,7 +418,6 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
 
     // 设置数据为零时候的背景
     public void setBgZeroHintInfo(String zero_text_hint, String zero_button_hint, int zero_imageview_hint) {
-
         if (zero_button_hint == null) {
             this.zero_button_hint = "";
         } else {
@@ -453,14 +431,12 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
         } else {
             this.zero_text_hint = zero_text_hint;
         }
-
     }
 
-//    public void setBgZeroHintInfo(int zero_text_hint_type,String zero_text_hint, String zero_button_hint, int zero_imageview_hint) {
-//        this.zero_button_hint = zero_button_hint;
-//        this.zero_imageview_hint = zero_imageview_hint;
-//        this.zero_text_hint = zero_text_hint;
-//    }
+
+    public void setBase_currentPage(int base_currentPage) {
+        this.base_currentPage = base_currentPage;
+    }
 
 }
 
@@ -492,5 +468,11 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
 // List<JsonBean> beans = origin_bean.getList(orders_bean_flag.orders);
 // listgragment.updateList(beans);
 // }
+// }
+
+// onFinish(){
+//  if(result_boolean && listfragment != null){
+//      listfragment.complete();
+//  }
 // }
 // });

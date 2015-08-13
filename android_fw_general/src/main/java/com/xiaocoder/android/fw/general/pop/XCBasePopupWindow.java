@@ -1,6 +1,6 @@
 package com.xiaocoder.android.fw.general.pop;
 
-import android.graphics.drawable.BitmapDrawable;
+
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -155,7 +155,8 @@ public abstract class XCBasePopupWindow extends PopupWindow {
  * }
  * });
  * 总结:showAsDropDown方法: 弹出来的popwindow可以覆盖到v控件上 x轴方向,不管设置多大的正负数,都不会移出屏幕的宽度,即总是在屏幕的宽度中,但有的时候如果过大,可能在底部的会跑到顶部去,也不是很清楚,反正尽量不好超过屏幕就行
- * y轴的偏移量会移出屏幕,比如,pop的高为200,移出了屏幕50,那么pop的空间就只有150了,一般都是前50被遮住,但是pop这个是在剩下的150中重新布局,即效果是后50像素被遮住 偏移量的参考点是 v的左下角的那个点,即(0,0) 不要在oncreate方法没有执行完的时候show,否则badtoken异常
+ * y轴的偏移量会移出屏幕,比如,pop的高为200,移出了屏幕50,那么pop的空间就只有150了,一般都是前50被遮住,但是pop这个是在剩下的150中重新布局,即效果是后50像素被遮住
+ * 偏移量的参考点是 v的左下角的那个点,即(0,0) 不要在oncreate方法没有执行完的时候show,否则badtoken异常
  * 如果反射了那个方法,则pop会一直显示在最顶层,如果是home键不会消失,但是如果按了返回键即推出则会消失,
  * popupwindow的大小是由new PopupWindow时指定的
 

@@ -5,7 +5,7 @@ import android.widget.RadioGroup;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
-import com.xiaocoder.buffer.QlkMainActivity;
+import com.xiaocoder.buffer.function.QlkMainActivity;
 import com.xiaocoder.test.R;
 
 

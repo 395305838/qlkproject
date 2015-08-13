@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 
-import com.xiaocoder.android.fw.general.base.function.XLBaseExpandAbsListFragment;
+import com.xiaocoder.android.fw.general.base.abslist.XLBaseExpandAbsListFragment;
 import com.xiaocoder.android_fw_general.R;
 
 public class XLExpandListViewFragment extends XLBaseExpandAbsListFragment<ExpandableListView> {

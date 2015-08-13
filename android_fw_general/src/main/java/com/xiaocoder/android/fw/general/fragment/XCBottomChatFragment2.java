@@ -29,7 +29,7 @@ import android.widget.TextView.OnEditorActionListener;
 import com.xiaocoder.android.fw.general.adapter.XCAdapterViewPager;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBottomFragment;
+import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android.fw.general.listener.XCViewPagerListener;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
@@ -48,7 +48,7 @@ import java.util.List;
 /**
  * @author xiaocoder
  */
-public class XCBottomChatFragment2 extends XCBottomFragment {
+public class XCBottomChatFragment2 extends XCBaseFragment {
 
     // 最左边的进入录音布局的按钮--喇叭
     ImageView xc_id_fragment_bottom_show_recoder;

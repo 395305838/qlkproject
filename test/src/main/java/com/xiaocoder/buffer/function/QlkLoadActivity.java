@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.base.function;
+package com.xiaocoder.buffer.function;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,7 +24,7 @@ import java.util.ArrayList;
 /*
  * app启动时的页面
  */
-public abstract class SKBaseLoadActivity extends XCBaseActivity implements OnClickListener {
+public abstract class QlkLoadActivity extends XCBaseActivity implements OnClickListener {
 
     public ImageView load_image;
     private ViewPager mViewPager;

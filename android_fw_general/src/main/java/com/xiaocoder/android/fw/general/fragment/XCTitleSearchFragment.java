@@ -14,7 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import com.xiaocoder.android.fw.general.base.XCTitleFragment;
+import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.db.helper.XCDbHelper;
 import com.xiaocoder.android.fw.general.db.impl.XCSearchDao;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;
@@ -29,7 +29,7 @@ import java.util.List;
  * @Description: 可以搜索的title
  * @date 2015-1-16 下午1:50:08
  */
-public class XCTitleSearchFragment extends XCTitleFragment {
+public class XCTitleSearchFragment extends XCBaseFragment {
 
     XCClearEditText xc_id_fragment_search_edittext;
     TextView xc_id_fragment_search_cancle;

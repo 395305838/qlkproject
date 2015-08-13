@@ -29,7 +29,7 @@ public class WebActivity extends QlkActivity {
 		addFragment(R.id.xc_id_model_titlebar, title_fragment_common);
 
 		web_view_fragment = new XCWebViewFragment();
-		web_view_fragment.setUrl("http://yun.dabai.7lk.com/workspace/php/doctor/doctor-chart.html");
+		web_view_fragment.setUrl("http://www.baidu.com");
 		addFragment(R.id.test_web_fragment, web_view_fragment);
 	}
 

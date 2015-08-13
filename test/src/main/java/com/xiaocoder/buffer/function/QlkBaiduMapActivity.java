@@ -1,21 +1,18 @@
-package qlk.com.baidumap;
+package com.xiaocoder.buffer.function;
 
-import android.app.Service;
 import android.os.Bundle;
-import android.os.Vibrator;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
-import com.baidu.location.GeofenceClient;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.util.UtilString;
+import com.xiaocoder.buffer.QlkActivity;
 
 /**
  * Created by xiaocoder on 2015/5/27.
  */
-public abstract class XCBaseBaiduMapActivity extends XCBaseActivity {
+public abstract class QlkBaiduMapActivity extends QlkActivity {
 
     private LocationClientOption.LocationMode tempMode = LocationClientOption.LocationMode.Hight_Accuracy;
     private String tempcoor = "gcj02"; // bd09ll  , bd09

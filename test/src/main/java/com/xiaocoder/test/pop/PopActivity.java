@@ -57,7 +57,7 @@ public class PopActivity extends QlkActivity {
 
             @Override
             public void onClick(View v) {
-                reflectPopupWindow.showPopupWindow((View) (test_pop_button.getParent()), 0, -UtilScreen.dip2px(PopActivity.this, 105));
+                reflectPopupWindow.showPopupWindow((View) (test_pop_button.getParent()), 0, -UtilScreen.dip2px(PopActivity.this, 100));
             }
         });
 

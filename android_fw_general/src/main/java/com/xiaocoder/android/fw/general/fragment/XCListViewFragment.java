@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.xiaocoder.android.fw.general.base.function.XCBaseAbsListFragment;
+import com.xiaocoder.android.fw.general.base.abslist.XCBaseAbsListFragment;
 import com.xiaocoder.android_fw_general.R;
 
 public class XCListViewFragment extends XCBaseAbsListFragment<ListView> {

@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
-import com.xiaocoder.android.fw.general.base.function.XCBaseAbsListFragment.OnAbsListItemClickListener;
-import com.xiaocoder.android.fw.general.base.function.XCBaseAbsListFragment.OnRefreshNextPageListener;
+import com.xiaocoder.android.fw.general.base.abslist.XCBaseAbsListFragment.OnAbsListItemClickListener;
+import com.xiaocoder.android.fw.general.base.abslist.XCBaseAbsListFragment.OnRefreshNextPageListener;
 import com.xiaocoder.android.fw.general.fragment.XCGridViewFragment;
 import com.xiaocoder.android.fw.general.fragment.XCListViewFragment;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;

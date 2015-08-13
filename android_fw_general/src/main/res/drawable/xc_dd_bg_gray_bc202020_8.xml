@@ -12,11 +12,11 @@ stroke 边线
     android:shape="rectangle">
 
     <size
-        android:width="86dp"
-        android:height="86dp" />
+        android:width="100dp"
+        android:height="100dp" />
 
     <corners android:radius="8dp" />
 
-    <solid android:color="@color/c_gray_a0666666" />
+    <solid android:color="@color/c_gray_bc202020" />
 
 </shape>

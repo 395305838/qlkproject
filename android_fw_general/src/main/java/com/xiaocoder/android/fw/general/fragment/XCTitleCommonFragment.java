@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.xiaocoder.android.fw.general.base.XCTitleFragment;
+import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android_fw_general.R;
 
 /**
@@ -25,7 +25,7 @@ import com.xiaocoder.android_fw_general.R;
  * 右边一个textview+imageview
  * @date 2014-12-31 上午11:31:25
  */
-public class XCTitleCommonFragment extends XCTitleFragment {
+public class XCTitleCommonFragment extends XCBaseFragment {
 
     LinearLayout xc_id_titlebar_left_layout;
     ImageView xc_id_titlebar_left_imageview;

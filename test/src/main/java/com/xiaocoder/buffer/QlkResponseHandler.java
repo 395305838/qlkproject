@@ -16,6 +16,7 @@ import com.xiaocoder.android.fw.general.http.XCResponseHandler;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
+import com.xiaocoder.buffer.function.QlkMainActivity;
 
 /**
  * @author xiaocoder

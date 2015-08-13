@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RadioGroup;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.helper.XCTimeHelper;
@@ -13,7 +12,7 @@ import com.xiaocoder.android.fw.general.helper.XCTimeHelper.CustomTimer;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow.onPhotoPopupItemClickListener;
 import com.xiaocoder.android.fw.general.util.UtilString;
-import com.xiaocoder.buffer.QlkMainActivity;
+import com.xiaocoder.buffer.function.QlkMainActivity;
 import com.xiaocoder.test.anim.AnimationActivity;
 import com.xiaocoder.test.baidumap.MapActivity;
 import com.xiaocoder.test.contacts.ContactsActivity;

@@ -27,6 +27,5 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.2.0'
-    compile project(':android_fw_general')
     compile files('libs/locSDK_5.3.jar')
 }
