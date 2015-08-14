@@ -63,22 +63,39 @@ public class XCExecutorHelper {
 
         try {
             if (threadpool_cache != null) {
-                threadpool_cache.shutdown();
+                threadpool_cache.shutdownNow();
             }
-            if (threadpool_single != null) {
-                threadpool_single.shutdown();
-            }
-            if (threadpool_fix != null) {
-                threadpool_fix.shutdown();
-            }
-
         } catch (Exception e) {
             e.printStackTrace();
-            XCApplication.printe("XCExecutorHelper()----线程池关闭异常");
+            XCApplication.printe("XCExecutorHelper()--threadpool_cache--线程池关闭异常");
         } finally {
             threadpool_cache = null;
+        }
+
+
+        try {
+            if (threadpool_single != null) {
+                threadpool_single.shutdownNow();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            XCApplication.printe("XCExecutorHelper()--threadpool_single--线程池关闭异常");
+        } finally {
             threadpool_single = null;
+        }
+
+
+        try {
+            if (threadpool_fix != null) {
+                threadpool_fix.shutdownNow();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            XCApplication.printe("XCExecutorHelper()--threadpool_fix--线程池关闭异常");
+        } finally {
             threadpool_fix = null;
         }
+
+
     }
 }
