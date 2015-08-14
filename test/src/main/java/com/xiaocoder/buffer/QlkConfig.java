@@ -3,7 +3,7 @@ package com.xiaocoder.buffer;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 
 /*
- * 该类配置开发环境  ， 调试开关  ，域名路径  ，url等
+ * 该类配置开发环境  ， 调试开关  ，域名 ， 路径  ，url等
  */
 public class QlkConfig extends XCConfig {
 
@@ -152,19 +152,19 @@ public class QlkConfig extends XCConfig {
      */
     public static String TEMP_PRINT_FILE = APP_ROOT + "/temp_print_file";
     /*
-     * 是否打印日志到控制台，在子类中设置
+     * 是否打印日志到控制台
      */
     public static boolean IS_OUTPUT;
     /*
-     * 是否弹出调试的土司，在子类中设置
+     * 是否弹出调试的土司
      */
     public static boolean IS_DTOAST;
     /*
-     * 是否初始化crashHandler,上线前得关，在子类中设置
+     * 是否初始化crashHandler,上线前得关
      */
     public static boolean IS_INIT_CRASH_HANDLER;
     /*
-     * 是否打印异常的日志到屏幕， 上线前得关，在子类中设置
+     * 是否打印异常的日志到屏幕， 上线前得关
      */
     public static boolean IS_SHOW_EXCEPTION_ACTIVITY;
 

@@ -29,7 +29,7 @@ public class XCHttpAsyn {
     public static boolean isNeting;
 
     static {
-        client.setTimeout(9000);
+        client.setTimeout(10000);
     }
 
     public static AsyncHttpClient getClient() {
