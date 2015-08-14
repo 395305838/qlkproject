@@ -21,6 +21,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.helper.XCDownloadHelper;
 import com.xiaocoder.android.fw.general.util.UtilEncrypt;
 
 public class XCIO {
@@ -265,13 +266,25 @@ public class XCIO {
      * @throws java.io.IOException
      */
     public static void toFileByInputStream(InputStream in, File file) {
+        toFileByInputStream(in, file, 0, null);
+    }
+
+    public static void toFileByInputStream(InputStream in, File file, long totalSize, XCDownloadHelper.DownloadListener listener) {
         OutputStream os = null;
         try {
             os = new FileOutputStream(file);// 该句只会创建文件,不会创建文件夹,否则异常
             byte[] buffer = new byte[10240];
             int len = -1;
+            long totalProgress = 0;
+            if (listener != null) {
+                listener.downloadStart(totalSize, file);
+            }
             while ((len = in.read(buffer)) != -1) {
                 os.write(buffer, 0, len);
+                totalProgress = totalProgress + len;
+                if (listener != null) {
+                    listener.downloadProgress(len, totalProgress, totalSize,file);
+                }
             }
             in.close();
             os.close();
@@ -297,6 +310,7 @@ public class XCIO {
             }
         }
     }
+
 
     /**
      * 从网络获取文件,检测本地是否有缓存 如果url乱写,这里可能会有空指针或字符串等方面的异常 如 IOUtils.getCacheFile(new
