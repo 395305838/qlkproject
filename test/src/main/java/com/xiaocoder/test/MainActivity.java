@@ -7,11 +7,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.helper.XCTimeHelper;
 import com.xiaocoder.android.fw.general.helper.XCTimeHelper.CustomTimer;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow.onPhotoPopupItemClickListener;
 import com.xiaocoder.android.fw.general.util.UtilString;
+import com.xiaocoder.buffer.QlkConfig;
 import com.xiaocoder.buffer.function.QlkMainActivity;
 import com.xiaocoder.test.anim.AnimationActivity;
 import com.xiaocoder.test.baidumap.MapActivity;
@@ -193,7 +195,8 @@ public class MainActivity extends QlkMainActivity {
 
     @Override
     public void initWidgets() {
-
+        XCApplication.printi(QlkConfig.TAG_TEMP, QlkConfig.CURRENT_RUN_ENVIRONMENT.toString() + "-----环境");
+        XCApplication.printi(QlkConfig.TAG_TEMP, QlkConfig.DEBUG_CONTROL.toString() + "-----调试");
     }
 
     @Override

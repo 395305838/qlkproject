@@ -12,13 +12,19 @@ import com.xiaocoder.android.fw.general.util.UtilSystem;
 
 /**
  * Created by xiaocoder on 2015/7/14.
+ *
+ * 各个初始化的顺序不要去改变
  */
 public class QlkApplication extends XCApplication {
 
     @Override
     public void onCreate() {
         super.onCreate();
-        // 初始化一些路径的问题
+        // 初始化一些路径
+        // log , 可以打印日志 与 toast
+        base_log = new XCLog(getApplicationContext(),
+                QlkConfig.IS_DTOAST, QlkConfig.IS_OUTPUT, QlkConfig.IS_PRINTLOG,
+                QlkConfig.APP_ROOT, QlkConfig.LOG_FILE, QlkConfig.TEMP_PRINT_FILE, QlkConfig.ENCODING_UTF8);
 
         // 图片缓存路径
         base_imageloader = XCImageLoaderHelper
@@ -33,12 +39,6 @@ public class QlkApplication extends XCApplication {
         base_io.createDirInAndroid(QlkConfig.CHAT_VIDEO_FILE);
         base_io.createDirInAndroid(QlkConfig.CHAT_PHOTO_FILE);
         base_io.createDirInAndroid(QlkConfig.CRASH_FILE);
-
-
-        // log , 可以打印日志 与 toast
-        base_log = new XCLog(getApplicationContext(),
-                QlkConfig.IS_DTOAST, QlkConfig.IS_OUTPUT, QlkConfig.IS_PRINTLOG,
-                QlkConfig.APP_ROOT, QlkConfig.LOG_FILE, QlkConfig.TEMP_PRINT_FILE, QlkConfig.ENCODING_UTF8);
 
         printi(UtilSystem.getDeviceId(getApplicationContext()) + "--deviceId , " + UtilSystem.getVersionCode(getApplicationContext())
                 + "--versionCode , " + UtilSystem.getVersionName(getApplicationContext()) + "--versionName , "

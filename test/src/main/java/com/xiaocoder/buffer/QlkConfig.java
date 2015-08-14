@@ -3,16 +3,59 @@ package com.xiaocoder.buffer;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 
 /*
- * 该类配置开发环境  ， 调试开关  ，路径  ，url等
+ * 该类配置开发环境  ， 调试开关  ，域名路径  ，url等
  */
 public class QlkConfig extends XCConfig {
 
     /*
-     * 当前的运行环境
+     * 当前的运行环境 , 上线前，改为ONLINE
      */
-    public static RunEnvironment CURRENT_RUN_ENVIRONMENT = RunEnvironment.DEV;
+    public static RunEnvironment CURRENT_RUN_ENVIRONMENT = RunEnvironment.ONLINE;
+
     /*
-     * url
+     * 是否打开调试开关 , 上线前，改为CLOSE，即不输出调试信息
+     */
+    public static DebugControl DEBUG_CONTROL = DebugControl.OPEN;
+
+
+    static {
+
+        if (DEBUG_CONTROL == DebugControl.CLOSE) {
+
+            // 是否打印到控制台
+            IS_OUTPUT = false;
+
+            // 调试土司是否开启
+            IS_DTOAST = false;
+
+            // 是否初始化crashhandler
+            IS_INIT_CRASH_HANDLER = false;
+
+            // 是否打印出异常界面（只有在IS_INIT_CRASH_HANDLER 为true时，该设置才有效）
+            IS_SHOW_EXCEPTION_ACTIVITY = false;
+
+        } else if (DEBUG_CONTROL == DebugControl.OPEN) {
+
+            // 是否打印到控制台
+            IS_OUTPUT = true;
+
+            // 调试土司是否开启
+            IS_DTOAST = true;
+
+            // 是否初始化crashhandler
+            IS_INIT_CRASH_HANDLER = true;
+
+            // 是否打印出异常界面（只有在IS_INIT_CRASH_HANDLER 为true时，该设置才有效）
+            IS_SHOW_EXCEPTION_ACTIVITY = true;
+
+        } else {
+            throw new RuntimeException("QlkConfig的static代码块中没有找到与DEBUG_CONTROL匹配的枚举值");
+        }
+
+    }
+
+    /*
+     * 域名配置
      */
     private static String ONLINE_HOST = "online.123.cn";
     private static String ONLINE_PORT = "12345";
@@ -43,37 +86,9 @@ public class QlkConfig extends XCConfig {
 
         } else {
 
-            throw new RuntimeException("XCConfig中没有找到匹配的url");
+            throw new RuntimeException("QlkConfig中没有找到匹配的url");
         }
     }
-
-
-    // ----------------------------------补充接口url---------------------------------------
-
-
-    // ----------------------------------补充接口url---------------------------------------
-
-
-    /*
-     * 是否打印日志到控制台
-     */
-    public static boolean IS_OUTPUT = true;
-    /*
-     * 是否弹出调试的土司
-     */
-    public static boolean IS_DTOAST = true;
-    /*
-     * 是否打印日志到手机文件中
-     */
-    public static boolean IS_PRINTLOG = true;
-    /*
-     * 是否初始化crashHandler
-     */
-    public static boolean IS_INIT_CRASH_HANDLER = true;
-    /*
-     * 是否打印异常的日志到屏幕， 上线前得关
-     */
-    public static boolean IS_SHOW_EXCEPTION_ACTIVITY = true;
 
     /*
      * app的名字与根目录
@@ -89,7 +104,7 @@ public class QlkConfig extends XCConfig {
      */
     public static int DB_VERSION = 1;
     /*
-     * 数据库表名,支持创建多个表
+     * 数据库表名,创建多个表
      */
     public static String DB_TABLE_NAME_SEARCH_1 = "search_1";
     public static String DB_TABLE_NAME_SEARCH_2 = "search_2";
@@ -129,9 +144,35 @@ public class QlkConfig extends XCConfig {
      */
     public static String SP_SETTING = APP_ROOT + "_setting";
     /*
-     * 打印测试的文件
+     * 是否打印日志到手机文件中,即printe方法，默认不管是线上线下环境/是否调试，都是开启的
+     */
+    public static boolean IS_PRINTLOG = true;
+    /*
+     * 打印测试的文件，有时候控制台可能打印json不全，比如json太长的时候， 可以调用tempPrint方法，打印到本地查看
      */
     public static String TEMP_PRINT_FILE = APP_ROOT + "/temp_print_file";
+    /*
+     * 是否打印日志到控制台，在子类中设置
+     */
+    public static boolean IS_OUTPUT;
+    /*
+     * 是否弹出调试的土司，在子类中设置
+     */
+    public static boolean IS_DTOAST;
+    /*
+     * 是否初始化crashHandler,上线前得关，在子类中设置
+     */
+    public static boolean IS_INIT_CRASH_HANDLER;
+    /*
+     * 是否打印异常的日志到屏幕， 上线前得关，在子类中设置
+     */
+    public static boolean IS_SHOW_EXCEPTION_ACTIVITY;
+
+
+    // ----------------------------------补充接口url---------------------------------------
+
+
+    // ----------------------------------补充接口url---------------------------------------
 
 
 }

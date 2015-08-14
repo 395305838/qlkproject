@@ -2,7 +2,7 @@ package com.xiaocoder.android.fw.general.application;
 
 public class XCConfig {
     /*
-     * TAG
+     * TAG ， 控制台查看的
      */
     public static String TAG_SYSTEM_OUT = "System.out";
     public static String TAG_HTTP = "http";
@@ -13,12 +13,15 @@ public class XCConfig {
     public static String TAG_TEMP = "temp";
 
     /*
-     * 分别代表开发 测试  线上的环境
+     * 分别代表开发 测试  线上的环境的地址
      */
     public enum RunEnvironment {
         DEV, TEST, ONLINE
     }
 
+    public enum DebugControl {
+        OPEN, CLOSE
+    }
 
     public static String RMB = "¥";
 

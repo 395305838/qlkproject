@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * UncaughtException处理类,当程序发生Uncaught异常的时候,有该类来接管程序,并记录发送错误报告.
  * 记得在清单文件中注册啊
- *
+ * <p/>
  * 有一个bug：如果实在显示打印的异常类的环境下，且mainactivity出现异常了，则会启动多次--待改
  */
 public class XLCrashHandler implements UncaughtExceptionHandler {
@@ -120,16 +120,7 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
             return false;
         }
 
-        // 使用 Toast 来显示异常信息
-//        new Thread() {
-//            @Override
-//            public void run() {
-//                Looper.prepare();
-//                Toast.makeText(mContext, "很抱歉，程序出现异常，即将退出。", Toast.LENGTH_LONG).show();
-//                Looper.loop();
-//            }
-//        }.start();
-
+        ex.printStackTrace();
         // 收集设备参数信息
         collectDeviceInfo(mContext);
         // 保存日志文件
