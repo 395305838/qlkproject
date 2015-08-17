@@ -8,14 +8,19 @@ import android.widget.Button;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
+import com.xiaocoder.android.fw.general.helper.XCDownloadHelper;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.buffer.QlkApplication;
+import com.xiaocoder.buffer.QlkConfig;
 import com.xiaocoder.buffer.QlkResponseHandler;
 import com.xiaocoder.test.R;
 
 import org.apache.http.Header;
+
+import java.io.File;
 
 public class HttpDownLoadActivity extends QlkActivity {
 
@@ -44,6 +49,7 @@ public class HttpDownLoadActivity extends QlkActivity {
                 dialog.setOnDecideListener(new XCQueryDialog.OnDecideListener() {
                     @Override
                     public void confirm() {
+                        downLoad();
                         dialog.dismiss();
                     }
 
@@ -60,6 +66,36 @@ public class HttpDownLoadActivity extends QlkActivity {
 
             }
         });
+    }
+
+    private void downLoad() {
+
+        XCDownloadHelper downloadHelper = new XCDownloadHelper("http://www.baidu.com"
+                , QlkApplication.getBase_io().createFileInAndroid(QlkConfig.APP_ROOT, "downfile"));
+
+        downloadHelper.setDownloadListener(new XCDownloadHelper.DownloadListener() {
+            @Override
+            public void downloadFinished(long totalSize, File file) {
+
+            }
+
+            @Override
+            public void downloadProgress(int len, long totalProgress, long totalSize, File file) {
+
+            }
+
+            @Override
+            public void downloadStart(long totalSize, File file) {
+
+            }
+
+            @Override
+            public void netFail(File file) {
+
+            }
+        });
+
+        QlkApplication.getBase_cache_threadpool().execute(downloadHelper);
     }
 
     @Override

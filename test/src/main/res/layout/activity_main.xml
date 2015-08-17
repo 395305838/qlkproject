@@ -22,10 +22,10 @@
                 android:text="test_baidumap" />
 
             <Button
-                android:id="@+id/test_umupdate"
+                android:id="@+id/test_switchbutton"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="test_umupdate" />
+                android:text="test_switchbutton" />
 
             <Button
                 android:id="@+id/test_dialog3"

@@ -6,4 +6,14 @@
         <!-- 文本 -->
         <attr name="xc_radio_for_width_height" format="string|reference" />
     </declare-styleable>
+
+    <!-- 滑动的button -->
+    <declare-styleable name="slideswitch">
+        <attr name="themeColor" format="color" />
+        <attr name="isOpen" format="boolean" />
+        <attr name="shape">
+            <enum name="rect" value="1" />
+            <enum name="circle" value="2" />
+        </attr>
+    </declare-styleable>
 </resources>

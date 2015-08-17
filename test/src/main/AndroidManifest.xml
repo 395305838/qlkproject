@@ -126,7 +126,7 @@
         <!-- 百度地图定位 -->
 
         <activity
-            android:name=".update.UpdateActivity"
+            android:name=".view.SwitchButtonActivity"
             android:label="@string/title_activity_update"></activity>
         <activity
             android:name="com.xiaocoder.android.fw.general.exception.XLShowExceptionsActivity"
