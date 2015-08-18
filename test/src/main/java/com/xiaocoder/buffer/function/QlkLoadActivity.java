@@ -169,21 +169,6 @@ public abstract class QlkLoadActivity extends QlkActivity implements OnClickList
     }
 
     @Override
-    public void listeners() {
-
-    }
-
-    @Override
-    public void initWidgets() {
-
-    }
-
-    @Override
-    public void onNetRefresh() {
-
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         welcomeImgList = null;

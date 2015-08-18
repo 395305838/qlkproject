@@ -89,11 +89,6 @@ public abstract class QlkBaiduMapActivity extends QlkActivity {
         }
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-
     @Override
     protected void onStop() {
         mLocationClient.stop();
