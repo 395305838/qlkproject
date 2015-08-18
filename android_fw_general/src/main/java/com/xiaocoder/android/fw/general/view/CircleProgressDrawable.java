@@ -49,7 +49,7 @@ import java.util.ArrayList;
  *
  * @hide
  */
-public class MaterialProgressDrawable extends Drawable implements Animatable {
+public class CircleProgressDrawable extends Drawable implements Animatable {
     // Maps to ProgressBar.Large style
     public static final int LARGE = 0;
     // Maps to ProgressBar default style
@@ -126,7 +126,7 @@ public class MaterialProgressDrawable extends Drawable implements Animatable {
     private double mHeight;
     private boolean mShowArrowOnFirstStart = false;
 
-    public MaterialProgressDrawable(Context context, View animExcutor) {
+    public CircleProgressDrawable(Context context, View animExcutor) {
         mAnimExcutor = animExcutor;
         mResources = context.getResources();
 

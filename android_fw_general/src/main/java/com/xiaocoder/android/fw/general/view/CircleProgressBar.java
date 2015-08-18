@@ -72,7 +72,7 @@ public class CircleProgressBar extends ImageView {
     private int mTextSize;
     private boolean mIfDrawText;
     private boolean mShowArrow;
-    private MaterialProgressDrawable mProgressDrawable;
+    private CircleProgressDrawable mProgressDrawable;
     private ShapeDrawable mBgCircle;
     private boolean mCircleBackgroundEnabled;
     private int[] mColors = new int[]{Color.BLACK};
@@ -157,7 +157,7 @@ public class CircleProgressBar extends ImageView {
         mTextPaint.setTextSize(mTextSize);
         mTextPaint.setAntiAlias(true);
         a.recycle();
-        mProgressDrawable = new MaterialProgressDrawable(getContext(), this);
+        mProgressDrawable = new CircleProgressDrawable(getContext(), this);
         super.setImageDrawable(mProgressDrawable);
     }
 
