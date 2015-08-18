@@ -1,8 +1,7 @@
-package com.xiaocoder.android.fw.general.view;
+package com.xiaocoder.android.fw.general.fragment;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.ExpandableListView;
 
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 

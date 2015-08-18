@@ -17,6 +17,7 @@ import com.xiaocoder.buffer.function.QlkMainActivity;
 import com.xiaocoder.test.anim.AnimationActivity;
 import com.xiaocoder.test.baidumap.MapActivity;
 import com.xiaocoder.test.contacts.ContactsActivity;
+import com.xiaocoder.test.dialogs.CircleProgressBarActivity;
 import com.xiaocoder.test.dialogs.DialogActivity3;
 import com.xiaocoder.test.fragment.CamareActivity;
 import com.xiaocoder.test.fragment.MoveBlockActivity;
@@ -69,6 +70,7 @@ public class MainActivity extends QlkMainActivity {
     Button test_dialog3;
     Button test_baidumap;
     Button test_switchbutton;
+    Button test_circleprogress;
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -88,6 +90,9 @@ public class MainActivity extends QlkMainActivity {
 
         test_switchbutton = (Button) findViewById(R.id.test_switchbutton);
         test_switchbutton.setOnClickListener(this);
+
+        test_circleprogress = (Button) findViewById(R.id.test_circleprogress);
+        test_circleprogress.setOnClickListener(this);
 
         XCTimeHelper timeHelper = new XCTimeHelper(1000000, new CustomTimer() {
 
@@ -288,6 +293,8 @@ public class MainActivity extends QlkMainActivity {
             startActivity(new Intent(this, MapActivity.class));
         } else if (id == R.id.test_switchbutton) {
             startActivity(new Intent(this, SwitchButtonActivity.class));
+        } else if (id == R.id.test_circleprogress) {
+            startActivity(new Intent(this, CircleProgressBarActivity.class));
         }
 
     }

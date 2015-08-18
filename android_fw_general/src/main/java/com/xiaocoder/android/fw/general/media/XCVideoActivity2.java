@@ -9,7 +9,6 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
-import com.xiaocoder.android.fw.general.view.XCVideoPlayerPop2;
 import com.xiaocoder.android_fw_general.R;
 
 

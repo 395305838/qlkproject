@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.xiaocoder.android.fw.general.view.XLExpandableListView
+    <com.xiaocoder.android.fw.general.fragment.XLExpandableListView
         android:id="@+id/xc_id_expandlistview_plus"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

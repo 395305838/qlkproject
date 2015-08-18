@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- These are the standard attributes that make up a complete theme. -->
     <!-- 自定义控件的属性 -->
     <declare-styleable name="XCImageView">
         <!-- 文本 -->
@@ -8,12 +7,37 @@
     </declare-styleable>
 
     <!-- 滑动的button -->
-    <declare-styleable name="slideswitch">
+    <declare-styleable name="switchbutton">
         <attr name="themeColor" format="color" />
         <attr name="isOpen" format="boolean" />
         <attr name="shape">
             <enum name="rect" value="1" />
             <enum name="circle" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <!-- 有百分比的圆圈progressdialog -->
+    <declare-styleable name="CircleProgressBar">
+        <attr name="mlpb_inner_radius" format="dimension" />
+        <attr name="mlpb_background_color" format="color" />
+        <attr name="mlpb_progress_color" format="color" />
+        <attr name="mlpb_progress_stoke_width" format="dimension" />
+        <attr name="mlpb_show_arrow" format="boolean" />
+        <attr name="mlpb_enable_circle_background" format="boolean" />
+        <attr name="mlpb_arrow_width" format="dimension" />
+        <attr name="mlpb_arrow_height" format="dimension" />
+
+        <attr name="mlpb_progress" format="integer" />
+        <attr name="mlpb_max" format="integer" />
+
+        <attr name="mlpb_progress_text_size" format="dimension" />
+        <attr name="mlpb_progress_text_color" format="color" />
+
+        <!--<attr name="mlpb_progress_text_offset" format="dimension"/>-->
+
+        <attr name="mlpb_progress_text_visibility" format="enum">
+            <enum name="visible" value="0" />
+            <enum name="invisible" value="1" />
         </attr>
     </declare-styleable>
 </resources>

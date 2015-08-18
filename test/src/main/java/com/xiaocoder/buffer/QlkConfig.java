@@ -17,9 +17,7 @@ public class QlkConfig extends XCConfig {
      */
     public static DebugControl DEBUG_CONTROL = DebugControl.OPEN;
 
-
     static {
-
         if (DEBUG_CONTROL == DebugControl.CLOSE) {
 
             // 是否打印到控制台
@@ -51,7 +49,6 @@ public class QlkConfig extends XCConfig {
         } else {
             throw new RuntimeException("QlkConfig的static代码块中没有找到与DEBUG_CONTROL匹配的枚举值");
         }
-
     }
 
     /*

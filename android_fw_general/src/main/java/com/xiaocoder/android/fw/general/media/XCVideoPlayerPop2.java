@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.view;
+package com.xiaocoder.android.fw.general.media;
 
 import android.app.Activity;
 import android.app.AlertDialog;

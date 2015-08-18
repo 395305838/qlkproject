@@ -524,6 +524,11 @@
         <activity
             android:name=".TextActivity"
             android:label="@string/title_activity_text" />
+
+        <activity android:name=".dialogs.CircleProgressBarActivity"
+            android:label="@string/title_activity_circle_progress"
+            >
+        </activity>
     </application>
 
 </manifest>
