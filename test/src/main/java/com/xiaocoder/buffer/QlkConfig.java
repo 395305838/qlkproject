@@ -5,26 +5,33 @@ package com.xiaocoder.buffer;
  */
 public class QlkConfig {
 
-    /*
+    /**
      * 分别代表开发 测试  线上的环境的地址
      */
     public enum RunEnvironment {
         DEV, TEST, ONLINE
     }
 
+    /**
+     * OPEN_DEFAULT 与 close 是配置好的，不要动
+     * <p/>
+     * 如果需要改，则在OPEN_DEFINE里改动
+     * <p/>
+     * 上线前一定要设置为close
+     */
     public enum DebugControl {
-        OPEN, CLOSE
+        CLOSE, OPEN_DEFAULT, OPEN_DEFINE
     }
 
-    /*
+    /**
      * 当前的运行环境 , 上线前，改为ONLINE
      */
     public static RunEnvironment CURRENT_RUN_ENVIRONMENT = RunEnvironment.ONLINE;
 
-    /*
+    /**
      * 是否打开调试开关 , 上线前，改为CLOSE，即不输出调试信息
      */
-    public static DebugControl DEBUG_CONTROL = DebugControl.OPEN;
+    public static DebugControl DEBUG_CONTROL = DebugControl.OPEN_DEFINE;
 
     static {
         if (DEBUG_CONTROL == DebugControl.CLOSE) {
@@ -41,7 +48,10 @@ public class QlkConfig {
             // 是否打印出异常界面（只有在IS_INIT_CRASH_HANDLER 为true时，该设置才有效）
             IS_SHOW_EXCEPTION_ACTIVITY = false;
 
-        } else if (DEBUG_CONTROL == DebugControl.OPEN) {
+            // i()方法中的log是否打印到本地日志
+            IS_PRINTLOG = false;
+
+        } else if (DEBUG_CONTROL == DebugControl.OPEN_DEFAULT) {
 
             // 是否打印到控制台
             IS_OUTPUT = true;
@@ -54,6 +64,26 @@ public class QlkConfig {
 
             // 是否打印出异常界面（只有在IS_INIT_CRASH_HANDLER 为true时，该设置才有效）
             IS_SHOW_EXCEPTION_ACTIVITY = true;
+
+            // i()方法中的log是否打印到本地日志
+            IS_PRINTLOG = true;
+
+        } else if (DEBUG_CONTROL == DebugControl.OPEN_DEFINE) {
+
+            // 是否打印到控制台
+            IS_OUTPUT = true;
+
+            // 调试土司是否开启
+            IS_DTOAST = false;
+
+            // 是否初始化crashhandler
+            IS_INIT_CRASH_HANDLER = true;
+
+            // 是否打印出异常界面（只有在IS_INIT_CRASH_HANDLER 为true时，该设置才有效）
+            IS_SHOW_EXCEPTION_ACTIVITY = true;
+
+            // i()方法中的log是否打印到本地日志
+            IS_PRINTLOG = false;
 
         } else {
             throw new RuntimeException("QlkConfig的static代码块中没有找到与DEBUG_CONTROL匹配的枚举值");
@@ -150,10 +180,6 @@ public class QlkConfig {
      */
     public static String SP_SETTING = APP_ROOT + "_setting";
     /*
-     * 是否打印日志到手机文件中,即printe方法，默认不管是线上线下环境/是否调试，都是开启的
-     */
-    public static boolean IS_PRINTLOG = true;
-    /*
      * 打印测试的文件，有时候控制台可能打印json不全，比如json太长的时候， 可以调用tempPrint方法，打印到本地查看
      */
     public static String TEMP_PRINT_FILE = APP_ROOT + "/temp_print_file";
@@ -173,6 +199,10 @@ public class QlkConfig {
      * 是否打印异常的日志到屏幕， 上线前得关
      */
     public static boolean IS_SHOW_EXCEPTION_ACTIVITY;
+    /*
+     * 是否打印日志到手机文件中,i()中的上线前全部关闭
+     */
+    public static boolean IS_PRINTLOG;
 
 
     // ----------------------------------补充接口url---------------------------------------

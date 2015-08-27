@@ -193,13 +193,16 @@ public class MainActivity extends QlkMainActivity {
         // });
 
         try {
-            XCApplication.getBase_log().writeLog2File("123", false);
-            XCApplication.getBase_log().writeLog2File("345", true);
-            XCApplication.getBase_log().writeLog2File("678", true);
-//            int i = 1 / 0;
+            XCApplication.printe("123");
+            XCApplication.printe("345");
+            XCApplication.printe("678");
+            int i = 1 / 0;
         } catch (Exception e) {
             XCApplication.printe(this, "--oncreate()--", e);
         }
+//        XCApplication.clearLog();
+        XCApplication.printe(this, "1234567890");
+        XCApplication.tempPrint("android--" + System.currentTimeMillis());
 
     }
 

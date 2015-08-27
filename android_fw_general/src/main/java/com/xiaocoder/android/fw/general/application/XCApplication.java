@@ -247,6 +247,10 @@ public class XCApplication extends Application {
         base_log.e(context, hint);
     }
 
+    public static void clearLog() {
+        base_log.clearLog();
+    }
+
     public static void spPut(String key, boolean value) {
         base_sp.putBoolean(key, value);
     }

@@ -28,13 +28,13 @@ public class XCLog {
     public int TOAST_SHORT_TIME_GAP;
     public int TOAST_LONG_TIME_GAP;
 
-    public boolean IS_DTOAST;
-    public boolean IS_PRINTLOG;
-    public boolean IS_OUTPUT;
+    public boolean is_dtoast;
+    public boolean is_printlog;
+    public boolean is_output;
 
 
     public boolean is_OutPut() {
-        return IS_OUTPUT;
+        return is_output;
     }
 
     public XCLog(Context context, boolean is_dtoast, boolean is_output, boolean is_printlog,
@@ -49,15 +49,18 @@ public class XCLog {
         TOAST_SHORT_TIME_GAP = 1000;
         TOAST_LONG_TIME_GAP = 3000;
 
-        IS_DTOAST = is_dtoast;
-        IS_OUTPUT = is_output;
-        IS_PRINTLOG = is_printlog;
+        this.is_dtoast = is_dtoast;
+        this.is_output = is_output;
+        this.is_printlog = is_printlog;
 
 
     }
 
     // --------------------------控制频率的吐司---------------------------------
-    // 防止点击频繁, 不断的弹出
+
+    /**
+     * 防止点击频繁, 不断的弹出
+     */
     public void longToast(String msg) {
         if (System.currentTimeMillis() - last_time > TOAST_LONG_TIME_GAP) {
             Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
@@ -65,7 +68,21 @@ public class XCLog {
         }
     }
 
-    // 防止点击频繁, 不断的弹出
+    /**
+     * 防止点击频繁, 不断的弹出
+     */
+    public void longToast(boolean showImmediately, String msg) {
+        if (showImmediately) {
+            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+            last_time = System.currentTimeMillis();
+        } else {
+            longToast(msg);
+        }
+    }
+
+    /**
+     * 防止点击频繁, 不断的弹出
+     */
     public void shortToast(String msg) {
         if (System.currentTimeMillis() - last_time > TOAST_SHORT_TIME_GAP) {
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
@@ -73,43 +90,24 @@ public class XCLog {
         }
     }
 
-    // 防止点击频繁, 不断的弹出
+    /**
+     * 防止点击频繁, 不断的弹出
+     */
     public void shortToast(boolean showImmediately, String msg) {
         if (showImmediately) {
             Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
             last_time = System.currentTimeMillis();
         } else {
-            if (System.currentTimeMillis() - last_time > TOAST_SHORT_TIME_GAP) {
-                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
-                last_time = System.currentTimeMillis();
-            }
+            shortToast(msg);
         }
     }
 
-    // 防止点击频繁, 不断的弹出
-    public void shortToast(boolean showImmediately, int stringId) {
-        if (showImmediately) {
-            Toast.makeText(context, stringId, Toast.LENGTH_SHORT).show();
-            last_time = System.currentTimeMillis();
-        } else {
-            if (System.currentTimeMillis() - last_time > TOAST_SHORT_TIME_GAP) {
-                Toast.makeText(context, stringId, Toast.LENGTH_SHORT).show();
-                last_time = System.currentTimeMillis();
-            }
-        }
-    }
 
-    // 防止点击频繁, 不断的弹出
-    public void shortToast(int stringId) {
-        if (System.currentTimeMillis() - last_time > TOAST_SHORT_TIME_GAP) {
-            Toast.makeText(context, stringId, Toast.LENGTH_SHORT).show();
-            last_time = System.currentTimeMillis();
-        }
-    }
-
-    // 调试的toast
+    /**
+     * 调试的toast , 上线前开关关闭
+     */
     public void debugShortToast(String msg) {
-        if (IS_DTOAST) {
+        if (is_dtoast) {
             if (System.currentTimeMillis() - last_time > TOAST_SHORT_TIME_GAP) {
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
                 last_time = System.currentTimeMillis();
@@ -117,67 +115,81 @@ public class XCLog {
         }
     }
 
-    // 调试的toast
+    /**
+     * 调试的toast , 上线前开关关闭
+     */
     public void debugLongToast(String msg) {
-        if (IS_DTOAST) {
+        if (is_dtoast) {
             if (System.currentTimeMillis() - last_time > TOAST_LONG_TIME_GAP) {
-                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
                 last_time = System.currentTimeMillis();
             }
         }
     }
 
-    // 以tag打印到控制台 和 文件 该tag为activity的名字
+    /**
+     * 以tag打印到控制台 和 文件
+     * <p/>
+     * 上线前is_output 与 is_printlog关闭
+     */
     public void i(Context context, String msg) {
-        if (IS_OUTPUT) {
+        if (is_output) {
             Log.i(context.getClass().getSimpleName(), msg);
         }
-        if (IS_PRINTLOG) {
-            writeLog2File(msg, true);
+        if (is_printlog) {
+            writeLog2File(context.getClass().getSimpleName() + "---" + msg, true);
         }
     }
 
-    // 以tag打印到控制台 和 文件， 该tag为指定
     public void i(String tag, String msg) {
-        if (IS_OUTPUT) {
+        if (is_output) {
             Log.i(tag, msg);
         }
-        if (IS_PRINTLOG) {
+        if (is_printlog) {
             writeLog2File(msg, true);
         }
     }
 
-    // 以tag打印到控制台 和 文件， 该tag为指定
     public void i(String msg) {
-        if (IS_OUTPUT) {
+        if (is_output) {
             Log.i(XCConfig.TAG_SYSTEM_OUT, msg);
         }
-        if (IS_PRINTLOG) {
+        if (is_printlog) {
             writeLog2File(msg, true);
         }
     }
 
+    /**
+     * 不管是否上线，都打印日志到本地，并输出到控制台
+     */
     public void e(String hint) {
-        i(XCConfig.TAG_LOG, hint);
+        Log.e(XCConfig.TAG_LOG, hint);
+        writeLog2File(hint, true);
     }
 
     public void e(Context context, String hint) {
-        i(XCConfig.TAG_LOG, context.getClass().getSimpleName() + "--" + hint);
+        Log.e(XCConfig.TAG_LOG, context.getClass().getSimpleName() + "--" + hint);
+        writeLog2File(context.getClass().getSimpleName() + "--" + hint, true);
     }
 
     public void e(String hint, Exception e) {
         e.printStackTrace();
-        Log.e(XCConfig.TAG_ANDROID_RUNTIME, hint + "--" + "Exception-->" + e.toString() + "--" + e.getMessage());
-        if (IS_PRINTLOG) {
-            writeLog2File("Exception-->" + hint + "-->" + e.toString() + "--" + e.getMessage(), true);
-        }
+        Log.e(XCConfig.TAG_LOG, hint + "--" + "Exception-->" + e.toString() + "--" + e.getMessage());
+        writeLog2File("Exception-->" + hint + "-->" + e.toString() + "--" + e.getMessage(), true);
     }
 
     public void e(Context context, String hint, Exception e) {
         e.printStackTrace();
-        Log.e(XCConfig.TAG_ANDROID_RUNTIME, "Exception-->" + context.getClass().getSimpleName() + "--" + hint + "--" + e.toString() + "--" + e.getMessage());
-        if (IS_PRINTLOG) {
-            writeLog2File("Exception-->" + context.getClass().getSimpleName() + "--" + hint + "--" + e.toString() + "--" + e.getMessage(), true);
+        Log.e(XCConfig.TAG_LOG, "Exception-->" + context.getClass().getSimpleName() + "--" + hint + "--" + e.toString() + "--" + e.getMessage());
+        writeLog2File("Exception-->" + context.getClass().getSimpleName() + "--" + hint + "--" + e.toString() + "--" + e.getMessage(), true);
+    }
+
+    /**
+     * 删除日志文件
+     */
+    public synchronized void clearLog() {
+        if (file != null && file.exists()) {
+            file.delete();
         }
     }
 
@@ -193,12 +205,16 @@ public class XCLog {
      * android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
      * <uses-permission
      * android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+     * <p/>
+     * 只在有sd卡的时候，才会打印日志
      */
-    public synchronized void writeLog2File(String content, boolean is_append) {
+    private synchronized void writeLog2File(String content, boolean is_append) {
 
         if (TextUtils.isEmpty(content) || !XCIOAndroid.isSDcardExist()) {
             return;
         }
+
+        RandomAccessFile raf = null;
 
         try {
             if (file == null || !file.exists()) {
@@ -213,6 +229,9 @@ public class XCLog {
                 file.createNewFile();
             }
 
+            // 日志满了的处理
+            logFull();
+
             // 已存在文件
             if (!is_append) {
                 // 假如不允许追加写入，则删除 后 重新创建
@@ -220,26 +239,40 @@ public class XCLog {
                 file.createNewFile();
             }
 
-            RandomAccessFile raf = new RandomAccessFile(file, "rw");
+            raf = new RandomAccessFile(file, "rw");
             long len = raf.length();
             raf.seek(len);
             raf.write((content + "-->" + DateFormat.getDateTimeInstance(DateFormat.FULL, DateFormat.LONG).format(new Date()) + "  end  " + System.getProperty("line.separator"))
                     .getBytes(encoding));
 
-            raf.close();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (raf != null) {
+                try {
+                    raf.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    raf = null;
+                }
+            }
         }
     }
 
-    // ---------------------------测试打印字符串到XCConfig.TEMP_PRINT_FILE文件中，会覆盖之前的---------------------------
+    /**
+     * 打印到XCConfig.TEMP_PRINT_FILE文件中，会覆盖之前的打印信息
+     * <p/>
+     * 场景：如果json很长，有时控制台未必会全部打印出来，则可以去app的目录下找到这个临时文件查看
+     */
     public void tempPrint(String str) {
-        if (IS_OUTPUT) {
+        if (is_output) {
             synchronized (this) {
                 FileOutputStream fos = null;
                 try {
-                    fos = new FileOutputStream(XCApplication.getBase_io().createFileInSDCard(null, app_temp_file_name));
+                    fos = new FileOutputStream(XCApplication.getBase_io().createFileInAndroid(null, app_temp_file_name));
                     fos.write(str.getBytes());
+                    fos.flush();
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
@@ -256,4 +289,13 @@ public class XCLog {
             }
         }
     }
+
+    public void logFull() throws Exception {
+        if (file != null && file.exists() && file.length() > LOG_FILE_LIMIT_SIZE) {
+            file.delete();
+            file.createNewFile();
+        }
+    }
+
+    public static long LOG_FILE_LIMIT_SIZE = 73400320; // 70M
 }
