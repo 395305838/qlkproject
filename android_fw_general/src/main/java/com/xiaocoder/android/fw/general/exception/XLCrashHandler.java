@@ -92,13 +92,14 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
      */
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
+        XCApplication.printe(ex.toString());
         if (!handleException(ex) && mDefaultHandler != null) {
             mDefaultHandler.uncaughtException(thread, ex);
         } else {
             try {
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
-                XCApplication.printe("error : ", e);
+                e.printStackTrace();
             }
             if (application != null && application instanceof XCApplication) {
                 ((XCApplication) application).finishAllActivity();
