@@ -11,17 +11,8 @@ public class XCConfig {
     public static String TAG_ANDROID_RUNTIME = "AndroidRuntime";
     public static String TAG_LOG = "log";
     public static String TAG_TEMP = "temp";
+    public static String TAG_TEST = "test";
 
-    /*
-     * 分别代表开发 测试  线上的环境的地址
-     */
-    public enum RunEnvironment {
-        DEV, TEST, ONLINE
-    }
-
-    public enum DebugControl {
-        OPEN, CLOSE
-    }
 
     public static String RMB = "¥";
 

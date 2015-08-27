@@ -14,18 +14,6 @@ public class QlkUser {
     public static String USER_ID = "";
     public static String USER_TOKEN = "";
 
-    public static boolean isLogin() {
-        return false;
-    }
-
-    public static void loginOut(Class<? extends XCBaseActivity> classes, Context context) {
-
-    }
-
-    public static void refreshUserInfo(Context context) {
-
-    }
-
     public static String getUserId() {
         return XCApplication.spGet(USER_ID, "");
     }
@@ -50,5 +38,16 @@ public class QlkUser {
         XCApplication.spPut(USER_NAME, userName);
     }
 
+    public static void loginOut(Class<? extends XCBaseActivity> classes, Context context) {
+
+    }
+
+    public static void refreshUserInfo(Context context) {
+
+    }
+
+    public static boolean isLogin() {
+        return false;
+    }
 
 }

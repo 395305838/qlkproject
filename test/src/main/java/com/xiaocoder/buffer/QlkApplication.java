@@ -3,6 +3,7 @@ package com.xiaocoder.buffer;
 import android.content.Context;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.exception.XLCrashHandler;
 import com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper;
 import com.xiaocoder.android.fw.general.io.XCLog;
@@ -24,7 +25,7 @@ public class QlkApplication extends XCApplication {
         // log , 可以打印日志 与 toast
         base_log = new XCLog(getApplicationContext(),
                 QlkConfig.IS_DTOAST, QlkConfig.IS_OUTPUT, QlkConfig.IS_PRINTLOG,
-                QlkConfig.APP_ROOT, QlkConfig.LOG_FILE, QlkConfig.TEMP_PRINT_FILE, QlkConfig.ENCODING_UTF8);
+                QlkConfig.APP_ROOT, QlkConfig.LOG_FILE, QlkConfig.TEMP_PRINT_FILE, XCConfig.ENCODING_UTF8);
 
         // 图片缓存路径
         base_imageloader = XCImageLoaderHelper

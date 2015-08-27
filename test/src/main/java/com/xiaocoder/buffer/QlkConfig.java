@@ -1,11 +1,20 @@
 package com.xiaocoder.buffer;
 
-import com.xiaocoder.android.fw.general.application.XCConfig;
-
 /*
  * 该类配置开发环境  ， 调试开关  ，域名 ， 路径  ，url等
  */
-public class QlkConfig extends XCConfig {
+public class QlkConfig {
+
+    /*
+     * 分别代表开发 测试  线上的环境的地址
+     */
+    public enum RunEnvironment {
+        DEV, TEST, ONLINE
+    }
+
+    public enum DebugControl {
+        OPEN, CLOSE
+    }
 
     /*
      * 当前的运行环境 , 上线前，改为ONLINE
@@ -170,6 +179,12 @@ public class QlkConfig extends XCConfig {
 
 
     // ----------------------------------补充接口url---------------------------------------
+
+
+    // ----------------------------------补充常量------------------------------------------
+
+
+    // ----------------------------------补充常量------------------------------------------
 
 
 }

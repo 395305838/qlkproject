@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.helper.XCTimeHelper;
 import com.xiaocoder.android.fw.general.helper.XCTimeHelper.CustomTimer;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow;
@@ -204,8 +205,8 @@ public class MainActivity extends QlkMainActivity {
 
     @Override
     public void initWidgets() {
-        XCApplication.printi(QlkConfig.TAG_TEMP, QlkConfig.CURRENT_RUN_ENVIRONMENT.toString() + "-----环境");
-        XCApplication.printi(QlkConfig.TAG_TEMP, QlkConfig.DEBUG_CONTROL.toString() + "-----调试");
+        XCApplication.printi(XCConfig.TAG_TEMP, QlkConfig.CURRENT_RUN_ENVIRONMENT.toString() + "-----环境");
+        XCApplication.printi(XCConfig.TAG_TEMP, QlkConfig.DEBUG_CONTROL.toString() + "-----调试");
     }
 
     @Override
