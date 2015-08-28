@@ -28,7 +28,7 @@ public class QlkConfig {
     /**
      * OPEN_DEFAULT 与 close 是配置好的，不要动
      * <p/>
-     * 如果需要改，则在OPEN_DEFINE里改动
+     * 如果需要改，则在OPEN_DEFINE里改动，比如提交测试的时候，dtoast关闭，日志可能打开
      * <p/>
      * 上线前一定要设置为close
      */

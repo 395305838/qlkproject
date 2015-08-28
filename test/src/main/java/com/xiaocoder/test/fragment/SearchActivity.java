@@ -15,7 +15,8 @@ import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.buffer.QlkConfig;
-import com.xiaocoder.buffer.QlkResponseHandler;
+import com.xiaocoder.buffer.parse.QlkBean;
+import com.xiaocoder.buffer.parse.QlkResponseHandlerBean;
 import com.xiaocoder.test.R;
 
 import org.apache.http.Header;
@@ -113,7 +114,7 @@ public class SearchActivity extends QlkActivity {
 
     public void request() {
         XCHttpAsyn.getAsyn(true, this, "http://18620909598.sinaapp.com/pinpailiebiao.json",
-                new RequestParams(), new QlkResponseHandler<XCJsonBean>(this, XCJsonBean.class) {
+                new RequestParams(), new QlkResponseHandlerBean<QlkBean>(this, QlkBean.class) {
 
                     @Override
                     public void success(int code, Header[] headers, byte[] arg2) {

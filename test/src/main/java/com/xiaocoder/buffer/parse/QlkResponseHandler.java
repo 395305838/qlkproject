@@ -1,4 +1,4 @@
-package com.xiaocoder.buffer;
+package com.xiaocoder.buffer.parse;
 
 import android.content.DialogInterface;
 import android.view.KeyEvent;
@@ -13,54 +13,39 @@ import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.http.XCIHttpResult;
 import com.xiaocoder.android.fw.general.http.XCResponseHandler;
-import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
 import com.xiaocoder.buffer.function.QlkMainActivity;
 
 /**
- * @author xiaocoder
- * @date 2014-12-30 下午5:04:48
+ * Created by xiaocoder on 2015/8/28.
  */
-public class QlkResponseHandler<T extends XCJsonBean> extends XCResponseHandler<T> {
+public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
 
-
-    public QlkResponseHandler(XCIHttpResult result_http, int content_type, boolean show_background_when_net_fail,
-                              Class<T> result_bean_class, boolean isJsonBean) {
-        super(result_http, content_type, show_background_when_net_fail, result_bean_class, isJsonBean);
+    protected QlkResponseHandler(XCIHttpResult result_http, int content_type, boolean show_background_when_net_fail, Class<T> result_bean_class) {
+        super(result_http, content_type, show_background_when_net_fail, result_bean_class);
     }
 
-    public QlkResponseHandler(XCIHttpResult result_http, Class<T> result_bean_class) {
+    protected QlkResponseHandler(XCIHttpResult result_http, Class<T> result_bean_class) {
         super(result_http, result_bean_class);
     }
 
-    public QlkResponseHandler(XCIHttpResult result_http, Class<T> result_bean_class, boolean isJsonBean) {
-        super(result_http, result_bean_class, isJsonBean);
-    }
-
-    public QlkResponseHandler(XCIHttpResult result_http) {
-        super(result_http);
-    }
-
-
-    // 需要根据公司业务重写
     public void yourCompanyResultRule() {
 
-        XCApplication.printi("yourCompanyResultRule()");
+        XCApplication.printi(XCConfig.TAG_HTTP,"yourCompanyResultRule()");
 
-        if (!UtilString.isBlank(result_bean.getString(QlkBean.MSG, ""))) {
-            if (isJsonBean) {
+        if (result_bean instanceof IQlkResponseInfo) {
+
+            if (!UtilString.isBlank(((IQlkResponseInfo) result_bean).getCode()+"")) {
                 result_boolean = true;
             } else {
-                if (result_model != null) {
-                    result_boolean = true;
-                } else {
-                    result_boolean = false;
-                }
+                result_boolean = false;
+                XCApplication.shortToast(((IQlkResponseInfo) result_bean).getMsg());
             }
+
         } else {
-            result_boolean = false;
-            XCApplication.shortToast(result_bean.getString(QlkBean.MSG, ""));
+            XCApplication.printe("yourCompanyResultRule()中的返回结果不是IQlkResponseInfo类型");
+            throw new RuntimeException("yourCompanyResultRule()中的返回结果不是IQlkResponseInfo类型");
         }
 
     }
@@ -68,7 +53,7 @@ public class QlkResponseHandler<T extends XCJsonBean> extends XCResponseHandler<
     @Override
     public void yourCompanySecret(RequestParams params, AsyncHttpClient client, boolean needSecret) {
 
-        XCApplication.printi("yourCompanySecret()");
+        XCApplication.printi(XCConfig.TAG_HTTP,"yourCompanySecret()");
 
         client.addHeader("_v", UtilSystem.getVersionCode(mContext) + "");// 版本号，必填
         client.addHeader("_m", UtilSystem.getMacAddress(mContext));// 设备的mac地址，选填
@@ -94,7 +79,7 @@ public class QlkResponseHandler<T extends XCJsonBean> extends XCResponseHandler<
             httpDialog.dismiss();
             httpDialog.setOnKeyListener(null);
             httpDialog.cancel();
-            XCApplication.printi("closeHttpDialog()");
+            XCApplication.printi(XCConfig.TAG_HTTP,"closeHttpDialog()");
         }
     }
 
@@ -117,7 +102,7 @@ public class QlkResponseHandler<T extends XCJsonBean> extends XCResponseHandler<
                 }
             });
             httpDialog.show();
-            XCApplication.printi("showHttpDialog()");
+            XCApplication.printi(XCConfig.TAG_HTTP,"showHttpDialog()");
         }
     }
 }

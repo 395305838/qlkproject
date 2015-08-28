@@ -3,14 +3,12 @@ package com.xiaocoder.android.fw.general.http;
 import android.app.Dialog;
 import android.content.Context;
 
-import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
-import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonParse;
 
 import org.apache.http.Header;
@@ -26,9 +24,9 @@ import org.apache.http.Header;
  * onFailure()不能被重写，这里设置为了final，重写failure（）方法
  * success() 与 finish() 为主线程中执行的，发了一个handler
  * <p/>
- * 如果有特殊的解析需求，可以重写parse()方法
+ * 如果有特殊的解析需求，可以新建一个handler类实现parse() 或 parseWay方法
  */
-public abstract class XCResponseHandler<T extends XCJsonBean> extends AsyncHttpResponseHandler {
+public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
     /**
      * 是json还是xml或图片等,默认是json
      */
@@ -37,6 +35,10 @@ public abstract class XCResponseHandler<T extends XCJsonBean> extends AsyncHttpR
      * 如果result_boolean为真就开始处理业务, 如果为false则不处理
      */
     public boolean result_boolean;
+    /**
+     * 结果集
+     */
+    public T result_bean;
     /**
      * 访问网络失败时,是否显示失败页面的背景
      */
@@ -49,13 +51,7 @@ public abstract class XCResponseHandler<T extends XCJsonBean> extends AsyncHttpR
     /**
      * 返回的结果数据
      */
-    public T result_bean;
-    public T result_model;
     public Class<T> result_bean_class;
-    /**
-     * 默认不是jsonbean，为gsonmodel解析
-     */
-    public boolean isJsonBean;
     /**
      * 回调的接口
      */
@@ -70,12 +66,13 @@ public abstract class XCResponseHandler<T extends XCJsonBean> extends AsyncHttpR
     public static int XML = 2;
     public static int ELSE = 3;
 
-    // show_background_when_net_fail true 为展示背景和toast , false仅展示吐司
+    /**
+     * show_background_when_net_fail true 为展示背景和toast , false仅展示吐司
+     */
     public XCResponseHandler(XCIHttpResult result_http,
                              int content_type,
                              boolean show_background_when_net_fail,
-                             Class<T> result_bean_class,
-                             boolean isJsonBean
+                             Class<T> result_bean_class
     ) {
         super();
         this.result_boolean = false;
@@ -83,35 +80,12 @@ public abstract class XCResponseHandler<T extends XCJsonBean> extends AsyncHttpR
         this.result_http = result_http;
         this.show_background_when_net_fail = show_background_when_net_fail;
         this.result_bean_class = result_bean_class;
-        this.isJsonBean = isJsonBean;
 
     }
 
-    /**
-     * 解析gsonmodel，同时也解析jsonbean
-     */
     public XCResponseHandler(XCIHttpResult result_http, Class<T> result_bean_class) {
-        this(result_http, JSON, true, result_bean_class, false);
+        this(result_http, JSON, true, result_bean_class);
     }
-
-    /**
-     * @isJsonBean
-     * 传入false则是gson解析的model，同时也解析jsonbean
-     * 传入true则解析为jsonbean，不进行gson解析，因为XCJsonBean的子类里面找不到相应的getset方法，就算解析gson也会抛异常
-     */
-    public XCResponseHandler(XCIHttpResult result_http, Class<T> result_bean_class, boolean isJsonBean) {
-        this(result_http, JSON, true, result_bean_class, isJsonBean);
-    }
-
-    /**
-     * 一个简单的方式，返回XCJsonBean
-     * <p/>
-     * 这个构造方法不进行gson解析，因为XCJsonBean里面找不到相应的getset方法，就算解析gson也会抛异常
-     */
-    public XCResponseHandler(XCIHttpResult result_http) {
-        this(result_http, JSON, true, (Class<T>) XCJsonBean.class, true);
-    }
-
 
     public void setContext(Context context) {
         mContext = context;
@@ -222,44 +196,6 @@ public abstract class XCResponseHandler<T extends XCJsonBean> extends AsyncHttpR
         }
     }
 
-    /**
-     * 改方法是在子线程运行的，所以不要有ui或toast等操作
-     */
-    public void parse(byte[] response_bytes) {
-        try {
-            // 这里仅提供通用的json格式的解析 ，有些不通用的json，需要重写parse
-            if (content_type == JSON) {
-                String response = new String(response_bytes, XCConfig.ENCODING_UTF8);
-                // 把json串打印到控制台
-                XCApplication.printi(XCConfig.TAG_HTTP, response);
-                // 有的时候json太长，控制台无法全部打印出来，就打印到本地的文件中，该方法受log的isoutput开关控制
-                XCApplication.tempPrint(response);
-                // 打印bean到控制台， 然后复制，格式化，即为自动生成的假bean，该方法受log的isoutput开关控制
-                XCJsonParse.json2Bean(response);
-                // 解析数据为jsonbean ， 解析错误返回null
-                result_bean = XCJsonParse.getJsonParseData(response, result_bean_class);
-                // 如果不是jsonbean，即gson解析model； 如果是jsonbean，则不进行gson解析model
-                if (!isJsonBean) {
-                    // 解析错误会抛异常
-                    result_model = new Gson().fromJson(response, result_bean_class);
-                }
-                // 如果jsonbean不为null，再判断
-                // 如果是个model，则isJsonBean为fasle，则继续判断result_gson_model是否为空
-                if (result_bean == null || ((!isJsonBean) && result_model == null)) {
-                    result_boolean = false;
-                    XCApplication.printi(XCConfig.TAG_HTTP, "onSuccess , 解析数据失败");
-                    return;
-                }
-
-                yourCompanyResultRule();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            result_boolean = false;
-            XCApplication.printe("解析数据异常---" + this.toString() + "---" + e.toString());
-        }
-    }
-
     public boolean isDestroy() {
 
         if (mContext == null) {
@@ -276,13 +212,62 @@ public abstract class XCResponseHandler<T extends XCJsonBean> extends AsyncHttpR
         return false;
     }
 
+    /**
+     * 在子线程运行的，所以不要有ui或toast等操作
+     */
+    public void parse(byte[] response_bytes) {
+        try {
+            // 这里仅提供通用的json格式的解析 ，有些不通用的json，需要重写parse
+            if (content_type == JSON) {
+                String response = new String(response_bytes, XCConfig.ENCODING_UTF8);
+                // 把json串打印到控制台
+                XCApplication.printi(XCConfig.TAG_HTTP, response);
+                // 有的时候json太长，控制台无法全部打印出来，就打印到本地的文件中，该方法受log的isoutput开关控制
+                XCApplication.tempPrint(response);
+                // 打印bean到控制台， 然后复制，格式化，即为自动生成的假bean，该方法受log的isoutput开关控制
+                XCJsonParse.json2Bean(response);
+
+                result_bean = parseWay(response);
+
+                if (result_bean == null) {
+                    result_boolean = false;
+                    XCApplication.printi(XCConfig.TAG_HTTP, "onSuccess , 解析数据失败");
+                    return;
+                }
+
+                yourCompanyResultRule();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            result_boolean = false;
+            XCApplication.printe("解析数据异常---" + this.toString() + "---" + e.toString());
+        }
+    }
+
+    /**
+     * 子线程中运行的，所以不要有ui或toast等操作
+     */
+    public abstract T parseWay(String responseStr);
+
+    /**
+     * 加密
+     */
     public abstract void yourCompanySecret(RequestParams params, AsyncHttpClient client, boolean needSecret);
 
-    // 对返回状态码的一个判断，每个项目的认定操作成功的状态码或结构可能不同，在这里统一拦截
+    /**
+     * 对返回状态码的一个判断，每个项目的认定操作成功的状态码或结构可能不同，在这里统一拦截
+     */
     public abstract void yourCompanyResultRule();
 
+    /**
+     * http开始的dialog
+     */
     public abstract void showHttpDialog();
 
+    /**
+     * http结束，关闭dialog
+     */
     public abstract void closeHttpDialog();
 
 }
+

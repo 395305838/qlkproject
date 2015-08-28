@@ -1,6 +1,7 @@
 package com.xiaocoder.test.bean;
 
-import com.xiaocoder.buffer.QlkBean;
+import com.xiaocoder.buffer.parse.QlkBean;
+import com.xiaocoder.buffer.parse.QlkModel;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  * <p/>
  * 该类是gsonformat插件自动生成的，不需要复制粘贴等
  */
-public class TestModel extends QlkBean<TestModel> {
+public class TestModel extends QlkModel {
 
     /**
      * msg : 成功

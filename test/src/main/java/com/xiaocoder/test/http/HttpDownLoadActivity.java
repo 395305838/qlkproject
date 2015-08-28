@@ -15,7 +15,8 @@ import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.buffer.QlkApplication;
 import com.xiaocoder.buffer.QlkConfig;
-import com.xiaocoder.buffer.QlkResponseHandler;
+import com.xiaocoder.buffer.parse.QlkBean;
+import com.xiaocoder.buffer.parse.QlkResponseHandlerBean;
 import com.xiaocoder.test.R;
 
 import org.apache.http.Header;
@@ -38,7 +39,7 @@ public class HttpDownLoadActivity extends QlkActivity {
         XCHttpAsyn.getAsyn(true, true, this,
                 "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95"
                 , new RequestParams()
-                , new QlkResponseHandler<XCJsonBean>(this) {
+                , new QlkResponseHandlerBean<QlkBean>(this , QlkBean.class) {
 
                     @Override
                     public void success(int code, Header[] headers, byte[] arg2) {
