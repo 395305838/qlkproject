@@ -3,6 +3,7 @@ package com.xiaocoder.android.fw.general.http;
 import android.app.Dialog;
 import android.content.Context;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -35,7 +36,8 @@ public abstract class XCResponseHandler<T extends XCJsonBean> extends AsyncHttpR
     public Context mContext;
     public Dialog httpDialog;
     // 如果返回的是json格式,则内容都存在json_result中
-    public T result_bean;
+    public T result_json_bean;
+    public T result_gson_bean;
     public Class<T> result_bean_class;
     // 回调的接口
     public XCIHttpResult result_http;
@@ -170,7 +172,7 @@ public abstract class XCResponseHandler<T extends XCJsonBean> extends AsyncHttpR
     /**
      * 改方法是在子线程运行的，所以不要有ui或toast等操作
      */
-    private final void parse(byte[] response_bytes) {
+    public void parse(byte[] response_bytes) {
         try {
             // 这里仅提供通用的json格式的解析 ，有些不通用的json
             if (content_type == JSON) {
@@ -179,12 +181,16 @@ public abstract class XCResponseHandler<T extends XCJsonBean> extends AsyncHttpR
                 XCApplication.printi(XCConfig.TAG_HTTP, response);
                 // 有的时候json太长，控制台无法全部打印出来，就打印到本地的文件中，该方法受debug的isoutput开关控制
                 XCApplication.tempPrint(response);
-                // 打印bean到控制台， 然后复制，格式化，即为自动生成的model
+                // 打印bean到控制台， 然后复制，格式化，即为自动生成的假bean
                 XCJsonParse.json2Bean(response);
-                // 解析数据
-                result_bean = XCJsonParse.getJsonParseData(response, result_bean_class);
 
-                if (result_bean == null) {
+                // 解析数据为jsonbean ， 解析错误返回null
+                result_json_bean = XCJsonParse.getJsonParseData(response, result_bean_class);
+
+                // 解析数据为实体model ， 解析错误会抛异常
+                result_gson_bean = new Gson().fromJson(response, result_bean_class);
+
+                if (result_json_bean == null) {
                     result_boolean = false;
                     XCApplication.printi(XCConfig.TAG_HTTP, "onSuccess , 解析数据失败");
                     return;
@@ -195,7 +201,7 @@ public abstract class XCResponseHandler<T extends XCJsonBean> extends AsyncHttpR
         } catch (Exception e) {
             e.printStackTrace();
             result_boolean = false;
-            XCApplication.printi(XCConfig.TAG_HTTP, "解析数据异常");
+            XCApplication.printe("解析数据异常---" + this.toString() + "---" + e.toString());
         }
     }
 

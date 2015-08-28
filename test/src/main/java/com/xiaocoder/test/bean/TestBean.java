@@ -6,9 +6,11 @@ import com.xiaocoder.buffer.QlkBean;
 /**
  * Created by xiaocoder on 2015/7/29.
  * <p/>
+ * 假bean
  * <p/>
+ * 该类的代码是自动生成的  在JsonBean的tag中打印  复制 格式化
  * <p/>
- * -------------------------->该类的代码是自动生成的  在JsonBean的tag中打印  复制 格式化
+ * 现在不用这个，改用model，见TestModel
  */
 public class TestBean extends QlkBean<TestBean> {
     public String msg = "msg";

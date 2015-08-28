@@ -126,7 +126,7 @@ public class SearchActivity extends QlkActivity {
 
                                 }
                             });
-                            letter_fragment.setData(result_bean);
+                            letter_fragment.setData(result_json_bean);
                         }
                     }
                 });

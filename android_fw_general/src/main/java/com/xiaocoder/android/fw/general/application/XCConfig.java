@@ -14,13 +14,15 @@ public class XCConfig {
      */
     public static String TAG_JSON_TYPE = "JsonType";
     /**
-     * 列出json返回的字段，并以假bean的形式打印到控制台，可创建一个假bean类
+     * 列出json返回的字段，并以假bean的形式打印到控制台，复制粘贴后可创建一个假bean类，假bean类里有字符串常量和get方法set方法
+     * <p/>
+     * 注：假bean类不在用了， 现在用studio的gsonformat插件，自动生成一个真model，不需要任何复制粘贴
      */
     public static String TAG_JSON_BEAN = "JsonBean";
     /**
      * 如异常、重要的日志等用该tag，e()方法里就是用了该tag
      */
-    public static String TAG_LOG = "log";
+    public static String TAG_ALOG = "alog";
     /**
      * 以下两个是临时测试查看的tag
      */

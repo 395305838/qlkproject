@@ -30,13 +30,7 @@ import org.apache.http.Header;
 
 import java.util.List;
 
-/*
- 复制这里：activity在注册清单文件的配置 
- <activity
- android:name="com.xiaocoder.android.ContactsActivity"
- android:screenOrientation="portrait"
- android:windowSoftInputMode="adjustResize|stateHidden" >
- </activity>*/
+
 public class ListActivity extends QlkActivity {
     XCListViewFragment list_fragment;
 
@@ -65,13 +59,13 @@ public class ListActivity extends QlkActivity {
                                 return;
                             }
 
-                            String msg = result_bean.getMsg();
+                            String msg = result_json_bean.getMsg();
                             printi("---第一层---->" + msg);
 
-                            TestBean testBean = result_bean.obtModel(result_bean.data);
+                            TestBean testBean = result_json_bean.obtModel(result_json_bean.data);
                             printi("---第二层---->" + testBean.toString());
 
-                            List<TestBean> testBeans = testBean.obtList(result_bean.result);
+                            List<TestBean> testBeans = testBean.obtList(result_json_bean.result);
                             printi("---第三层---->" + testBeans.toString());
 
                             for (TestBean bean : testBeans) {

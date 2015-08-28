@@ -161,26 +161,27 @@ public class XCLog {
 
     /**
      * 不管是否上线，都打印日志到本地，并输出到控制台
+     * 注：e的日志颜色不同
      */
     public void e(String hint) {
-        Log.e(XCConfig.TAG_LOG, hint);
+        Log.e(XCConfig.TAG_ALOG, hint);
         writeLog2File(hint, true);
     }
 
     public void e(Context context, String hint) {
-        Log.e(XCConfig.TAG_LOG, context.getClass().getSimpleName() + "--" + hint);
+        Log.e(XCConfig.TAG_ALOG, context.getClass().getSimpleName() + "--" + hint);
         writeLog2File(context.getClass().getSimpleName() + "--" + hint, true);
     }
 
     public void e(String hint, Exception e) {
         e.printStackTrace();
-        Log.e(XCConfig.TAG_LOG, hint + "--" + "Exception-->" + e.toString() + "--" + e.getMessage());
+        Log.e(XCConfig.TAG_ALOG, hint + "--" + "Exception-->" + e.toString() + "--" + e.getMessage());
         writeLog2File("Exception-->" + hint + "-->" + e.toString() + "--" + e.getMessage(), true);
     }
 
     public void e(Context context, String hint, Exception e) {
         e.printStackTrace();
-        Log.e(XCConfig.TAG_LOG, "Exception-->" + context.getClass().getSimpleName() + "--" + hint + "--" + e.toString() + "--" + e.getMessage());
+        Log.e(XCConfig.TAG_ALOG, "Exception-->" + context.getClass().getSimpleName() + "--" + hint + "--" + e.toString() + "--" + e.getMessage());
         writeLog2File("Exception-->" + context.getClass().getSimpleName() + "--" + hint + "--" + e.toString() + "--" + e.getMessage(), true);
     }
 
@@ -201,11 +202,6 @@ public class XCLog {
     public String encoding;
 
     /**
-     * <uses-permission
-     * android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-     * <uses-permission
-     * android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-     * <p/>
      * 只在有sd卡的时候，才会打印日志
      */
     private synchronized void writeLog2File(String content, boolean is_append) {
@@ -247,6 +243,7 @@ public class XCLog {
 
         } catch (Exception e) {
             e.printStackTrace();
+            // 这里不要调用e(),可能相互调用
         } finally {
             if (raf != null) {
                 try {
