@@ -8,11 +8,9 @@ import android.widget.Button;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
-import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.buffer.QlkResponseHandler;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.bean.TestBean;
 import com.xiaocoder.test.bean.TestModel;
 
 import org.apache.http.Header;
@@ -37,26 +35,28 @@ public class HttpActivity extends QlkActivity {
                     public void success(int code, Header[] headers, byte[] arg2) {
                         super.success(code, headers, arg2);
 
-                        shortToast("success");
+                        dShortToast("success");
 
                         if (result_boolean) {
-                            XCApplication.printi(result_gson_bean.toString());
-                            XCApplication.printi(result_gson_bean.getMsg());
-                            XCApplication.printi(result_gson_bean.getCode() + "");
-                            XCApplication.printi(result_gson_bean.getData().getResult().toString() + "");
-                            XCApplication.printi(result_gson_bean.getData().getTotalCount() + "");
-                            XCApplication.printi(result_gson_bean.getData().getTotalPages() + "");
-                            XCApplication.printi(result_gson_bean.getData().getResult().get(0).getCommission() + "");
-                            XCApplication.printi(result_gson_bean.getData().getResult().get(0).getImgUrl() + "");
-                            XCApplication.printi(result_gson_bean.getData().getResult().get(0).getMarketPrice() + "");
-                            XCApplication.printi(result_gson_bean.getData().getResult().get(0).getName() + "");
-                            XCApplication.printi(result_gson_bean.getData().getResult().get(1).getRebate() + "");
-                            XCApplication.printi(result_gson_bean.getData().getResult().get(2).getType() + "");
-                            XCApplication.printi(result_gson_bean.getData().getResult().get(2).getShare().getBaseUrl() + "");
-                            XCApplication.printi(result_gson_bean.getData().getResult().get(2).getShare().getContent() + "");
-                            XCApplication.printi(result_gson_bean.getData().getResult().get(2).getShare().getTitle() + "");
-                            XCApplication.printi(result_gson_bean.getData().getResult().get(2).getShare().getIcon() + "");
-                            XCApplication.printi(result_gson_bean.getData().getResult().get(1).getImgUrl());
+
+                            XCApplication.printi(result_gson_model.toString());
+                            XCApplication.printi(result_gson_model.getMsg());
+                            XCApplication.printi(result_gson_model.getCode() + "");
+                            XCApplication.printi(result_gson_model.getData().getResult().toString() + "");
+                            XCApplication.printi(result_gson_model.getData().getTotalCount() + "");
+                            XCApplication.printi(result_gson_model.getData().getTotalPages() + "");
+                            XCApplication.printi(result_gson_model.getData().getResult().get(0).getCommission() + "");
+                            XCApplication.printi(result_gson_model.getData().getResult().get(0).getImgUrl() + "");
+                            XCApplication.printi(result_gson_model.getData().getResult().get(0).getMarketPrice() + "");
+                            XCApplication.printi(result_gson_model.getData().getResult().get(0).getName() + "");
+                            XCApplication.printi(result_gson_model.getData().getResult().get(1).getRebate() + "");
+                            XCApplication.printi(result_gson_model.getData().getResult().get(2).getType() + "");
+                            XCApplication.printi(result_gson_model.getData().getResult().get(2).getShare().getBaseUrl() + "");
+                            XCApplication.printi(result_gson_model.getData().getResult().get(2).getShare().getContent() + "");
+                            XCApplication.printi(result_gson_model.getData().getResult().get(2).getShare().getTitle() + "");
+                            XCApplication.printi(result_gson_model.getData().getResult().get(2).getShare().getIcon() + "");
+                            XCApplication.printi(result_gson_model.getData().getResult().get(1).getImgUrl());
+
                         }
                     }
                 });

@@ -35,37 +35,41 @@ public class HttpDownLoadActivity extends QlkActivity {
 
     public void request() {
 //        XCHttpAsyn.getAsyn(true,true, this, "http://" + MainActivity.TEST_HOST + ":8080/qlktest/test.mp3", new RequestParams(), new QlkHttpResponseHandler(HttpDownLoadActivity.this) {
-        XCHttpAsyn.getAsyn(true, true, this, "http://www.baidu.com"
+        XCHttpAsyn.getAsyn(true, true, this,
+                "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95"
                 , new RequestParams()
-                , new QlkResponseHandler<XCJsonBean>(this, XCJsonBean.class) {
+                , new QlkResponseHandler<XCJsonBean>(this) {
 
-            @Override
-            public void success(int code, Header[] headers, byte[] arg2) {
-                super.success(code, headers, arg2);
-                closeHttpDialog();
-
-                dialog = new XCQueryDialog(HttpDownLoadActivity.this, XCBaseDialog.TRAN_STYLE, "下载提示", "该文件大小为" + UtilString.getFileSizeUnit(arg2.length), new String[]{"下载", "取消"}, false);
-
-                dialog.setOnDecideListener(new XCQueryDialog.OnDecideListener() {
                     @Override
-                    public void confirm() {
-                        downLoad();
-                        dialog.dismiss();
+                    public void success(int code, Header[] headers, byte[] arg2) {
+                        super.success(code, headers, arg2);
+                        // 这里拿到的result_json_bean是一个XCJsonBean对象
+                        if (result_boolean) {
+                            closeHttpDialog();
+
+                            dialog = new XCQueryDialog(HttpDownLoadActivity.this, XCBaseDialog.TRAN_STYLE, "下载提示", "该文件大小为" + UtilString.getFileSizeUnit(arg2.length), new String[]{"下载", "取消"}, false);
+
+                            dialog.setOnDecideListener(new XCQueryDialog.OnDecideListener() {
+                                @Override
+                                public void confirm() {
+                                    downLoad();
+                                    dialog.dismiss();
+                                }
+
+                                @Override
+                                public void cancle() {
+                                    dialog.dismiss();
+                                }
+                            });
+                            dialog.show();
+                        }
                     }
 
                     @Override
-                    public void cancle() {
-                        dialog.dismiss();
+                    public void finish() {
+
                     }
                 });
-                dialog.show();
-            }
-
-            @Override
-            public void finish() {
-
-            }
-        });
     }
 
     private void downLoad() {

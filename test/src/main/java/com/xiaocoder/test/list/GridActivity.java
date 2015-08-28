@@ -10,15 +10,17 @@ import android.widget.TextView;
 
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.abslist.XCBaseAbsListFragment.OnAbsListItemClickListener;
 import com.xiaocoder.android.fw.general.base.abslist.XCBaseAbsListFragment.OnRefreshNextPageListener;
 import com.xiaocoder.android.fw.general.fragment.XCGridViewFragment;
 import com.xiaocoder.android.fw.general.fragment.XCListViewFragment;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
+import com.xiaocoder.android.fw.general.util.UtilCommon;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.buffer.QlkResponseHandler;
 import com.xiaocoder.test.R;
-import com.xiaocoder.test.bean.TestBean;
+import com.xiaocoder.test.bean.TestModel;
 
 import org.apache.http.Header;
 
@@ -41,32 +43,46 @@ public class GridActivity extends QlkActivity {
         XCHttpAsyn.getAsyn(true, this,
                 "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95",
                 params,
-                new QlkResponseHandler<TestBean>(this, TestBean.class) {
+                new QlkResponseHandler<TestModel>(this, TestModel.class, false) {
                     @Override
                     public void success(int code, Header[] headers, byte[] arg2) {
                         super.success(code, headers, arg2);
-                        if (!grid_fragment.checkGoOn()) {
-                            return;
+
+                        if (result_boolean) {
+                            if (!grid_fragment.checkGoOn()) {
+                                return;
+                            }
+
+                            TestModel.DataEntity data = result_gson_model.getData();
+
+                            List<TestModel.DataEntity.ResultEntity> result = data.getResult();
+
+                            XCApplication.printi(result_gson_model.toString());
+                            XCApplication.printi(result_gson_model.getMsg());
+                            XCApplication.printi(result_gson_model.getCode() + "");
+                            XCApplication.printi(result_gson_model.getData().getTotalCount() + "");
+                            XCApplication.printi(result_gson_model.getData().getTotalPages() + "");
+
+                            if (!UtilCommon.isListBlank(result)) {
+                                XCApplication.printi(result_gson_model.getData().getResult().toString() + "");
+                                XCApplication.printi(result_gson_model.getData().getResult().get(0).getCommission() + "");
+                                XCApplication.printi(result_gson_model.getData().getResult().get(0).getImgUrl() + "");
+                                XCApplication.printi(result_gson_model.getData().getResult().get(0).getMarketPrice() + "");
+                                XCApplication.printi(result_gson_model.getData().getResult().get(0).getName() + "");
+                                XCApplication.printi(result_gson_model.getData().getResult().get(1).getRebate() + "");
+                                XCApplication.printi(result_gson_model.getData().getResult().get(2).getType() + "");
+                                XCApplication.printi(result_gson_model.getData().getResult().get(2).getShare().getBaseUrl() + "");
+                                XCApplication.printi(result_gson_model.getData().getResult().get(2).getShare().getContent() + "");
+                                XCApplication.printi(result_gson_model.getData().getResult().get(2).getShare().getTitle() + "");
+                                XCApplication.printi(result_gson_model.getData().getResult().get(2).getShare().getIcon() + "");
+                                XCApplication.printi(result_gson_model.getData().getResult().get(1).getImgUrl());
+                            }
+
+                            // grid_fragment.setTotalNum("100");// 或者setTotalPage也可以
+                            grid_fragment.setTotalPage("3");
+                            grid_fragment.updateList(result);
                         }
 
-                        String msg = result_json_bean.getMsg();
-                        printi("---第一层---->" + msg);
-
-                        TestBean testBean = result_json_bean.obtModel(result_json_bean.data);
-                        printi("---第二层---->" + testBean.toString());
-
-                        List<TestBean> testBeans = testBean.obtList(result_json_bean.result);
-                        printi("---第三层---->" + testBeans.toString());
-
-                        for (TestBean bean : testBeans) {
-                            printi("getCommission()--->" + bean.getCommission());
-                            printi("getMarketPrice()--->" + bean.getMarketPrice());
-                            printi("getProudctId()--->" + bean.getProudctId());
-                        }
-
-                        // grid_fragment.setTotalNum("100");// 或者setTotalPage也可以
-                        grid_fragment.setTotalPage("3");
-                        grid_fragment.updateList(testBeans);
                     }
 
                     @Override
@@ -85,7 +101,7 @@ public class GridActivity extends QlkActivity {
         request();
     }
 
-    class TestAdatpter extends XCBaseAdapter<TestBean> {
+    class TestAdatpter extends XCBaseAdapter<TestModel.DataEntity.ResultEntity> {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
 
@@ -107,7 +123,7 @@ public class GridActivity extends QlkActivity {
             return convertView;
         }
 
-        public TestAdatpter(Context context, List<TestBean> list) {
+        public TestAdatpter(Context context, List<TestModel.DataEntity.ResultEntity> list) {
             super(context, list);
         }
 

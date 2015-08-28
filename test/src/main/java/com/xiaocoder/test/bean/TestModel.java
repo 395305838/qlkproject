@@ -1,6 +1,6 @@
 package com.xiaocoder.test.bean;
 
-import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
+import com.xiaocoder.buffer.QlkBean;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  * <p/>
  * 该类是gsonformat插件自动生成的，不需要复制粘贴等
  */
-public class TestModel extends XCJsonBean {
+public class TestModel extends QlkBean<TestModel> {
 
     /**
      * msg : 成功

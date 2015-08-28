@@ -116,7 +116,7 @@ public abstract class XLBaseExpandableListViewAdapter extends BaseExpandableList
     public int getChildrenCount(int i) {
         if (list != null) {
             XCJsonBean childBean = list.get(i);
-            List<XCJsonBean> childList = childBean.obtList("list", new ArrayList<XCJsonBean>());
+            List<XCJsonBean> childList = childBean.getList("list", new ArrayList<XCJsonBean>());
             if (childList != null) {
                 return childList.size();
             }
@@ -135,7 +135,7 @@ public abstract class XLBaseExpandableListViewAdapter extends BaseExpandableList
     @Override
     public XCJsonBean getChild(int i, int i1) {
         if (list != null) {
-            return (XCJsonBean) list.get(i).obtList("list").get(i1);
+            return (XCJsonBean) list.get(i).getList("list").get(i1);
         }
         return null;
     }

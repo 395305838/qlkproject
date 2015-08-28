@@ -20,6 +20,7 @@ import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
 import com.xiaocoder.android.fw.general.fragment.XCListViewFragment;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
+import com.xiaocoder.android.fw.general.util.UtilCommon;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.buffer.function.QlkMainActivity;
 import com.xiaocoder.buffer.QlkResponseHandler;
@@ -48,7 +49,7 @@ public class ListActivity extends QlkActivity {
         XCHttpAsyn.getAsyn(true, this,
                 "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95"
                 , params,
-                new QlkResponseHandler<TestBean>(this, TestBean.class) {
+                new QlkResponseHandler<TestBean>(this, TestBean.class, true) {
 
                     @Override
                     public void success(int code, Header[] headers, byte[] arg2) {
@@ -59,21 +60,25 @@ public class ListActivity extends QlkActivity {
                                 return;
                             }
 
-                            String msg = result_json_bean.getMsg();
-                            printi("---第一层---->" + msg);
+                            TestBean testBean = result_json_bean.getModel(result_json_bean.data);
 
-                            TestBean testBean = result_json_bean.obtModel(result_json_bean.data);
-                            printi("---第二层---->" + testBean.toString());
+                            List<TestBean> testBeans = testBean.getList(testBean.result);
 
-                            List<TestBean> testBeans = testBean.obtList(result_json_bean.result);
-                            printi("---第三层---->" + testBeans.toString());
+                            if (!UtilCommon.isListBlank(testBeans)) {
+                                TestBean bean = testBeans.get(0);
 
-                            for (TestBean bean : testBeans) {
-                                printi("getCommission()--->" + bean.getCommission());
-                                printi("getMarketPrice()--->" + bean.getMarketPrice());
-                                printi("getProudctId()--->" + bean.getProudctId());
+                                XCApplication.printi(bean.getString(bean.commission));
+                                XCApplication.printi(bean.getString(bean.imgUrl));
+                                XCApplication.printi(bean.getString(bean.marketPrice));
+                                XCApplication.printi(bean.getString(bean.rebate));
+                                XCApplication.printi(bean.getString(bean.proudctId));
+
+
+                                XCApplication.printi(bean.getModel(bean.share).toString());
+                                XCApplication.printi(bean.getModel(bean.share).getString(bean.title));
+                                XCApplication.printi(bean.getModel(bean.share).getString(bean.icon));
+                                XCApplication.printi(bean.getModel(bean.share).getString(bean.content));
                             }
-
 
                             // grid_fragment.setTotalNum("100");// 或者setTotalPage也可以
                             list_fragment.setTotalPage("3");
@@ -138,7 +143,7 @@ public class ListActivity extends QlkActivity {
             }
 
             // 获取和设置控件的显示值
-            holder.xc_id_adapter_test_textview.setText(bean.getCommission());
+            holder.xc_id_adapter_test_textview.setText(bean.getString(bean.commission));
             // 加载图片
             return convertView;
         }

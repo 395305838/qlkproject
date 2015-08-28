@@ -4,7 +4,10 @@ import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 
 /**
  * Created by xiaocoder on 2015/7/29.
- * 该中间层用于处理：如接口中公共常量的定义，double的位数的定义  项目特殊的返回值的定义等
+ * <p/>
+ * 接口中公共常量的定义
+ * <p/>
+ * double的位数规定的转换方法
  */
 public class QlkBean<T extends XCJsonBean> extends XCJsonBean<T> {
 

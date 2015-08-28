@@ -26,12 +26,20 @@ public class QlkResponseHandler<T extends XCJsonBean> extends XCResponseHandler<
 
 
     public QlkResponseHandler(XCIHttpResult result_http, int content_type, boolean show_background_when_net_fail,
-                              Class<T> result_bean_class) {
-        super(result_http, content_type, show_background_when_net_fail, result_bean_class);
+                              Class<T> result_bean_class, boolean isJsonBean) {
+        super(result_http, content_type, show_background_when_net_fail, result_bean_class, isJsonBean);
     }
 
     public QlkResponseHandler(XCIHttpResult result_http, Class<T> result_bean_class) {
         super(result_http, result_bean_class);
+    }
+
+    public QlkResponseHandler(XCIHttpResult result_http, Class<T> result_bean_class, boolean isJsonBean) {
+        super(result_http, result_bean_class, isJsonBean);
+    }
+
+    public QlkResponseHandler(XCIHttpResult result_http) {
+        super(result_http);
     }
 
 
@@ -40,11 +48,19 @@ public class QlkResponseHandler<T extends XCJsonBean> extends XCResponseHandler<
 
         XCApplication.printi("yourCompanyResultRule()");
 
-        if (!UtilString.isBlank(result_json_bean.obtString(QlkBean.MSG, ""))) {
-            result_boolean = true;
+        if (!UtilString.isBlank(result_json_bean.getString(QlkBean.MSG, ""))) {
+            if (isJsonBean) {
+                result_boolean = true;
+            } else {
+                if (result_gson_model != null) {
+                    result_boolean = true;
+                } else {
+                    result_boolean = false;
+                }
+            }
         } else {
             result_boolean = false;
-            XCApplication.shortToast(result_json_bean.obtString(QlkBean.MSG, ""));
+            XCApplication.shortToast(result_json_bean.getString(QlkBean.MSG, ""));
         }
 
     }
@@ -104,6 +120,4 @@ public class QlkResponseHandler<T extends XCJsonBean> extends XCResponseHandler<
             XCApplication.printi("showHttpDialog()");
         }
     }
-
-
 }
