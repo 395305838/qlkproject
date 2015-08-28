@@ -26,11 +26,7 @@ public class QlkConfig {
     }
 
     /**
-     * OPEN_DEFAULT 与 close 是配置好的，不要动
-     * <p/>
-     * 如果需要改，则在OPEN_DEFINE里改动，比如提交测试的时候，dtoast关闭，日志可能打开
-     * <p/>
-     * 上线前一定要设置为close
+     * 日志输出的控制
      */
     public enum DebugControl {
         CLOSE, OPEN_DEFAULT, OPEN_DEFINE
@@ -42,7 +38,7 @@ public class QlkConfig {
     public static RunEnvironment CURRENT_RUN_ENVIRONMENT = RunEnvironment.ONLINE;
 
     /**
-     * 是否打开调试开关 , 上线前，改为CLOSE，即不输出调试信息
+     * 是否打开调试开关 , 上线前，改为CLOSE
      */
     public static DebugControl DEBUG_CONTROL = DebugControl.OPEN_DEFINE;
 
@@ -93,7 +89,7 @@ public class QlkConfig {
             IS_INIT_CRASH_HANDLER = true;
 
             // 是否打印出异常界面（只有在IS_INIT_CRASH_HANDLER 为true时，该设置才有效）
-            IS_SHOW_EXCEPTION_ACTIVITY = true;
+            IS_SHOW_EXCEPTION_ACTIVITY = false;
 
             // i()方法中的log是否打印到本地日志
             IS_PRINTLOG = false;
@@ -140,7 +136,7 @@ public class QlkConfig {
     }
 
     /*
-     * app的名字与根目录
+     * app的根目录
      */
     public static String APP_ROOT = "app_qlk_test";
 
@@ -165,7 +161,7 @@ public class QlkConfig {
     public static String DB_TABLE_SQL_SEARCH_2 = "CREATE TABLE " + DB_TABLE_NAME_SEARCH_2 + "(_id integer primary key autoincrement," + "time text," + "keyword text)";
     public static String DB_TABLE_SQL_SEARCH_3 = "CREATE TABLE " + DB_TABLE_NAME_SEARCH_3 + "(_id integer primary key autoincrement," + "time text," + "keyword text)";
     /*
-     * 打印到日志文件printe
+     * 打印到日志文件printe()
      */
     public static String LOG_FILE = APP_ROOT + "/log";
     /*

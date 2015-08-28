@@ -32,7 +32,7 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
 
     public void yourCompanyResultRule() {
 
-        XCApplication.printi(XCConfig.TAG_HTTP,"yourCompanyResultRule()");
+        XCApplication.printi(XCConfig.TAG_HTTP_HANDLER,this.toString()+"---yourCompanyResultRule()");
 
         if (result_bean instanceof IQlkResponseInfo) {
 
@@ -53,7 +53,7 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
     @Override
     public void yourCompanySecret(RequestParams params, AsyncHttpClient client, boolean needSecret) {
 
-        XCApplication.printi(XCConfig.TAG_HTTP,"yourCompanySecret()");
+        XCApplication.printi(XCConfig.TAG_HTTP_HANDLER,this.toString()+"---yourCompanySecret()");
 
         client.addHeader("_v", UtilSystem.getVersionCode(mContext) + "");// 版本号，必填
         client.addHeader("_m", UtilSystem.getMacAddress(mContext));// 设备的mac地址，选填
@@ -79,7 +79,7 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
             httpDialog.dismiss();
             httpDialog.setOnKeyListener(null);
             httpDialog.cancel();
-            XCApplication.printi(XCConfig.TAG_HTTP,"closeHttpDialog()");
+            XCApplication.printi(XCConfig.TAG_HTTP_HANDLER,this.toString()+"---closeHttpDialog()");
         }
     }
 
@@ -102,7 +102,7 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
                 }
             });
             httpDialog.show();
-            XCApplication.printi(XCConfig.TAG_HTTP,"showHttpDialog()");
+            XCApplication.printi(XCConfig.TAG_HTTP_HANDLER,this.toString() +"---showHttpDialog()");
         }
     }
 }

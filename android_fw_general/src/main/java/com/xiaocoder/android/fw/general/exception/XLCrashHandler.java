@@ -8,8 +8,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Environment;
-import android.os.Looper;
-import android.widget.Toast;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
 
@@ -71,20 +69,28 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
      *
      * @param context
      */
-    public void init(Context context, String crash_path, boolean isShowExceptionActivity) {
-        if (context instanceof Application) {
-            application = (Application) context;
+    public void init(boolean isInit, Context context, String crash_path, boolean isShowExceptionActivity) {
+
+        if (isInit) {
+
+            if (context instanceof XCApplication) {
+                application = (XCApplication) context;
+            } else {
+                XCApplication.printe("XLCrashHandler的init方法中传入的application有误");
+                throw new RuntimeException("XLCrashHandler的init方法中传入的application有误");
+            }
+
+            mContext = context;
+            mIsShowExceptionActivity = isShowExceptionActivity;
+
+            // 获取系统默认的 UncaughtException 处理器
+            mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
+
+            // 设置该 CrashHandler 为程序的默认处理器
+            Thread.setDefaultUncaughtExceptionHandler(this);
+            path = path + crash_path;
+            XCApplication.printi("path:" + path);
         }
-        mContext = context;
-        mIsShowExceptionActivity = isShowExceptionActivity;
-
-        // 获取系统默认的 UncaughtException 处理器
-        mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
-
-        // 设置该 CrashHandler 为程序的默认处理器
-        Thread.setDefaultUncaughtExceptionHandler(this);
-        path = path + crash_path;
-        XCApplication.printi("path:" + path);
     }
 
     /**

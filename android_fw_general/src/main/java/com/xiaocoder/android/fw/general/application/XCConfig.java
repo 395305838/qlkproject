@@ -6,9 +6,13 @@ public class XCConfig {
      */
     public static String TAG_SYSTEM_OUT = "System.out";
     /**
-     * 所有http的相关日志，可查看如url 参数 返回的json等
+     * 可查看如url 参数 返回的json等
      */
     public static String TAG_HTTP = "http";
+    /**
+     * 可查看handler里每个方法的调用顺序
+     */
+    public static String TAG_HTTP_HANDLER = "httpHandler";
     /**
      * 该tag可以查看json返回的字段的数据类型
      */

@@ -13,7 +13,7 @@ import com.xiaocoder.android.fw.general.util.UtilSystem;
 
 /**
  * Created by xiaocoder on 2015/7/14.
- *
+ * <p/>
  * 各个初始化的顺序不要去改变
  */
 public class QlkApplication extends XCApplication {
@@ -22,6 +22,20 @@ public class QlkApplication extends XCApplication {
     public void onCreate() {
         super.onCreate();
         // 初始化一些路径
+        initPath();
+
+        printi(UtilSystem.getDeviceId(getApplicationContext()) + "--deviceId , "
+                + UtilSystem.getVersionCode(getApplicationContext())
+                + "--versionCode , " + UtilSystem.getVersionName(getApplicationContext()) + "--versionName , "
+                + UtilScreen.getScreenHeightPx(getApplicationContext()) + "--screenHeightPx , "
+                + UtilScreen.getScreenWidthPx(getApplicationContext()) + "--screenWidthPx , "
+                + UtilScreen.getDensity(getApplicationContext()) + "--density , "
+                + UtilScreen.getScreenHeightDP(getApplicationContext()) + "--screenHeightDP , "
+                + UtilScreen.getScreenWidthPx(getApplicationContext()) + "--screenWidthDP");
+    }
+
+    private void initPath() {
+
         // log , 可以打印日志 与 toast
         base_log = new XCLog(getApplicationContext(),
                 QlkConfig.IS_DTOAST, QlkConfig.IS_OUTPUT, QlkConfig.IS_PRINTLOG,
@@ -41,15 +55,8 @@ public class QlkApplication extends XCApplication {
         base_io.createDirInAndroid(QlkConfig.CHAT_PHOTO_FILE);
         base_io.createDirInAndroid(QlkConfig.CRASH_FILE);
 
-        printi(UtilSystem.getDeviceId(getApplicationContext()) + "--deviceId , " + UtilSystem.getVersionCode(getApplicationContext())
-                + "--versionCode , " + UtilSystem.getVersionName(getApplicationContext()) + "--versionName , "
-                + UtilScreen.getScreenHeightPx(getApplicationContext())
-                + "--screenHeightPx , " + UtilScreen.getScreenWidthPx(getApplicationContext()) + "--screenWidthPx , " + UtilScreen.getDensity(getApplicationContext()) + "--density , " + UtilScreen.getScreenHeightDP(getApplicationContext()) + "--screenHeightDP , " + UtilScreen.getScreenWidthPx(getApplicationContext()) + "--screenWidthDP");
-
-        // 异常日志捕获的存储路径
-        if (QlkConfig.IS_INIT_CRASH_HANDLER) {
-            XLCrashHandler crashHandler = XLCrashHandler.getInstance();
-            crashHandler.init(getApplicationContext(), QlkConfig.CRASH_FILE, QlkConfig.IS_SHOW_EXCEPTION_ACTIVITY);
-        }
+        // 是否开启异常日志捕获，以及异常日志的存储路径等
+        XLCrashHandler.getInstance().init(QlkConfig.IS_INIT_CRASH_HANDLER,
+                getApplicationContext(), QlkConfig.CRASH_FILE, QlkConfig.IS_SHOW_EXCEPTION_ACTIVITY);
     }
 }

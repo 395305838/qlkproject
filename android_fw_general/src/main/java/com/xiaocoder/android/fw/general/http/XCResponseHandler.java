@@ -103,7 +103,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
      * 主线程
      */
     public void finish() {
-        XCApplication.printi(XCConfig.TAG_HTTP, "onFinish()");
+        XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString()+"---onFinish()");
         XCHttpAsyn.resetNetingStatus();
         closeHttpDialog();
     }
@@ -118,6 +118,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
             return;
         }
 
+        XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString()+"-----onFailure()");
         XCApplication.printi(XCConfig.TAG_HTTP, "onFailure----->status code " + code + "----e.toString()" + e.toString());
 
         e.printStackTrace();
@@ -137,6 +138,9 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
      * 主线程中
      */
     public void failure() {
+
+        XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString()+"-----failure()");
+
         if (result_http != null) {
             // 回调访问网络失败时的界面
             result_http.onNetFail(show_background_when_net_fail);
@@ -162,6 +166,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
             @Override
             public void run() {
 
+                XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString()+"-----onSuccess()");
                 XCApplication.printi(XCConfig.TAG_HTTP, "onSuccess----->status code " + code);
 
                 if (headers != null) {
@@ -191,12 +196,16 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
      * 主线程
      */
     public void success(int code, Header[] headers, byte[] arg2) {
+        XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString()+"-----success()");
+
         if (result_http != null) {
             result_http.onNetSuccess();
         }
     }
 
     public boolean isDestroy() {
+
+        XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString()+"-----isDestroy()");
 
         if (mContext == null) {
             XCApplication.printe(this.toString() + "---activity被销毁了");
@@ -217,6 +226,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
      */
     public void parse(byte[] response_bytes) {
         try {
+            XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString()+"-----parse()");
             // 这里仅提供通用的json格式的解析 ，有些不通用的json，需要重写parse
             if (content_type == JSON) {
                 String response = new String(response_bytes, XCConfig.ENCODING_UTF8);
@@ -231,7 +241,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
 
                 if (result_bean == null) {
                     result_boolean = false;
-                    XCApplication.printi(XCConfig.TAG_HTTP, "onSuccess , 解析数据失败");
+                    XCApplication.printi(XCConfig.TAG_HTTP, this.toString()+"---parse() , 解析数据失败");
                     return;
                 }
 
