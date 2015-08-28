@@ -1,4 +1,4 @@
-package com.xiaocoder.test.list;
+package com.xiaocoder.test.http2;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -60,7 +60,7 @@ public class ListActivity extends QlkActivity {
                                 return;
                             }
 
-                            TestBean testBean = result_json_bean.getModel(result_json_bean.data);
+                            TestBean testBean = result_bean.getModel(result_bean.data);
 
                             List<TestBean> testBeans = testBean.getList(testBean.result);
 

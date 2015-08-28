@@ -1,4 +1,4 @@
-package com.xiaocoder.test.list;
+package com.xiaocoder.test.http2;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -53,29 +53,29 @@ public class GridActivity extends QlkActivity {
                                 return;
                             }
 
-                            TestModel.DataEntity data = result_gson_model.getData();
+                            TestModel.DataEntity data = result_model.getData();
 
                             List<TestModel.DataEntity.ResultEntity> result = data.getResult();
 
-                            XCApplication.printi(result_gson_model.toString());
-                            XCApplication.printi(result_gson_model.getMsg());
-                            XCApplication.printi(result_gson_model.getCode() + "");
-                            XCApplication.printi(result_gson_model.getData().getTotalCount() + "");
-                            XCApplication.printi(result_gson_model.getData().getTotalPages() + "");
+                            XCApplication.printi(result_model.toString());
+                            XCApplication.printi(result_model.getMsg());
+                            XCApplication.printi(result_model.getCode() + "");
+                            XCApplication.printi(result_model.getData().getTotalCount() + "");
+                            XCApplication.printi(result_model.getData().getTotalPages() + "");
 
                             if (!UtilCommon.isListBlank(result)) {
-                                XCApplication.printi(result_gson_model.getData().getResult().toString() + "");
-                                XCApplication.printi(result_gson_model.getData().getResult().get(0).getCommission() + "");
-                                XCApplication.printi(result_gson_model.getData().getResult().get(0).getImgUrl() + "");
-                                XCApplication.printi(result_gson_model.getData().getResult().get(0).getMarketPrice() + "");
-                                XCApplication.printi(result_gson_model.getData().getResult().get(0).getName() + "");
-                                XCApplication.printi(result_gson_model.getData().getResult().get(1).getRebate() + "");
-                                XCApplication.printi(result_gson_model.getData().getResult().get(2).getType() + "");
-                                XCApplication.printi(result_gson_model.getData().getResult().get(2).getShare().getBaseUrl() + "");
-                                XCApplication.printi(result_gson_model.getData().getResult().get(2).getShare().getContent() + "");
-                                XCApplication.printi(result_gson_model.getData().getResult().get(2).getShare().getTitle() + "");
-                                XCApplication.printi(result_gson_model.getData().getResult().get(2).getShare().getIcon() + "");
-                                XCApplication.printi(result_gson_model.getData().getResult().get(1).getImgUrl());
+                                XCApplication.printi(result_model.getData().getResult().toString() + "");
+                                XCApplication.printi(result_model.getData().getResult().get(0).getCommission() + "");
+                                XCApplication.printi(result_model.getData().getResult().get(0).getImgUrl() + "");
+                                XCApplication.printi(result_model.getData().getResult().get(0).getMarketPrice() + "");
+                                XCApplication.printi(result_model.getData().getResult().get(0).getName() + "");
+                                XCApplication.printi(result_model.getData().getResult().get(1).getRebate() + "");
+                                XCApplication.printi(result_model.getData().getResult().get(2).getType() + "");
+                                XCApplication.printi(result_model.getData().getResult().get(2).getShare().getBaseUrl() + "");
+                                XCApplication.printi(result_model.getData().getResult().get(2).getShare().getContent() + "");
+                                XCApplication.printi(result_model.getData().getResult().get(2).getShare().getTitle() + "");
+                                XCApplication.printi(result_model.getData().getResult().get(2).getShare().getIcon() + "");
+                                XCApplication.printi(result_model.getData().getResult().get(1).getImgUrl());
                             }
 
                             // grid_fragment.setTotalNum("100");// 或者setTotalPage也可以

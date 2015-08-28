@@ -191,11 +191,11 @@
             android:name=".fragment.ViewPagerActivity"
             android:label="@string/title_activity_view_pager" />
         <activity
-            android:name=".list.ListActivity"
+            android:name=".http2.ListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".list.GridActivity"
+            android:name=".http2.GridActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity

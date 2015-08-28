@@ -48,11 +48,11 @@ public class QlkResponseHandler<T extends XCJsonBean> extends XCResponseHandler<
 
         XCApplication.printi("yourCompanyResultRule()");
 
-        if (!UtilString.isBlank(result_json_bean.getString(QlkBean.MSG, ""))) {
+        if (!UtilString.isBlank(result_bean.getString(QlkBean.MSG, ""))) {
             if (isJsonBean) {
                 result_boolean = true;
             } else {
-                if (result_gson_model != null) {
+                if (result_model != null) {
                     result_boolean = true;
                 } else {
                     result_boolean = false;
@@ -60,7 +60,7 @@ public class QlkResponseHandler<T extends XCJsonBean> extends XCResponseHandler<
             }
         } else {
             result_boolean = false;
-            XCApplication.shortToast(result_json_bean.getString(QlkBean.MSG, ""));
+            XCApplication.shortToast(result_bean.getString(QlkBean.MSG, ""));
         }
 
     }

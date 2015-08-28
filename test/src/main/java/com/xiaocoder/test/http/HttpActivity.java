@@ -39,23 +39,23 @@ public class HttpActivity extends QlkActivity {
 
                         if (result_boolean) {
 
-                            XCApplication.printi(result_gson_model.toString());
-                            XCApplication.printi(result_gson_model.getMsg());
-                            XCApplication.printi(result_gson_model.getCode() + "");
-                            XCApplication.printi(result_gson_model.getData().getResult().toString() + "");
-                            XCApplication.printi(result_gson_model.getData().getTotalCount() + "");
-                            XCApplication.printi(result_gson_model.getData().getTotalPages() + "");
-                            XCApplication.printi(result_gson_model.getData().getResult().get(0).getCommission() + "");
-                            XCApplication.printi(result_gson_model.getData().getResult().get(0).getImgUrl() + "");
-                            XCApplication.printi(result_gson_model.getData().getResult().get(0).getMarketPrice() + "");
-                            XCApplication.printi(result_gson_model.getData().getResult().get(0).getName() + "");
-                            XCApplication.printi(result_gson_model.getData().getResult().get(1).getRebate() + "");
-                            XCApplication.printi(result_gson_model.getData().getResult().get(2).getType() + "");
-                            XCApplication.printi(result_gson_model.getData().getResult().get(2).getShare().getBaseUrl() + "");
-                            XCApplication.printi(result_gson_model.getData().getResult().get(2).getShare().getContent() + "");
-                            XCApplication.printi(result_gson_model.getData().getResult().get(2).getShare().getTitle() + "");
-                            XCApplication.printi(result_gson_model.getData().getResult().get(2).getShare().getIcon() + "");
-                            XCApplication.printi(result_gson_model.getData().getResult().get(1).getImgUrl());
+                            XCApplication.printi(result_model.toString());
+                            XCApplication.printi(result_model.getMsg());
+                            XCApplication.printi(result_model.getCode() + "");
+                            XCApplication.printi(result_model.getData().getResult().toString() + "");
+                            XCApplication.printi(result_model.getData().getTotalCount() + "");
+                            XCApplication.printi(result_model.getData().getTotalPages() + "");
+                            XCApplication.printi(result_model.getData().getResult().get(0).getCommission() + "");
+                            XCApplication.printi(result_model.getData().getResult().get(0).getImgUrl() + "");
+                            XCApplication.printi(result_model.getData().getResult().get(0).getMarketPrice() + "");
+                            XCApplication.printi(result_model.getData().getResult().get(0).getName() + "");
+                            XCApplication.printi(result_model.getData().getResult().get(1).getRebate() + "");
+                            XCApplication.printi(result_model.getData().getResult().get(2).getType() + "");
+                            XCApplication.printi(result_model.getData().getResult().get(2).getShare().getBaseUrl() + "");
+                            XCApplication.printi(result_model.getData().getResult().get(2).getShare().getContent() + "");
+                            XCApplication.printi(result_model.getData().getResult().get(2).getShare().getTitle() + "");
+                            XCApplication.printi(result_model.getData().getResult().get(2).getShare().getIcon() + "");
+                            XCApplication.printi(result_model.getData().getResult().get(1).getImgUrl());
 
                         }
                     }

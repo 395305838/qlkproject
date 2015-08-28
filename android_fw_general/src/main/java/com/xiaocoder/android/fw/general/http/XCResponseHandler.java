@@ -49,8 +49,8 @@ public abstract class XCResponseHandler<T extends XCJsonBean> extends AsyncHttpR
     /**
      * 返回的结果数据
      */
-    public T result_json_bean;
-    public T result_gson_model;
+    public T result_bean;
+    public T result_model;
     public Class<T> result_bean_class;
     /**
      * 默认不是jsonbean，为gsonmodel解析
@@ -201,6 +201,7 @@ public abstract class XCResponseHandler<T extends XCJsonBean> extends AsyncHttpR
                 XCApplication.getBase_handler().post(new Runnable() {
                     @Override
                     public void run() {
+                        // 增加activity是否销毁的判断
                         if (isDestroy()) {
                             return;
                         }
@@ -236,15 +237,15 @@ public abstract class XCResponseHandler<T extends XCJsonBean> extends AsyncHttpR
                 // 打印bean到控制台， 然后复制，格式化，即为自动生成的假bean，该方法受log的isoutput开关控制
                 XCJsonParse.json2Bean(response);
                 // 解析数据为jsonbean ， 解析错误返回null
-                result_json_bean = XCJsonParse.getJsonParseData(response, result_bean_class);
+                result_bean = XCJsonParse.getJsonParseData(response, result_bean_class);
                 // 如果不是jsonbean，即gson解析model； 如果是jsonbean，则不进行gson解析model
                 if (!isJsonBean) {
                     // 解析错误会抛异常
-                    result_gson_model = new Gson().fromJson(response, result_bean_class);
+                    result_model = new Gson().fromJson(response, result_bean_class);
                 }
                 // 如果jsonbean不为null，再判断
                 // 如果是个model，则isJsonBean为fasle，则继续判断result_gson_model是否为空
-                if (result_json_bean == null || ((!isJsonBean) && result_gson_model == null)) {
+                if (result_bean == null || ((!isJsonBean) && result_model == null)) {
                     result_boolean = false;
                     XCApplication.printi(XCConfig.TAG_HTTP, "onSuccess , 解析数据失败");
                     return;
