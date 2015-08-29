@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.db.helper.XCDbHelper;
 import com.xiaocoder.android.fw.general.db.impl.XCSearchDao;
@@ -181,7 +182,7 @@ public class XCSearchRecordFragment extends XCBaseFragment implements AdapterVie
         @Override
         public void onClick(View view) {
             Integer position = (Integer) view.getTag();
-            dShortToast(position + "");
+            XCApplication.dShortToast(position + "");
             dao.delete_unique(list.get(position).getTime());
             XCSearchRecordFragment.this.update();
         }

@@ -10,9 +10,10 @@ import com.xiaocoder.android.fw.general.base.XCBaseActivity;
  */
 public class QlkUser {
 
-    public static String USER_NAME = "";
-    public static String USER_ID = "";
-    public static String USER_TOKEN = "";
+    public static String USER_NAME = " ";
+    public static String USER_ID = " ";
+    public static String USER_TOKEN = " ";
+    public static String IS_LOGIN = "isLogin";
 
     public static String getUserId() {
 
@@ -29,6 +30,12 @@ public class QlkUser {
     public static String getUserName() {
 
         return XCApplication.spGet(USER_NAME, "");
+
+    }
+
+    public static boolean isLogin() {
+
+        return XCApplication.spGet(IS_LOGIN, false);
 
     }
 
@@ -50,16 +57,18 @@ public class QlkUser {
 
     }
 
+    public static void putLogin(boolean isLogin) {
+
+        XCApplication.spPut(IS_LOGIN, isLogin);
+
+    }
+
     public static void loginOut(Class<? extends XCBaseActivity> classes, Context context) {
 
     }
 
     public static void refreshUserInfo(Context context) {
 
-    }
-
-    public static boolean isLogin() {
-        return false;
     }
 
 }

@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.fragment.XCBottomChatFragment;
 import com.xiaocoder.android.fw.general.fragment.XCCameraPhotoFragment;
 import com.xiaocoder.android.fw.general.fragment.XCCameraPhotoFragment.OnCaremaSelectedFileListener;
@@ -55,9 +56,9 @@ public class CamareActivity extends QlkActivity {
 
 			@Override
 			public void onCaremaSelectedFile(File file) {
-				printi(Uri.fromFile(file).toString());
-				printi(file.getAbsolutePath());
-				printi(file.toURI().toString());
+				XCApplication.printi(Uri.fromFile(file).toString());
+				XCApplication.printi(file.getAbsolutePath());
+				XCApplication.printi(file.toURI().toString());
 				test_imageview.setImageURI(Uri.fromFile(file));
 			}
 		});
@@ -66,9 +67,9 @@ public class CamareActivity extends QlkActivity {
 
 			@Override
 			public void onLocalSelectedFile(File file) {
-				printi(Uri.fromFile(file).toString());
-				printi(file.getAbsolutePath());
-				printi(file.toURI().toString());
+				XCApplication.printi(Uri.fromFile(file).toString());
+				XCApplication.printi(file.getAbsolutePath());
+				XCApplication.printi(file.toURI().toString());
 				test_imageview.setImageURI(Uri.fromFile(file));
 			}
 		});

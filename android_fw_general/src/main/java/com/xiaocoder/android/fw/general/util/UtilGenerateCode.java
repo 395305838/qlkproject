@@ -7,6 +7,8 @@ import com.xiaocoder.android.fw.general.scan.encoding.EncodingHandler;
 
 /**
  * Created by xiaocoder on 2015/6/21.
+ *
+ * 生成二维码图片
  */
 public class UtilGenerateCode {
 

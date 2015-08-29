@@ -33,6 +33,7 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
@@ -144,7 +145,7 @@ public class XCScanActivity extends XCBaseActivity implements Callback, View.OnC
                     intent.setData(content_url);
                     startActivity(intent);
                 } else {
-                    shortToast("该链接有误");
+                    XCApplication.shortToast("该链接有误");
                     onPause(); // 这个是自己加的,暂时实现连续扫描
                     try {
                         Thread.sleep(100);
@@ -279,7 +280,7 @@ public class XCScanActivity extends XCBaseActivity implements Callback, View.OnC
                             }
                         }).start();
                     } else {
-                        shortToast("解析数据有误");
+                        XCApplication.shortToast("解析数据有误");
                     }
                     break;
             }

@@ -3,6 +3,7 @@ package com.xiaocoder.test.fragment;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment;
 import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment.OnImageClickListener;
@@ -57,7 +58,7 @@ public class ViewPagerActivity extends QlkActivity {
                 // ------------->补充这里即可--------->用你的图片加载方式加载--->url为图片的链接
                 // XCApplication.displayImage(url, imageview);
                 //imageview.setImageResource(R.drawable.ic_launcher);
-                displayImage(url, imageview);
+                XCApplication.displayImage(url, imageview);
             }
         });
 
@@ -65,7 +66,7 @@ public class ViewPagerActivity extends QlkActivity {
 
             @Override
             public void onImageClickListener(int position) {
-                shortToast(position + "");
+                XCApplication.shortToast(position + "");
             }
         });
     }

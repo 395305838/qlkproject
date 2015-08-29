@@ -32,18 +32,6 @@ public class UtilAbsListStyle {
         view.setNumColumns(num);
     }
 
-    public static void setExpandListViewStyle(Context context, ExpandableListView view, boolean show_bar, int groupIndicate) {
-        view.setCacheColorHint(0x00000000);
-        view.setSelector(new ColorDrawable(0x00000000));
-        view.setVerticalScrollBarEnabled(show_bar);
-        if (groupIndicate <= 0) {
-            view.setGroupIndicator(null);
-        } else {
-            view.setGroupIndicator(context.getResources().getDrawable(groupIndicate));
-        }
-
-    }
-
     public static void setListViewStyle(ListView view, Drawable divider_drawable, int height_px, boolean show_bar) {
         view.setCacheColorHint(0x00000000);
         view.setSelector(new ColorDrawable(0x00000000));
@@ -54,5 +42,17 @@ public class UtilAbsListStyle {
 
     public static void setListViewStyle(ListView view, boolean show_bar) {
         setListViewStyle(view, null, 0, show_bar);
+    }
+
+    public static void setExpandListViewStyle(Context context, ExpandableListView view, boolean show_bar, int groupIndicate) {
+        view.setCacheColorHint(0x00000000);
+        view.setSelector(new ColorDrawable(0x00000000));
+        view.setVerticalScrollBarEnabled(show_bar);
+        if (groupIndicate <= 0) {
+            view.setGroupIndicator(null);
+        } else {
+            view.setGroupIndicator(context.getResources().getDrawable(groupIndicate));
+        }
+
     }
 }

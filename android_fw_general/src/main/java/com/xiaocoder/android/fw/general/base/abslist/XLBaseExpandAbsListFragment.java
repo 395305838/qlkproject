@@ -18,6 +18,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.xiaocoder.android.fw.general.adapter.XLBaseExpandableListViewAdapter;
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.android_fw_general.R;
@@ -200,7 +201,7 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
         if (base_totalPage != 0 && base_currentPage > base_totalPage) {
             // 是底部则结束
             completeRefresh();
-            shortToast("已经是最后一页了");
+            XCApplication.shortToast("已经是最后一页了");
             return true;
         }
         return false;

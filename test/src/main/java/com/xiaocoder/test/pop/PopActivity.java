@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android.fw.general.pop.XCHintPopupWindow;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow;
@@ -78,19 +79,19 @@ public class PopActivity extends QlkActivity {
         hintPopupWindow.setOnHintPopupItemClickListener(new XCHintPopupWindow.OnHintPopupItemClickListener() {
             @Override
             public void hint1(TextView textview) {
-                dShortToast("1");
+                XCApplication.dShortToast("1");
                 hintPopupWindow.dismiss();
             }
 
             @Override
             public void hint2(TextView textview) {
-                dShortToast("2");
+                XCApplication.dShortToast("2");
                 hintPopupWindow.dismiss();
             }
 
             @Override
             public void hint3(TextView textview) {
-                dShortToast("3");
+                XCApplication.dShortToast("3");
                 hintPopupWindow.dismiss();
             }
         });
@@ -98,25 +99,25 @@ public class PopActivity extends QlkActivity {
         photoPopupWindow.setOnPhotoPopupItemClickListener(new XCPhotoPopupWindow.onPhotoPopupItemClickListener() {
             @Override
             public void onPhotoUpload() {
-                dShortToast("1");
+                XCApplication.dShortToast("1");
                 photoPopupWindow.dismiss();
             }
 
             @Override
             public void onLocalAlbum() {
-                dShortToast("2");
+                XCApplication.dShortToast("2");
                 photoPopupWindow.dismiss();
             }
 
             @Override
             public void onCancel() {
-                dShortToast("3");
+                XCApplication.dShortToast("3");
                 photoPopupWindow.dismiss();
             }
 
             @Override
             public void onNetPrescription() {
-                dShortToast("4");
+                XCApplication.dShortToast("4");
                 photoPopupWindow.dismiss();
             }
         });

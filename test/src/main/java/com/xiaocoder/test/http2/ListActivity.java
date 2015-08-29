@@ -193,8 +193,8 @@ public class ListActivity extends QlkActivity {
 
             @Override
             public void onAbsListItemClickListener(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                dShortToast(arg2 + "");
-                printi(arg2 + "");
+                XCApplication.dShortToast(arg2 + "");
+                XCApplication.printi(arg2 + "");
             }
 
         });

@@ -61,19 +61,25 @@ public class XCApplication extends Application {
 
     // 添加Activity到栈中
     public void addActivityToStack(Activity activity) {
+
         stack.add(activity);
+
     }
 
     // 把Activity移出栈
     public void delActivityFromStack(Activity activity) {
+
         stack.remove(activity);
+
     }
 
     /**
      * 获取当前Activity（堆栈中最后一个压入的）
      */
     public Activity getCurrentActivity() {
+
         return stack.lastElement();
+
     }
 
     // 判断某个acivity实例是否存在
@@ -112,7 +118,9 @@ public class XCApplication extends Application {
      * 获取当前Activity（堆栈中最后一个压入的）
      */
     public void finishCurrentActivity() {
+
         finishActivity(stack.lastElement());
+
     }
 
     /**
@@ -176,131 +184,195 @@ public class XCApplication extends Application {
 
 
     public static XCLog getBase_log() {
+
         return base_log;
+
     }
 
     public static XCSP getBase_sp() {
+
         return base_sp;
+
     }
 
     public static ImageLoader getBase_imageloader() {
+
         return base_imageloader;
+
     }
 
     public static Handler getBase_handler() {
+
         return base_handler;
+
     }
 
     public static ExecutorService getBase_cache_threadpool() {
+
         return base_cache_threadpool;
+
     }
 
     public static XCIOAndroid getBase_io() {
+
         return base_io;
+
     }
 
     public static ExecutorService getBase_fix_threadpool() {
+
         return base_fix_threadpool;
+
     }
 
     public static void printi(String msg) {
+
         base_log.i(msg);
+
     }
 
     public static void printi(String tag, String msg) {
+
         base_log.i(tag, msg);
+
     }
 
-    public static void dShortToast(String msg) {
+    public static void dShortToast(String msg){
+
         base_log.debugShortToast(msg);
+
     }
 
     public static void dLongToast(String msg) {
+
         base_log.debugLongToast(msg);
+
     }
 
     public static void tempPrint(String msg) {
+
         base_log.tempPrint(msg);
+
     }
 
     public static void shortToast(String msg) {
+
         base_log.shortToast(msg);
+
     }
 
     public static void longToast(String msg) {
+
         base_log.longToast(msg);
+
     }
 
     public static void printe(String hint, Exception e) {
+
         base_log.e(hint, e);
+
     }
 
     public static void printe(String hint) {
+
         base_log.e(hint);
+
     }
 
     public static void printe(Context context, String hint, Exception e) {
+
         base_log.e(context, hint, e);
+
     }
 
     public static void printe(Context context, String hint) {
+
         base_log.e(context, hint);
+
     }
 
     public static void clearLog() {
+
         base_log.clearLog();
+
     }
 
     public static void spPut(String key, boolean value) {
+
         base_sp.putBoolean(key, value);
+
     }
 
     public static void spPut(String key, int value) {
+
         base_sp.putInt(key, value);
+
     }
 
     public static void spPut(String key, long value) {
+
         base_sp.putLong(key, value);
+
     }
 
     public static void spPut(String key, float value) {
+
         base_sp.putFloat(key, value);
+
     }
 
     public static void spPut(String key, String value) {
+
         base_sp.putString(key, value);
+
     }
 
     public static String spGet(String key, String default_value) {
+
         return base_sp.getString(key, default_value);
+
     }
 
     public static int spGet(String key, int default_value) {
+
         return base_sp.getInt(key, default_value);
+
     }
 
     public static long spGet(String key, long default_value) {
+
         return base_sp.getLong(key, default_value);
+
     }
 
     public static boolean spGet(String key, boolean default_value) {
+
         return base_sp.getBoolean(key, default_value);
+
     }
 
     public static float spGet(String key, float default_value) {
+
         return base_sp.getFloat(key, default_value);
+
     }
 
     public static Map<String, ?> spGetAll() {
+
         return base_sp.getAll();
+
     }
 
     public static void displayImage(String uri, ImageView imageView, DisplayImageOptions options) {
+
         base_imageloader.displayImage(uri, imageView, options);
+
     }
 
     public static void displayImage(String uri, ImageView imageView) {
+
         displayImage(uri, imageView, XCImageLoaderHelper.getDisplayImageOptions());
+
     }
 
 }

@@ -74,7 +74,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState != null) {
-            printi(this + "回收后重新创建");
+            XCApplication.printi(this + "回收后重新创建");
         }
 
         // 添加到stack
@@ -331,11 +331,11 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        printi("activity---onActivityResult");
+        XCApplication.printi("activity---onActivityResult");
         List<Fragment> fragments = base_fm.getFragments();
         if (fragments != null) {
             for (Fragment fragment : fragments) {
-                printi("onActivityResult---" + fragment.toString());
+                XCApplication.printi("onActivityResult---" + fragment.toString());
                 fragment.onActivityResult(requestCode, resultCode, data);
             }
         }
@@ -421,100 +421,6 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
     public void myStartActivity(Class<? extends XCBaseActivity> activity_class, int flags) {
         myStartActivity(activity_class, -1, flags, new String[]{}, new String[]{});
-    }
-
-    // 以下受debug控制的
-    public void printi(String msg) {
-        XCApplication.printi(msg);
-    }
-
-    public void printi(String tag, String msg) {
-        XCApplication.printi(tag, msg);
-    }
-
-    public void dShortToast(String msg) {
-        XCApplication.dShortToast(msg);
-    }
-
-    public void dLongToast(String msg) {
-        XCApplication.dLongToast(msg);
-    }
-
-    public void tempPrint(String msg) {
-        XCApplication.tempPrint(msg);
-    }
-
-    // 以下不受debug控制的
-    public void shortToast(String msg) {
-        XCApplication.shortToast(msg);
-    }
-
-    public void longToast(String msg) {
-        XCApplication.longToast(msg);
-    }
-
-    public void printe(String hint, Exception e) {
-        XCApplication.printe(hint, e);
-    }
-
-    public void printe(Context context, String hint, Exception e) {
-        XCApplication.printe(context, hint, e);
-    }
-
-    public void printe(Context context, String hint) {
-        XCApplication.printe(context, hint);
-    }
-
-    public void printe(String hint) {
-        XCApplication.printe(hint);
-    }
-
-    public void spPut(String key, boolean value) {
-        XCApplication.spPut(key, value);
-    }
-
-    public void spPut(String key, int value) {
-        XCApplication.spPut(key, value);
-    }
-
-    public void spPut(String key, long value) {
-        XCApplication.spPut(key, value);
-    }
-
-    public void spPut(String key, float value) {
-        XCApplication.spPut(key, value);
-    }
-
-    public void spPut(String key, String value) {
-        XCApplication.spPut(key, value);
-    }
-
-    public String spGet(String key, String default_value) {
-        return XCApplication.spGet(key, default_value);
-    }
-
-    public int spGet(String key, int default_value) {
-        return XCApplication.spGet(key, default_value);
-    }
-
-    public long spGet(String key, long default_value) {
-        return XCApplication.spGet(key, default_value);
-    }
-
-    public boolean spGet(String key, boolean default_value) {
-        return XCApplication.spGet(key, default_value);
-    }
-
-    public float spGet(String key, float default_value) {
-        return XCApplication.spGet(key, default_value);
-    }
-
-    public void displayImage(String uri, ImageView imageView, DisplayImageOptions options) {
-        XCApplication.displayImage(uri, imageView, options);
-    }
-
-    public void displayImage(String uri, ImageView imageView) {
-        displayImage(uri, imageView, XCImageLoaderHelper.getDisplayImageOptions());
     }
 
 }

@@ -80,7 +80,7 @@ public class SearchActivity extends QlkActivity {
                                 hideFragment(record_fragment);
                                 showFragment(letter_fragment);
                             }
-                            shortToast("change");
+                            XCApplication.shortToast("change");
                         }
                     });
                     hideFragment(letter_fragment);
@@ -107,7 +107,7 @@ public class SearchActivity extends QlkActivity {
 
             @Override
             public void onOutTitleClickListener(int position) {
-                shortToast(position + "");
+                XCApplication.shortToast(position + "");
             }
         });
     }

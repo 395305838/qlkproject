@@ -106,7 +106,7 @@ public class XCLocalPhotoFragment extends XCBaseFragment {
                         } else {
                             final Uri uri = data.getData();
                             if (uri == null) {
-                                shortToast("系统获取图片失败");
+                                XCApplication.shortToast("系统获取图片失败");
                                 return;
                             }
                             XCApplication.getBase_cache_threadpool().execute(new Runnable() {
@@ -159,7 +159,7 @@ public class XCLocalPhotoFragment extends XCBaseFragment {
                     listener.onLocalSelectedFile(file);
                 }
             } else {
-                shortToast("未检测到SD卡");
+                XCApplication.shortToast("未检测到SD卡");
                 if (listener != null) {
                     listener.onLocalSelectedFile(null);
                 }
@@ -201,7 +201,7 @@ public class XCLocalPhotoFragment extends XCBaseFragment {
                         listener.onLocalSelectedFile(file);
                     }
                 } else {
-                    shortToast("未检测到SD卡");
+                    XCApplication.shortToast("未检测到SD卡");
                     if (listener != null) {
                         listener.onLocalSelectedFile(null);
                     }

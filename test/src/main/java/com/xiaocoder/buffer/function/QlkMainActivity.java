@@ -5,6 +5,7 @@ import android.widget.RadioGroup;
 
 import com.umeng.update.UmengUpdateAgent;
 import com.umeng.update.UpdateConfig;
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.buffer.QlkActivity;
 
 /**
@@ -23,7 +24,7 @@ public abstract class QlkMainActivity extends QlkActivity {
             getXCApplication().AppExit(base_context);
         } else {
             back_quit_time = this_quit_time;
-            shortToast("快速再按一次退出");
+            XCApplication.shortToast("快速再按一次退出");
         }
     }
 

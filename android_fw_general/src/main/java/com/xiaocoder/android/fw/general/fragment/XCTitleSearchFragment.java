@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.db.helper.XCDbHelper;
 import com.xiaocoder.android.fw.general.db.impl.XCSearchDao;
@@ -101,7 +102,7 @@ public class XCTitleSearchFragment extends XCBaseFragment {
             if (canclelistener != null) {
                 String keyword = xc_id_fragment_search_edittext.getText().toString().trim();
                 if ("".equals(keyword)) {
-                    shortToast("关键字不能为空");
+                    XCApplication.shortToast("关键字不能为空");
                     return;
                 }
 
@@ -216,7 +217,7 @@ public class XCTitleSearchFragment extends XCBaseFragment {
 
                     String keyword = xc_id_fragment_search_edittext.getText().toString().trim();
                     if ("".equals(keyword)) {
-                        shortToast("关键字不能为空");
+                        XCApplication.shortToast("关键字不能为空");
                         return false;
                     }
                     if (getActivity().getCurrentFocus() != null) {

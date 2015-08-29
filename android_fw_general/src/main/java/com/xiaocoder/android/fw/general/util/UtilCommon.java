@@ -7,7 +7,7 @@ import java.util.List;
  */
 public class UtilCommon {
 
-    /*
+    /**
      * 判断list是不是空的
      */
     public static boolean isListBlank(List list) {

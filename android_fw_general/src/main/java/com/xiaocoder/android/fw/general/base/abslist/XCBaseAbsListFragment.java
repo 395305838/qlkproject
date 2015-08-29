@@ -207,7 +207,7 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
         if (base_totalPage != 0 && base_currentPage > base_totalPage) {
             // 是底部则结束
             completeRefresh();
-            shortToast("已经是最后一页了");
+            XCApplication.shortToast("已经是最后一页了");
             return true;
         }
         return false;

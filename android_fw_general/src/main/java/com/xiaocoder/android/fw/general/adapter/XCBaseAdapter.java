@@ -83,7 +83,9 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
 
     // 获取滚动的监听器
     public AbsListView.OnScrollListener getOnScrollListener() {
+
         return listener;
+
     }
 
     @Override
@@ -91,7 +93,7 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
         // 默认是返回1的 ， 即只有一种类型
         return super.getViewTypeCount();
 
-        // 如果有多种类型， 注释上面return代码，打开以下的
+        // 如果有多种类型
         // return 2;
     }
 
@@ -100,7 +102,7 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
         // 默认的代码
         return super.getItemViewType(position);
 
-        // 如果有多种类型， 注释上面return代码，打开以下的
+        // 如果有多种类型
         // XCJsonBean bean = list.get(position);
         // if (MyName.equals(bean.getString(bean_flag.sender))) {
         // return MY;
@@ -129,144 +131,10 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
         imageloader.displayImage(uri, imageView, options);
     }
 
-
-    // 以下受debug控制的
-    public void printi(String msg) {
-        if (context != null) {
-            ((XCBaseActivity) context).printi(msg);
-        }
-    }
-
-    public void printi(String tag, String msg) {
-        if (context != null) {
-            ((XCBaseActivity) context).printi(tag, msg);
-        }
-    }
-
-    public void dShortToast(String msg) {
-        if (context != null) {
-            ((XCBaseActivity) context).dShortToast(msg);
-        }
-    }
-
-    public void dLongToast(String msg) {
-        if (context != null) {
-            ((XCBaseActivity) context).dLongToast(msg);
-        }
-    }
-
-    public void tempPrint(String msg) {
-        if (context != null) {
-            ((XCBaseActivity) context).tempPrint(msg);
-        }
-    }
-
-    // 以下不受debug控制
-    public void shortToast(String msg) {
-        if (context != null) {
-            ((XCBaseActivity) context).shortToast(msg);
-        }
-    }
-
-    public void longToast(String msg) {
-        if (context != null) {
-            ((XCBaseActivity) context).longToast(msg);
-        }
-    }
-
-    public void printe(String hint, Exception e) {
-        if (context != null) {
-            ((XCBaseActivity) context).printe(hint, e);
-        }
-    }
-
-    public void printe(Context context, String hint, Exception e) {
-        if (this.context != null) {
-            ((XCBaseActivity) this.context).printe(context, hint, e);
-        }
-    }
-
-    public void printe(Context context, String hint) {
-        if (this.context != null) {
-            ((XCBaseActivity) this.context).printe(context, hint);
-        }
-    }
-
-    public void printe(String hint) {
-        if (this.context != null) {
-            ((XCBaseActivity) this.context).printe(hint);
-        }
-    }
-
-    public void spPut(String key, boolean value) {
-        if (context != null) {
-            ((XCBaseActivity) context).spPut(key, value);
-        }
-    }
-
-    public void spPut(String key, int value) {
-        if (context != null) {
-            ((XCBaseActivity) context).spPut(key, value);
-        }
-    }
-
-    public void spPut(String key, long value) {
-        if (context != null) {
-            ((XCBaseActivity) context).spPut(key, value);
-        }
-    }
-
-    public void spPut(String key, float value) {
-        if (context != null) {
-            ((XCBaseActivity) context).spPut(key, value);
-        }
-    }
-
-    public void spPut(String key, String value) {
-        if (context != null) {
-            ((XCBaseActivity) context).spPut(key, value);
-        }
-    }
-
-    public String spGet(String key, String default_value) {
-        if (context != null) {
-            return ((XCBaseActivity) context).spGet(key, default_value);
-        }
-        return default_value;
-    }
-
-    public boolean spGet(String key, boolean default_value) {
-        if (context != null) {
-            return ((XCBaseActivity) context).spGet(key, default_value);
-        }
-        return default_value;
-    }
-
-    public int spGet(String key, int default_value) {
-        if (context != null) {
-            return ((XCBaseActivity) context).spGet(key, default_value);
-        }
-        return default_value;
-    }
-
-    public long spGet(String key, long default_value) {
-        if (context != null) {
-            return ((XCBaseActivity) context).spGet(key, default_value);
-        }
-        return default_value;
-    }
-
-    public float spGet(String key, float default_value) {
-        if (context != null) {
-            return ((XCBaseActivity) context).spGet(key, default_value);
-        }
-        return default_value;
-    }
-
 }
 
 
-// T 为List集合中的model或bean的泛型 ，一般都是用通用XCJsonBean
+// T 为List集合中的model或bean的泛型
 
 /*
 

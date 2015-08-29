@@ -308,7 +308,7 @@ public class XCBottomChatFragment extends XCBaseFragment {
 
         } else if (id == R.id.xc_id_fragment_bottom_right_photo) {
             // 点击进入加号获取图片的按钮
-            printi("temp", "click photo");
+            XCApplication.printi("temp", "click photo");
             UtilInputMethod.hiddenInputMethod(getActivity());
 
             // 如果取消延迟发送效果不对
@@ -321,7 +321,7 @@ public class XCBottomChatFragment extends XCBaseFragment {
                         getBaseActivity().setViewGone(false, face_viewpager_dots);
                         getBaseActivity().setViewGone(true, xc_id_fragment_bottom_photo_layout);
 
-                        printi("temp", recoder_clicked + "-->recoder_clicked");
+                        XCApplication.printi("temp", recoder_clicked + "-->recoder_clicked");
 
                         if (recoder_clicked == R.id.xc_id_fragment_bottom_right_face) {
                             recoder_clicked = id;
@@ -503,7 +503,7 @@ public class XCBottomChatFragment extends XCBaseFragment {
             spannable_string.setSpan(image_span, name.indexOf('['), name.indexOf(']') + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             xc_id_fragment_bottom_edit.append(spannable_string);
 
-            shortToast(xc_id_fragment_bottom_edit.getText().toString());
+            XCApplication.shortToast(xc_id_fragment_bottom_edit.getText().toString());
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -29,6 +29,7 @@ import android.widget.TextView.OnEditorActionListener;
 import com.xiaocoder.android.fw.general.adapter.XCAdapterViewPager;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android.fw.general.listener.XCViewPagerListener;
@@ -266,12 +267,12 @@ public class XCBottomChatFragment2 extends XCBaseFragment {
                 getBaseActivity().setViewGone(true, xc_id_fragment_bottom_right_send);
             }
         }, 20);
-        printi("显示发送");
+        XCApplication.printi("显示发送");
 
     }
 
     public void whenKeyBoardHidden() {
-        printi("显示照片");
+        XCApplication.printi("显示照片");
         getBaseActivity().setViewGone(false, xc_id_fragment_bottom_face_photo_layout);
         getBaseActivity().setViewGone(true, xc_id_fragment_bottom_right_photo);
         getBaseActivity().setViewGone(false, xc_id_fragment_bottom_right_send);
@@ -304,7 +305,7 @@ public class XCBottomChatFragment2 extends XCBaseFragment {
             }
         } else if (id == R.id.xc_id_fragment_bottom_right_photo) {
             // 点击进入加号获取图片的按钮
-            printi("temp", "click photo");
+            XCApplication.printi("temp", "click photo");
             UtilInputMethod.hiddenInputMethod(getActivity());
 
             // 如果取消延迟发送效果不对
@@ -317,7 +318,7 @@ public class XCBottomChatFragment2 extends XCBaseFragment {
                         getBaseActivity().setViewGone(false, face_viewpager_dots);
                         getBaseActivity().setViewGone(true, xc_id_fragment_bottom_photo_layout);
 
-                        printi("temp", recoder_clicked + "-->recoder_clicked");
+                        XCApplication.printi(XCConfig.TAG_TEMP, recoder_clicked + "-->recoder_clicked");
 
                         if (recoder_clicked == R.id.xc_id_fragment_bottom_right_face) {
                             recoder_clicked = id;
@@ -553,7 +554,7 @@ public class XCBottomChatFragment2 extends XCBaseFragment {
             spannable_string.setSpan(image_span, name.indexOf('['), name.indexOf(']') + 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             xc_id_fragment_bottom_edit.append(spannable_string);
 
-            shortToast(xc_id_fragment_bottom_edit.getText().toString());
+            XCApplication.shortToast(xc_id_fragment_bottom_edit.getText().toString());
 
         } catch (IOException e) {
             e.printStackTrace();

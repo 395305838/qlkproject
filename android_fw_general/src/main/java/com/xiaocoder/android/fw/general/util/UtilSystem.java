@@ -27,15 +27,21 @@ import java.util.UUID;
 public class UtilSystem {
 
     public static int getPid() {
+
         return android.os.Process.myPid();
+
     }
 
     public static long getThreadId() {
+
         return Thread.currentThread().getId();
+
     }
 
     public static String getThreadName() {
+
         return Thread.currentThread().getName();
+
     }
 
 
@@ -57,10 +63,11 @@ public class UtilSystem {
     /**
      * 卸载应用
      */
-    public void uninstall(Context context) {
+    public void uninstall(Context context , String packageName) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_DELETE);
-        intent.setData(Uri.parse("package:com.enen.hehe"));
+        //intent.setData(Uri.parse("package:com.enen.hehe"));
+        intent.setData(Uri.parse("package:"+packageName));
         context.startActivity(intent);
     }
 
@@ -85,7 +92,7 @@ public class UtilSystem {
     }
 
     /**
-     * 判断app是否在后台，改方法在广播中可以判断
+     * 判断app是否在后台，该方法在广播中可以判断
      */
     public static boolean isApplicationToBackground(Context context) {
         ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
@@ -167,7 +174,9 @@ public class UtilSystem {
      * 获取设备系统SDK API号
      */
     public static int getOSVersionSDKINT() {
+
         return android.os.Build.VERSION.SDK_INT;
+
     }
 
     /**
@@ -233,6 +242,8 @@ public class UtilSystem {
     /**
      * 首先取imei，如果没有取macAddress，再没有就自定义一个变量 规则：id开头的一个32位字符串，根据java.util.UUID类生成，
      * 防止重复 如果到java.util.uuid生成的时候，数据被清掉后会被清除。 但对于这样的设备，比较罕见，模拟器是一类
+     *
+     * 标准的imei是15位，但是有的是14位
      */
     public static String getDeviceId(Context context) {
         // 没有设备id，则生成保存
@@ -295,7 +306,9 @@ public class UtilSystem {
      * 获取当前操作系统的语言
      */
     public static String getSysLanguage() {
+
         return Locale.getDefault().getLanguage();
+
     }
 
     /**

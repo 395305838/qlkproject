@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.xiaocoder.android.fw.general.application.XCApplication;
 
 import java.util.List;
 
@@ -146,7 +147,7 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
         List<Fragment> fragments = getChildFragmentManager().getFragments();
         if (fragments != null) {
             for (Fragment fragment : fragments) {
-                printi(fragment.toString() + "----onActivityResult");
+                XCApplication.printi(fragment.toString() + "----onActivityResult");
                 fragment.onActivityResult(requestCode, resultCode, data);
             }
         }
@@ -188,152 +189,6 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
     public void myStartActivity(Class<? extends XCBaseActivity> activity_class, int flags) {
         if (getBaseActivity() != null) {
             getBaseActivity().myStartActivity(activity_class, -1, flags, null, null);
-        }
-    }
-
-    // 以下受debug控制的
-    public void printi(String msg) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().printi(msg);
-        }
-    }
-
-    public void printi(String tag, String msg) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().printi(tag, msg);
-        }
-    }
-
-    public void dShortToast(String msg) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().dShortToast(msg);
-        }
-    }
-
-    public void dLongToast(String msg) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().dLongToast(msg);
-        }
-    }
-
-    public void tempPrint(String msg) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().tempPrint(msg);
-        }
-    }
-
-    // 以下不受debug控制
-    public void shortToast(String msg) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().shortToast(msg);
-        }
-    }
-
-    public void longToast(String msg) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().longToast(msg);
-        }
-    }
-
-    public void printe(String hint, Exception e) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().printe(hint, e);
-        }
-    }
-
-    public void printe(Context context, String hint, Exception e) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().printe(context, hint, e);
-        }
-    }
-
-    public void printe(Context context, String hint) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().printe(context, hint);
-        }
-    }
-
-    public void printe(String hint) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().printe(hint);
-        }
-    }
-
-    public void spPut(String key, boolean value) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().spPut(key, value);
-        }
-    }
-
-    public void spPut(String key, int value) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().spPut(key, value);
-        }
-    }
-
-    public void spPut(String key, long value) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().spPut(key, value);
-        }
-    }
-
-    public void spPut(String key, float value) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().spPut(key, value);
-        }
-    }
-
-    public void spPut(String key, String value) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().spPut(key, value);
-        }
-    }
-
-    public String spGet(String key, String default_value) {
-        if (getBaseActivity() != null) {
-            return getBaseActivity().spGet(key, default_value);
-        }
-        return default_value;
-    }
-
-    public boolean spGet(String key, boolean default_value) {
-        if (getBaseActivity() != null) {
-            return getBaseActivity().spGet(key, default_value);
-        }
-        return default_value;
-    }
-
-    public int spGet(String key, int default_value) {
-        if (getBaseActivity() != null) {
-            return getBaseActivity().spGet(key, default_value);
-        }
-        return default_value;
-    }
-
-    public long spGet(String key, long default_value) {
-        if (getBaseActivity() != null) {
-            return getBaseActivity().spGet(key, default_value);
-        }
-        return default_value;
-    }
-
-    public float spGet(String key, float default_value) {
-        if (getBaseActivity() != null) {
-            return getBaseActivity().spGet(key, default_value);
-        } else {
-            return default_value;
-        }
-    }
-
-    public void displayImage(String uri, ImageView imageView, DisplayImageOptions options) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().displayImage(uri, imageView, options);
-        }
-    }
-
-    public void displayImage(String uri, ImageView imageView) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().displayImage(uri, imageView);
         }
     }
 

@@ -2,6 +2,7 @@ package com.xiaocoder.test;
 
 import android.os.Bundle;
 
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.jsonxml.XCJsonParse;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
@@ -54,28 +55,28 @@ public class TextActivity extends QlkActivity {
         List beans = bean.getListList("data", new ArrayList<ArrayList>());
 
         try {
-            printi(beans.toString());
-            printi(beans.get(0).toString());
+            XCApplication.printi(beans.toString());
+            XCApplication.printi(beans.get(0).toString());
             if (beans.get(0) instanceof List) {
-                printi("List");
+                XCApplication.printi("List");
             } else if (beans.get(0) instanceof String[]) {
-                printi("string[]");
+                XCApplication.printi("string[]");
             } else {
-                printi(beans.get(0).getClass().toString());
+                XCApplication.printi(beans.get(0).getClass().toString());
 
                 JSONArray array = (JSONArray) beans.get(0);
                 int count = array.length();
                 for (int i = 0; i < count; i++) {
-                    printi((String) array.get(i));
+                    XCApplication.printi((String) array.get(i));
                 }
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            printi("exception");
+            XCApplication.printe(this.toString()+"---exception");
         }
 
-        printi(UtilSystem.getDeviceId(this) + "--------------deviceId");
+        XCApplication.printi(UtilSystem.getDeviceId(this) + "--------------deviceId");
     }
 
     // 设置监听

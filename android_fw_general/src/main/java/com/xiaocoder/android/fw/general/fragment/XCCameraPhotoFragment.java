@@ -71,7 +71,7 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
                     temp_photo_file.createNewFile();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    shortToast("创建文件失败");
+                    XCApplication.shortToast("创建文件失败");
                     return;
                 }
             }
@@ -79,7 +79,7 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
             cameraIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
             startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
         } else {
-            shortToast("请插入sd卡");
+            XCApplication.shortToast("请插入sd卡");
         }
     }
 
@@ -131,10 +131,10 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
 
                             }
                         } else {
-                            shortToast("获取图片失败");
+                            XCApplication.shortToast("获取图片失败");
                         }
                     } else {
-                        shortToast("未找到存储卡，无法存储照片！");
+                        XCApplication.shortToast("未找到存储卡，无法存储照片！");
                     }
                     break;
 
@@ -165,7 +165,7 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
                     listener.onCaremaSelectedFile(file);
                 }
             } else {
-                shortToast("未检测到SD卡");
+                XCApplication.shortToast("未检测到SD卡");
                 if (listener != null) {
                     listener.onCaremaSelectedFile(null);
                 }
@@ -207,7 +207,7 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
                         listener.onCaremaSelectedFile(file);
                     }
                 } else {
-                    shortToast("未检测到SD卡");
+                    XCApplication.shortToast("未检测到SD卡");
                     if (listener != null) {
                         listener.onCaremaSelectedFile(null);
                     }

@@ -35,7 +35,7 @@ public class HttpActivity extends QlkActivity {
                     public void success(int code, Header[] headers, byte[] arg2) {
                         super.success(code, headers, arg2);
 
-                        dShortToast("success");
+                        XCApplication.dShortToast("success");
 
                         if (result_boolean) {
 

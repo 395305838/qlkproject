@@ -15,6 +15,7 @@ import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.widget.ImageView;
 
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.view.XCImageView;
 import com.xiaocoder.android_fw_general.R;
 import com.xiaocoder.buffer.QlkActivity;
@@ -35,8 +36,8 @@ public abstract class QlkLoadActivity extends QlkActivity implements OnClickList
     public void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        if (spGet("isInstall", true)) {
-            spPut("isInstall", false);
+        if (XCApplication.spGet("isInstall", true)) {
+            XCApplication.spPut("isInstall", false);
             initWelCom();
         } else {
             initLoad();
