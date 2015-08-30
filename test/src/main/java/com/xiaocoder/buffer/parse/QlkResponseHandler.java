@@ -22,11 +22,11 @@ import com.xiaocoder.buffer.function.QlkMainActivity;
  */
 public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
 
-    protected QlkResponseHandler(XCIHttpResult result_http, int content_type, boolean show_background_when_net_fail, Class<T> result_bean_class) {
+    public QlkResponseHandler(XCIHttpResult result_http, int content_type, boolean show_background_when_net_fail, Class<T> result_bean_class) {
         super(result_http, content_type, show_background_when_net_fail, result_bean_class);
     }
 
-    protected QlkResponseHandler(XCIHttpResult result_http, Class<T> result_bean_class) {
+    public QlkResponseHandler(XCIHttpResult result_http, Class<T> result_bean_class) {
         super(result_http, result_bean_class);
     }
 

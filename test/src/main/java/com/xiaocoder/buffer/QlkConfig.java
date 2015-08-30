@@ -6,28 +6,15 @@ package com.xiaocoder.buffer;
 public class QlkConfig {
 
 
-    // ----------------------------------补充接口url---------------------------------------
+    // ----------------------------------以下补充接口url---------------------------------------
 
 
-    // ----------------------------------补充接口url---------------------------------------
+    // ----------------------------------以上补充接口url---------------------------------------
 
-
-    // ----------------------------------补充常量------------------------------------------
-
-
-    // ----------------------------------补充常量------------------------------------------
-
-
-    /**
-     * 分别代表开发 测试  线上的环境的地址
-     */
     public enum RunEnvironment {
         DEV, TEST, ONLINE
     }
 
-    /**
-     * 日志输出的控制
-     */
     public enum DebugControl {
         CLOSE, OPEN_DEFAULT, OPEN_DEFINE
     }
@@ -102,17 +89,17 @@ public class QlkConfig {
     /*
      * 域名配置
      */
-    private static String ONLINE_HOST = "online.123.cn";
-    private static String ONLINE_PORT = "12345";
-    private static String ONLINE_ADDR = ONLINE_HOST + ":" + ONLINE_PORT;
+    public static String ONLINE_HOST = "online.123.cn";
+    public static String ONLINE_PORT = "12345";
+    public static String ONLINE_ADDR = ONLINE_HOST + ":" + ONLINE_PORT;
 
-    private static String TEST_HOST = "test.123.cn";
-    private static String TEST_PORT = "12345";
-    private static String TEST_ADDR = TEST_HOST + ":" + TEST_PORT;
+    public static String TEST_HOST = "test.123.cn";
+    public static String TEST_PORT = "12345";
+    public static String TEST_ADDR = TEST_HOST + ":" + TEST_PORT;
 
-    private static String DEV_HOST = "dev.123.cn";
-    private static String DEV_PORT = "12345";
-    private static String DEV_ADDR = DEV_HOST + ":" + DEV_PORT;
+    public static String DEV_HOST = "dev.123.cn";
+    public static String DEV_PORT = "12345";
+    public static String DEV_ADDR = DEV_HOST + ":" + DEV_PORT;
 
 
     public static String getUrl(String key) {
@@ -138,28 +125,7 @@ public class QlkConfig {
     /*
      * app的根目录
      */
-    public static String APP_ROOT = "app_qlk_test";
-
-    /*
-     * 数据库的名字
-     */
-    public static String DB_NAME = APP_ROOT + ".db";
-    /*
-     * 数据库版本号
-     */
-    public static int DB_VERSION = 1;
-    /*
-     * 数据库表名,创建多个表
-     */
-    public static String DB_TABLE_NAME_SEARCH_1 = "search_1";
-    public static String DB_TABLE_NAME_SEARCH_2 = "search_2";
-    public static String DB_TABLE_NAME_SEARCH_3 = "search_3";
-    /*
-     * SQL
-     */
-    public static String DB_TABLE_SQL_SEARCH_1 = "CREATE TABLE " + DB_TABLE_NAME_SEARCH_1 + "(_id integer primary key autoincrement," + "time text," + "keyword text)";
-    public static String DB_TABLE_SQL_SEARCH_2 = "CREATE TABLE " + DB_TABLE_NAME_SEARCH_2 + "(_id integer primary key autoincrement," + "time text," + "keyword text)";
-    public static String DB_TABLE_SQL_SEARCH_3 = "CREATE TABLE " + DB_TABLE_NAME_SEARCH_3 + "(_id integer primary key autoincrement," + "time text," + "keyword text)";
+    public static String APP_ROOT = "app_test";
     /*
      * 打印到日志文件printe()
      */
@@ -185,7 +151,7 @@ public class QlkConfig {
      */
     public static String CACHE_DIRECTORY = APP_ROOT + "/cache";
     /*
-     * sp文件 , 仅文件名
+     * sp文件
      */
     public static String SP_SETTING = APP_ROOT + "_setting";
     /*

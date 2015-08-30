@@ -11,7 +11,7 @@ public class XCDbHelper extends SQLiteOpenHelper {
 
     public String[] mSqls;
 
-    // 如 dbName = "qlk_wyd_.db" ,  version = 1 ， 该方法传入的值，在中间层的Config中找
+    // 如 dbName = "qlk_wyd_.db" ,  version = 1 ， 该方法传入的值，在项目的db配置文件中找
     public XCDbHelper(Context context, String dbName, int version, String[] sqls) {
         super(context, dbName, null, version);
         if (UtilString.isBlank(dbName)) {
