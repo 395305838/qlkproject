@@ -3,7 +3,7 @@ package com.xiaocoder.buffer.parse;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.http.XCIHttpResult;
-import com.xiaocoder.android.fw.general.jsonxml.XCJsonParse;
+import com.xiaocoder.android.fw.general.json.XCJsonParse;
 
 /**
  * 通用的jsonbean解析

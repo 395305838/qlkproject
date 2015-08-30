@@ -9,7 +9,7 @@ import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
-import com.xiaocoder.android.fw.general.jsonxml.XCJsonParse;
+import com.xiaocoder.android.fw.general.json.XCJsonParse;
 
 import org.apache.http.Header;
 

@@ -1,4 +1,10 @@
-package com.xiaocoder.android.fw.general.jsonxml;
+package reference;
+
+import android.util.Log;
+import android.util.Xml;
+
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlSerializer;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,12 +15,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlSerializer;
-
-import android.util.Log;
-import android.util.Xml;
 
 public class XCXmlParse {
 	/**

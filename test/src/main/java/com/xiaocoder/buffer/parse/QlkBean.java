@@ -1,6 +1,6 @@
 package com.xiaocoder.buffer.parse;
 
-import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
+import com.xiaocoder.android.fw.general.json.XCJsonBean;
 
 /**
  * Created by xiaocoder on 2015/7/29.

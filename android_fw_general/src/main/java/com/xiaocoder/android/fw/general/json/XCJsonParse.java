@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.jsonxml;
+package com.xiaocoder.android.fw.general.json;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.application.XCConfig;

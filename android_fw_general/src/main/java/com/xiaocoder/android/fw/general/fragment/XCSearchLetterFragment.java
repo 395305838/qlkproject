@@ -21,7 +21,7 @@ import android.widget.TextView;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
-import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
+import com.xiaocoder.android.fw.general.json.XCJsonBean;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.android.fw.general.view.XCNoScrollGridView;
 import com.xiaocoder.android.fw.general.view.XCSlideBar;

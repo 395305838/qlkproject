@@ -14,7 +14,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper;
-import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
+import com.xiaocoder.android.fw.general.json.XCJsonBean;
 import com.xiaocoder.android.fw.general.listener.XCScrollListener;
 
 import java.util.ArrayList;

@@ -3,8 +3,8 @@ package com.xiaocoder.test;
 import android.os.Bundle;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
-import com.xiaocoder.android.fw.general.jsonxml.XCJsonParse;
+import com.xiaocoder.android.fw.general.json.XCJsonBean;
+import com.xiaocoder.android.fw.general.json.XCJsonParse;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
 import com.xiaocoder.buffer.QlkActivity;
 

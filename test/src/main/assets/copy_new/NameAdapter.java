@@ -9,13 +9,11 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapterImage;
 import com.xiaocoder.android.fw.general.adapter.XCViewHolder;
-import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
+import com.xiaocoder.android.fw.general.json.XCJsonBean;
 import com.xiaocoder.android.test.R;
 import com.xiaocoder.android.test.list.GridActivity.TestAdatpter.ViewHolder;
 import com.xiaocoder.android.test.new_copy.NameAdapter.NameViewHolder;

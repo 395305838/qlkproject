@@ -10,7 +10,6 @@ import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
 import com.xiaocoder.android.fw.general.helper.XCDownloadHelper;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
-import com.xiaocoder.android.fw.general.jsonxml.XCJsonBean;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.buffer.QlkApplication;
