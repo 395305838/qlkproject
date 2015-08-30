@@ -140,6 +140,17 @@ public class UtilString {
     }
 
     /**
+     * 获取url的文件名
+     *
+     * @param urlStr
+     * @return
+     */
+    public static String getUrlFileName(String urlStr) {
+        urlStr = urlStr.substring(urlStr.lastIndexOf("/") + 1, urlStr.length());
+        return urlStr;
+    }
+
+    /**
      * 获取一个url的最后的文件名， 不带文件后缀名
      */
     public static String getHttplastnameWithoutDotAndLine(String http_url) {

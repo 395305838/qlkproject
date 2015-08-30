@@ -1,5 +1,7 @@
 package com.xiaocoder.android.fw.general.io;
 
+import com.xiaocoder.android.fw.general.helper.XCDownloadHelper;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -13,22 +15,12 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.helper.XCDownloadHelper;
-import com.xiaocoder.android.fw.general.util.UtilEncrypt;
-
 public class XCIO {
 
-    /**
-     * 为了避免总是调用System.getProperties("系统属性中的分隔符号")
-     */
     public static final String LINE_SEPARATOR = System.getProperty("line.separator");// 换行符
     public static final String PATH_SEPARATOR = System.getProperty("path.separator");// 如环境变量的路径分隔符
     public static final String FILE_SEPARATOR = System.getProperty("file.separator");// 如c:/
@@ -93,7 +85,7 @@ public class XCIO {
     }
 
     /**
-     * IOUtils.createDir("e:/haha/enen.o/hexx.&...we/android.txt"),没错,这创建出来的是文件夹
+     * createDir("e:/haha/enen.o/hexx.&...we/android.txt"),没错,这创建出来的是文件夹
      *
      * @param dirPath
      * @return
@@ -106,16 +98,6 @@ public class XCIO {
         return dir;
     }
 
-    /**
-     * 获取url的文件名
-     *
-     * @param urlStr
-     * @return
-     */
-    public static String getSaveFileName(String urlStr) {
-        urlStr = urlStr.substring(urlStr.lastIndexOf("/") + 1, urlStr.length());
-        return urlStr;
-    }
 
     /**
      * 获取真实存在的文件的后缀名
@@ -135,7 +117,7 @@ public class XCIO {
     }
 
     /**
-     * 获取真实存在的文件的文件名(不包括后缀名)
+     * 获取文件名(不包括后缀名)
      *
      * @param file
      * @return
@@ -190,33 +172,6 @@ public class XCIO {
         return fileSizeString;
     }
 
-    /**
-     * 获取文件大小的 M/K/B表示方式
-     *
-     * @param contentLenght
-     * @return
-     */
-    public static String getLengthText(long contentLenght) {
-        // b/k/M
-
-        DecimalFormat format = new DecimalFormat("###.00");
-        float result = 0.0f;
-        String resultText = "";
-        if (contentLenght > 1024 * 1024)// 1M
-        {
-            result = (float) (contentLenght / (1024 * 1024.00));
-            resultText = format.format(result) + "M";
-        } else if (contentLenght > 1024)// 1K
-        {
-            result = (float) (contentLenght / (1024.00));
-            resultText = format.format(result) + "K";
-        } else // 1B
-        {
-            result = (float) (contentLenght / (1.00));
-            resultText = format.format(result) + "B";
-        }
-        return resultText;
-    }
 
     /**
      * 把输入流转为字节数组
@@ -311,44 +266,6 @@ public class XCIO {
         }
     }
 
-
-    /**
-     * 从网络获取文件,检测本地是否有缓存 如果url乱写,这里可能会有空指针或字符串等方面的异常 如 IOUtils.getCacheFile(new
-     * File("e:/hello/cache"), "http://localhost/androidtest/image/1.gif");//可以
-     * 如 IOUtils.getCacheFile(new File("e:/hello/cache"),
-     * "localhost/androidtest/image/1.gif");//抛MalformedURLException 如
-     * IOUtils.getCacheFile(new File("e:/hello/cache"),
-     * "http://192.168.0.107/androidtest/image/2.gif");//可以 如
-     * IOUtils.getCacheFile(new File("e:/hello/cache"),
-     * "192.168.0.107/androidtest/image/2.gif");//抛MalformedURLException
-     * <p/>
-     * 缓存到哪个文件夹-->这个是文件夹
-     * 请求资源的url-->用已加密后的字符串创建文件
-     */
-    public static File getCacheFile(File cacheDir, String urlPath) throws MalformedURLException, IOException {
-        String filename = UtilEncrypt.MD5(urlPath) + urlPath.substring(urlPath.lastIndexOf("."));
-        File file = new File(cacheDir, filename);
-        if (file.exists()) {
-            System.out.println("读缓存了");
-            return file;
-        } else {
-            HttpURLConnection conn = (HttpURLConnection) new URL(urlPath).openConnection();
-            conn.setRequestMethod("GET");
-            conn.setConnectTimeout(5000);
-
-            if (HttpURLConnection.HTTP_OK == conn.getResponseCode()) {
-                // 创建文件
-                file = createFile(cacheDir.getAbsolutePath(), filename);
-                // 开辟一个文件输出流，把网络中的输入流写入文件中
-                toFileByInputStream(conn.getInputStream(), file);
-                System.out.println("该文件没有缓存,创建缓存成功");
-                return file;
-            } else {
-                return null;
-            }
-        }
-    }
-
     /**
      * 复制文件夹
      *
@@ -430,51 +347,6 @@ public class XCIO {
                     throw new RuntimeException(e);
                 }
             }
-        }
-    }
-
-    // 删除文件夹 和 文件
-    public void removeFileAsyn(final File operator_file) {
-        if (!operator_file.exists()) {
-            return;
-        }
-        /**
-         * 子线程中删除
-         */
-        XCApplication.getBase_cache_threadpool().execute(new Runnable() {
-            @Override
-            public void run() {
-                if (operator_file.isDirectory()) {
-                    removeDir(operator_file);
-                } else {
-                    operator_file.delete();
-                }
-            }
-        });
-    }
-
-    /**
-     * 删除文件夹
-     */
-    public void removeDir(File dir) {
-        boolean isGoOnDeleting = true; // 如果是实际中, 可能存在正在删除, 而应用此时退出的情况
-        if (dir != null && dir.exists() && dir.isDirectory()) {
-            File[] files = dir.listFiles();
-            for (File file : files) {// 如果目录是系统级文件夹，java没有访问权限，那么会返回null数组。最好加入判断。
-                if (files != null) {
-                    // 2,对遍历到的file对象判断是否是目录。
-                    if (isGoOnDeleting) {
-                        if (file.isDirectory()) {
-                            removeDir(file);
-                        } else {
-                            file.delete();
-                        }
-                    } else {
-                        break;
-                    }
-                }
-            }
-            dir.delete();
         }
     }
 
@@ -601,24 +473,24 @@ public class XCIO {
      * @param list 用来存放本地视频的集合
      * @param file 在哪个文件路径下查找
      */
-    public <T> void getVideoFile(final LinkedList<T> list, File file) {
+    public  void getVideoFile(final LinkedList<File> list, File file) {
         file.listFiles(new FileFilter() {
 
             @Override
-            public boolean accept(File pathname) {
+            public boolean accept(File file) {
                 // sdCard找到视频名称
-                String name = pathname.getName();
+                String name = file.getName();
 
                 int i = name.indexOf('.');
                 if (i != -1) {
                     name = name.substring(i);
                     if (name.equalsIgnoreCase(".mp4") || name.equalsIgnoreCase(".3gp") || name.equalsIgnoreCase(".wmv")) {
 
-                        // list.add(mi);
+                        list.add(file);
                         return true;
                     }
-                } else if (pathname.isDirectory()) {
-                    getVideoFile(list, pathname);
+                } else if (file.isDirectory()) {
+                    getVideoFile(list, file);
                 }
                 return false;
             }

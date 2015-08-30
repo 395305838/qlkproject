@@ -135,20 +135,4 @@ public class XCImageLoaderHelper {
         return ImageLoader.getInstance();
     }
 
-    // 获取自己写的imageloader
-    public static XCAsynImageLoader asynimageloader;
-
-    public static XCAsynImageLoader getAsynImageLoader(Context context,
-                                                       int default_image_id, File dir) {
-        if (asynimageloader == null) {
-            synchronized (XCImageLoaderHelper.class) {
-                if (asynimageloader == null) {
-                    asynimageloader = new XCAsynImageLoader(context,
-                            dir, true,
-                            500, 100, 600);
-                }
-            }
-        }
-        return asynimageloader;
-    }
 }
