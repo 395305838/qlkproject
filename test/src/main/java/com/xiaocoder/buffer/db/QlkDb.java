@@ -1,4 +1,6 @@
-package com.xiaocoder.buffer;
+package com.xiaocoder.buffer.db;
+
+import com.xiaocoder.buffer.QlkConfig;
 
 /**
  * Created by xiaocoder on 2015/8/30.
@@ -6,7 +8,7 @@ package com.xiaocoder.buffer;
 public class QlkDb {
 
     // 搜索记录的数据库
-    public static String DB_SEARCH_RECODER = QlkConfig.APP_ROOT + "search_recoder.db";
+    public static String DB_SEARCH_RECODER = QlkConfig.APP_ROOT + "_search_recoder.db";
     // 搜索记录数据库的版本号
     public static int DB_VERSION_SEARCH_RECODER = 1;
     // 搜索记录数据中的表，不同的搜索界面各创建一个表

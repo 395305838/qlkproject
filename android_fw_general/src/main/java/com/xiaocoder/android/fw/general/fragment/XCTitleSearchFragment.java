@@ -16,8 +16,8 @@ import android.widget.TextView.OnEditorActionListener;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
-import com.xiaocoder.android.fw.general.db.helper.XCDbHelper;
-import com.xiaocoder.android.fw.general.db.impl.XCSearchDao;
+import com.xiaocoder.android.fw.general.db.XCDbHelper;
+import com.xiaocoder.android.fw.general.db.XCSearchDao;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.android.fw.general.view.XCClearEditText;
@@ -190,8 +190,7 @@ public class XCTitleSearchFragment extends XCBaseFragment {
         }
         xc_id_fragment_search_cancle = getViewById(R.id.xc_id_fragment_search_cancle);
 
-        XCDbHelper helper = new XCDbHelper(getBaseActivity(), mDbName, mVersion, mSqls);
-        dao = new XCSearchDao(getBaseActivity(), helper, mTableName);
+        dao = new XCSearchDao(getBaseActivity(), new XCDbHelper(getBaseActivity(), mDbName, mVersion, mSqls), mTableName);
 
         if (hint != null) {
             xc_id_fragment_search_edittext.setHint(hint);

@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.db.helper;
+package com.xiaocoder.buffer.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -6,13 +6,18 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.xiaocoder.android.fw.general.util.UtilString;
 
-// 搜索记录的数据库helper文件
-public class XCDbHelper extends SQLiteOpenHelper {
+/**
+ * Created by xiaocoder on 2015/8/30.
+ */
+
+public class QlkDbHelper extends SQLiteOpenHelper {
 
     public String[] mSqls;
+    public String mDbName;
+    public int mVersion;
 
-    // 如 dbName = "qlk_wyd_.db" ,  version = 1 ， 该方法传入的值，在项目的db配置文件中找
-    public XCDbHelper(Context context, String dbName, int version, String[] sqls) {
+    // 如 dbName = "**.db" ,  version = 1
+    public QlkDbHelper(Context context, String dbName, int version, String[] sqls) {
         super(context, dbName, null, version);
         if (UtilString.isBlank(dbName)) {
             throw new RuntimeException("数据库名不能为空");
@@ -21,6 +26,8 @@ public class XCDbHelper extends SQLiteOpenHelper {
         if (sqls == null || sqls.length < 1) {
             throw new RuntimeException("sql不能为空");
         }
+        mDbName = dbName;
+        mVersion = version;
         mSqls = sqls;
     }
 
@@ -35,10 +42,9 @@ public class XCDbHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-//        db.execSQL("drop table if exists " + );
-//        onCreate(db);
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
+        // db.execSQL("drop table if exists " + );
+        // onCreate(db);
     }
 
 }

@@ -93,7 +93,7 @@ public class XCDownloadHelper implements Runnable {
             if (downloadListener != null) {
                 downloadListener.netFail(file);
             }
-            XCApplication.printi(tag, "--下载excpetion---" + e.getMessage());
+            XCApplication.printi(tag, "--下载excpetion---" + e.toString());
         } finally {
             if (in != null) {
                 try {

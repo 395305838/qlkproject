@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.db.impl;
+package com.xiaocoder.android.fw.general.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.db.helper.XCDbHelper;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;
 import com.xiaocoder.android.fw.general.util.UtilString;
 
@@ -17,6 +16,7 @@ public class XCSearchDao {
 
     private XCDbHelper mHelper;
     private String mTabName;
+    private Context mContext;
 
     public static String KEY_WORD = "keyword";
     public static String TIME = "time";
@@ -29,6 +29,7 @@ public class XCSearchDao {
     public XCSearchDao(Context context, XCDbHelper helper, String tabName) {
 
         mHelper = helper;
+        mContext = context;
 
         if (UtilString.isBlank(tabName)) {
             throw new RuntimeException("new dao时，数据库表名不能为空");
@@ -147,8 +148,6 @@ public class XCSearchDao {
         return beans;
     }
 
-    //
-    // // 事务这里还是用execSQL方便点
     // public void remit(int from, int to, int amount) {
     // SQLiteDatabase qlk_db = helper.getWritableDatabase();
     // try {

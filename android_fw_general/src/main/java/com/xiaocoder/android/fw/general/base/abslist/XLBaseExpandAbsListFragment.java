@@ -17,7 +17,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshAdapterViewBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
-import com.xiaocoder.android.fw.general.adapter.XLBaseExpandableListViewAdapter;
+import com.xiaocoder.android.fw.general.adapter.XLBaseExpandableAdapter;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
@@ -66,7 +66,7 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
     int refresh_listview_id;
 
     @SuppressWarnings("rawtypes")
-    public XLBaseExpandableListViewAdapter base_adapter;
+    public XLBaseExpandableAdapter base_adapter;
 
     // 滚动到最底部
     public void scrollToDown() {
@@ -89,12 +89,12 @@ public abstract class XLBaseExpandAbsListFragment<T extends AbsListView> extends
     }
 
     @SuppressWarnings("rawtypes")
-    public void setAdapter(XLBaseExpandableListViewAdapter adapter) {
+    public void setAdapter(XLBaseExpandableAdapter adapter) {
         base_adapter = adapter;
     }
 
     @SuppressWarnings("rawtypes")
-    public XLBaseExpandableListViewAdapter getAdapter() {
+    public XLBaseExpandableAdapter getAdapter() {
         return base_adapter;
     }
 

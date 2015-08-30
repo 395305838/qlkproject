@@ -17,8 +17,8 @@ import android.widget.TextView;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
-import com.xiaocoder.android.fw.general.db.helper.XCDbHelper;
-import com.xiaocoder.android.fw.general.db.impl.XCSearchDao;
+import com.xiaocoder.android.fw.general.db.XCDbHelper;
+import com.xiaocoder.android.fw.general.db.XCSearchDao;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.android.fw.general.view.XCKeyBoardLayout;
@@ -26,7 +26,7 @@ import com.xiaocoder.android_fw_general.R;
 
 import java.util.List;
 
-/*
+/**
  * 搜索记录界面
  */
 public class XCSearchRecordFragment extends XCBaseFragment implements AdapterView.OnItemClickListener {
@@ -208,12 +208,15 @@ public class XCSearchRecordFragment extends XCBaseFragment implements AdapterVie
         xc_id_fragment_search_record_keyboard_layout = getViewById(R.id.xc_id_fragment_search_record_keyboard_layout);
         xc_id_fragment_search_record_close = getViewById(R.id.xc_id_fragment_search_record_close);
 
-        XCDbHelper helper = new XCDbHelper(getBaseActivity(), mDbName, mVersion, mSqls);
-        dao = new XCSearchDao(getBaseActivity(), helper, mTableName);
+        initDao();
 
         adapter = new SearchRecordAdapter(getActivity(), null);
         UtilAbsListStyle.setListViewStyle(xc_id_fragment_search_record_listview, null, 0, false);
         xc_id_fragment_search_record_listview.setAdapter(adapter);
+    }
+
+    public void initDao() {
+        dao = new XCSearchDao(getBaseActivity(), new XCDbHelper(getBaseActivity(), mDbName, mVersion, mSqls), mTableName);
     }
 
     @Override

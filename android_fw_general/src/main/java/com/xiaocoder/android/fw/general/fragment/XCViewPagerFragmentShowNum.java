@@ -21,6 +21,7 @@ import java.util.List;
  * @date 2015-1-6 下午10:50:22
  */
 public class XCViewPagerFragmentShowNum extends XCBaseFragment {
+
     ViewPager qlk_id_viewpager;
     TextView xc_id_fragment_viewpager_count;
     ImageView iv_close;

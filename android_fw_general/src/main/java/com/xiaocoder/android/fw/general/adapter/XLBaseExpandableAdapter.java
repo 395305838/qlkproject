@@ -66,7 +66,7 @@ import java.util.List;
  }
  */
 
-public abstract class XLBaseExpandableListViewAdapter extends BaseExpandableListAdapter {
+public abstract class XLBaseExpandableAdapter extends BaseExpandableListAdapter {
 
     public List<XCJsonBean> list;
     public Context context;
@@ -80,7 +80,7 @@ public abstract class XLBaseExpandableListViewAdapter extends BaseExpandableList
      * @param list
      * @param imageloader 如果传null 则用默认的imageloader， 该默认的为universal imageloader框架
      */
-    public XLBaseExpandableListViewAdapter(Context context, List<XCJsonBean> list, ImageLoader imageloader) {
+    public XLBaseExpandableAdapter(Context context, List<XCJsonBean> list, ImageLoader imageloader) {
         this.list = list;
         this.context = context;
         this.listener = new XCScrollListener();
@@ -92,7 +92,7 @@ public abstract class XLBaseExpandableListViewAdapter extends BaseExpandableList
         }
     }
 
-    public XLBaseExpandableListViewAdapter(Context context, List<XCJsonBean> list) {
+    public XLBaseExpandableAdapter(Context context, List<XCJsonBean> list) {
         this(context, list, null);
     }
 
