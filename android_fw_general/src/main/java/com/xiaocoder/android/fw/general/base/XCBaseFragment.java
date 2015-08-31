@@ -1,6 +1,5 @@
 package com.xiaocoder.android.fw.general.base;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,9 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 
 import java.util.List;
@@ -171,8 +168,8 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
     }
 
     public void myStartActivity(Class<? extends XCBaseActivity> activity_class,
-                                int requestCode,
-                                int flags,
+                                Integer requestCode,
+                                Integer flags,
                                 String[] command_keys,
                                 Object[] command_values) {
         if (getBaseActivity() != null) {
@@ -182,13 +179,19 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
 
     public void myStartActivity(Class<? extends XCBaseActivity> activity_class) {
         if (getBaseActivity() != null) {
-            getBaseActivity().myStartActivity(activity_class, -1, -1, null, null);
+            getBaseActivity().myStartActivity(activity_class);
         }
     }
 
     public void myStartActivity(Class<? extends XCBaseActivity> activity_class, int flags) {
         if (getBaseActivity() != null) {
-            getBaseActivity().myStartActivity(activity_class, -1, flags, null, null);
+            getBaseActivity().myStartActivity(activity_class, flags);
+        }
+    }
+
+    public void myStartActivity(Intent intent, Integer requestCode) {
+        if (getBaseActivity() != null) {
+            getBaseActivity().myStartActivity(intent, requestCode);
         }
     }
 

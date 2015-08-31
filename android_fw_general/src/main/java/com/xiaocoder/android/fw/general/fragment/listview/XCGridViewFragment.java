@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.xiaocoder.android.fw.general.fragment;
+package com.xiaocoder.android.fw.general.fragment.listview;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
-import com.xiaocoder.android.fw.general.base.abslist.XCBaseAbsListFragment;
 import com.xiaocoder.android_fw_general.R;
 
 public class XCGridViewFragment extends XCBaseAbsListFragment<GridView> {

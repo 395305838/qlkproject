@@ -28,6 +28,7 @@ import com.xiaocoder.test.fragment.ViewPagerActivity;
 import com.xiaocoder.test.fragment.WebActivity;
 import com.xiaocoder.test.http.HttpActivity;
 import com.xiaocoder.test.http.HttpDownLoadActivity;
+import com.xiaocoder.test.http2.ExpandListActivity;
 import com.xiaocoder.test.line_point.LinePointActivityGC;
 import com.xiaocoder.test.http2.GridActivity;
 import com.xiaocoder.test.http2.ListActivity;
@@ -74,32 +75,48 @@ public class MainActivity extends QlkMainActivity {
     Button test_switchbutton;
     Button test_circleprogress;
     Button test_numberprogress;
+    Button test_expandablelistview;
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        test_dialog3 = (Button) findViewById(R.id.test_dialog3);
-        test_dialog3.setOnClickListener(this);
-        test_code = (Button) findViewById(R.id.test_code);
-        test_code.setOnClickListener(this);
-        test_baidumap = (Button) findViewById(R.id.test_baidumap);
-        test_baidumap.setOnClickListener(this);
+        super.onCreate(savedInstanceState);
 
-        test_switchbutton = (Button) findViewById(R.id.test_switchbutton);
-        test_switchbutton.setOnClickListener(this);
+        timer();
+        recoderButton();
+        loge();
 
-        test_circleprogress = (Button) findViewById(R.id.test_circleprogress);
-        test_circleprogress.setOnClickListener(this);
+    }
 
-        test_numberprogress = (Button) findViewById(R.id.test_numberprogress);
-        test_numberprogress.setOnClickListener(this);
+    private void loge() {
+        try {
+            XCApplication.printe("123");
+            XCApplication.printe("345");
+            XCApplication.printe("678");
+            int i = 1 / 0;
+        } catch (Exception e) {
+            XCApplication.printe(this, "--oncreate()--", e);
+        }
+        // XCApplication.clearLog();
+        XCApplication.printe(this, "1234567890");
+        XCApplication.tempPrint("android--" + System.currentTimeMillis());
+    }
 
+    private void recoderButton() {
+        // test_recodervoice = (XCRecordVoiceButton)
+        // findViewById(R.id.test_recodervoice);
+        // test_recodervoice.setOnRecordVoiceSuccessListener(new
+        // OnRecordVoiceSuccessListener() {
+        //
+        // @Override
+        // public void onRecordVoiceSuccessListener(File file) {
+        // XCApplication.base_log.debugShortToast(file.toString());
+        // }
+        // });
+    }
+
+    private void timer() {
         XCTimeHelper timeHelper = new XCTimeHelper(1000000, new CustomTimer() {
 
             @Override
@@ -113,107 +130,109 @@ public class MainActivity extends QlkMainActivity {
             }
         });
         // timeHelper.start();
-
-        test_point_line = (Button) findViewById(R.id.test_point_line);
-        test_point_line.setOnClickListener(this);
-
-        test_scan = (Button) findViewById(R.id.test_scan);
-        test_scan.setOnClickListener(this);
-
-        xc_id_test = (Button) findViewById(R.id.xc_id_test);
-        xc_id_test.setOnClickListener(this);
-
-        test_http = (Button) findViewById(R.id.test_http);
-        test_http.setOnClickListener(this);
-
-        test_http_download = (Button) findViewById(R.id.test_http_download);
-        test_http_download.setOnClickListener(this);
-
-        test_pop = (Button) findViewById(R.id.test_pop);
-        test_pop.setOnClickListener(this);
-
-        test_webview = (Button) findViewById(R.id.test_webview);
-        test_webview.setOnClickListener(this);
-
-        test_viewpager = (Button) findViewById(R.id.test_viewpager);
-        test_viewpager.setOnClickListener(this);
-
-        test_move_block = (Button) findViewById(R.id.test_move_block);
-        test_move_block.setOnClickListener(this);
-
-        test_camare = (Button) findViewById(R.id.test_camare);
-        test_camare.setOnClickListener(this);
-        UtilString.setLightAppendString("你好:123", test_camare, "#ff00cccc");
-
-        test_search = (Button) findViewById(R.id.test_search);
-        test_search.setOnClickListener(this);
-
-        test_scroll = (Button) findViewById(R.id.test_scroll);
-        test_scroll.setOnClickListener(this);
-
-        test_pop2 = (Button) findViewById(R.id.test_pop2);
-        test_pop2.setOnClickListener(this);
-
-        test_contacts = (Button) findViewById(R.id.test_contacts);
-        test_contacts.setOnClickListener(this);
-
-        test_chat_bottom = (Button) findViewById(R.id.test_chat_bottom);
-        test_chat_bottom.setOnClickListener(this);
-
-        test_list_fragment = (Button) findViewById(R.id.test_list_fragment);
-        test_list_fragment.setOnClickListener(this);
-
-        test_grid_fragment = (Button) findViewById(R.id.test_grid_fragment);
-        test_grid_fragment.setOnClickListener(this);
-
-        test_sliding_menu = (Button) findViewById(R.id.test_sliding_menu);
-        test_sliding_menu.setOnClickListener(this);
-
-        test_sliding_menu2 = (Button) findViewById(R.id.test_sliding_menu2);
-        test_sliding_menu2.setOnClickListener(this);
-
-        test_viewpager_indicator = (Button) findViewById(R.id.test_viewpager_indicator);
-        test_viewpager_indicator.setOnClickListener(this);
-
-        test_anim = (Button) findViewById(R.id.test_anim);
-        test_anim.setOnClickListener(this);
-
-        xc_id_anim = (Button) findViewById(R.id.xc_id_anim);
-        xc_id_anim.setOnClickListener(this);
-
-        // test_recodervoice = (XCRecordVoiceButton)
-        // findViewById(R.id.test_recodervoice);
-        // test_recodervoice.setOnRecordVoiceSuccessListener(new
-        // OnRecordVoiceSuccessListener() {
-        //
-        // @Override
-        // public void onRecordVoiceSuccessListener(File file) {
-        // XCApplication.base_log.debugShortToast(file.toString());
-        // }
-        // });
-
-        try {
-            XCApplication.printe("123");
-            XCApplication.printe("345");
-            XCApplication.printe("678");
-            int i = 1 / 0;
-        } catch (Exception e) {
-            XCApplication.printe(this, "--oncreate()--", e);
-        }
-//        XCApplication.clearLog();
-        XCApplication.printe(this, "1234567890");
-        XCApplication.tempPrint("android--" + System.currentTimeMillis());
-
     }
 
     @Override
     public void initWidgets() {
+
         XCApplication.printi(XCConfig.TAG_TEMP, QlkConfig.CURRENT_RUN_ENVIRONMENT.toString() + "-----环境");
         XCApplication.printi(XCConfig.TAG_TEMP, QlkConfig.DEBUG_CONTROL.toString() + "-----调试");
+
+        test_dialog3 = getViewById(R.id.test_dialog3);
+
+        test_expandablelistview = getViewById(R.id.test_expandablelistview);
+
+        test_code = getViewById(R.id.test_code);
+
+        test_baidumap = getViewById(R.id.test_baidumap);
+
+        test_switchbutton = getViewById(R.id.test_switchbutton);
+
+        test_circleprogress = getViewById(R.id.test_circleprogress);
+
+        test_numberprogress = getViewById(R.id.test_numberprogress);
+
+        test_point_line = getViewById(R.id.test_point_line);
+
+        test_scan = getViewById(R.id.test_scan);
+
+        xc_id_test = getViewById(R.id.xc_id_test);
+
+        test_http = getViewById(R.id.test_http);
+
+        test_http_download = getViewById(R.id.test_http_download);
+
+        test_pop = getViewById(R.id.test_pop);
+
+        test_webview = getViewById(R.id.test_webview);
+
+        test_viewpager = getViewById(R.id.test_viewpager);
+
+        test_move_block = getViewById(R.id.test_move_block);
+
+        test_camare = getViewById(R.id.test_camare);
+
+        UtilString.setLightAppendString("你好:123", test_camare, "#ff00cccc");
+
+        test_search = getViewById(R.id.test_search);
+
+        test_scroll = getViewById(R.id.test_scroll);
+
+        test_pop2 = getViewById(R.id.test_pop2);
+
+        test_contacts = getViewById(R.id.test_contacts);
+
+        test_chat_bottom = getViewById(R.id.test_chat_bottom);
+
+        test_list_fragment = getViewById(R.id.test_list_fragment);
+
+        test_grid_fragment = getViewById(R.id.test_grid_fragment);
+
+        test_sliding_menu = getViewById(R.id.test_sliding_menu);
+
+        test_sliding_menu2 = getViewById(R.id.test_sliding_menu2);
+
+        test_viewpager_indicator = getViewById(R.id.test_viewpager_indicator);
+
+        test_anim = getViewById(R.id.test_anim);
+
+        xc_id_anim = getViewById(R.id.xc_id_anim);
+
+
     }
 
     @Override
     public void listeners() {
+
+        test_point_line.setOnClickListener(this);
+        test_dialog3.setOnClickListener(this);
+        test_code.setOnClickListener(this);
+        test_baidumap.setOnClickListener(this);
+        test_switchbutton.setOnClickListener(this);
+        test_circleprogress.setOnClickListener(this);
+        test_numberprogress.setOnClickListener(this);
+        test_scan.setOnClickListener(this);
+        xc_id_test.setOnClickListener(this);
+        test_http.setOnClickListener(this);
+        test_http_download.setOnClickListener(this);
+        test_pop.setOnClickListener(this);
+        test_webview.setOnClickListener(this);
+        test_viewpager.setOnClickListener(this);
+        test_move_block.setOnClickListener(this);
+        test_camare.setOnClickListener(this);
+        test_search.setOnClickListener(this);
+        test_scroll.setOnClickListener(this);
+        test_pop2.setOnClickListener(this);
+        test_contacts.setOnClickListener(this);
+        test_chat_bottom.setOnClickListener(this);
+        test_list_fragment.setOnClickListener(this);
+        test_grid_fragment.setOnClickListener(this);
+        test_sliding_menu.setOnClickListener(this);
+        test_sliding_menu2.setOnClickListener(this);
+        test_viewpager_indicator.setOnClickListener(this);
+        test_anim.setOnClickListener(this);
+        xc_id_anim.setOnClickListener(this);
+        test_expandablelistview.setOnClickListener(this);
 
     }
 
@@ -222,34 +241,34 @@ public class MainActivity extends QlkMainActivity {
         super.onClick(v);
         int id = v.getId();
         if (id == R.id.test_point_line) {
-            startActivity(new Intent(this, LinePointActivityGC.class));
+            myStartActivity(LinePointActivityGC.class);
 
         } else if (id == R.id.test_scan) {
-            startActivity(new Intent(this, ScanActivity.class));
+            myStartActivity(ScanActivity.class);
         } else if (id == R.id.test_http) {
-            startActivity(new Intent(this, HttpActivity.class));
+            myStartActivity(HttpActivity.class);
         } else if (id == R.id.test_pop) {
-            startActivity(new Intent(this, PopActivity.class));
+            myStartActivity(PopActivity.class);
         } else if (id == R.id.test_webview) {
-            startActivity(new Intent(this, WebActivity.class));
+            myStartActivity(WebActivity.class);
 
         } else if (id == R.id.test_viewpager) {
-            startActivity(new Intent(this, ViewPagerActivity.class));
+            myStartActivity(ViewPagerActivity.class);
 
         } else if (id == R.id.test_move_block) {
-            startActivity(new Intent(this, MoveBlockActivity.class));
+            myStartActivity(MoveBlockActivity.class);
 
         } else if (id == R.id.test_camare) {
-            startActivity(new Intent(this, CamareActivity.class));
+            myStartActivity(CamareActivity.class);
 
         } else if (id == R.id.test_search) {
-            startActivity(new Intent(this, SearchActivity.class));
+            myStartActivity(SearchActivity.class);
 
         } else if (id == R.id.test_scroll) {
-            startActivity(new Intent(this, ScrollActivity.class));
+            myStartActivity(ScrollActivity.class);
 
         } else if (id == R.id.test_contacts) {
-            startActivity(new Intent(this, ContactsActivity.class));
+            myStartActivity(ContactsActivity.class);
 
         } else if (id == R.id.test_pop2) {
             XCPhotoPopupWindow pop = new XCPhotoPopupWindow(MainActivity.this, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -274,38 +293,40 @@ public class MainActivity extends QlkMainActivity {
             pop.showViewCenter((View) test_pop2.getParent());
 
         } else if (id == R.id.test_list_fragment) {
-            startActivity(new Intent(this, ListActivity.class));
+            myStartActivity(ListActivity.class);
 
         } else if (id == R.id.test_grid_fragment) {
-            startActivity(new Intent(this, GridActivity.class));
+            myStartActivity(GridActivity.class);
 
         } else if (id == R.id.test_sliding_menu) {
-            startActivity(new Intent(this, SlidingMenuActivity.class));
+            myStartActivity(SlidingMenuActivity.class);
 
         } else if (id == R.id.test_sliding_menu2) {
-            startActivity(new Intent(this, SlidingMenuActivity2.class));
+            myStartActivity(SlidingMenuActivity2.class);
 
         } else if (id == R.id.test_viewpager_indicator) {
             startActivity(new Intent(this, ListSamples.class));
 
         } else if (id == R.id.test_http_download) {
-            startActivity(new Intent(this, HttpDownLoadActivity.class));
+            myStartActivity(HttpDownLoadActivity.class);
         } else if (id == R.id.test_code) {
-            startActivity(new Intent(this, CodeActivity.class));
+            myStartActivity(CodeActivity.class);
         } else if (id == R.id.xc_id_test) {
-            startActivity(new Intent(this, TextActivity.class));
+            myStartActivity(TextActivity.class);
         } else if (id == R.id.xc_id_anim) {
-            startActivity(new Intent(this, AnimationActivity.class));
+            myStartActivity(AnimationActivity.class);
         } else if (id == R.id.test_dialog3) {
-            startActivity(new Intent(this, DialogActivity3.class));
+            myStartActivity(DialogActivity3.class);
         } else if (id == R.id.test_baidumap) {
-            startActivity(new Intent(this, MapActivity.class));
+            myStartActivity(MapActivity.class);
         } else if (id == R.id.test_switchbutton) {
-            startActivity(new Intent(this, SwitchButtonActivity.class));
+            myStartActivity(SwitchButtonActivity.class);
         } else if (id == R.id.test_circleprogress) {
-            startActivity(new Intent(this, CircleProgressBarActivity.class));
+            myStartActivity(CircleProgressBarActivity.class);
         } else if (id == R.id.test_numberprogress) {
-            startActivity(new Intent(this, LineProgressBarActivity.class));
+            myStartActivity(LineProgressBarActivity.class);
+        } else if (id == R.id.test_expandablelistview) {
+            myStartActivity(ExpandListActivity.class);
         }
 
     }

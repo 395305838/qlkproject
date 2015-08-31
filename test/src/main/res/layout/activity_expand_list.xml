@@ -1,0 +1,64 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/xc_id_model_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_gray_f9f9f9">
+
+    <!-- title 不用该布局的话，可以删除该布局 -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:visibility="gone" />
+
+    <!-- 内容   不用该布局的话，可以删除该布局 -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:visibility="invisible">
+
+        <ExpandableListView
+            android:id="@+id/test_expandablelistview"
+            android:layout_width="match_parent"
+            android:background="@color/c_blue_1988ea"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/xc_id_search_slide_dialog"
+            android:layout_width="80.0dip"
+            android:layout_height="80.0dip"
+            android:layout_gravity="center"
+            android:background="@drawable/xc_d_search_letter_toast_bg"
+            android:layout_centerInParent="true"
+            android:textColor="#ffffffff"
+            android:textSize="30sp"
+            android:visibility="invisible" />
+
+        <com.xiaocoder.android.fw.general.view.XCSlideBar
+            android:id="@+id/xc_id_search_slide_slidebar"
+            android:layout_width="29.0dip"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            />
+
+    </RelativeLayout>
+
+    <!-- 无网络的背景   不用该布局的话，可以删除该布局 ； 如果使用该布局， 也可以剪切到别的布局中显示 -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_no_net"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:visibility="gone">
+
+        <include layout="@layout/xc_l_view_no_net" />
+    </RelativeLayout>
+
+</RelativeLayout>

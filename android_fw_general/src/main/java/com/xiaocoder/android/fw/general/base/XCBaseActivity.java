@@ -359,18 +359,20 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
     /**
      * @param activity_class
-     * @param requestCode    如果小于0，则startActivity   大于0 startActivityForResult
-     * @param flags          没有限制
+     * @param requestCode    如果等于null，则startActivity   否则startActivityForResult
+     * @param flags          没有flags就填null --注：不要随意填负数，可能有错误
      * @param command_keys   可以传入null
      * @param command_values 可以传入null
      */
     public void myStartActivity(Class<? extends XCBaseActivity> activity_class,
-                                int requestCode,
-                                int flags,
+                                Integer requestCode,
+                                Integer flags,
                                 String[] command_keys,
                                 Object[] command_values) {
         Intent intent = new Intent(this, activity_class);
-        intent.setFlags(flags);
+        if (flags != null) {
+            intent.setFlags(flags);
+        }
         if (command_keys.length != command_values.length) {
             throw new RuntimeException("myStartActivity中传入的keys 和 values的size不一致");
         }
@@ -407,20 +409,30 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
                 throw new RuntimeException("myStartActivity()中intent的putExtra参数没有转型");
             }
         }
-        if (requestCode >= 0) {
+
+        myStartActivity(intent, requestCode);
+
+    }
+
+    public void myStartActivity(Class<? extends XCBaseActivity> activity_class) {
+        myStartActivity(activity_class, null, null, new String[]{}, new String[]{});
+    }
+
+    public void myStartActivity(Class<? extends XCBaseActivity> activity_class, int flags) {
+        myStartActivity(activity_class, null, flags, new String[]{}, new String[]{});
+    }
+
+    /**
+     * @param requestCode 如果为null ，则startActivity();
+     */
+    public void myStartActivity(Intent intent, Integer requestCode) {
+
+        if (requestCode != null) {
             startActivityForResult(intent, requestCode);
         } else {
             startActivity(intent);
         }
         activityAnimation();
-    }
-
-    public void myStartActivity(Class<? extends XCBaseActivity> activity_class) {
-        myStartActivity(activity_class, -1, -1, new String[]{}, new String[]{});
-    }
-
-    public void myStartActivity(Class<? extends XCBaseActivity> activity_class, int flags) {
-        myStartActivity(activity_class, -1, flags, new String[]{}, new String[]{});
     }
 
 }

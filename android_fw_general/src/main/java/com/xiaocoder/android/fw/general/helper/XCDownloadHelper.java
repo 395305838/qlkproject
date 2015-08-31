@@ -12,6 +12,8 @@ import java.net.URL;
 
 /**
  * Created by xiaocoder on 2015/6/29.
+ *
+ * 这是个Runnable
  */
 
 public class XCDownloadHelper implements Runnable {

@@ -22,5 +22,6 @@
     <string name="title_activity_map">MapActivity</string>
     <string name="title_activity_update">UpdateActivity</string>
     <string name="title_activity_circle_progress">CircleProgressActivity</string>
+    <string name="title_activity_expand_list">ExpandListActivity</string>
 
 </resources>

@@ -24,7 +24,6 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
     public List<T> list;
     public Context context;
     public ImageLoader imageloader;
-    public AbsListView.OnScrollListener listener;
     public DisplayImageOptions options;
     public T bean;
 
@@ -36,7 +35,6 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
     public XCBaseAdapter(Context context, List<T> list, ImageLoader imageloader) {
         this.list = list;
         this.context = context;
-        this.listener = new XCScrollListener();
         this.options = XCImageLoaderHelper.getDisplayImageOptions();
         if (imageloader == null) {
             this.imageloader = XCApplication.getBase_imageloader();
@@ -81,28 +79,20 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
         return position;
     }
 
-    // 获取滚动的监听器
-    public AbsListView.OnScrollListener getOnScrollListener() {
-
-        return listener;
-
-    }
-
     @Override
     public int getViewTypeCount() {
         // 默认是返回1的 ， 即只有一种类型
         return super.getViewTypeCount();
 
-        // 如果有多种类型
+        // 如果有多种类型，重写该方法
         // return 2;
     }
 
     @Override
     public int getItemViewType(int position) {
-        // 默认的代码
         return super.getItemViewType(position);
 
-        // 如果有多种类型
+        // 如果有多种类型,重写该方法
         // XCJsonBean bean = list.get(position);
         // if (MyName.equals(bean.getString(bean_flag.sender))) {
         // return MY;

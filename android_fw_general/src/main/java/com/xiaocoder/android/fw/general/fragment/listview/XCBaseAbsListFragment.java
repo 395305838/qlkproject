@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.base.abslist;
+package com.xiaocoder.android.fw.general.fragment.listview;
 
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -229,48 +229,6 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
         base_all_beans.clear();
     }
 
-
-    public boolean hasSetStyle;
-
-    public boolean hasSetStyle() {
-        return hasSetStyle;
-    }
-
-
-    boolean show_bar = false;
-    int grid_line_num = 1;
-    int grid_space_h_dp = 1;
-    int grid_space_v_dp = 1;
-    int list_height_dp = 1;
-    Drawable list_divider_drawable = new ColorDrawable(0x666666);
-
-    public void setGridViewStyleParam(boolean show_bar, int num) {
-        setGridViewStyleParam(show_bar, grid_space_h_dp, grid_space_v_dp, num);
-    }
-
-    public void setGridViewStyleParam(boolean show_bar) {
-        setGridViewStyleParam(show_bar, grid_space_h_dp, grid_space_v_dp, grid_line_num);
-    }
-
-    public void setGridViewStyleParam(boolean show_bar, int space_h_dp, int space_v_dp, int num) {
-        hasSetStyle = true;
-        this.show_bar = show_bar;
-        this.grid_space_h_dp = space_h_dp;
-        this.grid_space_v_dp = space_v_dp;
-        this.grid_line_num = num;
-    }
-
-    public void setListViewStyleParam(Drawable divider_drawable, int height_dp, boolean show_bar) {
-        hasSetStyle = true;
-        this.list_divider_drawable = divider_drawable;
-        this.list_height_dp = height_dp;
-        this.show_bar = show_bar;
-    }
-
-    public void setListViewStyleParam(boolean show_bar) {
-        setListViewStyleParam(list_divider_drawable, list_height_dp, show_bar);
-    }
-
     @Override
     public void onClick(View v) {
         super.onClick(v);
@@ -296,46 +254,6 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
         }
     }
 
-    // 分页监听
-    public interface OnRefreshNextPageListener {
-        void onRefreshNextPageListener(int current_page);
-    }
-
-    OnRefreshNextPageListener onRefreshNextPageListener;
-
-    public void setOnRefreshNextPageListener(OnRefreshNextPageListener onRefreshNextPageListener) {
-        this.onRefreshNextPageListener = onRefreshNextPageListener;
-    }
-
-    // 背景点击监听
-    OnBgZeroButtonClickToDoListener onBgZeroButtonClickToDoListener;
-
-    public interface OnBgZeroButtonClickToDoListener {
-        void onBgZeroButtonClickToDo();
-    }
-
-    public void setOnBgZeroButtonClickToDoListener(OnBgZeroButtonClickToDoListener onBgZeroButtonClickToDoListener) {
-        this.onBgZeroButtonClickToDoListener = onBgZeroButtonClickToDoListener;
-    }
-
-    // 点击item监听
-    OnAbsListItemClickListener onAbsListItemClickListener;
-
-    public interface OnAbsListItemClickListener {
-        void onAbsListItemClickListener(AdapterView<?> arg0, View arg1, int arg2, long arg3);
-    }
-
-    public void setOnListItemClickListener(OnAbsListItemClickListener onAbsListItemClickListener) {
-        this.onAbsListItemClickListener = onAbsListItemClickListener;
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (onAbsListItemClickListener != null) {
-            onAbsListItemClickListener.onAbsListItemClickListener(parent, view, position, id);
-        }
-    }
-
     // 需要在http请求的返回结果中调用该方法 或者 调用setTotalNum方法也可以
     public void setTotalPage(String total_page) {
         if (TextUtils.isEmpty(total_page)) {
@@ -348,6 +266,7 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
 
         // 默认是每页20个
         PER_PAGE_NUM = UtilString.toInt(num, PER_PAGE_NUM);
+
     }
 
     // 设置总数，会自动计算总页数
@@ -413,7 +332,9 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
      * ，如果不设置，默认为MODE_NOT_PULL，即不可以刷新的listview
      */
     public void setMode(int mode) {
+
         whichMode = mode;
+
     }
 
     // 设置数据为零时候的背景
@@ -433,9 +354,90 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
         }
     }
 
-
     public void setBase_currentPage(int base_currentPage) {
         this.base_currentPage = base_currentPage;
+    }
+
+
+    public boolean hasSetStyle;
+
+    public boolean hasSetStyle() {
+        return hasSetStyle;
+    }
+
+
+    boolean show_bar = false;
+    int grid_line_num = 1;
+    int grid_space_h_dp = 1;
+    int grid_space_v_dp = 1;
+    int list_height_dp = 1;
+    Drawable list_divider_drawable = new ColorDrawable(0x666666);
+
+    public void setGridViewStyleParam(boolean show_bar, int num) {
+        setGridViewStyleParam(show_bar, grid_space_h_dp, grid_space_v_dp, num);
+    }
+
+    public void setGridViewStyleParam(boolean show_bar) {
+        setGridViewStyleParam(show_bar, grid_space_h_dp, grid_space_v_dp, grid_line_num);
+    }
+
+    public void setGridViewStyleParam(boolean show_bar, int space_h_dp, int space_v_dp, int num) {
+        hasSetStyle = true;
+        this.show_bar = show_bar;
+        this.grid_space_h_dp = space_h_dp;
+        this.grid_space_v_dp = space_v_dp;
+        this.grid_line_num = num;
+    }
+
+    public void setListViewStyleParam(Drawable divider_drawable, int height_dp, boolean show_bar) {
+        hasSetStyle = true;
+        this.list_divider_drawable = divider_drawable;
+        this.list_height_dp = height_dp;
+        this.show_bar = show_bar;
+    }
+
+    public void setListViewStyleParam(boolean show_bar) {
+        setListViewStyleParam(list_divider_drawable, list_height_dp, show_bar);
+    }
+
+    // 分页监听
+    public interface OnRefreshNextPageListener {
+        void onRefreshNextPageListener(int current_page);
+    }
+
+    OnRefreshNextPageListener onRefreshNextPageListener;
+
+    public void setOnRefreshNextPageListener(OnRefreshNextPageListener onRefreshNextPageListener) {
+        this.onRefreshNextPageListener = onRefreshNextPageListener;
+    }
+
+    // 背景点击监听
+    OnBgZeroButtonClickToDoListener onBgZeroButtonClickToDoListener;
+
+    public interface OnBgZeroButtonClickToDoListener {
+        void onBgZeroButtonClickToDo();
+    }
+
+    public void setOnBgZeroButtonClickToDoListener(OnBgZeroButtonClickToDoListener onBgZeroButtonClickToDoListener) {
+        this.onBgZeroButtonClickToDoListener = onBgZeroButtonClickToDoListener;
+    }
+
+    // 点击item监听
+    OnAbsListItemClickListener onAbsListItemClickListener;
+
+    public interface OnAbsListItemClickListener {
+        void onAbsListItemClickListener(AdapterView<?> arg0, View arg1, int arg2, long arg3);
+    }
+
+    public void setOnListItemClickListener(OnAbsListItemClickListener onAbsListItemClickListener) {
+        this.onAbsListItemClickListener = onAbsListItemClickListener;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (onAbsListItemClickListener != null) {
+            onAbsListItemClickListener.onAbsListItemClickListener(parent, view, position, id);
+        }
     }
 
 }
