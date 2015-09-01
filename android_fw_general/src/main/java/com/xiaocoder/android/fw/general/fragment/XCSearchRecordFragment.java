@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.db.XCDbHelper;
 import com.xiaocoder.android.fw.general.db.XCSearchDao;
@@ -24,6 +25,7 @@ import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.android.fw.general.view.XCKeyBoardLayout;
 import com.xiaocoder.android_fw_general.R;
 
+import java.lang.reflect.Constructor;
 import java.util.List;
 
 /**
@@ -192,12 +194,15 @@ public class XCSearchRecordFragment extends XCBaseFragment implements AdapterVie
     int mVersion;
     String mTableName;
     String[] mSqls;
+    Class<? extends XCDbHelper> mDbHelper;
 
-    public void setDbParams(String dbName, int version, String tabName, String[] sqls) {
+    public void setDbParams(Class<? extends XCDbHelper> dbHelper, String dbName,
+                            int version, String tabName, String[] sqls) {
         mDbName = dbName;
         mVersion = version;
         mTableName = tabName;
         mSqls = sqls;
+        mDbHelper = dbHelper;
     }
 
 
@@ -216,7 +221,21 @@ public class XCSearchRecordFragment extends XCBaseFragment implements AdapterVie
     }
 
     public void initDao() {
-        dao = new XCSearchDao(getBaseActivity(), new XCDbHelper(getBaseActivity(), mDbName, mVersion, mSqls), mTableName);
+        dao = new XCSearchDao(getBaseActivity(), instanceHelper(), mTableName);
+    }
+
+    public XCDbHelper instanceHelper() {
+        try {
+            XCApplication.printi(XCConfig.TAG_DB, this.toString() + "----instanceHelper()");
+            Constructor constructor = mDbHelper.getConstructor(Context.class, String.class, int.class, String[].class);
+            Object o = constructor.newInstance(getBaseActivity(), mDbName, mVersion, mSqls);
+            XCApplication.printi(XCConfig.TAG_DB, this.toString() + "---" + o.toString());
+            return (XCDbHelper) o;
+        } catch (Exception e) {
+            e.printStackTrace();
+            XCApplication.printe(getBaseActivity(),"",e);
+            return null;
+        }
     }
 
     @Override

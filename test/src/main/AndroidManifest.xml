@@ -209,6 +209,10 @@
             android:label="@string/title_activity_search"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
+            android:name=".fragment.SearchActivity2"
+            android:label="@string/title_activity_search"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
             android:name=".view.ScrollActivity"
             android:label="@string/title_activity_scroll" />
         <activity

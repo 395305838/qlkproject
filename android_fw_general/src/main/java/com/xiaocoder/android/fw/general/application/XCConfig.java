@@ -14,6 +14,10 @@ public class XCConfig {
      */
     public static String TAG_HTTP_HANDLER = "httpHandler";
     /**
+     * DB
+     */
+    public static String TAG_DB = "db";
+    /**
      * 该tag可以查看json返回的字段的数据类型
      */
     public static String TAG_JSON_TYPE = "JsonType";

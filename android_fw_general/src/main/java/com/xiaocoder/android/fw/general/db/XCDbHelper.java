@@ -12,7 +12,7 @@ import com.xiaocoder.android.fw.general.util.UtilString;
  * // db.execSQL("drop table if exists " + );
  * // onCreate(db);
  */
-public class XCDbHelper extends SQLiteOpenHelper {
+public  class XCDbHelper extends SQLiteOpenHelper {
 
     public String[] mSqls;
     public String mDbName;
