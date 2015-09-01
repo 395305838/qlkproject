@@ -62,11 +62,11 @@ public class XCTitleSearchFragment extends XCBaseFragment {
         void searchKeyDown(String key_word);
     }
 
-    public void setOnClicklistener(OnEditTextClickedListener clicklistener) {
+    public void setOnEditTextClicklistener(OnEditTextClickedListener clicklistener) {
         this.clicklistener = clicklistener;
     }
 
-    public void setOnSearchlistener(OnKeyBoardSearchListener searchlistener) {
+    public void setOnPressSearchlistener(OnKeyBoardSearchListener searchlistener) {
         this.searchlistener = searchlistener;
     }
 

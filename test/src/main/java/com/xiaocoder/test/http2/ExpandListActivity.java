@@ -173,6 +173,9 @@ public class ExpandListActivity extends QlkActivity {
         xc_id_search_slide_dialog = getViewById(R.id.xc_id_search_slide_dialog);
         xc_id_search_slide_slidebar = getViewById(R.id.xc_id_search_slide_slidebar);
 
+        xc_id_search_slide_slidebar.setTextView(xc_id_search_slide_dialog);
+
+
         test_expandablelistview.setGroupIndicator(null); // 删除箭头
 
         title = new XCTitleCommonFragment();
