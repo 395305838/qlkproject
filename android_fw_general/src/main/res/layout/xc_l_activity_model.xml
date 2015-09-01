@@ -89,19 +89,20 @@
         android:layout_above="@+id/xc_id_model_bottombar"
         android:layout_below="@+id/xc_id_model_titlebar"
         android:visibility="invisible" >
+
+
+
     </RelativeLayout>
 
     <!-- 无网络的背景 -->
 
-    <RelativeLayout
+    <include
+        layout="@layout/xc_l_view_no_net"
         android:id="@+id/xc_id_model_no_net"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/xc_id_model_bottombar"
         android:layout_below="@+id/xc_id_model_titlebar"
-        android:visibility="gone" >
-
-        <include layout="@layout/xc_l_view_no_net" />
-    </RelativeLayout>
+        android:layout_above="@+id/xc_id_model_bottombar"
+        android:visibility="invisible" />
 
 </RelativeLayout>

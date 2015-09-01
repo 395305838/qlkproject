@@ -13,8 +13,6 @@ import com.xiaocoder.android.fw.general.util.UtilSystem;
 
 /**
  * Created by xiaocoder on 2015/7/14.
- * <p/>
- * 各个初始化的顺序不要去改变
  */
 public class QlkApplication extends XCApplication {
 
@@ -34,6 +32,9 @@ public class QlkApplication extends XCApplication {
                 + UtilScreen.getScreenWidthPx(getApplicationContext()) + "--screenWidthDP");
     }
 
+    /**
+     * 各个初始化的顺序不要去改变
+     */
     private void initPath() {
 
         // log , 可以打印日志 与 toast

@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/xc_id_model_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,7 +21,6 @@
         android:id="@+id/xc_id_model_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/xc_id_model_bottombar"
         android:layout_below="@+id/xc_id_model_titlebar"
         android:background="@color/c_orange_ff6600"
         android:orientation="vertical"
@@ -30,19 +28,13 @@
 
     <!-- 无网络的背景 -->
 
-    <RelativeLayout
+    <include
+        layout="@layout/xc_l_view_no_net"
         android:id="@+id/xc_id_model_no_net"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/xc_id_model_bottombar"
         android:layout_below="@+id/xc_id_model_titlebar"
-        android:background="@color/c_blue_0000ff"
-        android:orientation="vertical"
-        android:visibility="invisible">
-
-        <include layout="@layout/xc_l_view_no_net" />
-
-    </RelativeLayout>
+        android:visibility="invisible" />
 
 
 </RelativeLayout>

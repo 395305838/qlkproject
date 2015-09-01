@@ -12,7 +12,7 @@
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:background="@color/c_red_ff0000"
-        android:visibility="gone"></RelativeLayout>
+        android:visibility="gone" />
 
     <!-- 内容 -->
 
@@ -47,6 +47,16 @@
 
 
     </RelativeLayout>
+
+    <!-- 无网络的背景 -->
+
+    <include
+        layout="@layout/xc_l_view_no_net"
+        android:id="@+id/xc_id_model_no_net"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:visibility="invisible" />
 
 
 </RelativeLayout>

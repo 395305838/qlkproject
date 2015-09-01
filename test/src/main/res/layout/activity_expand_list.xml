@@ -1,5 +1,4 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/xc_id_model_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,8 +12,6 @@
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:visibility="gone" />
-
-    <!-- 内容   不用该布局的话，可以删除该布局 -->
 
     <RelativeLayout
         android:id="@+id/xc_id_model_content"
@@ -50,16 +47,14 @@
 
     </RelativeLayout>
 
-    <!-- 无网络的背景   不用该布局的话，可以删除该布局 ； 如果使用该布局， 也可以剪切到别的布局中显示 -->
+    <!-- 无网络的背景 -->
 
-    <RelativeLayout
+    <include
+        layout="@layout/xc_l_view_no_net"
         android:id="@+id/xc_id_model_no_net"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/xc_id_model_titlebar"
-        android:visibility="gone">
-
-        <include layout="@layout/xc_l_view_no_net" />
-    </RelativeLayout>
+        android:visibility="invisible" />
 
 </RelativeLayout>

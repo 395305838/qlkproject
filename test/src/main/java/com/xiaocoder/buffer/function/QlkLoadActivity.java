@@ -17,8 +17,8 @@ import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.view.XCImageView;
-import com.xiaocoder.android_fw_general.R;
 import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.test.R;
 
 import java.util.ArrayList;
 

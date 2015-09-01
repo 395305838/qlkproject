@@ -30,7 +30,7 @@ public class WebActivity extends QlkActivity {
 
 		web_view_fragment = new XCWebViewFragment();
 		web_view_fragment.setUrl("http://www.baidu.com");
-		addFragment(R.id.test_web_fragment, web_view_fragment);
+		addFragment(R.id.xc_id_model_content, web_view_fragment);
 	}
 
 	@Override

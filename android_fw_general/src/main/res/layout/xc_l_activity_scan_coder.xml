@@ -68,28 +68,16 @@
 
     <!-- 无网络的背景 -->
 
-    <RelativeLayout
+    <include
+        layout="@layout/xc_l_view_no_net"
         android:id="@+id/xc_id_model_no_net"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/xc_id_model_bottombar"
         android:layout_below="@+id/xc_id_model_titlebar"
-        android:background="#0000ff"
-        android:orientation="vertical"
-        android:visibility="invisible" >
-    </RelativeLayout>
+        android:visibility="invisible" />
 
-
-    <!-- bottom -->
-
-    <RelativeLayout
-        android:id="@+id/xc_id_model_bottombar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:background="@color/c_red_ff0000"
-        android:orientation="vertical"
-        android:visibility="gone" >
-    </RelativeLayout>
 
 </RelativeLayout>
+
+
+

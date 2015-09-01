@@ -2,9 +2,9 @@
     android:id="@+id/xc_id_model_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/c_black_000000" >
+    android:background="@color/c_white_ffffff" >
 
-    <!-- title 不用该布局的话，可以删除该布局 -->
+    <!-- title -->
 
     <RelativeLayout
         android:id="@+id/xc_id_model_titlebar"
@@ -14,17 +14,73 @@
         android:visibility="gone" >
     </RelativeLayout>
 
-    <!-- bottom 不用该布局的话，可以删除该布局 ,这里某些情况下，可能会用到wrapcontent，比如聊天 -->
+    <!-- bottom 没有bottom的话，可以删除该布局 -->
 
     <RelativeLayout
         android:id="@+id/xc_id_model_bottombar"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:visibility="gone" >
+
+        <RadioGroup
+            android:id="@+id/xc_id_tab_group"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/c_trans"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@+id/xc_id_tab_item1"
+                style="@style/xc_main_bottom_tab_item"
+                android:layout_height="49dp"
+                android:layout_gravity="bottom"
+                android:checked="true"
+                android:drawableTop="@drawable/xc_dd_selector_image"
+                android:padding="5dp"
+                android:text="item1" />
+
+            <RadioButton
+                android:id="@+id/xc_id_tab_item2"
+                style="@style/xc_main_bottom_tab_item"
+                android:layout_height="49dp"
+                android:layout_gravity="bottom"
+                android:drawableTop="@drawable/xc_dd_selector_image"
+                android:padding="5dp"
+                android:text="item2" />
+
+            <!-- android:background="@drawable/ic" -->
+
+            <RadioButton
+                android:id="@+id/xc_id_tab_item3"
+                style="@style/xc_main_bottom_tab_item"
+                android:layout_height="56dp"
+                android:drawableTop="@drawable/xc_dd_selector_image"
+                android:paddingTop="7dp"
+                android:text="item3" />
+
+            <RadioButton
+                android:id="@+id/xc_id_tab_item4"
+                style="@style/xc_main_bottom_tab_item"
+                android:layout_height="49dp"
+                android:layout_gravity="bottom"
+                android:drawableTop="@drawable/xc_dd_selector_image"
+                android:padding="5dp"
+                android:text="item4" />
+
+            <RadioButton
+                android:id="@+id/xc_id_tab_item5"
+                style="@style/xc_main_bottom_tab_item"
+                android:layout_height="49dp"
+                android:layout_gravity="bottom"
+                android:drawableTop="@drawable/xc_dd_selector_image"
+                android:padding="5dp"
+                android:text="item5" />
+        </RadioGroup>
     </RelativeLayout>
 
-    <!-- 内容   不用该布局的话，可以删除该布局 -->
+    <!-- 内容 -->
 
     <RelativeLayout
         android:id="@+id/xc_id_model_content"
@@ -33,19 +89,20 @@
         android:layout_above="@+id/xc_id_model_bottombar"
         android:layout_below="@+id/xc_id_model_titlebar"
         android:visibility="invisible" >
+
+
+
     </RelativeLayout>
 
-    <!-- 无网络的背景   不用该布局的话，可以删除该布局 -->
+    <!-- 无网络的背景 -->
 
-    <RelativeLayout
+    <include
+        layout="@layout/xc_l_view_no_net"
         android:id="@+id/xc_id_model_no_net"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/xc_id_model_bottombar"
         android:layout_below="@+id/xc_id_model_titlebar"
-        android:visibility="gone" >
-
-        <include layout="@layout/xc_l_view_no_net" />
-    </RelativeLayout>
+        android:layout_above="@+id/xc_id_model_bottombar"
+        android:visibility="invisible" />
 
 </RelativeLayout>
