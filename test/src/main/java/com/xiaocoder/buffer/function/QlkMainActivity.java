@@ -24,7 +24,7 @@ public abstract class QlkMainActivity extends QlkActivity {
     }
 
     /**
-     * 首页滑动不销毁activity
+     * 首页activity不可滑动销毁
      */
     @Override
     protected void slideDestroyActivity() {

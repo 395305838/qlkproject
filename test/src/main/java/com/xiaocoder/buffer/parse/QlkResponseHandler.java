@@ -30,13 +30,16 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
         super(result_http, result_bean_class);
     }
 
+    /**
+     * 解析是否成功的规则，根据项目的json而定
+     */
     public void yourCompanyResultRule() {
 
-        XCApplication.printi(XCConfig.TAG_HTTP_HANDLER,this.toString()+"---yourCompanyResultRule()");
+        XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---yourCompanyResultRule()");
 
         if (result_bean instanceof IQlkResponseInfo) {
 
-            if (!UtilString.isBlank(((IQlkResponseInfo) result_bean).getCode()+"")) {
+            if (!UtilString.isBlank(((IQlkResponseInfo) result_bean).getCode() + "")) {
                 result_boolean = true;
             } else {
                 result_boolean = false;
@@ -50,15 +53,22 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
 
     }
 
+    /**
+     * 提交请求前的加密
+     *
+     * @param needSecret 是否要加密
+     */
     @Override
     public void yourCompanySecret(RequestParams params, AsyncHttpClient client, boolean needSecret) {
 
-        XCApplication.printi(XCConfig.TAG_HTTP_HANDLER,this.toString()+"---yourCompanySecret()");
+        if (needSecret) {
 
-        client.addHeader("_v", UtilSystem.getVersionCode(mContext) + "");// 版本号，必填
-        client.addHeader("_m", UtilSystem.getMacAddress(mContext));// 设备的mac地址，选填
-        client.addHeader("_c", "2222");// JSONP的回调函数名 ,可选
-        client.addHeader("_p", "1"); // 平台，必填
+            XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---yourCompanySecret()");
+
+            client.addHeader("_v", UtilSystem.getVersionCode(mContext) + "");// 版本号，必填
+            client.addHeader("_m", UtilSystem.getMacAddress(mContext));// 设备的mac地址，选填
+            client.addHeader("_c", "2222");// JSONP的回调函数名 ,可选
+            client.addHeader("_p", "1"); // 平台，必填
 
 //        String token = Qlk
 //        params.put("token", token);
@@ -69,7 +79,10 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
 //            params.put("sig", sig);
 //            params.put("ts", ts);
 //        }
-        XCApplication.printi(XCConfig.TAG_HTTP, "plus public params-->" + params.toString());
+            XCApplication.printi(XCConfig.TAG_HTTP, "plus public params-->" + params.toString());
+
+        }
+
     }
 
 
@@ -79,7 +92,7 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
             httpDialog.dismiss();
             httpDialog.setOnKeyListener(null);
             httpDialog.cancel();
-            XCApplication.printi(XCConfig.TAG_HTTP_HANDLER,this.toString()+"---closeHttpDialog()");
+            XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---closeHttpDialog()");
         }
     }
 
@@ -102,7 +115,7 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
                 }
             });
             httpDialog.show();
-            XCApplication.printi(XCConfig.TAG_HTTP_HANDLER,this.toString() +"---showHttpDialog()");
+            XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---showHttpDialog()");
         }
     }
 }
