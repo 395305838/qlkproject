@@ -37,10 +37,23 @@ public class XCTitleSearchFragment extends XCBaseFragment {
     XCClearEditText xc_id_fragment_search_edittext;
     TextView xc_id_fragment_search_cancle;
     XCSearchDao dao;
-    boolean isClickeble = true;
 
+    boolean isClickeble = true;
+    boolean isCancleButtonVisiable;
+    String buttonText;
+
+    public void setCancleButtonVisiable(boolean isCancleButtonVisiable, String text) {
+        this.isCancleButtonVisiable = isCancleButtonVisiable;
+        this.buttonText = text;
+    }
+
+    /**
+     * 设置edittext是否可以点击
+     */
     public void setIsClickble(boolean isClickeble) {
+
         this.isClickeble = isClickeble;
+
     }
 
     // 点击取消按钮时（有时可能不是取消，而是搜索）
@@ -124,6 +137,11 @@ public class XCTitleSearchFragment extends XCBaseFragment {
 
     public int mRecoderNumMax = 10;
 
+    /**
+     * 设置显示的最大记录数
+     *
+     * @param recoderNumMax
+     */
     public void setRecoderNumMax(int recoderNumMax) {
         mRecoderNumMax = recoderNumMax;
     }
@@ -171,7 +189,9 @@ public class XCTitleSearchFragment extends XCBaseFragment {
     }
 
     public void setHint(String hint) {
+
         this.hint = hint;
+
     }
 
     String hint;
@@ -199,13 +219,22 @@ public class XCTitleSearchFragment extends XCBaseFragment {
             xc_id_fragment_search_edittext.setClickable(false);
             xc_id_fragment_search_edittext.setFocusable(false);
         }
-        xc_id_fragment_search_cancle = getViewById(R.id.xc_id_fragment_search_cancle);
-
-        initDao();
 
         if (hint != null) {
             xc_id_fragment_search_edittext.setHint(hint);
         }
+
+        xc_id_fragment_search_cancle = getViewById(R.id.xc_id_fragment_search_cancle);
+
+        if (isCancleButtonVisiable) {
+            setViewGone(true, xc_id_fragment_search_cancle);
+            xc_id_fragment_search_cancle.setText(buttonText);
+        } else {
+            setViewGone(false, xc_id_fragment_search_cancle);
+        }
+
+        initDao();
+
     }
 
     public void initDao() {

@@ -1,10 +1,5 @@
 package com.xiaocoder.buffer.function;
 
-import android.os.Bundle;
-import android.widget.RadioGroup;
-
-import com.umeng.update.UmengUpdateAgent;
-import com.umeng.update.UpdateConfig;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.buffer.QlkActivity;
 
