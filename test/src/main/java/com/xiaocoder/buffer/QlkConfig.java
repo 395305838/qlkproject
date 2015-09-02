@@ -30,22 +30,22 @@ public class QlkConfig {
     public static DebugControl DEBUG_CONTROL = DebugControl.OPEN_DEFINE;
 
     static {
-        if (DEBUG_CONTROL == DebugControl.CLOSE) {
+        if (DEBUG_CONTROL == DebugControl.OPEN_DEFINE) {
 
             // 是否打印到控制台
-            IS_OUTPUT = false;
+            IS_OUTPUT = true;
 
             // 调试土司是否开启
             IS_DTOAST = false;
 
             // 是否初始化crashhandler
-            IS_INIT_CRASH_HANDLER = false;
+            IS_INIT_CRASH_HANDLER = true;
 
             // 是否打印出异常界面（只有在IS_INIT_CRASH_HANDLER 为true时，该设置才有效）
             IS_SHOW_EXCEPTION_ACTIVITY = false;
 
             // i()方法中的log是否打印到本地日志
-            IS_PRINTLOG = false;
+            IS_PRINTLOG = true;
 
         } else if (DEBUG_CONTROL == DebugControl.OPEN_DEFAULT) {
 
@@ -64,16 +64,16 @@ public class QlkConfig {
             // i()方法中的log是否打印到本地日志
             IS_PRINTLOG = true;
 
-        } else if (DEBUG_CONTROL == DebugControl.OPEN_DEFINE) {
+        } else if (DEBUG_CONTROL == DebugControl.CLOSE) {
 
             // 是否打印到控制台
-            IS_OUTPUT = true;
+            IS_OUTPUT = false;
 
             // 调试土司是否开启
             IS_DTOAST = false;
 
             // 是否初始化crashhandler
-            IS_INIT_CRASH_HANDLER = true;
+            IS_INIT_CRASH_HANDLER = false;
 
             // 是否打印出异常界面（只有在IS_INIT_CRASH_HANDLER 为true时，该设置才有效）
             IS_SHOW_EXCEPTION_ACTIVITY = false;
