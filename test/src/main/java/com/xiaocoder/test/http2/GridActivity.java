@@ -79,6 +79,7 @@ public class GridActivity extends QlkActivity {
                             }
 
                             // grid_fragment.setTotalNum("100");// 或者setTotalPage也可以
+                            // grid_fragment.setTotalPage(totalnum % PER_PAGE_NUM == 0 ? totalnum/PER_PAGE_NUM :(totalnum / PER_PAGE_NUM) + 1)
                             grid_fragment.setTotalPage("3");
                             grid_fragment.updateList(result);
                         }

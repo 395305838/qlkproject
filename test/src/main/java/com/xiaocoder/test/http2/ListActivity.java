@@ -73,7 +73,6 @@ public class ListActivity extends QlkActivity {
                                 XCApplication.printi(bean.getString(bean.rebate));
                                 XCApplication.printi(bean.getString(bean.proudctId));
 
-
                                 XCApplication.printi(bean.getModel(bean.share).toString());
                                 XCApplication.printi(bean.getModel(bean.share).getString(bean.title));
                                 XCApplication.printi(bean.getModel(bean.share).getString(bean.icon));
@@ -81,6 +80,8 @@ public class ListActivity extends QlkActivity {
                             }
 
                             // grid_fragment.setTotalNum("100");// 或者setTotalPage也可以
+                            // grid_fragment.setTotalPage(totalnum % PER_PAGE_NUM == 0 ? totalnum/PER_PAGE_NUM :(totalnum / PER_PAGE_NUM) + 1)
+
                             list_fragment.setTotalPage("3");
                             list_fragment.updateList(testBeans);
                         }

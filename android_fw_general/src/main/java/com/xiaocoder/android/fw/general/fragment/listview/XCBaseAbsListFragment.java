@@ -65,39 +65,49 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
     // 设置的whichMode
     public int whichMode;
 
-    int refresh_listview_id;
-
     @SuppressWarnings("rawtypes")
     public XCBaseAdapter base_adapter;
 
     // 滚动到最底部
     public void scrollToDown() {
+
         base_abs_listview.setSelection(base_abs_listview.getBottom());
+
     }
 
     // 滚动到最顶部
     public void scrollToUp() {
+
         base_abs_listview.setSelection(0);
+
     }
 
     // 获取listview或gridview
     public T getAbsListView() {
+
         return base_abs_listview;
+
     }
 
     // 拿到数据为0的背景， 如果没有传这个布局的id，那么可能这个空间为null
     public LinearLayout getBgZeroLayout() {
+
         return base_listview_zero_bg;
+
     }
 
     @SuppressWarnings("rawtypes")
     public void setAdapter(XCBaseAdapter adapter) {
+
         base_adapter = adapter;
+
     }
 
     @SuppressWarnings("rawtypes")
     public XCBaseAdapter getAdapter() {
+
         return base_adapter;
+
     }
 
     // 初始化listview
@@ -221,7 +231,9 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
     }
 
     public void resetCurrentPage() {
+
         base_currentPage = 1;
+
     }
 
     public void resetCurrentPageAndList() {
@@ -269,7 +281,7 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
 
     }
 
-    // 设置总数，会自动计算总页数
+    // 设置总数，会根据每页默认的数量，计算总页数
     public void setTotalNum(String total_num) {
         if (TextUtils.isEmpty(total_num)) {
             total_num = 1 + "";
@@ -277,6 +289,7 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
         setTotalNum(PER_PAGE_NUM + "", total_num);
     }
 
+    // 根据指定的每页数量，计算总数量
     public void setTotalNum(String page_size, String total_num) {
         setPerPageNum(page_size);
         Integer total = UtilString.toInt(total_num, 0);
@@ -307,16 +320,16 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
 
         if (base_all_beans == null) {
             base_all_beans = new ArrayList();
-        } else {
-            base_all_beans.clear();
-            base_all_beans.addAll(list);
-            base_adapter.update(base_all_beans);
         }
+
+        base_all_beans.clear();
+
+        base_all_beans.addAll(list);
+        base_adapter.update(base_all_beans);
         base_adapter.notifyDataSetChanged();
     }
 
 
-    // 需要在http请求的返回结果中调用该方法
     // 检查是否是底部 与 检测是否是刷新
     public boolean checkGoOn() {
         if (isBottom()) {
@@ -327,9 +340,7 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
     }
 
     /*
-     * 用的多的为XCBaseAbsListFragment.MODE_NOT_PULL
-     * 与XCBaseAbsListFragment.MODE_UP_DOWN
-     * ，如果不设置，默认为MODE_NOT_PULL，即不可以刷新的listview
+     * 如果不设置，默认为MODE_NOT_PULL，即不可以刷新的listview
      */
     public void setMode(int mode) {
 
@@ -355,16 +366,10 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
     }
 
     public void setBase_currentPage(int base_currentPage) {
+
         this.base_currentPage = base_currentPage;
+
     }
-
-
-    public boolean hasSetStyle;
-
-    public boolean hasSetStyle() {
-        return hasSetStyle;
-    }
-
 
     boolean show_bar = false;
     int grid_line_num = 1;
@@ -372,6 +377,14 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
     int grid_space_v_dp = 1;
     int list_height_dp = 1;
     Drawable list_divider_drawable = new ColorDrawable(0x666666);
+
+    public boolean hasSetStyle;
+
+    public boolean hasSetStyle() {
+
+        return hasSetStyle;
+
+    }
 
     public void setGridViewStyleParam(boolean show_bar, int num) {
         setGridViewStyleParam(show_bar, grid_space_h_dp, grid_space_v_dp, num);
@@ -441,40 +454,3 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
     }
 
 }
-
-// demo
-
-// base_currentPage = page;
-// MyHttpAsyn.get(true, true, getActivity(), MyConfig.ORDERS_API, params, new
-// MyHttpResponseHandler(this) {
-//
-// @Override
-// public void onSuccess(int i, Header[] headers, byte[] bytes) {
-// super.onSuccess(i, headers, bytes);
-// if (result) {
-// OrdersBean orders_bean_flag = new OrdersBean();
-
-// 检测
-// if(!listgragment.checkGoOn()){
-// return;
-// }
-// 设置总页数
-// int totalnum =
-// Integer.parseInt(origin_bean.getString(orders_bean_flag.total));
-// listgragment.setTotalPage(totalnum % PER_PAGE_NUM == 0 ?
-// totalnum/PER_PAGE_NUM :(totalnum / PER_PAGE_NUM) + 1);
-// 或者设置总数 （这种方式简单）
-// listfragment.setTotalNum(total_num);
-
-// 添加集合 与 更新界面
-// List<JsonBean> beans = origin_bean.getList(orders_bean_flag.orders);
-// listgragment.updateList(beans);
-// }
-// }
-
-// onFinish(){
-//  if(result_boolean && listfragment != null){
-//      listfragment.complete();
-//  }
-// }
-// });

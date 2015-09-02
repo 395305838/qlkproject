@@ -16,7 +16,9 @@ public class XCCleanCacheHelper {
     Dialog mDeletingDialog;
 
     public XCCleanCacheHelper(Dialog deletingDialog) {
+
         mDeletingDialog = deletingDialog;
+
     }
 
     /**
