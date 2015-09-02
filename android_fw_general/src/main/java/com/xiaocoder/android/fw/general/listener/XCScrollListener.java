@@ -44,16 +44,6 @@ public class XCScrollListener implements OnScrollListener {
 			// if (refreshview == null) {
 			// return;
 			// }
-			// // 从viewtiem中获取到tag
-			// XCIViewHolder holder = (XCIViewHolder) refreshview.getTag();
-			// String[] paths = holder.getUrl(_start_index + i);
-			// ImageView[] images = holder.getImageView();
-			//
-			// for (int current = 0, count = holder.getCount(); current < count; current++) {
-			// String path = paths[current].toLowerCase();
-			// ImageView imageview = images[current];
-			// // 加载图片
-			// }
 			// }
 			break;
 		case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:

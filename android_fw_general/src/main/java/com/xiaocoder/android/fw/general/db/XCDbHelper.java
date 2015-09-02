@@ -8,9 +8,6 @@ import com.xiaocoder.android.fw.general.util.UtilString;
 
 /**
  * onUpgrade方法没实现的
- * <p/>
- * // db.execSQL("drop table if exists " + );
- * // onCreate(db);
  */
 public  class XCDbHelper extends SQLiteOpenHelper {
 
@@ -45,7 +42,8 @@ public  class XCDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
-
+         // db.execSQL("drop table if exists " + );
+         // onCreate(db);
     }
 
 }
