@@ -70,6 +70,7 @@ public class XCApplication extends Application {
     public void delActivityFromStack(Activity activity) {
 
         stack.remove(activity);
+        printi("delActivityFromStack()----" + activity);
 
     }
 
@@ -237,7 +238,7 @@ public class XCApplication extends Application {
 
     }
 
-    public static void dShortToast(String msg){
+    public static void dShortToast(String msg) {
 
         base_log.debugShortToast(msg);
 
