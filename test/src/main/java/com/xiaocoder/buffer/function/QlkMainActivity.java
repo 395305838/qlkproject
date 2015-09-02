@@ -23,5 +23,11 @@ public abstract class QlkMainActivity extends QlkActivity {
         }
     }
 
+    /**
+     * 首页滑动不销毁activity
+     */
+    @Override
+    protected void slideDestroyActivity() {
 
+    }
 }

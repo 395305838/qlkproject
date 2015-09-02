@@ -13,15 +13,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.http.XCIHttpResult;
-import com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper;
 import com.xiaocoder.android.fw.general.util.UtilInputMethod;
+import com.xiaocoder.android.fw.general.view.SwipeBackLayout;
 import com.xiaocoder.android_fw_general.R;
 
 import java.io.Serializable;
@@ -74,7 +72,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState != null) {
-            XCApplication.printi(this + "回收后重新创建");
+            XCApplication.printe(this, "回收后重新创建");
         }
 
         // 添加到stack
@@ -83,6 +81,8 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         base_inflater = LayoutInflater.from(this);
         base_fm = getSupportFragmentManager();
         isActivityDestroied = false;
+
+        slideDestroyActivity();
 
         // 找到页面的布局控件
         xc_id_model_layout = getViewById(R.id.xc_id_model_layout);
@@ -104,19 +104,21 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         showPage();
     }
 
+    /**
+     * 手势滑动退出activity的基类布局
+     * 想要实现向右滑动删除Activity，只需要继承该activity即可，
+     * 如果当前页面含有ViewPager需要调用SwipeBackLayout的setViewPager()方法即可
+     */
+    protected void slideDestroyActivity() {
+
+        ((SwipeBackLayout) LayoutInflater.from(this).inflate(R.layout.swipe_back_base, null)).attachToActivity(this);
+
+    }
+
     public abstract void initWidgets();
 
     public abstract void listeners();
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
 
     // 网络访问失败时, 调用该方法
     @Override
@@ -169,20 +171,20 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.base_slide_right_out);
+    }
+
     public boolean isActivityDestroied() {
         return isActivityDestroied;
     }
 
-    /*
-         * 获取XCApplication
-         */
     public XCApplication getXCApplication() {
         return (XCApplication) getApplication();
     }
 
-    /*
-     * 获取XCBaseActivity
-     */
     public XCBaseActivity getXCBaseActivity() {
         return (XCBaseActivity) this;
     }
@@ -351,7 +353,8 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
     private void activityAnimation() {
         int version = Integer.valueOf(android.os.Build.VERSION.SDK);
         if (version >= 5) {
-            overridePendingTransition(R.anim.xc_anim_right_in, R.anim.xc_anim_left_out);  //此为自定义的动画效果，下面两个为系统的动画效果
+            // overridePendingTransition(R.anim.xc_anim_right_in, R.anim.xc_anim_left_out);  //此为自定义的动画效果，下面两个为系统的动画效果
+            overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
             //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             //overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
         }
