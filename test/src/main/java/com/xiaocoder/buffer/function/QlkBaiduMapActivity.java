@@ -6,6 +6,8 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.buffer.QlkActivity;
 
@@ -80,6 +82,7 @@ public abstract class QlkBaiduMapActivity extends QlkActivity {
                 sb.append(location.getOperators());
             }
             address = location.getAddrStr();
+            XCApplication.printi(address);
             if (!UtilString.isBlank(address)) {
                 mLocationClient.stop();
                 if (addrListener != null) {
@@ -105,7 +108,7 @@ public abstract class QlkBaiduMapActivity extends QlkActivity {
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(tempMode);//设置定位模式
         option.setCoorType(tempcoor);//返回的定位结果是百度经纬度，默认值gcj02
-        int span = 2500;
+        int span = 1000;
         option.setScanSpan(span);//设置发起定位请求的间隔时间为5000ms
         option.setIsNeedAddress(true);
         mLocationClient.setLocOption(option);
