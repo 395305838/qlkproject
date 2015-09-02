@@ -400,6 +400,7 @@ public class XCIO {
      * @param file 在哪个文件路径下查找
      */
     public  void getVideoFile(final LinkedList<File> list, File file) {
+
         file.listFiles(new FileFilter() {
 
             @Override
