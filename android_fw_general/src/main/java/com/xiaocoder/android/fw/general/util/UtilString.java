@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.io.XCIO;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -168,31 +169,79 @@ public class UtilString {
         return http_url;
     }
 
+    /**
+     * 获取真实存在的文件的后缀名
+     *
+     * @param file
+     * @return
+     */
+    public static String getFileSuffix(File file) {
+        if (file != null && file.exists() && !file.isDirectory()) {
+            String filename = file.getName();
+            if (filename.lastIndexOf(".") < 0) {
+                return null;
+            }
+            return filename.substring(filename.lastIndexOf(".") + 1);
+        }
+        return null;
+    }
 
     /**
-     * 获取文件大小的 M/K/B表示方式
+     * 获取文件名(不包括后缀名)
+     *
+     * @param file
+     * @return
      */
-    public static String getFileSizeUnit(long contentLenght) {
-
-        DecimalFormat format = new DecimalFormat("###.00");
-        float result = 0.0f;
-        String resultText = "";
-        if (contentLenght > 1024 * 1024) {
-            // 1M
-            result = (float) (contentLenght / (1024 * 1024.00));
-            resultText = format.format(result) + "M";
-        } else if (contentLenght > 1024) {
-            // 1K
-            result = (float) (contentLenght / (1024.00));
-            resultText = format.format(result) + "K";
-        } else {
-            // 1B
-            result = (float) (contentLenght / (1.00));
-            resultText = format.format(result) + "B";
+    public static String getFileNameNoSuffix(File file) {
+        if (file != null && file.exists() && !file.isDirectory()) {
+            String filename = file.getName();
+            if (filename.lastIndexOf(".") < 0) {
+                return filename;
+            }
+            return filename.substring(0, filename.lastIndexOf("."));
         }
-        return resultText;
-
+        return null;
     }
+
+    /**
+     * 获取文件大小,单位字节
+     *
+     * @param filePath 传入文件的绝对路径
+     * @return
+     */
+    public static long getFileSize(String filePath) {
+        long size = 0;
+        File file = new File(filePath);
+        if (file.exists()) {
+            size = file.length();
+        }
+        return size;
+    }
+
+    /**
+     * 换算文件大小含单位
+     *
+     * @param size
+     * @return
+     */
+    public static String getFileSizeByUnit(long size) {
+        if (size <= 0) {
+            return "0";
+        }
+        DecimalFormat df = new DecimalFormat("#.00");
+        String fileSizeString = "未知大小";
+        if (size < 1024) {
+            fileSizeString = df.format((double) size) + "B";
+        } else if (size < 1048576) {
+            fileSizeString = df.format((double) size / 1024) + "K";
+        } else if (size < 1073741824) {
+            fileSizeString = df.format((double) size / 1048576) + "M";
+        } else {
+            fileSizeString = df.format((double) size / 1073741824) + "G";
+        }
+        return fileSizeString;
+    }
+
 
     /**
      * 获取两数相除的百分比
