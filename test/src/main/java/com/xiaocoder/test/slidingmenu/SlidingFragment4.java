@@ -8,11 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.xiaocoder.android.fw.general.base.XCBodyFragment;
+import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.test.R;
 
 
-public class SlidingFragment4 extends XCBodyFragment {
+public class SlidingFragment4 extends XCBaseFragment {
+
+    @Override
+    public boolean isBodyFragment() {
+        return true;
+    }
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

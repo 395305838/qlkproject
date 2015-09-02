@@ -270,11 +270,11 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         return fragment;
     }
 
-    // title和bottom fragment不隐藏
+    // title等别的fragment不隐藏
     public void hideBodyFragment() {
-        List<Fragment> fragments = base_fm.getFragments();
+        List<Fragment> fragments = (base_fm.getFragments());
         for (Fragment fragment : fragments) {
-            if (fragment instanceof XCBodyFragment) {
+            if (((XCBaseFragment) fragment).isBodyFragment()) {
                 hideFragment(fragment);
             }
         }

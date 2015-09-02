@@ -115,6 +115,15 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
         ft.commitAllowingStateLoss();
     }
 
+    /**
+     * 页面滑动切换的时候，用得到
+     *
+     * @return
+     */
+    public boolean isBodyFragment() {
+        return false;
+    }
+
     public void myFinish() {
         if (getActivity() != null) {
             getBaseActivity().myFinish();
