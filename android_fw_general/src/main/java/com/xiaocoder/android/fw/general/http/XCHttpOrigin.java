@@ -26,156 +26,135 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import com.xiaocoder.android.fw.general.io.XCIO;
 
-/*
- *  不用 ， 这是原始的http请求类 , 改为-->用XCHttpAsyn
- * 
- *  该类需要配合线程一起使用, 统一用线程池和handler通信 , 不用asyntask了
- *  
- *  该类含有 get和post方式的提交请求以及文件上传
- */
 @Deprecated
 public class XCHttpOrigin {
 
-	/**
-	 * 如果getResponseCode==HTTP_OK,则返回一个连接成功的HttpURLConnection对象
-	 * 该con可以直接获取如inputstream,contentLength等 如果getResponseCode!=HTTP_OK,则返回null
-	 * 注:该con只能获取一次inputstream,如果向获取多次,则要调用多次requestByGet方法
-	 */
-	public static HttpURLConnection requestByGet(String urlStr,
-			HashMap<String, Object> requestParams) throws Exception {
-		HttpURLConnection conn = null;
-		if (requestParams == null || requestParams.isEmpty()) {
-			conn = (HttpURLConnection) new URL(urlStr).openConnection();// 一定得先获取连接,再设置参数
-		} else {
-			// http://10.1.1.6:8080/web/123456
-			StringBuilder sb = new StringBuilder(urlStr);
-			sb.append("?");
-			for (Map.Entry<String, Object> entry : requestParams.entrySet()) {
-				String key = entry.getKey();
-				String value = entry.getValue().toString();
-				value = URLEncoder.encode(value, "UTF-8");
-				sb.append(key).append("=").append(value).append("&");
-			}
-			sb.deleteCharAt(sb.length() - 1);
-			conn = (HttpURLConnection) new URL(sb.toString()).openConnection();
-		}
-		conn.setRequestMethod("GET");
-		conn.setConnectTimeout(5000);
-		if (HttpURLConnection.HTTP_OK == conn.getResponseCode()) {
-			return conn;
-		}
-		return null;
-	}
+    /**
+     * 如果getResponseCode==HTTP_OK,则返回一个连接成功的HttpURLConnection对象
+     * 该con可以直接获取如inputstream,contentLength等 如果getResponseCode!=HTTP_OK,则返回null
+     * 注:该con只能获取一次inputstream,如果向获取多次,则要调用多次requestByGet方法
+     */
+    public static HttpURLConnection requestByGet(String urlStr,
+                                                 HashMap<String, Object> requestParams) throws Exception {
+        HttpURLConnection conn = null;
+        if (requestParams == null || requestParams.isEmpty()) {
+            conn = (HttpURLConnection) new URL(urlStr).openConnection();// 一定得先获取连接,再设置参数
+        } else {
+            StringBuilder sb = new StringBuilder(urlStr);
+            sb.append("?");
+            for (Map.Entry<String, Object> entry : requestParams.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue().toString();
+                value = URLEncoder.encode(value, "UTF-8");
+                sb.append(key).append("=").append(value).append("&");
+            }
+            sb.deleteCharAt(sb.length() - 1);
+            conn = (HttpURLConnection) new URL(sb.toString()).openConnection();
+        }
+        conn.setRequestMethod("GET");
+        conn.setConnectTimeout(10000);
+        if (HttpURLConnection.HTTP_OK == conn.getResponseCode()) {
+            return conn;
+        }
+        return null;
+    }
 
-	public static HttpURLConnection requestByPost(String urlStr,
-			HashMap<String, Object> requestParams) throws Exception {
-		// Content-Type: application/x-www-form-urlencoded
-		// Content-Length: 24
-		// account=android&pwd=1234
-		// http://10.1.1.6:8080/web/123456
-		HttpURLConnection conn = null;
-		if (requestParams != null && !requestParams.isEmpty()) {
-			StringBuilder content = new StringBuilder();
-			for (Map.Entry<String, Object> entry : requestParams.entrySet()) {
-				String key = entry.getKey();
-				String value = entry.getValue().toString();
-				value = URLEncoder.encode(value, "UTF-8");
-				content.append(key).append("=").append(value).append("&");
-			}
-			content.deleteCharAt(content.length() - 1);
-			conn = (HttpURLConnection) new URL(urlStr).openConnection();
-			conn.setRequestMethod("POST");
-			conn.setConnectTimeout(5000);
-			conn.setRequestProperty("Content-Type",
-					"application/x-www-form-urlencoded");
-			conn.setRequestProperty("Content-Length", content.toString()
-					.length() + "");
-			conn.setDoOutput(true);
-			OutputStream os = conn.getOutputStream();
-			os.write(content.toString().getBytes(), 0, content.toString()
-					.getBytes().length);
-			os.flush();
-			if (HttpURLConnection.HTTP_OK == conn.getResponseCode()) {
-				return conn;
-			}
-		} else {
-			conn = (HttpURLConnection) new URL(urlStr).openConnection();
-			conn.setRequestMethod("POST");
-			conn.setConnectTimeout(5000);
-			conn.setRequestProperty("Content-Type",
-					"application/x-www-form-urlencoded");
-			// conn.setRequestProperty("Content-Length",urlStr.length()+"");
-			conn.setRequestProperty("Content-Length", 0 + "");
-			conn.setDoOutput(true);// 允许对外输出
-			OutputStream os = conn.getOutputStream();
-			os.write(urlStr.getBytes(), 0, urlStr.getBytes().length);
-			os.flush();
-			if (HttpURLConnection.HTTP_OK == conn.getResponseCode()) {
-				return conn;
-			}
-		}
-		return null;
-	}
+    public static HttpURLConnection requestByPost(String urlStr,
+                                                  HashMap<String, Object> requestParams) throws Exception {
+        // Content-Type: application/x-www-form-urlencoded
+        // Content-Length: 24
+        // account=android&pwd=1234
+        HttpURLConnection conn = null;
+        if (requestParams != null && !requestParams.isEmpty()) {
+            StringBuilder content = new StringBuilder();
+            for (Map.Entry<String, Object> entry : requestParams.entrySet()) {
+                String key = entry.getKey();
+                String value = entry.getValue().toString();
+                value = URLEncoder.encode(value, "UTF-8");
+                content.append(key).append("=").append(value).append("&");
+            }
+            content.deleteCharAt(content.length() - 1);
+            conn = (HttpURLConnection) new URL(urlStr).openConnection();
+            conn.setRequestMethod("POST");
+            conn.setConnectTimeout(5000);
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setRequestProperty("Content-Length", content.toString().length() + "");
+            conn.setDoOutput(true);// 允许对外输出
+            OutputStream os = conn.getOutputStream();
+            os.write(content.toString().getBytes(), 0, content.toString().getBytes().length);
+            os.flush();
+            if (HttpURLConnection.HTTP_OK == conn.getResponseCode()) {
+                return conn;
+            }
+        } else {
+            conn = (HttpURLConnection) new URL(urlStr).openConnection();
+            conn.setRequestMethod("POST");
+            conn.setConnectTimeout(5000);
+            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            conn.setRequestProperty("Content-Length", 0 + "");
+            conn.setDoOutput(true);// 允许对外输出
+            OutputStream os = conn.getOutputStream();
+            os.write(urlStr.getBytes(), 0, urlStr.getBytes().length);
+            os.flush();
+            if (HttpURLConnection.HTTP_OK == conn.getResponseCode()) {
+                return conn;
+            }
+        }
+        return null;
+    }
 
-	public static InputStream httpClientByget(String url)
-			throws ClientProtocolException, IOException {
-		DefaultHttpClient client = new DefaultHttpClient(); // 相当于浏览器
-		HttpGet get = new HttpGet(url); // 指定请求方式
-		HttpResponse response = client.execute(get); // 发送请求
-		if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) { // 判断请求是否成功
-			InputStream in = response.getEntity().getContent();
-			return in;
-			// return new String(IOUtil.toBytesByInputStream(in), "UTF-8");
-		}
-		return null;
-	}
+    public static InputStream httpClientByGet(String url) throws ClientProtocolException, IOException {
+        DefaultHttpClient client = new DefaultHttpClient(); // 相当于浏览器
+        HttpGet get = new HttpGet(url); // 指定请求方式
+        HttpResponse response = client.execute(get); // 发送请求
+        if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) { // 判断请求是否成功
+            InputStream in = response.getEntity().getContent();
+            return in;
+        }
+        return null;
+    }
 
-	/**
-	 * 参数param: List<NameValuePair> param = new ArrayList<NameValuePair>();
-	 * <p/>
-	 * 构建请求体数据 param.add(new BasicNameValuePair("username", "123"));
-	 * <p/>
-	 * NameValuePair的接口,BasicNameValuePair是实现类 param.add(new
-	 * BasicNameValuePair("password", "123passwor"));
-	 */
-	public static InputStream httpClientByPost(String url,
-			List<NameValuePair> param) throws ClientProtocolException,
-			IOException {
-		DefaultHttpClient client = new DefaultHttpClient(); // 拿到浏览器
-		HttpPost post = new HttpPost(url); // 指定请求方式
-		// StringEntity entity = new StringEntity(xml, "<xml>");
-		UrlEncodedFormEntity form = new UrlEncodedFormEntity(param, "UTF-8"); // 构建请求体
-		post.setEntity(form);
-		HttpResponse response = client.execute(post);
-		if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-			InputStream in = response.getEntity().getContent();
-			return in;
-			// return new String(IOUtil.toBytesByInputStream(in), "UTF-8");
-		}
-		return null;
-	}
+    /**
+     * 参数param: List<NameValuePair> param = new ArrayList<NameValuePair>();
+     * <p/>
+     * 构建请求体数据 param.add(new BasicNameValuePair("username", "123"));
+     * <p/>
+     * NameValuePair的接口,BasicNameValuePair是实现类 param.add(new
+     * BasicNameValuePair("password", "123passwor"));
+     */
+    public static InputStream httpClientByPost(String url,
+                                               List<NameValuePair> param) throws ClientProtocolException, IOException {
+        DefaultHttpClient client = new DefaultHttpClient(); // 拿到浏览器
+        HttpPost post = new HttpPost(url); // 指定请求方式
+        // StringEntity entity = new StringEntity(xml, "<xml>");
+        UrlEncodedFormEntity form = new UrlEncodedFormEntity(param, "UTF-8"); // 构建请求体
+        post.setEntity(form);
+        HttpResponse response = client.execute(post);
+        if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+            InputStream in = response.getEntity().getContent();
+            return in;
+        }
+        return null;
+    }
 
-	public static String httpClientUpload(String url, String[] names, File file)
-			throws ClientProtocolException, IOException {
-		// android端也是用HttpClient来实现文件上传,HttpClient的版本必须在3.0以上
-		DefaultHttpClient client = new DefaultHttpClient();// 拿到浏览器
-		HttpPost post = new HttpPost(url); // 指定请求方式
-		MultipartEntity form = new MultipartEntity();// 生成表单
-		form.addPart("filename",
-				new StringBody(names[0], Charset.forName("UTF-8")));// 文件名
-		form.addPart("filedes",
-				new StringBody(names[1], Charset.forName("UTF-8"))); // 文件描述
-		// form.addPart("formfile",new FileBody(new
-		// File("data/data/"+getPackageName()+"/2013-02-07_0207.png")));
-		form.addPart("formfile", new FileBody(file)); // 文件
-		post.setEntity(form);
-		HttpResponse response = client.execute(post);
-		if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-			InputStream in = response.getEntity().getContent();
-			return new String(XCIO.toBytesByInputStream(in), "UTF-8");
-		}
-		return null;
-	}
+    public static String httpClientUpload(String url, String[] names, File file) throws ClientProtocolException, IOException {
+
+        // HttpClient的版本必须在3.0以上
+        DefaultHttpClient client = new DefaultHttpClient();// 拿到浏览器
+        HttpPost post = new HttpPost(url); // 指定请求方式
+        MultipartEntity form = new MultipartEntity();// 生成表单
+        form.addPart("filename", new StringBody(names[0], Charset.forName("UTF-8")));// 文件名
+        form.addPart("filedes", new StringBody(names[1], Charset.forName("UTF-8"))); // 文件描述
+        form.addPart("formfile", new FileBody(file)); // 文件
+        post.setEntity(form);
+        HttpResponse response = client.execute(post);
+        if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
+            InputStream in = response.getEntity().getContent();
+            return new String(XCIO.toBytesByInputStream(in), "UTF-8");
+        }
+        return null;
+
+    }
 }
 /*
  * //非第三方框架 做腾讯一键分享时的混合表单的例子
