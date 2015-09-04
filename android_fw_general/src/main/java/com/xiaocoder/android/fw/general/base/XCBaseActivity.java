@@ -174,6 +174,10 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        activityEndAnimation();
+    }
+
+    public void activityEndAnimation() {
         overridePendingTransition(0, R.anim.base_slide_right_out);
     }
 
@@ -186,7 +190,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
     }
 
     public XCBaseActivity getXCBaseActivity() {
-        return (XCBaseActivity) this;
+        return  this;
     }
 
     public void addFragment(int layout_id, Fragment fragment, String tag, boolean isToBackStack) {
@@ -350,7 +354,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
     }
 
 
-    private void activityAnimation() {
+    private void activityStartAnimation() {
         int version = Integer.valueOf(android.os.Build.VERSION.SDK);
         if (version >= 5) {
             // overridePendingTransition(R.anim.xc_anim_right_in, R.anim.xc_anim_left_out);  //此为自定义的动画效果，下面两个为系统的动画效果
@@ -435,7 +439,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         } else {
             startActivity(intent);
         }
-        activityAnimation();
+        activityStartAnimation();
     }
 
 }

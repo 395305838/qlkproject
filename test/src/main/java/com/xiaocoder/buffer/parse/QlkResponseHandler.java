@@ -13,12 +13,16 @@ import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.http.XCIHttpResult;
 import com.xiaocoder.android.fw.general.http.XCResponseHandler;
-import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
 import com.xiaocoder.buffer.function.QlkMainActivity;
 
 /**
  * Created by xiaocoder on 2015/8/28.
+ * <p/>
+ * 已有的两个实现类
+ * QlkResponseHandlerBean（jsonbean的解析）    QlkResponseHandlerModel（gson的解析）
+ * <p/>
+ * 也可以创建一个实现类，手动解析
  */
 public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
 
@@ -39,7 +43,7 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
 
         if (result_bean instanceof IQlkResponseInfo) {
 
-            if (!UtilString.isBlank(((IQlkResponseInfo) result_bean).getCode() + "")) {
+            if (((IQlkResponseInfo) result_bean).getCode() == 0) {
                 result_boolean = true;
             } else {
                 result_boolean = false;
@@ -86,6 +90,9 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
     }
 
 
+    /**
+     * 如果不同页面的dialog不同，可以重写该方法
+     */
     @Override
     public void closeHttpDialog() {
         if (httpDialog != null && httpDialog.isShowing()) {
@@ -96,6 +103,9 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
         }
     }
 
+    /**
+     * 如果不同页面的dialog不同，可以重写该方法
+     */
     @Override
     public void showHttpDialog() {
         if (httpDialog == null) {
