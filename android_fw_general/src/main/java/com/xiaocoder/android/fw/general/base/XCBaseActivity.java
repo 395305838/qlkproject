@@ -35,6 +35,8 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
     public FragmentManager base_fm;
 
+    public SwipeBackLayout back_layout;
+
     // 整个layout
     public RelativeLayout xc_id_model_layout;
     // title
@@ -111,7 +113,9 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
      */
     protected void slideDestroyActivity() {
 
-        ((SwipeBackLayout) LayoutInflater.from(this).inflate(R.layout.swipe_back_base, null)).attachToActivity(this);
+        back_layout = ((SwipeBackLayout) LayoutInflater.from(this).inflate(R.layout.swipe_back_base, null));
+
+        back_layout.attachToActivity(this);
 
     }
 
@@ -190,7 +194,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
     }
 
     public XCBaseActivity getXCBaseActivity() {
-        return  this;
+        return this;
     }
 
     public void addFragment(int layout_id, Fragment fragment, String tag, boolean isToBackStack) {
