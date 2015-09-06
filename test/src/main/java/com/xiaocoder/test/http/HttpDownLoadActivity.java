@@ -43,7 +43,7 @@ public class HttpDownLoadActivity extends QlkActivity {
                     @Override
                     public void success(int code, Header[] headers, byte[] arg2) {
                         super.success(code, headers, arg2);
-                        // 这里拿到的result_json_bean是一个XCJsonBean对象
+                        // 这里拿到的result_bean是一个XCJsonBean对象
                         if (result_boolean) {
 
                             dialog = new XCQueryDialog(HttpDownLoadActivity.this, XCBaseDialog.TRAN_STYLE, "下载提示", "该文件大小为" + UtilString.getFileSizeByUnit(arg2.length), new String[]{"下载", "取消"}, false);

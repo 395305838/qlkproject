@@ -12,8 +12,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
@@ -38,16 +38,16 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
     public SwipeBackLayout back_layout;
 
     // 整个layout
-    public RelativeLayout xc_id_model_layout;
+    public ViewGroup xc_id_model_layout;
     // title
-    public RelativeLayout xc_id_model_titlebar;
+    public ViewGroup xc_id_model_titlebar;
     // bottom
-    public RelativeLayout xc_id_model_bottombar;
+    public ViewGroup xc_id_model_bottombar;
     // content
-    public RelativeLayout xc_id_model_content;
+    public ViewGroup xc_id_model_content;
 
     // 无网络时显示的界面
-    public RelativeLayout xc_id_model_no_net;
+    public ViewGroup xc_id_model_no_net;
     public Button xc_id_no_net_button;
 
     private boolean isActivityDestroied;
