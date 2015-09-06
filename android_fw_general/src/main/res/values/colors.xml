@@ -13,6 +13,8 @@
     <color name="c_gray_999999">#999999</color>
     <color name="c_gray_f9f9f9">#f9f9f9</color>
     <color name="c_gray_f8f8f8">#f8f8f8</color>
+    <color name="c_gray_eeeeee">#eeeeee</color>
+
     <!-- bc202020==自定义的dialog用的背景 -->
     <color name="c_gray_bc202020">#bc202020</color>
     <color name="c_gray_e1e1e1">#e1e1e1</color>

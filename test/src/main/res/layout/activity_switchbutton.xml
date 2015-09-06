@@ -58,4 +58,13 @@
         slideswitch:shape="rect"
         slideswitch:themeColor="#f23331a0" />
 
+    <com.xiaocoder.android.fw.general.view.XCSwitchButton
+        android:id="@+id/swit6"
+        android:layout_width="57dip"
+        android:layout_height="35dip"
+        android:layout_marginTop="10dip"
+        slideswitch:isOpen="true"
+        slideswitch:shape="circle"
+         />
+
 </LinearLayout>

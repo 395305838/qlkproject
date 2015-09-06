@@ -28,7 +28,7 @@ public class XCSwitchButton extends View {
     public static final int SHAPE_RECT = 1;
     public static final int SHAPE_CIRCLE = 2;
     private static final int RIM_SIZE = 6;
-    private static final int DEFAULT_COLOR_THEME = Color.parseColor("#ff00ee00");
+    private static final int DEFAULT_COLOR_THEME = Color.parseColor("#ff4CDA64");
     // 3 attributes
     private int color_theme;
     private boolean isOpen;
@@ -132,7 +132,8 @@ public class XCSwitchButton extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         if (shape == SHAPE_RECT) {
-            paint.setColor(Color.GRAY);
+//            paint.setColor(Color.GRAY);
+            paint.setColor(0xffeeeeee);
             canvas.drawRect(backRect, paint);
             paint.setColor(color_theme);
             paint.setAlpha(alpha);
@@ -146,7 +147,8 @@ public class XCSwitchButton extends View {
             // draw circle
             int radius;
             radius = backRect.height() / 2 - RIM_SIZE;
-            paint.setColor(Color.GRAY);
+//            paint.setColor(Color.GRAY);
+            paint.setColor(0xffeeeeee);
             backCircleRect.set(backRect);
             canvas.drawRoundRect(backCircleRect, radius, radius, paint);
             paint.setColor(color_theme);
