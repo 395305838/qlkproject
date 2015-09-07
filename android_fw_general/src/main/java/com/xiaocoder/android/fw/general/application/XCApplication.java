@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Handler;
 import android.widget.ImageView;
 
@@ -12,11 +11,9 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
-import com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.io.XCLog;
 import com.xiaocoder.android.fw.general.io.XCSP;
-import com.xiaocoder.android.fw.general.util.UtilImage;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,11 +30,15 @@ public class XCApplication extends Application {
 
     protected static XCLog base_log;
     protected static XCSP base_sp;
-    protected static ImageLoader base_imageloader;
     protected static Handler base_handler;
     protected static ExecutorService base_cache_threadpool;
     protected static ExecutorService base_fix_threadpool;
     protected static XCIOAndroid base_io;
+
+    protected static ImageLoader base_imageloader;
+    protected static DisplayImageOptions display_image_options;
+
+    public static int THREAD_NUM = 50;
 
     public Stack<Activity> getStack() {
         return stack;
@@ -51,11 +52,11 @@ public class XCApplication extends Application {
 
         // 线程池
         base_cache_threadpool = XCExecutorHelper.getExecutorHelperInstance().getCache();
-        base_fix_threadpool = XCExecutorHelper.getExecutorHelperInstance().getFix(50);
+        base_fix_threadpool = XCExecutorHelper.getExecutorHelperInstance().getFix(THREAD_NUM);
         base_handler = new Handler();
         base_io = new XCIOAndroid(getApplicationContext());
 
-        // 涉及到路径的初始化，在子类中
+        // 涉及到路径的初始化 与  imageloader的初始化，在子类中
 
     }
 
@@ -193,12 +194,6 @@ public class XCApplication extends Application {
     public static XCSP getBase_sp() {
 
         return base_sp;
-
-    }
-
-    public static ImageLoader getBase_imageloader() {
-
-        return base_imageloader;
 
     }
 
@@ -372,7 +367,20 @@ public class XCApplication extends Application {
 
     public static void displayImage(String uri, ImageView imageView) {
 
-        displayImage(uri, imageView, XCImageLoaderHelper.getDisplayImageOptions());
+        displayImage(uri, imageView, XCApplication.getDisplay_image_options());
+
+    }
+
+
+    public static DisplayImageOptions getDisplay_image_options() {
+
+        return display_image_options;
+
+    }
+
+    public static ImageLoader getBase_imageloader() {
+
+        return base_imageloader;
 
     }
 

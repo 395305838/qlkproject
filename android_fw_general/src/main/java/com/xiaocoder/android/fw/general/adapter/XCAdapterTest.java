@@ -11,8 +11,7 @@ import android.widget.TextView;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 
 /**
- * 测试用的 , 直接创建一个listview , 然后 listview.setAdapter(new XCAdapterText(context
- * ,null);
+ * 测试用的 , 直接创建一个listview , 然后 listview.setAdapter(new XCAdapterText(context,null);
  * 
  * @author xiaocoder
  */

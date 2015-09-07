@@ -5,7 +5,6 @@ package com.xiaocoder.android.fw.general.adapter;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
@@ -13,8 +12,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
-import com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper;
-import com.xiaocoder.android.fw.general.listener.XCScrollListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,24 +24,11 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
     public DisplayImageOptions options;
     public T bean;
 
-    /**
-     * @param context
-     * @param list
-     * @param imageloader 如果传null 则用默认的imageloader， 该默认的为universal imageloader框架
-     */
-    public XCBaseAdapter(Context context, List<T> list, ImageLoader imageloader) {
+    public XCBaseAdapter(Context context, List<T> list) {
         this.list = list;
         this.context = context;
-        this.options = XCImageLoaderHelper.getDisplayImageOptions();
-        if (imageloader == null) {
-            this.imageloader = XCApplication.getBase_imageloader();
-        } else {
-            this.imageloader = imageloader;
-        }
-    }
-
-    public XCBaseAdapter(Context context, List<T> list) {
-        this(context, list, null);
+        this.options = XCApplication.getDisplay_image_options();
+        this.imageloader = XCApplication.getBase_imageloader();
     }
 
     public List<T> getList() {

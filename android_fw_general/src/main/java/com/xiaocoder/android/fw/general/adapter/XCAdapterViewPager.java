@@ -8,7 +8,7 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
-/*
+/**
  * 不会回收的viewpager
  */
 public class XCAdapterViewPager extends PagerAdapter {

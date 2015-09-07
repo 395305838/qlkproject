@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.View;
 
-/*
+/**
  * 不会回收的viewpagerfragment
  */
 public class XCAdapterViewPagerFragment extends FragmentPagerAdapter {

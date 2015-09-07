@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-/*
+/**
  * 会回收的viewpager
  */
 public class XCAdapterViewPagerRecyle extends PagerAdapter {

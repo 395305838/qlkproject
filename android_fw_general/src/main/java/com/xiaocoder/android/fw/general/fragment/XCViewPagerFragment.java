@@ -19,8 +19,6 @@ import com.xiaocoder.android_fw_general.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper.getDisplayImageOptions;
-
 /**
  * @author xiaocoder
  * @Description: 封装可以自动滑动的viewpager, 该viewpager加入了线程打断功能, 即当切换到一张图片时,

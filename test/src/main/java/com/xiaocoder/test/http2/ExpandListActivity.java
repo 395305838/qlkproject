@@ -116,7 +116,7 @@ public class ExpandListActivity extends QlkActivity {
         listChild.add(list5);
         listChild.add(list6);
 
-        adapter = new MyAdapter(this, listChild, listParaent, null);
+        adapter = new MyAdapter(this, listChild, listParaent);
         test_expandablelistview.setAdapter(adapter);
 
         allExpand(test_expandablelistview);
@@ -238,11 +238,6 @@ public class ExpandListActivity extends QlkActivity {
                 record_last_letter = letter;
             }
             return sava_letter_position_map;
-        }
-
-        public MyAdapter(Context context, List listChild, List listParaent, ImageLoader imageloader) {
-            super(context, listChild, listParaent, imageloader);
-            update(listChild, listParaent);
         }
 
         public MyAdapter(Context context, List listChild, List listParaent) {

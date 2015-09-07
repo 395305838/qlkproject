@@ -12,7 +12,6 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
-import com.xiaocoder.android.fw.general.imageloader.XCImageLoaderHelper;
 
 import java.util.List;
 
@@ -29,25 +28,14 @@ public abstract class XLBaseAdapterExpand<E, T> extends BaseExpandableListAdapte
     public ImageLoader imageloader;
     public DisplayImageOptions options;
 
-    /**
-     * @param imageloader 如果传null 则用默认的imageloader， 该默认的为universal imageloader框架
-     */
-    public XLBaseAdapterExpand(Context context, List<List<T>> listChild, List<E> listParaent, ImageLoader imageloader) {
+
+    public XLBaseAdapterExpand(Context context, List<List<T>> listChild, List<E> listParaent) {
         this.listChild = listChild;
         this.listParaent = listParaent;
         this.context = context;
-        this.options = XCImageLoaderHelper.getDisplayImageOptions();
-        if (imageloader == null) {
-            this.imageloader = XCApplication.getBase_imageloader();
-        } else {
-            this.imageloader = imageloader;
-        }
+        this.options = XCApplication.getDisplay_image_options();
+        this.imageloader = XCApplication.getBase_imageloader();
     }
-
-    public XLBaseAdapterExpand(Context context, List<List<T>> listChild, List<E> listParaent) {
-        this(context, listChild, listParaent, null);
-    }
-
 
     public void update(List<List<T>> listChild, List<E> listParaent) {
         this.listChild = listChild;
