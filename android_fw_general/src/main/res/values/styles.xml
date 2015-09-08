@@ -6,7 +6,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="XCTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="XCTheme" parent="android:Theme.Holo.Light">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>

@@ -24,12 +24,15 @@ import com.xiaocoder.android_fw_general.R;
 
 
 public class XCWebViewFragment extends XCBaseFragment {
+
     WebView qlk_id_webview;
     String url;
     int progressBarVisible = View.VISIBLE;
     ProgressBar progressBar;
     int scrollMode = -10000;
     String params;
+
+    int backGroundColor = 0xffffffff;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,6 +47,14 @@ public class XCWebViewFragment extends XCBaseFragment {
         this.scrollMode = scrollMode;
     }
 
+    public void setBackGroundColor(int backGroundColor) {
+        this.backGroundColor = backGroundColor;
+    }
+
+    public void setProgressBarVisible(int visible) {
+        this.progressBarVisible = visible;
+    }
+
     @Override
     public void onClick(View v) {
     }
@@ -52,7 +63,7 @@ public class XCWebViewFragment extends XCBaseFragment {
     @Override
     public void initWidgets() {
         qlk_id_webview = getViewById(R.id.xc_id_fragment_webview);
-        if(scrollMode != -10000){
+        if (scrollMode != -10000) {
             qlk_id_webview.setOverScrollMode(scrollMode);
         }
 
@@ -62,15 +73,9 @@ public class XCWebViewFragment extends XCBaseFragment {
         WebSettings wSettings = qlk_id_webview.getSettings();
         wSettings.setJavaScriptEnabled(true);
         wSettings.setBuiltInZoomControls(true);
-//		wSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        // wSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         qlk_id_webview.loadUrl(url);
-        qlk_id_webview.setBackgroundColor(0);
-
-    }
-
-    public void setProgressBarVisible(int visible){
-
-        this.progressBarVisible = visible;
+        qlk_id_webview.setBackgroundColor(backGroundColor); // 0为透明
 
     }
 
@@ -80,13 +85,13 @@ public class XCWebViewFragment extends XCBaseFragment {
         qlk_id_webview.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if(url.startsWith("tel:")){
+                if (url.startsWith("tel:")) {
                     //电话
                     Uri uri = Uri.parse(url);
                     Intent intent = new Intent(Intent.ACTION_DIAL);
                     intent.setData(uri);
                     startActivity(intent);
-                }else{
+                } else {
                     // 在当前的webview中跳转到新的url
                     view.loadUrl(url);
                 }
@@ -109,13 +114,12 @@ public class XCWebViewFragment extends XCBaseFragment {
 //                String params= "['1/6','2/6','3/6','4/6','5/6','6/6','7/6'],[],[56, 262, 363, 428, 580, 700, 1500],[50, 350, 468, 552, 670, 899, 1000],180,35,30";
 //                String params= "['07/01','06/30','06/29','06/28','06/27','06/26','06/25'],[],[100,100,100,100,100,100,100],[200,200,200,200,200,200,200],180,35,30";
 
-                if(!TextUtils.isEmpty(params)){
+                if (!TextUtils.isEmpty(params)) {
                     view.loadUrl("javascript:drawChart(" + params + ")");
                 }
-
-
             }
         });
+
         qlk_id_webview.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
@@ -136,9 +140,10 @@ public class XCWebViewFragment extends XCBaseFragment {
 
     }
 
-    public void loadJS(String params){
-//                  view.loadUrl("javascript:drawChart(" + params + ")");
+    public void loadJS(String params) {
+
         qlk_id_webview.loadUrl("javascript:drawChart(" + params + ")");
         this.params = params;
+
     }
 }
