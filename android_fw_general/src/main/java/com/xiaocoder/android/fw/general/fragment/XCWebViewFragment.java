@@ -3,7 +3,9 @@
  */
 package com.xiaocoder.android.fw.general.fragment;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -62,12 +64,13 @@ public class XCWebViewFragment extends XCBaseFragment {
         wSettings.setBuiltInZoomControls(true);
 //		wSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
         qlk_id_webview.loadUrl(url);
+        qlk_id_webview.setBackgroundColor(0);
 
     }
 
     public void setProgressBarVisible(int visible){
 
-          this.progressBarVisible = visible;
+        this.progressBarVisible = visible;
 
     }
 
@@ -77,10 +80,16 @@ public class XCWebViewFragment extends XCBaseFragment {
         qlk_id_webview.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
-
+                if(url.startsWith("tel:")){
+                    //电话
+                    Uri uri = Uri.parse(url);
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(uri);
+                    startActivity(intent);
+                }else{
                     // 在当前的webview中跳转到新的url
                     view.loadUrl(url);
+                }
 
                 // 如果不需要其他对点击链接事件的处理返回true，否则返回false
                 return true;
@@ -132,6 +141,4 @@ public class XCWebViewFragment extends XCBaseFragment {
         qlk_id_webview.loadUrl("javascript:drawChart(" + params + ")");
         this.params = params;
     }
-
-
 }

@@ -67,6 +67,30 @@ public class QlkApplication extends XCApplication {
 
     }
 
+    /**
+     * 各个初始化的顺序不要去改变
+     */
+    private void initPath() {
+
+        // log , 可以打印日志 与 toast
+        base_log = new XCLog(getApplicationContext(),
+                QlkConfig.IS_DTOAST, QlkConfig.IS_OUTPUT, QlkConfig.IS_PRINTLOG,
+                QlkConfig.APP_ROOT, QlkConfig.LOG_FILE, QlkConfig.TEMP_PRINT_FILE, XCConfig.ENCODING_UTF8);
+
+        // sp保存路径
+        base_sp = new XCSP(getApplicationContext(), QlkConfig.SP_SETTING, Context.MODE_APPEND);// Context.MODE_MULTI_PROCESS
+
+        // 图片视频等保存的路径
+        base_io.createDirInAndroid(QlkConfig.CHAT_MOIVE_FILE);
+        base_io.createDirInAndroid(QlkConfig.CHAT_VIDEO_FILE);
+        base_io.createDirInAndroid(QlkConfig.CHAT_PHOTO_FILE);
+        base_io.createDirInAndroid(QlkConfig.CRASH_FILE);
+
+        // 是否开启异常日志捕获，以及异常日志的存储路径等
+        XLCrashHandler.getInstance().init(QlkConfig.IS_INIT_CRASH_HANDLER,
+                getApplicationContext(), QlkConfig.CRASH_FILE, QlkConfig.IS_SHOW_EXCEPTION_ACTIVITY);
+    }
+
     private void simpleDeviceInfo() {
         printi(UtilSystem.getDeviceId(getApplicationContext()) + "--deviceId , "
                 + UtilSystem.getVersionCode(getApplicationContext())
@@ -126,27 +150,4 @@ public class QlkApplication extends XCApplication {
 
     }
 
-    /**
-     * 各个初始化的顺序不要去改变
-     */
-    private void initPath() {
-
-        // log , 可以打印日志 与 toast
-        base_log = new XCLog(getApplicationContext(),
-                QlkConfig.IS_DTOAST, QlkConfig.IS_OUTPUT, QlkConfig.IS_PRINTLOG,
-                QlkConfig.APP_ROOT, QlkConfig.LOG_FILE, QlkConfig.TEMP_PRINT_FILE, XCConfig.ENCODING_UTF8);
-
-        // sp保存路径
-        base_sp = new XCSP(getApplicationContext(), QlkConfig.SP_SETTING, Context.MODE_APPEND);// Context.MODE_MULTI_PROCESS
-
-        // 图片视频等保存的路径
-        base_io.createDirInAndroid(QlkConfig.CHAT_MOIVE_FILE);
-        base_io.createDirInAndroid(QlkConfig.CHAT_VIDEO_FILE);
-        base_io.createDirInAndroid(QlkConfig.CHAT_PHOTO_FILE);
-        base_io.createDirInAndroid(QlkConfig.CRASH_FILE);
-
-        // 是否开启异常日志捕获，以及异常日志的存储路径等
-        XLCrashHandler.getInstance().init(QlkConfig.IS_INIT_CRASH_HANDLER,
-                getApplicationContext(), QlkConfig.CRASH_FILE, QlkConfig.IS_SHOW_EXCEPTION_ACTIVITY);
-    }
 }

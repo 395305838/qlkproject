@@ -20,12 +20,12 @@ public class QlkConfig {
     }
 
     /**
-     * 当前的运行环境 , 上线前，改为ONLINE
+     * 当前的运行环境，即域名的控制, 上线前，改为ONLINE
      */
     public static RunEnvironment CURRENT_RUN_ENVIRONMENT = RunEnvironment.ONLINE;
 
     /**
-     * 是否打开调试开关 , 上线前，改为CLOSE
+     * 是否打开调试日志开关 , 上线前，改为CLOSE
      */
     public static DebugControl DEBUG_CONTROL = DebugControl.OPEN_DEFINE;
 
