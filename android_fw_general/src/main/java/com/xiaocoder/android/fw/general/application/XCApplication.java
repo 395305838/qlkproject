@@ -221,6 +221,18 @@ public class XCApplication extends Application {
 
     }
 
+    public static DisplayImageOptions getDisplay_image_options() {
+
+        return display_image_options;
+
+    }
+
+    public static ImageLoader getBase_imageloader() {
+
+        return base_imageloader;
+
+    }
+
     public static void printi(String msg) {
 
         base_log.i(msg);
@@ -367,20 +379,7 @@ public class XCApplication extends Application {
 
     public static void displayImage(String uri, ImageView imageView) {
 
-        displayImage(uri, imageView, XCApplication.getDisplay_image_options());
-
-    }
-
-
-    public static DisplayImageOptions getDisplay_image_options() {
-
-        return display_image_options;
-
-    }
-
-    public static ImageLoader getBase_imageloader() {
-
-        return base_imageloader;
+        displayImage(uri, imageView, getDisplay_image_options());
 
     }
 

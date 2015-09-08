@@ -69,7 +69,7 @@ public class ContactsActivity extends QlkActivity {
 
             // 获取和设置控件的显示值
             holder.textview.setText(bean.name + "--" + bean.email + "--" + bean.phone_number);
-            displayImage("http://www.baidu.com/img/bdlogo.png", holder.imageview);
+            XCApplication.displayImage("http://www.baidu.com/img/bdlogo.png", holder.imageview);
 
             return convertView;
 

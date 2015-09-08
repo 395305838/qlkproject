@@ -20,15 +20,11 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
 
     public List<T> list;
     public Context context;
-    public ImageLoader imageloader;
-    public DisplayImageOptions options;
     public T bean;
 
     public XCBaseAdapter(Context context, List<T> list) {
         this.list = list;
         this.context = context;
-        this.options = XCApplication.getDisplay_image_options();
-        this.imageloader = XCApplication.getBase_imageloader();
     }
 
     public List<T> getList() {
@@ -95,14 +91,6 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
         if (context != null) {
             ((XCBaseActivity) context).setViewVisible(isVisible, view);
         }
-    }
-
-    public void displayImage(String uri, ImageView imageView, DisplayImageOptions options) {
-        imageloader.displayImage(uri, imageView, options);
-    }
-
-    public void displayImage(String uri, ImageView imageView) {
-        imageloader.displayImage(uri, imageView, options);
     }
 
 }

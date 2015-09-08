@@ -25,16 +25,12 @@ public abstract class XLBaseAdapterExpand<E, T> extends BaseExpandableListAdapte
      */
     public List<E> listParaent;
     public Context context;
-    public ImageLoader imageloader;
-    public DisplayImageOptions options;
 
 
     public XLBaseAdapterExpand(Context context, List<List<T>> listChild, List<E> listParaent) {
         this.listChild = listChild;
         this.listParaent = listParaent;
         this.context = context;
-        this.options = XCApplication.getDisplay_image_options();
-        this.imageloader = XCApplication.getBase_imageloader();
     }
 
     public void update(List<List<T>> listChild, List<E> listParaent) {
@@ -117,14 +113,6 @@ public abstract class XLBaseAdapterExpand<E, T> extends BaseExpandableListAdapte
         if (context != null) {
             ((XCBaseActivity) context).setViewVisible(isVisible, view);
         }
-    }
-
-    public void displayImage(String uri, ImageView imageView, DisplayImageOptions options) {
-        imageloader.displayImage(uri, imageView, options);
-    }
-
-    public void displayImage(String uri, ImageView imageView) {
-        imageloader.displayImage(uri, imageView);
     }
 
 }

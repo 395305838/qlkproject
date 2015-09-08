@@ -585,7 +585,7 @@ public class XCBottomChatFragment2 extends XCBaseFragment {
             }
 
             holder.xc_jzh_face_item_imageview.setTag(bean);
-            imageloader.displayImage(bean, holder.xc_jzh_face_item_imageview, options);
+            XCApplication.displayImage(bean, holder.xc_jzh_face_item_imageview);
             return convertView;
         }
 
