@@ -45,9 +45,9 @@ public class QlkApplication extends XCApplication {
 
                 .bitmapConfig(Bitmap.Config.RGB_565)// 设置图片的解码类型//
 
-                // .displayer(new FadeInBitmapDisplayer(0))// 是否图片加载好后渐入的动画时间
+                        // .displayer(new FadeInBitmapDisplayer(0))// 是否图片加载好后渐入的动画时间
                 .displayer(new SimpleBitmapDisplayer())
-                // .displayer(new RoundedBitmapDisplayer(20))
+                        // .displayer(new RoundedBitmapDisplayer(50)) // 圆形图片 ， 这个不要与XCRoundImageView同时使用，选一个即可
 
                 .build();// 构建完成
 

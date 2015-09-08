@@ -39,10 +39,10 @@ public class ViewPagerActivity extends QlkActivity {
         fragment = new XCViewPagerFragment();
         fragment.setAllowAutoSlide(true, 4000); // 设置是否可以自动滑动, 以及设置滑动的间隔时间
         ArrayList<String> list = new ArrayList<String>();
-        list.add("http://1");
-        list.add("http://2");
-        list.add("http://3");
-        list.add("http://4");
+        list.add("http://www.baidu.com/img/bdlogo.png");
+        list.add("http://www.baidu.com/img/bdlogo.png");
+        list.add("http://www.baidu.com/img/bdlogo.png");
+        list.add("http://www.baidu.com/img/bdlogo.png");
         fragment.setData(list); // 设置数据 , 会根据list的size , 动态创建 滚动的点
         addFragment(R.id.test_viewpager_fragment, fragment, fragment.getClass().getSimpleName());
 
@@ -57,6 +57,7 @@ public class ViewPagerActivity extends QlkActivity {
                 // 这里用本地的图片模拟 ,
                 // ------------->补充这里即可--------->用你的图片加载方式加载--->url为图片的链接
                 //imageview.setImageResource(R.drawable.ic_launcher);
+                XCApplication.printi(url);
                 XCApplication.displayImage(url, imageview);
             }
         });

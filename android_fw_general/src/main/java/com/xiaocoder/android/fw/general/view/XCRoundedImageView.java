@@ -29,7 +29,7 @@ import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android_fw_general.R;
 
 /**
- * 圆形图片
+ * 圆形图片  注：不要与 imageloader里面的option设置中的RoundBitmap一起使用
  *
  xmlns:app="http://schemas.android.com/apk/res-auto"
  android:id="@+id/image"
