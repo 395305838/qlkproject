@@ -11,7 +11,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
-import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.nostra13.universalimageloader.core.display.SimpleBitmapDisplayer;
 import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.application.XCConfig;
@@ -45,7 +45,9 @@ public class QlkApplication extends XCApplication {
 
                 .bitmapConfig(Bitmap.Config.RGB_565)// 设置图片的解码类型//
 
-                .displayer(new FadeInBitmapDisplayer(0))// 是否图片加载好后渐入的动画时间
+                // .displayer(new FadeInBitmapDisplayer(0))// 是否图片加载好后渐入的动画时间
+                .displayer(new SimpleBitmapDisplayer())
+                // .displayer(new RoundedBitmapDisplayer(20))
 
                 .build();// 构建完成
 

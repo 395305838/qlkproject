@@ -5,7 +5,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.xiaocoder.android.fw.general.view.LineProgressBar;
+import com.xiaocoder.android.fw.general.view.XCLineProgressBar;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
 
@@ -15,18 +15,18 @@ import java.util.TimerTask;
 /**
  * Created by xiaocoder on 2015/8/18.
  */
-public class LineProgressBarActivity extends QlkActivity implements LineProgressBar.OnProgressBarListener {
+public class LineProgressBarActivity extends QlkActivity implements XCLineProgressBar.OnProgressBarListener {
 
     private Timer timer;
 
-    private LineProgressBar bnp;
+    private XCLineProgressBar bnp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_line_progressbar);
         super.onCreate(savedInstanceState);
 
-        bnp = (LineProgressBar) findViewById(R.id.numberbar1);
+        bnp = (XCLineProgressBar) findViewById(R.id.numberbar1);
         bnp.setOnProgressBarListener(this);
         timer = new Timer();
         timer.schedule(new TimerTask() {

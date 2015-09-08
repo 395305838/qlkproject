@@ -25,8 +25,8 @@ import com.xiaocoder.android_fw_general.R;
 /**
  * 向右滑动删除activity
  */
-public class SwipeBackLayout extends FrameLayout {
-    private static final String TAG = SwipeBackLayout.class.getSimpleName();
+public class XCSwipeBackLayout extends FrameLayout {
+    private static final String TAG = XCSwipeBackLayout.class.getSimpleName();
     private View mContentView;
     private int mTouchSlop;
     private int downX;
@@ -40,11 +40,11 @@ public class SwipeBackLayout extends FrameLayout {
     private Activity mActivity;
     private List<ViewPager> mViewPagers = new LinkedList<ViewPager>();
 
-    public SwipeBackLayout(Context context, AttributeSet attrs) {
+    public XCSwipeBackLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SwipeBackLayout(Context context, AttributeSet attrs, int defStyle) {
+    public XCSwipeBackLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();

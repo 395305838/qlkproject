@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/xc_id_model_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- title -->
+    <RelativeLayout
+        android:id="@+id/xc_id_model_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/c_red_ff0000"
+        android:visibility="gone"
+        android:orientation="vertical" />
+
+    <!-- 内容 -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:background="@color/c_red_ff0000"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <com.xiaocoder.android.fw.general.view.XCRoundedImageView
+            android:id="@+id/image"
+            android:src="@drawable/ic_launcher"
+            android:layout_centerInParent="true"
+            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            app:sriv_left_top_corner_radius="0dip"
+            app:sriv_right_top_corner_radius="20dip"
+            app:sriv_left_bottom_corner_radius="50dip"
+            app:sriv_right_bottom_corner_radius="100dip"
+            app:sriv_border_width="2dip"
+            app:sriv_border_color="#008fea" />
+
+        <com.xiaocoder.android.fw.general.view.XCRoundedImageView
+            android:id="@+id/image2"
+            android:layout_below="@+id/image"
+            android:src="@drawable/ic_launcher"
+            android:scaleType="centerCrop"
+            android:layout_centerInParent="true"
+            android:layout_height="60dp"
+            android:layout_width="60dp"
+            app:sriv_left_top_corner_radius="20dp"
+            app:sriv_right_top_corner_radius="20dp"
+            app:sriv_left_bottom_corner_radius="20dp"
+            app:sriv_right_bottom_corner_radius="20dp"
+            app:sriv_border_width="1dip"
+            app:sriv_border_color="#008fea"
+            app:sriv_oval="true" />
+
+        <com.xiaocoder.android.fw.general.view.XCRoundedImageView
+            android:id="@+id/image3"
+            android:layout_below="@+id/image2"
+            android:scaleType="centerCrop"
+            android:layout_height="70dp"
+            android:layout_width="70dp"
+            app:sriv_border_width="1dip"
+            app:sriv_border_color="#008fea"
+            app:sriv_oval="true" />
+
+    </RelativeLayout>
+
+    <!-- 无网络的背景 -->
+
+    <include
+        layout="@layout/xc_l_view_no_net"
+        android:id="@+id/xc_id_model_no_net"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:visibility="invisible" />
+
+</RelativeLayout>
+

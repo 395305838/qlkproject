@@ -4,26 +4,26 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.view.CircleProgressBar;
+import com.xiaocoder.android.fw.general.view.XCCircleProgressBar;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
 
 public class CircleProgressBarActivity extends QlkActivity {
 
     int progress = 0;
-    CircleProgressBar progress1;
-    CircleProgressBar progress2;
-    CircleProgressBar progressWithArrow;
-    CircleProgressBar progressWithoutBg;
+    XCCircleProgressBar progress1;
+    XCCircleProgressBar progress2;
+    XCCircleProgressBar progressWithArrow;
+    XCCircleProgressBar progressWithoutBg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_circle_progress);
         super.onCreate(savedInstanceState);
-        progress1 = (CircleProgressBar) findViewById(R.id.progress1);
-        progress2 = (CircleProgressBar) findViewById(R.id.progress2);
-        progressWithArrow = (CircleProgressBar) findViewById(R.id.progressWithArrow);
-        progressWithoutBg = (CircleProgressBar) findViewById(R.id.progressWithoutBg);
+        progress1 = (XCCircleProgressBar) findViewById(R.id.progress1);
+        progress2 = (XCCircleProgressBar) findViewById(R.id.progress2);
+        progressWithArrow = (XCCircleProgressBar) findViewById(R.id.progressWithArrow);
+        progressWithoutBg = (XCCircleProgressBar) findViewById(R.id.progressWithoutBg);
 
 
 //        progress1.setColorSchemeResources(android.R.color.holo_blue_bright);

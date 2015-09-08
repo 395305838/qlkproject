@@ -29,16 +29,17 @@ import com.xiaocoder.test.fragment.WebActivity;
 import com.xiaocoder.test.http.HttpActivity;
 import com.xiaocoder.test.http.HttpDownLoadActivity;
 import com.xiaocoder.test.http2.ExpandListActivity;
-import com.xiaocoder.test.line_point.LinePointActivityGC;
 import com.xiaocoder.test.http2.GridActivity;
 import com.xiaocoder.test.http2.ListActivity;
+import com.xiaocoder.test.line_point.LinePointActivityGC;
 import com.xiaocoder.test.pop.PopActivity;
 import com.xiaocoder.test.scan.CodeActivity;
 import com.xiaocoder.test.scan.ScanActivity;
 import com.xiaocoder.test.slidingmenu.SlidingMenuActivity;
 import com.xiaocoder.test.slidingmenu.SlidingMenuActivity2;
-import com.xiaocoder.test.view.SwitchButtonActivity;
+import com.xiaocoder.test.view.RoundImageViewActivity;
 import com.xiaocoder.test.view.ScrollActivity;
+import com.xiaocoder.test.view.SwitchButtonActivity;
 import com.xiaocoder.test.viewpagerindicator.ListSamples;
 
 
@@ -76,6 +77,7 @@ public class MainActivity extends QlkMainActivity {
     Button test_circleprogress;
     Button test_numberprogress;
     Button test_expandablelistview;
+    Button test_round_imageview;
 
 
     @Override
@@ -139,6 +141,8 @@ public class MainActivity extends QlkMainActivity {
         XCApplication.printi(XCConfig.TAG_TEMP, QlkConfig.DEBUG_CONTROL.toString() + "-----调试");
 
         test_dialog3 = getViewById(R.id.test_dialog3);
+
+        test_round_imageview = getViewById(R.id.test_round_imageview);
 
         test_expandablelistview = getViewById(R.id.test_expandablelistview);
 
@@ -233,6 +237,7 @@ public class MainActivity extends QlkMainActivity {
         test_anim.setOnClickListener(this);
         xc_id_anim.setOnClickListener(this);
         test_expandablelistview.setOnClickListener(this);
+        test_round_imageview.setOnClickListener(this);
 
     }
 
@@ -327,6 +332,8 @@ public class MainActivity extends QlkMainActivity {
             myStartActivity(LineProgressBarActivity.class);
         } else if (id == R.id.test_expandablelistview) {
             myStartActivity(ExpandListActivity.class);
+        } else if(id == R.id.test_round_imageview){
+            myStartActivity(RoundImageViewActivity.class);
         }
 
     }

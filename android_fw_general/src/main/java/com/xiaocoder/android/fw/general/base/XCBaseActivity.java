@@ -19,7 +19,7 @@ import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.http.XCIHttpResult;
 import com.xiaocoder.android.fw.general.util.UtilInputMethod;
-import com.xiaocoder.android.fw.general.view.SwipeBackLayout;
+import com.xiaocoder.android.fw.general.view.XCSwipeBackLayout;
 import com.xiaocoder.android_fw_general.R;
 
 import java.io.Serializable;
@@ -35,7 +35,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
     public FragmentManager base_fm;
 
-    public SwipeBackLayout back_layout;
+    public XCSwipeBackLayout back_layout;
 
     // 整个layout
     public ViewGroup xc_id_model_layout;
@@ -113,7 +113,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
      */
     protected void slideDestroyActivity() {
 
-        back_layout = ((SwipeBackLayout) LayoutInflater.from(this).inflate(R.layout.swipe_back_base, null));
+        back_layout = ((XCSwipeBackLayout) LayoutInflater.from(this).inflate(R.layout.swipe_back_base, null));
 
         back_layout.attachToActivity(this);
 

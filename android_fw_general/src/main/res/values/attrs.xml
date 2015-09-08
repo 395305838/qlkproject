@@ -17,7 +17,7 @@
     </declare-styleable>
 
     <!-- 有百分比的圆圈progressdialog -->
-    <declare-styleable name="CircleProgressBar">
+    <declare-styleable name="XCCircleProgressBar">
         <attr name="mlpb_inner_radius" format="dimension" />
         <attr name="mlpb_background_color" format="color" />
         <attr name="mlpb_progress_color" format="color" />
@@ -42,7 +42,7 @@
     </declare-styleable>
 
     <!-- 有百分比的直线progressdialog -->
-    <declare-styleable name="LineProgressBar">
+    <declare-styleable name="XCLineProgressBar">
         <attr name="progress_current" format="integer" />
         <attr name="progress_max" format="integer" />
 
@@ -65,6 +65,18 @@
 
     <declare-styleable name="Themes">
         <attr name="numberProgressBarStyle" format="reference" />
+    </declare-styleable>
+
+    <!-- 圆形图片 -->
+    <declare-styleable name="XCRoundedImageView">
+        <attr name="sriv_left_top_corner_radius" format="dimension" />
+        <attr name="sriv_right_top_corner_radius" format="dimension" />
+        <attr name="sriv_left_bottom_corner_radius" format="dimension" />
+        <attr name="sriv_right_bottom_corner_radius" format="dimension" />
+        <attr name="sriv_border_width" format="dimension" />
+        <attr name="sriv_border_color" format="color" />
+        <attr name="sriv_oval" format="boolean" />
+        <attr name="android:scaleType" />
     </declare-styleable>
 
 </resources>

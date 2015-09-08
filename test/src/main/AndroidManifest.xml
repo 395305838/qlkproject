@@ -537,6 +537,12 @@
         <activity
             android:name="com.xiaocoder.test.http2.ExpandListActivity"
             android:label="@string/title_activity_expand_list"></activity>
+
+        <activity android:name="com.xiaocoder.test.view.RoundImageViewActivity"
+            android:label="@string/title_activity_round_image_view"
+            >
+        </activity>
     </application>
 
 </manifest>
+
