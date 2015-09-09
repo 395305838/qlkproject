@@ -14,7 +14,7 @@
         android:layout_width="150dip"
         android:layout_height="60dip"
         slideswitch:isOpen="true"
-        slideswitch:shape="rect"
+        slideswitch:shapeButton="rect"
         slideswitch:themeColor="#ffee3a00" />
 
     <TextView
@@ -28,7 +28,7 @@
         android:layout_height="100dip"
         android:layout_marginTop="10dip"
         slideswitch:isOpen="true"
-        slideswitch:shape="circle"
+        slideswitch:shapeButton="circle"
         slideswitch:themeColor="#ff0a5a00" />
 
     <com.xiaocoder.android.fw.general.view.XCSwitchButton
@@ -37,7 +37,7 @@
         android:layout_height="50dip"
         android:layout_marginTop="10dip"
         slideswitch:isOpen="true"
-        slideswitch:shape="circle"
+        slideswitch:shapeButton="circle"
         slideswitch:themeColor="#ff73aa00" />
 
     <com.xiaocoder.android.fw.general.view.XCSwitchButton
@@ -46,7 +46,7 @@
         android:layout_height="120dip"
         android:layout_marginTop="10dip"
         slideswitch:isOpen="false"
-        slideswitch:shape="circle"
+        slideswitch:shapeButton="circle"
         slideswitch:themeColor="#f200aa96" />
 
     <com.xiaocoder.android.fw.general.view.XCSwitchButton
@@ -55,7 +55,7 @@
         android:layout_height="50dip"
         android:layout_marginTop="10dip"
         slideswitch:isOpen="true"
-        slideswitch:shape="rect"
+        slideswitch:shapeButton="rect"
         slideswitch:themeColor="#f23331a0" />
 
     <com.xiaocoder.android.fw.general.view.XCSwitchButton
@@ -64,7 +64,7 @@
         android:layout_height="35dip"
         android:layout_marginTop="10dip"
         slideswitch:isOpen="true"
-        slideswitch:shape="circle"
+        slideswitch:shapeButton="circle"
          />
 
 </LinearLayout>

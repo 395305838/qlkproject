@@ -10,7 +10,7 @@
     <declare-styleable name="switchbutton">
         <attr name="themeColor" format="color" />
         <attr name="isOpen" format="boolean" />
-        <attr name="shape">
+        <attr name="shapeButton">
             <enum name="rect" value="1" />
             <enum name="circle" value="2" />
         </attr>

@@ -66,7 +66,7 @@ public class XCSwitchButton extends View {
         color_theme = a.getColor(R.styleable.switchbutton_themeColor,
                 DEFAULT_COLOR_THEME);
         isOpen = a.getBoolean(R.styleable.switchbutton_isOpen, false);
-        shape = a.getInt(R.styleable.switchbutton_shape, SHAPE_RECT);
+        shape = a.getInt(R.styleable.switchbutton_shapeButton, SHAPE_RECT);
         a.recycle();
     }
 

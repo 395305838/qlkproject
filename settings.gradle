@@ -1,1 +1,1 @@
-include ':pulltorefresh', ':sharesdk', ':slidingmenu', ':viewpagerindicator', ':android_fw_general', ':test', ':baidumap', ':umeng'
+include ':pulltorefresh', ':sharesdk', ':slidingmenu', ':viewpagerindicator', ':android_fw_general', ':test', ':baidumap', ':umeng',':viewpagerslider'

@@ -19,7 +19,6 @@ public class CamareActivity extends QlkActivity {
 	XCCameraPhotoFragment camera_fragment;
 	XCLocalPhotoFragment local_fragment;
 	ImageView test_imageview;
-	XCBottomChatFragment chat;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,6 @@ public class CamareActivity extends QlkActivity {
 		addFragment(R.id.xc_id_fragment_test_local, local_fragment);
 		addFragment(R.id.xc_id_fragment_test_camera, camera_fragment);
 
-		addFragment(R.id.xc_id_model_bottombar, chat = new XCBottomChatFragment());
 		showBottomLayout(true);
 
 	}
