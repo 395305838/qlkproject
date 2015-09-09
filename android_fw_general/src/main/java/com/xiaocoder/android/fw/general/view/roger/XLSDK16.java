@@ -13,15 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.xiaocoder.android.fw.general.view.photoview.gestures;
+package com.xiaocoder.android.fw.general.view.roger;
 
-public interface OnGestureListener {
+import android.annotation.TargetApi;
+import android.view.View;
 
-    public void onDrag(float dx, float dy);
+@TargetApi(16)
+public class XLSDK16 {
 
-    public void onFling(float startX, float startY, float velocityX,
-                        float velocityY);
-
-    public void onScale(float scaleFactor, float focusX, float focusY);
-
+	public static void postOnAnimation(View view, Runnable r) {
+		view.postOnAnimation(r);
+	}
+	
 }
