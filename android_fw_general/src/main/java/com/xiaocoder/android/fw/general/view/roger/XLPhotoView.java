@@ -29,6 +29,9 @@ import com.xiaocoder.android.fw.general.view.roger.XLPhotoViewAttacher.OnMatrixC
 import com.xiaocoder.android.fw.general.view.roger.XLPhotoViewAttacher.OnPhotoTapListener;
 import com.xiaocoder.android.fw.general.view.roger.XLPhotoViewAttacher.OnViewTapListener;
 
+/**
+ * 如果是viewpager则需要引入XLHackyViewPager
+ */
 public class XLPhotoView extends ImageView implements XLIPhotoView {
 
 	private final XLPhotoViewAttacher mAttacher;

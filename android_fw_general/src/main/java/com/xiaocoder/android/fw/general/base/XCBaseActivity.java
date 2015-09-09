@@ -108,8 +108,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
     /**
      * 手势滑动退出activity的基类布局
-     * 想要实现向右滑动删除Activity，只需要继承该activity即可，
-     * 如果当前页面含有ViewPager需要调用SwipeBackLayout的setViewPager()方法即可
+     * 想要实现向右滑动删除Activity，只需要继承该activity即可
      */
     protected void slideDestroyActivity() {
 

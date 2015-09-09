@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCAdapterViewPagerRecyle;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
+import com.xiaocoder.android.fw.general.view.XCZoomImageView;
 import com.xiaocoder.android_fw_general.R;
 
 import java.util.ArrayList;
@@ -101,7 +102,8 @@ public class XCViewPagerFragmentShowNum extends XCBaseFragment {
         for (int i = 0; i < total_images; i++) {
             // 创建images
 
-            ImageView imageview = new ImageView(getActivity());
+            XCZoomImageView imageview = new XCZoomImageView(getActivity());
+            imageview.enable();
 
             // ---------------------------加载图片-----------------------------
             if (on_load_image_listener != null) {

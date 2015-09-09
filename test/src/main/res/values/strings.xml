@@ -24,5 +24,6 @@
     <string name="title_activity_circle_progress">CircleProgressActivity</string>
     <string name="title_activity_expand_list">ExpandListActivity</string>
     <string name="title_activity_round_image_view">RoundImageViewActivity</string>
+    <string name="title_activity_view_pager_num_fragment">ViewPagerNumFragmentActivity</string>
 
 </resources>

@@ -25,6 +25,7 @@ import com.xiaocoder.test.fragment.CamareActivity;
 import com.xiaocoder.test.fragment.MoveBlockActivity;
 import com.xiaocoder.test.fragment.SearchActivity;
 import com.xiaocoder.test.fragment.ViewPagerActivity;
+import com.xiaocoder.test.fragment.ViewPagerNumFragmentActivity;
 import com.xiaocoder.test.fragment.WebActivity;
 import com.xiaocoder.test.http.HttpActivity;
 import com.xiaocoder.test.http.HttpDownLoadActivity;
@@ -78,6 +79,7 @@ public class MainActivity extends QlkMainActivity {
     Button test_numberprogress;
     Button test_expandablelistview;
     Button test_round_imageview;
+    Button test_viewpager_num;
 
 
     @Override
@@ -202,6 +204,8 @@ public class MainActivity extends QlkMainActivity {
 
         xc_id_anim = getViewById(R.id.xc_id_anim);
 
+        test_viewpager_num = getViewById(R.id.test_viewpager_num);
+
 
     }
 
@@ -238,6 +242,7 @@ public class MainActivity extends QlkMainActivity {
         xc_id_anim.setOnClickListener(this);
         test_expandablelistview.setOnClickListener(this);
         test_round_imageview.setOnClickListener(this);
+        test_viewpager_num.setOnClickListener(this);
 
     }
 
@@ -332,8 +337,10 @@ public class MainActivity extends QlkMainActivity {
             myStartActivity(LineProgressBarActivity.class);
         } else if (id == R.id.test_expandablelistview) {
             myStartActivity(ExpandListActivity.class);
-        } else if(id == R.id.test_round_imageview){
+        } else if (id == R.id.test_round_imageview) {
             myStartActivity(RoundImageViewActivity.class);
+        } else if (id == R.id.test_viewpager_num) {
+            myStartActivity(ViewPagerNumFragmentActivity.class);
         }
 
     }

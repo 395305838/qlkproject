@@ -20,6 +20,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="test_expandablelistview" />
+
+            <Button
+                android:id="@+id/test_viewpager_num"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="test_viewpager_num" />
             <Button
                 android:id="@+id/test_round_imageview"
                 android:layout_width="wrap_content"

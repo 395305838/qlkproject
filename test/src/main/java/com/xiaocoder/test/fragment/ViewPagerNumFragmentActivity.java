@@ -4,25 +4,25 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
-import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment;
-import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment.OnImageClickListener;
-import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment.OnLoadImage;
-import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragmentShowNum;
 import com.xiaocoder.test.R;
 
 import java.util.ArrayList;
 
-public class ViewPagerActivity extends QlkActivity {
-    XCTitleCommonFragment title_fragment;
-    XCViewPagerFragment fragment;
+public class ViewPagerNumFragmentActivity extends XCBaseActivity {
+
+    XCViewPagerFragmentShowNum fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_view_pager);
+        // 设置布局
+        setContentView(R.layout.activity_view_pager_num_fragment);
         super.onCreate(savedInstanceState);
     }
 
+    // 无网络时,点击屏幕后回调的方法
     @Override
     public void onNetRefresh() {
 
@@ -31,26 +31,26 @@ public class ViewPagerActivity extends QlkActivity {
     @Override
     public void initWidgets() {
         // title
-        title_fragment = new XCTitleCommonFragment();
+        XCTitleCommonFragment title_fragment = new XCTitleCommonFragment();
         title_fragment.setTitleCenter(true, "嗯嗯");
         title_fragment.setTitleLeft(false, "");
         addFragment(R.id.xc_id_model_titlebar, title_fragment);
         // viewpager
-        fragment = new XCViewPagerFragment();
-        fragment.setAllowAutoSlide(true, 4000); // 设置是否可以自动滑动, 以及设置滑动的间隔时间
+        fragment = new XCViewPagerFragmentShowNum();
         ArrayList<String> list = new ArrayList<String>();
         list.add("http://www.baidu.com/img/bdlogo.png");
         list.add("http://www.baidu.com/img/bdlogo.png");
         list.add("http://www.baidu.com/img/bdlogo.png");
         list.add("http://www.baidu.com/img/bdlogo.png");
-        fragment.setData(list); // 设置数据 , 会根据list的size , 动态创建 滚动的点
-        addFragment(R.id.test_viewpager_fragment, fragment);
+        fragment.setData(list);
+        addFragment(R.id.xc_id_model_content, fragment);
+
 
     }
 
     @Override
     public void listeners() {
-        fragment.setOnLoadImageListener(new OnLoadImage() {
+        fragment.setOnLoadImageListener(new XCViewPagerFragmentShowNum.OnLoadImage() {
 
             @Override
             public void onLoadImage(ImageView imageview, String url) {
@@ -62,7 +62,7 @@ public class ViewPagerActivity extends QlkActivity {
             }
         });
 
-        fragment.setOnImageClickListener(new OnImageClickListener() {
+        fragment.setOnImageClickListener(new XCViewPagerFragmentShowNum.OnImageClickListener() {
 
             @Override
             public void onImageClickListener(int position) {
