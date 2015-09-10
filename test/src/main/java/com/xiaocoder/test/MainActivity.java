@@ -25,7 +25,8 @@ import com.xiaocoder.test.fragment.CamareActivity;
 import com.xiaocoder.test.fragment.MoveBlockActivity;
 import com.xiaocoder.test.fragment.SearchActivity;
 import com.xiaocoder.test.fragment.ViewPagerActivity;
-import com.xiaocoder.test.fragment.ViewPagerNumFragmentActivity;
+import com.xiaocoder.test.fragment.ImagesZoomActivity;
+import com.xiaocoder.test.fragment.ViewpagerSliderActivity;
 import com.xiaocoder.test.fragment.WebActivity;
 import com.xiaocoder.test.http.HttpActivity;
 import com.xiaocoder.test.http.HttpDownLoadActivity;
@@ -80,6 +81,7 @@ public class MainActivity extends QlkMainActivity {
     Button test_expandablelistview;
     Button test_round_imageview;
     Button test_viewpager_num;
+    Button test_viewpager_slider;
 
 
     @Override
@@ -206,6 +208,8 @@ public class MainActivity extends QlkMainActivity {
 
         test_viewpager_num = getViewById(R.id.test_viewpager_num);
 
+        test_viewpager_slider = getViewById(R.id.test_viewpager_slider);
+
 
     }
 
@@ -243,6 +247,7 @@ public class MainActivity extends QlkMainActivity {
         test_expandablelistview.setOnClickListener(this);
         test_round_imageview.setOnClickListener(this);
         test_viewpager_num.setOnClickListener(this);
+        test_viewpager_slider.setOnClickListener(this);
 
     }
 
@@ -340,7 +345,9 @@ public class MainActivity extends QlkMainActivity {
         } else if (id == R.id.test_round_imageview) {
             myStartActivity(RoundImageViewActivity.class);
         } else if (id == R.id.test_viewpager_num) {
-            myStartActivity(ViewPagerNumFragmentActivity.class);
+            myStartActivity(ImagesZoomActivity.class);
+        } else if (id == R.id.test_viewpager_slider) {
+            myStartActivity(ViewpagerSliderActivity.class);
         }
 
     }

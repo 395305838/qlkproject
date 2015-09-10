@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.xiaocoder.test"
     android:versionCode="1"
-    android:versionName="1.0">
+    android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="11"
@@ -39,79 +39,66 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <!-- 百度地图 -->
-    <!-- 这个权限用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
-    <!-- 这个权限用于访问GPS定位-->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
-    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
-    <!--
-        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
-    -->
-    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
-    <!--
-        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-    -->
-    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
-    <!--
-        <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
-    -->
-    <!-- 用于读取手机当前的状态-->
-    <!--
-        <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
-    -->
-    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据-->
-    <!--
-        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
-    -->
-    <!-- 访问网络，网络定位需要上网-->
-    <!--
-        <uses-permission android:name="android.permission.INTERNET" />
-    -->
-    <!-- SD卡读取权限，用户写入离线定位数据-->
-    <!--
-        <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
-    -->
+    <!-- 这个权限用于进行网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 这个权限用于访问GPS定位 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位 -->
+<!--         <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission> -->
+    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口 -->
+<!--         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission> -->
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位 -->
+<!--         <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission> -->
+    <!-- 用于读取手机当前的状态 -->
+<!--         <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission> -->
+    <!-- 写入扩展存储，向扩展卡写入数据，用于写入离线定位数据 -->
+<!--         <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission> -->
+    <!-- 访问网络，网络定位需要上网 -->
+<!--         <uses-permission android:name="android.permission.INTERNET" /> -->
+    <!-- SD卡读取权限，用户写入离线定位数据 -->
+<!--         <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission> -->
     <!-- 百度地图 -->
-
     <!-- umeng 更新 -->
-    <!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <!--
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-        <uses-permission android:name="android.permission.INTERNET"></uses-permission>-->
-
+        <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    -->
     <!-- umeng 更新 -->
-
     <application
         android:name="com.xiaocoder.buffer.QlkApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/XCTheme">
+        android:theme="@style/XCTheme" >
 
         <!-- 友盟更新 -->
         <meta-data
-            android:value="55cafdb967e58e1bb400076e"
-            android:name="UMENG_APPKEY" />
+            android:name="UMENG_APPKEY"
+            android:value="55cafdb967e58e1bb400076e" />
         <meta-data
-            android:value="Channel ID"
-            android:name="${UMENG_CHANNEL_VALUE}" />
+            android:name="${UMENG_CHANNEL_VALUE}"
+            android:value="Channel ID" />
 
         <service
             android:name="com.umeng.update.net.DownloadingService"
             android:process=":DownloadingService" />
+
         <activity
             android:name="com.umeng.update.UpdateDialogActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
-
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <!-- 友盟更新 -->
+
 
         <!-- 百度地图定位 -->
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":baidulocation">
+            android:process=":baidulocation" >
             <intent-filter>
-                <action android:name="com.baidu.location.service_v2.2"></action>
+                <action android:name="com.baidu.location.service_v2.2" />
             </intent-filter>
         </service>
 
@@ -121,12 +108,12 @@
 
         <activity
             android:name=".baidumap.MapActivity"
-            android:label="@string/title_activity_map"></activity>
+            android:label="@string/title_activity_map" />
         <!-- 百度地图定位 -->
 
         <activity
             android:name=".view.SwitchButtonActivity"
-            android:label="@string/title_activity_update"></activity>
+            android:label="@string/title_activity_update" />
         <activity
             android:name="com.xiaocoder.android.fw.general.exception.XLShowExceptionsActivity"
             android:screenOrientation="portrait"
@@ -134,7 +121,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -149,7 +136,7 @@
         <activity
             android:name=".anim.AnimationActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden">
+            android:windowSoftInputMode="adjustResize|stateHidden" >
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -222,7 +209,7 @@
         <!-- 以下viewpagerindicator -->
         <activity
             android:name=".viewpagerindicator.ListSamples"
-            android:label="ViewPager Indicator">
+            android:label="ViewPager Indicator" >
 
             <!--
                  <intent-filter>
@@ -235,7 +222,7 @@
         <!-- CIRCLE INDICATOR -->
         <activity
             android:name=".viewpagerindicator.SampleCirclesDefault"
-            android:label="Circles/Default">
+            android:label="Circles/Default" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -244,7 +231,7 @@
         </activity>
         <activity
             android:name=".viewpagerindicator.SampleCirclesInitialPage"
-            android:label="Circles/Initial Page">
+            android:label="Circles/Initial Page" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -253,7 +240,7 @@
         </activity>
         <activity
             android:name=".viewpagerindicator.SampleCirclesSnap"
-            android:label="Circles/Snap">
+            android:label="Circles/Snap" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -263,7 +250,7 @@
         <activity
             android:name=".viewpagerindicator.SampleCirclesStyledLayout"
             android:label="Circles/Styled (via layout)"
-            android:theme="@android:style/Theme.Light">
+            android:theme="@android:style/Theme.Light" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -273,7 +260,7 @@
         <activity
             android:name=".viewpagerindicator.SampleCirclesStyledMethods"
             android:label="Circles/Styled (via methods)"
-            android:theme="@android:style/Theme.Light">
+            android:theme="@android:style/Theme.Light" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -283,7 +270,7 @@
         <activity
             android:name=".viewpagerindicator.SampleCirclesStyledTheme"
             android:label="Circles/Styled (via theme)"
-            android:theme="@style/StyledIndicators">
+            android:theme="@style/StyledIndicators" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -292,7 +279,7 @@
         </activity>
         <activity
             android:name=".viewpagerindicator.SampleCirclesWithListener"
-            android:label="Circles/With Listener">
+            android:label="Circles/With Listener" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -303,7 +290,7 @@
         <!-- ICON INDICATOR -->
         <activity
             android:name=".viewpagerindicator.SampleIconsDefault"
-            android:label="Icons/Default">
+            android:label="Icons/Default" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -314,7 +301,7 @@
         <!-- LINE INDICATOR -->
         <activity
             android:name=".viewpagerindicator.SampleLinesDefault"
-            android:label="Lines/Default">
+            android:label="Lines/Default" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -324,7 +311,7 @@
         <activity
             android:name=".viewpagerindicator.SampleLinesStyledLayout"
             android:label="Lines/Styled (via layout)"
-            android:theme="@android:style/Theme.Light">
+            android:theme="@android:style/Theme.Light" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -334,7 +321,7 @@
         <activity
             android:name=".viewpagerindicator.SampleLinesStyledMethods"
             android:label="Lines/Styled (via methods)"
-            android:theme="@android:style/Theme.Light">
+            android:theme="@android:style/Theme.Light" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -344,7 +331,7 @@
         <activity
             android:name=".viewpagerindicator.SampleLinesStyledTheme"
             android:label="Lines/Styled (via theme)"
-            android:theme="@style/StyledIndicators">
+            android:theme="@style/StyledIndicators" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -355,7 +342,7 @@
         <!-- TITLE INDICATOR -->
         <activity
             android:name=".viewpagerindicator.SampleTitlesBottom"
-            android:label="Titles/Default (Bottom)">
+            android:label="Titles/Default (Bottom)" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -364,7 +351,7 @@
         </activity>
         <activity
             android:name=".viewpagerindicator.SampleTitlesCenterClickListener"
-            android:label="Titles/Center Click Listener">
+            android:label="Titles/Center Click Listener" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -373,7 +360,7 @@
         </activity>
         <activity
             android:name=".viewpagerindicator.SampleTitlesDefault"
-            android:label="Titles/Default">
+            android:label="Titles/Default" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -382,7 +369,7 @@
         </activity>
         <activity
             android:name=".viewpagerindicator.SampleTitlesInitialPage"
-            android:label="Titles/Initial Page">
+            android:label="Titles/Initial Page" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -392,7 +379,7 @@
         <activity
             android:name=".viewpagerindicator.SampleTitlesStyledLayout"
             android:label="Titles/Styled (via layout)"
-            android:theme="@android:style/Theme.Light">
+            android:theme="@android:style/Theme.Light" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -402,7 +389,7 @@
         <activity
             android:name=".viewpagerindicator.SampleTitlesStyledMethods"
             android:label="Titles/Styled (via methods)"
-            android:theme="@android:style/Theme.Light">
+            android:theme="@android:style/Theme.Light" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -412,7 +399,7 @@
         <activity
             android:name=".viewpagerindicator.SampleTitlesStyledTheme"
             android:label="Titles/Styled (via theme)"
-            android:theme="@style/StyledIndicators">
+            android:theme="@style/StyledIndicators" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -421,7 +408,7 @@
         </activity>
         <activity
             android:name=".viewpagerindicator.SampleTitlesTriangle"
-            android:label="Titles/Triangle Style">
+            android:label="Titles/Triangle Style" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -430,7 +417,7 @@
         </activity>
         <activity
             android:name=".viewpagerindicator.SampleTitlesWithListener"
-            android:label="Titles/With Listener">
+            android:label="Titles/With Listener" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -442,7 +429,7 @@
         <activity
             android:name=".viewpagerindicator.SampleTabsDefault"
             android:label="Tabs/Default"
-            android:theme="@style/Theme.PageIndicatorDefaults">
+            android:theme="@style/Theme.PageIndicatorDefaults" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -452,7 +439,7 @@
         <activity
             android:name=".viewpagerindicator.SampleTabsStyled"
             android:label="Tabs/Styled"
-            android:theme="@style/StyledIndicators">
+            android:theme="@style/StyledIndicators" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -462,7 +449,7 @@
         <activity
             android:name=".viewpagerindicator.SampleTabsWithIcons"
             android:label="Tabs/With Icons"
-            android:theme="@style/StyledIndicators">
+            android:theme="@style/StyledIndicators" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -473,7 +460,7 @@
         <!-- UNDERLINE INDICATOR -->
         <activity
             android:name=".viewpagerindicator.SampleUnderlinesDefault"
-            android:label="Underlines/Default">
+            android:label="Underlines/Default" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -482,7 +469,7 @@
         </activity>
         <activity
             android:name=".viewpagerindicator.SampleUnderlinesNoFade"
-            android:label="Underlines/No Fade">
+            android:label="Underlines/No Fade" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -492,7 +479,7 @@
         <activity
             android:name=".viewpagerindicator.SampleUnderlinesStyledLayout"
             android:label="Underlines/Styled (via layout)"
-            android:theme="@android:style/Theme.Light">
+            android:theme="@android:style/Theme.Light" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -502,7 +489,7 @@
         <activity
             android:name=".viewpagerindicator.SampleUnderlinesStyledMethods"
             android:label="Underlines/Styled (via methods)"
-            android:theme="@android:style/Theme.Light">
+            android:theme="@android:style/Theme.Light" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -512,7 +499,7 @@
         <activity
             android:name=".viewpagerindicator.SampleUnderlinesStyledTheme"
             android:label="Underlines/Styled (via theme)"
-            android:theme="@style/StyledIndicators">
+            android:theme="@style/StyledIndicators" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -527,27 +514,25 @@
         <activity
             android:name=".TextActivity"
             android:label="@string/title_activity_text" />
-
         <activity
             android:name=".dialogs.CircleProgressBarActivity"
             android:label="@string/title_activity_circle_progress" />
-
         <activity android:name=".dialogs.LineProgressBarActivity" />
-
         <activity
             android:name=".http2.ExpandListActivity"
-            android:label="@string/title_activity_expand_list"></activity>
-
-        <activity android:name=".view.RoundImageViewActivity"
-            android:label="@string/title_activity_round_image_view"
-            >
+            android:label="@string/title_activity_expand_list" />
+        <activity
+            android:name=".view.RoundImageViewActivity"
+            android:label="@string/title_activity_round_image_view" >
         </activity>
-
-        <activity android:name=".fragment.ViewPagerNumFragmentActivity"
-            android:label="@string/title_activity_view_pager_num_fragment"
-            >
+        <activity
+            android:name=".fragment.ImagesZoomActivity"
+            android:label="@string/title_activity_view_pager_num_fragment" >
+        </activity>
+        <activity
+            android:name=".fragment.ViewpagerSliderActivity"
+            android:label="@string/title_activity_viewpager_slider" >
         </activity>
     </application>
 
 </manifest>
-

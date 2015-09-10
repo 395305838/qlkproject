@@ -1,218 +1,131 @@
 package com.xiaocoder.android.fw.general.fragment;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 
-import com.xiaocoder.android.fw.general.adapter.XCAdapterViewPager;
+import com.daimajia.androidanimations.library.attention.StandUpAnimator;
+import com.daimajia.slider.library.Animations.BaseAnimationInterface;
+import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
-import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android_fw_general.R;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
-/**
- * @author xiaocoder
- * @Description: 封装可以自动滑动的viewpager, 该viewpager加入了线程打断功能, 即当切换到一张图片时,
- * 会重新开始计时, 提升用户体验; 用法添加该fragment后, 调用setData和setAllowSlide方法即可
- * @date 2015-1-6 下午10:50:22
- */
-public class XCViewPagerFragment extends XCBaseFragment {
-    ViewPager qlk_id_viewpager;
-    LinearLayout qlk_id_dots;
-    List<ImageView> imageviews;
-    List<View> dots;
-    List<String> urls;
-    XCAdapterViewPager adapter;
+public class XCViewPagerFragment extends XCBaseFragment implements BaseSliderView.OnSliderClickListener {
 
-    int last_dot_position = 0;// 记录上一次点的位置
-    int currentItem; // 当前页面
-    boolean viewpagerisRunning;
-    int total_images;
-    boolean is_allow_running; // 从外部设置是否可以自动滑动
+    private static final String ARG_PARAM1 = "extra";
+    private static final String ARG_PARAM2 = "position";
 
-    Thread time_thread; // 打断线程用的 -->否则会有一个图片切换时在计时上的bug
+    private SliderLayout mDemoSlider;
+    private long time_gap = 2000;
+    private SliderLayout.Transformer st = SliderLayout.Transformer.Accordion;
+    private SliderLayout.PresetIndicators sp = SliderLayout.PresetIndicators.Center_Bottom;
+    private BaseAnimationInterface anim = new DescriptionAnimation();
+    private BaseSliderView.ScaleType scale = BaseSliderView.ScaleType.Fit;
+    private boolean isNeedDes = false;
+    private boolean isAutoSlider = true;
 
-    public interface OnLoadImage {
-        void onLoadImage(ImageView imageview, String url);
+    /**
+     * int File String类型
+     */
+    private Map<String, Object> map;
+
+    public SliderLayout getmDemoSlider() {
+        return mDemoSlider;
+    }
+
+    public void setTime_gap(long time_gap) {
+
+        this.time_gap = time_gap;
+    }
+
+    public void setTf(SliderLayout.Transformer st) {
+        this.st = st;
+    }
+
+    public void setTp(SliderLayout.PresetIndicators sp) {
+        this.sp = sp;
+    }
+
+    /**
+     * 设置指示器的动画效果
+     */
+    public void setAnim(BaseAnimationInterface anim) {
+        this.anim = anim;
+    }
+
+    public void setScale(BaseSliderView.ScaleType scale) {
+        this.scale = scale;
+    }
+
+    public void setMap(Map<String, Object> map) {
+        this.map = map;
+    }
+
+    public void setIsNeedDes(boolean isNeedDes) {
+        this.isNeedDes = isNeedDes;
+    }
+
+    public void setIsAutoSlider(boolean isAutoSlider) {
+        this.isAutoSlider = isAutoSlider;
     }
 
     public interface OnImageClickListener {
         void onImageClickListener(int position);
     }
 
-    OnImageClickListener listener;
+    OnImageClickListener onImageClickListener;
 
-    public void setOnImageClickListener(OnImageClickListener listener) {
-        this.listener = listener;
+    public void setOnImageClickListener(OnImageClickListener onImageClickListener) {
+        this.onImageClickListener = onImageClickListener;
     }
 
-    OnLoadImage on_load_image_listener;
-
-    public void setOnLoadImageListener(OnLoadImage on_load_image_listener) {
-        this.on_load_image_listener = on_load_image_listener;
-    }
-
-    // 会等父fragment的onActivityCreated完成后才会调用子fragment的onCreate()方法
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return init(inflater, R.layout.xc_l_fragment_viewpager);
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (listener != null) {
-            listener.onImageClickListener((Integer) (v.getTag()));
-        }
-    }
-
-    public void setData(List<String> urls) {
-        this.urls = urls;
-
-    }
-
-    long time_gap = 3000;
-
-    public void setAllowAutoSlide(boolean is_allow_running, long time_gap) {
-        this.is_allow_running = is_allow_running;
-        this.time_gap = time_gap;
-    }
-
-    private void createImageViewsAndDots() {
-        // 创建images
-        imageviews = new ArrayList<ImageView>();
-        // 创建dots
-        dots = new ArrayList<View>();
-        total_images = urls.size();
-
-        for (int i = 0; i < total_images; i++) {
-
-            if (createImages(i)) {
-                return;
-            }
-            createDots(i);
-        }
-    }
-
-    private void createDots(int i) {
-        // 创建dots
-        View view = LayoutInflater.from(getActivity()).inflate(R.layout.xc_l_view_viewpager_dot, null);
-        LayoutParams ll = new LayoutParams(UtilScreen.dip2px(getActivity(), 7), UtilScreen.dip2px(getActivity(), 7));
-        ll.setMargins(UtilScreen.dip2px(getActivity(), 3), 0, UtilScreen.dip2px(getActivity(), 3), 0);
-        view.setLayoutParams(ll);
-        dots.add(view);
-        if (i == 0) {
-            view.setBackgroundResource(R.drawable.xc_dd_fragment_viewpager_dot_focused);
-            last_dot_position = 0;
-        } else {
-            view.setBackgroundResource(R.drawable.xc_dd_fragment_viewpager_dot_normal);
-        }
-        qlk_id_dots.addView(view);
-    }
-
-    private boolean createImages(int i) {
-        // 创建images
-        ImageView imageview = new ImageView(getActivity());
-        // ---------------------------加载图片-----------------------------
-        if (on_load_image_listener != null) {
-            on_load_image_listener.onLoadImage(imageview, urls.get(i));
-
-        } else {
-            return true;
-        }
-        imageview.setOnClickListener(this);
-        imageview.setTag(i);
-        imageviews.add(imageview);
-        return false;
-    }
-
-    protected void createViewPager() {
-        adapter = new XCAdapterViewPager(imageviews);
-        qlk_id_viewpager.setAdapter(adapter);
-        qlk_id_viewpager.setOnPageChangeListener(new OnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                dots.get(last_dot_position).setBackgroundResource(R.drawable.xc_dd_fragment_viewpager_dot_normal);
-                dots.get(position).setBackgroundResource(R.drawable.xc_dd_fragment_viewpager_dot_focused);
-                last_dot_position = position;
-                currentItem = position;
-
-                if (time_thread != null) {
-                    time_thread.interrupt();
-                }
-            }
-
-            @Override
-            public void onPageScrolled(int arg0, float arg1, int arg2) {
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int arg0) {
-            }
-        });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        viewpagerisRunning = is_allow_running;
-        new AsyncTask<Void, Integer, Void>() {
-            @Override
-            protected Void doInBackground(Void... params) {
-                if (time_thread == null) {
-                    time_thread = Thread.currentThread();
-                }
-                while (viewpagerisRunning) {
-                    try {
-                        publishProgress(currentItem);
-                        Thread.sleep(time_gap);
-                        if (currentItem == total_images - 1) {
-                            currentItem = 0;
-                        } else {
-                            currentItem += 1;
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-                return null;
-            }
-
-            @Override
-            protected void onProgressUpdate(Integer... values) {
-                super.onProgressUpdate(values);
-                qlk_id_viewpager.setCurrentItem(currentItem);
-            }
-        }.execute();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        viewpagerisRunning = false;
-        if (time_thread != null) {
-            time_thread.interrupt();
-            time_thread = null;
-        }
+        return init(inflater, R.layout.fragment_xcview_pager_slider);
     }
 
     @Override
     public void initWidgets() {
-        qlk_id_viewpager = getViewById(R.id.xc_id_fragment_viewpager);
-        qlk_id_dots = getViewById(R.id.xc_id_fragment_viewpager_dots);
 
-        if (urls != null) {
-            createImageViewsAndDots();
-            createViewPager();
+        mDemoSlider = getViewById(R.id.slider);
+
+        if (!isAutoSlider) {
+            mDemoSlider.stopAutoCycle();
         }
+
+        int index = 0;
+        for (String key : map.keySet()) {
+            TextSliderView textSliderView = new TextSliderView(getActivity());
+            String des = "";
+            if (isNeedDes) {
+                des = key;
+            }
+            textSliderView.description(des)
+                    .image(map.get(key))
+                    .setScaleType(scale)
+                    .setOnSliderClickListener(this);
+
+            //add your extra information
+            textSliderView.bundle(new Bundle());
+            textSliderView.getBundle().putString(ARG_PARAM1, key);
+            textSliderView.getBundle().putInt(ARG_PARAM2, index++);
+            mDemoSlider.addSlider(textSliderView);
+        }
+        mDemoSlider.setPresetTransformer(st);
+        mDemoSlider.setPresetIndicator(sp);
+        mDemoSlider.setCustomAnimation(anim);
+        // mDemoSlider.setCustomAnimation(new ChildAnimationExample());
+        // mDemoSlider.setCustomIndicator((PagerIndicator) getViewById(R.id.custom_indicator));
+        mDemoSlider.setDuration(time_gap);
     }
 
     @Override
@@ -220,4 +133,74 @@ public class XCViewPagerFragment extends XCBaseFragment {
 
     }
 
+    @Override
+    public void onStop() {
+        // To prevent a memory leak on rotation, make sure to call stopAutoCycle() on the slider before activity or fragment is destroyed
+        if (mDemoSlider != null && isAutoSlider) {
+            mDemoSlider.stopAutoCycle();
+        }
+        super.onStop();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (mDemoSlider != null && isAutoSlider) {
+            mDemoSlider.startAutoCycle();
+        }
+    }
+
+    @Override
+    public void onSliderClick(BaseSliderView slider) {
+        if (onImageClickListener != null) {
+            onImageClickListener.onImageClickListener(slider.getBundle().getInt(ARG_PARAM2, -1));
+        }
+    }
+
+    public class ChildAnimationExample implements BaseAnimationInterface {
+
+        private final static String TAG = "ChildAnimationExample";
+
+        @Override
+        public void onPrepareCurrentItemLeaveScreen(View current) {
+            View descriptionLayout = current.findViewById(R.id.description_layout);
+            if (descriptionLayout != null) {
+                current.findViewById(R.id.description_layout).setVisibility(View.INVISIBLE);
+            }
+            XCApplication.printi(TAG, "onPrepareCurrentItemLeaveScreen called");
+        }
+
+        @Override
+        public void onPrepareNextItemShowInScreen(View next) {
+            View descriptionLayout = next.findViewById(R.id.description_layout);
+            if (descriptionLayout != null) {
+                next.findViewById(R.id.description_layout).setVisibility(View.INVISIBLE);
+            }
+            XCApplication.printi(TAG, "onPrepareNextItemShowInScreen called");
+        }
+
+        @Override
+        public void onCurrentItemDisappear(View view) {
+            XCApplication.printi(TAG, "onCurrentItemDisappear called");
+        }
+
+        @Override
+        public void onNextItemAppear(View view) {
+
+            View descriptionLayout = view.findViewById(R.id.description_layout);
+            if (descriptionLayout != null) {
+                view.findViewById(R.id.description_layout).setVisibility(View.VISIBLE);
+//            ValueAnimator animator = ObjectAnimator.ofFloat(
+//                    descriptionLayout, "y", -descriptionLayout.getHeight(),
+//                    0).setDuration(500);
+//            animator.start();
+//            new BounceInAnimator().animate(descriptionLayout);
+                new StandUpAnimator().animate(descriptionLayout);
+            }
+            XCApplication.printi(TAG, "onCurrentItemDisappear called");
+        }
+    }
+
 }
+
+

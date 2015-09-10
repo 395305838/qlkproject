@@ -17,4 +17,7 @@
     <!-- ##############################以上是 zxing二维码包的#################################### -->
 
     <string name="force_update_toast_string">您需要先升级才能继续使用应用!</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

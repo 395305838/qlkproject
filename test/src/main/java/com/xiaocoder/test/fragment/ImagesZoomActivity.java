@@ -6,19 +6,20 @@ import android.widget.ImageView;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
-import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragmentShowNum;
+import com.xiaocoder.android.fw.general.fragment.XCImagesZoomFragment;
+import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
 
 import java.util.ArrayList;
 
-public class ViewPagerNumFragmentActivity extends XCBaseActivity {
+public class ImagesZoomActivity extends QlkActivity {
 
-    XCViewPagerFragmentShowNum fragment;
+    XCImagesZoomFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // 设置布局
-        setContentView(R.layout.activity_view_pager_num_fragment);
+        setContentView(R.layout.activity_images_zoom_fragment);
         super.onCreate(savedInstanceState);
     }
 
@@ -36,12 +37,12 @@ public class ViewPagerNumFragmentActivity extends XCBaseActivity {
         title_fragment.setTitleLeft(false, "");
         addFragment(R.id.xc_id_model_titlebar, title_fragment);
         // viewpager
-        fragment = new XCViewPagerFragmentShowNum();
+        fragment = new XCImagesZoomFragment();
         ArrayList<String> list = new ArrayList<String>();
+        list.add("http://tvfiles.alphacoders.com/100/hdclearart-10.png");
+        list.add("http://static2.hypable.com/wp-content/uploads/2013/12/hannibal-season-2-release-date.jpg");
         list.add("http://www.baidu.com/img/bdlogo.png");
-        list.add("http://www.baidu.com/img/bdlogo.png");
-        list.add("http://www.baidu.com/img/bdlogo.png");
-        list.add("http://www.baidu.com/img/bdlogo.png");
+        list.add("http://cdn3.nflximg.net/images/3093/2043093.jpg");
         fragment.setData(list);
         addFragment(R.id.xc_id_model_content, fragment);
 
@@ -50,7 +51,7 @@ public class ViewPagerNumFragmentActivity extends XCBaseActivity {
 
     @Override
     public void listeners() {
-        fragment.setOnLoadImageListener(new XCViewPagerFragmentShowNum.OnLoadImage() {
+        fragment.setOnLoadImageListener(new XCImagesZoomFragment.OnLoadImage() {
 
             @Override
             public void onLoadImage(ImageView imageview, String url) {
@@ -62,7 +63,7 @@ public class ViewPagerNumFragmentActivity extends XCBaseActivity {
             }
         });
 
-        fragment.setOnImageClickListener(new XCViewPagerFragmentShowNum.OnImageClickListener() {
+        fragment.setOnImageClickListener(new XCImagesZoomFragment.OnImageClickListener() {
 
             @Override
             public void onImageClickListener(int position) {
