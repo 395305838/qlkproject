@@ -71,7 +71,8 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/XCTheme" >
+        android:theme="@style/AppBaseTheme"
+         >
 
         <!-- 友盟更新 -->
         <meta-data
@@ -107,11 +108,13 @@
             android:value="IXYxbRGeL1OH1e6KkLgk37n4" />
 
         <activity
+            android:theme="@style/XCTheme"
             android:name=".baidumap.MapActivity"
             android:label="@string/title_activity_map" />
         <!-- 百度地图定位 -->
 
         <activity
+            android:theme="@style/XCTheme"
             android:name=".view.SwitchButtonActivity"
             android:label="@string/title_activity_update" />
         <activity
@@ -129,11 +132,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:theme="@style/XCTheme"
             android:name=".dialogs.DialogActivity3"
             android:label="@string/title_activity_dialog_activity3"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".anim.AnimationActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" >
@@ -146,62 +151,79 @@
             <!-- </intent-filter> -->
         </activity>
         <activity
+            android:theme="@style/XCTheme"
             android:name=".line_point.LinePointActivityGC"
             android:label="@string/title_activity_line_point"
             android:screenOrientation="portrait" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".http.HttpDownLoadActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".slidingmenu.SlidingMenuActivity"
             android:label="@string/title_activity_line_point"
             android:screenOrientation="portrait" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".slidingmenu.SlidingMenuActivity2"
             android:label="@string/title_activity_line_point"
             android:screenOrientation="portrait" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".scan.ScanActivity"
             android:label="@string/title_activity_scan"
             android:screenOrientation="portrait" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".http.HttpActivity"
             android:label="@string/title_activity_http" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".pop.PopActivity"
             android:label="@string/title_activity_pop" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".fragment.WebActivity"
             android:label="@string/title_activity_web" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".fragment.ViewPagerActivity"
             android:label="@string/title_activity_view_pager" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".http2.ListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".http2.GridActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".fragment.MoveBlockActivity"
             android:label="@string/title_activity_move_block" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".fragment.CamareActivity"
             android:label="@string/title_activity_camare" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".fragment.SearchActivity"
             android:label="@string/title_activity_search"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".fragment.SearchActivity2"
             android:label="@string/title_activity_search"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".view.ScrollActivity"
             android:label="@string/title_activity_scroll" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".contacts.ContactsActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
@@ -509,27 +531,36 @@
         <!-- 以上viewpagerindicator -->
 
         <activity
+            android:theme="@style/XCTheme"
             android:name=".scan.CodeActivity"
             android:label="@string/title_activity_code" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".TextActivity"
             android:label="@string/title_activity_text" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".dialogs.CircleProgressBarActivity"
             android:label="@string/title_activity_circle_progress" />
-        <activity android:name=".dialogs.LineProgressBarActivity" />
         <activity
+            android:theme="@style/XCTheme"
+            android:name=".dialogs.LineProgressBarActivity" />
+        <activity
+            android:theme="@style/XCTheme"
             android:name=".http2.ExpandListActivity"
             android:label="@string/title_activity_expand_list" />
         <activity
+            android:theme="@style/XCTheme"
             android:name=".view.RoundImageViewActivity"
             android:label="@string/title_activity_round_image_view" >
         </activity>
         <activity
+            android:theme="@style/XCTheme"
             android:name=".fragment.ImagesZoomActivity"
             android:label="@string/title_activity_view_pager_num_fragment" >
         </activity>
         <activity
+            android:theme="@style/XCTheme"
             android:name=".fragment.ViewpagerSliderActivity"
             android:label="@string/title_activity_viewpager_slider" >
         </activity>
