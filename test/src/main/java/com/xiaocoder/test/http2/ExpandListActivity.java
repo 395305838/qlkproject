@@ -129,7 +129,8 @@ public class ExpandListActivity extends QlkActivity {
      * @param view
      */
     public void allExpand(ExpandableListView view) {
-        int count = view.getCount();
+        // 如果是用view.getViewCount(),则在有headView与footView  会越界异常
+        int count = view.getExpandableListAdapter().getGroupCount();
         for (int i = 0; i < count; i++) {
             view.expandGroup(i);
         }

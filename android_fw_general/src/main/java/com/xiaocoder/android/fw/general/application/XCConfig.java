@@ -24,7 +24,7 @@ public class XCConfig {
     /**
      * 列出json返回的字段，并以假bean的形式打印到控制台，复制粘贴后可创建一个假bean类，假bean类里有字符串常量和get方法set方法
      * <p/>
-     * 注：假bean类不在用了， 现在用studio的gsonformat插件，自动生成一个真model，不需要任何复制粘贴
+     * 注：假bean类不在用了， 现在用studio的gsonformat插件，自动生成一个真model
      */
     public static String TAG_JSON_BEAN = "JsonBean";
     /**
