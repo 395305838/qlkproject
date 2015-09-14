@@ -564,6 +564,11 @@
             android:name=".fragment.ViewpagerSliderActivity"
             android:label="@string/title_activity_viewpager_slider" >
         </activity>
+        <activity
+            android:theme="@style/XCTheme"
+            android:name=".dialogs.ProgressViewActivity"
+            android:label="@string/title_activity_viewpager_slider" >
+        </activity>
     </application>
 
 </manifest>

@@ -1,11 +1,8 @@
 package com.xiaocoder.android.fw.general.util;
 
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.view.Display;
 import android.view.WindowManager;
-
-import com.xiaocoder.android.fw.general.util.UtilImage;
 
 /**
  * Created by xiaocoder on 2015/8/3.
@@ -65,6 +62,11 @@ public class UtilScreen {
     public static int px2dip(Context context, float pxValue) {
         float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
+    }
+
+    public static float sp2px(Context context, float sp){
+        final float scale = context.getResources().getDisplayMetrics().scaledDensity;
+        return sp * scale;
     }
 
     public static int[] getScreenSize(Context context) {

@@ -21,6 +21,7 @@ import com.xiaocoder.test.contacts.ContactsActivity;
 import com.xiaocoder.test.dialogs.CircleProgressBarActivity;
 import com.xiaocoder.test.dialogs.DialogActivity3;
 import com.xiaocoder.test.dialogs.LineProgressBarActivity;
+import com.xiaocoder.test.dialogs.ProgressViewActivity;
 import com.xiaocoder.test.fragment.CamareActivity;
 import com.xiaocoder.test.fragment.MoveBlockActivity;
 import com.xiaocoder.test.fragment.SearchActivity;
@@ -82,6 +83,7 @@ public class MainActivity extends QlkMainActivity {
     Button test_round_imageview;
     Button test_viewpager_num;
     Button test_viewpager_slider;
+    Button test_progress_view;
 
 
     @Override
@@ -210,6 +212,8 @@ public class MainActivity extends QlkMainActivity {
 
         test_viewpager_slider = getViewById(R.id.test_viewpager_slider);
 
+        test_progress_view = getViewById(R.id.test_progress_view);
+
 
     }
 
@@ -248,6 +252,7 @@ public class MainActivity extends QlkMainActivity {
         test_round_imageview.setOnClickListener(this);
         test_viewpager_num.setOnClickListener(this);
         test_viewpager_slider.setOnClickListener(this);
+        test_progress_view.setOnClickListener(this);
 
     }
 
@@ -348,6 +353,8 @@ public class MainActivity extends QlkMainActivity {
             myStartActivity(ImagesZoomActivity.class);
         } else if (id == R.id.test_viewpager_slider) {
             myStartActivity(ViewpagerSliderActivity.class);
+        } else if (id == R.id.test_progress_view) {
+            myStartActivity(ProgressViewActivity.class);
         }
 
     }

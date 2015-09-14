@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/xc_id_model_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_white_ffffff">
+
+    <!-- title -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/c_red_ff0000"
+        android:visibility="gone" />
+
+    <!-- 内容 -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:background="@color/c_white_ffffff">
+
+        <com.xiaocoder.android.fw.general.view.SXProgressView
+            android:id="@+id/sx_id_progress_view"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            custom:arc_progress="0" />
+    </RelativeLayout>
+
+    <!-- 无网络的背景 -->
+
+    <include
+        android:id="@+id/xc_id_model_no_net"
+        layout="@layout/xc_l_view_no_net"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:visibility="invisible" />
+
+</RelativeLayout>
