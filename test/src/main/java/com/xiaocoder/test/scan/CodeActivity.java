@@ -3,9 +3,9 @@ package com.xiaocoder.test.scan;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.xiaocoder.android.fw.general.util.UtilGenerateCode;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
+import com.xiaocoder.zxcode.UtilGenerateCode;
 
 public class CodeActivity extends QlkActivity {
 
@@ -13,7 +13,6 @@ public class CodeActivity extends QlkActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_code);
         super.onCreate(savedInstanceState);
-
 
     }
 

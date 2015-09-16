@@ -9,8 +9,8 @@
     >
 
     <ImageView
-        android:background="@color/c_blue_0000ff"
         android:id="@+id/xc_id_code"
+        android:background="@color/c_blue_1988ea"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

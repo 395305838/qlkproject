@@ -44,4 +44,5 @@ dependencies {
     compile project(':slidingmenu')
     compile project(':viewpagerindicator')
     compile project(':umeng')
+    compile project(':zxcode')
 }

@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">zxcode</string>
+
+
+    <!-- ##############################以下是 zxing二维码包的#################################### -->
+    <string name="menu_settings">Settings</string>
+    <string name="scan_text">将条码或二维码放入框内, 即可自动扫描</string>
+    <string name="dialog_query_title_scanresult">扫描结果</string>
+
+    <string-array name="dialog_query_decide_scanresult">
+        <item>继续扫描</item>
+        <item>打开链接</item>
+    </string-array>
+    <!-- ##############################以上是 zxing二维码包的#################################### -->
+</resources>
