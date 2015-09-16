@@ -5,9 +5,6 @@ import com.xiaocoder.android.fw.general.application.XCApplication;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by xiaocoder on 2015/7/28.
- */
 public class UtilTimeRange {
     public static void main(String[] args) {
 

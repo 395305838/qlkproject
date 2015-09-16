@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.fragment.XCBottomChatFragment;
 import com.xiaocoder.android.fw.general.fragment.XCCameraPhotoFragment;
 import com.xiaocoder.android.fw.general.fragment.XCCameraPhotoFragment.OnCaremaSelectedFileListener;
 import com.xiaocoder.android.fw.general.fragment.XCLocalPhotoFragment;

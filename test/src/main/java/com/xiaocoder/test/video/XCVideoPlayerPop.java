@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.media;
+package com.xiaocoder.test.video;
 
 import android.app.Activity;
 import android.app.AlertDialog;

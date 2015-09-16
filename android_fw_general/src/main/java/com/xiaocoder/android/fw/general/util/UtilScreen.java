@@ -9,50 +9,26 @@ import android.view.WindowManager;
  */
 public class UtilScreen {
 
-    private static int screenHeightPx = -1;
-    private static int screenWidthPx = -1;
-    private static float density = -1;
-    private static int screenHeightDP = -1;
-    private static int screenWidthDP = -1;
-
-
     public static float getDensity(Context context) {
-        if (density == -1) {
-            density = context.getResources().getDisplayMetrics().density;
-        }
-        return density;
+        return context.getResources().getDisplayMetrics().density;
     }
 
     public static int getScreenHeightPx(Context context) {
-        if (screenHeightPx == -1) {
-            screenHeightPx = getScreenSize(context)[0];
-        }
+        return getScreenSize(context)[0];
 
-        return screenHeightPx;
     }
 
     public static int getScreenWidthPx(Context context) {
-        if (screenWidthPx == -1) {
-            screenWidthPx = getScreenSize(context)[1];
-        }
-
-        return screenWidthPx;
+        return getScreenSize(context)[1];
     }
 
     public static int getScreenHeightDP(Context context) {
-        if (screenHeightDP == -1) {
-            screenHeightDP = px2dip(context, getScreenHeightPx(context));
-        }
-        return screenHeightDP;
+        return px2dip(context, getScreenHeightPx(context));
     }
 
     public static int getScreenWidthDP(Context context) {
-        if (screenWidthDP == -1) {
-            screenWidthDP = px2dip(context, getScreenWidthPx(context));
-        }
-        return screenWidthDP;
+        return px2dip(context, getScreenWidthPx(context));
     }
-
 
     public static int dip2px(Context context, float dipValue) {
         float scale = context.getResources().getDisplayMetrics().density;
@@ -64,8 +40,8 @@ public class UtilScreen {
         return (int) (pxValue / scale + 0.5f);
     }
 
-    public static float sp2px(Context context, float sp){
-        final float scale = context.getResources().getDisplayMetrics().scaledDensity;
+    public static float sp2px(Context context, float sp) {
+        float scale = context.getResources().getDisplayMetrics().scaledDensity;
         return sp * scale;
     }
 

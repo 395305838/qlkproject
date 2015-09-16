@@ -22,7 +22,7 @@ public class UtilRSA {
             return "";
         }
         try {
-//                byte[] buffer = UtilsBase64.decode(publicKeyStr);
+//                byte[] buffer = UtilBase64.decode(publicKeyStr);
 //                KeyFactory keyFactory = KeyFactory.getInstance(RSA);
 //                X509EncodedKeySpec keySpec = new X509EncodedKeySpec(buffer);
 //                RSAPublicKey rsaPublicKey =  (RSAPublicKey) keyFactory.generatePublic(keySpec);
@@ -32,7 +32,7 @@ public class UtilRSA {
                 cipher.init(Cipher.ENCRYPT_MODE, publicKey);
                 // 传入编码数据并返回编码结果
                 byte[] result = cipher.doFinal(data.getBytes());
-                String resultStr = (new UtilsBase64()).encode(result);
+                String resultStr = (new UtilBase64()).encode(result);
                 XCApplication.printi("myy",resultStr);
                 return resultStr;
 
@@ -49,7 +49,7 @@ public class UtilRSA {
      */
     public static PublicKey getPublicKey(String key) throws Exception {
         byte[] keyBytes;
-        keyBytes = (new UtilsBase64()).decode(key);
+        keyBytes = (new UtilBase64()).decode(key);
         X509EncodedKeySpec keySpec = new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
         PublicKey publicKey = keyFactory.generatePublic(keySpec);
@@ -61,7 +61,7 @@ public class UtilRSA {
      */
     public static PrivateKey getPrivateKey(String key) throws Exception {
         byte[] keyBytes;
-        keyBytes = (new UtilsBase64()).decode(key);
+        keyBytes = (new UtilBase64()).decode(key);
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(RSA);
         PrivateKey privateKey = keyFactory.generatePrivate(keySpec);

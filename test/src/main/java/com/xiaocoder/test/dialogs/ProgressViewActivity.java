@@ -3,14 +3,14 @@ package com.xiaocoder.test.dialogs;
 import android.os.Bundle;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.view.SXProgressView;
+import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
 
 /**
  * Created by xiaocoder on 2015/9/14.
  */
-public class ProgressViewActivity extends XCBaseActivity {
+public class ProgressViewActivity extends QlkActivity {
 
     SXProgressView view;
 

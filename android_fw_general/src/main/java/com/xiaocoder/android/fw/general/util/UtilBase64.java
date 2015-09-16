@@ -6,7 +6,7 @@ import java.io.UnsupportedEncodingException;
  * @author Mr.Zheng
  * @date 2014年8月22日 下午9:50:28
  */
-public class UtilsBase64
+public class UtilBase64
 {
     private static char[] base64EncodeChars = new char[]
             { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T',

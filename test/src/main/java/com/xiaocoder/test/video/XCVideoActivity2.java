@@ -1,8 +1,6 @@
-package com.xiaocoder.android.fw.general.media;
+package com.xiaocoder.test.video;
 
 
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.PixelFormat;
 import android.net.Uri;
 import android.os.Bundle;
@@ -15,13 +13,11 @@ import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android_fw_general.R;
 
 
-public class XCVideoActivity extends XCBaseActivity {
+public class XCVideoActivity2 extends XCBaseActivity {
     private SurfaceView surface_view;
     private SurfaceHolder surface_holder;
-    private Intent mIntent;
-    private Uri uri;
-    private XCVideoPlayerPop player_controller_pop;
-    private boolean isSurfaceCreateCompleted;
+    public Uri uri;
+    private XCVideoPlayerPop2 player_controller_pop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +56,7 @@ public class XCVideoActivity extends XCBaseActivity {
      * <p/>
      * SURFACE_TYPE_PUSH_BUFFERS：表明该Surface不包含原生数据，Surface用到的数据由其他对象提供，在Camera图像预览中就使用该类型的Surface，有Camera负责提供给预览Surface数据，这样图像预览会比较流畅。如果设置这种类型则就不能调用lockCanvas来获取Canvas对象了。需要注意的是，在高版本的Android SDK中，setType这个方法已经被depreciated了。
      */
-    private void initSurfaceView() {
+    public void initSurfaceView() {
         surface_view = (SurfaceView) findViewById(R.id.surface_view);
         surface_view.setFocusable(true);
         surface_view.setFocusableInTouchMode(true);
@@ -77,7 +73,9 @@ public class XCVideoActivity extends XCBaseActivity {
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
                 XCApplication.printi("surfaceDestroyed");
-                player_controller_pop.release();
+                if (player_controller_pop != null) {
+                    player_controller_pop.release();
+                }
             }
 
             // 该方法调用的时候surface还没有真正的创建,只有当调用了srufaceChanged的时候.才算创建了 ??
@@ -86,7 +84,7 @@ public class XCVideoActivity extends XCBaseActivity {
             public void surfaceCreated(SurfaceHolder holder) {
                 XCApplication.printi("surfaceCreated");
                 if (player_controller_pop == null) {
-                    player_controller_pop = new XCVideoPlayerPop(XCVideoActivity.this, uri, surface_view);//这里是创建播放器,非得放这里,因为只有surface创建好了后,才可以player.setDisplay(surface_holder);,否则报错 surface has beeb release
+                    player_controller_pop = new XCVideoPlayerPop2(base_context, uri, surface_view);//这里是创建播放器,非得放这里,因为只有surface创建好了后,才可以player.setDisplay(surface_holder);,否则报错 surface has beeb release
                     XCApplication.printi("player_controller_pop created");
                 } else {
                     player_controller_pop.launchMediaPlayer(uri);
@@ -115,9 +113,6 @@ public class XCVideoActivity extends XCBaseActivity {
         XCApplication.printi("videoActivity--onResume");
         if (player_controller_pop != null) {
             player_controller_pop.recoverState();
-        }
-        if (getRequestedOrientation() != ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {//设置屏幕横屏
-            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
     }
 
