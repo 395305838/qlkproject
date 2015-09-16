@@ -38,8 +38,8 @@ import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment.RightListener;
-import com.xiaocoder.android_fw_general.R;
 import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.test.R;
 import com.xiaocoder.zxcode.camare.CameraManager;
 import com.xiaocoder.zxcode.decoding.CaptureActivityHandler;
 import com.xiaocoder.zxcode.decoding.IDecode;
@@ -82,7 +82,7 @@ public class ScanActivity extends QlkActivity implements Callback, View.OnClickL
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.xc_l_activity_scan_coder);
+        setContentView(com.xiaocoder.test.R.layout.xc_l_activity_scan_coder);
         super.onCreate(savedInstanceState);
 
         XCTitleCommonFragment title_fragment = new XCTitleCommonFragment();
@@ -104,7 +104,7 @@ public class ScanActivity extends QlkActivity implements Callback, View.OnClickL
 
         CameraManager.init(getApplication());
         manager = CameraManager.get();
-        viewfinderView = (ViewfinderView) findViewById(R.id.capture_viewfinder);
+        viewfinderView = (ViewfinderView) findViewById(com.xiaocoder.test.R.id.capture_viewfinder);
 
         // 下面是加的
         hasSurface = false;

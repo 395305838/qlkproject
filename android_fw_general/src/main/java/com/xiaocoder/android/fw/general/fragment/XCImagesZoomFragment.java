@@ -25,7 +25,6 @@ public class XCImagesZoomFragment extends XCBaseFragment {
 
     ViewPager qlk_id_viewpager;
     TextView xc_id_fragment_viewpager_count;
-    ImageView iv_close;
     List<ImageView> imageviews;
     List<String> urls;
     XCAdapterViewPagerRecyle adapter;
@@ -72,7 +71,7 @@ public class XCImagesZoomFragment extends XCBaseFragment {
     // 会等父fragment的onActivityCreated完成后才会调用子fragment的onCreate()方法
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return init(inflater, R.layout.xc_l_fragment_viewpager3);
+        return init(inflater, R.layout.xc_l_fragment_viewpager_zoom);
     }
 
     @Override
@@ -81,13 +80,6 @@ public class XCImagesZoomFragment extends XCBaseFragment {
             listener.onImageClickListener((Integer) (v.getTag()));
 
         }
-        if(v.getId() == R.id.iv_close){
-            if (onCloseListener != null) {
-                onCloseListener.onClose();
-            }
-        }
-
-
     }
 
     public void setData(List<String> urls) {
@@ -142,8 +134,6 @@ public class XCImagesZoomFragment extends XCBaseFragment {
 
     @Override
     public void initWidgets() {
-        iv_close = getViewById(R.id.iv_close);
-        iv_close.setOnClickListener(this);
         qlk_id_viewpager = getViewById(R.id.xc_id_fragment_viewpager);
         xc_id_fragment_viewpager_count = getViewById(R.id.xc_id_fragment_viewpager_count);
 

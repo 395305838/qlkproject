@@ -90,7 +90,7 @@ public class XCViewPagerFragment extends XCBaseFragment implements BaseSliderVie
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return init(inflater, R.layout.fragment_xcview_pager_slider);
+        return init(inflater, R.layout.xc_l_fragment_view_pager_slider);
     }
 
     @Override
