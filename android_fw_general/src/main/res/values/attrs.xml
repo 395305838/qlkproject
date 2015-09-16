@@ -79,7 +79,7 @@
         <attr name="android:scaleType" />
     </declare-styleable>
 
-    <!-- progressdialog -->
+    <!-- progressview -->
     <declare-styleable name="ArcProgress">
         <attr name="arc_progress" format="integer"/>
         <attr name="arc_angle" format="float"/>

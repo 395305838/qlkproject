@@ -20,19 +20,19 @@ public class ProgressViewActivity extends QlkActivity {
         super.onCreate(savedInstanceState);
     }
 
-    // ÎŞÍøÂçÊ±,µã»÷ÆÁÄ»ºó»Øµ÷µÄ·½·¨
+    // æ— ç½‘ç»œæ—¶,ç‚¹å‡»å±å¹•åå›è°ƒçš„æ–¹æ³•
     @Override
     public void onNetRefresh() {
     }
 
-    // ³õÊ¼»¯¿Ø¼ş
+    // åˆå§‹åŒ–æ§ä»¶
     @Override
     public void initWidgets() {
         view = getViewById(R.id.sx_id_progress_view);
         showProgressView();
     }
 
-    // ÉèÖÃ¼àÌı
+    // è®¾ç½®ç›‘å¬
     @Override
     public void listeners() {
 

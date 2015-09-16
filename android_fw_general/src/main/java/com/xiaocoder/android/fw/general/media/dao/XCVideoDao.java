@@ -7,13 +7,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
 
-import com.xiaocoder.android.fw.general.media.IMediaProvider;
 import com.xiaocoder.android.fw.general.model.XCVideoModel;
 
 //获取视频dao
-public class XCVideoDao implements IMediaProvider<XCVideoModel> {
+public class XCVideoDao {
 
-	@Override
 	public ArrayList<XCVideoModel> getList(Context context) {
 		ContentResolver resolver = context.getContentResolver();
 		Cursor cursor = resolver.query(

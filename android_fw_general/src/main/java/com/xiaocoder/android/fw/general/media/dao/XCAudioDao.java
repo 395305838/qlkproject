@@ -7,12 +7,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
 
-import com.xiaocoder.android.fw.general.media.IMediaProvider;
 import com.xiaocoder.android.fw.general.model.XCAudioModel;
 
 //获取音乐文件的dao
-public class XCAudioDao implements IMediaProvider<XCAudioModel> {
-	@Override
+public class XCAudioDao {
+
 	public ArrayList<XCAudioModel> getList(Context context) {
 		ContentResolver resolver = context.getContentResolver();
 		Cursor cursor = resolver.query(

@@ -7,13 +7,11 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
 
-import com.xiaocoder.android.fw.general.media.IMediaProvider;
 import com.xiaocoder.android.fw.general.model.XCImageModel;
 
 //获取本地图片的dao
-public class XCImageDao implements IMediaProvider<XCImageModel> {
+public class XCImageDao  {
 
-	@Override
 	public ArrayList<XCImageModel> getList(Context context) {
 		ContentResolver resolver = context.getContentResolver();
 
