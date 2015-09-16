@@ -12,9 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * 1 JsonType 的过滤标记可以打印出 返回的json串的每个字段的 类型
- * 2 jsonbean解析的时候如解析的类型错误了， 该bean里内置了try catch，并会返回正确的类型，仅 int String  long  double
- * 3 json中的字段常量可以自动生成， JsonBean的标记中可以查看 打印出的该json中的字段常量， 复制后格式化即可
+ * 该bean里内置了try catch，并会返回正确的类型，仅 int String  long  double
  */
 public class XCJsonBean<T extends XCJsonBean> implements Serializable {
 

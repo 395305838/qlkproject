@@ -54,17 +54,19 @@ public class XCCleanCacheHelper {
         XCApplication.getBase_cache_threadpool().execute(new Runnable() {
             @Override
             public void run() {
+                // 如果文件不存在
                 if (!file.exists()) {
-                    XCApplication.getBase_handler().post(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (mDeletingDialog != null) {
-                                mDeletingDialog.show();
-                            }
-                        }
-                    });
                     return;
                 }
+                // 文件存在，则开始转圈
+                XCApplication.getBase_handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (mDeletingDialog != null) {
+                            mDeletingDialog.show();
+                        }
+                    }
+                });
 
                 if (file.isDirectory()) {
                     removeDir(file);

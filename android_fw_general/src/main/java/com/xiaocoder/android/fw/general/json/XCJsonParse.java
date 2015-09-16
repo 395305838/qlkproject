@@ -17,6 +17,10 @@ import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.List;
 
+/**
+ * 1 JsonType的过滤标记可以打印出 返回的json串的每个字段的 类型
+ * 2 JsonBean的标记中可以查看 打印出的该json中的字段常量，复制后格式化即可
+ */
 public class XCJsonParse {
 
     public static <T extends XCJsonBean> T getBean(Class<T> beanClass) {

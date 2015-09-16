@@ -144,8 +144,6 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
         super.onHiddenChanged(hidden);
     }
 
-    // 注意1 : 这里得重写, 否则如果有嵌套fragment的话,回调不到
-    // 注意2 : 需要被回调业务代码的那个fragment中的onActivityResult()不要调用super
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

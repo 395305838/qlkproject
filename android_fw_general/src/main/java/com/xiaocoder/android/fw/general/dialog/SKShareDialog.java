@@ -10,9 +10,6 @@ import android.widget.TextView;
 
 import com.xiaocoder.android_fw_general.R;
 
-/**
- * Created by xiaocoder on 2015/7/15.
- */
 public class SKShareDialog extends XCBaseDialog {
 
     public SKShareDialog(Context context, int style) {

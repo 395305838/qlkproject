@@ -9,7 +9,7 @@ import com.xiaocoder.android.fw.general.util.UtilString;
 /**
  * onUpgrade方法没实现的
  */
-public  class XCDbHelper extends SQLiteOpenHelper {
+public class XCDbHelper extends SQLiteOpenHelper {
 
     public String[] mSqls;
     public String mDbName;
