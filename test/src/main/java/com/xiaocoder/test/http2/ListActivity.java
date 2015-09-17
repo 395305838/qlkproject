@@ -20,7 +20,7 @@ import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
 import com.xiaocoder.android.fw.general.fragment.listview.XCListViewFragment;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
-import com.xiaocoder.android.fw.general.util.UtilCommon;
+import com.xiaocoder.android.fw.general.util.Utils;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.buffer.function.QlkMainActivity;
 import com.xiaocoder.buffer.parse.QlkResponseHandlerBean;
@@ -64,7 +64,7 @@ public class ListActivity extends QlkActivity {
 
                             List<TestBean> testBeans = testBean.getList(testBean.result);
 
-                            if (!UtilCommon.isListBlank(testBeans)) {
+                            if (!Utils.isListBlank(testBeans)) {
                                 TestBean bean = testBeans.get(0);
 
                                 XCApplication.printi(bean.getString(bean.commission));

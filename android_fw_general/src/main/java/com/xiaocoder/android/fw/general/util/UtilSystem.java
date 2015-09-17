@@ -1,6 +1,5 @@
 package com.xiaocoder.android.fw.general.util;
 
-import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;

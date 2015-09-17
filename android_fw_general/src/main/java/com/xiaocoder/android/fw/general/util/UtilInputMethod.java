@@ -11,7 +11,7 @@ import android.widget.EditText;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 
 /**
- * @Description:
+ * @Description: 输入法的弹出 与 关闭
  * @author xiaocoder
  * @date 2015-3-2 下午4:48:56
  */

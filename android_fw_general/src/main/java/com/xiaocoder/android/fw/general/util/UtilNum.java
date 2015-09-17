@@ -6,7 +6,7 @@ import java.text.DecimalFormat;
 /**
  * 数字格式化工具类
  */
-public class UtilNumberFormat {
+public class UtilNum {
     /**
      * 只保留整数部分，且不显示千分符。不四舍五入，以截断方式处理。
      *

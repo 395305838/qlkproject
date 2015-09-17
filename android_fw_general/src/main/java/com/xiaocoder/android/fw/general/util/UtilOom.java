@@ -11,6 +11,8 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
 
+import com.xiaocoder.android.fw.general.io.XCIOAndroid;
+
 public class UtilOom {
 
     // 从uri获取到bitmap，适用于小图
@@ -59,7 +61,7 @@ public class UtilOom {
 
         InputStream input = null;
 
-        input = getInputStreamFromUri(context, uri);
+        input = XCIOAndroid.getInputStreamFromUri(context, uri);
 
         if (input == null) {
             return null;
@@ -75,7 +77,7 @@ public class UtilOom {
 
         double ratio = (originalSize > pix) ? (originalSize / pix) : 1.0; // 如px=200
 
-        input = getInputStreamFromUri(context, uri);
+        input = XCIOAndroid.getInputStreamFromUri(context, uri);
 
         if (input == null) {
             return null;
@@ -90,7 +92,7 @@ public class UtilOom {
 
         InputStream input = null;
 
-        input = getInputStreamFromRaw(context, drawable_id);
+        input = XCIOAndroid.getInputStreamFromRaw(context, drawable_id);
 
         if (input == null) {
             return null;
@@ -106,7 +108,7 @@ public class UtilOom {
 
         double ratio = (originalSize > pix) ? (originalSize / pix) : 1.0; // 如px=200
 
-        input = getInputStreamFromRaw(context, drawable_id);
+        input = XCIOAndroid.getInputStreamFromRaw(context, drawable_id);
 
         if (input == null) {
             return null;
@@ -194,33 +196,6 @@ public class UtilOom {
                     e.printStackTrace();
                 }
             }
-        }
-    }
-
-    public static InputStream getInputStreamFromUri(Context context, Uri uri) {
-        try {
-            return context.getContentResolver().openInputStream(uri);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public static InputStream getInputStreamFromRaw(Context context, int drawable_id) {
-        try {
-            return context.getResources().openRawResource(drawable_id);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    public static InputStream getInputStreamFromAsserts(Context context, String name) {
-        try {
-            return context.getAssets().open(name);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
         }
     }
 }

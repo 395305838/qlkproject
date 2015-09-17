@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.listener;
+package com.xiaocoder.android.fw.general.model;
 
 import android.os.Parcelable;
 import android.widget.AbsListView;
@@ -15,17 +15,11 @@ import android.widget.AbsListView.OnScrollListener;
  * 在滑动时,getview方法会夹杂在onscroll方法之中执行,且在滑动时getview的调用次数明显少于onscroll的调用次数 不管是滑动还是点击,getView都在onscroll和onitemclick之后执行
  */
 public class XCScrollListener implements OnScrollListener {
+
 	private int per_page_num;
 	private int start_index;
 	private int end_index;
 	private Parcelable onSaveInstanceState;
-
-	public XCScrollListener() {
-	}
-
-	public Parcelable getOnSaveInstanceState() {
-		return onSaveInstanceState;
-	}
 
 	@Override
 	public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -33,7 +27,7 @@ public class XCScrollListener implements OnScrollListener {
 		case OnScrollListener.SCROLL_STATE_FLING:
 			break;
 		case OnScrollListener.SCROLL_STATE_IDLE:
-			// onSaveInstanceState = view.onSaveInstanceState(); // 每当滑动停止的时候,保存listView的状态
+			onSaveInstanceState = view.onSaveInstanceState(); // 每当滑动停止的时候,保存listView的状态
 
 			// int index = _end_index - _start_index;
 			// for (int i = 0; i <= index; i++) {
@@ -74,5 +68,9 @@ public class XCScrollListener implements OnScrollListener {
 
 	public int get_end_index() {
 		return end_index;
+	}
+
+	public Parcelable getOnSaveInstanceState() {
+		return onSaveInstanceState;
 	}
 }

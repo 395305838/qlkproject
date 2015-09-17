@@ -27,8 +27,6 @@ public class UtilAbsListStyle {
         view.setVerticalScrollBarEnabled(show_bar);
         view.setHorizontalSpacing(space_h_px);
         view.setVerticalSpacing(space_v_px);
-//        view.setHorizontalSpacing(UtilImage.dip2px(this, space_h_px));
-//        view.setVerticalSpacing(UtilImage.dip2px(this, space_v_px));
         view.setNumColumns(num);
     }
 

@@ -1,11 +1,9 @@
-package com.xiaocoder.android.fw.general.util;
+package com.xiaocoder.android.fw.general.encryption.rc4;
 
 import android.text.TextUtils;
 import android.util.Base64;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
-
-import org.w3c.dom.Text;
 
 import java.security.Key;
 

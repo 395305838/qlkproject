@@ -16,7 +16,7 @@ import com.xiaocoder.android.fw.general.fragment.listview.XCBaseAbsListFragment.
 import com.xiaocoder.android.fw.general.fragment.listview.XCGridViewFragment;
 import com.xiaocoder.android.fw.general.fragment.listview.XCListViewFragment;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
-import com.xiaocoder.android.fw.general.util.UtilCommon;
+import com.xiaocoder.android.fw.general.util.Utils;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.buffer.parse.QlkResponseHandlerModel;
 import com.xiaocoder.test.R;
@@ -63,7 +63,7 @@ public class GridActivity extends QlkActivity {
                             XCApplication.printi(result_bean.getData().getTotalCount() + "");
                             XCApplication.printi(result_bean.getData().getTotalPages() + "");
 
-                            if (!UtilCommon.isListBlank(result)) {
+                            if (!Utils.isListBlank(result)) {
                                 XCApplication.printi(result_bean.getData().getResult().toString() + "");
                                 XCApplication.printi(result_bean.getData().getResult().get(0).getCommission() + "");
                                 XCApplication.printi(result_bean.getData().getResult().get(0).getImgUrl() + "");

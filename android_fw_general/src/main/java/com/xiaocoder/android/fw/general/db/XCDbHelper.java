@@ -40,10 +40,12 @@ public class XCDbHelper extends SQLiteOpenHelper {
 
     }
 
+
+    // db.execSQL("drop table if exists " + );
+    // onCreate(db);
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
-         // db.execSQL("drop table if exists " + );
-         // onCreate(db);
+
     }
 
 }

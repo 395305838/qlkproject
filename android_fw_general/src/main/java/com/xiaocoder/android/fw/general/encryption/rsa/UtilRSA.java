@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.util;
+package com.xiaocoder.android.fw.general.encryption.rsa;
 
 import android.text.TextUtils;
 import com.xiaocoder.android.fw.general.application.XCApplication;

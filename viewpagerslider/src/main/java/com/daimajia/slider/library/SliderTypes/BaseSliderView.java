@@ -144,7 +144,7 @@ public abstract class BaseSliderView {
 
     public BaseSliderView image(Object obj) {
         if (obj == null) {
-            throw new RuntimeException("BaseSliderView中image的参数为null");
+            throw new RuntimeException("BaseSliderView涓璱mage鐨勫弬鏁颁负null");
         }
         if (obj instanceof String) {
             return image((String) obj);

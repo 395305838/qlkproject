@@ -424,7 +424,6 @@ public class UtilString {
      * 颜色的格式  "#184DA3"
      */
     public static void setLightAppendString(String str, TextView textview, String color) {
-        // 实体对象值显示在控件上
         SpannableString hightlight = new SpannableString(str);
         // 高亮器
         ForegroundColorSpan span = new ForegroundColorSpan(Color.parseColor(color));

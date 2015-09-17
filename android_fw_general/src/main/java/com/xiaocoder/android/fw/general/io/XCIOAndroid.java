@@ -10,30 +10,47 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Environment;
 
+import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.util.UtilString;
 
 /**
  * android.permission.MOUNT_UNMOUNT_FILESYSTEMS
  * <p/>
  * android.permission.WRITE_EXTERNAL_STORAGE
- *
- * @author xiaocoder
  */
 public class XCIOAndroid {
 
-    private Context context;
-
-    public XCIOAndroid(Context context) {
-        this.context = context;
+    public static boolean isSDcardExist() {
+        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
 
-    public static boolean isSDcardExist() {
-        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            return true;
-        } else {
-            return false;
+    public static InputStream getInputStreamFromUri(Context context, Uri uri) {
+        try {
+            return context.getContentResolver().openInputStream(uri);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static InputStream getInputStreamFromRaw(Context context, int drawable_id) {
+        try {
+            return context.getResources().openRawResource(drawable_id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static InputStream getInputStreamFromAsserts(Context context, String name) {
+        try {
+            return context.getAssets().open(name);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -42,10 +59,16 @@ public class XCIOAndroid {
         InputStream in = null;
         try {
             in = new FileInputStream(file);
-        } catch (FileNotFoundException f) {
-
+        } catch (FileNotFoundException e) {
+            XCApplication.printe("readSdCardFile()", e);
         }
         return in;
+    }
+
+    private Context context;
+
+    public XCIOAndroid(Context context) {
+        this.context = context;
     }
 
     /**
@@ -66,8 +89,6 @@ public class XCIOAndroid {
         fos.write(content.getBytes(charset));
         fos.close();
     }
-
-    // ----------------------------------------------------------------------------------------------------------------
 
     /**
      * 写文本到SD卡,默认为Ecplise的工程编码
@@ -223,8 +244,6 @@ public class XCIOAndroid {
         FileInputStream in = new FileInputStream(file);
         return new String(XCIO.toBytesByInputStream(in), charset);
     }
-
-    // -----------------------------------------------------------------------------------------
 
     /**
      * 现在sd卡中创建，如果没有sd卡， 则在内部存储中创建
@@ -382,4 +401,5 @@ public class XCIOAndroid {
             return null;
         }
     }
+
 }

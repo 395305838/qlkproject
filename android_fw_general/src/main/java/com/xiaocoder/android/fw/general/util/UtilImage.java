@@ -21,26 +21,18 @@ import android.graphics.RectF;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.media.MediaMetadataRetriever;
 import android.media.ThumbnailUtils;
 import android.provider.MediaStore.Video.Thumbnails;
-import android.view.Display;
-import android.view.WindowManager;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 
-/**
- * @author xiaocoder
- * @date 2014-10-23 下午10:38:26
- */
 public class UtilImage {
 
-    public static int STROKE_WIDTH = 4;
-
-    // 从资产目录里获取bitmap
+    /**
+     *从资产目录里获取bitmap
+     */
     public static Bitmap getBitmapFromAsserts(Context context, String name) {
         try {
             InputStream inputStream = context.getAssets().open(name);
@@ -52,7 +44,7 @@ public class UtilImage {
         }
     }
 
-    /*
+    /**
      * 获取apk的图标
      */
     public static Drawable getApkIcon(Context context, String apkPath) {
@@ -69,6 +61,9 @@ public class UtilImage {
         return null;
     }
 
+    /**
+     * drawable 转成圆形的bitmap
+     */
     public static Bitmap toRoundBitmap(Context context, int id) {
         Drawable drawable = context.getResources().getDrawable(id);
         Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
@@ -122,12 +117,15 @@ public class UtilImage {
         paint.reset();
         paint.setColor(Color.WHITE);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(STROKE_WIDTH);
+        paint.setStrokeWidth(4);
         paint.setAntiAlias(true);
-        canvas.drawCircle(width / 2, width / 2, width / 2 - STROKE_WIDTH / 2, paint);
+        canvas.drawCircle(width / 2, width / 2, width / 2 - 4 / 2, paint);
         return output;
     }
 
+    /**
+     * 把bitmap转为圆形的bitmap
+     */
     public static Bitmap toRoundBitmapByBitmap(Bitmap bitmap) {
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
@@ -180,9 +178,9 @@ public class UtilImage {
         paint.reset();
         paint.setColor(Color.WHITE);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(STROKE_WIDTH);
+        paint.setStrokeWidth(4);
         paint.setAntiAlias(true);
-        canvas.drawCircle(width / 2, width / 2, width / 2 - STROKE_WIDTH / 2, paint);
+        canvas.drawCircle(width / 2, width / 2, width / 2 - 4 / 2, paint);
         return output;
     }
 
@@ -268,46 +266,8 @@ public class UtilImage {
         return bitmapToDrawable(byteToBitmap(b));
     }
 
-    // ----------------------------------------------------------------------------------------------------------
-    /**
-     * get drawable by imagePath
-     *
-     * @param imagePath
-     * @param readTimeOutMillis
-     *            read time out, if less than 0, not set, in mills
-     * @param requestProperties
-     *            http request properties
-     * @return
-     * @throws Exception
-     */
-    /*
-     * public static Drawable getDrawableFromUrl(String imagePath, int
-	 * readTimeOutMillis, HashMap<String, Object> requestParams) throws
-	 * Exception { InputStream in = HttpUtil.requestByGet(imagePath,
-	 * requestParams).getInputStream(); Drawable d =
-	 * Drawable.createFromStream(in, "src"); closeInputStream(in); return d; }
-	 */
-
-    /**
-     * @param imagePath
-     * @param requestParams
-     * @return
-     * @throws Exception
-     */
-    /*
-     * public static Bitmap getBitmapFromUrl(String imagePath, HashMap<String,
-	 * Object> requestParams) throws Exception { InputStream in =
-	 * HttpUtil.requestByGet(imagePath, requestParams).getInputStream(); Bitmap b
-	 * = BitmapFactory.decodeStream(in); closeInputStream(in); return null; }
-	 */
-
     /**
      * scale image
-     *
-     * @param org
-     * @param newWidth
-     * @param newHeight
-     * @return
      */
     public static Bitmap scaleImageTo(Bitmap org, int newWidth, int newHeight) {
         return scaleImage(org, (float) newWidth / org.getWidth(), (float) newHeight / org.getHeight());
@@ -330,21 +290,6 @@ public class UtilImage {
         return Bitmap.createBitmap(org, 0, 0, org.getWidth(), org.getHeight(), matrix, true);
     }
 
-    /**
-     * close inputStream
-     *
-     * @param s
-     */
-    private static void closeInputStream(InputStream s) {
-        if (s == null) {
-            return;
-        }
-        try {
-            s.close();
-        } catch (IOException e) {
-            throw new RuntimeException("IOException occurred. ", e);
-        }
-    }
 
     /**
      * 图片旋转
@@ -529,7 +474,7 @@ public class UtilImage {
         options.inPurgeable = true;
         options.inInputShareable = true;
         try {
-            // 4. inNativeAlloc 属性设置为true，可以不把使用的内存算到VM里
+            // inNativeAlloc 属性设置为true，可以不把使用的内存算到VM里
             BitmapFactory.Options.class.getField("inNativeAlloc").setBoolean(options, true);
         } catch (Exception e) {
             e.printStackTrace();

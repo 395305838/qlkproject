@@ -18,8 +18,6 @@ public class UtilVibrator {
 }
 /*需要在AndroidManifest.xml 中添加震动权限：
 <uses-permission android:name="android.permission.VIBRATE" />
-通过上面操作，我们可以使用TipHelper所定义的函数了。两个Vibrate函数的参数简单介绍如下：
-final Activity activity  ：调用该方法的Activity实例
 
 long milliseconds ：震动的时长，单位是毫秒
 

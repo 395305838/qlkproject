@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by xiaocoder on 2015/7/28.
  */
-public class UtilCommon {
+public class Utils {
 
     /**
      * 判断list是不是空的
