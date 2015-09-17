@@ -15,10 +15,11 @@ import java.io.RandomAccessFile;
 import java.text.DateFormat;
 import java.util.Date;
 
-/*
+/**
  * 1 可以控制频率的吐司
- * 2 输出log到控制台 
- * 3 输出log到文件        
+ * 2 输出log到控制台
+ * 3 输出log到文件
+ * 4 日志的清空，日志的大小控制
  */
 public class XCLog {
 
@@ -31,7 +32,6 @@ public class XCLog {
     public boolean is_dtoast;
     public boolean is_printlog;
     public boolean is_output;
-
 
     public boolean is_OutPut() {
         return is_output;
@@ -53,11 +53,9 @@ public class XCLog {
         this.is_output = is_output;
         this.is_printlog = is_printlog;
 
-
     }
 
     // --------------------------控制频率的吐司---------------------------------
-
     /**
      * 防止点击频繁, 不断的弹出
      */

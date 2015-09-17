@@ -7,11 +7,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.widget.ImageView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
-import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.io.XCLog;
 import com.xiaocoder.android.fw.general.io.XCSP;
 
@@ -22,69 +19,62 @@ import java.util.Map;
 import java.util.Stack;
 import java.util.concurrent.ExecutorService;
 
-// 1 存储activity ， 回到首页activity， 弹出指定activity等
-// 2 线程池    handler  图片加载  log等
+/**
+ * 1 存储activity ， 回到首页activity， 弹出指定activity等
+ * 2 线程池    handler  图片加载  log等
+ */
 public class XCApplication extends Application {
 
-    private Stack<Activity> stack;
-
+    private Stack<Activity> stack = new Stack<Activity>();
+    protected static ExecutorService base_cache_threadpool = XCExecutorHelper.getExecutorHelperInstance().getCache();
+    protected static Handler base_handler = new Handler();
+    /**
+     * 以下的涉及到路径和文件名的，在子类中初始化
+     */
+    protected static ExecutorService base_fix_threadpool;
     protected static XCLog base_log;
     protected static XCSP base_sp;
-    protected static Handler base_handler;
-    protected static ExecutorService base_cache_threadpool;
-    protected static ExecutorService base_fix_threadpool;
-    protected static XCIOAndroid base_io;
+    /**
+     * 加个接口，以后可能会改别的图片加载库，子类中传入
+     */
+    protected static IXCImageLoader base_imageloader;
 
-    protected static ImageLoader base_imageloader;
-    protected static DisplayImageOptions display_image_options;
+    public interface IXCImageLoader {
 
-    public static int THREAD_NUM = 50;
+        void display(String url, ImageView imageview, Object... obj);
+
+        void display(String url, ImageView imageview);
+
+    }
 
     public Stack<Activity> getStack() {
         return stack;
     }
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-
-        stack = new Stack<Activity>();
-
-        // 线程池
-        base_cache_threadpool = XCExecutorHelper.getExecutorHelperInstance().getCache();
-        base_fix_threadpool = XCExecutorHelper.getExecutorHelperInstance().getFix(THREAD_NUM);
-        base_handler = new Handler();
-        base_io = new XCIOAndroid(getApplicationContext());
-
-        // 涉及到路径的初始化 与  imageloader的初始化，在子类中
-
-    }
-
-    // 添加Activity到栈中
+    /**
+     * 添加Activity到栈中
+     */
     public void addActivityToStack(Activity activity) {
-
         stack.add(activity);
-
     }
 
-    // 把Activity移出栈
+    /**
+     * 把Activity移出栈
+     */
     public void delActivityFromStack(Activity activity) {
-
         stack.remove(activity);
-        printi("delActivityFromStack()----" + activity);
-
     }
 
     /**
      * 获取当前Activity（堆栈中最后一个压入的）
      */
     public Activity getCurrentActivity() {
-
         return stack.lastElement();
-
     }
 
-    // 判断某个acivity实例是否存在
+    /**
+     * 判断某个acivity实例是否存在
+     */
     public boolean isActivityExist(Class<?> cls) {
         for (Activity activity : stack) {
             if (activity.getClass().equals(cls)) {
@@ -94,7 +84,9 @@ public class XCApplication extends Application {
         return false;
     }
 
-    // 获取某个activity（activity不删除）
+    /**
+     * 获取某个activity（activity不删除）
+     */
     public List<Activity> getActivity(Class<?> cls) {
         List<Activity> list = new ArrayList<Activity>();
         for (Activity activity : stack) {
@@ -112,7 +104,6 @@ public class XCApplication extends Application {
         if (activity != null) {
             stack.remove(activity);
             activity.finish();
-            activity = null;
         }
     }
 
@@ -120,9 +111,7 @@ public class XCApplication extends Application {
      * 获取当前Activity（堆栈中最后一个压入的）
      */
     public void finishCurrentActivity() {
-
         finishActivity(stack.lastElement());
-
     }
 
     /**
@@ -150,9 +139,7 @@ public class XCApplication extends Application {
 
     /**
      * 回到首页
-     *
-     * @param main_activity_class 首页的activity的字节码
-     * @return
+     * main_activity_class 首页的activity的字节码
      */
     public Object toMainActivity(Class<? extends XCBaseActivity> main_activity_class) {
         Object main_activity = null;
@@ -184,203 +171,131 @@ public class XCApplication extends Application {
         }
     }
 
-
     public static XCLog getBase_log() {
-
         return base_log;
-
     }
 
     public static XCSP getBase_sp() {
-
         return base_sp;
-
     }
 
     public static Handler getBase_handler() {
-
         return base_handler;
-
     }
 
     public static ExecutorService getBase_cache_threadpool() {
-
         return base_cache_threadpool;
-
-    }
-
-    public static XCIOAndroid getBase_io() {
-
-        return base_io;
-
     }
 
     public static ExecutorService getBase_fix_threadpool() {
-
         return base_fix_threadpool;
-
-    }
-
-    public static DisplayImageOptions getDisplay_image_options() {
-
-        return display_image_options;
-
-    }
-
-    public static ImageLoader getBase_imageloader() {
-
-        return base_imageloader;
-
     }
 
     public static void printi(Object msg) {
-
         base_log.i(msg);
-
     }
 
     public static void printi(String tag, Object msg) {
-
         base_log.i(tag, msg);
-
     }
 
     public static void dShortToast(String msg) {
-
         base_log.debugShortToast(msg);
-
     }
 
     public static void dLongToast(String msg) {
-
         base_log.debugLongToast(msg);
-
     }
 
     public static void tempPrint(String msg) {
-
         base_log.tempPrint(msg);
-
     }
 
     public static void shortToast(String msg) {
-
         base_log.shortToast(msg);
-
     }
 
     public static void longToast(String msg) {
-
         base_log.longToast(msg);
-
     }
 
     public static void printe(String hint, Exception e) {
-
         base_log.e(hint, e);
-
     }
 
     public static void printe(String hint) {
-
         base_log.e(hint);
-
     }
 
     public static void printe(Context context, String hint, Exception e) {
-
         base_log.e(context, hint, e);
-
     }
 
     public static void printe(Context context, String hint) {
-
         base_log.e(context, hint);
-
     }
 
     public static void clearLog() {
-
         base_log.clearLog();
-
     }
 
     public static void spPut(String key, boolean value) {
-
         base_sp.putBoolean(key, value);
-
     }
 
     public static void spPut(String key, int value) {
-
         base_sp.putInt(key, value);
-
     }
 
     public static void spPut(String key, long value) {
-
         base_sp.putLong(key, value);
-
     }
 
     public static void spPut(String key, float value) {
-
         base_sp.putFloat(key, value);
-
     }
 
     public static void spPut(String key, String value) {
-
         base_sp.putString(key, value);
-
     }
 
     public static String spGet(String key, String default_value) {
-
         return base_sp.getString(key, default_value);
-
     }
 
     public static int spGet(String key, int default_value) {
-
         return base_sp.getInt(key, default_value);
-
     }
 
     public static long spGet(String key, long default_value) {
-
         return base_sp.getLong(key, default_value);
-
     }
 
     public static boolean spGet(String key, boolean default_value) {
-
         return base_sp.getBoolean(key, default_value);
-
     }
 
     public static float spGet(String key, float default_value) {
-
         return base_sp.getFloat(key, default_value);
-
     }
 
     public static Map<String, ?> spGetAll() {
-
         return base_sp.getAll();
-
     }
 
-    public static void displayImage(String uri, ImageView imageView, DisplayImageOptions options) {
+    public static IXCImageLoader getBase_imageloader() {
+        return base_imageloader;
+    }
 
-        base_imageloader.displayImage(uri, imageView, options);
+    public static void setBase_imageloader(IXCImageLoader imageloader) {
+        base_imageloader = imageloader;
+    }
 
+    public static void displayImage(String uri, ImageView imageView, Object... options) {
+        base_imageloader.display(uri, imageView, options);
     }
 
     public static void displayImage(String uri, ImageView imageView) {
-
-        displayImage(uri, imageView, getDisplay_image_options());
-
+        base_imageloader.display(uri, imageView);
     }
-
 }
