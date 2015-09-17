@@ -10,6 +10,7 @@ import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
 import com.xiaocoder.android.fw.general.helper.XCDownloadHelper;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
+import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.buffer.QlkApplication;
@@ -70,7 +71,7 @@ public class HttpDownLoadActivity extends QlkActivity {
     private void downLoad() {
 
         XCDownloadHelper downloadHelper = new XCDownloadHelper("http://www.baidu.com"
-                , QlkApplication.getBase_io().createFileInAndroid(QlkConfig.APP_ROOT, "downfile"));
+                , XCIOAndroid.createFileInAndroid(getApplicationContext(),QlkConfig.APP_ROOT, "downfile"));
 
         downloadHelper.setDownloadListener(new XCDownloadHelper.DownloadListener() {
             @Override

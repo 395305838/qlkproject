@@ -30,7 +30,7 @@ import java.util.List;
 public abstract class XCBaseActivity extends FragmentActivity implements OnClickListener, XCIHttpResult {
 
     public Context base_context;
-    // 填充布局的对象
+
     public LayoutInflater base_inflater;
 
     public FragmentManager base_fm;

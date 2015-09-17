@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.util.UtilDate;
 import com.xiaocoder.android_fw_general.R;
 
@@ -325,7 +326,7 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
     }
 
     private void startRecording() {
-        save_file = XCApplication.getBase_io().createFileInAndroid(save_dir, "voice" + UtilDate.format(new Date(), UtilDate.FORMAT_FULL_S));
+        save_file = XCIOAndroid.createFileInAndroid(getContext(), save_dir, "voice" + UtilDate.format(new Date(), UtilDate.FORMAT_FULL_S));
         media_recorder = getPreparedRecorder(save_file);
         start_time = System.currentTimeMillis();
         media_recorder.start();

@@ -100,7 +100,7 @@ public class XCHttpAsyn {
     }
 
     /**
-     * 用以下方法便于以后更改http请求库
+     * 用以下方法，便于以后更改http请求库
      */
     public static void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, Map<String, Object> map, XCResponseHandler res) {
 

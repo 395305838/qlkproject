@@ -267,7 +267,7 @@ public class XCLog {
             synchronized (this) {
                 FileOutputStream fos = null;
                 try {
-                    fos = new FileOutputStream(XCApplication.getBase_io().createFileInAndroid(null, app_temp_file_name));
+                    fos = new FileOutputStream(XCIOAndroid.createFileInAndroid(context, null, app_temp_file_name));
                     fos.write(str.getBytes());
                     fos.flush();
                 } catch (Exception e) {

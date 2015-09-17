@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.model;
+package com.xiaocoder.android.fw.general.helper;
 
 import android.os.Parcelable;
 import android.widget.AbsListView;

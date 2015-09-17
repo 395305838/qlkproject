@@ -12,10 +12,10 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.text.DecimalFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -25,15 +25,22 @@ public class XCIO {
     public static final String PATH_SEPARATOR = System.getProperty("path.separator");// 如环境变量的路径分隔符
     public static final String FILE_SEPARATOR = System.getProperty("file.separator");// 如c:/
 
-    /**
-     * 读文件
-     *
-     * @param file
-     * @return
-     */
-    public static String readFrom(File file) {
+
+
+    public static InputStream getInputStreamFromUrl(String url) {
+        File file = new File(url);
+        InputStream in = null;
+        try {
+            in = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return in;
+    }
+
+    public static String readStringFromFile(File file) {
         if (!file.exists()) {
-            return "";
+            return null;
         }
         BufferedReader br = null;
         try {
@@ -98,6 +105,30 @@ public class XCIO {
         return dir;
     }
 
+    public static String toStringByInputStream(InputStream inputStream) {
+        BufferedReader br = null;
+        try {
+            StringBuilder s = new StringBuilder("");
+            InputStreamReader in = new InputStreamReader(inputStream);
+            br = new BufferedReader(in);
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                s.append(line);
+            }
+            return s.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
     /**
      * 把输入流转为字节数组
@@ -141,10 +172,8 @@ public class XCIO {
 
     /**
      * 把输入流转为文件
-     *
-     * @param in
-     * @param file
-     * @throws java.io.IOException
+     * <p/>
+     * 这里可以设置一个下载进度的监听
      */
     public static void toFileByInputStream(InputStream in, File file) {
         toFileByInputStream(in, file, 0, null);
@@ -162,9 +191,9 @@ public class XCIO {
             }
             while ((len = in.read(buffer)) != -1) {
                 os.write(buffer, 0, len);
-                totalProgress = totalProgress + len;
                 if (listener != null) {
-                    listener.downloadProgress(len, totalProgress, totalSize,file);
+                    totalProgress = totalProgress + len;
+                    listener.downloadProgress(len, totalProgress, totalSize, file);
                 }
             }
             in.close();
@@ -194,11 +223,6 @@ public class XCIO {
 
     /**
      * 复制文件夹
-     *
-     * @param fromPath
-     * @param toPath
-     * @return
-     * @throws java.io.IOException
      */
     public static void copyDirAndFile(String fromPath, String toPath) throws IOException {
         // 1.将原始路径和目标路径转为File
@@ -257,7 +281,6 @@ public class XCIO {
         } catch (Exception e) {
             throw new RuntimeException(e);
         } finally {
-            // 关闭流
             try {
                 if (in != null) {
                     in.close();
@@ -303,6 +326,58 @@ public class XCIO {
     }
 
     /**
+     * deserialization from file
+     *
+     * @param filePath
+     * @return
+     * @throws RuntimeException if an error occurs
+     */
+    public static Object deserialization(String filePath) {
+        ObjectInputStream in = null;
+        try {
+            in = new ObjectInputStream(new FileInputStream(filePath));
+            Object o = in.readObject();
+            in.close();
+            return o;
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("FileNotFoundException occurred. ", e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("ClassNotFoundException occurred. ", e);
+        } catch (IOException e) {
+            throw new RuntimeException("IOException occurred. ", e);
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    throw new RuntimeException("IOException occurred. ", e);
+                }
+            }
+        }
+    }
+
+    public static void serialization(String filePath, Object obj) {
+        ObjectOutputStream out = null;
+        try {
+            out = new ObjectOutputStream(new FileOutputStream(filePath));
+            out.writeObject(obj);
+            out.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("FileNotFoundException occurred. ", e);
+        } catch (IOException e) {
+            throw new RuntimeException("IOException occurred. ", e);
+        } finally {
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    throw new RuntimeException("IOException occurred. ", e);
+                }
+            }
+        }
+    }
+
+    /**
      * 根据指定的过滤器在指定目录下获取所有的符合过滤条件的文件，并存储到list集合中。
      *
      * @param dir    目录
@@ -334,72 +409,12 @@ public class XCIO {
     }
 
     /**
-     * deserialization from file
-     *
-     * @param filePath
-     * @return
-     * @throws RuntimeException if an error occurs
-     */
-    public static Object deserialization(String filePath) {
-        ObjectInputStream in = null;
-        try {
-            in = new ObjectInputStream(new FileInputStream(filePath));
-            Object o = in.readObject();
-            in.close();
-            return o;
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("FileNotFoundException occurred. ", e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("ClassNotFoundException occurred. ", e);
-        } catch (IOException e) {
-            throw new RuntimeException("IOException occurred. ", e);
-        } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    throw new RuntimeException("IOException occurred. ", e);
-                }
-            }
-        }
-    }
-
-    /**
-     * serialize to file
-     *
-     * @param filePath
-     * @param obj
-     * @return
-     * @throws RuntimeException if an error occurs
-     */
-    public static void serialization(String filePath, Object obj) {
-        ObjectOutputStream out = null;
-        try {
-            out = new ObjectOutputStream(new FileOutputStream(filePath));
-            out.writeObject(obj);
-            out.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException("FileNotFoundException occurred. ", e);
-        } catch (IOException e) {
-            throw new RuntimeException("IOException occurred. ", e);
-        } finally {
-            if (out != null) {
-                try {
-                    out.close();
-                } catch (IOException e) {
-                    throw new RuntimeException("IOException occurred. ", e);
-                }
-            }
-        }
-    }
-
-    /**
      * 获得指定后缀名的文件文件
      *
      * @param list 用来存放本地视频的集合
      * @param file 在哪个文件路径下查找
      */
-    public  void getVideoFile(final LinkedList<File> list, File file) {
+    public void getVideoFile(final LinkedList<File> list, File file) {
 
         file.listFiles(new FileFilter() {
 
