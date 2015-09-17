@@ -5,12 +5,13 @@ import android.content.Context;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.application.XCConfig;
+import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 
-/*单例
- * 1如果是上传文件:
- * 	可以 params.put("字段", new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/0912/compass.png"));
+import java.util.Map;
+
+/*
+ * 1 文件上传： params.put("字段", new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/0912/compass.png"));
  *  同时支持流和字节
  *
  * 2不管是失败还是完成都会调用onFinish()方法
@@ -43,6 +44,7 @@ public class XCHttpAsyn {
         return client;
     }
 
+    @Deprecated
     public static void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, RequestParams params, XCResponseHandler res) {
         XCApplication.printi(XCConfig.TAG_HTTP, params.toString());
         if (isAllowConcurrent || !isNeting) {
@@ -57,14 +59,17 @@ public class XCHttpAsyn {
         }
     }
 
+    @Deprecated
     public static void getAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
         getAsyn(true, isAllowConcurrent, isShowDialog, context, urlString, params, res);
     }
 
+    @Deprecated
     public static void getAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
         getAsyn(true, false, isShowDialog, context, urlString, params, res);
     }
 
+    @Deprecated
     public static void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
         XCApplication.printi(XCConfig.TAG_HTTP, params.toString());
         if (isAllowConcurrent || !isNeting) {
@@ -79,11 +84,13 @@ public class XCHttpAsyn {
         }
     }
 
+    @Deprecated
     public static void postAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
         postAsyn(true, isAllowConcurrent, isShowDialog, context, urlString, params, res);
 
     }
 
+    @Deprecated
     public static void postAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
         postAsyn(true, false, isShowDialog, context, urlString, params, res);
     }
@@ -91,5 +98,72 @@ public class XCHttpAsyn {
     public static void resetNetingStatus() {
         XCHttpAsyn.isNeting = false;
     }
+
+    /**
+     * 用以下方法便于以后更改http请求库
+     */
+    public static void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, Map<String, Object> map, XCResponseHandler res) {
+
+        RequestParams params = new RequestParams();
+
+        for (Map.Entry<String, Object> item : map.entrySet()) {
+            String key = item.getKey();
+            Object value = item.getValue();
+            params.put(key, value);
+        }
+
+        XCApplication.printi(XCConfig.TAG_HTTP, params.toString());
+        if (isAllowConcurrent || !isNeting) {
+            isNeting = true;
+            XCApplication.printi(XCConfig.TAG_HTTP, urlString + "------>get http url");
+            res.setContext(context);
+            res.yourCompanySecret(params, client, needSecret);
+            if (isShowDialog) {
+                res.showHttpDialog();
+            }
+            client.get(urlString, params, res);
+        }
+    }
+
+    public static void getAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCResponseHandler res) {
+        getAsyn(true, isAllowConcurrent, isShowDialog, context, urlString, map, res);
+    }
+
+    public static void getAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCResponseHandler res) {
+        getAsyn(true, false, isShowDialog, context, urlString, map, res);
+    }
+
+    public static void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCResponseHandler res) {
+
+        RequestParams params = new RequestParams();
+
+        for (Map.Entry<String, Object> item : map.entrySet()) {
+            String key = item.getKey();
+            Object value = item.getValue();
+            params.put(key, value);
+        }
+
+        XCApplication.printi(XCConfig.TAG_HTTP, params.toString());
+        if (isAllowConcurrent || !isNeting) {
+            isNeting = true;
+            XCApplication.printi(XCConfig.TAG_HTTP, urlString + "------>post http url");
+            res.setContext(context);
+            res.yourCompanySecret(params, client, needSecret);
+            if (isShowDialog) {
+                res.showHttpDialog();
+            }
+            client.post(urlString, params, res);
+        }
+    }
+
+    public static void postAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCResponseHandler res) {
+        postAsyn(true, isAllowConcurrent, isShowDialog, context, urlString, map, res);
+
+    }
+
+    public static void postAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCResponseHandler res) {
+        postAsyn(true, false, isShowDialog, context, urlString, map, res);
+    }
+
 
 }
