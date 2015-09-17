@@ -5,7 +5,7 @@ import com.xiaocoder.android.fw.general.json.XCJsonBean;
 /**
  * Created by xiaocoder on 2015/7/29.
  */
-public class QlkBean<T extends XCJsonBean> extends XCJsonBean<T> implements IQlkResponseInfo {
+public class QlkBean extends XCJsonBean implements IQlkResponseInfo {
 
     /**
      * 返回的状态码

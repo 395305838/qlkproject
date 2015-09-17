@@ -233,13 +233,13 @@ public class XCApplication extends Application {
 
     }
 
-    public static void printi(String msg) {
+    public static void printi(Object msg) {
 
         base_log.i(msg);
 
     }
 
-    public static void printi(String tag, String msg) {
+    public static void printi(String tag, Object msg) {
 
         base_log.i(tag, msg);
 

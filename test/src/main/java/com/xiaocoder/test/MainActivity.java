@@ -98,6 +98,13 @@ public class MainActivity extends QlkMainActivity {
     }
 
     private void loge() {
+
+        XCApplication.printi(1);
+        XCApplication.printi(true);
+        XCApplication.printi(false);
+        Object obj = null;
+        XCApplication.printi(obj);
+
         try {
             XCApplication.printe("123");
             XCApplication.printe("345");

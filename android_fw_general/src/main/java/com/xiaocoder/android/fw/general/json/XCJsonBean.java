@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * 该bean里内置了try catch，并会返回正确的类型，仅 int String  long  double
  */
-public class XCJsonBean<T extends XCJsonBean> implements Serializable {
+public class XCJsonBean implements Serializable {
 
     private static final long serialVersionUID = 8461633826093329307L;
 
@@ -120,7 +120,7 @@ public class XCJsonBean<T extends XCJsonBean> implements Serializable {
         }
     }
 
-    public T instanceModel() {
+    public <T extends XCJsonBean> T instanceModel() {
         try {
             Constructor constructor = this.getClass().getConstructor();
             Object o = constructor.newInstance();
@@ -131,7 +131,7 @@ public class XCJsonBean<T extends XCJsonBean> implements Serializable {
         }
     }
 
-    public T getModel(String name, T default_value) {
+    public <T extends XCJsonBean> T getModel(String name, T default_value) {
         Object value = paraMap.get(name.toLowerCase());
         if (value == null || value.equals(JSONObject.NULL)) {
             return default_value;
@@ -139,11 +139,11 @@ public class XCJsonBean<T extends XCJsonBean> implements Serializable {
         return (T) value;
     }
 
-    public T getModel(String name) {
-        return getModel(name, instanceModel());
+    public <T extends XCJsonBean> T getModel(String name) {
+        return (T) getModel(name, instanceModel());
     }
 
-    public List<T> getList(String name, List<T> defualt_value) {
+    public <T extends XCJsonBean> List<T> getList(String name, List<T> defualt_value) {
         Object value = paraMap.get(name.toLowerCase());
         if (value == null || value.equals(JSONObject.NULL)) {
             return defualt_value;
@@ -151,7 +151,7 @@ public class XCJsonBean<T extends XCJsonBean> implements Serializable {
         return (List<T>) value;
     }
 
-    public List<T> getList(String name) {
+    public <T extends XCJsonBean> List<T> getList(String name) {
         return getList(name, new ArrayList<T>());
     }
 

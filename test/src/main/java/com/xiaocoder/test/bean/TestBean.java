@@ -12,7 +12,7 @@ import com.xiaocoder.buffer.parse.QlkBean;
  * <p/>
  * 现在不用这个，改用model，见TestModel
  */
-public class TestBean extends QlkBean<TestBean> {
+public class TestBean extends QlkBean {
 
     public String msg = "msg";
     public String data = "data";

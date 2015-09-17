@@ -132,30 +132,30 @@ public class XCLog {
      * <p/>
      * 上线前is_output 与 is_printlog关闭
      */
-    public void i(Context context, String msg) {
+    public void i(Context context, Object msg) {
         if (is_output) {
-            Log.i(context.getClass().getSimpleName(), msg);
+            Log.i(context.getClass().getSimpleName(), msg + "");
         }
         if (is_printlog) {
             writeLog2File(context.getClass().getSimpleName() + "---" + msg, true);
         }
     }
 
-    public void i(String tag, String msg) {
+    public void i(String tag, Object msg) {
         if (is_output) {
-            Log.i(tag, msg);
+            Log.i(tag, msg + "");
         }
         if (is_printlog) {
-            writeLog2File(msg, true);
+            writeLog2File(msg + "", true);
         }
     }
 
-    public void i(String msg) {
+    public void i(Object msg) {
         if (is_output) {
-            Log.i(XCConfig.TAG_SYSTEM_OUT, msg);
+            Log.i(XCConfig.TAG_SYSTEM_OUT, msg + "");
         }
         if (is_printlog) {
-            writeLog2File(msg, true);
+            writeLog2File(msg + "", true);
         }
     }
 

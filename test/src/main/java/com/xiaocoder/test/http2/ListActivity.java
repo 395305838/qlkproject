@@ -14,10 +14,10 @@ import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApplication;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
-import com.xiaocoder.android.fw.general.fragment.listview.XCBaseAbsListFragment.OnAbsListItemClickListener;
-import com.xiaocoder.android.fw.general.fragment.listview.XCBaseAbsListFragment.OnRefreshNextPageListener;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
+import com.xiaocoder.android.fw.general.fragment.listview.XCBaseAbsListFragment.OnAbsListItemClickListener;
+import com.xiaocoder.android.fw.general.fragment.listview.XCBaseAbsListFragment.OnRefreshNextPageListener;
 import com.xiaocoder.android.fw.general.fragment.listview.XCListViewFragment;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.util.Utils;
@@ -61,6 +61,7 @@ public class ListActivity extends QlkActivity {
                             }
 
                             TestBean testBean = result_bean.getModel(result_bean.data);
+                            XCApplication.printi(testBean);
 
                             List<TestBean> testBeans = testBean.getList(testBean.result);
 
