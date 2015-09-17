@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 
 import java.util.List;
 
@@ -151,7 +151,7 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
         List<Fragment> fragments = getChildFragmentManager().getFragments();
         if (fragments != null) {
             for (Fragment fragment : fragments) {
-                XCApplication.printi(fragment.toString() + "----onActivityResult");
+                XCApp.i(fragment.toString() + "----onActivityResult");
                 fragment.onActivityResult(requestCode, resultCode, data);
             }
         }

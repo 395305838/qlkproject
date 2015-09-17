@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
@@ -61,23 +61,23 @@ public class ListActivity extends QlkActivity {
                             }
 
                             TestBean testBean = result_bean.getModel(result_bean.data);
-                            XCApplication.printi(testBean);
+                            XCApp.i(testBean);
 
                             List<TestBean> testBeans = testBean.getList(testBean.result);
 
                             if (!Utils.isListBlank(testBeans)) {
                                 TestBean bean = testBeans.get(0);
 
-                                XCApplication.printi(bean.getString(bean.commission));
-                                XCApplication.printi(bean.getString(bean.imgUrl));
-                                XCApplication.printi(bean.getString(bean.marketPrice));
-                                XCApplication.printi(bean.getString(bean.rebate));
-                                XCApplication.printi(bean.getString(bean.proudctId));
+                                XCApp.i(bean.getString(bean.commission));
+                                XCApp.i(bean.getString(bean.imgUrl));
+                                XCApp.i(bean.getString(bean.marketPrice));
+                                XCApp.i(bean.getString(bean.rebate));
+                                XCApp.i(bean.getString(bean.proudctId));
 
-                                XCApplication.printi(bean.getModel(bean.share).toString());
-                                XCApplication.printi(bean.getModel(bean.share).getString(bean.title));
-                                XCApplication.printi(bean.getModel(bean.share).getString(bean.icon));
-                                XCApplication.printi(bean.getModel(bean.share).getString(bean.content));
+                                XCApp.i(bean.getModel(bean.share).toString());
+                                XCApp.i(bean.getModel(bean.share).getString(bean.title));
+                                XCApp.i(bean.getModel(bean.share).getString(bean.icon));
+                                XCApp.i(bean.getModel(bean.share).getString(bean.content));
                             }
 
                             // grid_fragment.setTotalNum("100");// 或者setTotalPage也可以
@@ -116,7 +116,7 @@ public class ListActivity extends QlkActivity {
                                 }
                             });
                             httpDialog.show();
-                            XCApplication.printi("showHttpDialog()");
+                            XCApp.i("showHttpDialog()");
                         }
                     }
                 });
@@ -195,8 +195,8 @@ public class ListActivity extends QlkActivity {
 
             @Override
             public void onAbsListItemClickListener(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                XCApplication.dShortToast(arg2 + "");
-                XCApplication.printi(arg2 + "");
+                XCApp.dShortToast(arg2 + "");
+                XCApp.i(arg2 + "");
             }
 
         });

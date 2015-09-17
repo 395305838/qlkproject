@@ -1,6 +1,6 @@
 package com.xiaocoder.buffer.parse;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.http.XCIHttpResult;
 import com.xiaocoder.android.fw.general.json.XCJsonParse;
@@ -25,7 +25,7 @@ public  class QlkResponseHandlerBean<T extends QlkBean> extends QlkResponseHandl
     @Override
     public T parseWay(String responseStr , byte[] response_bytes) {
 
-        XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----parseWay()");
+        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----parseWay()");
 
         return XCJsonParse.getJsonParseData(responseStr, result_bean_class);
     }

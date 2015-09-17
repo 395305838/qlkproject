@@ -23,7 +23,7 @@ import java.util.concurrent.ExecutorService;
  * 1 存储activity ， 回到首页activity， 弹出指定activity等
  * 2 线程池    handler  图片加载  log等
  */
-public class XCApplication extends Application {
+public class XCApp extends Application {
 
     private Stack<Activity> stack = new Stack<Activity>();
     protected static ExecutorService base_cache_threadpool = XCExecutorHelper.getExecutorHelperInstance().getCache();
@@ -191,11 +191,11 @@ public class XCApplication extends Application {
         return base_fix_threadpool;
     }
 
-    public static void printi(Object msg) {
+    public static void i(Object msg) {
         base_log.i(msg);
     }
 
-    public static void printi(String tag, Object msg) {
+    public static void i(String tag, Object msg) {
         base_log.i(tag, msg);
     }
 
@@ -219,19 +219,19 @@ public class XCApplication extends Application {
         base_log.longToast(msg);
     }
 
-    public static void printe(String hint, Exception e) {
+    public static void e(String hint, Exception e) {
         base_log.e(hint, e);
     }
 
-    public static void printe(String hint) {
+    public static void e(String hint) {
         base_log.e(hint);
     }
 
-    public static void printe(Context context, String hint, Exception e) {
+    public static void e(Context context, String hint, Exception e) {
         base_log.e(context, hint, e);
     }
 
-    public static void printe(Context context, String hint) {
+    public static void e(Context context, String hint) {
         base_log.e(context, hint);
     }
 

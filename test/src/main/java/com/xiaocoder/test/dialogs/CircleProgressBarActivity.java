@@ -3,7 +3,7 @@ package com.xiaocoder.test.dialogs;
 import android.os.Bundle;
 import android.view.View;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.view.XCCircleProgressBar;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
@@ -34,7 +34,7 @@ public class CircleProgressBarActivity extends QlkActivity {
 
         for (int i = 0; i < 10; i++) {
             final int finalI = i;
-            XCApplication.getBase_handler().postDelayed(new Runnable() {
+            XCApp.getBase_handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
                     if (finalI * 10 >= 90) {

@@ -15,7 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.db.XCDbHelper;
@@ -184,7 +184,7 @@ public class XCSearchRecordFragment extends XCBaseFragment implements AdapterVie
         @Override
         public void onClick(View view) {
             Integer position = (Integer) view.getTag();
-            XCApplication.dShortToast(position + "");
+            XCApp.dShortToast(position + "");
             dao.delete_unique(list.get(position).getTime());
             XCSearchRecordFragment.this.update();
         }
@@ -226,14 +226,14 @@ public class XCSearchRecordFragment extends XCBaseFragment implements AdapterVie
 
     public XCDbHelper instanceHelper() {
         try {
-            XCApplication.printi(XCConfig.TAG_DB, this.toString() + "----instanceHelper()");
+            XCApp.i(XCConfig.TAG_DB, this.toString() + "----instanceHelper()");
             Constructor constructor = mDbHelper.getConstructor(Context.class, String.class, int.class, String[].class);
             Object o = constructor.newInstance(getBaseActivity(), mDbName, mVersion, mSqls);
-            XCApplication.printi(XCConfig.TAG_DB, this.toString() + "---" + o.toString());
+            XCApp.i(XCConfig.TAG_DB, this.toString() + "---" + o.toString());
             return (XCDbHelper) o;
         } catch (Exception e) {
             e.printStackTrace();
-            XCApplication.printe(getBaseActivity(),"",e);
+            XCApp.e(getBaseActivity(), "", e);
             return null;
         }
     }

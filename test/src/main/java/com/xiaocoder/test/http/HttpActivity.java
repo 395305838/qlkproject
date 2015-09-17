@@ -6,7 +6,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.loopj.android.http.RequestParams;
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.buffer.parse.QlkResponseHandlerModel;
@@ -35,27 +35,27 @@ public class HttpActivity extends QlkActivity {
                     public void success(int code, Header[] headers, byte[] arg2) {
                         super.success(code, headers, arg2);
 
-                        XCApplication.dShortToast("success");
+                        XCApp.dShortToast("success");
 
                         if (result_boolean) {
 
-                            XCApplication.printi(result_bean.toString());
-                            XCApplication.printi(result_bean.getMsg());
-                            XCApplication.printi(result_bean.getCode() + "");
-                            XCApplication.printi(result_bean.getData().getResult().toString() + "");
-                            XCApplication.printi(result_bean.getData().getTotalCount() + "");
-                            XCApplication.printi(result_bean.getData().getTotalPages() + "");
-                            XCApplication.printi(result_bean.getData().getResult().get(0).getCommission() + "");
-                            XCApplication.printi(result_bean.getData().getResult().get(0).getImgUrl() + "");
-                            XCApplication.printi(result_bean.getData().getResult().get(0).getMarketPrice() + "");
-                            XCApplication.printi(result_bean.getData().getResult().get(0).getName() + "");
-                            XCApplication.printi(result_bean.getData().getResult().get(1).getRebate() + "");
-                            XCApplication.printi(result_bean.getData().getResult().get(2).getType() + "");
-                            XCApplication.printi(result_bean.getData().getResult().get(2).getShare().getBaseUrl() + "");
-                            XCApplication.printi(result_bean.getData().getResult().get(2).getShare().getContent() + "");
-                            XCApplication.printi(result_bean.getData().getResult().get(2).getShare().getTitle() + "");
-                            XCApplication.printi(result_bean.getData().getResult().get(2).getShare().getIcon() + "");
-                            XCApplication.printi(result_bean.getData().getResult().get(1).getImgUrl());
+                            XCApp.i(result_bean.toString());
+                            XCApp.i(result_bean.getMsg());
+                            XCApp.i(result_bean.getCode() + "");
+                            XCApp.i(result_bean.getData().getResult().toString() + "");
+                            XCApp.i(result_bean.getData().getTotalCount() + "");
+                            XCApp.i(result_bean.getData().getTotalPages() + "");
+                            XCApp.i(result_bean.getData().getResult().get(0).getCommission() + "");
+                            XCApp.i(result_bean.getData().getResult().get(0).getImgUrl() + "");
+                            XCApp.i(result_bean.getData().getResult().get(0).getMarketPrice() + "");
+                            XCApp.i(result_bean.getData().getResult().get(0).getName() + "");
+                            XCApp.i(result_bean.getData().getResult().get(1).getRebate() + "");
+                            XCApp.i(result_bean.getData().getResult().get(2).getType() + "");
+                            XCApp.i(result_bean.getData().getResult().get(2).getShare().getBaseUrl() + "");
+                            XCApp.i(result_bean.getData().getResult().get(2).getShare().getContent() + "");
+                            XCApp.i(result_bean.getData().getResult().get(2).getShare().getTitle() + "");
+                            XCApp.i(result_bean.getData().getResult().get(2).getShare().getIcon() + "");
+                            XCApp.i(result_bean.getData().getResult().get(1).getImgUrl());
 
                         }
                     }

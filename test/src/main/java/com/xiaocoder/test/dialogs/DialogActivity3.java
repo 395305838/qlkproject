@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.dialog.SKShareDialog;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCFrameAnimHDialog;
@@ -113,13 +113,13 @@ public class DialogActivity3 extends QlkActivity {
         query_dialog.setOnDecideListener(new XCQueryDialog.OnDecideListener() {
             @Override
             public void confirm() {
-                XCApplication.dShortToast("confirm");
+                XCApp.dShortToast("confirm");
                 query_dialog.dismiss();
             }
 
             @Override
             public void cancle() {
-                XCApplication.dShortToast("cancle");
+                XCApp.dShortToast("cancle");
                 query_dialog.dismiss();
             }
         });

@@ -24,7 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilDate;
 import com.xiaocoder.android.fw.general.util.UtilOom;
@@ -106,17 +106,17 @@ public class XCLocalPhotoFragment extends XCBaseFragment {
                         } else {
                             final Uri uri = data.getData();
                             if (uri == null) {
-                                XCApplication.shortToast("系统获取图片失败");
+                                XCApp.shortToast("系统获取图片失败");
                                 return;
                             }
-                            XCApplication.getBase_cache_threadpool().execute(new Runnable() {
+                            XCApp.getBase_cache_threadpool().execute(new Runnable() {
                                 Bitmap bitmap;
 
                                 @Override
                                 public void run() {
                                     bitmap = UtilOom.getBitmapForLargeByUri(getActivity(), uri, 500, Bitmap.Config.RGB_565);
 
-                                    XCApplication.getBase_handler().post(new Runnable() {
+                                    XCApp.getBase_handler().post(new Runnable() {
                                         @Override
                                         public void run() {
                                             getImage(bitmap);
@@ -159,7 +159,7 @@ public class XCLocalPhotoFragment extends XCBaseFragment {
                     listener.onLocalSelectedFile(file);
                 }
             } else {
-                XCApplication.shortToast("未检测到SD卡");
+                XCApp.shortToast("未检测到SD卡");
                 if (listener != null) {
                     listener.onLocalSelectedFile(null);
                 }
@@ -201,7 +201,7 @@ public class XCLocalPhotoFragment extends XCBaseFragment {
                         listener.onLocalSelectedFile(file);
                     }
                 } else {
-                    XCApplication.shortToast("未检测到SD卡");
+                    XCApp.shortToast("未检测到SD卡");
                     if (listener != null) {
                         listener.onLocalSelectedFile(null);
                     }

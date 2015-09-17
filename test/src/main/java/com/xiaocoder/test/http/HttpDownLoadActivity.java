@@ -13,7 +13,7 @@ import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.buffer.QlkActivity;
-import com.xiaocoder.buffer.QlkApplication;
+import com.xiaocoder.buffer.QlkApp;
 import com.xiaocoder.buffer.QlkConfig;
 import com.xiaocoder.buffer.parse.QlkBean;
 import com.xiaocoder.buffer.parse.QlkResponseHandlerBean;
@@ -95,7 +95,7 @@ public class HttpDownLoadActivity extends QlkActivity {
             }
         });
 
-        QlkApplication.getBase_cache_threadpool().execute(downloadHelper);
+        QlkApp.getBase_cache_threadpool().execute(downloadHelper);
     }
 
     @Override

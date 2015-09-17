@@ -2,7 +2,7 @@ package com.xiaocoder.test.baidumap;
 
 import android.os.Bundle;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.buffer.function.QlkBaiduMapActivity;
 import com.xiaocoder.test.R;
 
@@ -22,7 +22,7 @@ public class MapActivity extends QlkBaiduMapActivity {
         setOnReceiverAddressListener(new OnReceiverAddressListener() {
             @Override
             public void onReceiverAddressListener(String addr) {
-                XCApplication.shortToast(addr);
+                XCApp.shortToast(addr);
             }
         });
 

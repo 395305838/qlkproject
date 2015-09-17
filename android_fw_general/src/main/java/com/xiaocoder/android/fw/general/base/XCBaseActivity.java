@@ -15,7 +15,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.http.XCIHttpResult;
 import com.xiaocoder.android.fw.general.util.UtilInputMethod;
@@ -74,11 +74,11 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         super.onCreate(savedInstanceState);
 
         if (savedInstanceState != null) {
-            XCApplication.printe(this, "回收后重新创建");
+            XCApp.e(this, "回收后重新创建");
         }
 
         // 添加到stack
-        ((XCApplication) getApplication()).addActivityToStack(this);
+        ((XCApp) getApplication()).addActivityToStack(this);
         base_context = this;
         base_inflater = LayoutInflater.from(this);
         base_fm = getSupportFragmentManager();
@@ -188,8 +188,8 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         return isActivityDestroied;
     }
 
-    public XCApplication getXCApplication() {
-        return (XCApplication) getApplication();
+    public XCApp getXCApplication() {
+        return (XCApp) getApplication();
     }
 
     public XCBaseActivity getXCBaseActivity() {
@@ -340,11 +340,11 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        XCApplication.printi("activity---onActivityResult");
+        XCApp.i("activity---onActivityResult");
         List<Fragment> fragments = base_fm.getFragments();
         if (fragments != null) {
             for (Fragment fragment : fragments) {
-                XCApplication.printi("onActivityResult---" + fragment.toString());
+                XCApp.i("onActivityResult---" + fragment.toString());
                 fragment.onActivityResult(requestCode, resultCode, data);
             }
         }

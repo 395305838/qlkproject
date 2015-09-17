@@ -2,7 +2,7 @@ package com.xiaocoder.buffer;
 
 import android.content.Context;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 
 /**
@@ -17,49 +17,49 @@ public class QlkUser {
 
     public static String getUserId() {
 
-        return XCApplication.spGet(USER_ID, "");
+        return XCApp.spGet(USER_ID, "");
 
     }
 
     public static String getUserToken() {
 
-        return XCApplication.spGet(USER_TOKEN, "");
+        return XCApp.spGet(USER_TOKEN, "");
 
     }
 
     public static String getUserName() {
 
-        return XCApplication.spGet(USER_NAME, "");
+        return XCApp.spGet(USER_NAME, "");
 
     }
 
     public static boolean isLogin() {
 
-        return XCApplication.spGet(IS_LOGIN, false);
+        return XCApp.spGet(IS_LOGIN, false);
 
     }
 
     public static void putUserId(String userId) {
 
-        XCApplication.spPut(USER_ID, userId);
+        XCApp.spPut(USER_ID, userId);
 
     }
 
     public static void putUserToken(String userToken) {
 
-        XCApplication.spPut(USER_TOKEN, userToken);
+        XCApp.spPut(USER_TOKEN, userToken);
 
     }
 
     public static void putUserName(String userName) {
 
-        XCApplication.spPut(USER_NAME, userName);
+        XCApp.spPut(USER_NAME, userName);
 
     }
 
     public static void putLogin(boolean isLogin) {
 
-        XCApplication.spPut(IS_LOGIN, isLogin);
+        XCApp.spPut(IS_LOGIN, isLogin);
 
     }
 

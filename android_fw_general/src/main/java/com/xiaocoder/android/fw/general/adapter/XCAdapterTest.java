@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 
 /**
  * 测试用的 , 直接创建一个listview , 然后 listview.setAdapter(new XCAdapterText(context,null);
@@ -36,9 +36,9 @@ public class XCAdapterTest extends XCBaseAdapter<String> {
 		}
 		bean = list.get(position);
 		if (convertView == null) {
-			XCApplication.printi("convertView==null?--true" + position);
+			XCApp.i("convertView==null?--true" + position);
 		} else {
-			XCApplication.printi("convertView==null?--false" + position + convertView.toString());
+			XCApp.i("convertView==null?--false" + position + convertView.toString());
 		}
 		if (convertView == null) {
 			TextView textView = new TextView(context);

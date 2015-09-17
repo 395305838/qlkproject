@@ -1,6 +1,6 @@
 package com.xiaocoder.buffer.function;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.buffer.QlkActivity;
 
 /**
@@ -19,7 +19,7 @@ public abstract class QlkMainActivity extends QlkActivity {
             getXCApplication().AppExit(base_context);
         } else {
             back_quit_time = this_quit_time;
-            XCApplication.shortToast("快速再按一次退出");
+            XCApp.shortToast("快速再按一次退出");
         }
     }
 

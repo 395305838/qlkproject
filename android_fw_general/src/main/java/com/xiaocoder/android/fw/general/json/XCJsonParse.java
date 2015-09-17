@@ -1,6 +1,6 @@
 package com.xiaocoder.android.fw.general.json;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.io.XCIO;
 import com.xiaocoder.android.fw.general.util.UtilString;
@@ -53,7 +53,7 @@ public class XCJsonParse {
     public static <T extends XCJsonBean> List<T> getJsonListParseData(String json, Class<T> beanClass) {
         List<T> list = new ArrayList<T>();
         try {
-            XCApplication.tempPrint(json);
+            XCApp.tempPrint(json);
             JSONArray array = new JSONArray(json);
             int size = array.length();
             for (int i = 0; i < size; i++) {
@@ -98,15 +98,15 @@ public class XCJsonParse {
                         }
                     }
                 } else {
-                    if (XCApplication.getBase_log().is_OutPut()) {
+                    if (XCApp.getBase_log().is_OutPut()) {
                         if (o instanceof Boolean) {
-                            XCApplication.printi(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is boolean");
+                            XCApp.i(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is boolean");
                         } else if (o instanceof Integer) {
-                            XCApplication.printi(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is Integer");
+                            XCApp.i(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is Integer");
                         } else if (o instanceof String) {
-                            XCApplication.printi(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is String");
+                            XCApp.i(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is String");
                         } else {
-                            XCApplication.printi(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is Else Type");
+                            XCApp.i(XCConfig.TAG_JSON_TYPE, key.toString() + "---->" + o.toString() + "----is Else Type");
                         }
                     }
                     result.add(key, o);
@@ -123,7 +123,7 @@ public class XCJsonParse {
     // 创建bean类 , 这里只是打印出来了而已,然后复制粘贴字段到bean
     public static void json2Bean(String json) {
 
-        if (XCApplication.getBase_log().is_OutPut() && json != null) {
+        if (XCApp.getBase_log().is_OutPut() && json != null) {
             LinkedHashSet<String> set = new LinkedHashSet<String>();
             json = json.replace("\"", "");
             json = json.replace(" ", "");
@@ -180,7 +180,7 @@ public class XCJsonParse {
 
             builder.append("}");
 
-            XCApplication.printi(XCConfig.TAG_JSON_BEAN, builder.toString());
+            XCApp.i(XCConfig.TAG_JSON_BEAN, builder.toString());
         }
     }
 

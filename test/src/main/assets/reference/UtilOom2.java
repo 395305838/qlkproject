@@ -18,7 +18,7 @@ package reference;
 //import android.graphics.BitmapFactory;
 //import android.os.Environment;
 //
-//import com.xiaocoder.android.fw.general.application.XCApplication;
+//import com.xiaocoder.android.fw.general.application.XCApp;
 //import com.xiaocoder.android.fw.general.application.XCConfig;
 //
 //public class UtilImage2 {
@@ -142,8 +142,8 @@ package reference;
 //		Bitmap bitmap = getimage(fileName);
 //	    int width = bitmap.getWidth();
 //	    int height = bitmap.getHeight();
-//	    XCApplication.base_log.i(XCConfig.TAG_SYSTEM_OUT, "按比例缩小后宽度--" + width);
-//	    XCApplication.base_log.i(XCConfig.TAG_SYSTEM_OUT, "按比例缩小后高度--" + height);
+//	    XCApp.base_log.i(XCConfig.TAG_SYSTEM_OUT, "按比例缩小后宽度--" + width);
+//	    XCApp.base_log.i(XCConfig.TAG_SYSTEM_OUT, "按比例缩小后高度--" + height);
 //	    
 //	    File dir = new File(XCConfig.CACHE_DIRECTORY);
 //	    if (!dir.exists()) {
@@ -168,7 +168,7 @@ package reference;
 //	
 //	
 //	public static Bitmap loadImageFromUrl(String url) throws IOException {
-//		 XCApplication.base_log.i(XCConfig.TAG_SYSTEM_OUT,url);
+//		 XCApp.base_log.i(XCConfig.TAG_SYSTEM_OUT,url);
 //		if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)){
 //			File dir = new File(XCConfig.CACHE_DIRECTORY);
 //			if(!dir.exists()){
@@ -179,7 +179,7 @@ package reference;
 ////				FileInputStream fis = new FileInputStream(f);
 ////				Drawable d = Drawable.createFromStream(fis, "src");
 //				Bitmap bitmap = getimage(f);
-//				 XCApplication.base_log.i(XCConfig.TAG_SYSTEM_OUT,"Load image from SD :" + url);
+//				 XCApp.base_log.i(XCConfig.TAG_SYSTEM_OUT,"Load image from SD :" + url);
 //				return bitmap;
 //			}
 //			URL m = new URL(url);
@@ -191,7 +191,7 @@ package reference;
 //			while ((byteread = in.read(buffer)) != -1) {
 //				out.write(buffer, 0, byteread);
 //			}
-//			 XCApplication.base_log.i(XCConfig.TAG_SYSTEM_OUT,"Save image to SD :" + url);
+//			 XCApp.base_log.i(XCConfig.TAG_SYSTEM_OUT,"Save image to SD :" + url);
 //			in.close();
 //			out.close();
 //			return loadImageFromUrl(url);

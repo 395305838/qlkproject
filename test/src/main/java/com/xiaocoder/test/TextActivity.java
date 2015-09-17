@@ -2,7 +2,7 @@ package com.xiaocoder.test;
 
 import android.os.Bundle;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.io.XCIO;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.json.XCJsonBean;
@@ -63,28 +63,28 @@ public class TextActivity extends QlkActivity {
         List beans = bean.getListList("data", new ArrayList<ArrayList>());
 
         try {
-            XCApplication.printi(beans.toString());
-            XCApplication.printi(beans.get(0).toString());
+            XCApp.i(beans.toString());
+            XCApp.i(beans.get(0).toString());
             if (beans.get(0) instanceof List) {
-                XCApplication.printi("List");
+                XCApp.i("List");
             } else if (beans.get(0) instanceof String[]) {
-                XCApplication.printi("string[]");
+                XCApp.i("string[]");
             } else {
-                XCApplication.printi(beans.get(0).getClass().toString());
+                XCApp.i(beans.get(0).getClass().toString());
 
                 JSONArray array = (JSONArray) beans.get(0);
                 int count = array.length();
                 for (int i = 0; i < count; i++) {
-                    XCApplication.printi((String) array.get(i));
+                    XCApp.i((String) array.get(i));
                 }
             }
 
         } catch (Exception e) {
             e.printStackTrace();
-            XCApplication.printe(this.toString() + "---exception");
+            XCApp.e(this.toString() + "---exception");
         }
 
-        XCApplication.printi(UtilSystem.getDeviceId(this) + "--------------deviceId");
+        XCApp.i(UtilSystem.getDeviceId(this) + "--------------deviceId");
     }
 
     // 设置监听

@@ -1,6 +1,6 @@
 package com.xiaocoder.android.fw.general.helper;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.io.XCIO;
 
@@ -72,17 +72,17 @@ public class XCDownloadHelper implements Runnable {
     public void run() {
         InputStream in = null;
         try {
-            XCApplication.printi(tag, "----进入下载的run方法");
+            XCApp.i(tag, "----进入下载的run方法");
             HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
             conn.setRequestMethod("GET");
             conn.setConnectTimeout(10000);
             if (HttpURLConnection.HTTP_OK == conn.getResponseCode()) {
                 in = conn.getInputStream();
                 long totalSize = conn.getContentLength();
-                XCApplication.printi(tag, "----开始下载了");
+                XCApp.i(tag, "----开始下载了");
                 XCIO.toFileByInputStream(in, file, totalSize, downloadListener);
                 if (downloadListener != null) {
-                    XCApplication.printi(tag, "----下载完成----" + Thread.currentThread());
+                    XCApp.i(tag, "----下载完成----" + Thread.currentThread());
                     downloadListener.downloadFinished(totalSize, file);
                 }
             } else {
@@ -95,7 +95,7 @@ public class XCDownloadHelper implements Runnable {
             if (downloadListener != null) {
                 downloadListener.netFail(file);
             }
-            XCApplication.printi(tag, "--下载excpetion---" + e.toString());
+            XCApp.i(tag, "--下载excpetion---" + e.toString());
         } finally {
             if (in != null) {
                 try {

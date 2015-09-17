@@ -3,7 +3,7 @@ package com.xiaocoder.test.line_point;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
@@ -42,7 +42,7 @@ public class LinePointActivityGC extends QlkActivity {
                 System.out.println(fragment.toString());
                 System.out.println(fragment.getActivity());
 
-                XCApplication.getBase_handler().postDelayed(new Runnable() {
+                XCApp.getBase_handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         System.out.println("handler --" + test_imageview); // 不为空

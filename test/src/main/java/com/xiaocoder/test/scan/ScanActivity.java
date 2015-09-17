@@ -33,7 +33,7 @@ import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
@@ -94,7 +94,7 @@ public class ScanActivity extends QlkActivity implements Callback, View.OnClickL
             @Override
             public void rightClick() {
                 // 打开手机中的相册
-                XCApplication.shortToast("rightclick");
+                XCApp.shortToast("rightclick");
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT); // "android.intent.action.GET_CONTENT"
                 intent.setType("image/*");
                 Intent wrapperIntent = Intent.createChooser(intent, "选择本地二维码图片");
@@ -139,7 +139,7 @@ public class ScanActivity extends QlkActivity implements Callback, View.OnClickL
                     intent.setData(content_url);
                     startActivity(intent);
                 } else {
-                    XCApplication.shortToast("该链接有误");
+                    XCApp.shortToast("该链接有误");
                     onPause(); // 暂时实现连续扫描
                     try {
                         Thread.sleep(100);
@@ -196,7 +196,7 @@ public class ScanActivity extends QlkActivity implements Callback, View.OnClickL
                         isFlashOpen = true;
                         v.setSelected(true);
                     } catch (Exception e) {
-                        XCApplication.printe(this, "", e);
+                        XCApp.e(this, "", e);
                     }
 
                 } else {
@@ -205,7 +205,7 @@ public class ScanActivity extends QlkActivity implements Callback, View.OnClickL
                         isFlashOpen = false;
                         v.setSelected(false);
                     } catch (Exception e) {
-                        XCApplication.printe(this, "", e);
+                        XCApp.e(this, "", e);
                     }
                 }
                 end_timegap = start_timegap;
@@ -267,7 +267,7 @@ public class ScanActivity extends QlkActivity implements Callback, View.OnClickL
                             }
                         }).start();
                     } else {
-                        XCApplication.shortToast("解析数据有误");
+                        XCApp.shortToast("解析数据有误");
                     }
                     break;
             }

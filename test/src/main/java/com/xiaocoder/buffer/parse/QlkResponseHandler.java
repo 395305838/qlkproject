@@ -5,7 +5,7 @@ import android.view.KeyEvent;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
@@ -39,7 +39,7 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
      */
     public void yourCompanyResultRule() {
 
-        XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---yourCompanyResultRule()");
+        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---yourCompanyResultRule()");
 
         if (result_bean instanceof IQlkResponseInfo) {
 
@@ -47,11 +47,11 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
                 result_boolean = true;
             } else {
                 result_boolean = false;
-                XCApplication.shortToast(((IQlkResponseInfo) result_bean).getMsg());
+                XCApp.shortToast(((IQlkResponseInfo) result_bean).getMsg());
             }
 
         } else {
-            XCApplication.printe("yourCompanyResultRule()中的返回结果不是IQlkResponseInfo类型");
+            XCApp.e("yourCompanyResultRule()中的返回结果不是IQlkResponseInfo类型");
             throw new RuntimeException("yourCompanyResultRule()中的返回结果不是IQlkResponseInfo类型");
         }
 
@@ -67,7 +67,7 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
 
         if (needSecret) {
 
-            XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---yourCompanySecret()");
+            XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---yourCompanySecret()");
 
             client.addHeader("_v", UtilSystem.getVersionCode(mContext) + "");// 版本号，必填
             client.addHeader("_m", UtilSystem.getMacAddress(mContext));// 设备的mac地址，选填
@@ -83,7 +83,7 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
 //            params.put("sig", sig);
 //            params.put("ts", ts);
 //        }
-            XCApplication.printi(XCConfig.TAG_HTTP, "plus public params-->" + params.toString());
+            XCApp.i(XCConfig.TAG_HTTP, "plus public params-->" + params.toString());
 
         }
 
@@ -99,7 +99,7 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
             httpDialog.dismiss();
             httpDialog.setOnKeyListener(null);
             httpDialog.cancel();
-            XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---closeHttpDialog()");
+            XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---closeHttpDialog()");
         }
     }
 
@@ -125,7 +125,7 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
                 }
             });
             httpDialog.show();
-            XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---showHttpDialog()");
+            XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---showHttpDialog()");
         }
     }
 }

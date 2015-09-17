@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.RequestParams;
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 
@@ -37,10 +37,10 @@ public class XCHttpAsyn {
     }
 
     public static void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, RequestParams params, XCHttpResponseHandler res) {
-        XCApplication.printi(XCConfig.TAG_HTTP, params.toString());
+        XCApp.i(XCConfig.TAG_HTTP, params.toString());
         if (isAllowConcurrent || !isNeting) {
             isNeting = true;
-            XCApplication.printi(XCConfig.TAG_HTTP, urlString + "------>get http url");
+            XCApp.i(XCConfig.TAG_HTTP, urlString + "------>get http url");
             res.setContext(context);
             res.yourCompanySecret(params, client, needSecret);
             if (isShowDialog) {
@@ -59,10 +59,10 @@ public class XCHttpAsyn {
     }
 
     public static void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCHttpResponseHandler res) {
-        XCApplication.printi(XCConfig.TAG_HTTP, params.toString());
+        XCApp.i(XCConfig.TAG_HTTP, params.toString());
         if (isAllowConcurrent || !isNeting) {
             isNeting = true;
-            XCApplication.printi(XCConfig.TAG_HTTP, urlString + "------>post http url");
+            XCApp.i(XCConfig.TAG_HTTP, urlString + "------>post http url");
             res.setContext(context);
             res.yourCompanySecret(params, client, needSecret);
             if (isShowDialog) {

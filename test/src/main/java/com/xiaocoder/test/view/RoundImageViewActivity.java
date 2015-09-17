@@ -1,9 +1,8 @@
 package com.xiaocoder.test.view;
 
 import android.os.Bundle;
-import android.view.View;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.view.XCRoundedImageView;
 import com.xiaocoder.test.R;
@@ -28,7 +27,7 @@ public class RoundImageViewActivity extends XCBaseActivity {
     public void initWidgets() {
 
         XCRoundedImageView image3 = getViewById(R.id.image3);
-        XCApplication.displayImage("http://www.baidu.com/img/bdlogo.png", image3);
+        XCApp.displayImage("http://www.baidu.com/img/bdlogo.png", image3);
 
     }
 

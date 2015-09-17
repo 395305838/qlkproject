@@ -14,7 +14,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.db.XCDbHelper;
@@ -117,7 +117,7 @@ public class XCTitleSearchFragment extends XCBaseFragment {
             if (canclelistener != null) {
                 String keyword = xc_id_fragment_search_edittext.getText().toString().trim();
                 if ("".equals(keyword)) {
-                    XCApplication.shortToast("关键字不能为空");
+                    XCApp.shortToast("关键字不能为空");
                     return;
                 }
 
@@ -243,14 +243,14 @@ public class XCTitleSearchFragment extends XCBaseFragment {
 
     public XCDbHelper instanceHelper() {
         try {
-            XCApplication.printi(XCConfig.TAG_DB, this.toString() + "----instanceHelper()");
+            XCApp.i(XCConfig.TAG_DB, this.toString() + "----instanceHelper()");
             Constructor constructor = mDbHelper.getConstructor(Context.class, String.class, int.class, String[].class);
             Object o = constructor.newInstance(getBaseActivity(), mDbName, mVersion, mSqls);
-            XCApplication.printi(XCConfig.TAG_DB, this.toString() + "---" + o.toString());
+            XCApp.i(XCConfig.TAG_DB, this.toString() + "---" + o.toString());
             return (XCDbHelper) o;
         } catch (Exception e) {
             e.printStackTrace();
-            XCApplication.printe(getBaseActivity(), "", e);
+            XCApp.e(getBaseActivity(), "", e);
             return null;
         }
     }
@@ -268,7 +268,7 @@ public class XCTitleSearchFragment extends XCBaseFragment {
 
                     String keyword = xc_id_fragment_search_edittext.getText().toString().trim();
                     if ("".equals(keyword)) {
-                        XCApplication.shortToast("关键字不能为空");
+                        XCApp.shortToast("关键字不能为空");
                         return false;
                     }
                     if (getActivity().getCurrentFocus() != null) {

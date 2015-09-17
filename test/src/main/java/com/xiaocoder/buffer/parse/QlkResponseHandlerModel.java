@@ -1,7 +1,7 @@
 package com.xiaocoder.buffer.parse;
 
 import com.google.gson.Gson;
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.http.XCIHttpResult;
 
@@ -25,7 +25,7 @@ public abstract class QlkResponseHandlerModel<T extends QlkModel> extends QlkRes
     @Override
     public T parseWay(String responseStr , byte[] response_bytes) {
 
-        XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----parseWay()");
+        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----parseWay()");
 
         return new Gson().fromJson(responseStr, result_bean_class);
     }

@@ -3,8 +3,7 @@ package com.xiaocoder.test.fragment;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.fragment.XCImagesZoomFragment;
 import com.xiaocoder.buffer.QlkActivity;
@@ -58,8 +57,8 @@ public class ImagesZoomActivity extends QlkActivity {
                 // 这里用本地的图片模拟 ,
                 // ------------->补充这里即可--------->用你的图片加载方式加载--->url为图片的链接
                 //imageview.setImageResource(R.drawable.ic_launcher);
-                XCApplication.printi(url);
-                XCApplication.displayImage(url, imageview);
+                XCApp.i(url);
+                XCApp.displayImage(url, imageview);
             }
         });
 
@@ -67,7 +66,7 @@ public class ImagesZoomActivity extends QlkActivity {
 
             @Override
             public void onImageClickListener(int position) {
-                XCApplication.shortToast(position + "");
+                XCApp.shortToast(position + "");
             }
         });
     }

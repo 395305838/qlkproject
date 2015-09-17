@@ -2,7 +2,7 @@ package com.xiaocoder.test.dialogs;
 
 import android.os.Bundle;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.view.SXProgressView;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
@@ -40,7 +40,7 @@ public class ProgressViewActivity extends QlkActivity {
 
     private void showProgressView() {
         setViewVisible(true, view);
-        XCApplication.getBase_cache_threadpool().execute(new Runnable() {
+        XCApp.getBase_cache_threadpool().execute(new Runnable() {
             @Override
             public void run() {
 
@@ -50,7 +50,7 @@ public class ProgressViewActivity extends QlkActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    XCApplication.getBase_handler().post(new Runnable() {
+                    XCApp.getBase_handler().post(new Runnable() {
                         @Override
                         public void run() {
                             view.setProgress(view.getProgress() + 2);

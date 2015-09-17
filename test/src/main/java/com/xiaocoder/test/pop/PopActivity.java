@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android.fw.general.pop.XCHintPopupWindow;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow;
@@ -79,19 +79,19 @@ public class PopActivity extends QlkActivity {
         hintPopupWindow.setOnHintPopupItemClickListener(new XCHintPopupWindow.OnHintPopupItemClickListener() {
             @Override
             public void hint1(TextView textview) {
-                XCApplication.dShortToast("1");
+                XCApp.dShortToast("1");
                 hintPopupWindow.dismiss();
             }
 
             @Override
             public void hint2(TextView textview) {
-                XCApplication.dShortToast("2");
+                XCApp.dShortToast("2");
                 hintPopupWindow.dismiss();
             }
 
             @Override
             public void hint3(TextView textview) {
-                XCApplication.dShortToast("3");
+                XCApp.dShortToast("3");
                 hintPopupWindow.dismiss();
             }
         });
@@ -99,25 +99,25 @@ public class PopActivity extends QlkActivity {
         photoPopupWindow.setOnPhotoPopupItemClickListener(new XCPhotoPopupWindow.onPhotoPopupItemClickListener() {
             @Override
             public void onPhotoUpload() {
-                XCApplication.dShortToast("1");
+                XCApp.dShortToast("1");
                 photoPopupWindow.dismiss();
             }
 
             @Override
             public void onLocalAlbum() {
-                XCApplication.dShortToast("2");
+                XCApp.dShortToast("2");
                 photoPopupWindow.dismiss();
             }
 
             @Override
             public void onCancel() {
-                XCApplication.dShortToast("3");
+                XCApp.dShortToast("3");
                 photoPopupWindow.dismiss();
             }
 
             @Override
             public void onNetPrescription() {
-                XCApplication.dShortToast("4");
+                XCApp.dShortToast("4");
                 photoPopupWindow.dismiss();
             }
         });

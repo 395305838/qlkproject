@@ -6,8 +6,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.xiaocoder.android.fw.general.application.XCApplication;
-import com.xiaocoder.android.fw.general.application.XCConfig;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.buffer.QlkActivity;
 
@@ -82,7 +81,7 @@ public abstract class QlkBaiduMapActivity extends QlkActivity {
                 sb.append(location.getOperators());
             }
             address = location.getAddrStr();
-            XCApplication.printi(address);
+            XCApp.i(address);
             if (!UtilString.isBlank(address)) {
                 mLocationClient.stop();
                 if (addrListener != null) {

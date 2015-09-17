@@ -1,7 +1,9 @@
 package com.xiaocoder.android.fw.general.encryption.rsa;
 
 import android.text.TextUtils;
-import com.xiaocoder.android.fw.general.application.XCApplication;
+
+import com.xiaocoder.android.fw.general.application.XCApp;
+
 import java.security.KeyFactory;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -33,7 +35,7 @@ public class UtilRSA {
                 // 传入编码数据并返回编码结果
                 byte[] result = cipher.doFinal(data.getBytes());
                 String resultStr = (new UtilBase64()).encode(result);
-                XCApplication.printi("myy",resultStr);
+                XCApp.i("myy", resultStr);
                 return resultStr;
 
         } catch (Exception e){

@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.base.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilDate;
 import com.xiaocoder.android.fw.general.util.UtilOom;
@@ -71,7 +71,7 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
                     temp_photo_file.createNewFile();
                 } catch (IOException e) {
                     e.printStackTrace();
-                    XCApplication.shortToast("创建文件失败");
+                    XCApp.shortToast("创建文件失败");
                     return;
                 }
             }
@@ -79,7 +79,7 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
             cameraIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0);
             startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
         } else {
-            XCApplication.shortToast("请插入sd卡");
+            XCApp.shortToast("请插入sd卡");
         }
     }
 
@@ -109,14 +109,14 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
                                 resizeImage(uri);
                             } else {
 
-                                XCApplication.getBase_cache_threadpool().execute(new Runnable() {
+                                XCApp.getBase_cache_threadpool().execute(new Runnable() {
                                     Bitmap bitmap;
 
                                     @Override
                                     public void run() {
                                         bitmap = UtilOom.getBitmapForLargeByUri(getActivity(), uri, 500, Bitmap.Config.RGB_565);
 
-                                        XCApplication.getBase_handler().post(new Runnable() {
+                                        XCApp.getBase_handler().post(new Runnable() {
                                             @Override
                                             public void run() {
                                                 getImage(bitmap);
@@ -131,10 +131,10 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
 
                             }
                         } else {
-                            XCApplication.shortToast("获取图片失败");
+                            XCApp.shortToast("获取图片失败");
                         }
                     } else {
-                        XCApplication.shortToast("未找到存储卡，无法存储照片！");
+                        XCApp.shortToast("未找到存储卡，无法存储照片！");
                     }
                     break;
 
@@ -165,7 +165,7 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
                     listener.onCaremaSelectedFile(file);
                 }
             } else {
-                XCApplication.shortToast("未检测到SD卡");
+                XCApp.shortToast("未检测到SD卡");
                 if (listener != null) {
                     listener.onCaremaSelectedFile(null);
                 }
@@ -207,7 +207,7 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
                         listener.onCaremaSelectedFile(file);
                     }
                 } else {
-                    XCApplication.shortToast("未检测到SD卡");
+                    XCApp.shortToast("未检测到SD卡");
                     if (listener != null) {
                         listener.onCaremaSelectedFile(null);
                     }

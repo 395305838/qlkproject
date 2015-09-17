@@ -9,7 +9,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Environment;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -73,10 +73,10 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
 
         if (isInit) {
 
-            if (context instanceof XCApplication) {
-                application = (XCApplication) context;
+            if (context instanceof XCApp) {
+                application = (XCApp) context;
             } else {
-                XCApplication.printe("XLCrashHandler的init方法中传入的application有误");
+                XCApp.e("XLCrashHandler的init方法中传入的application有误");
                 throw new RuntimeException("XLCrashHandler的init方法中传入的application有误");
             }
 
@@ -89,7 +89,7 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
             // 设置该 CrashHandler 为程序的默认处理器
             Thread.setDefaultUncaughtExceptionHandler(this);
             path = path + crash_path;
-            XCApplication.printi("path:" + path);
+            XCApp.i("path:" + path);
         }
     }
 
@@ -98,7 +98,7 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
      */
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
-        XCApplication.printe(ex.toString());
+        XCApp.e(ex.toString());
         if (!handleException(ex) && mDefaultHandler != null) {
             mDefaultHandler.uncaughtException(thread, ex);
         } else {
@@ -107,8 +107,8 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            if (application != null && application instanceof XCApplication) {
-                ((XCApplication) application).finishAllActivity();
+            if (application != null && application instanceof XCApp) {
+                ((XCApp) application).finishAllActivity();
             }
             // 退出程序,注释下面的重启启动程序代码
             System.exit(1);
@@ -152,7 +152,7 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
                 infos.put("versionCode", versionCode);
             }
         } catch (NameNotFoundException e) {
-            XCApplication.printe("an error occured when collect package info--", e);
+            XCApp.e("an error occured when collect package info--", e);
         }
 
         Field[] fields = Build.class.getDeclaredFields();
@@ -160,9 +160,9 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
             try {
                 field.setAccessible(true);
                 infos.put(field.getName(), field.get(null).toString());
-                XCApplication.printi(field.getName() + " : " + field.get(null));
+                XCApp.i(field.getName() + " : " + field.get(null));
             } catch (Exception e) {
-                XCApplication.printe("an error occured when collect crash info--", e);
+                XCApp.e("an error occured when collect crash info--", e);
             }
         }
     }
@@ -219,7 +219,7 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
 
             return fileName;
         } catch (Exception e) {
-            XCApplication.printe("an error occured while writing file--", e);
+            XCApp.e("an error occured while writing file--", e);
         }
 
         return null;

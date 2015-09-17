@@ -5,7 +5,7 @@ import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.exception.XLCrashHandler;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
@@ -20,7 +20,7 @@ import com.xiaocoder.android.fw.general.util.UtilSystem;
  * <p/>
  * 初始化的顺序不要去改变
  */
-public class QlkApplication extends XCApplication {
+public class QlkApp extends XCApp {
 
     @Override
     public void onCreate() {
@@ -71,7 +71,7 @@ public class QlkApplication extends XCApplication {
     }
 
     private void simpleDeviceInfo() {
-        printi(UtilSystem.getDeviceId(getApplicationContext()) + "--deviceId , "
+        i(UtilSystem.getDeviceId(getApplicationContext()) + "--deviceId , "
                 + UtilSystem.getVersionCode(getApplicationContext())
                 + "--versionCode , " + UtilSystem.getVersionName(getApplicationContext()) + "--versionName , "
                 + UtilScreen.getScreenHeightPx(getApplicationContext()) + "--screenHeightPx , "

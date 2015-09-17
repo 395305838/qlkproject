@@ -10,9 +10,8 @@ import android.widget.AbsListView;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.xiaocoder.android.fw.general.adapter.XLBaseAdapterExpand;
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
@@ -143,7 +142,7 @@ public class ExpandListActivity extends QlkActivity {
         test_expandablelistview.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                XCApplication.shortToast(groupPosition + "");
+                XCApp.shortToast(groupPosition + "");
                 return true;
             }
         });
@@ -194,7 +193,7 @@ public class ExpandListActivity extends QlkActivity {
             @Override
             public void onTouchingLetterChanged(String s) {
                 Integer position = adapter.getPositionFromLetter(s);
-                XCApplication.dShortToast(position + "");
+                XCApp.dShortToast(position + "");
                 if (position != null) {
                     test_expandablelistview.setSelection(position);
                 }
@@ -252,7 +251,7 @@ public class ExpandListActivity extends QlkActivity {
                 view = getTextView();
             }
             if (viewGroup != null) {
-                XCApplication.printi(XCConfig.TAG_TEST, "getGroupView()---" + viewGroup.toString());
+                XCApp.i(XCConfig.TAG_TEST, "getGroupView()---" + viewGroup.toString());
             }
             ((TextView) view).setText(getGroup(i).toString());
             return view;
@@ -264,7 +263,7 @@ public class ExpandListActivity extends QlkActivity {
                 view = getTextView();
             }
             if (viewGroup != null) {
-                XCApplication.printi(XCConfig.TAG_TEST, "getChildView()---" + viewGroup.toString());
+                XCApp.i(XCConfig.TAG_TEST, "getChildView()---" + viewGroup.toString());
             }
             ((TextView) view).setText(getChild(groupPosition, childPosition).toString());
             return view;

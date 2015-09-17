@@ -8,7 +8,7 @@ import android.content.Context;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 
 /**
  * @Description: 输入法的弹出 与 关闭
@@ -24,7 +24,7 @@ public class UtilInputMethod {
 		view.requestFocus();
 		view.selectAll();
 		// 必须是handler.否则无法弹出 why?
-		XCApplication.getBase_handler().postDelayed(new Runnable() {
+		XCApp.getBase_handler().postDelayed(new Runnable() {
 			public void run() {
 				InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
 				imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);

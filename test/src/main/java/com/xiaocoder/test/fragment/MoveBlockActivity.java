@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.fragment.XCMoveBlockPlusFragment;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
@@ -63,7 +63,7 @@ public class MoveBlockActivity extends QlkActivity {
             @Override
             public void onClickMoveListener(int position, ViewGroup current_item, ImageView current_imageview, ViewGroup last_item, ImageView last_imageview) {
                 // position 为点击了第几个
-                XCApplication.shortToast(position + "");
+                XCApp.shortToast(position + "");
             }
         });
 
@@ -71,21 +71,21 @@ public class MoveBlockActivity extends QlkActivity {
         plus_fragment.setOnClickMoveListener(new XCMoveBlockPlusFragment.OnClickMoveListener() {
             @Override
             public void onClickMoveListener(int position, ViewGroup current_item, ImageView current_imageview, ViewGroup last_item, ImageView last_imageview) {
-                XCApplication.shortToast(position + "");
+                XCApp.shortToast(position + "");
             }
         });
 
         plus_fragment2.setOnClickMoveListener(new XCMoveBlockPlusFragment.OnClickMoveListener() {
             @Override
             public void onClickMoveListener(int position, ViewGroup current_item, ImageView current_imageview, ViewGroup last_item, ImageView last_imageview) {
-                XCApplication.shortToast(position + "");
+                XCApp.shortToast(position + "");
             }
         });
 
         plus_fragment3.setOnClickMoveListener(new XCMoveBlockPlusFragment.OnClickMoveListener() {
             @Override
             public void onClickMoveListener(int position, ViewGroup current_item, ImageView current_imageview, ViewGroup last_item, ImageView last_imageview) {
-                XCApplication.shortToast(position + "");
+                XCApp.shortToast(position + "");
             }
         });
     }

@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
-
 /**
  * Created by xiaocoder on 2015/7/28.
  */

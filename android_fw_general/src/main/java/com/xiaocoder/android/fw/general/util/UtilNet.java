@@ -5,9 +5,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
-import android.util.Log;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -118,28 +117,28 @@ public class UtilNet {
             int currentNetWork = ni.getType();
             if (currentNetWork == ConnectivityManager.TYPE_MOBILE) {
                 if (ni.getExtraInfo() != null && ni.getExtraInfo().equals("cmwap")) {
-                    XCApplication.printi("", "当前网络为:cmwap网络");
+                    XCApp.i("", "当前网络为:cmwap网络");
                     return TYPE_MOBILE_CMWAP;
                 } else if (ni.getExtraInfo() != null && ni.getExtraInfo().equals("uniwap")) {
-                    XCApplication.printi("", "当前网络为:uniwap网络");
+                    XCApp.i("", "当前网络为:uniwap网络");
                     return TYPE_MOBILE_CMWAP;
                 } else if (ni.getExtraInfo() != null && ni.getExtraInfo().equals("3gwap")) {
-                    XCApplication.printi("", "当前网络为:3gwap网络");
+                    XCApp.i("", "当前网络为:3gwap网络");
                     return TYPE_MOBILE_CMWAP;
                 } else if (ni.getExtraInfo() != null && ni.getExtraInfo().contains("ctwap")) {
-                    XCApplication.printi("", "当前网络为:" + ni.getExtraInfo() + "网络");
+                    XCApp.i("", "当前网络为:" + ni.getExtraInfo() + "网络");
                     return TYPE_MOBILE_CTWAP;
                 } else {
-                    XCApplication.printi("", "当前网络为:net网络");
+                    XCApp.i("", "当前网络为:net网络");
                     return TYPE_MOBILE_CMNET;
                 }
 
             } else if (currentNetWork == ConnectivityManager.TYPE_WIFI) {
-                XCApplication.printi("", "当前网络为:WIFI网络");
+                XCApp.i("", "当前网络为:WIFI网络");
                 return TYPE_WIFI;
             }
         }
-        XCApplication.printi("", "当前网络为:不是我们考虑的网络");
+        XCApp.i("", "当前网络为:不是我们考虑的网络");
         return TYPE_NO;
     }
 

@@ -1,6 +1,6 @@
 package com.xiaocoder.android.fw.general.util;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -339,9 +339,9 @@ public class UtilDate {
         long curTime = System.currentTimeMillis() / (long) 1000;
         long time = curTime - timeStamp;
 
-        XCApplication.printi(time + "---时间差");
-        XCApplication.printi(curTime + "---当前时间");
-        XCApplication.printi(timeStamp + "---传入的时间");
+        XCApp.i(time + "---时间差");
+        XCApp.i(curTime + "---当前时间");
+        XCApp.i(timeStamp + "---传入的时间");
 
         if (time < 60 && time >= 0) {
             return "刚刚";

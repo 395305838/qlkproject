@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.RadioGroup;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.buffer.function.QlkMainActivity;
 import com.xiaocoder.test.R;
@@ -55,19 +55,19 @@ public class SlidingMenuActivity2 extends QlkMainActivity implements RadioGroup.
 
 
         if (checkedId == R.id.xc_id_tab_item1) {
-            XCApplication.dShortToast("1-->" + base_recoder_selected_tab_item);
+            XCApp.dShortToast("1-->" + base_recoder_selected_tab_item);
             showFragmentByClass(SlidingFragment1.class, R.id.xc_id_model_content);
         } else if (checkedId == R.id.xc_id_tab_item2) {
-            XCApplication.dShortToast("2-->" + base_recoder_selected_tab_item);
+            XCApp.dShortToast("2-->" + base_recoder_selected_tab_item);
             showFragmentByClass(SlidingFragment2.class, R.id.xc_id_model_content);
         } else if (checkedId == R.id.xc_id_tab_item3) {
-            XCApplication.dShortToast("3-->" + base_recoder_selected_tab_item);
+            XCApp.dShortToast("3-->" + base_recoder_selected_tab_item);
             showFragmentByClass(SlidingFragment3.class, R.id.xc_id_model_content);
         } else if (checkedId == R.id.xc_id_tab_item4) {
-            XCApplication.dShortToast("4-->" + base_recoder_selected_tab_item);
+            XCApp.dShortToast("4-->" + base_recoder_selected_tab_item);
             showFragmentByClass(SlidingFragment4.class, R.id.xc_id_model_content);
         } else if (checkedId == R.id.xc_id_tab_item5) {
-            XCApplication.dShortToast("5-->" + base_recoder_selected_tab_item);
+            XCApp.dShortToast("5-->" + base_recoder_selected_tab_item);
             showFragmentByClass(SlidingFragment5.class, R.id.xc_id_model_content);
         }
 

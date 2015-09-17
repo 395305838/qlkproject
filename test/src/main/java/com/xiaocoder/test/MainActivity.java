@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.xiaocoder.android.fw.general.application.XCApplication;
+import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.helper.XCTimeHelper;
 import com.xiaocoder.android.fw.general.helper.XCTimeHelper.CustomTimer;
@@ -99,23 +99,23 @@ public class MainActivity extends QlkMainActivity {
 
     private void loge() {
 
-        XCApplication.printi(1);
-        XCApplication.printi(true);
-        XCApplication.printi(false);
+        XCApp.i(1);
+        XCApp.i(true);
+        XCApp.i(false);
         Object obj = null;
-        XCApplication.printi(obj);
+        XCApp.i(obj);
 
         try {
-            XCApplication.printe("123");
-            XCApplication.printe("345");
-            XCApplication.printe("678");
+            XCApp.e("123");
+            XCApp.e("345");
+            XCApp.e("678");
             int i = 1 / 0;
         } catch (Exception e) {
-            XCApplication.printe(this, "--oncreate()--", e);
+            XCApp.e(this, "--oncreate()--", e);
         }
-        // XCApplication.clearLog();
-        XCApplication.printe(this, "1234567890");
-        XCApplication.tempPrint("android--" + System.currentTimeMillis());
+        // XCApp.clearLog();
+        XCApp.e(this, "1234567890");
+        XCApp.tempPrint("android--" + System.currentTimeMillis());
     }
 
     private void recoderButton() {
@@ -126,7 +126,7 @@ public class MainActivity extends QlkMainActivity {
         //
         // @Override
         // public void onRecordVoiceSuccessListener(File file) {
-        // XCApplication.base_log.debugShortToast(file.toString());
+        // XCApp.base_log.debugShortToast(file.toString());
         // }
         // });
     }
@@ -150,8 +150,8 @@ public class MainActivity extends QlkMainActivity {
     @Override
     public void initWidgets() {
 
-        XCApplication.printi(XCConfig.TAG_TEMP, QlkConfig.CURRENT_RUN_ENVIRONMENT.toString() + "-----环境");
-        XCApplication.printi(XCConfig.TAG_TEMP, QlkConfig.DEBUG_CONTROL.toString() + "-----调试");
+        XCApp.i(XCConfig.TAG_TEMP, QlkConfig.CURRENT_RUN_ENVIRONMENT.toString() + "-----环境");
+        XCApp.i(XCConfig.TAG_TEMP, QlkConfig.DEBUG_CONTROL.toString() + "-----调试");
 
         test_dialog3 = getViewById(R.id.test_dialog3);
 
