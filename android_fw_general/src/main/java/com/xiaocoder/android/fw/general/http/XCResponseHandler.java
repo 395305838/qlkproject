@@ -46,6 +46,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
      */
     public boolean show_background_when_net_fail;
     public Context mContext;
+
     /**
      * 加载中的dialog
      */
@@ -67,6 +68,10 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
     public static int JSON = 1;
     public static int XML = 2;
     public static int ELSE = 3;
+
+    public Dialog getHttpDialog() {
+        return httpDialog;
+    }
 
     /**
      * show_background_when_net_fail true 为展示背景和toast , false仅展示吐司
@@ -233,15 +238,15 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
             XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----parse()");
             // 这里仅提供通用的json格式的解析 ，有些不通用的json，需要重写parse
             if (content_type == JSON) {
-                String response = new String(response_bytes, XCConfig.ENCODING_UTF8);
+                String response_str = new String(response_bytes, XCConfig.ENCODING_UTF8);
                 // 把json串打印到控制台
-                XCApplication.printi(XCConfig.TAG_HTTP, response);
+                XCApplication.printi(XCConfig.TAG_HTTP, response_str);
                 // 有的时候json太长，控制台无法全部打印出来，就打印到本地的文件中，该方法受log的isoutput开关控制
-                XCApplication.tempPrint(response);
+                XCApplication.tempPrint(response_str);
                 // 打印bean到控制台， 然后复制，格式化，即为自动生成的假bean，该方法受log的isoutput开关控制
-                XCJsonParse.json2Bean(response);
+                XCJsonParse.json2Bean(response_str);
 
-                result_bean = parseWay(response);
+                result_bean = parseWay(response_str,response_bytes);
 
                 if (result_bean == null) {
                     result_boolean = false;
@@ -261,7 +266,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
     /**
      * 子线程中运行的，所以不要有ui或toast等操作
      */
-    public abstract T parseWay(String responseStr);
+    public abstract T parseWay(String responseStr , byte[] response_bytes);
 
     /**
      * 加密

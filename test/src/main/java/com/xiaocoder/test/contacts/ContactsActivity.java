@@ -20,13 +20,6 @@ import com.xiaocoder.test.R;
 
 import java.util.List;
 
-/*
- 复制这里：activity在注册清单文件的配置 
- <activity
- android:name="com.xiaocoder.android.ContactsActivity"
- android:screenOrientation="portrait"
- android:windowSoftInputMode="adjustResize|stateHidden" >
- </activity>*/
 public class ContactsActivity extends QlkActivity {
     ListView contacts_listview;
 

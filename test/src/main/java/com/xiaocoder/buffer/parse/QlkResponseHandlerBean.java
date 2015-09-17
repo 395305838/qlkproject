@@ -23,7 +23,7 @@ public  class QlkResponseHandlerBean<T extends QlkBean> extends QlkResponseHandl
     }
 
     @Override
-    public T parseWay(String responseStr) {
+    public T parseWay(String responseStr , byte[] response_bytes) {
 
         XCApplication.printi(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----parseWay()");
 
