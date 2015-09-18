@@ -142,15 +142,15 @@ public class QlkConfig {
      */
     public static String APP_ROOT = "app_test";
     /**
-     * 打印到日志文件printe()
-     */
-    public static String LOG_FILE = APP_ROOT + "/log";
-    /**
      * crash日志目录
      */
     public static String CRASH_DIR = APP_ROOT + "/crash";
     /**
-     * chat
+     * 图片加载缓存目录的目录
+     */
+    public static String CACHE_DIR = APP_ROOT + "/cache";
+    /**
+     * chat目录
      */
     public static String CHAT_DIR = APP_ROOT + "/chat";
 
@@ -159,19 +159,19 @@ public class QlkConfig {
     public static String CHAT_VIDEO_DIR = CHAT_DIR + "/voice";
 
     public static String CHAT_MOIVE_DIR = CHAT_DIR + "/moive";
-
     /**
-     * 图片加载缓存目录的路径
+     * 打印到日志文件printe()
      */
-    public static String CACHE_DIRECTORY = APP_ROOT + "/cache";
-    /**
-     * sp文件
-     */
-    public static String SP_SETTING = APP_ROOT + "_setting";
+    public static String LOG_FILE = APP_ROOT + "_log";
     /**
      * 打印测试的文件，有时候控制台可能打印json不全，比如json太长的时候， 可以调用tempPrint方法，打印到本地查看
      */
-    public static String TEMP_PRINT_FILE = APP_ROOT + "/temp_print_file";
+    public static String TEMP_PRINT_FILE = APP_ROOT + "_temp_print";
+    /**
+     * sp文件
+     */
+    public static String SP_FILE = APP_ROOT + "_sp";
+
     /**
      * 是否打印日志到控制台
      */
@@ -254,7 +254,7 @@ public class QlkConfig {
                         .discCacheFileCount(500)
                                 // 缓存的文件数量
 
-                        .discCache(new UnlimitedDiscCache(XCIOAndroid.createDirInAndroid(context, QlkConfig.CACHE_DIRECTORY)))
+                        .discCache(new UnlimitedDiscCache(XCIOAndroid.createDirInAndroid(context, QlkConfig.CACHE_DIR)))
                                 // 自定义缓存路径
 
                         .defaultDisplayImageOptions(DisplayImageOptions.createSimple())

@@ -25,7 +25,41 @@ public class XCIO {
     public static final String PATH_SEPARATOR = System.getProperty("path.separator");// 如环境变量的路径分隔符
     public static final String FILE_SEPARATOR = System.getProperty("file.separator");// 如c:/
 
+    /**
+     * createFile("e:","good.txt")-->在e盘下建一个good.txt文件
+     * createFile("e:/learn/chinese"
+     * ,"englis.txt")-->在e盘下建立一个learn/chinese的二级文件夹,并建立englis.txt的文件
+     *
+     * @param dirPath  文件夹的绝对路径
+     * @param fileName
+     * @return
+     * @throws java.io.IOException
+     */
+    public static File createFile(String dirPath, String fileName) throws IOException {
+        File destDir = new File(dirPath); // 这句不会抛异常
+        if (!destDir.exists()) {
+            destDir.mkdirs();// 这句也不会抛异常
+        }
+        File file = new File(destDir, fileName);
+        if (!file.exists()) {
+            file.createNewFile(); // 这句可能创建文件异常
+        }
+        return file;
+    }
 
+    /**
+     * createDir("e:/haha/enen.o/hexx.&...we/android.txt"),没错,这创建出来的是文件夹
+     *
+     * @param dirPath
+     * @return
+     */
+    public static File createDir(String dirPath) {
+        File dir = new File(dirPath);
+        if (!dir.exists()) {
+            dir.mkdirs();
+        }
+        return dir;
+    }
 
     public static InputStream getInputStreamFromUrl(String url) {
         File file = new File(url);
@@ -67,42 +101,6 @@ public class XCIO {
                 }
             }
         }
-    }
-
-    /**
-     * createFile("e:","good.txt")-->在e盘下建一个good.txt文件
-     * createFile("e:/learn/chinese"
-     * ,"englis.txt")-->在e盘下建立一个learn/chinese的二级文件夹,并建立englis.txt的文件
-     *
-     * @param dirPath  文件夹的绝对路径
-     * @param fileName
-     * @return
-     * @throws java.io.IOException
-     */
-    public static File createFile(String dirPath, String fileName) throws IOException {
-        File destDir = new File(dirPath); // 这句不会抛异常
-        if (!destDir.exists()) {
-            destDir.mkdirs();// 这句也不会抛异常
-        }
-        File file = new File(destDir, fileName);
-        if (!file.exists()) {
-            file.createNewFile(); // 这句可能创建文件异常
-        }
-        return file;
-    }
-
-    /**
-     * createDir("e:/haha/enen.o/hexx.&...we/android.txt"),没错,这创建出来的是文件夹
-     *
-     * @param dirPath
-     * @return
-     */
-    public static File createDir(String dirPath) {
-        File dir = new File(dirPath);
-        if (!dir.exists()) {
-            dir.mkdirs();
-        }
-        return dir;
     }
 
     public static String toStringByInputStream(InputStream inputStream) {

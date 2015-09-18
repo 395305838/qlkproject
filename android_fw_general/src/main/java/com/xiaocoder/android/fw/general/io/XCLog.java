@@ -57,12 +57,12 @@ public class XCLog {
     }
 
     public XCLog(Context context, boolean is_dtoast, boolean is_output, boolean is_printlog,
-                 String app_root_dir_name, String app_log_file_name, String app_temp_file_name, String encoding) {
+                 String app_root_dir, String app_log_file, String app_temp_file, String encoding) {
 
         this.context = context;
-        this.app_root_dir_name = app_root_dir_name;
-        this.app_log_file_name = app_log_file_name;
-        this.app_temp_file_name = app_temp_file_name;
+        this.app_root_dir = app_root_dir;
+        this.app_log_file = app_log_file;
+        this.app_temp_file = app_temp_file;
         this.encoding = encoding;
 
         this.is_dtoast = is_dtoast;
@@ -209,18 +209,9 @@ public class XCLog {
     }
 
     // -----------------------------------打印到文件中，保存日志----------------------------------------------------------------
-    /**
-     * 如  xcapp  或  xcapp/android
-     */
-    public String app_root_dir_name;
-    /**
-     * app_log_file_name = app_root_dir_name+"/"+log_file_name.txt
-     */
-    public String app_log_file_name;
-    /**
-     * app_temp_file_name = app_root_dir_name+"/"+temp_file_name.txt
-     */
-    public String app_temp_file_name;
+    public String app_root_dir;
+    public String app_log_file;
+    public String app_temp_file;
     public String encoding;
 
     /**
@@ -237,14 +228,9 @@ public class XCLog {
         try {
             if (file == null || !file.exists()) {
 
-                File dir = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + System.getProperty("file.separator") + app_root_dir_name);
+                // sd中，在app_root文件夹下创建log文件
+                file = XCIOAndroid.createFileInSDCard(app_root_dir, app_log_file);
 
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
-
-                file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + System.getProperty("file.separator") + app_log_file_name);
-                file.createNewFile();
             }
 
             // 日志满了的处理
@@ -289,7 +275,8 @@ public class XCLog {
             synchronized (this) {
                 FileOutputStream fos = null;
                 try {
-                    fos = new FileOutputStream(XCIOAndroid.createFileInAndroid(context, null, app_temp_file_name));
+                    // 在app_root目录下创建temp_print文件，如果没有sd卡，则写到内部存储中
+                    fos = new FileOutputStream(XCIOAndroid.createFileInAndroid(context, app_root_dir, app_temp_file));
                     fos.write(str.getBytes());
                     fos.flush();
                 } catch (Exception e) {

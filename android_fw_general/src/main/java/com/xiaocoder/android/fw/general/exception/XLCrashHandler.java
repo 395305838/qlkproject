@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Environment;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
+import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -47,49 +48,38 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
     private Map<String, String> infos = new HashMap<String, String>();
 
     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
-    private String path = Environment.getExternalStorageDirectory().getPath() + File.separator;
 
-    /**
-     * 保证只有一个 CrashHandler 实例
-     */
+    private boolean mIsShowExceptionActivity;
+
+    private String mCrashDir;
+
     private XLCrashHandler() {
     }
 
-    /**
-     * 获取 CrashHandler 实例 ,单例模式
-     */
     public static XLCrashHandler getInstance() {
         return INSTANCE;
     }
 
-    private boolean mIsShowExceptionActivity;
-
-    /**
-     * 初始化
-     *
-     * @param context
-     */
-    public void init(boolean isInit, Context context, String crash_path, boolean isShowExceptionActivity) {
+    public void init(boolean isInit, Context context, String crash_dir, boolean isShowExceptionActivity) {
 
         if (isInit) {
 
             if (context instanceof XCApp) {
                 application = (XCApp) context;
             } else {
-                XCApp.e("XLCrashHandler的init方法中传入的application有误");
-                throw new RuntimeException("XLCrashHandler的init方法中传入的application有误");
+                XCApp.e("XLCrashHandler的init方法中传入的application不是xcapp");
+                throw new RuntimeException("XLCrashHandler的init方法中传入的application不是xcapp");
             }
 
             mContext = context;
             mIsShowExceptionActivity = isShowExceptionActivity;
+            mCrashDir = crash_dir;
 
             // 获取系统默认的 UncaughtException 处理器
             mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
 
             // 设置该 CrashHandler 为程序的默认处理器
             Thread.setDefaultUncaughtExceptionHandler(this);
-            path = path + crash_path;
-            XCApp.i("path:" + path);
         }
     }
 
@@ -207,14 +197,11 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
             String fileName = "crash-" + time + "-" + timestamp + ".log";
 
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                // path = "/sdcard/crash/" + app_name;
-                File dir = new File(path);
-                if (!dir.exists()) {
-                    dir.mkdirs();
-                }
-                FileOutputStream fos = new FileOutputStream(path + "/" + fileName);
+
+                FileOutputStream fos = new FileOutputStream(XCIOAndroid.createFileInSDCard(mCrashDir, fileName));
                 fos.write(sb.toString().getBytes());
                 fos.close();
+
             }
 
             return fileName;

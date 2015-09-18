@@ -18,6 +18,8 @@ import com.xiaocoder.android.fw.general.util.UtilSystem;
 
 /**
  * Created by xiaocoder on 2015/7/14.
+ *
+ * 初始化的顺序不要去改动
  */
 public class QlkApp extends XCApp {
 
@@ -34,15 +36,18 @@ public class QlkApp extends XCApp {
                 QlkConfig.APP_ROOT, QlkConfig.LOG_FILE, QlkConfig.TEMP_PRINT_FILE, XCConfig.ENCODING_UTF8);
 
         // sp保存文件名 与 模式
-        base_sp = new XCSP(getApplicationContext(), QlkConfig.SP_SETTING, Context.MODE_APPEND);// Context.MODE_MULTI_PROCESS
+        base_sp = new XCSP(getApplicationContext(), QlkConfig.SP_FILE, Context.MODE_APPEND);// Context.MODE_MULTI_PROCESS
 
-        // 图片视频等缓存的路径
+        // 图片视频等缓存的文件夹
         XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_MOIVE_DIR);
         XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_VIDEO_DIR);
         XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_PHOTO_DIR);
 
-        // crash文件
+        // crash文件夹
         XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CRASH_DIR);
+
+        // cache文件夹
+        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CACHE_DIR);
 
         // 图片加载的初始化
         setBase_imageloader(new IXCImageLoader() {
