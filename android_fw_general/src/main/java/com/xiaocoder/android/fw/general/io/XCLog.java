@@ -25,8 +25,8 @@ public class XCLog {
     public Context context;
     public long last_time;
     public File file;
-    public int TOAST_SHORT_TIME_GAP;
-    public int TOAST_LONG_TIME_GAP;
+    public static int TOAST_SHORT_TIME_GAP = 2000;
+    public static int TOAST_LONG_TIME_GAP = 3000;
 
     public boolean is_dtoast;
     public boolean is_printlog;
@@ -65,15 +65,13 @@ public class XCLog {
         this.app_temp_file_name = app_temp_file_name;
         this.encoding = encoding;
 
-        TOAST_SHORT_TIME_GAP = 1000;
-        TOAST_LONG_TIME_GAP = 3000;
-
         this.is_dtoast = is_dtoast;
         this.is_output = is_output;
         this.is_printlog = is_printlog;
     }
 
     // --------------------------控制频率的吐司---------------------------------
+
     /**
      * 防止点击频繁, 不断的弹出
      */
@@ -211,8 +209,17 @@ public class XCLog {
     }
 
     // -----------------------------------打印到文件中，保存日志----------------------------------------------------------------
+    /**
+     * 如  xcapp  或  xcapp/android
+     */
     public String app_root_dir_name;
+    /**
+     * app_log_file_name = app_root_dir_name+"/"+log_file_name.txt
+     */
     public String app_log_file_name;
+    /**
+     * app_temp_file_name = app_root_dir_name+"/"+temp_file_name.txt
+     */
     public String app_temp_file_name;
     public String encoding;
 
