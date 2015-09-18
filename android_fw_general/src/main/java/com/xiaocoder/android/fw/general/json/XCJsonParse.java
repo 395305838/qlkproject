@@ -2,15 +2,12 @@ package com.xiaocoder.android.fw.general.json;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.io.XCIO;
 import com.xiaocoder.android.fw.general.util.UtilString;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,22 +15,12 @@ import java.util.LinkedHashSet;
 import java.util.List;
 
 /**
- * 1 JsonType的过滤标记可以打印出 返回的json串的每个字段的 类型
+ * 1 JsonType的过滤标记可以打印出返回的json串的每个字段的类型
  * 2 JsonBean的标记中可以查看 打印出的该json中的字段常量，复制后格式化即可
  */
 public class XCJsonParse {
 
-    public static <T extends XCJsonBean> T getBean(Class<T> beanClass) {
-        try {
-            Constructor<T> con = beanClass.getConstructor();
-            return con.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    // { }
+    // { } 解析json对象
     public static <T extends XCJsonBean> T getJsonParseData(String json, Class<T> beanClass) {
         T result = getBean(beanClass);
         try {
@@ -49,7 +36,7 @@ public class XCJsonParse {
         return result;
     }
 
-    // [ ]
+    // [ ] 解析json数组
     public static <T extends XCJsonBean> List<T> getJsonListParseData(String json, Class<T> beanClass) {
         List<T> list = new ArrayList<T>();
         try {
@@ -70,6 +57,15 @@ public class XCJsonParse {
 
     }
 
+    private static <T extends XCJsonBean> T getBean(Class<T> beanClass) {
+        try {
+            Constructor<T> con = beanClass.getConstructor();
+            return con.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     private static <T extends XCJsonBean> void parse(XCJsonBean result, JSONObject obj, Class<T> beanClass) {
         try {
@@ -117,10 +113,7 @@ public class XCJsonParse {
         }
     }
 
-
-    // ---------------------------------------------------------------------------------------------
-
-    // 创建bean类 , 这里只是打印出来了而已,然后复制粘贴字段到bean
+    // 创建假bean类 , 这里只是打印出来了而已,然后复制粘贴字段
     public static void json2Bean(String json) {
 
         if (XCApp.getBase_log().is_OutPut() && json != null) {
@@ -132,7 +125,7 @@ public class XCJsonParse {
             String[] items = json.split(",");
             StringBuilder builder = new StringBuilder("");
 
-            builder.append("public class  文件名  extends QlkBean<文件名> {");
+            builder.append("public class  文件名  extends QlkBean {");
 
             LinkedHashSet<String> sub = new LinkedHashSet<String>();
 
@@ -168,7 +161,7 @@ public class XCJsonParse {
 
                 builder.append("public String get")
                         .append(UtilString.setFirstLetterBig(key))
-                        .append("() { return obtString(" + key + ");")
+                        .append("() { return getString(" + key + ");")
                         .append("}");
 
                 builder.append("public void set")
@@ -181,16 +174,6 @@ public class XCJsonParse {
             builder.append("}");
 
             XCApp.i(XCConfig.TAG_JSON_BEAN, builder.toString());
-        }
-    }
-
-    public static void getJsonFiled(InputStream in) throws UnsupportedEncodingException {
-        String json = new String(XCIO.toBytesByInputStream(in), "utf-8");
-        json = json.replace("\"", "");
-        String[] items = json.split(",");
-        for (String item : items) {
-            String[] keyvalues = item.split(":");
-            System.out.println("bean." + keyvalues[0].trim() + "= jsonObj.getString(\"" + keyvalues[0].trim() + "\");");
         }
     }
 }

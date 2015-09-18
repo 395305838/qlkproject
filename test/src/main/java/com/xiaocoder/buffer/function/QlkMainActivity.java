@@ -5,7 +5,7 @@ import com.xiaocoder.buffer.QlkActivity;
 
 /**
  * Created by xiaocoder on 2015/7/15.
- * 点击两次退出
+ * 首页activity，点击两次退出
  */
 public abstract class QlkMainActivity extends QlkActivity {
 
@@ -24,7 +24,7 @@ public abstract class QlkMainActivity extends QlkActivity {
     }
 
     /**
-     * activity不可滑动销毁
+     * 首页的activity不可滑动销毁
      */
     @Override
     protected void slideDestroyActivity() {

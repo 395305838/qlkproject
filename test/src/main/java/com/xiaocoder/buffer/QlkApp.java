@@ -17,8 +17,6 @@ import com.xiaocoder.android.fw.general.util.UtilSystem;
 
 /**
  * Created by xiaocoder on 2015/7/14.
- * <p/>
- * 初始化的顺序不要去改变
  */
 public class QlkApp extends XCApp {
 
@@ -26,7 +24,7 @@ public class QlkApp extends XCApp {
     public void onCreate() {
         super.onCreate();
 
-        // http解析时用到该线程池
+        // http解析时用到该固定线程池,基类中还有一个cache线程池
         base_fix_threadpool = XCExecutorHelper.getExecutorHelperInstance().getFix(QlkConfig.THREAD_NUM);
 
         // log(可以打印日志到控制台和文件中) 与 toast
@@ -46,8 +44,9 @@ public class QlkApp extends XCApp {
         XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CRASH_FILE);
 
         // 图片加载的初始化
-        imageloader = QlkConfig.getImageloader(getApplicationContext());
         setBase_imageloader(new IXCImageLoader() {
+            ImageLoader imageloader = QlkConfig.getImageloader(getApplicationContext());
+
             @Override
             public void display(String url, ImageView imageview, Object... obj) {
                 // 指定配置
@@ -79,15 +78,6 @@ public class QlkApp extends XCApp {
                 + UtilScreen.getDensity(getApplicationContext()) + "--density , "
                 + UtilScreen.getScreenHeightDP(getApplicationContext()) + "--screenHeightDP , "
                 + UtilScreen.getScreenWidthPx(getApplicationContext()) + "--screenWidthDP");
-    }
-
-    /**
-     * 第三方的图片加载库，没有实现IXCImageLoader接口的
-     */
-    private ImageLoader imageloader;
-
-    public ImageLoader getImageloader() {
-        return imageloader;
     }
 
 }

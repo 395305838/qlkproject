@@ -32,8 +32,28 @@ public class XCLog {
     public boolean is_printlog;
     public boolean is_output;
 
+    public boolean is_dtoast() {
+        return is_dtoast;
+    }
+
+    public void setIs_dtoast(boolean is_dtoast) {
+        this.is_dtoast = is_dtoast;
+    }
+
+    public boolean is_printlog() {
+        return is_printlog;
+    }
+
+    public void setIs_printlog(boolean is_printlog) {
+        this.is_printlog = is_printlog;
+    }
+
     public boolean is_OutPut() {
         return is_output;
+    }
+
+    public void setIs_output(boolean is_output) {
+        this.is_output = is_output;
     }
 
     public XCLog(Context context, boolean is_dtoast, boolean is_output, boolean is_printlog,
@@ -51,7 +71,6 @@ public class XCLog {
         this.is_dtoast = is_dtoast;
         this.is_output = is_output;
         this.is_printlog = is_printlog;
-
     }
 
     // --------------------------控制频率的吐司---------------------------------
@@ -192,7 +211,6 @@ public class XCLog {
     }
 
     // -----------------------------------打印到文件中，保存日志----------------------------------------------------------------
-
     public String app_root_dir_name;
     public String app_log_file_name;
     public String app_temp_file_name;

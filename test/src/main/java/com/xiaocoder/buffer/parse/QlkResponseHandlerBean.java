@@ -8,7 +8,7 @@ import com.xiaocoder.android.fw.general.json.XCJsonParse;
 /**
  * 通用的jsonbean解析
  */
-public  class QlkResponseHandlerBean<T extends QlkBean> extends QlkResponseHandler<T> {
+public class QlkResponseHandlerBean<T extends QlkBean> extends QlkResponseHandler<T> {
 
     public QlkResponseHandlerBean(XCIHttpResult result_http,
                                   int content_type,

@@ -45,7 +45,7 @@ public class XCDbHelper extends SQLiteOpenHelper {
     // onCreate(db);
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
-
+        //  子类中实现，如数据库升级的情况
     }
 
 }
