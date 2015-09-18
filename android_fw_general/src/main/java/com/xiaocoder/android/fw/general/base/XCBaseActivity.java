@@ -50,6 +50,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
     public ViewGroup xc_id_model_no_net;
     public Button xc_id_no_net_button;
 
+    // activity是否销毁
     private boolean isActivityDestroied;
 
     @SuppressWarnings("unchecked")
@@ -90,14 +91,14 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         xc_id_model_layout = getViewById(R.id.xc_id_model_layout);
         xc_id_model_titlebar = getViewById(R.id.xc_id_model_titlebar);
         xc_id_model_content = getViewById(R.id.xc_id_model_content);
-        xc_id_model_no_net = getViewById(R.id.xc_id_model_no_net);
         xc_id_model_bottombar = getViewById(R.id.xc_id_model_bottombar);
+        xc_id_model_no_net = getViewById(R.id.xc_id_model_no_net);
+        xc_id_no_net_button = getViewById(R.id.xc_id_no_net_button);
 
         // 无网络的背景
         if (xc_id_model_no_net != null) {
             xc_id_model_no_net.setOnClickListener(this);
         }
-        xc_id_no_net_button = getViewById(R.id.xc_id_no_net_button);
         if (xc_id_no_net_button != null) {
             xc_id_no_net_button.setOnClickListener(this);
         }
@@ -340,11 +341,11 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        XCApp.i("activity---onActivityResult");
+        XCApp.i(this+"---onActivityResult");
         List<Fragment> fragments = base_fm.getFragments();
         if (fragments != null) {
             for (Fragment fragment : fragments) {
-                XCApp.i("onActivityResult---" + fragment.toString());
+                XCApp.i(this+"onActivityResult---" + fragment.toString());
                 fragment.onActivityResult(requestCode, resultCode, data);
             }
         }

@@ -118,6 +118,7 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
     /**
      * 页面滑动切换的时候，用得到
      *
+     * 如果是bodyfragment，则子类中应该重写返回true
      * @return
      */
     public boolean isBodyFragment() {

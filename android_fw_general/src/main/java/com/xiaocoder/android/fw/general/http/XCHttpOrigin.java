@@ -1,16 +1,6 @@
 package com.xiaocoder.android.fw.general.http;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.xiaocoder.android.fw.general.io.XCIO;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
@@ -24,7 +14,17 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import com.xiaocoder.android.fw.general.io.XCIO;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Deprecated
 public class XCHttpOrigin {
@@ -76,7 +76,7 @@ public class XCHttpOrigin {
             content.deleteCharAt(content.length() - 1);
             conn = (HttpURLConnection) new URL(urlStr).openConnection();
             conn.setRequestMethod("POST");
-            conn.setConnectTimeout(5000);
+            conn.setConnectTimeout(10000);
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             conn.setRequestProperty("Content-Length", content.toString().length() + "");
             conn.setDoOutput(true);// 允许对外输出
@@ -89,7 +89,7 @@ public class XCHttpOrigin {
         } else {
             conn = (HttpURLConnection) new URL(urlStr).openConnection();
             conn.setRequestMethod("POST");
-            conn.setConnectTimeout(5000);
+            conn.setConnectTimeout(10000);
             conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
             conn.setRequestProperty("Content-Length", 0 + "");
             conn.setDoOutput(true);// 允许对外输出
@@ -119,8 +119,7 @@ public class XCHttpOrigin {
      * <p/>
      * 构建请求体数据 param.add(new BasicNameValuePair("username", "123"));
      * <p/>
-     * NameValuePair的接口,BasicNameValuePair是实现类 param.add(new
-     * BasicNameValuePair("password", "123passwor"));
+     * NameValuePair的接口,BasicNameValuePair是实现类
      */
     public static InputStream httpClientByPost(String url,
                                                List<NameValuePair> param) throws ClientProtocolException, IOException {
@@ -153,7 +152,6 @@ public class XCHttpOrigin {
             return new String(XCIO.toBytesByInputStream(in), "UTF-8");
         }
         return null;
-
     }
 }
 /*
