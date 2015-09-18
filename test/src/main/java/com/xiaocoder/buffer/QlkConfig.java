@@ -146,20 +146,19 @@ public class QlkConfig {
      */
     public static String LOG_FILE = APP_ROOT + "/log";
     /**
-     * crash日志文件
+     * crash日志目录
      */
-    public static String CRASH_FILE = APP_ROOT + "/crash";
+    public static String CRASH_DIR = APP_ROOT + "/crash";
     /**
      * chat
      */
-    public static String CHAT_FILE = APP_ROOT + "/chat";
+    public static String CHAT_DIR = APP_ROOT + "/chat";
 
-    // chat_photo
-    public static String CHAT_PHOTO_FILE = CHAT_FILE + "/photo";
-    // chat_video
-    public static String CHAT_VIDEO_FILE = CHAT_FILE + "/voice";
-    // chat_moive
-    public static String CHAT_MOIVE_FILE = CHAT_FILE + "/moive";
+    public static String CHAT_PHOTO_DIR = CHAT_DIR + "/photo";
+
+    public static String CHAT_VIDEO_DIR = CHAT_DIR + "/voice";
+
+    public static String CHAT_MOIVE_DIR = CHAT_DIR + "/moive";
 
     /**
      * 图片加载缓存目录的路径

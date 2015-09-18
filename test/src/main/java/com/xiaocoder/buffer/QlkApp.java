@@ -36,12 +36,12 @@ public class QlkApp extends XCApp {
         base_sp = new XCSP(getApplicationContext(), QlkConfig.SP_SETTING, Context.MODE_APPEND);// Context.MODE_MULTI_PROCESS
 
         // 图片视频等缓存的路径
-        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_MOIVE_FILE);
-        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_VIDEO_FILE);
-        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_PHOTO_FILE);
+        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_MOIVE_DIR);
+        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_VIDEO_DIR);
+        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_PHOTO_DIR);
 
         // crash文件
-        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CRASH_FILE);
+        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CRASH_DIR);
 
         // 图片加载的初始化
         setBase_imageloader(new IXCImageLoader() {
@@ -62,7 +62,7 @@ public class QlkApp extends XCApp {
 
         // 是否开启异常日志捕获，以及异常日志的存储路径等
         XLCrashHandler.getInstance().init(QlkConfig.IS_INIT_CRASH_HANDLER,
-                getApplicationContext(), QlkConfig.CRASH_FILE, QlkConfig.IS_SHOW_EXCEPTION_ACTIVITY);
+                getApplicationContext(), QlkConfig.CRASH_DIR, QlkConfig.IS_SHOW_EXCEPTION_ACTIVITY);
 
         // 打印一些简单的设备信息
         simpleDeviceInfo();
