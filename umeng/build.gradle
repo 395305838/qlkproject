@@ -24,8 +24,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile files('libs/umeng-update-v2.6.0.1.jar')
-
+    compile files('libs/umeng-analytics-v5.5.3.jar')
 }

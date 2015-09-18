@@ -5,6 +5,7 @@ import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.umeng.analytics.MobclickAgent;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.exception.XLCrashHandler;
@@ -80,4 +81,9 @@ public class QlkApp extends XCApp {
                 + UtilScreen.getScreenWidthPx(getApplicationContext()) + "--screenWidthDP");
     }
 
+    @Override
+    public void AppExit(Context context) {
+        MobclickAgent.onKillProcess(getApplicationContext());
+        super.AppExit(context);
+    }
 }

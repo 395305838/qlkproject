@@ -66,6 +66,13 @@
         <uses-permission android:name="android.permission.INTERNET"></uses-permission>
     -->
     <!-- umeng 更新 -->
+    <!-- umeng 统计 -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+     <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+     <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>-->
+    <!-- umeng 统计 -->
+
     <application
         android:name="com.xiaocoder.buffer.QlkApp"
         android:allowBackup="true"
@@ -73,14 +80,15 @@
         android:label="@string/app_name"
         android:theme="@style/AppBaseTheme">
 
-        <!-- 友盟更新 -->
+        <!-- 友盟更新  友盟统计 共用的key-->
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="55cafdb967e58e1bb400076e" />
         <meta-data
-            android:name="${UMENG_CHANNEL_VALUE}"
-            android:value="Channel ID" />
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />
 
+        <!-- 友盟更新  -->
         <service
             android:name="com.umeng.update.net.DownloadingService"
             android:process=":DownloadingService" />

@@ -1,5 +1,9 @@
 package com.xiaocoder.buffer.function;
 
+import android.os.Bundle;
+
+import com.umeng.analytics.AnalyticsConfig;
+import com.umeng.analytics.MobclickAgent;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.buffer.QlkActivity;
 
@@ -30,5 +34,17 @@ public abstract class QlkMainActivity extends QlkActivity {
     protected void slideDestroyActivity() {
 
     }
+
+    /**
+     * 友盟统计的一些初始化
+     * @param savedInstanceState
+     */
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        MobclickAgent.updateOnlineConfig(getApplicationContext());
+        AnalyticsConfig.enableEncrypt(true);
+    }
+
 
 }
