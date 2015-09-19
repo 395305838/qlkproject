@@ -21,7 +21,7 @@ public class XLShowExceptionsActivity extends Activity {
         TextView tv = (TextView) findViewById(R.id.tv);
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            String text = bundle.getString("text");
+            String text = bundle.getString(XLCrashHandler.EXCEPTION_INFO);
             tv.setText(text);
         }
     }

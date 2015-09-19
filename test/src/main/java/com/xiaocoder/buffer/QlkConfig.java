@@ -61,7 +61,7 @@ public class QlkConfig {
             IS_INIT_CRASH_HANDLER = true;
 
             // 是否打印出异常界面（只有在IS_INIT_CRASH_HANDLER 为true时，该设置才有效）
-            IS_SHOW_EXCEPTION_ACTIVITY = false;
+            IS_SHOW_EXCEPTION_ACTIVITY = true;
 
         } else if (DEBUG_CONTROL == DebugControl.OPEN_DEFAULT) {
 
@@ -160,7 +160,7 @@ public class QlkConfig {
 
     public static String CHAT_MOIVE_DIR = CHAT_DIR + "/moive";
     /**
-     * 打印到日志文件printe()
+     * 打印到日志文件
      */
     public static String LOG_FILE = APP_ROOT + "_log";
     /**

@@ -116,6 +116,8 @@ public class MainActivity extends QlkMainActivity {
         // XCApp.clearLog();
         XCApp.e(this, "1234567890");
         XCApp.tempPrint("android--" + System.currentTimeMillis());
+
+        int a = 1/0;
     }
 
     private void recoderButton() {

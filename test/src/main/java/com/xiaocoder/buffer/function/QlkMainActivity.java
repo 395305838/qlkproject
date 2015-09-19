@@ -20,7 +20,7 @@ public abstract class QlkMainActivity extends QlkActivity {
     public void onBackPressed() {
         long this_quit_time = System.currentTimeMillis();
         if (this_quit_time - back_quit_time <= 1000) {
-            getXCApplication().AppExit(base_context);
+            getXCApplication().appExit();
         } else {
             back_quit_time = this_quit_time;
             XCApp.shortToast("快速再按一次退出");

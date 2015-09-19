@@ -1,6 +1,5 @@
 package com.xiaocoder.android.fw.general.exception;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -8,11 +7,13 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Build;
 import android.os.Environment;
+import android.os.Looper;
+import android.widget.Toast;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
+import com.xiaocoder.android.fw.general.io.XCIO;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -26,20 +27,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * UncaughtException处理类,当程序发生Uncaught异常的时候,有该类来接管程序,并记录发送错误报告.
- * 使用时记得在清单文件中注册啊
- * <p/>
- * 有一个bug：如果是在显示打印的异常类的环境下，且mainactivity出现异常了，则会启动多次--待改
+ * 使用时记得在清单文件中注册 XLShowExceptionsActivity
  */
 public class XLCrashHandler implements UncaughtExceptionHandler {
 
-    // CrashHandler 实例
     private static XLCrashHandler INSTANCE = new XLCrashHandler();
 
-    // 程序的 Context 对象
-    private Context mContext;
-
-    private Application application;
+    private XCApp application;
 
     // 系统默认的 UncaughtException 处理类
     private UncaughtExceptionHandler mDefaultHandler;
@@ -47,10 +41,11 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
     // 用来存储设备信息和异常信息
     private Map<String, String> infos = new HashMap<String, String>();
 
-    private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+    private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd ,HH:mm:ss");
 
     private boolean mIsShowExceptionActivity;
 
+    // 存储SD卡的哪个目录
     private String mCrashDir;
 
     private XLCrashHandler() {
@@ -71,7 +66,6 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
                 throw new RuntimeException("XLCrashHandler的init方法中传入的application不是xcapp");
             }
 
-            mContext = context;
             mIsShowExceptionActivity = isShowExceptionActivity;
             mCrashDir = crash_dir;
 
@@ -85,50 +79,68 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
 
     /**
      * 当 UncaughtException 发生时会转入该函数来处理
+     * <p/>
+     * try catch的异常是不会回调这个方法的
      */
     @Override
     public void uncaughtException(Thread thread, Throwable ex) {
-        XCApp.e(ex.toString());
-        if (!handleException(ex) && mDefaultHandler != null) {
-            mDefaultHandler.uncaughtException(thread, ex);
-        } else {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            if (application != null && application instanceof XCApp) {
-                ((XCApp) application).finishAllActivity();
-            }
-            // 退出程序,注释下面的重启启动程序代码
-            System.exit(1);
-            android.os.Process.killProcess(android.os.Process.myPid());
-        }
+
+        // 收集设备参数信息
+        collectDeviceInfo(application);
+
+        // 设备参数信息 异常信息 写到crash目录的日志文件中
+        String info = saveCrashInfo2File(ex);
+
+        // 打印到控制台，写到app目录的log中
+        toLogcat(info);
+
+        // 是否打开showExcpetionAcivity
+        toShowExceptionActivity(info);
+
+        //上传到服务器，这里是空实现
+        uploadException2Server(info, ex, thread);
+
+        endException();
+
     }
 
     /**
-     * 自定义错误处理，收集错误信息，发送错误报告等操作均在此完成
-     *
-     * @param ex
-     * @return true：如果处理了该异常信息；否则返回 false
+     * 在控制台显示 ，同时写入到log中
      */
-    private boolean handleException(Throwable ex) {
-        if (ex == null) {
-            return false;
+    public void toLogcat(String hint) {
+
+        XCApp.e(hint);
+
+    }
+
+    /**
+     * 上传错误信息到服务器
+     */
+    public void uploadException2Server(String info, Throwable ex, Thread thread) {
+
+    }
+
+    /**
+     * 如果系统提供了默认的异常处理器，则交给系统去结束我们的程序，否则就由我们自己结束程序
+     */
+    public void endException() {
+
+        showToast(application, "很抱歉，程序遭遇异常，即将退出！");
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
 
-        ex.printStackTrace();
-        // 收集设备参数信息
-        collectDeviceInfo(mContext);
-        // 保存日志文件
-        saveCrashInfo2File(ex);
-        return true;
+        if (application != null) {
+            application.appExit();
+        }
+
     }
 
     /**
      * 收集设备参数信息
-     *
-     * @param ctx
      */
     public void collectDeviceInfo(Context ctx) {
         try {
@@ -142,6 +154,7 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
                 infos.put("versionCode", versionCode);
             }
         } catch (NameNotFoundException e) {
+            e.printStackTrace();
             XCApp.e("an error occured when collect package info--", e);
         }
 
@@ -152,18 +165,16 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
                 infos.put(field.getName(), field.get(null).toString());
                 XCApp.i(field.getName() + " : " + field.get(null));
             } catch (Exception e) {
+                e.printStackTrace();
                 XCApp.e("an error occured when collect crash info--", e);
             }
         }
     }
 
     /**
-     * 保存错误信息到文件中 *
-     *
-     * @param ex
-     * @return 返回文件名称, 便于将文件传送到服务器
+     * 保存错误信息到crash目录的文件中 
      */
-    private String saveCrashInfo2File(Throwable ex) {
+    public String saveCrashInfo2File(Throwable ex) {
         StringBuffer sb = new StringBuffer();
         for (Map.Entry<String, String> entry : infos.entrySet()) {
             String key = entry.getKey();
@@ -184,13 +195,6 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
         String result = writer.toString();
         sb.append(result);
 
-        if (mIsShowExceptionActivity) {
-            Intent intent = new Intent(mContext, XLShowExceptionsActivity.class);
-            intent.putExtra("text", sb.toString());
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            mContext.startActivity(intent);
-        }
-
         try {
             long timestamp = System.currentTimeMillis();
             String time = formatter.format(new Date());
@@ -204,11 +208,42 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
 
             }
 
-            return fileName;
+            return fileName + XCIO.LINE_SEPARATOR + sb.toString();
         } catch (Exception e) {
+            e.printStackTrace();
             XCApp.e("an error occured while writing file--", e);
         }
 
-        return null;
+        return sb.toString();
     }
+
+    public static String EXCEPTION_INFO = "exception_info";
+
+    /**
+     * 打开一个activity展示异常信息
+     */
+    public void toShowExceptionActivity(String info) {
+        if (mIsShowExceptionActivity) {
+            Intent intent = new Intent(application, XLShowExceptionsActivity.class);
+            intent.putExtra(EXCEPTION_INFO, info);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            application.startActivity(intent);
+        }
+    }
+
+    /**
+     * 显示提示信息，需要在线程中显示Toast
+     */
+    private void showToast(final Context context, final String msg) {
+        new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                Looper.prepare();
+                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+                Looper.loop();
+            }
+        }).start();
+    }
+
 }

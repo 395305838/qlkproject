@@ -87,8 +87,8 @@ public class QlkApp extends XCApp {
     }
 
     @Override
-    public void AppExit(Context context) {
+    public void appExit() {
         MobclickAgent.onKillProcess(getApplicationContext());
-        super.AppExit(context);
+        super.appExit();
     }
 }

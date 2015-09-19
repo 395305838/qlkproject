@@ -1,7 +1,6 @@
 package reference;
 
 import android.os.Bundle;
-import android.widget.RadioGroup;
 
 import com.umeng.update.UmengUpdateAgent;
 import com.umeng.update.UpdateConfig;
@@ -19,7 +18,7 @@ public abstract class UmengUpdateDemo extends QlkActivity {
     public void onBackPressed() {
         long this_quit_time = System.currentTimeMillis();
         if (this_quit_time - back_quit_time <= 1000) {
-            getXCApplication().AppExit(base_context);
+            getXCApplication().appExit();
         } else {
             back_quit_time = this_quit_time;
             shortToast("快速再按一次退出");
