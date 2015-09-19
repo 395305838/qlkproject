@@ -16,7 +16,7 @@ import com.nostra13.universalimageloader.core.download.BaseImageDownloader;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.test.R;
 
-/*
+/**
  * 该类配置开发环境  ， 调试开关  ，域名 ， 路径  ，url等
  */
 public class QlkConfig {
@@ -48,8 +48,11 @@ public class QlkConfig {
     static {
         if (DEBUG_CONTROL == DebugControl.OPEN_DEFINE) {
 
-            // 是否打印到控制台
+            // i()方法是否打印到控制台
             IS_OUTPUT = true;
+
+            // i()方法是否打印到本地log日志; e()方法都会打印到log日志，不受该值控制
+            IS_PRINTLOG = true;
 
             // 调试土司是否开启
             IS_DTOAST = false;
@@ -60,13 +63,13 @@ public class QlkConfig {
             // 是否打印出异常界面（只有在IS_INIT_CRASH_HANDLER 为true时，该设置才有效）
             IS_SHOW_EXCEPTION_ACTIVITY = false;
 
-            // i()方法中的log是否打印到本地日志
-            IS_PRINTLOG = true;
-
         } else if (DEBUG_CONTROL == DebugControl.OPEN_DEFAULT) {
 
-            // 是否打印到控制台
+            // i()方法是否打印到控制台
             IS_OUTPUT = true;
+
+            // i()方法是否打印到本地log日志; e()方法都会打印到log日志，不受该值控制
+            IS_PRINTLOG = true;
 
             // 调试土司是否开启
             IS_DTOAST = true;
@@ -77,13 +80,13 @@ public class QlkConfig {
             // 是否打印出异常界面（只有在IS_INIT_CRASH_HANDLER 为true时，该设置才有效）
             IS_SHOW_EXCEPTION_ACTIVITY = true;
 
-            // i()方法中的log是否打印到本地日志
-            IS_PRINTLOG = true;
-
         } else if (DEBUG_CONTROL == DebugControl.CLOSE) {
 
-            // 是否打印到控制台
+            // i()方法是否打印到控制台
             IS_OUTPUT = false;
+
+            // i()方法是否打印到本地log日志; e()方法都会打印到log日志，不受该值控制
+            IS_PRINTLOG = false;
 
             // 调试土司是否开启
             IS_DTOAST = false;
@@ -93,9 +96,6 @@ public class QlkConfig {
 
             // 是否打印出异常界面（只有在IS_INIT_CRASH_HANDLER 为true时，该设置才有效）
             IS_SHOW_EXCEPTION_ACTIVITY = false;
-
-            // i()方法中的log是否打印到本地日志
-            IS_PRINTLOG = false;
 
         } else {
             throw new RuntimeException("QlkConfig的static代码块中没有找到与DEBUG_CONTROL匹配的枚举值");
