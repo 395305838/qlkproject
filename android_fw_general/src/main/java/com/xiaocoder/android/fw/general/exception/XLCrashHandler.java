@@ -48,6 +48,19 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
     // 存储SD卡的哪个目录
     private String mCrashDir;
 
+    public interface UploadServer {
+        /**
+         * 可上传错误信息到服务器
+         */
+        void uploadException2Server(String info, Throwable ex, Thread thread);
+    }
+
+    UploadServer uploadServer;
+
+    public void setUploadServer(UploadServer uploadServer) {
+        this.uploadServer = uploadServer;
+    }
+
     private XLCrashHandler() {
     }
 
@@ -97,8 +110,10 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
         // 是否打开showExcpetionAcivity
         toShowExceptionActivity(info);
 
-        //上传到服务器，这里是空实现
-        uploadException2Server(info, ex, thread);
+        //上传到服务器
+        if (uploadServer != null) {
+            uploadServer.uploadException2Server(info, ex, thread);
+        }
 
         endException();
 
@@ -110,13 +125,6 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
     public void toLogcat(String hint) {
 
         XCApp.e(hint);
-
-    }
-
-    /**
-     * 上传错误信息到服务器
-     */
-    public void uploadException2Server(String info, Throwable ex, Thread thread) {
 
     }
 

@@ -92,7 +92,7 @@ public class QlkConfig {
             IS_DTOAST = false;
 
             // 是否初始化crashhandler
-            IS_INIT_CRASH_HANDLER = false;
+            IS_INIT_CRASH_HANDLER = true;
 
             // 是否打印出异常界面（只有在IS_INIT_CRASH_HANDLER 为true时，该设置才有效）
             IS_SHOW_EXCEPTION_ACTIVITY = false;

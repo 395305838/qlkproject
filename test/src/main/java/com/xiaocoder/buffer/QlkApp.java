@@ -18,7 +18,7 @@ import com.xiaocoder.android.fw.general.util.UtilSystem;
 
 /**
  * Created by xiaocoder on 2015/7/14.
- *
+ * <p/>
  * 初始化的顺序不要去改动
  */
 public class QlkApp extends XCApp {
@@ -42,21 +42,32 @@ public class QlkApp extends XCApp {
         XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_MOIVE_DIR);
         XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_VIDEO_DIR);
         XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_PHOTO_DIR);
-
         // crash文件夹
         XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CRASH_DIR);
-
         // cache文件夹
         XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CACHE_DIR);
 
         // 图片加载的初始化
+        initImageLoader();
+
+        // 是否开启异常日志捕获，以及异常日志的存储路径等
+        initCrash();
+
+        // 打印一些简单的设备信息
+        simpleDeviceInfo();
+
+    }
+
+    private void initImageLoader() {
         setBase_imageloader(new IXCImageLoader() {
             ImageLoader imageloader = QlkConfig.getImageloader(getApplicationContext());
 
             @Override
             public void display(String url, ImageView imageview, Object... obj) {
                 // 指定配置
-                imageloader.displayImage(url, imageview, (DisplayImageOptions) obj[0]);
+                if (obj[0] instanceof DisplayImageOptions) {
+                    imageloader.displayImage(url, imageview, (DisplayImageOptions) obj[0]);
+                }
             }
 
             @Override
@@ -65,13 +76,22 @@ public class QlkApp extends XCApp {
                 imageloader.displayImage(url, imageview, QlkConfig.display_image_options);
             }
         });
+    }
 
-        // 是否开启异常日志捕获，以及异常日志的存储路径等
+    private void initCrash() {
+
         XLCrashHandler.getInstance().init(QlkConfig.IS_INIT_CRASH_HANDLER,
                 getApplicationContext(), QlkConfig.CRASH_DIR, QlkConfig.IS_SHOW_EXCEPTION_ACTIVITY);
 
-        // 打印一些简单的设备信息
-        simpleDeviceInfo();
+        XLCrashHandler.getInstance().setUploadServer(new XLCrashHandler.UploadServer() {
+            @Override
+            public void uploadException2Server(String info, Throwable ex, Thread thread) {
+                // 将异常信息 上传到友盟
+                MobclickAgent.reportError(getApplicationContext(), info);
+                // TODO 将异常信息 上传到公司的服务器
+
+            }
+        });
 
     }
 
@@ -88,6 +108,7 @@ public class QlkApp extends XCApp {
 
     @Override
     public void appExit() {
+        // 友盟
         MobclickAgent.onKillProcess(getApplicationContext());
         super.appExit();
     }
