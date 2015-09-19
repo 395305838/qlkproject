@@ -64,7 +64,7 @@ public class QlkApp extends XCApp {
 
             @Override
             public void display(String url, ImageView imageview, Object... obj) {
-                // 指定配置
+                // TODO 指定配置,判断参数
                 if (obj[0] instanceof DisplayImageOptions) {
                     imageloader.displayImage(url, imageview, (DisplayImageOptions) obj[0]);
                 }

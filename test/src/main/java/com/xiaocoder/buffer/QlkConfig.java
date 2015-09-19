@@ -160,7 +160,7 @@ public class QlkConfig {
 
     public static String CHAT_MOIVE_DIR = CHAT_DIR + "/moive";
     /**
-     * 打印到日志文件
+     * 打印到approot目录下的日志文件
      */
     public static String LOG_FILE = APP_ROOT + "_log";
     /**

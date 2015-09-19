@@ -230,14 +230,14 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
         }
     }
 
-    public String save_photo_path = ""; // XCConfig.CHAT_PHOTO_FILE
+    public String save_photo_dir = ""; // XCConfig.CHAT_PHOTO_FILE
 
-    public void setSave_photo_path(String save_photo_path) {
-        this.save_photo_path = save_photo_path;
+    public void setSave_photo_dir(String save_photo_dir) {
+        this.save_photo_dir = save_photo_dir;
     }
 
     public File createDir() {
-        File dir = new File(Environment.getExternalStorageDirectory() + "/" + save_photo_path);
+        File dir = new File(Environment.getExternalStorageDirectory() + "/" + save_photo_dir);
         if (!dir.exists()) {
             dir.mkdirs();
         }
