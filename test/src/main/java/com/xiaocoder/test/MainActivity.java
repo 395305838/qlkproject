@@ -10,6 +10,8 @@ import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.helper.XCTimeHelper;
 import com.xiaocoder.android.fw.general.helper.XCTimeHelper.CustomTimer;
+import com.xiaocoder.android.fw.general.io.XCIO;
+import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow.onPhotoPopupItemClickListener;
 import com.xiaocoder.android.fw.general.util.UtilString;
@@ -23,10 +25,10 @@ import com.xiaocoder.test.dialogs.DialogActivity3;
 import com.xiaocoder.test.dialogs.LineProgressBarActivity;
 import com.xiaocoder.test.dialogs.ProgressViewActivity;
 import com.xiaocoder.test.fragment.CamareActivity;
+import com.xiaocoder.test.fragment.ImagesZoomActivity;
 import com.xiaocoder.test.fragment.MoveBlockActivity;
 import com.xiaocoder.test.fragment.SearchActivity;
 import com.xiaocoder.test.fragment.ViewPagerActivity;
-import com.xiaocoder.test.fragment.ImagesZoomActivity;
 import com.xiaocoder.test.fragment.ViewpagerSliderActivity;
 import com.xiaocoder.test.fragment.WebActivity;
 import com.xiaocoder.test.http.HttpActivity;
@@ -44,6 +46,9 @@ import com.xiaocoder.test.view.RoundImageViewActivity;
 import com.xiaocoder.test.view.ScrollActivity;
 import com.xiaocoder.test.view.SwitchButtonActivity;
 import com.xiaocoder.test.viewpagerindicator.ListSamples;
+
+import java.io.File;
+import java.util.ArrayList;
 
 
 public class MainActivity extends QlkMainActivity {
@@ -117,7 +122,8 @@ public class MainActivity extends QlkMainActivity {
         XCApp.e(this, "1234567890");
         XCApp.tempPrint("android--" + System.currentTimeMillis());
 
-        int a = 1/0;
+        XCApp.i(XCIO.getAllFilesByDir2(XCIOAndroid.createDirInSDCard(QlkConfig.APP_ROOT), new ArrayList<File>()));
+
     }
 
     private void recoderButton() {

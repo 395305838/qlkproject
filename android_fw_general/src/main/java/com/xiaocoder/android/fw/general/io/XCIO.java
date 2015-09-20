@@ -29,22 +29,24 @@ public class XCIO {
      * createFile("e:","good.txt")-->在e盘下建一个good.txt文件
      * createFile("e:/learn/chinese"
      * ,"englis.txt")-->在e盘下建立一个learn/chinese的二级文件夹,并建立englis.txt的文件
-     *
-     * @param dirPath  文件夹的绝对路径
-     * @param fileName
-     * @return
-     * @throws java.io.IOException
      */
-    public static File createFile(String dirPath, String fileName) throws IOException {
-        File destDir = new File(dirPath); // 这句不会抛异常
-        if (!destDir.exists()) {
-            destDir.mkdirs();// 这句也不会抛异常
+    public static File createFile(String dirPath, String fileName) {
+
+        try {
+            File destDir = new File(dirPath);
+            if (!destDir.exists()) {
+                destDir.mkdirs();
+            }
+            File file = new File(destDir, fileName);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            return file;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
-        File file = new File(destDir, fileName);
-        if (!file.exists()) {
-            file.createNewFile(); // 这句可能创建文件异常
-        }
-        return file;
+
     }
 
     /**
@@ -298,7 +300,41 @@ public class XCIO {
     }
 
     /**
-     * 获取目录中的所有文件(包括传入遍历的根目录)
+     * 以队列的方式获取目录里的文件
+     */
+    public static List<File> getAllFilesByDir2(File dir, List<File> result) {
+
+        LinkedList<File> queue = new LinkedList<File>();
+
+        File[] files = dir.listFiles();
+        for (File file : files) {
+            if (file.isDirectory()) {
+                queue.addFirst(file);
+            } else {
+                result.add(file);
+            }
+        }
+        //遍历队列 子目录都在队列中
+        while (!queue.isEmpty()) {
+            //从队列中取出子目录
+            File subDir = queue.removeLast();
+            result.add(subDir);
+            //遍历子目录。
+            File[] subFiles = subDir.listFiles();
+            for (File subFile : subFiles) {
+                //子目录中还有子目录，继续存到队列
+                if (subFile.isDirectory()) {
+                    queue.addFirst(subFile);
+                } else {
+                    result.add(subFile);
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 获取目录中的所有文件（递归方式）(包括传入遍历的根目录)
      *
      * @param dir  目录
      * @param list
