@@ -221,6 +221,31 @@ public class XCIO {
         }
     }
 
+    public static boolean toFileByBytes(File desFile, byte[] bytes) {
+        return toFileByBytes(desFile, bytes, false);
+    }
+
+    public static boolean toFileByBytes(File desFile, byte[] bytes, boolean append) {
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(desFile, append);
+            fos.write(bytes);
+            fos.flush();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
     /**
      * 复制文件夹
      */

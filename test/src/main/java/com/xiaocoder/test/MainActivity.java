@@ -98,11 +98,11 @@ public class MainActivity extends QlkMainActivity {
 
         timer();
         recoderButton();
-        loge();
+        log();
 
     }
 
-    private void loge() {
+    private void log() {
 
         XCApp.i(1);
         XCApp.i(true);
@@ -124,6 +124,7 @@ public class MainActivity extends QlkMainActivity {
 
         XCApp.i(XCIO.getAllFilesByDir2(XCIOAndroid.createDirInSDCard(QlkConfig.APP_ROOT), new ArrayList<File>()));
 
+        XCIO.toFileByBytes(XCIOAndroid.createFileInSDCard(QlkConfig.APP_ROOT, "lalala.txt"), "1234567890987654321abc".getBytes(), true);
     }
 
     private void recoderButton() {

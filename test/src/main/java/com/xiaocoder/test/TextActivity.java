@@ -148,7 +148,6 @@ public class TextActivity extends QlkActivity {
                         fos.write(str.getBytes());
                     }
                     fos.flush();
-                    fos.close();
                 } catch (Exception e) {
                     e.printStackTrace();
                 } finally {
@@ -157,13 +156,9 @@ public class TextActivity extends QlkActivity {
                             fos.close();
                         } catch (IOException e) {
                             e.printStackTrace();
-                        } finally {
-                            fos = null;
                         }
                     }
                 }
-
-
             }
         }).start();
 
@@ -204,13 +199,3 @@ public class TextActivity extends QlkActivity {
         return last;
     }
 }
-
-
-//            System.out.println(letterPosition_1 + "----" + letterPosition_2 + "----" + letterPosition_3 + "---" + letterPosition_4);
-//            if (letterPosition_2 - letterPosition_1 < 2) {
-//                throw new RuntimeException(letterPosition_2 + "--letterPosition_2" + letterPosition_1 + "--letterPosition_1");
-//            } else if (letterPosition_3 - letterPosition_2 < 2) {
-//                throw new RuntimeException(letterPosition_3 + "--letterPosition_3" + letterPosition_2 + "--letterPosition_2");
-//            } else if (letterPosition_4 - letterPosition_3 < 2) {
-//                throw new RuntimeException(letterPosition_4 + "--letterPosition_4" + letterPosition_3 + "--letterPosition_3");
-//            }
