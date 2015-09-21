@@ -89,8 +89,8 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
         intent.putExtra("crop", "true");
         intent.putExtra("aspectX", 1);
         intent.putExtra("aspectY", 1);
-        intent.putExtra("outputX", 150);
-        intent.putExtra("outputY", 150);
+        intent.putExtra("outputX", 300);
+        intent.putExtra("outputY", 300);
         intent.putExtra("return-data", true);
         startActivityForResult(intent, RESIZE_REQUEST_CODE);
     }
@@ -200,8 +200,8 @@ public class XCCameraPhotoFragment extends XCBaseFragment {
                     }
                     File file = new File(createDir(), "photo" + getTime() + ".jpg");
                     fos = new FileOutputStream(file);
-                    bitmap = Bitmap.createScaledBitmap(bitmap, 700, 700, true);
-                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fos);
+//                    bitmap = Bitmap.createScaledBitmap(bitmap, 700, 700, true);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                     fos.close();
                     if (listener != null) {
                         listener.onCaremaSelectedFile(file);
