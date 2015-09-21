@@ -18,9 +18,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.io.SequenceInputStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
+import java.util.Vector;
 
 public class XCIO {
 
@@ -296,7 +298,7 @@ public class XCIO {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("复制" + srcPath + "到" + destPath + "失败",e);
+            throw new RuntimeException("复制" + srcPath + "到" + destPath + "失败", e);
         } finally {
             try {
                 if (in != null) {
@@ -580,6 +582,61 @@ public class XCIO {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 合并文件
+     *
+     * @param mergedDir 需要合并的文件所在的文件夹
+     * @param destFile  合并到哪个文件
+     * @param fileType  mp3，mp4,等文件类型
+     * @throws IOException
+     */
+    public static void mergeFile(File mergedDir, File destFile, String fileType) {
+        SequenceInputStream sequenceInputStream = null;
+        FileOutputStream fileOutputStream = null;
+        try {
+
+            Vector<FileInputStream> vector = new Vector<FileInputStream>();
+            File[] files = mergedDir.listFiles();
+            if (files == null) {
+                return;
+            }
+            //把需要合并的文件添加到集合
+            for (File item : files) {
+                if (item.getName().endsWith(fileType)) {
+                    vector.add(new FileInputStream(item));
+                }
+            }
+
+            sequenceInputStream = new SequenceInputStream(vector.elements());
+            fileOutputStream = new FileOutputStream(destFile);
+
+            byte[] buf = new byte[10240];
+            int length = -1;
+            while ((length = sequenceInputStream.read(buf)) != -1) {
+                fileOutputStream.write(buf, 0, length);
+                fileOutputStream.flush();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (sequenceInputStream != null) {
+                    sequenceInputStream.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (fileOutputStream != null) {
+                    try {
+                        fileOutputStream.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }
