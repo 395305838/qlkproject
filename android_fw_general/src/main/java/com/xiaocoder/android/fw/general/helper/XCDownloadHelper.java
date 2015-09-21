@@ -80,7 +80,7 @@ public class XCDownloadHelper implements Runnable {
                 in = conn.getInputStream();
                 long totalSize = conn.getContentLength();
                 XCApp.i(tag, "----开始下载了");
-                XCIO.toFileByInputStream(in, file, totalSize, downloadListener);
+                XCIO.toFileByInputStream(in, file, totalSize, downloadListener , false);
                 if (downloadListener != null) {
                     XCApp.i(tag, "----下载完成----" + Thread.currentThread());
                     downloadListener.downloadFinished(totalSize, file);

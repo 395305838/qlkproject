@@ -122,7 +122,7 @@ public class MainActivity extends QlkMainActivity {
         XCApp.e(this, "1234567890");
         XCApp.tempPrint("android--" + System.currentTimeMillis());
 
-        XCApp.i(XCIO.getAllFilesByDir2(XCIOAndroid.createDirInSDCard(QlkConfig.APP_ROOT), new ArrayList<File>()));
+        XCApp.i(XCIO.getAllFilesByDirQueue(XCIOAndroid.createDirInSDCard(QlkConfig.APP_ROOT), new ArrayList<File>()));
 
         XCIO.toFileByBytes(XCIOAndroid.createFileInSDCard(QlkConfig.APP_ROOT, "lalala.txt"), "1234567890987654321abc".getBytes(), true);
     }

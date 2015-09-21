@@ -10,14 +10,17 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Properties;
 
 public class XCIO {
 
@@ -51,9 +54,6 @@ public class XCIO {
 
     /**
      * createDir("e:/haha/enen.o/hexx.&...we/android.txt"),没错,这创建出来的是文件夹
-     *
-     * @param dirPath
-     * @return
      */
     public static File createDir(String dirPath) {
         File dir = new File(dirPath);
@@ -63,8 +63,8 @@ public class XCIO {
         return dir;
     }
 
-    public static InputStream getInputStreamFromUrl(String url) {
-        File file = new File(url);
+    public static InputStream getInputStreamFromPath(String path) {
+        File file = new File(path);
         InputStream in = null;
         try {
             in = new FileInputStream(file);
@@ -74,7 +74,7 @@ public class XCIO {
         return in;
     }
 
-    public static String readStringFromFile(File file) {
+    public static String getStringFromFile(File file) {
         if (!file.exists()) {
             return null;
         }
@@ -82,7 +82,7 @@ public class XCIO {
         try {
             FileReader reader = new FileReader(file);
             br = new BufferedReader(reader);
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
             String s;
             while ((s = br.readLine()) != null) {
                 buffer.append(s);
@@ -140,7 +140,7 @@ public class XCIO {
         ByteArrayOutputStream baos = null;
         try {
             baos = new ByteArrayOutputStream();// 字节数组输出流
-            byte[] buffer = new byte[1024];
+            byte[] buffer = new byte[10240];
 
             for (int len = -1; (len = in.read(buffer)) != -1; ) {
                 baos.write(buffer, 0, len);
@@ -176,13 +176,13 @@ public class XCIO {
      * 这里可以设置一个下载进度的监听
      */
     public static void toFileByInputStream(InputStream in, File file) {
-        toFileByInputStream(in, file, 0, null);
+        toFileByInputStream(in, file, 0, null, false);
     }
 
-    public static void toFileByInputStream(InputStream in, File file, long totalSize, XCDownloadHelper.DownloadListener listener) {
+    public static void toFileByInputStream(InputStream in, File file, long totalSize, XCDownloadHelper.DownloadListener listener, boolean append) {
         OutputStream os = null;
         try {
-            os = new FileOutputStream(file);// 该句只会创建文件,不会创建文件夹,否则异常
+            os = new FileOutputStream(file, append);// 只会创建文件,不会创建文件夹,否则异常
             byte[] buffer = new byte[10240];
             int len = -1;
             long totalProgress = 0;
@@ -249,35 +249,30 @@ public class XCIO {
     /**
      * 复制文件夹
      */
-    public static void copyDirAndFile(String fromPath, String toPath) throws IOException {
-        // 1.将原始路径和目标路径转为File
+    public static void copyDirAndFile(String fromPath, String toPath) throws Exception {
+        // 将原始路径和目标路径转为File
         File fromFile = new File(fromPath);
         if (!fromFile.exists()) {
-            return;
+            throw new RuntimeException("源文件不存在，无法复制");
         }
+
         File toFile = new File(toPath);
-        // 2.如果目标路径不存在，则创建该路径
         if (!toFile.exists()) {
             toFile.mkdir();
         }
-        // 3.判断原始路径是一个目录还是一个文件，如果是一个文件，直接复制，
-        // 递归遍历
 
         if (fromFile.isFile()) {
             copyFile(fromFile.getAbsolutePath(), toPath + fromFile.getName());
         } else if (fromFile.isDirectory()) {
-            // fromFile = new File(fromFile.getAbsoluteFile() + "/");
             File[] listFiles = fromFile.listFiles();
             if (listFiles == null) {
                 return;
             }
             for (File file : listFiles) {
                 if (file.isDirectory()) {
-                    // 4.如果是一个文件夹，得到该文件夹下的所有文件，需要将该文件夹的所有文件都复制，文件夹需要
                     // 递归遍历,因为是文件夹，所以最后都要加上"/"
                     copyFile(file.getAbsolutePath() + "/", toPath + file.getName() + "/");
                 } else {
-                    // 5.是一个目录还是一个文件，如果是一个文件，直接复制，
                     copyFile(file.getAbsolutePath(), toPath + file.getName());
                 }
             }
@@ -285,40 +280,37 @@ public class XCIO {
     }
 
     /**
-     * 拷贝文件用字节流
-     *
-     * @param srcPath
-     * @param destPath
+     * 拷贝文件用字节流即可（如果是对文本的操作，如修改，则得用字符流） ,  这里拷贝的是文件，不是文件夹
      */
     public static void copyFile(String srcPath, String destPath) {
         InputStream in = null;
         OutputStream out = null;
         try {
-            // 打开流
             out = new FileOutputStream(destPath);
             in = new FileInputStream(srcPath);
 
-            // 使用流
-            byte[] data = new byte[1024];
+            byte[] data = new byte[10240];
             for (int len = -1; (len = in.read(data)) != -1; ) {
                 out.write(data, 0, len);
+                out.flush();
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            throw new RuntimeException("复制" + srcPath + "到" + destPath + "失败",e);
         } finally {
             try {
                 if (in != null) {
                     in.close();
                 }
             } catch (IOException e) {
-                throw new RuntimeException(e);
+                e.printStackTrace();
             } finally {
                 try {
                     if (out != null) {
                         out.close();
                     }
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
             }
         }
@@ -327,7 +319,7 @@ public class XCIO {
     /**
      * 以队列的方式获取目录里的文件
      */
-    public static List<File> getAllFilesByDir2(File dir, List<File> result) {
+    public static List<File> getAllFilesByDirQueue(File dir, List<File> result) {
 
         LinkedList<File> queue = new LinkedList<File>();
 
@@ -385,11 +377,7 @@ public class XCIO {
     }
 
     /**
-     * deserialization from file
-     *
-     * @param filePath
-     * @return
-     * @throws RuntimeException if an error occurs
+     * 反序列化
      */
     public static Object deserialization(String filePath) {
         ObjectInputStream in = null;
@@ -415,6 +403,9 @@ public class XCIO {
         }
     }
 
+    /**
+     * 序列化
+     */
     public static void serialization(String filePath, Object obj) {
         ObjectOutputStream out = null;
         try {
@@ -440,16 +431,15 @@ public class XCIO {
      * 根据指定的过滤器在指定目录下获取所有的符合过滤条件的文件，并存储到list集合中。
      *
      * @param dir    目录
-     * @param filter 这里用的是FileFilter,和FileNameFilter差不多,该FileUtils中有FileFilter模板,
-     *               FileFilter可以在构造中初始化一个条件字符串如".java"
-     * @param list
-     * @return
+     * @param filter 这里用的是FileFilter,和FileNameFilter差不多
+     * @param list   返回list
+     * @return list
      */
     public static List<File> getFilterFilesByDir(File dir, FileFilter filter, List<File> list) {
         if (dir != null && list != null && dir.exists() && dir.isDirectory()) {
-            File[] files = dir.listFiles();// 如果目录是系统级文件夹，java没有访问权限，那么会返回null数组。最好加入判断。
-            // File[] files = dir.listFiles(filter);//
-            // 如果目录是系统级文件夹，java没有访问权限，那么会返回null数组。最好加入判断。
+            File[] files = dir.listFiles();
+            // File[] files = dir.listFiles(filter);
+            // 如果目录是系统级文件夹，java没有访问权限，那么会返回null数组
             if (files != null) {
                 for (File file : files) {
                     // 2,对遍历到的file对象判断是否是目录。
@@ -486,7 +476,6 @@ public class XCIO {
                 if (i != -1) {
                     name = name.substring(i);
                     if (name.equalsIgnoreCase(".mp4") || name.equalsIgnoreCase(".3gp") || name.equalsIgnoreCase(".wmv")) {
-
                         list.add(file);
                         return true;
                     }
@@ -496,13 +485,10 @@ public class XCIO {
                 return false;
             }
         });
-
     }
 
     /**
      * 一个FileFilter模板
-     *
-     * @author xiaocoder
      */
     static class MyFilter implements FileFilter {
 
@@ -517,4 +503,85 @@ public class XCIO {
             return dir.getAbsolutePath().endsWith(name);
         }
     }
+
+
+    /**
+     * @param inputStream  System.in ,FileInputStream
+     * @param outputStream System.out ,FileOutPutStream
+     */
+    public static void print(InputStream inputStream, OutputStream outputStream) {
+        BufferedReader reader = null;
+        PrintWriter writer = null;
+        try {
+            reader = new BufferedReader(new InputStreamReader(inputStream));
+            //字符流里面有一个字节缓冲区
+            //true自动刷新，只对print println有效
+            writer = new PrintWriter(outputStream, true);
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                writer.println(line);
+                // writer.flush();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (reader != null) {
+                    reader.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+    public static Properties readProperty(File configFile) {
+        FileReader fr = null;
+        try {
+            fr = new FileReader(configFile);
+            Properties prop = new Properties();
+            prop.load(fr);
+            return prop;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            if (fr != null) {
+                try {
+                    fr.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static Properties storeProperty(File file, Properties properties, String desc) {
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(file);
+            properties.store(fw, desc);//info为注释,不要写中文
+            return properties;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            try {
+                if (fw != null) {
+                    fw.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 }
