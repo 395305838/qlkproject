@@ -3,6 +3,7 @@ package com.xiaocoder.android.fw.general.http;
 import android.content.Context;
 
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
@@ -36,8 +37,15 @@ public class XCHttpAsyn {
 
     public static boolean isNeting;
 
+    public static int TIME_OUT = 10000;
+
     static {
-        client.setTimeout(10000);
+        client.setTimeout(TIME_OUT);
+    }
+
+    public static void setTimeOut(int time) {
+        TIME_OUT = time;
+        client.setTimeout(TIME_OUT);
     }
 
     public static AsyncHttpClient getClient() {
@@ -55,6 +63,7 @@ public class XCHttpAsyn {
             if (isShowDialog) {
                 res.showHttpDialog();
             }
+
             client.get(urlString, params, res);
         }
     }
@@ -80,6 +89,7 @@ public class XCHttpAsyn {
             if (isShowDialog) {
                 res.showHttpDialog();
             }
+
             client.post(urlString, params, res);
         }
     }
@@ -102,7 +112,7 @@ public class XCHttpAsyn {
     /**
      * 用以下方法，便于以后更改http请求库
      */
-    public static void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, Map<String, Object> map, XCResponseHandler res) {
+    public static void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
 
         RequestParams params = new RequestParams();
 
@@ -121,19 +131,24 @@ public class XCHttpAsyn {
             if (isShowDialog) {
                 res.showHttpDialog();
             }
-            client.get(urlString, params, res);
+
+            if (res instanceof AsyncHttpResponseHandler) {
+                client.get(urlString, params, (AsyncHttpResponseHandler) res);
+            } else {
+                throw new RuntimeException("XCHttpAsyn中的Handler类型不匹配");
+            }
         }
     }
 
-    public static void getAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCResponseHandler res) {
+    public static void getAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
         getAsyn(true, isAllowConcurrent, isShowDialog, context, urlString, map, res);
     }
 
-    public static void getAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCResponseHandler res) {
+    public static void getAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
         getAsyn(true, false, isShowDialog, context, urlString, map, res);
     }
 
-    public static void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCResponseHandler res) {
+    public static void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
 
         RequestParams params = new RequestParams();
 
@@ -152,18 +167,22 @@ public class XCHttpAsyn {
             if (isShowDialog) {
                 res.showHttpDialog();
             }
-            client.post(urlString, params, res);
+
+            if (res instanceof AsyncHttpResponseHandler) {
+                client.post(urlString, params, (AsyncHttpResponseHandler) res);
+            } else {
+                throw new RuntimeException("XCHttpAsyn中的Handler类型不匹配");
+            }
         }
     }
 
-    public static void postAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCResponseHandler res) {
+    public static void postAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
         postAsyn(true, isAllowConcurrent, isShowDialog, context, urlString, map, res);
 
     }
 
-    public static void postAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCResponseHandler res) {
+    public static void postAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
         postAsyn(true, false, isShowDialog, context, urlString, map, res);
     }
-
 
 }

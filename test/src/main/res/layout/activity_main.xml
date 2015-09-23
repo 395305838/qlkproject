@@ -22,6 +22,12 @@
                 android:text="test_expandablelistview" />
 
             <Button
+                android:id="@+id/test_umengshare"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="test_umengshare" />
+
+            <Button
                 android:id="@+id/test_progress_view"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"

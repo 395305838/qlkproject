@@ -3,9 +3,7 @@ package com.xiaocoder.android.fw.general.http;
 import android.app.Dialog;
 import android.content.Context;
 
-import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
@@ -28,7 +26,7 @@ import org.apache.http.Header;
  * <p/>
  * 如果有特殊的解析需求，可以新建一个handler类重写parse() 或 parseWay方法
  */
-public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
+public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler implements XCIResponseHandler<T> {
     /**
      * 是json还是xml或图片等,默认是json
      */
@@ -69,6 +67,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
     public static int XML = 2;
     public static int ELSE = 3;
 
+    @Override
     public Dialog getHttpDialog() {
         return httpDialog;
     }
@@ -94,12 +93,13 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
         this(result_http, JSON, true, result_bean_class);
     }
 
+    @Override
     public void setContext(Context context) {
         mContext = context;
     }
 
     /**
-     * 主线程
+     * 防止该方法被重写，主线程
      */
     @Override
     public final void onFinish() {
@@ -109,6 +109,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
     /**
      * 主线程
      */
+    @Override
     public void finish() {
         XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---onFinish()");
         XCHttpAsyn.resetNetingStatus();
@@ -121,7 +122,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
     @Override
     public final void onFailure(int code, Header[] headers, byte[] arg2, Throwable e) {
 
-        if (isDestroy()) {
+        if (isActivityDestroy(mContext)) {
             return;
         }
 
@@ -136,15 +137,15 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
             }
         }
 
-        failure();
+        failure(code, headers, arg2, e);
         finish();
     }
-
 
     /**
      * 主线程中
      */
-    public void failure() {
+    @Override
+    public void failure(int code, Header[] headers, byte[] bytes, Throwable e) {
 
         XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----failure()");
 
@@ -164,7 +165,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
     @Override
     public final void onSuccess(final int code, final Header[] headers, final byte[] bytes) {
 
-        if (isDestroy()) {
+        if (isActivityDestroy(mContext)) {
             return;
         }
         // 子线程
@@ -187,7 +188,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
                     @Override
                     public void run() {
                         // 增加activity是否销毁的判断
-                        if (isDestroy()) {
+                        if (isActivityDestroy(mContext)) {
                             return;
                         }
                         success(code, headers, bytes);
@@ -201,6 +202,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
     /**
      * 主线程
      */
+    @Override
     public void success(int code, Header[] headers, byte[] arg2) {
         XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----success()");
 
@@ -212,17 +214,18 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
     /**
      * 主线程
      */
-    public boolean isDestroy() {
+    @Override
+    public boolean isActivityDestroy(Context context) {
 
-        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----isDestroy()");
+        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----isActivityDestroy()");
 
-        if (mContext == null) {
+        if (context == null) {
             XCApp.e(this.toString() + "---activity被销毁了");
             return true;
         }
 
-        if (mContext instanceof XCBaseActivity) {
-            if (((XCBaseActivity) mContext).isActivityDestroied()) {
+        if (context instanceof XCBaseActivity) {
+            if (((XCBaseActivity) context).isActivityDestroied()) {
                 XCApp.e(this.toString() + "---activity被销毁了");
                 return true;
             }
@@ -233,6 +236,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
     /**
      * 在子线程运行的，所以不要有ui或toast等操作
      */
+    @Override
     public void parse(byte[] response_bytes) {
         try {
             XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----parse()");
@@ -246,7 +250,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
                 // 打印bean到控制台， 然后复制，格式化，即为自动生成的假bean，该方法受log的isoutput开关控制
                 XCJsonParse.json2Bean(response_str);
 
-                result_bean = parseWay(response_str,response_bytes);
+                result_bean = parseWay(response_str, response_bytes);
 
                 if (result_bean == null) {
                     result_boolean = false;
@@ -263,32 +267,6 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler {
         }
     }
 
-    /**
-     * 子线程中运行的，所以不要有ui或toast等操作
-     */
-    public abstract T parseWay(String responseStr , byte[] response_bytes);
-
-    /**
-     * 加密
-     */
-    public abstract void yourCompanySecret(RequestParams params, AsyncHttpClient client, boolean needSecret);
-
-    /**
-     * 对返回状态码的一个判断，每个项目的认定操作成功的状态码或结构可能不同，在这里统一拦截
-     * <p/>
-     * 即设置 result_boolean 为false 或 true
-     */
-    public abstract void yourCompanyResultRule();
-
-    /**
-     * http开始的dialog
-     */
-    public abstract void showHttpDialog();
-
-    /**
-     * http结束，关闭dialog
-     */
-    public abstract void closeHttpDialog();
 
 }
 

@@ -40,6 +40,7 @@ import com.xiaocoder.test.line_point.LinePointActivityGC;
 import com.xiaocoder.test.pop.PopActivity;
 import com.xiaocoder.test.scan.CodeActivity;
 import com.xiaocoder.test.scan.ScanActivity;
+import com.xiaocoder.test.share.UmengShareActivity;
 import com.xiaocoder.test.slidingmenu.SlidingMenuActivity;
 import com.xiaocoder.test.slidingmenu.SlidingMenuActivity2;
 import com.xiaocoder.test.view.RoundImageViewActivity;
@@ -89,6 +90,7 @@ public class MainActivity extends QlkMainActivity {
     Button test_viewpager_num;
     Button test_viewpager_slider;
     Button test_progress_view;
+    Button test_umengshare;
 
 
     @Override
@@ -230,6 +232,8 @@ public class MainActivity extends QlkMainActivity {
 
         test_progress_view = getViewById(R.id.test_progress_view);
 
+        test_umengshare = getViewById(R.id.test_umengshare);
+
 
     }
 
@@ -269,6 +273,7 @@ public class MainActivity extends QlkMainActivity {
         test_viewpager_num.setOnClickListener(this);
         test_viewpager_slider.setOnClickListener(this);
         test_progress_view.setOnClickListener(this);
+        test_umengshare.setOnClickListener(this);
 
     }
 
@@ -371,6 +376,8 @@ public class MainActivity extends QlkMainActivity {
             myStartActivity(ViewpagerSliderActivity.class);
         } else if (id == R.id.test_progress_view) {
             myStartActivity(ProgressViewActivity.class);
+        } else if (id == R.id.test_umengshare) {
+            myStartActivity(UmengShareActivity.class);
         }
 
     }

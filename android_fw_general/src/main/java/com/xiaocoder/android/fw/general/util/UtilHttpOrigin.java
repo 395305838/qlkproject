@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.http;
+package com.xiaocoder.android.fw.general.util;
 
 import com.xiaocoder.android.fw.general.io.XCIO;
 
@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 @Deprecated
-public class XCHttpOrigin {
+public class UtilHttpOrigin {
 
     /**
      * 如果getResponseCode==HTTP_OK,则返回一个连接成功的HttpURLConnection对象
@@ -65,8 +65,9 @@ public class XCHttpOrigin {
         // Content-Length: 24
         // account=android&pwd=1234
         HttpURLConnection conn = null;
+        StringBuilder content = new StringBuilder("");
+
         if (requestParams != null && !requestParams.isEmpty()) {
-            StringBuilder content = new StringBuilder();
             for (Map.Entry<String, Object> entry : requestParams.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue().toString();
@@ -74,31 +75,18 @@ public class XCHttpOrigin {
                 content.append(key).append("=").append(value).append("&");
             }
             content.deleteCharAt(content.length() - 1);
-            conn = (HttpURLConnection) new URL(urlStr).openConnection();
-            conn.setRequestMethod("POST");
-            conn.setConnectTimeout(10000);
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            conn.setRequestProperty("Content-Length", content.toString().length() + "");
-            conn.setDoOutput(true);// 允许对外输出
-            OutputStream os = conn.getOutputStream();
-            os.write(content.toString().getBytes(), 0, content.toString().getBytes().length);
-            os.flush();
-            if (HttpURLConnection.HTTP_OK == conn.getResponseCode()) {
-                return conn;
-            }
-        } else {
-            conn = (HttpURLConnection) new URL(urlStr).openConnection();
-            conn.setRequestMethod("POST");
-            conn.setConnectTimeout(10000);
-            conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            conn.setRequestProperty("Content-Length", 0 + "");
-            conn.setDoOutput(true);// 允许对外输出
-            OutputStream os = conn.getOutputStream();
-            os.write(urlStr.getBytes(), 0, urlStr.getBytes().length);
-            os.flush();
-            if (HttpURLConnection.HTTP_OK == conn.getResponseCode()) {
-                return conn;
-            }
+        }
+        conn = (HttpURLConnection) new URL(urlStr).openConnection();
+        conn.setRequestMethod("POST");
+        conn.setConnectTimeout(10000);
+        conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+        conn.setRequestProperty("Content-Length", content.toString().length() + "");
+        conn.setDoOutput(true);// 允许对外输出
+        OutputStream os = conn.getOutputStream();
+        os.write(content.toString().getBytes(), 0, content.toString().getBytes().length);
+        os.flush();
+        if (HttpURLConnection.HTTP_OK == conn.getResponseCode()) {
+            return conn;
         }
         return null;
     }
@@ -123,10 +111,10 @@ public class XCHttpOrigin {
      */
     public static InputStream httpClientByPost(String url,
                                                List<NameValuePair> param) throws ClientProtocolException, IOException {
-        DefaultHttpClient client = new DefaultHttpClient(); // 拿到浏览器
-        HttpPost post = new HttpPost(url); // 指定请求方式
+        DefaultHttpClient client = new DefaultHttpClient();
+        HttpPost post = new HttpPost(url);
         // StringEntity entity = new StringEntity(xml, "<xml>");
-        UrlEncodedFormEntity form = new UrlEncodedFormEntity(param, "UTF-8"); // 构建请求体
+        UrlEncodedFormEntity form = new UrlEncodedFormEntity(param, "UTF-8");
         post.setEntity(form);
         HttpResponse response = client.execute(post);
         if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
@@ -138,7 +126,6 @@ public class XCHttpOrigin {
 
     public static String httpClientUpload(String url, String[] names, File file) throws ClientProtocolException, IOException {
 
-        // HttpClient的版本必须在3.0以上
         DefaultHttpClient client = new DefaultHttpClient();// 拿到浏览器
         HttpPost post = new HttpPost(url); // 指定请求方式
         MultipartEntity form = new MultipartEntity();// 生成表单
