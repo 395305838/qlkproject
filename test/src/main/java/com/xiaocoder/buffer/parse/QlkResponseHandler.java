@@ -37,17 +37,17 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
     /**
      * 解析是否成功的规则，根据项目的json而定
      */
-    public void yourCompanyResultRule() {
+    public boolean yourCompanyResultRule() {
 
         XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---yourCompanyResultRule()");
 
         if (result_bean instanceof IQlkResponseInfo) {
 
             if (((IQlkResponseInfo) result_bean).getCode() == 0) {
-                result_boolean = true;
+                return true;
             } else {
-                result_boolean = false;
                 XCApp.shortToast(((IQlkResponseInfo) result_bean).getMsg());
+                return false;
             }
 
         } else {
@@ -60,31 +60,34 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
     /**
      * 提交请求前的加密
      *
+     * @param oParams    http请求的参数，不同的库可能是不同的封装类，为便于以后的http库的修改，这里暂用obj接收
+     * @param oClient    添加http的header用的，不同的库可能是不同的封装类，为便于以后的http库的修改，这里暂用obj接收
      * @param needSecret 是否要加密
      */
     @Override
-    public void yourCompanySecret(RequestParams params, AsyncHttpClient client, boolean needSecret) {
+    public void yourCompanySecret(Object oParams, Object oClient, boolean needSecret) {
 
-        if (needSecret) {
+        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---yourCompanySecret()--" + needSecret);
 
-            XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---yourCompanySecret()");
-
+        if (oClient instanceof AsyncHttpClient) {
+            AsyncHttpClient client = (AsyncHttpClient) oClient;
             client.addHeader("_v", UtilSystem.getVersionCode(mContext) + "");// 版本号，必填
             client.addHeader("_m", UtilSystem.getMacAddress(mContext));// 设备的mac地址，选填
             client.addHeader("_c", "2222");// JSONP的回调函数名 ,可选
             client.addHeader("_p", "1"); // 平台，必填
+        } else {
+            throw new RuntimeException("yourCompanySecret()---中传入的obj不是AsynHttpClient类型");
+        }
 
-//        String token = Qlk
-//        params.put("token", token);
-//        if (params != null && params.has("token")) {
-//            String ts = System.currentTimeMillis() + "";
-//            String sig = UtilMd5.sortAddMD5Params(ts, params);
-//            //有token的接口需要添加sig
-//            params.put("sig", sig);
-//            params.put("ts", ts);
-//        }
-            XCApp.i(XCConfig.TAG_HTTP, "plus public params-->" + params.toString());
+        if (oParams instanceof RequestParams) {
+            RequestParams params = (RequestParams) oParams;
+            if (needSecret) {
+                // TODO 补充加密的代码
 
+                XCApp.i(XCConfig.TAG_HTTP, "secret params-->" + oParams.toString());
+            }
+        } else {
+            throw new RuntimeException("yourCompanySecret()---中传入的params不是RequestParams类型");
         }
 
     }

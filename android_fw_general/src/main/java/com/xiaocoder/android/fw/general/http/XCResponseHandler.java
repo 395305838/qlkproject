@@ -258,7 +258,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
                     return;
                 }
 
-                yourCompanyResultRule();
+                result_boolean = yourCompanyResultRule();
             }
         } catch (Exception e) {
             e.printStackTrace();

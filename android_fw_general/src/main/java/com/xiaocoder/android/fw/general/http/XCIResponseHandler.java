@@ -3,9 +3,6 @@ package com.xiaocoder.android.fw.general.http;
 import android.app.Dialog;
 import android.content.Context;
 
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.RequestParams;
-
 import org.apache.http.Header;
 
 /**
@@ -40,14 +37,14 @@ public interface XCIResponseHandler<T> {
     /**
      * 加密
      */
-    void yourCompanySecret(RequestParams params, AsyncHttpClient client, boolean needSecret);
+    void yourCompanySecret(Object params, Object client, boolean needSecret);
 
     /**
      * 对返回状态码的一个判断，每个项目的认定操作成功的状态码或结构可能不同，在这里统一拦截
      * <p/>
      * 即设置 result_boolean 为false 或 true
      */
-    void yourCompanyResultRule();
+    boolean yourCompanyResultRule();
 
     /**
      * http开始的dialog
