@@ -41,7 +41,10 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
 
         XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---yourCompanyResultRule()");
 
-        if (result_bean instanceof IQlkResponseInfo) {
+        /**
+         * 统一规则 用QlkModel 或 QlkBean
+         */
+        if (result_bean instanceof IQlkResponseInfo && (result_bean instanceof QlkModel || result_bean instanceof QlkBean)) {
 
             if (((IQlkResponseInfo) result_bean).getCode() == 0) {
                 return true;
@@ -52,7 +55,7 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
 
         } else {
             XCApp.e("yourCompanyResultRule()中的返回结果不是IQlkResponseInfo类型");
-            throw new RuntimeException("yourCompanyResultRule()中的返回结果不是IQlkResponseInfo类型");
+            throw new RuntimeException("yourCompanyResultRule()中的返回结果不是IQlkResponseInfo ,QlkModel 或 Qlkean 类型");
         }
 
     }

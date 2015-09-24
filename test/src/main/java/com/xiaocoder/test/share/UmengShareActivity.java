@@ -4,16 +4,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.qlk.umeng.UtilUmengShare;
+import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
-import com.umeng.socialize.media.UMImage;
-import com.umeng.socialize.sso.UMQQSsoHandler;
-import com.umeng.socialize.weixin.controller.UMWXHandler;
+import com.umeng.socialize.sso.EmailHandler;
+import com.umeng.socialize.sso.SmsHandler;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.test.R;
 
 public class UmengShareActivity extends QlkActivity {
     Button umeng;
+    Button define;
     UMSocialService mController;
 
     @Override
@@ -24,61 +26,41 @@ public class UmengShareActivity extends QlkActivity {
 
     @Override
     public void initWidgets() {
+
         umeng = getViewById(R.id.umeng);
+        define = getViewById(R.id.define);
 
         // 首先在您的Activity中添加如下成员变量
         mController = UMServiceFactory.getUMSocialService("com.umeng.share");
-        // mController.getConfig().removePlatform(SHARE_MEDIA.RENREN, SHARE_MEDIA.DOUBAN);
-        mController.setAppWebSite("http://www.baidu.com");
-        // 设置分享内容
-        mController.setShareContent("测试，http://www.umeng.com/social");
-        // 设置分享图片, 参数2为图片的url地址
-        mController.setShareMedia(new UMImage(this, "http://www.baidu.com/img/bdlogo.png"));
-        // 设置分享图片，参数2为本地图片的资源引用
-        //mController.setShareMedia(new UMImage(getActivity(), R.drawable.icon));
-        // 设置分享图片，参数2为本地图片的路径(绝对路径)
-        //mController.setShareMedia(new UMImage(getActivity(),BitmapFactory.decodeFile("/mnt/sdcard/icon.png")));
-        // 设置分享音乐
-        //UMusic uMusic = new UMusic("http://sns.whalecloud.com/test_music.mp3");
-        //uMusic.setAuthor("GuGu");
-        //uMusic.setTitle("天籁之音");
-        // 设置音乐缩略图
-        //uMusic.setThumb("http://www.umeng.com/images/pic/banner_module_social.png");
-        //mController.setShareMedia(uMusic);
-        // 设置分享视频
-        //UMVideo umVideo = new UMVideo("http://v.youku.com/v_show/id_XNTE5ODAwMDM2.html?f=19001023");
-        // 设置视频缩略图
-        //umVideo.setThumb("http://www.umeng.com/images/pic/banner_module_social.png");
-        //umVideo.setTitle("友盟社会化分享!");
-        //mController.setShareMedia(umVideo);
-        initWX();
-    }
 
-    public void initWX() {
-        String appID = "wx967daebe835fbeac";
-        String appSecret = "5fa9e68ca3970e87a1f83e563c8dcbce";
-        // 添加微信平台
-        UMWXHandler wxHandler = new UMWXHandler(this, appID, appSecret);
-        wxHandler.addToSocialSDK();
-        // 添加微信朋友圈
-        UMWXHandler wxCircleHandler = new UMWXHandler(this, appID, appSecret);
-        wxCircleHandler.setToCircle(true);
-        wxCircleHandler.addToSocialSDK();
-    }
+        SmsHandler smsHandler = new SmsHandler();
+        smsHandler.addToSocialSDK();
 
-    public void initQQ() {
-        //参数1为当前Activity，参数2为开发者在QQ互联申请的APP ID，参数3为开发者在QQ互联申请的APP kEY.
-        UMQQSsoHandler qqSsoHandler = new UMQQSsoHandler(this, "100424468",
-                "c7394704798a158208a74ab60104f0ba");
-        qqSsoHandler.addToSocialSDK();
+        EmailHandler emailHandler = new EmailHandler();
+        emailHandler.addToSocialSDK();
+
+        mController.getConfig().setPlatforms(SHARE_MEDIA.WEIXIN, SHARE_MEDIA.WEIXIN_CIRCLE
+                , SHARE_MEDIA.TENCENT, SHARE_MEDIA.SINA, SHARE_MEDIA.SMS, SHARE_MEDIA.EMAIL);
+
+        UtilUmengShare.initWX(this, "wxe1733b127abc3406", "34ee5399fae0786bbe754f8b4cfadde6");
+        UtilUmengShare.shareWX(mController, this, "right", "this title", "www.qq.com", R.drawable.ic_launcher);
+        UtilUmengShare.shareWXCircle(mController, this, "right", "this title", "www.qq.com", "http://www.baidu.com/img/bdlogo.png");
     }
 
     @Override
     public void listeners() {
+
         umeng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mController.openShare(UmengShareActivity.this, false);
+            }
+        });
+
+        define.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UtilUmengShare.shareDefine(mController, SHARE_MEDIA.WEIXIN, getApplicationContext());
             }
         });
     }
