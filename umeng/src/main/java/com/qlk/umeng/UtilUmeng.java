@@ -1,16 +1,21 @@
 package com.qlk.umeng;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.widget.Toast;
 
 import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.bean.SocializeEntity;
 import com.umeng.socialize.controller.UMSocialService;
 import com.umeng.socialize.controller.listener.SocializeListeners;
+import com.umeng.socialize.exception.SocializeException;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.weixin.controller.UMWXHandler;
 import com.umeng.socialize.weixin.media.CircleShareContent;
 import com.umeng.socialize.weixin.media.WeiXinShareContent;
+
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by xiaocoder on 2015/9/24.
@@ -23,7 +28,7 @@ import com.umeng.socialize.weixin.media.WeiXinShareContent;
  * mController.getConfig().setPlatformOrder(SHARE_MEDIA.RENREN, SHARE_MEDIA.DOUBAN,
  * SHARE_MEDIA.TENCENT, SHARE_MEDIA.SINA);
  */
-public class UtilUmengShare {
+public class UtilUmeng {
 
     /**
      * 微信平台注册了一个包名为  com.xiaocoder.test
@@ -135,6 +140,57 @@ public class UtilUmengShare {
                         }
                     }
                 });
+    }
+
+    /**
+     * @param mController
+     * @param mContext    这里必传activity的实例
+     *
+     * 注：微信的第三方登录要交钱审核之后才可用
+     */
+    public static void loginWX(final UMSocialService mController, final Context mContext) {
+        mController.doOauthVerify(mContext, SHARE_MEDIA.WEIXIN, new SocializeListeners.UMAuthListener() {
+            @Override
+            public void onStart(SHARE_MEDIA platform) {
+                Toast.makeText(mContext, "授权开始", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(SocializeException e, SHARE_MEDIA platform) {
+                Toast.makeText(mContext, "授权错误", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onComplete(Bundle value, SHARE_MEDIA platform) {
+                Toast.makeText(mContext, "授权完成", Toast.LENGTH_SHORT).show();
+                //获取相关授权信息
+                mController.getPlatformInfo(mContext, SHARE_MEDIA.WEIXIN, new SocializeListeners.UMDataListener() {
+                    @Override
+                    public void onStart() {
+                        Toast.makeText(mContext, "获取平台数据开始...", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onComplete(int status, Map<String, Object> info) {
+                        if (status == 200 && info != null) {
+                            StringBuilder sb = new StringBuilder();
+                            Set<String> keys = info.keySet();
+                            for (String key : keys) {
+                                sb.append(key + "=" + info.get(key).toString() + "\r\n");
+                            }
+                            System.out.println(sb.toString());
+                        } else {
+                            Toast.makeText(mContext, "发生错误：" + status, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onCancel(SHARE_MEDIA platform) {
+                Toast.makeText(mContext, "授权取消", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

@@ -22,5 +22,12 @@
         android:layout_below="@+id/umeng"
         android:text="自定义分享" />
 
+    <Button
+        android:id="@+id/login"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/define"
+        android:text="微信登录" />
+
 
 </RelativeLayout>
