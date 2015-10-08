@@ -677,10 +677,14 @@
             android:theme="@style/XCTheme" />
         <activity
             android:name=".wxapi.WXEntryActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name=".http2.MaterialRefreshActivity"
+            android:label="@string/title_activity_material_refresh"
+            android:theme="@style/XCTheme" />
     </application>
 
 </manifest>

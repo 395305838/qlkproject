@@ -22,6 +22,12 @@
                 android:text="test_expandablelistview" />
 
             <Button
+                android:id="@+id/test_material_refresh_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="test_material_refresh_layout" />
+
+            <Button
                 android:id="@+id/test_umengshare"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
@@ -32,6 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="test_progress_view" />
+
             <Button
                 android:id="@+id/test_viewpager_slider"
                 android:layout_width="wrap_content"
@@ -43,11 +50,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="test_viewpager_num" />
+
             <Button
                 android:id="@+id/test_round_imageview"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="test_round_imageview" />
+
             <Button
                 android:id="@+id/test_circleprogress"
                 android:layout_width="wrap_content"

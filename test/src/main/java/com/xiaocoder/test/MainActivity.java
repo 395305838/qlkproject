@@ -36,6 +36,7 @@ import com.xiaocoder.test.http.HttpDownLoadActivity;
 import com.xiaocoder.test.http2.ExpandListActivity;
 import com.xiaocoder.test.http2.GridActivity;
 import com.xiaocoder.test.http2.ListActivity;
+import com.xiaocoder.test.http2.MaterialRefreshActivity;
 import com.xiaocoder.test.line_point.LinePointActivityGC;
 import com.xiaocoder.test.pop.PopActivity;
 import com.xiaocoder.test.scan.CodeActivity;
@@ -91,6 +92,7 @@ public class MainActivity extends QlkMainActivity {
     Button test_viewpager_slider;
     Button test_progress_view;
     Button test_umengshare;
+    Button test_material_refresh_layout;
 
 
     @Override
@@ -163,6 +165,8 @@ public class MainActivity extends QlkMainActivity {
 
         XCApp.i(XCConfig.TAG_TEMP, QlkConfig.CURRENT_RUN_ENVIRONMENT.toString() + "-----环境");
         XCApp.i(XCConfig.TAG_TEMP, QlkConfig.DEBUG_CONTROL.toString() + "-----调试");
+
+        test_material_refresh_layout = getViewById(R.id.test_material_refresh_layout);
 
         test_dialog3 = getViewById(R.id.test_dialog3);
 
@@ -274,6 +278,7 @@ public class MainActivity extends QlkMainActivity {
         test_viewpager_slider.setOnClickListener(this);
         test_progress_view.setOnClickListener(this);
         test_umengshare.setOnClickListener(this);
+        test_material_refresh_layout.setOnClickListener(this);
 
     }
 
@@ -378,6 +383,8 @@ public class MainActivity extends QlkMainActivity {
             myStartActivity(ProgressViewActivity.class);
         } else if (id == R.id.test_umengshare) {
             myStartActivity(UmengShareActivity.class);
+        } else if (id == R.id.test_material_refresh_layout){
+            myStartActivity(MaterialRefreshActivity.class);
         }
 
     }

@@ -31,5 +31,5 @@ dependencies {
     compile files('libs/gson-2.3.1.jar')
     compile project(':pulltorefresh')
     compile project(':viewpagerslider')
-    compile 'com.android.support:support-v4:22.2.0'
+    compile 'com.android.support:support-v4:22.2.1'
 }

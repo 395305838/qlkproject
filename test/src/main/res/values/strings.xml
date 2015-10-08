@@ -27,5 +27,6 @@
     <string name="title_activity_view_pager_num_fragment">ViewPagerNumFragmentActivity</string>
     <string name="title_activity_viewpager_slider">ViewpagerSliderActivity</string>
     <string name="title_activity_umeng_share">UmengShareActivity</string>
+    <string name="title_activity_material_refresh">MaterialRefreshActivity</string>
 
 </resources>
