@@ -48,7 +48,7 @@ public class UtilMedia {
     }
 
 
-    public ArrayList<XCImageModel> getImageList(Context context) {
+    public static ArrayList<XCImageModel> getImageList(Context context) {
         ContentResolver resolver = context.getContentResolver();
 
         Cursor cursor = resolver.query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, null, null, null);
@@ -82,7 +82,7 @@ public class UtilMedia {
         return list;
     }
 
-    public ArrayList<XCVideoModel> getVideoList(Context context) {
+    public static ArrayList<XCVideoModel> getVideoList(Context context) {
         ContentResolver resolver = context.getContentResolver();
         Cursor cursor = resolver.query(
                 MediaStore.Video.Media.EXTERNAL_CONTENT_URI, null, null, null,

@@ -13,6 +13,9 @@ import com.xiaocoder.android.fw.general.util.UtilString;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 一个dao的sample，这个dao有保存搜索记录的字段
+ */
 public class XCSearchDao {
 
     private XCDbHelper mHelper;

@@ -52,59 +52,59 @@ public class XCHttpAsyn {
         return client;
     }
 
-    @Deprecated
-    public static void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, RequestParams params, XCResponseHandler res) {
-        XCApp.i(XCConfig.TAG_HTTP, params.toString());
-        if (isAllowConcurrent || !isNeting) {
-            isNeting = true;
-            XCApp.i(XCConfig.TAG_HTTP, urlString + "------>get http url");
-            res.setContext(context);
-            res.yourCompanySecret(params, client, needSecret);
-            if (isShowDialog) {
-                res.showHttpDialog();
-            }
+    /* @Deprecated
+     public static void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, RequestParams params, XCResponseHandler res) {
+         XCApp.i(XCConfig.TAG_HTTP, params.toString());
+         if (isAllowConcurrent || !isNeting) {
+             isNeting = true;
+             XCApp.i(XCConfig.TAG_HTTP, urlString + "------>get http url");
+             res.setContext(context);
+             res.yourCompanySecret(params, client, needSecret);
+             if (isShowDialog) {
+                 res.showHttpDialog();
+             }
 
-            client.get(urlString, params, res);
-        }
-    }
+             client.get(urlString, params, res);
+         }
+     }
 
-    @Deprecated
-    public static void getAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
-        getAsyn(true, isAllowConcurrent, isShowDialog, context, urlString, params, res);
-    }
+     @Deprecated
+     public static void getAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
+         getAsyn(true, isAllowConcurrent, isShowDialog, context, urlString, params, res);
+     }
 
-    @Deprecated
-    public static void getAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
-        getAsyn(true, false, isShowDialog, context, urlString, params, res);
-    }
+     @Deprecated
+     public static void getAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
+         getAsyn(true, false, isShowDialog, context, urlString, params, res);
+     }
 
-    @Deprecated
-    public static void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
-        XCApp.i(XCConfig.TAG_HTTP, params.toString());
-        if (isAllowConcurrent || !isNeting) {
-            isNeting = true;
-            XCApp.i(XCConfig.TAG_HTTP, urlString + "------>post http url");
-            res.setContext(context);
-            res.yourCompanySecret(params, client, needSecret);
-            if (isShowDialog) {
-                res.showHttpDialog();
-            }
+     @Deprecated
+     public static void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
+         XCApp.i(XCConfig.TAG_HTTP, params.toString());
+         if (isAllowConcurrent || !isNeting) {
+             isNeting = true;
+             XCApp.i(XCConfig.TAG_HTTP, urlString + "------>post http url");
+             res.setContext(context);
+             res.yourCompanySecret(params, client, needSecret);
+             if (isShowDialog) {
+                 res.showHttpDialog();
+             }
 
-            client.post(urlString, params, res);
-        }
-    }
+             client.post(urlString, params, res);
+         }
+     }
 
-    @Deprecated
-    public static void postAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
-        postAsyn(true, isAllowConcurrent, isShowDialog, context, urlString, params, res);
+     @Deprecated
+     public static void postAsyn(boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
+         postAsyn(true, isAllowConcurrent, isShowDialog, context, urlString, params, res);
 
-    }
+     }
 
-    @Deprecated
-    public static void postAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
-        postAsyn(true, false, isShowDialog, context, urlString, params, res);
-    }
-
+     @Deprecated
+     public static void postAsyn(boolean isShowDialog, XCBaseActivity context, String urlString, RequestParams params, XCResponseHandler res) {
+         postAsyn(true, false, isShowDialog, context, urlString, params, res);
+     }
+ */
     public static void resetNetingStatus() {
         XCHttpAsyn.isNeting = false;
     }
