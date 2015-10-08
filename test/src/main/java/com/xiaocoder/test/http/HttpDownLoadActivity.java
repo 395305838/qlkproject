@@ -22,6 +22,7 @@ import com.xiaocoder.test.R;
 import org.apache.http.Header;
 
 import java.io.File;
+import java.util.HashMap;
 
 public class HttpDownLoadActivity extends QlkActivity {
 
@@ -38,7 +39,7 @@ public class HttpDownLoadActivity extends QlkActivity {
 //        XCHttpAsyn.getAsyn(true,true, this, "http://" + MainActivity.TEST_HOST + ":8080/qlktest/test.mp3", new RequestParams(), new QlkHttpResponseHandler(HttpDownLoadActivity.this) {
         XCHttpAsyn.getAsyn(true, true, this,
                 "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95"
-                , new RequestParams()
+                ,  new HashMap<String,Object>()
                 , new QlkResponseHandlerBean<QlkBean>(this, QlkBean.class) {
 
                     @Override
