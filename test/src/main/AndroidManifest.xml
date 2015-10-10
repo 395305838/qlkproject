@@ -685,6 +685,10 @@
             android:name=".http2.MaterialRefreshActivity"
             android:label="@string/title_activity_material_refresh"
             android:theme="@style/XCTheme" />
+        <activity
+            android:name=".http2.MaterialRefreshActivity2"
+            android:label="@string/title_activity_material_refresh2" >
+        </activity>
     </application>
 
 </manifest>

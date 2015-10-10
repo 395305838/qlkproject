@@ -21,7 +21,9 @@ import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.util.UtilDate;
 import com.xiaocoder.android_fw_general.R;
 
-// 可以录音的button
+/**
+ * 可以录音的button
+ */
 public class XCRecordVoiceButton extends Button implements OnTouchListener {
 
     private MediaRecorder media_recorder;

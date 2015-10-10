@@ -7,8 +7,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
-/*
-  监听键盘的隐藏和显示
+/**
+ * 监听键盘的隐藏和显示
  */
 public class XCKeyBoardLayout extends RelativeLayout {
 

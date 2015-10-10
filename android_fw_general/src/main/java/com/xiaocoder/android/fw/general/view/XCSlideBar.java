@@ -14,8 +14,8 @@ import android.widget.TextView;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android_fw_general.R;
 
-/*
- * 品牌页的滑动bar
+/**
+ * 字母滑动bar
  */
 public class XCSlideBar extends View {
     private OnTouchingLetterChangedListener onTouchingLetterChangedListener;

@@ -8,7 +8,7 @@ import android.widget.ImageView;
 
 import com.xiaocoder.android_fw_general.R;
 
-/*
+/**
  * 用于适配用的 ， 图片可以等比例拉伸
  * xmlns:xiaocoder="http://schemas.android.com/apk/res-auto"
  * android:scaleType="fitXY"

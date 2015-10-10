@@ -15,8 +15,8 @@ import android.widget.EditText;
 
 import com.xiaocoder.android_fw_general.R;
 
-/*
- * 搜索栏的edittext
+/**
+ * 搜索栏的edittext ，有点击删除的功能
  */
 public class XCClearEditText extends EditText implements OnFocusChangeListener, TextWatcher {
 

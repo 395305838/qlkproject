@@ -23,6 +23,9 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 
 import com.xiaocoder.android_fw_general.R;
 
+/**
+ * 仿ios的button
+ */
 public class XCSwitchButton extends View {
 
     public static final int SHAPE_RECT = 1;
