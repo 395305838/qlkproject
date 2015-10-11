@@ -30,8 +30,4 @@ public interface XCRefreshHandler {
      */
     void load(View view, int request_page);
 
-    /**
-     * 刷新或加载完成
-     */
-    void complete();
 }

@@ -27,10 +27,10 @@
 
         <com.xiaocoder.android.fw.general.view.XCRefreshLayout
             android:id="@+id/xc_id_refreshlayout"
-            android:background="@color/c_orange_f96b05"
-            app:autorefresh="false"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@color/c_orange_f96b05"
+            app:autorefresh="true" />
 
     </RelativeLayout>
 

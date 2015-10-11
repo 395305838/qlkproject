@@ -8,10 +8,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <RelativeLayout
-            android:id="@+id/xc_id_refresh_content_container"
+        <ListView
+            android:id="@+id/xc_id_refresh_content_listview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:background="@color/c_blue_288de5"
+            android:choiceMode="singleChoice"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:listSelector="@android:color/transparent"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:scrollbarStyle="outsideOverlay" />
 
     </in.srain.cube.views.ptr.PtrClassicFrameLayout>
 
