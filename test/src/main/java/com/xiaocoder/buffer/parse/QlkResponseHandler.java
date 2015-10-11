@@ -63,8 +63,8 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
     /**
      * 提交请求前的加密
      *
-     * @param oParams    http请求的参数，不同的库可能是不同的封装类，为便于以后的http库的修改，这里暂用obj接收
-     * @param oClient    添加http的header用的，不同的库可能是不同的封装类，为便于以后的http库的修改，这里暂用obj接收
+     * @param oParams    http请求的参数，这里暂用obj接收
+     * @param oClient    添加http的header用的，这里暂用obj接收
      * @param needSecret 是否要加密
      */
     @Override
@@ -73,6 +73,7 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
         XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---yourCompanySecret()--" + needSecret);
 
         if (oClient instanceof AsyncHttpClient) {
+            // 添加header
             AsyncHttpClient client = (AsyncHttpClient) oClient;
             client.addHeader("_v", UtilSystem.getVersionCode(mContext) + "");// 版本号，必填
             client.addHeader("_m", UtilSystem.getMacAddress(mContext));// 设备的mac地址，选填
@@ -83,11 +84,11 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
         }
 
         if (oParams instanceof RequestParams) {
-            RequestParams params = (RequestParams) oParams;
             if (needSecret) {
+                RequestParams params = (RequestParams) oParams;
                 // TODO 补充加密的代码
 
-                XCApp.i(XCConfig.TAG_HTTP, "secret params-->" + oParams.toString());
+                XCApp.i(XCConfig.TAG_HTTP, "secret params-->" + params.toString());
             }
         } else {
             throw new RuntimeException("yourCompanySecret()---中传入的params不是RequestParams类型");
