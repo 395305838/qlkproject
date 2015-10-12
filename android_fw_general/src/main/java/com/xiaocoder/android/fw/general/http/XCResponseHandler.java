@@ -58,11 +58,6 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
      */
     public XCIHttpResult result_http;
 
-    /**
-     * "0"表示成功 ，非“0”表示失败
-     */
-    public static String YES = "0";
-
     public static int JSON = 1;
     public static int XML = 2;
     public static int ELSE = 3;

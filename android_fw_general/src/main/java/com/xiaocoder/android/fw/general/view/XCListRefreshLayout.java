@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -33,12 +32,12 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
  * version: 1.0
  * description: 封装了上下拉 ， 分页 ，无数据背景
  */
-public class XCRefreshLayout extends FrameLayout implements View.OnClickListener {
+public class XCListRefreshLayout extends FrameLayout implements View.OnClickListener {
     /**
      * 上下拉效果的控件
      */
     private PtrClassicFrameLayout mPtrRefreshLayout;
-    private ListView mListView;
+    private AbsListView absListView;
     /**
      * 上拉加载的dialog
      */
@@ -71,7 +70,7 @@ public class XCRefreshLayout extends FrameLayout implements View.OnClickListener
     /**
      * 每页的数量
      */
-    public static int PER_PAGE_NUM = 32;
+    public static int PER_PAGE_NUM = 20;
     /**
      * 数据为0时，背景上显示的图片
      */
@@ -95,16 +94,16 @@ public class XCRefreshLayout extends FrameLayout implements View.OnClickListener
      */
     public int zero_imageview_hint;
 
-    public XCRefreshLayout(Context context) {
+    public XCListRefreshLayout(Context context) {
         super(context);
     }
 
-    public XCRefreshLayout(Context context, AttributeSet attrs) {
+    public XCListRefreshLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         inflateLayout(context, attrs);
     }
 
-    public XCRefreshLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public XCListRefreshLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         inflateLayout(context, attrs);
     }
@@ -113,7 +112,7 @@ public class XCRefreshLayout extends FrameLayout implements View.OnClickListener
         LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mInflater.inflate(R.layout.xc_l_view_refresh, this, true);
         mPtrRefreshLayout = (PtrClassicFrameLayout) findViewById(R.id.xc_id_refresh_layout);
-        mListView = (ListView) findViewById(R.id.xc_id_refresh_content_listview);
+        absListView = (AbsListView) findViewById(R.id.xc_id_refresh_content_listview);
         mProgressBar = (ProgressBar) findViewById(R.id.xc_id_progressBar);
         base_listview_zero_bg = (LinearLayout) findViewById(R.id.xc_id_listview_plus_zero_bg);
 
@@ -148,10 +147,16 @@ public class XCRefreshLayout extends FrameLayout implements View.OnClickListener
     public void registerLoadHandler() {
 
         if (mRefreshHandler.canLoad()) {
-            mListView.setOnScrollListener(new XCScrollListener() {
+            absListView.setOnScrollListener(new XCScrollListener() {
                 @Override
                 public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                     super.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
+
+                    if(base_totalPage == 0 ){
+                        whichShow(0);
+                        return;
+                    }
+
                     // 当前页滚动到了底部 且 不是最后一页
                     if (isBottom() && !isEnd()) {
                         // 继续加载下一页
@@ -242,8 +247,8 @@ public class XCRefreshLayout extends FrameLayout implements View.OnClickListener
         return mPtrRefreshLayout;
     }
 
-    public ListView getListView() {
-        return mListView;
+    public AbsListView getListView() {
+        return absListView;
     }
 
     public ProgressBar getmProgressBar() {
@@ -271,6 +276,7 @@ public class XCRefreshLayout extends FrameLayout implements View.OnClickListener
     protected void loading() {
         if (!base_isPullRefreshing) {
             base_isPullRefreshing = true;
+            mProgressBar.setVisibility(View.VISIBLE);
             base_currentPage = base_currentPage + 1;
             if (mRefreshHandler != null) {
                 mRefreshHandler.load(mPtrRefreshLayout, base_currentPage);
@@ -285,6 +291,15 @@ public class XCRefreshLayout extends FrameLayout implements View.OnClickListener
 
         mPtrRefreshLayout.refreshComplete();
 
+        if (mProgressBar.isShown()) {
+            XCApp.getBase_handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mProgressBar.setVisibility(View.GONE);
+                }
+            }, 3000);
+        }
+
         base_isPullRefreshing = false;
 
         whichShow(base_all_beans.size());
@@ -293,7 +308,7 @@ public class XCRefreshLayout extends FrameLayout implements View.OnClickListener
 
     // 是否是底部
     protected boolean isEnd() {
-        if (base_totalPage != 0 && base_currentPage > base_totalPage) {
+        if (base_totalPage != 0 && base_currentPage >= base_totalPage) {
             // 是底部则结束
             completeRefresh();
             XCApp.shortToast("已经是最后一页了");
@@ -333,14 +348,14 @@ public class XCRefreshLayout extends FrameLayout implements View.OnClickListener
     protected void whichShow(int size) {
         if (size > 0) {
             base_listview_zero_bg.setVisibility(View.GONE);
-            mListView.setVisibility(View.VISIBLE);
+            absListView.setVisibility(View.VISIBLE);
         } else {
             base_zero_button.setText(zero_button_hint);
             base_zero_imageview.setImageResource(zero_imageview_hint);
             base_zero_textview.setText(zero_text_hint);
 
             base_listview_zero_bg.setVisibility(View.VISIBLE);
-            mListView.setVisibility(View.INVISIBLE);
+            absListView.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -382,7 +397,7 @@ public class XCRefreshLayout extends FrameLayout implements View.OnClickListener
 
         if (!append) {
             base_all_beans.clear();
-        }else{
+        } else {
             clearWhenPageOne();
         }
 
