@@ -53,8 +53,8 @@ public class MaterialRefreshActivity extends QlkActivity {
 
         // http请求中获取，这里为模拟数据
         xcListRefreshLayout.setBgZeroHintInfo("无数据","点击刷新",R.drawable.icon);
-        xcListRefreshLayout.setTotalPage("0");// 数据为0的背景
-//        xcListRefreshLayout.setTotalPage("3");
+//        xcListRefreshLayout.setTotalPage("0");// 数据为0的背景
+        xcListRefreshLayout.setTotalPage("3");
 
     }
 

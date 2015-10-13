@@ -291,14 +291,7 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
 
         mPtrRefreshLayout.refreshComplete();
 
-        if (mProgressBar.isShown()) {
-            XCApp.getBase_handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    mProgressBar.setVisibility(View.GONE);
-                }
-            }, 3000);
-        }
+        mProgressBar.setVisibility(View.GONE);
 
         base_isPullRefreshing = false;
 

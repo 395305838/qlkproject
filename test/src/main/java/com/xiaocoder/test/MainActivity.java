@@ -36,7 +36,7 @@ import com.xiaocoder.test.http.HttpDownLoadActivity;
 import com.xiaocoder.test.http2.ExpandListActivity;
 import com.xiaocoder.test.http2.GridActivity;
 import com.xiaocoder.test.http2.ListActivity;
-import com.xiaocoder.test.http2.MaterialRefreshActivity;
+import com.xiaocoder.test.http2.MaterialRefreshActivity2;
 import com.xiaocoder.test.line_point.LinePointActivityGC;
 import com.xiaocoder.test.pop.PopActivity;
 import com.xiaocoder.test.scan.CodeActivity;
@@ -384,7 +384,7 @@ public class MainActivity extends QlkMainActivity {
         } else if (id == R.id.test_umengshare) {
             myStartActivity(UmengShareActivity.class);
         } else if (id == R.id.test_material_refresh_layout){
-            myStartActivity(MaterialRefreshActivity.class);
+            myStartActivity(MaterialRefreshActivity2.class);
         }
 
     }
