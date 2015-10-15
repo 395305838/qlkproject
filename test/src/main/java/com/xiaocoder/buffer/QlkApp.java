@@ -8,8 +8,10 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.umeng.analytics.MobclickAgent;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
+import com.xiaocoder.android.fw.general.exception.XCIException2Server;
 import com.xiaocoder.android.fw.general.exception.XLCrashHandler;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
+import com.xiaocoder.android.fw.general.imageloader.XCIImageLoader;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.io.XCLog;
 import com.xiaocoder.android.fw.general.io.XCSP;
@@ -59,7 +61,7 @@ public class QlkApp extends XCApp {
     }
 
     private void initImageLoader() {
-        setBase_imageloader(new IXCImageLoader() {
+        setBase_imageloader(new XCIImageLoader() {
             ImageLoader imageloader = QlkConfig.getImageloader(getApplicationContext());
 
             @Override
@@ -83,7 +85,7 @@ public class QlkApp extends XCApp {
         XLCrashHandler.getInstance().init(QlkConfig.IS_INIT_CRASH_HANDLER,
                 getApplicationContext(), QlkConfig.CRASH_DIR, QlkConfig.IS_SHOW_EXCEPTION_ACTIVITY);
 
-        XLCrashHandler.getInstance().setUploadServer(new XLCrashHandler.UploadServer() {
+        XLCrashHandler.getInstance().setUploadServer(new XCIException2Server() {
             @Override
             public void uploadException2Server(String info, Throwable ex, Thread thread) {
                 // 将未try catch的异常信息 上传到友盟

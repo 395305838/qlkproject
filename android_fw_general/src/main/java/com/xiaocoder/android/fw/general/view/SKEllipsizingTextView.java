@@ -13,7 +13,7 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 /**
- * ½â¾ömaxline Óë eplisize Í¬Ê±Ê¹ÓÃÊ±£¬Ê¡ÂÔºÅÏÔÊ¾Òì³££¨ÓĞÊ±³öÏÖÓĞÊ±²»³öÏÖ£©
+ * è§£å†³maxline ä¸ eplisize åŒæ—¶ä½¿ç”¨æ—¶ï¼Œçœç•¥å·æ˜¾ç¤ºå¼‚å¸¸ï¼ˆæœ‰æ—¶å‡ºç°æœ‰æ—¶ä¸å‡ºç°ï¼‰
  */
 public class SKEllipsizingTextView extends TextView {
     private static final String ELLIPSIS = "...";

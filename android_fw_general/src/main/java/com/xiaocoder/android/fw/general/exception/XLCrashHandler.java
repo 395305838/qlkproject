@@ -48,16 +48,9 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
     // 存储SD卡的哪个目录
     private String mCrashDir;
 
-    public interface UploadServer {
-        /**
-         * 可上传错误信息到服务器
-         */
-        void uploadException2Server(String info, Throwable ex, Thread thread);
-    }
+    XCIException2Server uploadServer;
 
-    UploadServer uploadServer;
-
-    public void setUploadServer(UploadServer uploadServer) {
+    public void setUploadServer(XCIException2Server uploadServer) {
         this.uploadServer = uploadServer;
     }
 

@@ -8,6 +8,7 @@ import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
+import com.xiaocoder.android.fw.general.imageloader.XCIImageLoader;
 import com.xiaocoder.android.fw.general.io.XCLog;
 import com.xiaocoder.android.fw.general.io.XCSP;
 
@@ -36,15 +37,7 @@ public class XCApp extends Application {
     /**
      * 加个接口，以后可能会改别的图片加载库，子类中传入
      */
-    protected static IXCImageLoader base_imageloader;
-
-    public interface IXCImageLoader {
-
-        void display(String url, ImageView imageview, Object... obj);
-
-        void display(String url, ImageView imageview);
-
-    }
+    protected static XCIImageLoader base_imageloader;
 
     public Stack<Activity> getStack() {
         return stack;
@@ -276,11 +269,11 @@ public class XCApp extends Application {
         return base_sp.getAll();
     }
 
-    public static IXCImageLoader getBase_imageloader() {
+    public static XCIImageLoader getBase_imageloader() {
         return base_imageloader;
     }
 
-    public static void setBase_imageloader(IXCImageLoader imageloader) {
+    public static void setBase_imageloader(XCIImageLoader imageloader) {
         base_imageloader = imageloader;
     }
 
