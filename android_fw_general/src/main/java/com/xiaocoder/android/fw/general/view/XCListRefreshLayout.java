@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
@@ -41,7 +41,7 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
     /**
      * 上拉加载的dialog
      */
-    private ProgressBar mProgressBar;
+    private RelativeLayout mProgressBarContainer;
     /**
      * 一进入页面是否自动加载
      */
@@ -70,7 +70,7 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
     /**
      * 每页的数量
      */
-    public static int PER_PAGE_NUM = 20;
+    public static int PER_PAGE_NUM = 30;
     /**
      * 数据为0时，背景上显示的图片
      */
@@ -113,7 +113,7 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
         mInflater.inflate(R.layout.xc_l_view_refresh, this, true);
         mPtrRefreshLayout = (PtrClassicFrameLayout) findViewById(R.id.xc_id_refresh_layout);
         absListView = (AbsListView) findViewById(R.id.xc_id_refresh_content_listview);
-        mProgressBar = (ProgressBar) findViewById(R.id.xc_id_progressBar);
+        mProgressBarContainer = (RelativeLayout) findViewById(R.id.xc_id_progressBar_container);
         base_listview_zero_bg = (LinearLayout) findViewById(R.id.xc_id_listview_plus_zero_bg);
 
         initXCRefreshLayoutParams();
@@ -128,6 +128,8 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
         base_all_beans = new ArrayList();
         // 默认当前页为1
         base_currentPage = 1;
+        // 还未设置总页数
+        base_totalPage = -1;
         base_zero_imageview = (ImageView) base_listview_zero_bg.findViewById(R.id.xc_id_data_zero_imageview);
         base_zero_textview = (TextView) base_listview_zero_bg.findViewById(R.id.xc_id_data_zero_hint_textview);
         base_zero_button = (Button) base_listview_zero_bg.findViewById(R.id.xc_id_data_zero_do_button);
@@ -152,13 +154,14 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
                 public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                     super.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
 
-                    if(base_totalPage == 0 ){
-                        whichShow(0);
+                    if (base_totalPage <= 1 || base_isPullRefreshing) {
+                        // 如果是空数据或者只有1页
+                        // 或者是正在访问
                         return;
                     }
 
                     // 当前页滚动到了底部 且 不是最后一页
-                    if (isBottom() && !isEnd()) {
+                    if (isBottom() && hasNext()) {
                         // 继续加载下一页
                         loading();
                     }
@@ -251,8 +254,8 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
         return absListView;
     }
 
-    public ProgressBar getmProgressBar() {
-        return mProgressBar;
+    public RelativeLayout getmProgressBarLayout() {
+        return mProgressBarContainer;
     }
 
     public LinearLayout getBgZeroLayout() {
@@ -276,7 +279,7 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
     protected void loading() {
         if (!base_isPullRefreshing) {
             base_isPullRefreshing = true;
-            mProgressBar.setVisibility(View.VISIBLE);
+            mProgressBarContainer.setVisibility(View.VISIBLE);
             base_currentPage = base_currentPage + 1;
             if (mRefreshHandler != null) {
                 mRefreshHandler.load(mPtrRefreshLayout, base_currentPage);
@@ -291,7 +294,7 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
 
         mPtrRefreshLayout.refreshComplete();
 
-        mProgressBar.setVisibility(View.GONE);
+        mProgressBarContainer.setVisibility(View.GONE);
 
         base_isPullRefreshing = false;
 
@@ -299,15 +302,18 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
 
     }
 
-    // 是否是底部
-    protected boolean isEnd() {
-        if (base_totalPage != 0 && base_currentPage >= base_totalPage) {
-            // 是底部则结束
-            completeRefresh();
-            XCApp.shortToast("已经是最后一页了");
-            return true;
+    // 是否还有下一页
+    protected boolean hasNext() {
+        // 这里的base_currentPage代表当前已经加载到了第几页
+        if (base_currentPage >= base_totalPage) {
+            // 当前页大于等于总页数时，是底部
+            if (base_totalPage > 1) {
+                // 如果是空数据0页，或者只有1页，则不提示
+                XCApp.shortToast("已经是最后一页了");
+            }
+            return false;
         }
-        return false;
+        return true;
     }
 
     // 如果是第一页则需要清空集合

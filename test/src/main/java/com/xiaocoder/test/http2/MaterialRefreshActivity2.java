@@ -9,8 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
-import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.view.XCListRefreshLayout;
 import com.xiaocoder.android.fw.general.view.XCRefreshHandler;
@@ -55,7 +53,7 @@ public class MaterialRefreshActivity2 extends QlkActivity {
     public static String url = "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95";
 
     public void reqeust() {
-        XCHttpAsyn.getAsyn(true, this, url, new HashMap(), new QlkResponseHandlerModel<TestModel>(this, TestModel.class) {
+        XCHttpAsyn.getAsyn(false, this, url, new HashMap(), new QlkResponseHandlerModel<TestModel>(this, TestModel.class) {
 
             @Override
             public void success(int code, Header[] headers, byte[] arg2) {

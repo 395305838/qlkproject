@@ -86,9 +86,9 @@ public class QlkApp extends XCApp {
         XLCrashHandler.getInstance().setUploadServer(new XLCrashHandler.UploadServer() {
             @Override
             public void uploadException2Server(String info, Throwable ex, Thread thread) {
-                // 将异常信息 上传到友盟
+                // 将未try catch的异常信息 上传到友盟
                 MobclickAgent.reportError(getApplicationContext(), info);
-                // TODO 将异常信息 上传到公司的服务器
+                // TODO 将未try catch的异常信息 上传到公司的服务器
 
             }
         });
