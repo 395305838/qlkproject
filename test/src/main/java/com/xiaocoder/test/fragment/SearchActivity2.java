@@ -35,7 +35,7 @@ public class SearchActivity2 extends QlkActivity {
     @Override
     public void initWidgets() {
         title_fragment = new XCTitleSearchFragment();
-        title_fragment.setDbParams(QlkDbHelper.class, QlkDb.DB_SEARCH_RECODER, QlkDb.DB_VERSION_SEARCH_RECODER, QlkDb.DB_TABLE_SEARCH_RECODER_2,
+        title_fragment.setDbParams(QlkDb.DB_TABLE_SEARCH_RECODER_2, QlkDbHelper.class, QlkDb.DB_SEARCH_RECODER, QlkDb.DB_VERSION_SEARCH_RECODER,
                 new String[]{QlkDb.DB_SQL_SEARCH_RECODER_1, QlkDb.DB_SQL_SEARCH_RECODER_2, QlkDb.DB_SQL_SEARCH_RECODER_3}
         );
         addFragment(R.id.xc_id_model_titlebar, title_fragment);
@@ -53,7 +53,7 @@ public class SearchActivity2 extends QlkActivity {
                 // 为空则创建并设置监听 , record_fragment里面的监听器可以监听键盘的显示到隐藏的状态
                 if (record_fragment == null) {
                     record_fragment = new XCSearchRecordFragment();
-                    record_fragment.setDbParams(QlkDbHelper.class, QlkDb.DB_SEARCH_RECODER, QlkDb.DB_VERSION_SEARCH_RECODER, QlkDb.DB_TABLE_SEARCH_RECODER_2,
+                    record_fragment.setDbParams(QlkDb.DB_TABLE_SEARCH_RECODER_2, QlkDbHelper.class, QlkDb.DB_SEARCH_RECODER, QlkDb.DB_VERSION_SEARCH_RECODER,
                             new String[]{QlkDb.DB_SQL_SEARCH_RECODER_1, QlkDb.DB_SQL_SEARCH_RECODER_2, QlkDb.DB_SQL_SEARCH_RECODER_3}
                     );
 

@@ -202,8 +202,15 @@ public class XCTitleSearchFragment extends XCBaseFragment {
     String[] mSqls;
     Class<? extends XCDbHelper> mDbHelper;
 
-    public void setDbParams(Class<? extends XCDbHelper> dbHelper, String dbName,
-                            int version, String tabName, String[] sqls) {
+    /**
+     * @param tabName  这个fragment用到该数据库中的哪一张表
+     * @param dbHelper
+     * @param dbName   数据库名
+     * @param version  数据库版本
+     * @param sqls     数据库创建时，执行的sql
+     */
+    public void setDbParams(String tabName,Class<? extends XCDbHelper> dbHelper, String dbName,
+                            int version, String[] sqls) {
         mDbName = dbName;
         mVersion = version;
         mTableName = tabName;
@@ -241,7 +248,7 @@ public class XCTitleSearchFragment extends XCBaseFragment {
         dao = new XCSearchDao(getBaseActivity(), instanceHelper(), mTableName);
     }
 
-    public XCDbHelper instanceHelper() {
+    private XCDbHelper instanceHelper() {
         try {
             XCApp.i(XCConfig.TAG_DB, this.toString() + "----instanceHelper()");
             Constructor constructor = mDbHelper.getConstructor(Context.class, String.class, int.class, String[].class);
