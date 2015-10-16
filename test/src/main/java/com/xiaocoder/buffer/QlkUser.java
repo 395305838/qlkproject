@@ -7,14 +7,14 @@ import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 
 /**
  * Created by xiaocoder on 2015/7/13.
- *
+ * <p/>
  * 用户的信息，统一在这里存取
  */
 public class QlkUser {
 
-    public static String USER_NAME = " ";
-    public static String USER_ID = " ";
-    public static String USER_TOKEN = " ";
+    public static String USER_NAME = "userName";
+    public static String USER_ID = "userId";
+    public static String USER_TOKEN = "userToken";
     public static String IS_LOGIN = "isLogin";
 
     public static String getUserId() {
@@ -35,6 +35,11 @@ public class QlkUser {
 
     }
 
+    /**
+     * 获取登录状态
+     *
+     * @return
+     */
     public static boolean isLogin() {
 
         return XCApp.spGet(IS_LOGIN, false);
@@ -59,16 +64,32 @@ public class QlkUser {
 
     }
 
+    /**
+     * 保存登录状态
+     *
+     * @param isLogin
+     */
     public static void putLogin(boolean isLogin) {
 
         XCApp.spPut(IS_LOGIN, isLogin);
 
     }
 
+    /**
+     * 注销
+     *
+     * @param classes
+     * @param context
+     */
     public static void loginOut(Class<? extends XCBaseActivity> classes, Context context) {
 
     }
 
+    /**
+     * 刷新用户信息
+     *
+     * @param context
+     */
     public static void refreshUserInfo(Context context) {
 
     }
