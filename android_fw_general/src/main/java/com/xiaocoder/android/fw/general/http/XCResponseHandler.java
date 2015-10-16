@@ -21,6 +21,8 @@ import org.apache.http.Header;
  * onSuccess()不能被重写，这里设置为了final，重写success（）方法
  * onFailure()不能被重写，这里设置为了final，重写failure（）方法
  * <p/>
+ * finish会在success或failure之后运行
+ * <p/>
  * model数据解析的代码 -->在子线程中执行的
  * <p/>
  * <p/>
@@ -59,6 +61,9 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
     public XCIHttpResult result_http;
 
     public static int JSON = 1;
+    /**
+     * 暂时未用到
+     */
     public static int XML = 2;
     public static int ELSE = 3;
 
