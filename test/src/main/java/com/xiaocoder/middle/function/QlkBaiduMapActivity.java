@@ -1,4 +1,4 @@
-package com.xiaocoder.buffer.function;
+package com.xiaocoder.middle.function;
 
 import android.os.Bundle;
 
@@ -8,10 +8,12 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.util.UtilString;
-import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.middle.QlkActivity;
 
 /**
  * Created by xiaocoder on 2015/5/27.
+ *
+ * 仅获取地理位置
  */
 public abstract class QlkBaiduMapActivity extends QlkActivity {
 

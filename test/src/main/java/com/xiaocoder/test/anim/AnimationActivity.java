@@ -6,7 +6,7 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
-import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.test.R;
 
 /**

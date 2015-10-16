@@ -1,4 +1,4 @@
-package com.xiaocoder.buffer.db;
+package com.xiaocoder.middle.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

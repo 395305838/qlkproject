@@ -6,7 +6,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.xiaocoder.android.fw.general.view.XCLineProgressBar;
-import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.test.R;
 
 import java.util.Timer;

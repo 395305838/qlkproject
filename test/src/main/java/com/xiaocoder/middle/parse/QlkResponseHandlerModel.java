@@ -1,4 +1,4 @@
-package com.xiaocoder.buffer.parse;
+package com.xiaocoder.middle.parse;
 
 import com.google.gson.Gson;
 import com.xiaocoder.android.fw.general.application.XCApp;

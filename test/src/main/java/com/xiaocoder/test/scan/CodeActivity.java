@@ -3,7 +3,7 @@ package com.xiaocoder.test.scan;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.test.R;
 import com.xiaocoder.zxcode.UtilGenerateCode;
 

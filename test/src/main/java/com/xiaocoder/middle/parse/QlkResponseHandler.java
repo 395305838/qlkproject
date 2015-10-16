@@ -1,4 +1,4 @@
-package com.xiaocoder.buffer.parse;
+package com.xiaocoder.middle.parse;
 
 import android.content.DialogInterface;
 import android.view.KeyEvent;
@@ -14,7 +14,7 @@ import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.http.XCIHttpResult;
 import com.xiaocoder.android.fw.general.http.XCResponseHandler;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
-import com.xiaocoder.buffer.function.QlkMainActivity;
+import com.xiaocoder.middle.function.QlkMainActivity;
 
 /**
  * Created by xiaocoder on 2015/8/28.

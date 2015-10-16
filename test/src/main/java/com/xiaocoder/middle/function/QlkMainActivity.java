@@ -1,11 +1,11 @@
-package com.xiaocoder.buffer.function;
+package com.xiaocoder.middle.function;
 
 import android.os.Bundle;
 
 import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.middle.QlkActivity;
 
 /**
  * Created by xiaocoder on 2015/7/15.

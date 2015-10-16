@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.view.XCSwitchButton;
-import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.test.R;
 
 public class SwitchButtonActivity extends QlkActivity implements XCSwitchButton.SwitchButtonListener {

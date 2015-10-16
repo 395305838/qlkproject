@@ -7,7 +7,7 @@ import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment;
 import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment.OnImageClickListener;
-import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.test.R;
 
 import java.util.HashMap;

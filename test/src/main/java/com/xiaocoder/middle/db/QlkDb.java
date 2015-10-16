@@ -1,6 +1,6 @@
-package com.xiaocoder.buffer.db;
+package com.xiaocoder.middle.db;
 
-import com.xiaocoder.buffer.QlkConfig;
+import com.xiaocoder.middle.QlkConfig;
 
 /**
  * Created by xiaocoder on 2015/8/30.

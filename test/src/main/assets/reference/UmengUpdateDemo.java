@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.umeng.update.UmengUpdateAgent;
 import com.umeng.update.UpdateConfig;
-import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.middle.QlkActivity;
 
 /**
  * Created by xiaocoder on 2015/7/15.

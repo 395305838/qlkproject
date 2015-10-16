@@ -38,7 +38,7 @@ import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment.RightListener;
-import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.test.R;
 import com.xiaocoder.zxcode.camare.CameraManager;
 import com.xiaocoder.zxcode.decoding.CaptureActivityHandler;

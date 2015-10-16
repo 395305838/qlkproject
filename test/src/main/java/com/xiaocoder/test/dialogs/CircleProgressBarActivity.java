@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.view.XCCircleProgressBar;
-import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.test.R;
 
 public class CircleProgressBarActivity extends QlkActivity {

@@ -1,4 +1,4 @@
-package com.xiaocoder.buffer.parse;
+package com.xiaocoder.middle.parse;
 
 import com.xiaocoder.android.fw.general.json.XCJsonBean;
 

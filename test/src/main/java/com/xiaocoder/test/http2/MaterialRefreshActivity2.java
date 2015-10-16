@@ -12,8 +12,8 @@ import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.view.XCListRefreshLayout;
 import com.xiaocoder.android.fw.general.view.XCRefreshHandler;
-import com.xiaocoder.buffer.QlkActivity;
-import com.xiaocoder.buffer.parse.QlkResponseHandlerModel;
+import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.parse.QlkResponseHandlerModel;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.bean.TestModel;
 

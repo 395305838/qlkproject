@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.TextView;
 
-import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
@@ -21,9 +20,9 @@ import com.xiaocoder.android.fw.general.fragment.listview.XCBaseAbsListFragment.
 import com.xiaocoder.android.fw.general.fragment.listview.XCListViewFragment;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.util.Utils;
-import com.xiaocoder.buffer.QlkActivity;
-import com.xiaocoder.buffer.function.QlkMainActivity;
-import com.xiaocoder.buffer.parse.QlkResponseHandlerBean;
+import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.function.QlkMainActivity;
+import com.xiaocoder.middle.parse.QlkResponseHandlerBean;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.bean.TestBean;
 

@@ -6,7 +6,7 @@ import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.fragment.XCMoveBlockPlusFragment;
-import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.test.R;
 
 public class MoveBlockActivity extends QlkActivity {

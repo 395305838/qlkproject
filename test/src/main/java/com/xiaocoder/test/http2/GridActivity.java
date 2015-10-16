@@ -16,8 +16,8 @@ import com.xiaocoder.android.fw.general.fragment.listview.XCGridViewFragment;
 import com.xiaocoder.android.fw.general.fragment.listview.XCListViewFragment;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.util.Utils;
-import com.xiaocoder.buffer.QlkActivity;
-import com.xiaocoder.buffer.parse.QlkResponseHandlerModel;
+import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.parse.QlkResponseHandlerModel;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.bean.TestModel;
 

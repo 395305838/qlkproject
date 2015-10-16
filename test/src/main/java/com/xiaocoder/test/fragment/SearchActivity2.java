@@ -7,9 +7,9 @@ import com.xiaocoder.android.fw.general.fragment.XCSearchRecordFragment;
 import com.xiaocoder.android.fw.general.fragment.XCTitleSearchFragment;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;
 import com.xiaocoder.android.fw.general.util.UtilActivity;
-import com.xiaocoder.buffer.QlkActivity;
-import com.xiaocoder.buffer.db.QlkDb;
-import com.xiaocoder.buffer.db.QlkDbHelper;
+import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.db.QlkDb;
+import com.xiaocoder.middle.db.QlkDbHelper;
 import com.xiaocoder.test.R;
 
 /**

@@ -16,7 +16,7 @@ import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android.fw.general.view.XCSlideBar;
-import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.test.R;
 
 import java.util.ArrayList;

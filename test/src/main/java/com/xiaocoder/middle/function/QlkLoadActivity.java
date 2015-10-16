@@ -1,4 +1,4 @@
-package com.xiaocoder.buffer.function;
+package com.xiaocoder.middle.function;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,12 +17,12 @@ import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.view.XCImageView;
-import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.test.R;
 
 import java.util.ArrayList;
 
-/*
+/**
  * app启动时的页面
  */
 public abstract class QlkLoadActivity extends QlkActivity implements OnClickListener {

@@ -1,4 +1,4 @@
-package com.xiaocoder.buffer;
+package com.xiaocoder.middle;
 
 import com.umeng.analytics.MobclickAgent;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;

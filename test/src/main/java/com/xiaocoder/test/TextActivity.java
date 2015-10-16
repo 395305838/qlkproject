@@ -8,7 +8,7 @@ import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.json.XCJsonBean;
 import com.xiaocoder.android.fw.general.json.XCJsonParse;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
-import com.xiaocoder.buffer.QlkActivity;
+import com.xiaocoder.middle.QlkActivity;
 
 import org.json.JSONArray;
 

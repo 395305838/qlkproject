@@ -1,7 +1,6 @@
 package com.xiaocoder.test.bean;
 
-import com.xiaocoder.buffer.parse.QlkBean;
-import com.xiaocoder.buffer.parse.QlkModel;
+import com.xiaocoder.middle.parse.QlkModel;
 
 import java.util.List;
 

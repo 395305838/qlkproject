@@ -5,11 +5,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
-import com.xiaocoder.buffer.QlkActivity;
-import com.xiaocoder.buffer.parse.QlkResponseHandlerModel;
+import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.parse.QlkResponseHandlerModel;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.bean.TestModel;
 

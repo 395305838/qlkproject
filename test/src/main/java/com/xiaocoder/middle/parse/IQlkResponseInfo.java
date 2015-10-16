@@ -1,4 +1,4 @@
-package com.xiaocoder.buffer.parse;
+package com.xiaocoder.middle.parse;
 
 /**
  * Created by xiaocoder on 2015/8/28.

@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.helper;
+package com.xiaocoder.android.fw.general.util;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -15,7 +15,7 @@ import android.view.animation.TranslateAnimation;
 
 import java.util.ArrayList;
 
-public class XCAnimationHelper {
+public class UtilAnim {
     /**
      * 透明度动画 fromAlpha： 起始点的透明度值 0（完全透明）to 1 （完全不透明） ，它是float值 toAlpha： 终止点的透明度值 0 to 1
      */

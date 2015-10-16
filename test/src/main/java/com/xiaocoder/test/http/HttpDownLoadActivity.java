@@ -5,18 +5,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 
-import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
 import com.xiaocoder.android.fw.general.helper.XCDownloadHelper;
 import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.util.UtilString;
-import com.xiaocoder.buffer.QlkActivity;
-import com.xiaocoder.buffer.QlkApp;
-import com.xiaocoder.buffer.QlkConfig;
-import com.xiaocoder.buffer.parse.QlkBean;
-import com.xiaocoder.buffer.parse.QlkResponseHandlerBean;
+import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.QlkApp;
+import com.xiaocoder.middle.QlkConfig;
+import com.xiaocoder.middle.parse.QlkBean;
+import com.xiaocoder.middle.parse.QlkResponseHandlerBean;
 import com.xiaocoder.test.R;
 
 import org.apache.http.Header;
