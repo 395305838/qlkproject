@@ -14,6 +14,7 @@ import com.xiaocoder.android.fw.general.io.XCIO;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow.onPhotoPopupItemClickListener;
+import com.xiaocoder.android.fw.general.util.UtilActivity;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.buffer.QlkConfig;
 import com.xiaocoder.buffer.function.QlkMainActivity;
@@ -287,34 +288,34 @@ public class MainActivity extends QlkMainActivity {
         super.onClick(v);
         int id = v.getId();
         if (id == R.id.test_point_line) {
-            myStartActivity(LinePointActivityGC.class);
+            UtilActivity.myStartActivity(this, LinePointActivityGC.class);
 
         } else if (id == R.id.test_scan) {
-            myStartActivity(ScanActivity.class);
+            UtilActivity.myStartActivity(this, ScanActivity.class);
         } else if (id == R.id.test_http) {
-            myStartActivity(HttpActivity.class);
+           UtilActivity.myStartActivity(this,HttpActivity.class);
         } else if (id == R.id.test_pop) {
-            myStartActivity(PopActivity.class);
+           UtilActivity.myStartActivity(this,PopActivity.class);
         } else if (id == R.id.test_webview) {
-            myStartActivity(WebActivity.class);
+           UtilActivity.myStartActivity(this,WebActivity.class);
 
         } else if (id == R.id.test_viewpager) {
-            myStartActivity(ViewPagerActivity.class);
+           UtilActivity.myStartActivity(this,ViewPagerActivity.class);
 
         } else if (id == R.id.test_move_block) {
-            myStartActivity(MoveBlockActivity.class);
+           UtilActivity.myStartActivity(this,MoveBlockActivity.class);
 
         } else if (id == R.id.test_camare) {
-            myStartActivity(CamareActivity.class);
+           UtilActivity.myStartActivity(this,CamareActivity.class);
 
         } else if (id == R.id.test_search) {
-            myStartActivity(SearchActivity.class);
+           UtilActivity.myStartActivity(this,SearchActivity.class);
 
         } else if (id == R.id.test_scroll) {
-            myStartActivity(ScrollActivity.class);
+           UtilActivity.myStartActivity(this,ScrollActivity.class);
 
         } else if (id == R.id.test_contacts) {
-            myStartActivity(ContactsActivity.class);
+           UtilActivity.myStartActivity(this,ContactsActivity.class);
 
         } else if (id == R.id.test_pop2) {
             XCPhotoPopupWindow pop = new XCPhotoPopupWindow(MainActivity.this, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -339,52 +340,52 @@ public class MainActivity extends QlkMainActivity {
             pop.showViewCenter((View) test_pop2.getParent());
 
         } else if (id == R.id.test_list_fragment) {
-            myStartActivity(ListActivity.class);
+           UtilActivity.myStartActivity(this,ListActivity.class);
 
         } else if (id == R.id.test_grid_fragment) {
-            myStartActivity(GridActivity.class);
+           UtilActivity.myStartActivity(this,GridActivity.class);
 
         } else if (id == R.id.test_sliding_menu) {
-            myStartActivity(SlidingMenuActivity.class);
+           UtilActivity.myStartActivity(this,SlidingMenuActivity.class);
 
         } else if (id == R.id.test_sliding_menu2) {
-            myStartActivity(SlidingMenuActivity2.class);
+           UtilActivity.myStartActivity(this,SlidingMenuActivity2.class);
 
         } else if (id == R.id.test_viewpager_indicator) {
             startActivity(new Intent(this, ListSamples.class));
 
         } else if (id == R.id.test_http_download) {
-            myStartActivity(HttpDownLoadActivity.class);
+           UtilActivity.myStartActivity(this,HttpDownLoadActivity.class);
         } else if (id == R.id.test_code) {
-            myStartActivity(CodeActivity.class);
+           UtilActivity.myStartActivity(this,CodeActivity.class);
         } else if (id == R.id.xc_id_test) {
-            myStartActivity(TextActivity.class);
+           UtilActivity.myStartActivity(this,TextActivity.class);
         } else if (id == R.id.xc_id_anim) {
-            myStartActivity(AnimationActivity.class);
+           UtilActivity.myStartActivity(this,AnimationActivity.class);
         } else if (id == R.id.test_dialog3) {
-            myStartActivity(DialogActivity3.class);
+           UtilActivity.myStartActivity(this,DialogActivity3.class);
         } else if (id == R.id.test_baidumap) {
-            myStartActivity(MapActivity.class);
+           UtilActivity.myStartActivity(this,MapActivity.class);
         } else if (id == R.id.test_switchbutton) {
-            myStartActivity(SwitchButtonActivity.class);
+           UtilActivity.myStartActivity(this,SwitchButtonActivity.class);
         } else if (id == R.id.test_circleprogress) {
-            myStartActivity(CircleProgressBarActivity.class);
+           UtilActivity.myStartActivity(this,CircleProgressBarActivity.class);
         } else if (id == R.id.test_numberprogress) {
-            myStartActivity(LineProgressBarActivity.class);
+           UtilActivity.myStartActivity(this,LineProgressBarActivity.class);
         } else if (id == R.id.test_expandablelistview) {
-            myStartActivity(ExpandListActivity.class);
+           UtilActivity.myStartActivity(this,ExpandListActivity.class);
         } else if (id == R.id.test_round_imageview) {
-            myStartActivity(RoundImageViewActivity.class);
+           UtilActivity.myStartActivity(this,RoundImageViewActivity.class);
         } else if (id == R.id.test_viewpager_num) {
-            myStartActivity(ImagesZoomActivity.class);
+           UtilActivity.myStartActivity(this,ImagesZoomActivity.class);
         } else if (id == R.id.test_viewpager_slider) {
-            myStartActivity(ViewpagerSliderActivity.class);
+           UtilActivity.myStartActivity(this,ViewpagerSliderActivity.class);
         } else if (id == R.id.test_progress_view) {
-            myStartActivity(ProgressViewActivity.class);
+           UtilActivity.myStartActivity(this,ProgressViewActivity.class);
         } else if (id == R.id.test_umengshare) {
-            myStartActivity(UmengShareActivity.class);
+           UtilActivity.myStartActivity(this,UmengShareActivity.class);
         } else if (id == R.id.test_material_refresh_layout){
-            myStartActivity(MaterialRefreshActivity2.class);
+           UtilActivity.myStartActivity(this,MaterialRefreshActivity2.class);
         }
 
     }

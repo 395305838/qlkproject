@@ -62,7 +62,6 @@ public class MaterialRefreshActivity2 extends QlkActivity {
                 if (result_boolean) {
                     List<TestModel.DataEntity.ResultEntity> result = result_bean.getData().getResult();
                     xcListRefreshLayout.setTotalPage("3");
-                    // xcListRefreshLayout.setTotalPage("0");
                     xcListRefreshLayout.updateListAdd(result, adapter);
                 }
             }

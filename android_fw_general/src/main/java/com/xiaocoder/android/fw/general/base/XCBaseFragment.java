@@ -175,32 +175,4 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
         }
     }
 
-    public void myStartActivity(Class<? extends XCBaseActivity> activity_class,
-                                Integer requestCode,
-                                Integer flags,
-                                String[] command_keys,
-                                Object[] command_values) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().myStartActivity(activity_class, requestCode, flags, command_keys, command_values);
-        }
-    }
-
-    public void myStartActivity(Class<? extends XCBaseActivity> activity_class) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().myStartActivity(activity_class);
-        }
-    }
-
-    public void myStartActivity(Class<? extends XCBaseActivity> activity_class, int flags) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().myStartActivity(activity_class, flags);
-        }
-    }
-
-    public void myStartActivity(Intent intent, Integer requestCode) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().myStartActivity(intent, requestCode);
-        }
-    }
-
 }

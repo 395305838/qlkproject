@@ -6,6 +6,7 @@ import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.fragment.XCSearchRecordFragment;
 import com.xiaocoder.android.fw.general.fragment.XCTitleSearchFragment;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;
+import com.xiaocoder.android.fw.general.util.UtilActivity;
 import com.xiaocoder.buffer.QlkActivity;
 import com.xiaocoder.buffer.db.QlkDb;
 import com.xiaocoder.buffer.db.QlkDbHelper;
@@ -72,7 +73,7 @@ public class SearchActivity extends QlkActivity {
                         @Override
                         public void onRecordItemClickListener(XCSearchRecordModel model, String key_word, int position) {
                             XCApp.shortToast(key_word);
-                            myStartActivity(SearchActivity2.class);
+                            UtilActivity.myStartActivity(SearchActivity.this, SearchActivity2.class);
                         }
                     });
                     addFragment(R.id.xc_id_model_content, record_fragment);
@@ -90,7 +91,7 @@ public class SearchActivity extends QlkActivity {
             @Override
             public void searchKeyDown(String key_word) {
                 XCApp.shortToast(key_word);
-                myStartActivity(SearchActivity2.class);
+                UtilActivity.myStartActivity(SearchActivity.this, SearchActivity2.class);
             }
         });
     }

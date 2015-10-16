@@ -155,8 +155,8 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
                     super.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
 
                     if (base_totalPage <= 1 || base_isPullRefreshing) {
-                        // 如果是空数据或者只有1页
-                        // 或者是正在访问
+                        // 如果是空数据0页或者只有1页
+                        // 或者是正在访问就不去加载下一页
                         return;
                     }
 
