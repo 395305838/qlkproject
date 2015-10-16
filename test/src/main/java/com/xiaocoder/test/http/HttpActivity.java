@@ -6,7 +6,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.middle.parse.QlkResponseHandlerModel;
 import com.xiaocoder.test.R;
@@ -28,8 +27,8 @@ public class HttpActivity extends QlkActivity {
     }
 
     public void request() {
-        XCHttpAsyn.getAsyn(true, this, "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95"
-                , new HashMap<String,Object>(),
+        XCApp.getAsyn(true, this, "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95"
+                , new HashMap<String, Object>(),
                 new QlkResponseHandlerModel<TestModel>(this, TestModel.class) {
 
                     @Override

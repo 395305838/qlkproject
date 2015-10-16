@@ -10,8 +10,7 @@ import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
-import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
-import com.xiaocoder.android.fw.general.http.XCIHttpResult;
+import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
 import com.xiaocoder.android.fw.general.http.XCResponseHandler;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
 import com.xiaocoder.middle.function.QlkMainActivity;
@@ -123,7 +122,7 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
                 public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
                     if (keyCode == KeyEvent.KEYCODE_BACK) {
                         closeHttpDialog();
-                        XCHttpAsyn.resetNetingStatus();
+                        XCApp.resetNetingStatus();
                         if (!(mContext instanceof QlkMainActivity)) {
                             ((XCBaseActivity) mContext).myFinish();
                         }

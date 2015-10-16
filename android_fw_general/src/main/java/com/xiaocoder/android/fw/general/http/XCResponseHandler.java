@@ -7,6 +7,8 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
+import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
+import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 import com.xiaocoder.android.fw.general.json.XCJsonParse;
 
 import org.apache.http.Header;
@@ -112,7 +114,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
     @Override
     public void finish() {
         XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---onFinish()");
-        XCHttpAsyn.resetNetingStatus();
+        XCApp.resetNetingStatus();
         closeHttpDialog();
     }
 
@@ -122,7 +124,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
     @Override
     public final void onFailure(int code, Header[] headers, byte[] arg2, Throwable e) {
 
-        if (isActivityDestroy(mContext)) {
+        if (isXCActivityDestroy(mContext)) {
             return;
         }
 
@@ -165,7 +167,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
     @Override
     public final void onSuccess(final int code, final Header[] headers, final byte[] bytes) {
 
-        if (isActivityDestroy(mContext)) {
+        if (isXCActivityDestroy(mContext)) {
             return;
         }
         // 子线程
@@ -188,7 +190,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
                     @Override
                     public void run() {
                         // 增加activity是否销毁的判断
-                        if (isActivityDestroy(mContext)) {
+                        if (isXCActivityDestroy(mContext)) {
                             return;
                         }
                         success(code, headers, bytes);
@@ -215,9 +217,9 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
      * 主线程
      */
     @Override
-    public boolean isActivityDestroy(Context context) {
+    public boolean isXCActivityDestroy(Context context) {
 
-        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----isActivityDestroy()");
+        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----isXCActivityDestroy()");
 
         if (context == null) {
             XCApp.e(this.toString() + "---activity被销毁了");

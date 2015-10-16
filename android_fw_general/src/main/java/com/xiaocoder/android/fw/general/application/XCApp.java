@@ -8,6 +8,8 @@ import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
+import com.xiaocoder.android.fw.general.http.XCHttpSend;
+import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 import com.xiaocoder.android.fw.general.imageloader.XCIImageLoader;
 import com.xiaocoder.android.fw.general.io.XCLog;
 import com.xiaocoder.android.fw.general.io.XCSP;
@@ -28,6 +30,7 @@ public class XCApp extends Application {
     private Stack<Activity> stack = new Stack<Activity>();
     protected static ExecutorService base_cache_threadpool = XCExecutorHelper.getExecutorHelperInstance().getCache();
     protected static Handler base_handler = new Handler();
+    protected static XCHttpSend base_xcHttpSend = new XCHttpSend();
     /**
      * 以下的涉及到路径和文件名的，在子类中初始化
      */
@@ -269,6 +272,11 @@ public class XCApp extends Application {
         return base_sp.getAll();
     }
 
+    /**
+     * 图片加载
+     *
+     * @return
+     */
     public static XCIImageLoader getBase_imageloader() {
         return base_imageloader;
     }
@@ -284,4 +292,50 @@ public class XCApp extends Application {
     public static void displayImage(String uri, ImageView imageView) {
         base_imageloader.display(uri, imageView);
     }
+
+    /**
+     * http请求
+     */
+    public static XCHttpSend getBase_xcHttpSend() {
+        return base_xcHttpSend;
+    }
+
+    public static void setBase_xcHttpSend(XCHttpSend base_xcHttpSend) {
+        XCApp.base_xcHttpSend = base_xcHttpSend;
+    }
+
+    public static void resetNetingStatus() {
+        base_xcHttpSend.resetNetingStatus();
+    }
+
+    public static void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog,
+                                XCBaseActivity context, String urlString, Map<String, Object> map,
+                                XCIResponseHandler res) {
+        base_xcHttpSend.postAsyn(needSecret, isAllowConcurrent, isShowDialog, context, urlString, map, res);
+    }
+
+    /**
+     * 加密，允许同时发出多个http请求
+     */
+    public static void postAsyn(boolean isShowDialog,
+                                XCBaseActivity context, String urlString, Map<String, Object> map,
+                                XCIResponseHandler res) {
+        base_xcHttpSend.postAsyn(true, true, isShowDialog, context, urlString, map, res);
+    }
+
+    public static void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog,
+                               XCBaseActivity context, String urlString, Map<String, Object> map,
+                               XCIResponseHandler res) {
+        base_xcHttpSend.getAsyn(needSecret, isAllowConcurrent, isShowDialog, context, urlString, map, res);
+    }
+
+    /**
+     * 加密，允许同时发出多个http请求
+     */
+    public static void getAsyn(boolean isShowDialog,
+                               XCBaseActivity context, String urlString, Map<String, Object> map,
+                               XCIResponseHandler res) {
+        base_xcHttpSend.getAsyn(true, true, isShowDialog, context, urlString, map, res);
+    }
+
 }

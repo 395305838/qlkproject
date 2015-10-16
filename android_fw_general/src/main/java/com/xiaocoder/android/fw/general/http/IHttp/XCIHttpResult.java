@@ -1,9 +1,9 @@
-package com.xiaocoder.android.fw.general.http;
+package com.xiaocoder.android.fw.general.http.IHttp;
 
 /**
  * @author xiaocoder
  *         <p/>
- *         activity实现该接口，控制有网 无网 的背景转换 ，以及土司显示 ， 以及点击无网背景再次刷新
+ *         activity实现该接口，控制有网 无网 的背景转换 ， 以及点击无网背景再次刷新，以及土司显示
  *         2015-1-16 下午1:55:28
  */
 public interface XCIHttpResult {

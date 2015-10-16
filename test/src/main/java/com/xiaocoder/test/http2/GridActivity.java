@@ -14,7 +14,6 @@ import com.xiaocoder.android.fw.general.fragment.listview.XCBaseAbsListFragment.
 import com.xiaocoder.android.fw.general.fragment.listview.XCBaseAbsListFragment.OnRefreshNextPageListener;
 import com.xiaocoder.android.fw.general.fragment.listview.XCGridViewFragment;
 import com.xiaocoder.android.fw.general.fragment.listview.XCListViewFragment;
-import com.xiaocoder.android.fw.general.http.XCHttpAsyn;
 import com.xiaocoder.android.fw.general.util.Utils;
 import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.middle.parse.QlkResponseHandlerModel;
@@ -40,7 +39,7 @@ public class GridActivity extends QlkActivity {
     public void request() {
 
         HashMap<String,Object> params =  new HashMap<String,Object>();
-        XCHttpAsyn.getAsyn(true, this,
+        XCApp.getAsyn(true, this,
                 "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95",
                 params,
                 new QlkResponseHandlerModel<TestModel>(this, TestModel.class) {

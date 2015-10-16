@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.http;
+package com.xiaocoder.android.fw.general.http.IHttp;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -20,7 +20,7 @@ public interface XCIResponseHandler<T> {
     /**
      * activity是否销毁
      */
-    boolean isActivityDestroy(Context context);
+    boolean isXCActivityDestroy(Context context);
 
     void setContext(Context context);
 

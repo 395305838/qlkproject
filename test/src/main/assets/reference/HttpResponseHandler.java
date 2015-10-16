@@ -8,7 +8,8 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.http.*;
+import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
+import com.xiaocoder.android.fw.general.http.XCHttpSend;
 import com.xiaocoder.android.fw.general.json.XCJsonBean;
 import com.xiaocoder.android.fw.general.json.XCJsonParse;
 
@@ -118,7 +119,7 @@ public abstract class XCHttpResponseHandler<T extends XCJsonBean> extends AsyncH
     public void onFinish() {
         super.onFinish();
         XCApp.i(XCConfig.TAG_HTTP, "onFinish");
-        com.xiaocoder.android.fw.general.http.XCHttpAsyn.resetNetingStatus();
+        XCApp.resetNetingStatus();
         closeHttpDialog();
     }
 

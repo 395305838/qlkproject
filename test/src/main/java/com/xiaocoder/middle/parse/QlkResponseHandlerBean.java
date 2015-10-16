@@ -2,7 +2,7 @@ package com.xiaocoder.middle.parse;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.http.XCIHttpResult;
+import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
 import com.xiaocoder.android.fw.general.json.XCJsonParse;
 
 /**
