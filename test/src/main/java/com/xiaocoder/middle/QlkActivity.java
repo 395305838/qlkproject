@@ -11,12 +11,18 @@ public abstract class QlkActivity extends XCBaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        /*
+         * 友盟统计
+         */
         MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        /*
+         * 友盟统计
+         */
         MobclickAgent.onPause(this);
     }
 }

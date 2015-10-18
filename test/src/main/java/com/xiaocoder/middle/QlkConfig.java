@@ -31,8 +31,13 @@ public class QlkConfig {
         DEV, TEST, ONLINE
     }
 
+    /**
+     * OPEN: 默认的配置，开发环境可以用这个值
+     * CLOSE：默认的配置，上线版本用这个值
+     * DEFINE: 可以修改配置，开发与测试环境可以用这个值
+     */
     public enum DebugControl {
-        CLOSE, OPEN_DEFAULT, OPEN_DEFINE
+        CLOSE, OPEN, DEFINE
     }
 
     /**
@@ -43,10 +48,10 @@ public class QlkConfig {
     /**
      * 是否打开调试日志开关 , 上线前，改为CLOSE
      */
-    public static DebugControl DEBUG_CONTROL = DebugControl.OPEN_DEFINE;
+    public static DebugControl DEBUG_CONTROL = DebugControl.DEFINE;
 
     static {
-        if (DEBUG_CONTROL == DebugControl.OPEN_DEFINE) {
+        if (DEBUG_CONTROL == DebugControl.DEFINE) {
 
             // i()方法是否打印到控制台
             IS_OUTPUT = true;
@@ -63,7 +68,7 @@ public class QlkConfig {
             // 是否打印出异常界面（只有在IS_INIT_CRASH_HANDLER 为true时，该设置才有效）
             IS_SHOW_EXCEPTION_ACTIVITY = true;
 
-        } else if (DEBUG_CONTROL == DebugControl.OPEN_DEFAULT) {
+        } else if (DEBUG_CONTROL == DebugControl.OPEN) {
 
             // i()方法是否打印到控制台
             IS_OUTPUT = true;

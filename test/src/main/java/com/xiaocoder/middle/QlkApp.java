@@ -110,7 +110,7 @@ public class QlkApp extends XCApp {
 
     @Override
     public void appExit() {
-        // 友盟
+        // 友盟统计
         MobclickAgent.onKillProcess(getApplicationContext());
         super.appExit();
     }

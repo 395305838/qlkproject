@@ -37,7 +37,7 @@ import java.util.Map;
 /**
  * 默认使用了asyn-http-android库
  * <p/>
- * 如果项目不用该库， 可以继承该类 ，重写get 与 post等方法，然后 XCAPP.setBase_xcHttpSend()方法或者修改XCAPP.get/post()方法
+ * 如果项目不用该库， 可以继承该类 ，重写get 与 post等方法，然后 XCAPP.setBase_xcHttpSend()
  */
 public class XCHttpSend {
 
@@ -98,6 +98,8 @@ public class XCHttpSend {
             } else {
                 throw new RuntimeException("XCHttpAsyn中的Handler类型不匹配");
             }
+        } else {
+            XCApp.e(urlString+ "--该请求无效，前一个请求还未返回");
         }
     }
 
@@ -129,6 +131,8 @@ public class XCHttpSend {
             } else {
                 throw new RuntimeException("XCHttpAsyn中的Handler类型不匹配");
             }
+        } else {
+            XCApp.e(urlString + "--该请求无效，前一个请求还未返回");
         }
     }
 

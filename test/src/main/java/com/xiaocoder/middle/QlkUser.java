@@ -8,7 +8,7 @@ import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 /**
  * Created by xiaocoder on 2015/7/13.
  * <p/>
- * 用户的信息，统一在这里存取
+ * 用户的信息，登录状态，用户刷新，注销 等统一在这里存取
  */
 public class QlkUser {
 
