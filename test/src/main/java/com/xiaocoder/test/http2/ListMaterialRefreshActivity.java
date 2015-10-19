@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
-import com.xiaocoder.android.fw.general.view.refreshLayout.XCGridRefreshLayout;
+import com.xiaocoder.android.fw.general.view.refreshLayout.XCListRefreshLayout;
 import com.xiaocoder.android.fw.general.view.refreshLayout.XCRefreshHandler;
 import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.middle.parse.QlkResponseHandlerModel;
@@ -25,50 +23,47 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class MaterialRefreshActivity extends QlkActivity {
+public class ListMaterialRefreshActivity extends QlkActivity {
 
     TestAdatpter adapter;
-    XCGridRefreshLayout xcListRefreshLayout;
-    GridView gridview;
+    XCListRefreshLayout xcListRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_material_refresh);
+        setContentView(R.layout.activity_material_refresh2);
         super.onCreate(savedInstanceState);
+        // 未配置autorefresh属性
+         reqeust();
     }
 
     // 无网络时,点击屏幕后回调的方法
     @Override
     public void onNetRefresh() {
-
+        reqeust();
     }
 
     @Override
     public void initWidgets() {
 
-        adapter = new TestAdatpter(MaterialRefreshActivity.this, null);
+        adapter = new TestAdatpter(ListMaterialRefreshActivity.this, null);
         xcListRefreshLayout = getViewById(R.id.xc_id_refreshlayout);
-
-        gridview = (GridView) xcListRefreshLayout.getListView();
-        UtilAbsListStyle.setGridViewStyle(gridview, false, 1, 1, 2);
-
         xcListRefreshLayout.getListView().setAdapter(adapter);
         // http请求中获取，这里为模拟数据
         xcListRefreshLayout.setBgZeroHintInfo("无数据", "点击刷新", R.drawable.icon);
+
     }
 
     public static String url = "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95";
 
     public void reqeust() {
-        XCApp.getAsyn(false, this, url, new HashMap(), new QlkResponseHandlerModel<TestModel>(this, TestModel.class) {
+        XCApp.getAsyn(true, this, url, new HashMap(), new QlkResponseHandlerModel<TestModel>(this, TestModel.class) {
 
             @Override
             public void success(int code, Header[] headers, byte[] arg2) {
                 super.success(code, headers, arg2);
                 if (result_boolean) {
                     List<TestModel.DataEntity.ResultEntity> result = result_bean.getData().getResult();
-                    xcListRefreshLayout.setTotalPage("4");
-                    result.addAll(result);
+                    xcListRefreshLayout.setTotalPage("3");
                     xcListRefreshLayout.updateListAdd(result, adapter);
                 }
             }

@@ -25,12 +25,12 @@
                 android:id="@+id/test_material_refresh_layout2"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="test_material_refresh_layout2" />
+                android:text="grid_material_refresh_layout2" />
             <Button
                 android:id="@+id/test_material_refresh_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="test_material_refresh_layout" />
+                android:text="list_material_refresh_layout" />
 
             <Button
                 android:id="@+id/test_umengshare"

@@ -682,11 +682,11 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
-            android:name=".http2.MaterialRefreshActivity"
+            android:name=".http2.GridMaterialRefreshActivity"
             android:label="@string/title_activity_material_refresh"
             android:theme="@style/XCTheme" />
         <activity
-            android:name=".http2.MaterialRefreshActivity2"
+            android:name=".http2.ListMaterialRefreshActivity"
             android:label="@string/title_activity_material_refresh2" >
         </activity>
     </application>

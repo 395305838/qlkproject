@@ -37,8 +37,8 @@ import com.xiaocoder.test.http.HttpDownLoadActivity;
 import com.xiaocoder.test.http2.ExpandListActivity;
 import com.xiaocoder.test.http2.GridActivity;
 import com.xiaocoder.test.http2.ListActivity;
-import com.xiaocoder.test.http2.MaterialRefreshActivity;
-import com.xiaocoder.test.http2.MaterialRefreshActivity2;
+import com.xiaocoder.test.http2.GridMaterialRefreshActivity;
+import com.xiaocoder.test.http2.ListMaterialRefreshActivity;
 import com.xiaocoder.test.line_point.LinePointActivityGC;
 import com.xiaocoder.test.pop.PopActivity;
 import com.xiaocoder.test.scan.CodeActivity;
@@ -390,9 +390,9 @@ public class MainActivity extends QlkMainActivity {
         } else if (id == R.id.test_umengshare) {
             UtilActivity.myStartActivity(this, UmengShareActivity.class);
         } else if (id == R.id.test_material_refresh_layout2) {
-            UtilActivity.myStartActivity(this, MaterialRefreshActivity2.class);
+            UtilActivity.myStartActivity(this, GridMaterialRefreshActivity.class);
         } else if (id == R.id.test_material_refresh_layout) {
-            UtilActivity.myStartActivity(this, MaterialRefreshActivity.class);
+            UtilActivity.myStartActivity(this, ListMaterialRefreshActivity.class);
         }
 
     }
