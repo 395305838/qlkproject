@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.view;
+package com.xiaocoder.android.fw.general.view.refreshLayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -31,8 +31,9 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
  * Created by xiaocoder on 2015/10/9.
  * version: 1.0
  * description: 封装了上下拉 ， 分页 ，无数据背景
+ * 仅适用于 abslistview
  */
-public class XCListRefreshLayout extends FrameLayout implements View.OnClickListener {
+abstract public class XCRefreshLayout extends FrameLayout implements View.OnClickListener {
     /**
      * 上下拉效果的控件
      */
@@ -60,15 +61,15 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
      */
     public int base_totalPage;
     /**
-     * 是否正在刷新
+     * 是否正在刷新(下拉和上拉)
      */
-    public boolean base_isPullRefreshing;
+    public boolean base_isRequesting;
     /**
      * 装分页数据的
      */
     public List base_all_beans;
     /**
-     * 每页的数量
+     * 每页的数量（最后还是要靠页数决定的）
      */
     public static int PER_PAGE_NUM = 30;
     /**
@@ -94,25 +95,25 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
      */
     public int zero_imageview_hint;
 
-    public XCListRefreshLayout(Context context) {
+    public XCRefreshLayout(Context context) {
         super(context);
     }
 
-    public XCListRefreshLayout(Context context, AttributeSet attrs) {
+    public XCRefreshLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        inflateLayout(context, attrs);
+        initLayout(context, attrs);
     }
 
-    public XCListRefreshLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public XCRefreshLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        inflateLayout(context, attrs);
+        initLayout(context, attrs);
     }
 
-    public void inflateLayout(Context context, AttributeSet attrs) {
+    public void initLayout(Context context, AttributeSet attrs) {
         LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mInflater.inflate(R.layout.xc_l_view_refresh, this, true);
+        inflaterLayout(mInflater);
         mPtrRefreshLayout = (PtrClassicFrameLayout) findViewById(R.id.xc_id_refresh_layout);
-        absListView = (AbsListView) findViewById(R.id.xc_id_refresh_content_listview);
+        absListView = (AbsListView) findViewById(R.id.xc_id_refresh_content_abslistview);
         mProgressBarContainer = (RelativeLayout) findViewById(R.id.xc_id_progressBar_container);
         base_listview_zero_bg = (LinearLayout) findViewById(R.id.xc_id_listview_plus_zero_bg);
 
@@ -123,6 +124,9 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
         initZeroBgLayout();
 
     }
+
+    // mInflater.inflate(R.layout.xc_l_view_grid_refresh, this, true);
+    abstract public void inflaterLayout(LayoutInflater mInflater);
 
     private void initZeroBgLayout() {
         base_all_beans = new ArrayList();
@@ -154,7 +158,7 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
                 public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                     super.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
 
-                    if (base_totalPage <= 1 || base_isPullRefreshing) {
+                    if (base_totalPage <= 1 || base_isRequesting) {
                         // 如果是空数据0页或者只有1页
                         // 或者是正在访问就不去加载下一页
                         return;
@@ -264,8 +268,8 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
 
     // 下拉刷新
     protected void refreshing() {
-        if (!base_isPullRefreshing) {
-            base_isPullRefreshing = true;
+        if (!base_isRequesting) {
+            base_isRequesting = true;
             base_currentPage = 1;
             if (mRefreshHandler != null) {
                 mRefreshHandler.refresh(mPtrRefreshLayout, base_currentPage);
@@ -277,8 +281,8 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
 
     // 上拉加载
     protected void loading() {
-        if (!base_isPullRefreshing) {
-            base_isPullRefreshing = true;
+        if (!base_isRequesting) {
+            base_isRequesting = true;
             mProgressBarContainer.setVisibility(View.VISIBLE);
             base_currentPage = base_currentPage + 1;
             if (mRefreshHandler != null) {
@@ -296,9 +300,9 @@ public class XCListRefreshLayout extends FrameLayout implements View.OnClickList
 
         mProgressBarContainer.setVisibility(View.GONE);
 
-        base_isPullRefreshing = false;
-
         whichShow(base_all_beans.size());
+
+        base_isRequesting = false;
 
     }
 

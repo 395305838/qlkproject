@@ -1,12 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.xiaocoder.test.http2.MaterialRefreshActivity2">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/xc_id_model_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/c_white_ffffff">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <!-- title -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:background="@color/c_red_ff0000"
+        android:visibility="gone" />
+
+    <!-- 内容 -->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_model_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:background="@color/c_red_ff0000">
+
+        <com.xiaocoder.android.fw.general.view.refreshLayout.XCListRefreshLayout
+            android:id="@+id/xc_id_refreshlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/c_orange_f96b05"
+            app:autorefresh="false" />
+
+    </RelativeLayout>
+
+    <!-- 无网络的背景 -->
+
+    <include
+        android:id="@+id/xc_id_model_no_net"
+        layout="@layout/xc_l_view_no_net"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/xc_id_model_titlebar"
+        android:visibility="invisible" />
 
 </RelativeLayout>

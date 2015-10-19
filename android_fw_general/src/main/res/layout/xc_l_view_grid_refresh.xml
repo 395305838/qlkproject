@@ -47,8 +47,8 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/xc_id_progressBar_container">
 
-        <ListView
-            android:id="@+id/xc_id_refresh_content_listview"
+        <GridView
+            android:id="@+id/xc_id_refresh_content_abslistview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="@null"

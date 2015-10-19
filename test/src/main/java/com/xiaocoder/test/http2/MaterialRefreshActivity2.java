@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.view.XCListRefreshLayout;
-import com.xiaocoder.android.fw.general.view.XCRefreshHandler;
+import com.xiaocoder.android.fw.general.view.refreshLayout.XCListRefreshLayout;
+import com.xiaocoder.android.fw.general.view.refreshLayout.XCRefreshHandler;
 import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.middle.parse.QlkResponseHandlerModel;
 import com.xiaocoder.test.R;
@@ -30,7 +30,7 @@ public class MaterialRefreshActivity2 extends QlkActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_material_refresh);
+        setContentView(R.layout.activity_material_refresh2);
         super.onCreate(savedInstanceState);
     }
 

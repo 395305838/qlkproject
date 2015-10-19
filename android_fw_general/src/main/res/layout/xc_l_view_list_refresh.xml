@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--    <ProgressBar
+            android:id="@+id/xc_id_progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:indeterminate="true"
+            android:visibility="gone" />-->
+
+    <RelativeLayout
+        android:id="@+id/xc_id_progressBar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/xc_id_loading_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="加载中.."
+            android:textColor="@color/c_black_000000"
+            android:textSize="16sp" />
+
+        <ProgressBar
+            android:id="@+id/xc_id_progressBar"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:layout_marginBottom="6dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="6dp"
+            android:layout_toLeftOf="@+id/xc_id_loading_textview" />
+
+    </RelativeLayout>
+
+
+    <in.srain.cube.views.ptr.PtrClassicFrameLayout
+        android:id="@+id/xc_id_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/xc_id_progressBar_container">
+
+        <ListView
+            android:id="@+id/xc_id_refresh_content_abslistview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="@null"
+            android:fadingEdge="none"
+            android:listSelector="@android:color/transparent"
+            android:scrollbarStyle="outsideOverlay" />
+
+    </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
+
+    <include
+        android:id="@+id/xc_id_listview_plus_zero_bg"
+        layout="@layout/xc_l_view_data_zero"
+        android:visibility="gone" />
+
+</RelativeLayout>

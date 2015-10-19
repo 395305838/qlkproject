@@ -37,6 +37,7 @@ import com.xiaocoder.test.http.HttpDownLoadActivity;
 import com.xiaocoder.test.http2.ExpandListActivity;
 import com.xiaocoder.test.http2.GridActivity;
 import com.xiaocoder.test.http2.ListActivity;
+import com.xiaocoder.test.http2.MaterialRefreshActivity;
 import com.xiaocoder.test.http2.MaterialRefreshActivity2;
 import com.xiaocoder.test.line_point.LinePointActivityGC;
 import com.xiaocoder.test.pop.PopActivity;
@@ -93,6 +94,7 @@ public class MainActivity extends QlkMainActivity {
     Button test_viewpager_slider;
     Button test_progress_view;
     Button test_umengshare;
+    Button test_material_refresh_layout2;
     Button test_material_refresh_layout;
 
 
@@ -129,7 +131,7 @@ public class MainActivity extends QlkMainActivity {
 
         XCApp.i(XCIO.getAllFilesByDirQueue(XCIOAndroid.createDirInSDCard(QlkConfig.APP_ROOT), new ArrayList<File>()));
 
-        XCIO.toFileByBytes(XCIOAndroid.createFileInSDCard(QlkConfig.APP_ROOT, "lalala.txt"), "1234567890987654321abc".getBytes(), true);
+        XCIO.toFileByBytes(XCIOAndroid.createFileInAndroid(this, QlkConfig.APP_ROOT, "lalala.txt"), "写入的内容--1234567890987654321abc".getBytes(), true);
     }
 
     private void recoderButton() {
@@ -166,6 +168,8 @@ public class MainActivity extends QlkMainActivity {
 
         XCApp.i(XCConfig.TAG_TEMP, QlkConfig.CURRENT_RUN_ENVIRONMENT.toString() + "-----环境");
         XCApp.i(XCConfig.TAG_TEMP, QlkConfig.DEBUG_CONTROL.toString() + "-----调试");
+
+        test_material_refresh_layout2 = getViewById(R.id.test_material_refresh_layout2);
 
         test_material_refresh_layout = getViewById(R.id.test_material_refresh_layout);
 
@@ -279,6 +283,7 @@ public class MainActivity extends QlkMainActivity {
         test_viewpager_slider.setOnClickListener(this);
         test_progress_view.setOnClickListener(this);
         test_umengshare.setOnClickListener(this);
+        test_material_refresh_layout2.setOnClickListener(this);
         test_material_refresh_layout.setOnClickListener(this);
 
     }
@@ -293,29 +298,29 @@ public class MainActivity extends QlkMainActivity {
         } else if (id == R.id.test_scan) {
             UtilActivity.myStartActivity(this, ScanActivity.class);
         } else if (id == R.id.test_http) {
-           UtilActivity.myStartActivity(this,HttpActivity.class);
+            UtilActivity.myStartActivity(this, HttpActivity.class);
         } else if (id == R.id.test_pop) {
-           UtilActivity.myStartActivity(this,PopActivity.class);
+            UtilActivity.myStartActivity(this, PopActivity.class);
         } else if (id == R.id.test_webview) {
-           UtilActivity.myStartActivity(this,WebActivity.class);
+            UtilActivity.myStartActivity(this, WebActivity.class);
 
         } else if (id == R.id.test_viewpager) {
-           UtilActivity.myStartActivity(this,ViewPagerActivity.class);
+            UtilActivity.myStartActivity(this, ViewPagerActivity.class);
 
         } else if (id == R.id.test_move_block) {
-           UtilActivity.myStartActivity(this,MoveBlockActivity.class);
+            UtilActivity.myStartActivity(this, MoveBlockActivity.class);
 
         } else if (id == R.id.test_camare) {
-           UtilActivity.myStartActivity(this,CamareActivity.class);
+            UtilActivity.myStartActivity(this, CamareActivity.class);
 
         } else if (id == R.id.test_search) {
-           UtilActivity.myStartActivity(this,SearchActivity.class);
+            UtilActivity.myStartActivity(this, SearchActivity.class);
 
         } else if (id == R.id.test_scroll) {
-           UtilActivity.myStartActivity(this,ScrollActivity.class);
+            UtilActivity.myStartActivity(this, ScrollActivity.class);
 
         } else if (id == R.id.test_contacts) {
-           UtilActivity.myStartActivity(this,ContactsActivity.class);
+            UtilActivity.myStartActivity(this, ContactsActivity.class);
 
         } else if (id == R.id.test_pop2) {
             XCPhotoPopupWindow pop = new XCPhotoPopupWindow(MainActivity.this, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -340,52 +345,54 @@ public class MainActivity extends QlkMainActivity {
             pop.showViewCenter((View) test_pop2.getParent());
 
         } else if (id == R.id.test_list_fragment) {
-           UtilActivity.myStartActivity(this,ListActivity.class);
+            UtilActivity.myStartActivity(this, ListActivity.class);
 
         } else if (id == R.id.test_grid_fragment) {
-           UtilActivity.myStartActivity(this,GridActivity.class);
+            UtilActivity.myStartActivity(this, GridActivity.class);
 
         } else if (id == R.id.test_sliding_menu) {
-           UtilActivity.myStartActivity(this,SlidingMenuActivity.class);
+            UtilActivity.myStartActivity(this, SlidingMenuActivity.class);
 
         } else if (id == R.id.test_sliding_menu2) {
-           UtilActivity.myStartActivity(this,SlidingMenuActivity2.class);
+            UtilActivity.myStartActivity(this, SlidingMenuActivity2.class);
 
         } else if (id == R.id.test_viewpager_indicator) {
             startActivity(new Intent(this, ListSamples.class));
 
         } else if (id == R.id.test_http_download) {
-           UtilActivity.myStartActivity(this,HttpDownLoadActivity.class);
+            UtilActivity.myStartActivity(this, HttpDownLoadActivity.class);
         } else if (id == R.id.test_code) {
-           UtilActivity.myStartActivity(this,CodeActivity.class);
+            UtilActivity.myStartActivity(this, CodeActivity.class);
         } else if (id == R.id.xc_id_test) {
-           UtilActivity.myStartActivity(this,TextActivity.class);
+            UtilActivity.myStartActivity(this, TextActivity.class);
         } else if (id == R.id.xc_id_anim) {
-           UtilActivity.myStartActivity(this,AnimationActivity.class);
+            UtilActivity.myStartActivity(this, AnimationActivity.class);
         } else if (id == R.id.test_dialog3) {
-           UtilActivity.myStartActivity(this,DialogActivity3.class);
+            UtilActivity.myStartActivity(this, DialogActivity3.class);
         } else if (id == R.id.test_baidumap) {
-           UtilActivity.myStartActivity(this,MapActivity.class);
+            UtilActivity.myStartActivity(this, MapActivity.class);
         } else if (id == R.id.test_switchbutton) {
-           UtilActivity.myStartActivity(this,SwitchButtonActivity.class);
+            UtilActivity.myStartActivity(this, SwitchButtonActivity.class);
         } else if (id == R.id.test_circleprogress) {
-           UtilActivity.myStartActivity(this,CircleProgressBarActivity.class);
+            UtilActivity.myStartActivity(this, CircleProgressBarActivity.class);
         } else if (id == R.id.test_numberprogress) {
-           UtilActivity.myStartActivity(this,LineProgressBarActivity.class);
+            UtilActivity.myStartActivity(this, LineProgressBarActivity.class);
         } else if (id == R.id.test_expandablelistview) {
-           UtilActivity.myStartActivity(this,ExpandListActivity.class);
+            UtilActivity.myStartActivity(this, ExpandListActivity.class);
         } else if (id == R.id.test_round_imageview) {
-           UtilActivity.myStartActivity(this,RoundImageViewActivity.class);
+            UtilActivity.myStartActivity(this, RoundImageViewActivity.class);
         } else if (id == R.id.test_viewpager_num) {
-           UtilActivity.myStartActivity(this,ImagesZoomActivity.class);
+            UtilActivity.myStartActivity(this, ImagesZoomActivity.class);
         } else if (id == R.id.test_viewpager_slider) {
-           UtilActivity.myStartActivity(this,ViewpagerSliderActivity.class);
+            UtilActivity.myStartActivity(this, ViewpagerSliderActivity.class);
         } else if (id == R.id.test_progress_view) {
-           UtilActivity.myStartActivity(this,ProgressViewActivity.class);
+            UtilActivity.myStartActivity(this, ProgressViewActivity.class);
         } else if (id == R.id.test_umengshare) {
-           UtilActivity.myStartActivity(this,UmengShareActivity.class);
-        } else if (id == R.id.test_material_refresh_layout){
-           UtilActivity.myStartActivity(this,MaterialRefreshActivity2.class);
+            UtilActivity.myStartActivity(this, UmengShareActivity.class);
+        } else if (id == R.id.test_material_refresh_layout2) {
+            UtilActivity.myStartActivity(this, MaterialRefreshActivity2.class);
+        } else if (id == R.id.test_material_refresh_layout) {
+            UtilActivity.myStartActivity(this, MaterialRefreshActivity.class);
         }
 
     }

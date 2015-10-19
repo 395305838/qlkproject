@@ -8,7 +8,7 @@ package com.xiaocoder.android.fw.general.http.IHttp;
  */
 public interface XCIHttpResult {
 
-    // 访问失败的回调, 默认 true为显示无网络时的背景界面+吐司 ,false为仅显示toast,可以重写XCHttpAsyn的fail()方法
+    // 访问失败的回调, 默认 true为显示无网络时的背景界面+吐司 ,false为仅显示toast
     void onNetFail(boolean show_background_when_net_fail);
 
     // 访问成功的回调-->显示内容视图

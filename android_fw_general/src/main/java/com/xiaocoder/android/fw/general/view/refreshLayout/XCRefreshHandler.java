@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.view;
+package com.xiaocoder.android.fw.general.view.refreshLayout;
 
 import android.view.View;
 
