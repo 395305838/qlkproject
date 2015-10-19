@@ -23,21 +23,25 @@ import com.xiaocoder.android_fw_general.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrUIHandler;
 
 /**
  * Created by xiaocoder on 2015/10/9.
  * version: 1.0
  * description: 封装了上下拉 ， 分页 ，无数据背景
  * 仅适用于 abslistview
- */
+ *
+ * 可配置autorefresh属性
+ * */
 abstract public class XCRefreshLayout extends FrameLayout implements View.OnClickListener {
     /**
      * 上下拉效果的控件
      */
-    private PtrClassicFrameLayout mPtrRefreshLayout;
+    private PtrFrameLayout mPtrRefreshLayout;
     private AbsListView absListView;
     /**
      * 上拉加载的dialog
@@ -118,6 +122,8 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
         base_listview_zero_bg = (LinearLayout) findViewById(R.id.xc_id_listview_plus_zero_bg);
 
         initXCRefreshLayoutParams();
+
+        checkHeadStyle();
 
         checkAutoRefresh(context, attrs);
 
@@ -233,7 +239,6 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
      */
     public void initXCRefreshLayoutParams() {
 
-        mPtrRefreshLayout.setLastUpdateTimeRelateObject(this);
         // 默认的设置
         mPtrRefreshLayout.setResistance(1.7f);
         mPtrRefreshLayout.setRatioOfHeaderHeightToRefresh(1.2f);
@@ -250,7 +255,15 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
 
     }
 
-    public PtrClassicFrameLayout getmPtrRefreshLayout() {
+    PtrUIHandler mPtrClassicHeader;
+
+    public void checkHeadStyle() {
+        mPtrClassicHeader = new PtrClassicDefaultHeader(getContext());
+        mPtrRefreshLayout.setHeaderView((PtrClassicDefaultHeader) mPtrClassicHeader);
+        mPtrRefreshLayout.addPtrUIHandler(mPtrClassicHeader);
+    }
+
+    public PtrFrameLayout getmPtrRefreshLayout() {
         return mPtrRefreshLayout;
     }
 
