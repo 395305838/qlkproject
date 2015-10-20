@@ -48,6 +48,7 @@ import com.xiaocoder.test.scan.ScanActivity;
 import com.xiaocoder.test.share.UmengShareActivity;
 import com.xiaocoder.test.slidingmenu.SlidingMenuActivity;
 import com.xiaocoder.test.slidingmenu.SlidingMenuActivity2;
+import com.xiaocoder.test.view.PickerViewActiviy;
 import com.xiaocoder.test.view.RoundImageViewActivity;
 import com.xiaocoder.test.view.ScrollActivity;
 import com.xiaocoder.test.view.SwitchButtonActivity;
@@ -100,6 +101,7 @@ public class MainActivity extends QlkMainActivity {
     Button test_grid_refresh_layout;
     Button test_list_material_layout;
     Button test_grid_material_layout;
+    Button pickerView;
 
 
     @Override
@@ -251,6 +253,8 @@ public class MainActivity extends QlkMainActivity {
 
         test_umengshare = getViewById(R.id.test_umengshare);
 
+        pickerView = getViewById(R.id.test_pickerView);
+
 
     }
 
@@ -295,6 +299,7 @@ public class MainActivity extends QlkMainActivity {
         test_grid_refresh_layout.setOnClickListener(this);
         test_list_refresh_layout.setOnClickListener(this);
         test_list_material_layout.setOnClickListener(this);
+        pickerView.setOnClickListener(this);
 
     }
 
@@ -407,6 +412,8 @@ public class MainActivity extends QlkMainActivity {
             UtilActivity.myStartActivity(this, ListRefreshActivity.class);
         } else if (id == R.id.test_list_material_layout) {
             UtilActivity.myStartActivity(this, ListMaterialActivity.class);
+        } else if (id == R.id.test_pickerView) {
+            UtilActivity.myStartActivity(this, PickerViewActiviy.class);
         }
 
     }

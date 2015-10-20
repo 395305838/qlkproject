@@ -16,6 +16,12 @@
             android:orientation="vertical">
 
             <Button
+                android:id="@+id/test_pickerView"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="test_pickerView" />
+            <Button
+
                 android:id="@+id/test_expandablelistview"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"

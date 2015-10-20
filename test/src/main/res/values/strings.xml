@@ -31,5 +31,6 @@
     <string name="title_activity_material_refresh2">MaterialRefreshActivity2</string>
     <string name="title_activity_grid_material">GridMaterialActivity</string>
     <string name="title_activity_list_materail">ListMaterailActivity</string>
+    <string name="title_activity_picker_view_activiy">PickerViewActiviy</string>
 
 </resources>
