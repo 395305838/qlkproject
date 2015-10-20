@@ -41,7 +41,7 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
     /**
      * 上下拉效果的控件
      */
-    private PtrFrameLayout mPtrRefreshLayout;
+    protected PtrFrameLayout mPtrRefreshLayout;
     private AbsListView absListView;
     /**
      * 上拉加载的dialog
@@ -123,7 +123,7 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
 
         initXCRefreshLayoutParams();
 
-        checkHeadStyle();
+        initHeadStyle();
 
         checkAutoRefresh(context, attrs);
 
@@ -257,11 +257,7 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
 
     PtrUIHandler mPtrClassicHeader;
 
-    public void checkHeadStyle() {
-        mPtrClassicHeader = new PtrClassicDefaultHeader(getContext());
-        mPtrRefreshLayout.setHeaderView((PtrClassicDefaultHeader) mPtrClassicHeader);
-        mPtrRefreshLayout.addPtrUIHandler(mPtrClassicHeader);
-    }
+    public abstract  void initHeadStyle();
 
     public PtrFrameLayout getmPtrRefreshLayout() {
         return mPtrRefreshLayout;

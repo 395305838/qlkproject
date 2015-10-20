@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class GridMaterialRefreshActivity extends QlkActivity {
+public class GridRefreshActivity extends QlkActivity {
 
     TestAdatpter adapter;
     XCGridRefreshLayout xcListRefreshLayout;
@@ -33,7 +33,7 @@ public class GridMaterialRefreshActivity extends QlkActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_material_refresh);
+        setContentView(R.layout.activity_grid_refresh);
         super.onCreate(savedInstanceState);
         // 配置了autorefresh属性
         // reqeust();
@@ -48,7 +48,7 @@ public class GridMaterialRefreshActivity extends QlkActivity {
     @Override
     public void initWidgets() {
 
-        adapter = new TestAdatpter(GridMaterialRefreshActivity.this, null);
+        adapter = new TestAdatpter(GridRefreshActivity.this, null);
         xcListRefreshLayout = getViewById(R.id.xc_id_refreshlayout);
 
         gridview = (GridView) xcListRefreshLayout.getListView();

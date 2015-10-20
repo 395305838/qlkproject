@@ -29,5 +29,7 @@
     <string name="title_activity_umeng_share">UmengShareActivity</string>
     <string name="title_activity_material_refresh">MaterialRefreshActivity</string>
     <string name="title_activity_material_refresh2">MaterialRefreshActivity2</string>
+    <string name="title_activity_grid_material">GridMaterialActivity</string>
+    <string name="title_activity_list_materail">ListMaterailActivity</string>
 
 </resources>

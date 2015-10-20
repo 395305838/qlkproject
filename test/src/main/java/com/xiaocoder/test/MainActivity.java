@@ -36,9 +36,11 @@ import com.xiaocoder.test.http.HttpActivity;
 import com.xiaocoder.test.http.HttpDownLoadActivity;
 import com.xiaocoder.test.http2.ExpandListActivity;
 import com.xiaocoder.test.http2.GridActivity;
+import com.xiaocoder.test.http2.GridMaterialActivity;
 import com.xiaocoder.test.http2.ListActivity;
-import com.xiaocoder.test.http2.GridMaterialRefreshActivity;
-import com.xiaocoder.test.http2.ListMaterialRefreshActivity;
+import com.xiaocoder.test.http2.GridRefreshActivity;
+import com.xiaocoder.test.http2.ListMaterialActivity;
+import com.xiaocoder.test.http2.ListRefreshActivity;
 import com.xiaocoder.test.line_point.LinePointActivityGC;
 import com.xiaocoder.test.pop.PopActivity;
 import com.xiaocoder.test.scan.CodeActivity;
@@ -94,8 +96,10 @@ public class MainActivity extends QlkMainActivity {
     Button test_viewpager_slider;
     Button test_progress_view;
     Button test_umengshare;
-    Button test_material_refresh_layout2;
-    Button test_material_refresh_layout;
+    Button test_list_refresh_layout;
+    Button test_grid_refresh_layout;
+    Button test_list_material_layout;
+    Button test_grid_material_layout;
 
 
     @Override
@@ -169,9 +173,13 @@ public class MainActivity extends QlkMainActivity {
         XCApp.i(XCConfig.TAG_TEMP, QlkConfig.CURRENT_RUN_ENVIRONMENT.toString() + "-----环境");
         XCApp.i(XCConfig.TAG_TEMP, QlkConfig.DEBUG_CONTROL.toString() + "-----调试");
 
-        test_material_refresh_layout2 = getViewById(R.id.test_material_refresh_layout2);
+        test_list_refresh_layout = getViewById(R.id.test_list_refresh_layout);
 
-        test_material_refresh_layout = getViewById(R.id.test_material_refresh_layout);
+        test_grid_refresh_layout = getViewById(R.id.test_grid_refresh_layout);
+
+        test_grid_material_layout = getViewById(R.id.test_grid_material_layout);
+
+        test_list_material_layout = getViewById(R.id.test_list_material_layout);
 
         test_dialog3 = getViewById(R.id.test_dialog3);
 
@@ -283,8 +291,10 @@ public class MainActivity extends QlkMainActivity {
         test_viewpager_slider.setOnClickListener(this);
         test_progress_view.setOnClickListener(this);
         test_umengshare.setOnClickListener(this);
-        test_material_refresh_layout2.setOnClickListener(this);
-        test_material_refresh_layout.setOnClickListener(this);
+        test_grid_material_layout.setOnClickListener(this);
+        test_grid_refresh_layout.setOnClickListener(this);
+        test_list_refresh_layout.setOnClickListener(this);
+        test_list_material_layout.setOnClickListener(this);
 
     }
 
@@ -389,10 +399,14 @@ public class MainActivity extends QlkMainActivity {
             UtilActivity.myStartActivity(this, ProgressViewActivity.class);
         } else if (id == R.id.test_umengshare) {
             UtilActivity.myStartActivity(this, UmengShareActivity.class);
-        } else if (id == R.id.test_material_refresh_layout2) {
-            UtilActivity.myStartActivity(this, GridMaterialRefreshActivity.class);
-        } else if (id == R.id.test_material_refresh_layout) {
-            UtilActivity.myStartActivity(this, ListMaterialRefreshActivity.class);
+        } else if (id == R.id.test_grid_material_layout) {
+            UtilActivity.myStartActivity(this, GridMaterialActivity.class);
+        } else if (id == R.id.test_grid_refresh_layout) {
+            UtilActivity.myStartActivity(this, GridRefreshActivity.class);
+        } else if (id == R.id.test_list_refresh_layout) {
+            UtilActivity.myStartActivity(this, ListRefreshActivity.class);
+        } else if (id == R.id.test_list_material_layout) {
+            UtilActivity.myStartActivity(this, ListMaterialActivity.class);
         }
 
     }

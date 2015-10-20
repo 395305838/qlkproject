@@ -22,15 +22,26 @@
                 android:text="test_expandablelistview" />
 
             <Button
-                android:id="@+id/test_material_refresh_layout2"
+                android:id="@+id/test_list_refresh_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="grid_material_refresh_layout2" />
+                android:text="test_list_refresh_layout" />
             <Button
-                android:id="@+id/test_material_refresh_layout"
+                android:id="@+id/test_grid_refresh_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="list_material_refresh_layout" />
+                android:text="test_grid_refresh_layout" />
+
+            <Button
+                android:id="@+id/test_list_material_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="test_list_material_layout" />
+            <Button
+                android:id="@+id/test_grid_material_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="test_grid_material_layout" />
 
             <Button
                 android:id="@+id/test_umengshare"
