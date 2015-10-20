@@ -33,23 +33,23 @@ public class LinePointActivityGC extends QlkActivity {
                     e.printStackTrace();
                 }
 
-                System.out.println(test_imageview);
-                System.out.println(i);
+                XCApp.i(test_imageview);
+                XCApp.i(i);
 
                 System.gc();
                 System.gc();
 
-                System.out.println(fragment.toString());
-                System.out.println(fragment.getActivity());
+                XCApp.i(fragment.toString());
+                XCApp.i(fragment.getActivity());
 
                 XCApp.getBase_handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        System.out.println("handler --" + test_imageview); // 不为空
-                        System.out.println("handler --" + i);// 不为空
+                        XCApp.i("handler --" + test_imageview); // 不为空
+                        XCApp.i("handler --" + i);// 不为空
 
-                        System.out.println("handler --" + fragment.toString()); // 不为空
-                        System.out.println("handler --" + fragment.getActivity()); // 空
+                        XCApp.i("handler --" + fragment.toString()); // 不为空
+                        XCApp.i("handler --" + fragment.getActivity()); // 空
                     }
                 }, 10000);
 
@@ -71,6 +71,6 @@ public class LinePointActivityGC extends QlkActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        System.out.println("onDestroy()");
+        XCApp.i(this+"--onDestroy()");
     }
 }
