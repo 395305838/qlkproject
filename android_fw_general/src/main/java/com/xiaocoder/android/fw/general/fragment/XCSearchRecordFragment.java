@@ -122,9 +122,15 @@ public class XCSearchRecordFragment extends XCBaseFragment implements AdapterVie
         }
     }
 
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        update();
+//    }
+
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onResume() {
+        super.onResume();
         update();
     }
 

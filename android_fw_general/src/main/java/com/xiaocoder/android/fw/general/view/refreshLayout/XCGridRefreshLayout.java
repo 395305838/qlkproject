@@ -12,7 +12,7 @@ import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
  * Created by xiaocoder on 2015/10/9.
  * version: 1.0
  * description: 封装了上下拉 ， 分页 ，无数据背景
- *
+ * <p/>
  * xml可配置autorefresh属性
  */
 public class XCGridRefreshLayout extends XCRefreshLayout {
@@ -44,6 +44,6 @@ public class XCGridRefreshLayout extends XCRefreshLayout {
     @Override
     public void initXCRefreshLayoutParams() {
         super.initXCRefreshLayoutParams();
-        mPtrRefreshLayout.setEnabledNextPtrAtOnce(true);
+        // mPtrRefreshLayout.setEnabledNextPtrAtOnce(true);
     }
 }
