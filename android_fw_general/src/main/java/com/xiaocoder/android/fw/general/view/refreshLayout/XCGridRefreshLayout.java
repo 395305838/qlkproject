@@ -40,4 +40,10 @@ public class XCGridRefreshLayout extends XCRefreshLayout {
         mPtrRefreshLayout.setHeaderView((PtrClassicDefaultHeader) mPtrClassicHeader);
         mPtrRefreshLayout.addPtrUIHandler(mPtrClassicHeader);
     }
+
+    @Override
+    public void initXCRefreshLayoutParams() {
+        super.initXCRefreshLayoutParams();
+        mPtrRefreshLayout.setEnabledNextPtrAtOnce(true);
+    }
 }

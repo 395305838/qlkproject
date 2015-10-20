@@ -324,7 +324,7 @@ public class XCAsynImageLoader {
 					bitmap = BitmapFactory.decodeByteArray(data, 0,
 							data.length, options);
 				} catch (Exception e) {
-					XCApp.e(context, "--XCAsynImageLoader--LoadLocalPictureRunnable()", e);
+					XCApp.e(context, "--XCHttpImageLoader--LocalPictureRunnable()", e);
 					e.printStackTrace();
 					System.gc();
 					handler.post(new Runnable() {
@@ -476,7 +476,7 @@ public class XCAsynImageLoader {
 						bitmap = BitmapFactory.decodeByteArray(data, 0,
 								data.length, options);
 					} catch (Exception e) {
-						XCApp.e(context, "--XCAsynImageLoader--LoadNetPictureRunnable", e);
+						XCApp.e(context, "--XCHttpImageLoader--NetPictureRunnable", e);
 						e.printStackTrace();
 						System.gc();
 						handler.post(new Runnable() {
@@ -627,7 +627,7 @@ public class XCAsynImageLoader {
 		try {
 			threadservice.shutdown();
 		} catch (Exception e) {
-			XCApp.e(context, "--XCAsynImageLoader--closeThreadPool()", e);
+			XCApp.e(context, "--XCHttpImageLoader--closeThreadPool()", e);
 		}
 		threadservice = null;
 	}
