@@ -63,6 +63,11 @@ public class XCHttpSend {
         return client;
     }
 
+    public enum HttpType {
+        GET, POST
+    }
+
+
     /**
      * 当isAllowConcurrent为true时：只有当前请求返回了，调用该方法后，才可以继续下一个请求，
      */
@@ -75,32 +80,8 @@ public class XCHttpSend {
      */
     public void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
 
-        RequestParams params = new RequestParams();
+        send(HttpType.GET, needSecret, isAllowConcurrent, isShowDialog, context, urlString, map, res);
 
-        for (Map.Entry<String, Object> item : map.entrySet()) {
-            String key = item.getKey();
-            Object value = item.getValue();
-            params.put(key, value);
-        }
-
-        XCApp.i(XCConfig.TAG_HTTP, params.toString());
-        if (isAllowConcurrent || !isNeting) {
-            isNeting = true;
-            XCApp.i(XCConfig.TAG_HTTP, urlString + "------>get http url");
-            res.setContext(context);
-            res.yourCompanySecret(params, client, needSecret);
-            if (isShowDialog) {
-                res.showHttpDialog();
-            }
-
-            if (res instanceof AsyncHttpResponseHandler) {
-                client.get(urlString, params, (AsyncHttpResponseHandler) res);
-            } else {
-                throw new RuntimeException("XCHttpAsyn中的Handler类型不匹配");
-            }
-        } else {
-            XCApp.e(urlString+ "--该请求无效，前一个请求还未返回");
-        }
     }
 
     /**
@@ -108,6 +89,11 @@ public class XCHttpSend {
      */
     public void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
 
+        send(HttpType.POST, needSecret, isAllowConcurrent, isShowDialog, context, urlString, map, res);
+
+    }
+
+    private void send(HttpType type, boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
         RequestParams params = new RequestParams();
 
         for (Map.Entry<String, Object> item : map.entrySet()) {
@@ -119,7 +105,6 @@ public class XCHttpSend {
         XCApp.i(XCConfig.TAG_HTTP, params.toString());
         if (isAllowConcurrent || !isNeting) {
             isNeting = true;
-            XCApp.i(XCConfig.TAG_HTTP, urlString + "------>post http url");
             res.setContext(context);
             res.yourCompanySecret(params, client, needSecret);
             if (isShowDialog) {
@@ -127,7 +112,13 @@ public class XCHttpSend {
             }
 
             if (res instanceof AsyncHttpResponseHandler) {
-                client.post(urlString, params, (AsyncHttpResponseHandler) res);
+                if (type == HttpType.GET) {
+                    XCApp.i(XCConfig.TAG_HTTP, urlString + "------>get http url");
+                    client.get(urlString, params, (AsyncHttpResponseHandler) res);
+                } else if (type == HttpType.POST) {
+                    XCApp.i(XCConfig.TAG_HTTP, urlString + "------>post http url");
+                    client.post(urlString, params, (AsyncHttpResponseHandler) res);
+                }
             } else {
                 throw new RuntimeException("XCHttpAsyn中的Handler类型不匹配");
             }
