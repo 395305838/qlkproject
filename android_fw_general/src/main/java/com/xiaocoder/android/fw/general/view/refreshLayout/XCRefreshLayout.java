@@ -18,6 +18,7 @@ import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.helper.XCScrollListener;
 import com.xiaocoder.android.fw.general.util.UtilString;
+import com.xiaocoder.android.fw.general.view.refreshLayout.IRefreshHandler.XCIRefreshHandler;
 import com.xiaocoder.android_fw_general.R;
 
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
      * 一进入页面是否自动加载
      */
     private boolean autoRefresh;
-    private XCRefreshHandler mRefreshHandler;
+    private XCIRefreshHandler mRefreshHandler;
     /**
      * 数据为0的背景
      */
@@ -147,7 +148,7 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
         base_zero_imageview.setOnClickListener(this);
     }
 
-    public void setHandler(XCRefreshHandler refreshHandler) {
+    public void setHandler(XCIRefreshHandler refreshHandler) {
         this.mRefreshHandler = refreshHandler;
 
         registerRefreshHandler();

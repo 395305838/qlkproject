@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.view.refreshLayout.XCListRefreshLayout;
-import com.xiaocoder.android.fw.general.view.refreshLayout.XCRefreshHandler;
+import com.xiaocoder.android.fw.general.view.refreshLayout.IRefreshHandler.XCIRefreshHandler;
 import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.middle.parse.QlkResponseHandlerModel;
 import com.xiaocoder.test.R;
@@ -78,7 +78,7 @@ public class ListRefreshActivity extends QlkActivity {
 
     @Override
     public void listeners() {
-        xcListRefreshLayout.setHandler(new XCRefreshHandler() {
+        xcListRefreshLayout.setHandler(new XCIRefreshHandler() {
             @Override
             public boolean canRefresh() {
                 return true;
