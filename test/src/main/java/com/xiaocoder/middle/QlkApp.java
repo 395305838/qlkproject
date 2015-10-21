@@ -11,12 +11,15 @@ import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.exception.XCIException2Server;
 import com.xiaocoder.android.fw.general.exception.XLCrashHandler;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
+import com.xiaocoder.android.fw.general.imageloader.JSImageLoader;
 import com.xiaocoder.android.fw.general.imageloader.XCIImageLoader;
+import com.xiaocoder.android.fw.general.imageloader.XCImageLoader;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.io.XCLog;
 import com.xiaocoder.android.fw.general.io.XCSP;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
+import com.xiaocoder.test.R;
 
 /**
  * Created by xiaocoder on 2015/7/14.
@@ -50,7 +53,7 @@ public class QlkApp extends XCApp {
         XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CACHE_DIR);
 
         // 图片加载的初始化
-        initImageLoader();
+        initImageLoader2();
 
         // 是否开启异常日志捕获，以及异常日志的存储路径等
         initCrash();
@@ -78,6 +81,17 @@ public class QlkApp extends XCApp {
                 imageloader.displayImage(url, imageview, QlkConfig.display_image_options);
             }
         });
+    }
+
+    private void initImageLoader2() {
+        setBase_imageloader(new XCImageLoader(getApplicationContext(),
+                XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CACHE_DIR),
+                1000,
+                R.drawable.image_a));
+    }
+
+    private void initImageLoader3() {
+        setBase_imageloader(new JSImageLoader(R.drawable.image_a));
     }
 
     private void initCrash() {

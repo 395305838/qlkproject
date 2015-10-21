@@ -41,6 +41,7 @@ import com.xiaocoder.test.http2.ListActivity;
 import com.xiaocoder.test.http2.GridRefreshActivity;
 import com.xiaocoder.test.http2.ListMaterialActivity;
 import com.xiaocoder.test.http2.ListRefreshActivity;
+import com.xiaocoder.test.imageloader.JSImageLoaderActivity;
 import com.xiaocoder.test.line_point.LinePointActivityGC;
 import com.xiaocoder.test.pop.PopActivity;
 import com.xiaocoder.test.scan.CodeActivity;
@@ -102,6 +103,7 @@ public class MainActivity extends QlkMainActivity {
     Button test_list_material_layout;
     Button test_grid_material_layout;
     Button pickerView;
+    Button xc_id_imageloader;
 
 
     @Override
@@ -255,6 +257,8 @@ public class MainActivity extends QlkMainActivity {
 
         pickerView = getViewById(R.id.test_pickerView);
 
+        xc_id_imageloader = getViewById(R.id.xc_id_imageloader);
+
 
     }
 
@@ -300,6 +304,7 @@ public class MainActivity extends QlkMainActivity {
         test_list_refresh_layout.setOnClickListener(this);
         test_list_material_layout.setOnClickListener(this);
         pickerView.setOnClickListener(this);
+        xc_id_imageloader.setOnClickListener(this);
 
     }
 
@@ -414,6 +419,8 @@ public class MainActivity extends QlkMainActivity {
             UtilActivity.myStartActivity(this, ListMaterialActivity.class);
         } else if (id == R.id.test_pickerView) {
             UtilActivity.myStartActivity(this, PickerViewActiviy.class);
+        } else if (id == R.id.xc_id_imageloader) {
+            UtilActivity.myStartActivity(this, JSImageLoaderActivity.class);
         }
 
     }

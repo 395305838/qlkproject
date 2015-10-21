@@ -701,6 +701,10 @@
             android:name=".view.PickerViewActiviy"
             android:label="@string/title_activity_picker_view_activiy" >
         </activity>
+        <activity
+            android:name=".imageloader.JSImageLoaderActivity"
+            android:label="@string/title_activity_jsimage_loader" >
+        </activity>
     </application>
 
 </manifest>
