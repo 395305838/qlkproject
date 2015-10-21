@@ -17,8 +17,6 @@ import com.xiaocoder.android.fw.general.imageloader.XCImageLoader;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.io.XCLog;
 import com.xiaocoder.android.fw.general.io.XCSP;
-import com.xiaocoder.android.fw.general.util.UtilScreen;
-import com.xiaocoder.android.fw.general.util.UtilSystem;
 import com.xiaocoder.test.R;
 
 /**
@@ -53,7 +51,7 @@ public class QlkApp extends XCApp {
         XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CACHE_DIR);
 
         // 图片加载的初始化
-        initImageLoader2();
+        initImageLoader();
 
         // 是否开启异常日志捕获，以及异常日志的存储路径等
         initCrash();
@@ -108,18 +106,6 @@ public class QlkApp extends XCApp {
 
             }
         });
-
-    }
-
-    private void simpleDeviceInfo() {
-        i(UtilSystem.getDeviceId(getApplicationContext()) + "--deviceId , "
-                + UtilSystem.getVersionCode(getApplicationContext())
-                + "--versionCode , " + UtilSystem.getVersionName(getApplicationContext()) + "--versionName , "
-                + UtilScreen.getScreenHeightPx(getApplicationContext()) + "--screenHeightPx , "
-                + UtilScreen.getScreenWidthPx(getApplicationContext()) + "--screenWidthPx , "
-                + UtilScreen.getDensity(getApplicationContext()) + "--density , "
-                + UtilScreen.getScreenHeightDP(getApplicationContext()) + "--screenHeightDP , "
-                + UtilScreen.getScreenWidthPx(getApplicationContext()) + "--screenWidthDP");
     }
 
     @Override

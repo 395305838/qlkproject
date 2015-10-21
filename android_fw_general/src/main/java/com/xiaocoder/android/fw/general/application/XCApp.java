@@ -13,6 +13,8 @@ import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 import com.xiaocoder.android.fw.general.imageloader.XCIImageLoader;
 import com.xiaocoder.android.fw.general.io.XCLog;
 import com.xiaocoder.android.fw.general.io.XCSP;
+import com.xiaocoder.android.fw.general.util.UtilScreen;
+import com.xiaocoder.android.fw.general.util.UtilSystem;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -158,6 +160,17 @@ public class XCApp extends Application {
     public void appExit() {
         finishAllActivity();
         System.exit(0);
+    }
+
+    public void simpleDeviceInfo() {
+        i(UtilSystem.getDeviceId(getApplicationContext()) + "--deviceId , "
+                + UtilSystem.getVersionCode(getApplicationContext())
+                + "--versionCode , " + UtilSystem.getVersionName(getApplicationContext()) + "--versionName , "
+                + UtilScreen.getScreenHeightPx(getApplicationContext()) + "--screenHeightPx , "
+                + UtilScreen.getScreenWidthPx(getApplicationContext()) + "--screenWidthPx , "
+                + UtilScreen.getDensity(getApplicationContext()) + "--density , "
+                + UtilScreen.getScreenHeightDP(getApplicationContext()) + "--screenHeightDP , "
+                + UtilScreen.getScreenWidthPx(getApplicationContext()) + "--screenWidthDP");
     }
 
     public static XCLog getBase_log() {
