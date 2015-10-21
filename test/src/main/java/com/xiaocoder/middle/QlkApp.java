@@ -1,10 +1,7 @@
 package com.xiaocoder.middle;
 
 import android.content.Context;
-import android.widget.ImageView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.umeng.analytics.MobclickAgent;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
@@ -12,7 +9,7 @@ import com.xiaocoder.android.fw.general.exception.XCIException2Server;
 import com.xiaocoder.android.fw.general.exception.XLCrashHandler;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
 import com.xiaocoder.android.fw.general.imageloader.JSImageLoader;
-import com.xiaocoder.android.fw.general.imageloader.XCIImageLoader;
+import com.xiaocoder.android.fw.general.imageloader.XCAsynLoader;
 import com.xiaocoder.android.fw.general.imageloader.XCImageLoader;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.io.XCLog;
@@ -62,29 +59,15 @@ public class QlkApp extends XCApp {
     }
 
     private void initImageLoader() {
-        setBase_imageloader(new XCIImageLoader() {
-            ImageLoader imageloader = QlkConfig.getImageloader(getApplicationContext());
 
-            @Override
-            public void display(String url, ImageView imageview, Object... obj) {
-                // TODO 指定配置,判断参数
-                if (obj[0] instanceof DisplayImageOptions) {
-                    imageloader.displayImage(url, imageview, (DisplayImageOptions) obj[0]);
-                }
-            }
-
-            @Override
-            public void display(String url, ImageView imageview) {
-                // 默认配置
-                imageloader.displayImage(url, imageview, QlkConfig.display_image_options);
-            }
-        });
+        setBase_imageloader(new XCAsynLoader(QlkConfig.getImageloader(getApplicationContext()),
+                QlkConfig.default_image_options
+        ));
     }
 
     private void initImageLoader2() {
         setBase_imageloader(new XCImageLoader(getApplicationContext(),
                 XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CACHE_DIR),
-                1000,
                 R.drawable.image_a));
     }
 

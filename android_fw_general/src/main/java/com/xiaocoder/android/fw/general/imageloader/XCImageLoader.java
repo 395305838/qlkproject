@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
+import com.xiaocoder.android.fw.general.imageloader.IImageLoader.XCIImageLoader;
 import com.xiaocoder.android.fw.general.io.XCIO;
 
 import java.io.File;
@@ -27,9 +28,9 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 
 /**
- * 1构建该类的对象后,不要放在子线程中,因为该类内部维护了一个主线程的handler
- * 2 adapter的getview中,在用imageloader加载之前,先设置一张默认的图片如holder.imageview.setImageResource
- * (R.drawable.ic_launcher),因为考虑到没缓存的情况下的效果
+ * Created by xiaocoder on 2015/10/21.
+ * version: 1.2.0
+ * description:
  */
 public class XCImageLoader implements XCIImageLoader {
     public static String TAG = "XCImageLoader";
@@ -80,10 +81,9 @@ public class XCImageLoader implements XCIImageLoader {
     /**
      * @param context
      * @param cacheToLocalDirectory 本地缓存目录file
-     * @param cacheToLocalNum       本地缓存文件夹的图片数量
      */
 
-    public XCImageLoader(Context context, File cacheToLocalDirectory, int cacheToLocalNum, int defaultImageId) {
+    public XCImageLoader(Context context, File cacheToLocalDirectory, int defaultImageId) {
         super();
         if (context == null) {
             return;
@@ -91,7 +91,7 @@ public class XCImageLoader implements XCIImageLoader {
 
         if (cacheToLocalDirectory != null && cacheToLocalDirectory.exists() && cacheToLocalNum > 0) {
             this.cacheToLocalDirectory = cacheToLocalDirectory;
-            this.cacheToLocalNum = cacheToLocalNum;
+            this.cacheToLocalNum = 500;
             this.directoryFiles = new ArrayList<File>();
         } else {
             throw new RuntimeException(this + "---未设置图片缓存目录");

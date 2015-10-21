@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.imageloader;
+package com.xiaocoder.android.fw.general.imageloader.IImageLoader;
 
 import android.widget.ImageView;
 

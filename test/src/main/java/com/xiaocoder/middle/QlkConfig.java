@@ -204,7 +204,7 @@ public class QlkConfig {
     /**
      * 默认图片加载option的配置
      */
-    public static DisplayImageOptions display_image_options = new DisplayImageOptions.Builder()
+    public static DisplayImageOptions default_image_options = new DisplayImageOptions.Builder()
 
             .showImageOnLoading(R.drawable.ic_launcher) // 设置图片在下载期间显示的图片
 
