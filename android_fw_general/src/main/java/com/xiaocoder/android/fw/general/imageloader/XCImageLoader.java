@@ -32,7 +32,7 @@ import java.util.concurrent.ExecutorService;
  * (R.drawable.ic_launcher),因为考虑到没缓存的情况下的效果
  */
 public class XCImageLoader implements XCIImageLoader {
-
+    public static String TAG = "XCImageLoader";
     private Context context;
     private Handler handler;
     /**
@@ -158,15 +158,15 @@ public class XCImageLoader implements XCIImageLoader {
          */
         if (isCacheToMemory) {
             if (bitmaps.containsKey(url)) {
-                XCApp.i(url + "----------------to get bitmap from memory");
+                XCApp.i(TAG, url + "---to get bitmap from memory");
                 Bitmap bitmap = bitmaps.get(url);
                 if (bitmap != null && !bitmap.isRecycled()) {
                     imageview.setImageBitmap(bitmap);
-                    XCApp.i(url + "---" + "get bitmap form memory success");
+                    XCApp.i(TAG, url + "---get bitmap form memory success");
                     return;
                 }
             }
-            XCApp.i(url + "----------------get bitmap from memory faile ----bitmaps contains url ?--" + bitmaps.containsKey(url));
+            XCApp.i(TAG, url + "---get bitmap from memory faile ----bitmaps contains url is " + bitmaps.containsKey(url));
         }
 
         /**
@@ -175,17 +175,17 @@ public class XCImageLoader implements XCIImageLoader {
         // File file = new File(cacheToLocalDirectory, EncryptUtil.MD5(url)+ url.substring(url.lastIndexOf(".")));
         File file = new File(cacheToLocalDirectory, url.substring(url.lastIndexOf("/") + 1));
         if (file.exists()) {
-            XCApp.i(url + "----------------to get bitmap from local file");
+            XCApp.i(TAG, url + "---to get bitmap from local cache file");
             threadservice.execute(new LocalPictureRunnable(imageview, file, url));
             return;
         }
-        XCApp.i("local file not exists");
+        XCApp.i(TAG, url + "---local cache file not exists");
 
         if (url.startsWith(HTTP_HEAD)) {
             /**
              * 如果本地缓存没有,就去网络下载
              */
-            XCApp.i(url + "----------------to get bitmap from net");
+            XCApp.i(TAG, url + "---to get bitmap from net");
             // 这里要用trim(),因为如果服务端是用println()发过来的,那么最后的url为url+"/r/n"
             threadservice.execute(new NetPictureRunnable(imageview, url.trim()));
         } else {
@@ -195,8 +195,9 @@ public class XCImageLoader implements XCIImageLoader {
             File localFile = new File(url);
             if (localFile.exists()) {
                 threadservice.execute(new LocalPictureRunnable(imageview, file, url));
+                XCApp.i(TAG, url + "---to get bitmap from local file");
             } else {
-                XCApp.e(this + "---传入的图片路径有误");
+                XCApp.e(this + "---" + url + "---传入的图片路径有误");
             }
         }
     }
@@ -232,16 +233,16 @@ public class XCImageLoader implements XCIImageLoader {
                     BitmapFactory.decodeByteArray(data, 0, data.length, options);
                     // Bitmap.Config.ALPHA_8
                     // Bitmap.Config.ARGB_4444都不相同,这里的*4写固定了,按理是应该判断下的
-                    XCApp.i("local file size------ " + data.length + "--local file size of bitmap------ "
+                    XCApp.i(TAG, url + "---local file size--- " + data.length + "---local file size of bitmap------ "
                             + options.outWidth * options.outHeight * 4);
                     int ratio = (int) Math.round(Math.sqrt(options.outWidth * options.outHeight * 4
                             / image_size_limit_by_byte));
                     if (ratio < 1) {
                         options.inSampleSize = 1;// 保持原有大小
-                        XCApp.i(1 + "----local file ---ratio");
+                        XCApp.i(TAG, url + "---options.inSampleSize---" + 1);
                     } else {
                         options.inSampleSize = ratio;
-                        XCApp.i(ratio + "-----local file ---ratio");
+                        XCApp.i(TAG, url + "---options.inSampleSize---" + ratio);
                     }
                     options.inJustDecodeBounds = false;
                     // 真实压缩图片
@@ -253,7 +254,7 @@ public class XCImageLoader implements XCIImageLoader {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            XCApp.i("oom , so set the default_bitmap");
+                            XCApp.i(TAG, url + "---oom , so set the default_bitmap");
                             imageview.setImageResource(defaultImageId);
                         }
                     });
@@ -268,18 +269,22 @@ public class XCImageLoader implements XCIImageLoader {
                     }
                 }
 
-                if (bitmap == null && url.startsWith(HTTP_HEAD)) {
-                    // 有一种情况是,之前从网络获取的图片写到本地的时候出错了,图片无法解析,所以为null
-                    threadservice.execute(new NetPictureRunnable(imageview, url.trim()));
+                if (bitmap == null) {
+                    if (url.startsWith(HTTP_HEAD)) {
+                        // 有一种情况是,之前从网络获取的图片写到本地的时候出错了,图片无法解析,所以为null
+                        threadservice.execute(new NetPictureRunnable(imageview, url.trim()));
+                    } else {
+                        XCApp.e(url + "---bitmap is null");
+                    }
                     return;
                 }
 
                 // 先检查内存中缓存的数量是否超过了规定,如果超过了规定,则删除最前面的1/5 -->这里用锁来判断,必须的
-                XCApp.i(bitmaps.size() + "----bitmaps.size()");
+                XCApp.i(TAG, bitmaps.size() + "---bitmaps.size()");
                 if (isCacheToMemory && bitmaps.size() >= cacheToMemoryNum) {
                     synchronized (lock) {
                         if (bitmaps.size() >= cacheToMemoryNum) {
-                            XCApp.i("bitmaps is full ,now delete 20% ");
+                            XCApp.i(TAG, "bitmaps is full ,now delete 20% ");
                             int delete = cacheToMemoryNum / 5;
                             for (Iterator<Map.Entry<String, Bitmap>> it = bitmaps.entrySet().iterator(); it.hasNext(); ) {
                                 if (delete != 0) {
@@ -288,7 +293,6 @@ public class XCImageLoader implements XCIImageLoader {
                                     delete--;
                                 } else {
                                     // System.gc();
-                                    // //这个gc很耗性能,而且会在url有softreference引用的时候把softReference销毁掉
                                     break;
                                 }
                             }
@@ -299,7 +303,7 @@ public class XCImageLoader implements XCIImageLoader {
                 if (bitmap != null && isCacheToMemory && !bitmaps.containsKey(url)) {
                     synchronized (lock) {
                         bitmaps.put(url, bitmap);
-                        XCApp.i("add_to_memory", url + "--have added to bitmaps-------now the size fo bitmaps is "
+                        XCApp.i(TAG, "add_to_memory--" + url + "--have added to bitmaps-------now the size fo bitmaps is "
                                 + bitmaps.size());
                     }
                 }
@@ -307,10 +311,12 @@ public class XCImageLoader implements XCIImageLoader {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        if (!bitmap.isRecycled()) {
+                        if (bitmap != null && !bitmap.isRecycled()) {
                             imageview.setImageBitmap(bitmap);
+                            XCApp.i(TAG, url + "---set bitmap from local file success");
+                        } else {
+                            XCApp.e(url + "bitmap is null , fail");
                         }
-                        XCApp.i(url + "----------have got from local file");
                     }
                 });
             } catch (FileNotFoundException e) {
@@ -361,35 +367,35 @@ public class XCImageLoader implements XCIImageLoader {
                     // -->注意这里用data.length获取的数据不是图片的真实大小,可能是服务端那边也经过压缩了的
                     try {
                         BitmapFactory.decodeByteArray(data, 0, data.length, options);
-                        XCApp.i("net file size------ " + data.length + "--net file size of bitmap------ "
+                        XCApp.i(TAG, url + "---net file size--- " + data.length + "---net file size of bitmap------ "
                                 + options.outWidth * options.outHeight * 4);
-                        // XCApp.i(options.inDensity+"------------options.inDensity");
-                        // XCApp.i(options.inScreenDensity+"------------options.inScreenDensity");
-                        // XCApp.i(options.outWidth+"------------options.outWidth");
-                        // XCApp.i(options.outHeight+"------------options.outHeight");
-                        // XCApp.i(options.inTargetDensity+"------------options.inTargetDensity");
-                        // XCApp.i(options.inDensity+"------------options.inDensity");
-                        // XCApp.i(options.inPreferredConfig+"------------options.inPreferredConfig");
+                        // XCApp.i(TAG,options.inDensity+"------------options.inDensity");
+                        // XCApp.i(TAG,options.inScreenDensity+"------------options.inScreenDensity");
+                        // XCApp.i(TAG,options.outWidth+"------------options.outWidth");
+                        // XCApp.i(TAG,options.outHeight+"------------options.outHeight");
+                        // XCApp.i(TAG,options.inTargetDensity+"------------options.inTargetDensity");
+                        // XCApp.i(TAG,options.inDensity+"------------options.inDensity");
+                        // XCApp.i(TAG,options.inPreferredConfig+"------------options.inPreferredConfig");
                         int ratio = (int) Math.round(Math.sqrt(options.outWidth * options.outHeight * 4
                                 / image_size_limit_by_byte));
                         if (ratio < 1) {
                             options.inSampleSize = 1;// 保持原有大小
-                            XCApp.i(1 + "net file ---ratio");
+                            XCApp.i(TAG, url + "---options.inSampleSize---" + 1);
                         } else {
                             options.inSampleSize = ratio;
-                            XCApp.i(ratio + "net file---ratio");
+                            XCApp.i(TAG, url + "---options.inSampleSize---" + ratio);
                         }
                         options.inJustDecodeBounds = false;
                         // 真实压缩图片
                         bitmap = BitmapFactory.decodeByteArray(data, 0, data.length, options);
                     } catch (Exception e) {
-                        XCApp.e(context, "--XCImageLoader--NetPictureRunnable", e);
+                        XCApp.e(context, "---XCImageLoader--NetPictureRunnable", e);
                         e.printStackTrace();
                         System.gc();
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                XCApp.i("oom , so set the default_bitmap");
+                                XCApp.i(TAG, url + "---oom , so set the default_bitmap");
                                 imageview.setImageResource(defaultImageId);
                             }
                         });
@@ -405,13 +411,15 @@ public class XCImageLoader implements XCIImageLoader {
                     }
 
                     if (bitmap == null) {
+                        XCApp.e(url + "---bitmap is null");
                         return;
                     }
+
                     // 先检查内存中缓存的数量是否超过了规定,如果超过了规定,则删除最前面的1/5
                     if (isCacheToMemory && bitmaps.size() > cacheToMemoryNum) {
                         synchronized (lock) {
                             if (bitmaps.size() > cacheToMemoryNum) {
-                                XCApp.i("bitmaps is full ,now delete 20% ");
+                                XCApp.i(TAG, "bitmaps is full ,now delete 20% ");
                                 int delete = cacheToMemoryNum / 5;
                                 for (Iterator<Map.Entry<String, Bitmap>> it = bitmaps.entrySet().iterator(); it.hasNext(); ) {
                                     if (delete != 0) {
@@ -420,7 +428,6 @@ public class XCImageLoader implements XCIImageLoader {
                                         delete--;
                                     } else {
                                         // System.gc();
-                                        // //这个gc很耗性能,而且会在url有softreference引用的时候把softReference销毁掉
                                         break;
                                     }
                                 }
@@ -433,12 +440,16 @@ public class XCImageLoader implements XCIImageLoader {
                             bitmaps.put(url, bitmap);
                         }
                     }
-                    // 设置bitmap
+
+                    // 设置图片
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            if (!bitmap.isRecycled()) {
+                            if (bitmap != null && !bitmap.isRecycled()) {
                                 imageview.setImageBitmap(bitmap);
+                                XCApp.i(TAG, url + "---set bitmap from net success");
+                            } else {
+                                XCApp.e(url + "bitmap is null , fail");
                             }
                         }
                     });
@@ -448,7 +459,7 @@ public class XCImageLoader implements XCIImageLoader {
                         // String filename = EncryptUtil.MD5(url) +url.substring(url.lastIndexOf("."));
                         String filename = url.substring(url.lastIndexOf("/") + 1);
                         File file = new File(cacheToLocalDirectory, filename);
-                        if (!bitmap.isRecycled()) {
+                        if (bitmap != null && !bitmap.isRecycled()) {
                             FileOutputStream fos = new FileOutputStream(file);
                             bitmap.compress(CompressFormat.PNG, 100, fos); // 压缩的格式
                             // 100为原样,越小越不清楚,输出流
@@ -477,16 +488,6 @@ public class XCImageLoader implements XCIImageLoader {
                             }
                         }
                     }
-
-                    // 设置图片
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (!bitmap.isRecycled()) {
-                                imageview.setImageBitmap(bitmap);
-                            }
-                        }
-                    });
                 }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
