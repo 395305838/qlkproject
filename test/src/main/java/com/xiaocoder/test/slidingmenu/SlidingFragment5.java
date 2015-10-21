@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.xiaocoder.android.fw.general.base.XCBaseFragment;
+import com.xiaocoder.android.fw.general.application.XCBaseFragment;
 import com.xiaocoder.test.R;
 
 public class SlidingFragment5 extends XCBaseFragment {

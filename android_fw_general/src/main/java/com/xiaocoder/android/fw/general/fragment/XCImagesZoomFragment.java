@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCAdapterViewPagerRecyle;
-import com.xiaocoder.android.fw.general.base.XCBaseFragment;
+import com.xiaocoder.android.fw.general.application.XCBaseFragment;
 import com.xiaocoder.android.fw.general.view.XCZoomImageView;
 import com.xiaocoder.android_fw_general.R;
 

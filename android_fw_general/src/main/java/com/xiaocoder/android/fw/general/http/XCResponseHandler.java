@@ -6,7 +6,7 @@ import android.content.Context;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
+import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 import com.xiaocoder.android.fw.general.json.XCJsonParse;

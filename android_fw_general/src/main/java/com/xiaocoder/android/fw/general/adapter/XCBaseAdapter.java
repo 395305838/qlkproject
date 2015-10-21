@@ -1,13 +1,10 @@
-/**
- *
- */
 package com.xiaocoder.android.fw.general.adapter;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.BaseAdapter;
 
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
+import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;

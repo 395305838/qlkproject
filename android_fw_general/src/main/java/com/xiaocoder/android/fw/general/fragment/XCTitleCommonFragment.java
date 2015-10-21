@@ -15,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.xiaocoder.android.fw.general.base.XCBaseFragment;
+import com.xiaocoder.android.fw.general.application.XCBaseFragment;
 import com.xiaocoder.android_fw_general.R;
 
 /**

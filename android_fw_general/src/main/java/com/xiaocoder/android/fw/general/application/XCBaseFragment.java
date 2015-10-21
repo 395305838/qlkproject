@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.base;
+package com.xiaocoder.android.fw.general.application;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
+import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 
 import java.util.List;
 

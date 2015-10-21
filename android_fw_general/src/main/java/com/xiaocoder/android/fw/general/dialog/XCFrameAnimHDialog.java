@@ -22,9 +22,6 @@ public class XCFrameAnimHDialog extends XCBaseDialog {
         initDialog();
     }
 
-    /**
-     * 初始化分享dialog
-     */
     public void initDialog() {
 
         dialogLayout = (ViewGroup) dialogInflater.inflate(R.layout.xc_l_dialog_animation_h, null);

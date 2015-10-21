@@ -54,9 +54,6 @@ public class XCQueryDialog extends XCBaseDialog {
         initDialog(title_content, content, decide, isCanceledOnTouchOutside);
     }
 
-    /**
-     * 初始化分享dialog
-     */
     public void initDialog(String title_content, String content, String[] decide, boolean isCanceledOnTouchOutside) {
 
         dialogLayout = (ViewGroup) dialogInflater.inflate(R.layout.xc_l_dialog_query, null);

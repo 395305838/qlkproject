@@ -19,7 +19,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-import com.xiaocoder.android.fw.general.base.XCBaseFragment;
+import com.xiaocoder.android.fw.general.application.XCBaseFragment;
 import com.xiaocoder.android_fw_general.R;
 
 

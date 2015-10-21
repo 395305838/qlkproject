@@ -17,9 +17,6 @@ public class XCSystemVDialog extends XCBaseDialog {
         initDialog();
     }
 
-    /**
-     * 初始化分享dialog
-     */
     public void initDialog() {
         dialogLayout = (ViewGroup) dialogInflater.inflate(R.layout.xc_l_dialog_system_circle_v, null);
         setContentView(dialogLayout);

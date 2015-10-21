@@ -20,7 +20,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener2;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.base.XCBaseFragment;
+import com.xiaocoder.android.fw.general.application.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.android_fw_general.R;

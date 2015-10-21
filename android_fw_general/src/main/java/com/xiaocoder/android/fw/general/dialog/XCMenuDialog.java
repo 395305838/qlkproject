@@ -23,9 +23,6 @@ public class XCMenuDialog extends XCBaseDialog {
         initDialog(title, items);
     }
 
-    /**
-     * 初始化分享dialog
-     */
     public void initDialog(String title, String[] items) {
 
         dialogLayout = (ViewGroup) dialogInflater.inflate(R.layout.xc_l_dialog_items, null);

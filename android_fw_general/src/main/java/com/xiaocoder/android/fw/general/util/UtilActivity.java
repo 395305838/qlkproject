@@ -3,7 +3,7 @@ package com.xiaocoder.android.fw.general.util;
 import android.content.Intent;
 import android.os.Parcelable;
 
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
+import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 
 import java.io.Serializable;
 import java.util.ArrayList;

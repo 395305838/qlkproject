@@ -1,7 +1,7 @@
 package com.xiaocoder.middle;
 
 import com.umeng.analytics.MobclickAgent;
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
+import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 
 /**
  * Created by xiaocoder on 2015/7/15.

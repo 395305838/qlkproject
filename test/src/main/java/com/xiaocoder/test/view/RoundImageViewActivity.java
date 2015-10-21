@@ -3,7 +3,7 @@ package com.xiaocoder.test.view;
 import android.os.Bundle;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
+import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 import com.xiaocoder.android.fw.general.view.XCRoundedImageView;
 import com.xiaocoder.test.R;
 

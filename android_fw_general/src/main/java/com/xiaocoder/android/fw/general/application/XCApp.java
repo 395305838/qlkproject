@@ -6,7 +6,6 @@ import android.content.Context;
 import android.os.Handler;
 import android.widget.ImageView;
 
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
 import com.xiaocoder.android.fw.general.http.XCHttpSend;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;

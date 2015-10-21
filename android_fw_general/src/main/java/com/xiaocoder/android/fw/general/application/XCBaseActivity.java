@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.base;
+package com.xiaocoder.android.fw.general.application;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,7 +14,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
 import com.xiaocoder.android.fw.general.util.UtilInputMethod;
 import com.xiaocoder.android.fw.general.view.XCSwipeBackLayout;

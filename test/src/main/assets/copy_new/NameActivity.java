@@ -2,9 +2,7 @@ package copy_new;
 
 import android.os.Bundle;
 
-import com.xiaocoder.android.fw.general.base.XCBaseActivity;
-import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
-import com.xiaocoder.android.fw.general.fragment.XCWebViewFragment;
+import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 import com.xiaocoder.android.test.R;
 
 /*

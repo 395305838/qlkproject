@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.base.XCBaseFragment;
+import com.xiaocoder.android.fw.general.application.XCBaseFragment;
 import com.xiaocoder.android.fw.general.db.XCDbHelper;
 import com.xiaocoder.android.fw.general.db.XCSearchDao;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;

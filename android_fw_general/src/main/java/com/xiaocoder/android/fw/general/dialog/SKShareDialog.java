@@ -17,9 +17,6 @@ public class SKShareDialog extends XCBaseDialog {
         initDialog();
     }
 
-    /**
-     * 初始化分享dialog
-     */
     public void initDialog() {
 
         dialogLayout = (ViewGroup) dialogInflater.inflate(R.layout.sk_l_dialog_share, null);
