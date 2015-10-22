@@ -7,7 +7,7 @@ import com.xiaocoder.middle.QlkConfig;
  */
 public class QlkDb {
 
-    // 搜索记录的数据库
+    // 搜索记录的数据库名字
     public static String DB_SEARCH_RECODER = QlkConfig.APP_ROOT + "_search_recoder.db";
     // 搜索记录数据库的版本号
     public static int DB_VERSION_SEARCH_RECODER = 1;

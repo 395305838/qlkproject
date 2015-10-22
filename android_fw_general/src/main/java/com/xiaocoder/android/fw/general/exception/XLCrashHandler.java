@@ -35,9 +35,6 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
 
     private XCApp application;
 
-    // 系统默认的 UncaughtException 处理类
-    private UncaughtExceptionHandler mDefaultHandler;
-
     // 用来存储设备信息和异常信息
     private Map<String, String> infos = new HashMap<String, String>();
 
@@ -74,9 +71,6 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
 
             mIsShowExceptionActivity = isShowExceptionActivity;
             mCrashDir = crash_dir;
-
-            // 获取系统默认的 UncaughtException 处理器
-            mDefaultHandler = Thread.getDefaultUncaughtExceptionHandler();
 
             // 设置该 CrashHandler 为程序的默认处理器
             Thread.setDefaultUncaughtExceptionHandler(this);

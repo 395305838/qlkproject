@@ -705,6 +705,10 @@
             android:name=".imageloader.JSImageLoaderActivity"
             android:label="@string/title_activity_jsimage_loader" >
         </activity>
+        <activity
+            android:name=".excpetion.ExceptionActivity"
+            android:label="@string/title_activity_exception" >
+        </activity>
     </application>
 
 </manifest>

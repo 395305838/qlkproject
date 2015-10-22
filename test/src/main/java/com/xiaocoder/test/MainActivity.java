@@ -25,6 +25,7 @@ import com.xiaocoder.test.dialogs.CircleProgressBarActivity;
 import com.xiaocoder.test.dialogs.DialogActivity3;
 import com.xiaocoder.test.dialogs.LineProgressBarActivity;
 import com.xiaocoder.test.dialogs.ProgressViewActivity;
+import com.xiaocoder.test.excpetion.ExceptionActivity;
 import com.xiaocoder.test.fragment.CamareActivity;
 import com.xiaocoder.test.fragment.ImagesZoomActivity;
 import com.xiaocoder.test.fragment.MoveBlockActivity;
@@ -104,6 +105,7 @@ public class MainActivity extends QlkMainActivity {
     Button test_grid_material_layout;
     Button pickerView;
     Button xc_id_imageloader;
+    Button xc_id_exception;
 
 
     @Override
@@ -155,20 +157,22 @@ public class MainActivity extends QlkMainActivity {
         // });
     }
 
+    int count = 0;
+
     private void timer() {
-        XCTimeHelper timeHelper = new XCTimeHelper(1000000, new CustomTimer() {
+        XCTimeHelper timeHelper = new XCTimeHelper(10000, new CustomTimer() {
 
             @Override
             public void onTick(long millisUntilFinished) {
-
+                XCApp.i(count++);
             }
 
             @Override
             public void onFinish() {
-
+                XCApp.i(XCConfig.TAG_TEST,count + "--finish");
             }
         });
-        // timeHelper.start();
+        timeHelper.start();
     }
 
     @Override
@@ -259,6 +263,8 @@ public class MainActivity extends QlkMainActivity {
 
         xc_id_imageloader = getViewById(R.id.xc_id_imageloader);
 
+        xc_id_exception = getViewById(R.id.xc_id_exception);
+
 
     }
 
@@ -305,6 +311,7 @@ public class MainActivity extends QlkMainActivity {
         test_list_material_layout.setOnClickListener(this);
         pickerView.setOnClickListener(this);
         xc_id_imageloader.setOnClickListener(this);
+        xc_id_exception.setOnClickListener(this);
 
     }
 
@@ -421,6 +428,8 @@ public class MainActivity extends QlkMainActivity {
             UtilActivity.myStartActivity(this, PickerViewActiviy.class);
         } else if (id == R.id.xc_id_imageloader) {
             UtilActivity.myStartActivity(this, JSImageLoaderActivity.class);
+        } else if(id == R.id.xc_id_exception){
+            UtilActivity.myStartActivity(this, ExceptionActivity.class);
         }
 
     }
