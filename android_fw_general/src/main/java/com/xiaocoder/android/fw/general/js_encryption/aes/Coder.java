@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.encryption.aes;
+package com.xiaocoder.android.fw.general.js_encryption.aes;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;

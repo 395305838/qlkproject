@@ -709,6 +709,10 @@
             android:name=".excpetion.ExceptionActivity"
             android:label="@string/title_activity_exception" >
         </activity>
+        <activity
+            android:name=".timer.TimerActivity"
+            android:label="@string/title_activity_timer" >
+        </activity>
     </application>
 
 </manifest>

@@ -34,5 +34,6 @@
     <string name="title_activity_picker_view_activiy">PickerViewActiviy</string>
     <string name="title_activity_jsimage_loader">JSImageLoaderActivity</string>
     <string name="title_activity_exception">ExceptionActivity</string>
+    <string name="title_activity_timer">TimerActivity</string>
 
 </resources>

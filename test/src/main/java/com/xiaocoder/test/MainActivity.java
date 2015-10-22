@@ -8,8 +8,6 @@ import android.widget.Button;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.helper.XCTimeHelper;
-import com.xiaocoder.android.fw.general.helper.XCTimeHelper.CustomTimer;
 import com.xiaocoder.android.fw.general.io.XCIO;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow;
@@ -38,8 +36,8 @@ import com.xiaocoder.test.http.HttpDownLoadActivity;
 import com.xiaocoder.test.http2.ExpandListActivity;
 import com.xiaocoder.test.http2.GridActivity;
 import com.xiaocoder.test.http2.GridMaterialActivity;
-import com.xiaocoder.test.http2.ListActivity;
 import com.xiaocoder.test.http2.GridRefreshActivity;
+import com.xiaocoder.test.http2.ListActivity;
 import com.xiaocoder.test.http2.ListMaterialActivity;
 import com.xiaocoder.test.http2.ListRefreshActivity;
 import com.xiaocoder.test.imageloader.JSImageLoaderActivity;
@@ -50,6 +48,7 @@ import com.xiaocoder.test.scan.ScanActivity;
 import com.xiaocoder.test.share.UmengShareActivity;
 import com.xiaocoder.test.slidingmenu.SlidingMenuActivity;
 import com.xiaocoder.test.slidingmenu.SlidingMenuActivity2;
+import com.xiaocoder.test.timer.TimerActivity;
 import com.xiaocoder.test.view.PickerViewActiviy;
 import com.xiaocoder.test.view.RoundImageViewActivity;
 import com.xiaocoder.test.view.ScrollActivity;
@@ -106,17 +105,14 @@ public class MainActivity extends QlkMainActivity {
     Button pickerView;
     Button xc_id_imageloader;
     Button xc_id_exception;
+    Button xc_id_timer;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
         super.onCreate(savedInstanceState);
-
-        timer();
-        recoderButton();
         log();
-
     }
 
     private void log() {
@@ -142,37 +138,6 @@ public class MainActivity extends QlkMainActivity {
         XCApp.i(XCIO.getAllFilesByDirQueue(XCIOAndroid.createDirInSDCard(QlkConfig.APP_ROOT), new ArrayList<File>()));
 
         XCIO.toFileByBytes(XCIOAndroid.createFileInAndroid(this, QlkConfig.APP_ROOT, "lalala.txt"), "写入的内容--1234567890987654321abc".getBytes(), true);
-    }
-
-    private void recoderButton() {
-        // test_recodervoice = (XCRecordVoiceButton)
-        // findViewById(R.id.test_recodervoice);
-        // test_recodervoice.setOnRecordVoiceSuccessListener(new
-        // OnRecordVoiceSuccessListener() {
-        //
-        // @Override
-        // public void onRecordVoiceSuccessListener(File file) {
-        // XCApp.base_log.debugShortToast(file.toString());
-        // }
-        // });
-    }
-
-    int count = 0;
-
-    private void timer() {
-        XCTimeHelper timeHelper = new XCTimeHelper(10000, new CustomTimer() {
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-                XCApp.i(count++);
-            }
-
-            @Override
-            public void onFinish() {
-                XCApp.i(XCConfig.TAG_TEST,count + "--finish");
-            }
-        });
-        timeHelper.start();
     }
 
     @Override
@@ -265,6 +230,8 @@ public class MainActivity extends QlkMainActivity {
 
         xc_id_exception = getViewById(R.id.xc_id_exception);
 
+        xc_id_timer = getViewById(R.id.xc_id_timer);
+
 
     }
 
@@ -312,6 +279,7 @@ public class MainActivity extends QlkMainActivity {
         pickerView.setOnClickListener(this);
         xc_id_imageloader.setOnClickListener(this);
         xc_id_exception.setOnClickListener(this);
+        xc_id_timer.setOnClickListener(this);
 
     }
 
@@ -428,8 +396,10 @@ public class MainActivity extends QlkMainActivity {
             UtilActivity.myStartActivity(this, PickerViewActiviy.class);
         } else if (id == R.id.xc_id_imageloader) {
             UtilActivity.myStartActivity(this, JSImageLoaderActivity.class);
-        } else if(id == R.id.xc_id_exception){
+        } else if (id == R.id.xc_id_exception) {
             UtilActivity.myStartActivity(this, ExceptionActivity.class);
+        } else if (id == R.id.xc_id_timer) {
+            UtilActivity.myStartActivity(this, TimerActivity.class);
         }
 
     }

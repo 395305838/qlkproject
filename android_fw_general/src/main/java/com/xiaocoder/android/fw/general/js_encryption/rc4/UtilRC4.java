@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.encryption.rc4;
+package com.xiaocoder.android.fw.general.js_encryption.rc4;
 
 import android.text.TextUtils;
 import android.util.Base64;

@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.encryption.rsa;
+package com.xiaocoder.android.fw.general.js_encryption.rsa;
 
 import java.io.UnsupportedEncodingException;
 

@@ -29,9 +29,9 @@ import java.util.Map;
 /**
  * 使用时记得在清单文件中注册 XLShowExceptionsActivity
  */
-public class XLCrashHandler implements UncaughtExceptionHandler {
+public class XCCrashHandler implements UncaughtExceptionHandler {
 
-    private static XLCrashHandler INSTANCE = new XLCrashHandler();
+    private static XCCrashHandler INSTANCE = new XCCrashHandler();
 
     private XCApp application;
 
@@ -51,10 +51,10 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
         this.uploadServer = uploadServer;
     }
 
-    private XLCrashHandler() {
+    private XCCrashHandler() {
     }
 
-    public static XLCrashHandler getInstance() {
+    public static XCCrashHandler getInstance() {
         return INSTANCE;
     }
 
@@ -123,7 +123,7 @@ public class XLCrashHandler implements UncaughtExceptionHandler {
         showToast(application, "很抱歉，程序遭遇异常，即将退出！");
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1600);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
