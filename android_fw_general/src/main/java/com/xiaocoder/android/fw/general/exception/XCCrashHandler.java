@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.io.XCIO;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
+import com.xiaocoder.android.fw.general.util.UtilDate;
 
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
@@ -20,8 +21,6 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.lang.reflect.Field;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,8 +36,6 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
 
     // 用来存储设备信息和异常信息
     private Map<String, String> infos = new HashMap<String, String>();
-
-    private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd ,HH:mm:ss");
 
     private boolean mIsShowExceptionActivity;
 
@@ -192,7 +189,7 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
 
         try {
             long timestamp = System.currentTimeMillis();
-            String time = formatter.format(new Date());
+            String time = UtilDate.format(new Date(), UtilDate.FORMAT_LONG);
             String fileName = "crash-" + time + "-" + timestamp + ".log";
 
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
