@@ -55,4 +55,8 @@ public class ViewpagerSliderActivity extends QlkActivity {
             }
         });
     }
+
+    @Override
+    protected void initSlideDestroyActivity() {
+    }
 }

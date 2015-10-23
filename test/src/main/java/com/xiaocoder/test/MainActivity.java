@@ -47,6 +47,7 @@ import com.xiaocoder.test.slidingmenu.SlidingMenuActivity;
 import com.xiaocoder.test.slidingmenu.SlidingMenuActivity2;
 import com.xiaocoder.test.timer.TimerActivity;
 import com.xiaocoder.test.view.PickerViewActiviy;
+import com.xiaocoder.test.view.RecoderButtonActivity;
 import com.xiaocoder.test.view.RoundImageViewActivity;
 import com.xiaocoder.test.view.ScrollActivity;
 import com.xiaocoder.test.view.SwitchButtonActivity;
@@ -98,6 +99,7 @@ public class MainActivity extends QlkMainActivity {
     Button xc_id_imageloader;
     Button xc_id_exception;
     Button xc_id_timer;
+    Button xc_id_recoderbutton;
 
 
     @Override
@@ -218,6 +220,8 @@ public class MainActivity extends QlkMainActivity {
 
         xc_id_timer = getViewById(R.id.xc_id_timer);
 
+        xc_id_recoderbutton = getViewById(R.id.xc_id_recoderbutton);
+
 
     }
 
@@ -263,6 +267,7 @@ public class MainActivity extends QlkMainActivity {
         xc_id_imageloader.setOnClickListener(this);
         xc_id_exception.setOnClickListener(this);
         xc_id_timer.setOnClickListener(this);
+        xc_id_recoderbutton.setOnClickListener(this);
 
     }
 
@@ -361,6 +366,8 @@ public class MainActivity extends QlkMainActivity {
             UtilActivity.myStartActivity(this, ExceptionActivity.class);
         } else if (id == R.id.xc_id_timer) {
             UtilActivity.myStartActivity(this, TimerActivity.class);
+        } else if (id == R.id.xc_id_recoderbutton) {
+            UtilActivity.myStartActivity(this, RecoderButtonActivity.class);
         }
 
     }

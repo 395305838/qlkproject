@@ -60,4 +60,7 @@ public class ViewPagerActivity extends QlkActivity {
         });
     }
 
+    @Override
+    protected void initSlideDestroyActivity() {
+    }
 }

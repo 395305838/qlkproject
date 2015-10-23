@@ -61,4 +61,7 @@ public class ScrollActivity extends QlkActivity {
 
 	}
 
+	@Override
+	protected void initSlideDestroyActivity() {
+	}
 }

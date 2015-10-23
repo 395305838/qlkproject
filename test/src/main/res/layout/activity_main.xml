@@ -16,13 +16,6 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/test_pickerView"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="test_pickerView" />
-
-            <Button
-
                 android:id="@+id/test_expandablelistview"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
@@ -53,16 +46,16 @@
                 android:text="test_grid_material_layout" />
 
             <Button
-                android:id="@+id/test_umengshare"
+                android:id="@+id/test_list_fragment"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="test_umengshare" />
+                android:text="list_fragment" />
 
             <Button
-                android:id="@+id/test_progress_view"
+                android:id="@+id/test_grid_fragment"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="test_progress_view" />
+                android:text="grid_fragment" />
 
             <Button
                 android:id="@+id/test_viewpager_slider"
@@ -74,13 +67,27 @@
                 android:id="@+id/test_viewpager_num"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="test_viewpager_num" />
+                android:text="test_viewpager_num_可缩放图片" />
 
             <Button
-                android:id="@+id/test_round_imageview"
+                android:id="@+id/test_viewpager"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="test_round_imageview" />
+                android:text="viewpager" />
+
+            <Button
+                android:id="@+id/test_scroll"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="scroll 与 viewpager" />
+
+            <Button
+                android:id="@+id/test_viewpager_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="viewpager_indicator" />
+
+            <!-- 自定义控件 -->
 
             <Button
                 android:id="@+id/test_circleprogress"
@@ -95,16 +102,10 @@
                 android:text="test_numberprogress" />
 
             <Button
-                android:id="@+id/test_baidumap"
+                android:id="@+id/test_progress_view"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="test_baidumap" />
-
-            <Button
-                android:id="@+id/test_switchbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="test_switchbutton" />
+                android:text="test_progress_view" />
 
             <Button
                 android:id="@+id/test_dialog3"
@@ -113,95 +114,10 @@
                 android:text="dialog" />
 
             <Button
-                android:id="@+id/test_point_line"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="point_line" />
-
-            <Button
-                android:id="@+id/test_scan"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="scan" />
-
-            <Button
-                android:id="@+id/test_http"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="http" />
-
-            <Button
-                android:id="@+id/test_http_download"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="http_download" />
-
-            <Button
                 android:id="@+id/test_pop"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="pop" />
-
-            <Button
-                android:id="@+id/test_webview"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="webview" />
-
-            <Button
-                android:id="@+id/test_viewpager"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="viewpager" />
-
-            <Button
-                android:id="@+id/test_move_block"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="move_block" />
-
-            <Button
-                android:id="@+id/test_camare"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="camare" />
-
-            <Button
-                android:id="@+id/test_search"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="search" />
-
-            <Button
-                android:id="@+id/test_scroll"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="scroll" />
-
-            <Button
-                android:id="@+id/test_contacts"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="contacts" />
-
-            <com.xiaocoder.android.fw.general.view.XCRecordVoiceButton
-                android:id="@+id/test_recodervoice"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="recodervoice"
-                android:visibility="gone" />
-
-            <Button
-                android:id="@+id/test_list_fragment"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="list_fragment" />
-
-            <Button
-                android:id="@+id/test_grid_fragment"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="grid_fragment" />
 
             <Button
                 android:id="@+id/test_sliding_menu"
@@ -216,22 +132,101 @@
                 android:text="sliding_menu2" />
 
             <Button
-                android:id="@+id/test_viewpager_indicator"
+                android:id="@+id/xc_id_recoderbutton"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="viewpager_indicator" />
+                android:text="xc_id_recoderbutton" />
+
+            <Button
+                android:id="@+id/test_switchbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="test_switchbutton" />
+
+            <Button
+                android:id="@+id/test_point_line"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="point_line" />
+
+            <Button
+                android:id="@+id/test_pickerView"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="test_pickerView" />
+
+            <Button
+                android:id="@+id/test_round_imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="test_round_imageview" />
+
+            <Button
+                android:id="@+id/test_move_block"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="move_block" />
+
+            <Button
+                android:id="@+id/test_baidumap"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="test_baidumap" />
+
+            <Button
+                android:id="@+id/test_umengshare"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="test_umengshare" />
+
+            <Button
+                android:id="@+id/test_camare"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="camare与本地图片获取_" />
+
+            <Button
+                android:id="@+id/test_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="scan" />
 
             <Button
                 android:id="@+id/test_code"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="test_code" />
+                android:text="二维码生成" />
 
             <Button
-                android:id="@+id/xc_id_test"
+                android:id="@+id/test_http"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="test" />
+                android:text="http_model解析" />
+
+            <Button
+                android:id="@+id/test_http_download"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="http_download" />
+
+            <Button
+                android:id="@+id/test_webview"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="webview" />
+
+            <Button
+                android:id="@+id/test_search"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="search_不同界面不同表存储" />
+
+
+            <Button
+                android:id="@+id/test_contacts"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="contacts" />
 
             <Button
                 android:id="@+id/xc_id_anim"
@@ -255,7 +250,14 @@
                 android:id="@+id/xc_id_timer"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="xc_id_timer" />
+                android:text="xc_id_timer_计时器" />
+
+            <Button
+                android:id="@+id/xc_id_test"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="test" />
+
         </LinearLayout>
     </ScrollView>
 

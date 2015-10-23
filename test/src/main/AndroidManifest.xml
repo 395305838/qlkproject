@@ -717,6 +717,11 @@
             android:label="@string/title_activity_timer"
             android:theme="@style/XCTheme" >
         </activity>
+        <activity
+            android:name=".view.RecoderButtonActivity"
+            android:theme="@style/XCTheme"
+            android:label="@string/title_activity_recoder_button" >
+        </activity>
     </application>
 
 </manifest>
