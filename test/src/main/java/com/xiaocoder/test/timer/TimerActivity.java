@@ -55,9 +55,12 @@ public class TimerActivity extends QlkActivity {
         timeHelper.start();
     }
 
+
+    Timer timer;
+
     private void timer2() {
 
-        Timer timer = new Timer();
+        timer = new Timer();
         TimerTask task = new TimerTask() {
             int index = 0;
 
@@ -74,7 +77,13 @@ public class TimerActivity extends QlkActivity {
 
             }
         };
-        timer.schedule(task, 1000, 5000);
+        timer.schedule(task, 1000, 3000);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        timer.cancel();
+        timer.purge();
+    }
 }

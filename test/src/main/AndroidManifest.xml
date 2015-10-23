@@ -699,19 +699,23 @@
             android:theme="@style/XCTheme" />
         <activity
             android:name=".view.PickerViewActiviy"
-            android:label="@string/title_activity_picker_view_activiy" >
+            android:label="@string/title_activity_picker_view_activiy"
+            android:theme="@style/XCTheme" >
         </activity>
         <activity
-            android:name=".imageloader.JSImageLoaderActivity"
-            android:label="@string/title_activity_jsimage_loader" >
+            android:name=".imageloader.ImageLoaderActivity"
+            android:label="@string/title_activity_jsimage_loader"
+            android:theme="@style/XCTheme" >
         </activity>
         <activity
             android:name=".excpetion.ExceptionActivity"
-            android:label="@string/title_activity_exception" >
+            android:label="@string/title_activity_exception"
+            android:theme="@style/XCTheme" >
         </activity>
         <activity
             android:name=".timer.TimerActivity"
-            android:label="@string/title_activity_timer" >
+            android:label="@string/title_activity_timer"
+            android:theme="@style/XCTheme" >
         </activity>
     </application>
 

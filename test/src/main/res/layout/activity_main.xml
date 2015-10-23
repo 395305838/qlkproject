@@ -20,6 +20,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="test_pickerView" />
+
             <Button
 
                 android:id="@+id/test_expandablelistview"
@@ -32,6 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="test_list_refresh_layout" />
+
             <Button
                 android:id="@+id/test_grid_refresh_layout"
                 android:layout_width="wrap_content"
@@ -43,6 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="test_list_material_layout" />
+
             <Button
                 android:id="@+id/test_grid_material_layout"
                 android:layout_width="wrap_content"
@@ -176,12 +179,6 @@
                 android:text="scroll" />
 
             <Button
-                android:id="@+id/test_pop2"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="pop2" />
-
-            <Button
                 android:id="@+id/test_contacts"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
@@ -193,12 +190,6 @@
                 android:layout_height="40dp"
                 android:text="recodervoice"
                 android:visibility="gone" />
-
-            <Button
-                android:id="@+id/test_chat_bottom"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="chat_bottom" />
 
             <Button
                 android:id="@+id/test_list_fragment"
@@ -229,12 +220,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="viewpager_indicator" />
-
-            <Button
-                android:id="@+id/test_anim"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="test_anim" />
 
             <Button
                 android:id="@+id/test_code"

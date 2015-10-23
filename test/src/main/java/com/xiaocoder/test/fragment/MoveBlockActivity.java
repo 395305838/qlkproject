@@ -89,4 +89,8 @@ public class MoveBlockActivity extends QlkActivity {
             }
         });
     }
+
+    @Override
+    protected void initSlideDestroyActivity() {
+    }
 }

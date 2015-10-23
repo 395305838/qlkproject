@@ -3,15 +3,12 @@ package com.xiaocoder.test;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.io.XCIO;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
-import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow;
-import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow.onPhotoPopupItemClickListener;
 import com.xiaocoder.android.fw.general.util.UtilActivity;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.middle.QlkConfig;
@@ -40,7 +37,7 @@ import com.xiaocoder.test.http2.GridRefreshActivity;
 import com.xiaocoder.test.http2.ListActivity;
 import com.xiaocoder.test.http2.ListMaterialActivity;
 import com.xiaocoder.test.http2.ListRefreshActivity;
-import com.xiaocoder.test.imageloader.JSImageLoaderActivity;
+import com.xiaocoder.test.imageloader.ImageLoaderActivity;
 import com.xiaocoder.test.line_point.LinePointActivityGC;
 import com.xiaocoder.test.pop.PopActivity;
 import com.xiaocoder.test.scan.CodeActivity;
@@ -72,19 +69,14 @@ public class MainActivity extends QlkMainActivity {
     Button test_camare;
     Button test_search;
     Button test_scroll;
-    Button test_pop2;
     Button test_contacts;
-    // XCRecordVoiceButton test_recodervoice;
-    Button test_chat_bottom;
     Button test_list_fragment;
     Button test_grid_fragment;
     Button test_sliding_menu;
     Button test_sliding_menu2;
     Button test_viewpager_indicator;
-    Button test_anim;
     Button test_http_download;
     Button test_code;
-
     Button xc_id_test;
     Button xc_id_anim;
     Button test_dialog3;
@@ -196,11 +188,7 @@ public class MainActivity extends QlkMainActivity {
 
         test_scroll = getViewById(R.id.test_scroll);
 
-        test_pop2 = getViewById(R.id.test_pop2);
-
         test_contacts = getViewById(R.id.test_contacts);
-
-        test_chat_bottom = getViewById(R.id.test_chat_bottom);
 
         test_list_fragment = getViewById(R.id.test_list_fragment);
 
@@ -211,8 +199,6 @@ public class MainActivity extends QlkMainActivity {
         test_sliding_menu2 = getViewById(R.id.test_sliding_menu2);
 
         test_viewpager_indicator = getViewById(R.id.test_viewpager_indicator);
-
-        test_anim = getViewById(R.id.test_anim);
 
         xc_id_anim = getViewById(R.id.xc_id_anim);
 
@@ -256,15 +242,12 @@ public class MainActivity extends QlkMainActivity {
         test_camare.setOnClickListener(this);
         test_search.setOnClickListener(this);
         test_scroll.setOnClickListener(this);
-        test_pop2.setOnClickListener(this);
         test_contacts.setOnClickListener(this);
-        test_chat_bottom.setOnClickListener(this);
         test_list_fragment.setOnClickListener(this);
         test_grid_fragment.setOnClickListener(this);
         test_sliding_menu.setOnClickListener(this);
         test_sliding_menu2.setOnClickListener(this);
         test_viewpager_indicator.setOnClickListener(this);
-        test_anim.setOnClickListener(this);
         xc_id_anim.setOnClickListener(this);
         test_expandablelistview.setOnClickListener(this);
         test_round_imageview.setOnClickListener(this);
@@ -316,28 +299,6 @@ public class MainActivity extends QlkMainActivity {
 
         } else if (id == R.id.test_contacts) {
             UtilActivity.myStartActivity(this, ContactsActivity.class);
-
-        } else if (id == R.id.test_pop2) {
-            XCPhotoPopupWindow pop = new XCPhotoPopupWindow(MainActivity.this, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            pop.setOnPhotoPopupItemClickListener(new onPhotoPopupItemClickListener() {
-
-                @Override
-                public void onPhotoUpload() {
-                }
-
-                @Override
-                public void onNetPrescription() {
-                }
-
-                @Override
-                public void onLocalAlbum() {
-                }
-
-                @Override
-                public void onCancel() {
-                }
-            });
-            pop.showViewCenter((View) test_pop2.getParent());
 
         } else if (id == R.id.test_list_fragment) {
             UtilActivity.myStartActivity(this, ListActivity.class);
@@ -395,7 +356,7 @@ public class MainActivity extends QlkMainActivity {
         } else if (id == R.id.test_pickerView) {
             UtilActivity.myStartActivity(this, PickerViewActiviy.class);
         } else if (id == R.id.xc_id_imageloader) {
-            UtilActivity.myStartActivity(this, JSImageLoaderActivity.class);
+            UtilActivity.myStartActivity(this, ImageLoaderActivity.class);
         } else if (id == R.id.xc_id_exception) {
             UtilActivity.myStartActivity(this, ExceptionActivity.class);
         } else if (id == R.id.xc_id_timer) {

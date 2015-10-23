@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.xiaocoder.android_fw_general.R;
 
+@Deprecated
 public class XCListViewFragment extends XCBaseAbsListFragment<ListView> {
 
 	@Override

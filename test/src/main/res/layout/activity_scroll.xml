@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/c_white_ffffff"
     tools:context=".ScrollActivity" >
 
     <android.support.v4.view.ViewPager

@@ -33,6 +33,7 @@ import java.util.List;
  * @Description: 封装了分页 ,下拉刷新，数据0背景的fragment
  * @date 2014-12-31 上午11:30:24
  */
+@Deprecated
 public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBaseFragment implements OnItemClickListener, OnRefreshListener2<T> {
 
     // 可以刷新的listview或gridview

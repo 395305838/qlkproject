@@ -97,4 +97,9 @@ public class SlidingMenuActivity2 extends QlkMainActivity implements RadioGroup.
     @Override
     public void onNetRefresh() {
     }
+
+    @Override
+    protected void initSlideDestroyActivity() {
+
+    }
 }

@@ -11,6 +11,7 @@ import android.widget.GridView;
 
 import com.xiaocoder.android_fw_general.R;
 
+@Deprecated
 public class XCGridViewFragment extends XCBaseAbsListFragment<GridView> {
 
 	@Override

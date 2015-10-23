@@ -2,7 +2,7 @@
     android:id="@+id/xc_id_model_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/c_white_ffffff" >
+    android:background="@color/c_white_ffffff">
 
     <!-- title -->
 
@@ -33,25 +33,25 @@
         android:layout_above="@+id/xc_id_model_bottombar"
         android:layout_below="@+id/xc_id_model_titlebar"
         android:background="@color/c_gray_f9f9f9"
-        android:visibility="invisible" >
+        android:visibility="invisible">
 
         <Button
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="show"
-            android:text="@string/hello_world" />
+            android:text="click here" />
     </RelativeLayout>
 
     <!-- 无网络的背景 -->
 
     <include
-        layout="@layout/xc_l_view_no_net"
         android:id="@+id/xc_id_model_no_net"
+        layout="@layout/xc_l_view_no_net"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/xc_id_model_titlebar"
         android:layout_above="@+id/xc_id_model_bottombar"
+        android:layout_below="@+id/xc_id_model_titlebar"
         android:visibility="invisible" />
 
 

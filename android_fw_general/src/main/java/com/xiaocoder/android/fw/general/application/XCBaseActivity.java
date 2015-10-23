@@ -80,7 +80,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         base_fm = getSupportFragmentManager();
         isActivityDestroied = false;
 
-        slideDestroyActivity();
+        initSlideDestroyActivity();
 
         // 找到页面的布局控件
         xc_id_model_layout = getViewById(R.id.xc_id_model_layout);
@@ -106,7 +106,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
      * 手势滑动退出activity的基类布局
      * 想要实现向右滑动删除Activity，只需要继承该activity即可
      */
-    protected void slideDestroyActivity() {
+    protected void initSlideDestroyActivity() {
 
         back_layout = ((XCSwipeBackLayout) LayoutInflater.from(this).inflate(R.layout.swipe_back_base, null));
 

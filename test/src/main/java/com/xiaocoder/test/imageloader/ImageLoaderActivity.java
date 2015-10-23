@@ -7,7 +7,7 @@ import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.test.R;
 
-public class JSImageLoaderActivity extends QlkActivity {
+public class ImageLoaderActivity extends QlkActivity {
 
     ImageView image1;
     ImageView image2;
