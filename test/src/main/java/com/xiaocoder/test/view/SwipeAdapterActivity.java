@@ -98,4 +98,7 @@ public class SwipeAdapterActivity extends QlkActivity {
         }
     }
 
+    @Override
+    protected void initSlideDestroyActivity() {
+    }
 }
