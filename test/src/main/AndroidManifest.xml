@@ -719,8 +719,13 @@
         </activity>
         <activity
             android:name=".view.RecoderButtonActivity"
+            android:label="@string/title_activity_recoder_button"
+            android:theme="@style/XCTheme" >
+        </activity>
+        <activity
             android:theme="@style/XCTheme"
-            android:label="@string/title_activity_recoder_button" >
+            android:name=".view.SwipeAdapterActivity"
+            android:label="@string/title_activity_swipe_adapter" >
         </activity>
     </application>
 

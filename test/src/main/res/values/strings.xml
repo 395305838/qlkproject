@@ -36,5 +36,6 @@
     <string name="title_activity_exception">ExceptionActivity</string>
     <string name="title_activity_timer">TimerActivity</string>
     <string name="title_activity_recoder_button">RecoderButtonActivity</string>
+    <string name="title_activity_swipe_adapter">SwipeAdapterActivity</string>
 
 </resources>

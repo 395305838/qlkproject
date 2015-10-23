@@ -154,6 +154,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:text="test_pickerView" />
+            <Button
+                android:id="@+id/xc_id_swipe_layout_adapter"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="xc_id_swipe_layout_adapter" />
 
             <Button
                 android:id="@+id/test_round_imageview"

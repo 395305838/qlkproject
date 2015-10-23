@@ -50,6 +50,7 @@ import com.xiaocoder.test.view.PickerViewActiviy;
 import com.xiaocoder.test.view.RecoderButtonActivity;
 import com.xiaocoder.test.view.RoundImageViewActivity;
 import com.xiaocoder.test.view.ScrollActivity;
+import com.xiaocoder.test.view.SwipeAdapterActivity;
 import com.xiaocoder.test.view.SwitchButtonActivity;
 import com.xiaocoder.test.viewpagerindicator.ListSamples;
 
@@ -100,6 +101,7 @@ public class MainActivity extends QlkMainActivity {
     Button xc_id_exception;
     Button xc_id_timer;
     Button xc_id_recoderbutton;
+    Button xc_id_swipe_layout_adapter;
 
 
     @Override
@@ -222,6 +224,8 @@ public class MainActivity extends QlkMainActivity {
 
         xc_id_recoderbutton = getViewById(R.id.xc_id_recoderbutton);
 
+        xc_id_swipe_layout_adapter = getViewById(R.id.xc_id_swipe_layout_adapter);
+
 
     }
 
@@ -268,6 +272,7 @@ public class MainActivity extends QlkMainActivity {
         xc_id_exception.setOnClickListener(this);
         xc_id_timer.setOnClickListener(this);
         xc_id_recoderbutton.setOnClickListener(this);
+        xc_id_swipe_layout_adapter.setOnClickListener(this);
 
     }
 
@@ -368,6 +373,8 @@ public class MainActivity extends QlkMainActivity {
             UtilActivity.myStartActivity(this, TimerActivity.class);
         } else if (id == R.id.xc_id_recoderbutton) {
             UtilActivity.myStartActivity(this, RecoderButtonActivity.class);
+        } else if (id == R.id.xc_id_swipe_layout_adapter) {
+            UtilActivity.myStartActivity(this, SwipeAdapterActivity.class);
         }
 
     }
