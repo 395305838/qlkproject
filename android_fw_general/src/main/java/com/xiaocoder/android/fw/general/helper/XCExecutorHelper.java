@@ -1,7 +1,5 @@
 package com.xiaocoder.android.fw.general.helper;
 
-import com.xiaocoder.android.fw.general.application.XCApp;
-
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -72,54 +70,4 @@ public class XCExecutorHelper {
         return scheduled_threadpool_fix;
     }
 
-    public void close() {
-
-        try {
-            if (threadpool_cache != null) {
-                threadpool_cache.shutdownNow();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            XCApp.e("XCExecutorHelper()--threadpool_cache--线程池关闭异常");
-        } finally {
-            threadpool_cache = null;
-        }
-
-
-        try {
-            if (threadpool_single != null) {
-                threadpool_single.shutdownNow();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            XCApp.e("XCExecutorHelper()--threadpool_single--线程池关闭异常");
-        } finally {
-            threadpool_single = null;
-        }
-
-
-        try {
-            if (threadpool_fix != null) {
-                threadpool_fix.shutdownNow();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            XCApp.e("XCExecutorHelper()--threadpool_fix--线程池关闭异常");
-        } finally {
-            threadpool_fix = null;
-        }
-
-        try {
-            if (scheduled_threadpool_fix != null) {
-                scheduled_threadpool_fix.shutdownNow();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            XCApp.e("XCExecutorHelper()--scheduled_threadpool_fix--线程池关闭异常");
-        } finally {
-            scheduled_threadpool_fix = null;
-        }
-
-
-    }
 }

@@ -75,9 +75,9 @@ public class XCLog {
     /**
      * 防止点击频繁, 不断的弹出
      */
-    public void longToast(String msg) {
+    public void longToast(Object msg) {
         if (System.currentTimeMillis() - last_time > TOAST_LONG_TIME_GAP) {
-            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, msg+"", Toast.LENGTH_LONG).show();
             last_time = System.currentTimeMillis();
         }
     }
@@ -85,9 +85,9 @@ public class XCLog {
     /**
      * 防止点击频繁, 不断的弹出
      */
-    public void longToast(boolean showImmediately, String msg) {
+    public void longToast(boolean showImmediately, Object msg) {
         if (showImmediately) {
-            Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, msg+"", Toast.LENGTH_LONG).show();
             last_time = System.currentTimeMillis();
         } else {
             longToast(msg);
@@ -97,9 +97,9 @@ public class XCLog {
     /**
      * 防止点击频繁, 不断的弹出
      */
-    public void shortToast(String msg) {
+    public void shortToast(Object msg) {
         if (System.currentTimeMillis() - last_time > TOAST_SHORT_TIME_GAP) {
-            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, msg+"", Toast.LENGTH_SHORT).show();
             last_time = System.currentTimeMillis();
         }
     }
@@ -107,9 +107,9 @@ public class XCLog {
     /**
      * 防止点击频繁, 不断的弹出
      */
-    public void shortToast(boolean showImmediately, String msg) {
+    public void shortToast(boolean showImmediately, Object msg) {
         if (showImmediately) {
-            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, msg+"", Toast.LENGTH_SHORT).show();
             last_time = System.currentTimeMillis();
         } else {
             shortToast(msg);
@@ -120,10 +120,10 @@ public class XCLog {
     /**
      * 调试的toast , 上线前开关关闭
      */
-    public void debugShortToast(String msg) {
+    public void debugShortToast(Object msg) {
         if (is_dtoast) {
             if (System.currentTimeMillis() - last_time > TOAST_SHORT_TIME_GAP) {
-                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, msg+"", Toast.LENGTH_SHORT).show();
                 last_time = System.currentTimeMillis();
             }
         }
@@ -132,10 +132,10 @@ public class XCLog {
     /**
      * 调试的toast , 上线前开关关闭
      */
-    public void debugLongToast(String msg) {
+    public void debugLongToast(Object msg) {
         if (is_dtoast) {
             if (System.currentTimeMillis() - last_time > TOAST_LONG_TIME_GAP) {
-                Toast.makeText(context, msg, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, msg+"", Toast.LENGTH_LONG).show();
                 last_time = System.currentTimeMillis();
             }
         }

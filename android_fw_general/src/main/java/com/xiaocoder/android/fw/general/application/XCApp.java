@@ -200,11 +200,11 @@ public class XCApp extends Application {
         base_log.i(tag, msg);
     }
 
-    public static void dShortToast(String msg) {
+    public static void dShortToast(Object msg) {
         base_log.debugShortToast(msg);
     }
 
-    public static void dLongToast(String msg) {
+    public static void dLongToast(Object msg) {
         base_log.debugLongToast(msg);
     }
 
@@ -212,11 +212,11 @@ public class XCApp extends Application {
         base_log.tempPrint(msg);
     }
 
-    public static void shortToast(String msg) {
+    public static void shortToast(Object msg) {
         base_log.shortToast(msg);
     }
 
-    public static void longToast(String msg) {
+    public static void longToast(Object msg) {
         base_log.longToast(msg);
     }
 

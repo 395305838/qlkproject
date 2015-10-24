@@ -88,10 +88,13 @@ public class TimerActivity extends QlkActivity {
         super.onDestroy();
         timer.cancel();
         timer.purge();
+        scheduled.shutdown();
     }
 
+    ScheduledExecutorService scheduled;
+
     private void timer3() {
-        ScheduledExecutorService scheduled = XCExecutorHelper.getExecutorHelperInstance().getScheduledFix(5);
+        scheduled = XCExecutorHelper.getExecutorHelperInstance().getScheduledFix(5);
         scheduled.schedule(new Runnable() {
             @Override
             public void run() {
@@ -106,4 +109,6 @@ public class TimerActivity extends QlkActivity {
             }
         }, 2, 6, TimeUnit.SECONDS);
     }
+
+
 }
