@@ -37,5 +37,6 @@
     <string name="title_activity_timer">TimerActivity</string>
     <string name="title_activity_recoder_button">RecoderButtonActivity</string>
     <string name="title_activity_swipe_adapter">SwipeAdapterActivity</string>
+    <string name="title_activity_clear_cache">ClearCacheActivity</string>
 
 </resources>

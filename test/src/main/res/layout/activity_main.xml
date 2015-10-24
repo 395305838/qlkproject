@@ -258,6 +258,12 @@
                 android:text="xc_id_timer_计时器" />
 
             <Button
+                android:id="@+id/xc_id_clear_cache"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="clearCache" />
+
+            <Button
                 android:id="@+id/xc_id_test"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"

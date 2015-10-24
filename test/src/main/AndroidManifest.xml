@@ -723,9 +723,13 @@
             android:theme="@style/XCTheme" >
         </activity>
         <activity
-            android:theme="@style/XCTheme"
             android:name=".view.SwipeAdapterActivity"
-            android:label="@string/title_activity_swipe_adapter" >
+            android:label="@string/title_activity_swipe_adapter"
+            android:theme="@style/XCTheme" >
+        </activity>
+        <activity
+            android:name=".clearcache.ClearCacheActivity"
+            android:label="@string/title_activity_clear_cache" >
         </activity>
     </application>
 

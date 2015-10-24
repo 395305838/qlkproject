@@ -15,6 +15,7 @@ import com.xiaocoder.middle.QlkConfig;
 import com.xiaocoder.middle.function.QlkMainActivity;
 import com.xiaocoder.test.anim.AnimationActivity;
 import com.xiaocoder.test.baidumap.MapActivity;
+import com.xiaocoder.test.clearcache.ClearCacheActivity;
 import com.xiaocoder.test.contacts.ContactsActivity;
 import com.xiaocoder.test.dialogs.CircleProgressBarActivity;
 import com.xiaocoder.test.dialogs.DialogActivity3;
@@ -102,6 +103,7 @@ public class MainActivity extends QlkMainActivity {
     Button xc_id_timer;
     Button xc_id_recoderbutton;
     Button xc_id_swipe_layout_adapter;
+    Button xc_id_clear_cache;
 
 
     @Override
@@ -226,6 +228,8 @@ public class MainActivity extends QlkMainActivity {
 
         xc_id_swipe_layout_adapter = getViewById(R.id.xc_id_swipe_layout_adapter);
 
+        xc_id_clear_cache = getViewById(R.id.xc_id_clear_cache);
+
 
     }
 
@@ -273,6 +277,7 @@ public class MainActivity extends QlkMainActivity {
         xc_id_timer.setOnClickListener(this);
         xc_id_recoderbutton.setOnClickListener(this);
         xc_id_swipe_layout_adapter.setOnClickListener(this);
+        xc_id_clear_cache.setOnClickListener(this);
 
     }
 
@@ -375,6 +380,8 @@ public class MainActivity extends QlkMainActivity {
             UtilActivity.myStartActivity(this, RecoderButtonActivity.class);
         } else if (id == R.id.xc_id_swipe_layout_adapter) {
             UtilActivity.myStartActivity(this, SwipeAdapterActivity.class);
+        } else if(id == R.id.xc_id_clear_cache){
+            UtilActivity.myStartActivity(this, ClearCacheActivity.class);
         }
 
     }
