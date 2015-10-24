@@ -4,6 +4,7 @@ import com.xiaocoder.android.fw.general.application.XCApp;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * 该类是单例的 ， 可以获取自动变动大小的线程池 与 single大小的线程池
@@ -16,6 +17,7 @@ public class XCExecutorHelper {
     private ExecutorService threadpool_single;
     private ExecutorService threadpool_cache;
     private ExecutorService threadpool_fix;
+    private ScheduledExecutorService scheduled_threadpool_fix;
 
     private static XCExecutorHelper executorHelper = new XCExecutorHelper();
 
@@ -59,6 +61,17 @@ public class XCExecutorHelper {
         return threadpool_fix;
     }
 
+    public ScheduledExecutorService getScheduledFix(int size) {
+        if (scheduled_threadpool_fix == null) {
+            synchronized (XCExecutorHelper.class) {
+                if (scheduled_threadpool_fix == null) {
+                    scheduled_threadpool_fix = Executors.newScheduledThreadPool(size);
+                }
+            }
+        }
+        return scheduled_threadpool_fix;
+    }
+
     public void close() {
 
         try {
@@ -94,6 +107,17 @@ public class XCExecutorHelper {
             XCApp.e("XCExecutorHelper()--threadpool_fix--线程池关闭异常");
         } finally {
             threadpool_fix = null;
+        }
+
+        try {
+            if (scheduled_threadpool_fix != null) {
+                scheduled_threadpool_fix.shutdownNow();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            XCApp.e("XCExecutorHelper()--scheduled_threadpool_fix--线程池关闭异常");
+        } finally {
+            scheduled_threadpool_fix = null;
         }
 
 

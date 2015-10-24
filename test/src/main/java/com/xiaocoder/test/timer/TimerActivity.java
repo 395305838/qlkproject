@@ -1,16 +1,18 @@
 package com.xiaocoder.test.timer;
 
 import android.os.Bundle;
-import android.os.Message;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
+import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
 import com.xiaocoder.android.fw.general.helper.XCTimeHelper;
 import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.test.R;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class TimerActivity extends QlkActivity {
 
@@ -30,6 +32,7 @@ public class TimerActivity extends QlkActivity {
     public void initWidgets() {
         timer();
         timer2();
+        timer3();
     }
 
     @Override
@@ -85,5 +88,22 @@ public class TimerActivity extends QlkActivity {
         super.onDestroy();
         timer.cancel();
         timer.purge();
+    }
+
+    private void timer3() {
+        ScheduledExecutorService scheduled = XCExecutorHelper.getExecutorHelperInstance().getScheduledFix(5);
+        scheduled.schedule(new Runnable() {
+            @Override
+            public void run() {
+                XCApp.i("5秒后执行一次");
+            }
+        }, 5, TimeUnit.SECONDS);
+
+        scheduled.scheduleWithFixedDelay(new Runnable() {
+            @Override
+            public void run() {
+                XCApp.i("2秒后开始执行，每隔6秒执行一次");
+            }
+        }, 2, 6, TimeUnit.SECONDS);
     }
 }
