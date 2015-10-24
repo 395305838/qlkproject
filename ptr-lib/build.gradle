@@ -29,5 +29,6 @@ android {
 }
 
 dependencies {
+    compile project(':android_fw_general')
 }
 apply from: './gradle-mvn-push.gradle'

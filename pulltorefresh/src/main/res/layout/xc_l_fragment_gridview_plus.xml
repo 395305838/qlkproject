@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.xiaocoder.android.fw.general.view.XCGridView
+    <com.xiaocoder.pulltorefresh.XCGridView
         android:id="@+id/xc_id_gridview_plus"
         android:layoutAnimation="@anim/list_animation"
         android:layout_width="match_parent"

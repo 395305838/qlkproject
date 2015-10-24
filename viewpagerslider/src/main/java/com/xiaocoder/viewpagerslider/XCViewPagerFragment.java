@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.fragment;
+package com.xiaocoder.viewpagerslider;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,12 +9,12 @@ import android.view.ViewGroup;
 import com.daimajia.androidanimations.library.attention.StandUpAnimator;
 import com.daimajia.slider.library.Animations.BaseAnimationInterface;
 import com.daimajia.slider.library.Animations.DescriptionAnimation;
+import com.daimajia.slider.library.R;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCBaseFragment;
-import com.xiaocoder.android_fw_general.R;
 
 import java.util.Map;
 

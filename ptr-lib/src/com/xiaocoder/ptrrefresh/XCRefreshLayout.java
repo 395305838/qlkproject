@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.view.refreshLayout;
+package com.xiaocoder.ptrrefresh;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -18,8 +18,7 @@ import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.helper.XCScrollListener;
 import com.xiaocoder.android.fw.general.util.UtilString;
-import com.xiaocoder.android.fw.general.view.refreshLayout.IRefreshHandler.XCIRefreshHandler;
-import com.xiaocoder.android_fw_general.R;
+import com.xiaocoder.ptrrefresh.IRefreshHandler.XCIRefreshHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +27,7 @@ import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrUIHandler;
+import in.srain.cube.views.ptr.R;
 
 /**
  * Created by xiaocoder on 2015/10/9.

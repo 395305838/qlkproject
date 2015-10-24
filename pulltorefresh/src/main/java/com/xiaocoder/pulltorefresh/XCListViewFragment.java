@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.xiaocoder.android.fw.general.fragment.listview;
+package com.xiaocoder.pulltorefresh;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,7 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.xiaocoder.android_fw_general.R;
+import com.handmark.pulltorefresh.library.R;
+
 
 @Deprecated
 public class XCListViewFragment extends XCBaseAbsListFragment<ListView> {

@@ -10,13 +10,11 @@ import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.fragment.listview.XCBaseAbsListFragment.OnAbsListItemClickListener;
-import com.xiaocoder.android.fw.general.fragment.listview.XCBaseAbsListFragment.OnRefreshNextPageListener;
-import com.xiaocoder.android.fw.general.fragment.listview.XCGridViewFragment;
-import com.xiaocoder.android.fw.general.fragment.listview.XCListViewFragment;
 import com.xiaocoder.android.fw.general.util.Utils;
 import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.middle.parse.QlkResponseHandlerModel;
+import com.xiaocoder.pulltorefresh.XCGridViewFragment;
+import com.xiaocoder.pulltorefresh.XCListViewFragment;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.bean.TestModel;
 
@@ -157,7 +155,7 @@ public class GridActivity extends QlkActivity {
             }
         });
 
-        grid_fragment.setOnRefreshNextPageListener(new OnRefreshNextPageListener() {
+        grid_fragment.setOnRefreshNextPageListener(new XCGridViewFragment.OnRefreshNextPageListener() {
 
             @Override
             public void onRefreshNextPageListener(int current_page) {
@@ -165,7 +163,7 @@ public class GridActivity extends QlkActivity {
             }
         });
 
-        grid_fragment.setOnListItemClickListener(new OnAbsListItemClickListener() {
+        grid_fragment.setOnListItemClickListener(new XCGridViewFragment.OnAbsListItemClickListener() {
 
             @Override
             public void onAbsListItemClickListener(AdapterView<?> arg0, View arg1, int arg2, long arg3) {

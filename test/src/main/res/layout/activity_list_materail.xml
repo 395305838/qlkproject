@@ -25,7 +25,7 @@
         android:layout_below="@+id/xc_id_model_titlebar"
         android:background="@color/c_red_ff0000">
 
-        <com.xiaocoder.android.fw.general.view.refreshLayout.XCMaterialListPinRefreshLayout
+        <com.xiaocoder.ptrrefresh.XCMaterialListPinRefreshLayout
             android:id="@+id/xc_id_refreshlayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

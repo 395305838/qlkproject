@@ -39,10 +39,12 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'com.android.support:appcompat-v7:22.2.1'
-    compile project(':android_fw_general')
     compile project(':baidumap')
     compile project(':slidingmenu')
     compile project(':viewpagerindicator')
     compile project(':umeng')
     compile project(':zxcode')
+    compile project(':pulltorefresh')
+    compile project(':ptr-lib')
+    compile project(':viewpagerslider')
 }

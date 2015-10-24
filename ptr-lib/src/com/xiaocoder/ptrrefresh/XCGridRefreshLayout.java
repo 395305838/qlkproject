@@ -1,12 +1,12 @@
-package com.xiaocoder.android.fw.general.view.refreshLayout;
+package com.xiaocoder.ptrrefresh;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 
-import com.xiaocoder.android_fw_general.R;
 
 import in.srain.cube.views.ptr.PtrClassicDefaultHeader;
+import in.srain.cube.views.ptr.R;
 
 /**
  * Created by xiaocoder on 2015/10/9.

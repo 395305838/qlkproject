@@ -35,7 +35,7 @@
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowNoTitle">true</item>
         <!-- 默认都是有title -->
-        <item name="android:windowBackground">@drawable/default_ptr_rotate2</item>
+        <item name="android:windowBackground">@drawable/xc_d_bg_transparent</item>
         <!-- 这句不能少,否则还是有边框 -->
     </style>
 

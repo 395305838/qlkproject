@@ -5,10 +5,9 @@ import android.os.Bundle;
 import com.daimajia.slider.library.SliderLayout;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
-import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment;
-import com.xiaocoder.android.fw.general.fragment.XCViewPagerFragment.OnImageClickListener;
 import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.test.R;
+import com.xiaocoder.viewpagerslider.XCViewPagerFragment;
 
 import java.util.HashMap;
 
@@ -51,7 +50,7 @@ public class ViewPagerActivity extends QlkActivity {
     @Override
     public void listeners() {
 
-        fragment.setOnImageClickListener(new OnImageClickListener() {
+        fragment.setOnImageClickListener(new XCViewPagerFragment.OnImageClickListener() {
 
             @Override
             public void onImageClickListener(int position) {

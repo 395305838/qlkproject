@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.view.refreshLayout.IRefreshHandler;
+package com.xiaocoder.ptrrefresh.IRefreshHandler;
 
 import android.view.View;
 

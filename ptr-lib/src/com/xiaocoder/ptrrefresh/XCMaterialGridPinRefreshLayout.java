@@ -1,13 +1,13 @@
-package com.xiaocoder.android.fw.general.view.refreshLayout;
+package com.xiaocoder.ptrrefresh;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 
 import com.xiaocoder.android.fw.general.util.UtilScreen;
-import com.xiaocoder.android_fw_general.R;
 
 import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.R;
 import in.srain.cube.views.ptr.header.MaterialHeader;
 
 /**
@@ -17,17 +17,17 @@ import in.srain.cube.views.ptr.header.MaterialHeader;
  * <p/>
  * xml可配置autorefresh属性
  */
-public class XCMaterialGridRefreshLayout extends XCRefreshLayout {
+public class XCMaterialGridPinRefreshLayout extends XCRefreshLayout {
 
-    public XCMaterialGridRefreshLayout(Context context) {
+    public XCMaterialGridPinRefreshLayout(Context context) {
         super(context);
     }
 
-    public XCMaterialGridRefreshLayout(Context context, AttributeSet attrs) {
+    public XCMaterialGridPinRefreshLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public XCMaterialGridRefreshLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public XCMaterialGridPinRefreshLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -53,5 +53,6 @@ public class XCMaterialGridRefreshLayout extends XCRefreshLayout {
         super.initXCRefreshLayoutParams();
         mPtrRefreshLayout.setLoadingMinTime(1000);
         mPtrRefreshLayout.setDurationToCloseHeader(1000);
+        mPtrRefreshLayout.setPinContent(true);
     }
 }

@@ -29,8 +29,5 @@ dependencies {
     compile files('libs/httpmime-4.1.3.jar')
     compile files('libs/universal-image-loader-1.9.0-with-sources.jar')
     compile files('libs/gson-2.3.1.jar')
-    compile project(':pulltorefresh')
-    compile project(':viewpagerslider')
-    compile project(':ptr-lib')
     compile 'com.android.support:support-v4:22.2.1'
 }

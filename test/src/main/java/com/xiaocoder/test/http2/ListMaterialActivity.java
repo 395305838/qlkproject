@@ -11,10 +11,10 @@ import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.view.refreshLayout.XCMaterialListPinRefreshLayout;
-import com.xiaocoder.android.fw.general.view.refreshLayout.IRefreshHandler.XCIRefreshHandler;
 import com.xiaocoder.middle.QlkActivity;
 import com.xiaocoder.middle.parse.QlkResponseHandlerModel;
+import com.xiaocoder.ptrrefresh.IRefreshHandler.XCIRefreshHandler;
+import com.xiaocoder.ptrrefresh.XCMaterialListPinRefreshLayout;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.bean.TestModel;
 

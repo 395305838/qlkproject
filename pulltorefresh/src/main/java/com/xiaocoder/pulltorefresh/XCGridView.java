@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.view;
+package com.xiaocoder.pulltorefresh;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -1,39 +1,39 @@
-package com.xiaocoder.android.fw.general.view.refreshLayout;
+package com.xiaocoder.ptrrefresh;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 
 import com.xiaocoder.android.fw.general.util.UtilScreen;
-import com.xiaocoder.android_fw_general.R;
 
 import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.R;
 import in.srain.cube.views.ptr.header.MaterialHeader;
 
 /**
  * Created by xiaocoder on 2015/10/9.
  * version: 1.0
  * description: 封装了上下拉 ， 分页 ，无数据背景
- *
+ * <p/>
  * xml可配置autorefresh属性
  */
-public class XCMaterialListPinRefreshLayout extends XCRefreshLayout {
+public class XCMaterialGridRefreshLayout extends XCRefreshLayout {
 
-    public XCMaterialListPinRefreshLayout(Context context) {
+    public XCMaterialGridRefreshLayout(Context context) {
         super(context);
     }
 
-    public XCMaterialListPinRefreshLayout(Context context, AttributeSet attrs) {
+    public XCMaterialGridRefreshLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public XCMaterialListPinRefreshLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public XCMaterialGridRefreshLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
     @Override
     public void inflaterLayout(LayoutInflater mInflater) {
-        mInflater.inflate(R.layout.xc_l_view_list_refresh, this, true);
+        mInflater.inflate(R.layout.xc_l_view_grid_refresh, this, true);
     }
 
     @Override
@@ -53,6 +53,5 @@ public class XCMaterialListPinRefreshLayout extends XCRefreshLayout {
         super.initXCRefreshLayoutParams();
         mPtrRefreshLayout.setLoadingMinTime(1000);
         mPtrRefreshLayout.setDurationToCloseHeader(1000);
-        mPtrRefreshLayout.setPinContent(true);
     }
 }
