@@ -71,6 +71,7 @@ public class GridMaterialActivity extends QlkActivity {
                     List<TestModel.DataEntity.ResultEntity> result = result_bean.getData().getResult();
                     xcGridRefreshLayout.setTotalPage("4");
                     result.addAll(result);
+                    result.addAll(result);
                     xcGridRefreshLayout.updateListAdd(result, adapter);
                 }
             }

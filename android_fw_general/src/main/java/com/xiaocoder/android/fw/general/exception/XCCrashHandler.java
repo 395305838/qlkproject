@@ -68,7 +68,6 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
             mIsShowExceptionActivity = isShowExceptionActivity;
             mCrashDir = crash_dir;
 
-            // 设置该 CrashHandler 为程序的默认处理器
             Thread.setDefaultUncaughtExceptionHandler(this);
         }
     }
@@ -87,7 +86,7 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
         // 设备参数信息 异常信息 写到crash目录的日志文件中
         String info = saveCrashInfo2File(ex);
 
-        // 打印到控制台，写到app目录的log中
+        // 打印到控制台、写到app目录的log中
         toLogcat(info);
 
         // 是否打开showExcpetionAcivity

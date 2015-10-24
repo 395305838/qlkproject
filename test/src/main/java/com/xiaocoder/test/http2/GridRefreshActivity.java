@@ -71,6 +71,7 @@ public class GridRefreshActivity extends QlkActivity {
                     List<TestModel.DataEntity.ResultEntity> result = result_bean.getData().getResult();
                     xcListRefreshLayout.setTotalPage("4");
                     result.addAll(result);
+                    result.addAll(result);
                     xcListRefreshLayout.updateListAdd(result, adapter);
                 }
             }
