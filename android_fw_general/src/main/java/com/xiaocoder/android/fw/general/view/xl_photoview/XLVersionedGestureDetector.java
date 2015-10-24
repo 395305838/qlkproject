@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.view.roger;
+package com.xiaocoder.android.fw.general.view.xl_photoview;
 
 /*******************************************************************************
  * Copyright 2011, 2012 Chris Banes.

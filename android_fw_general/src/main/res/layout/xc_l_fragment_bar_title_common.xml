@@ -22,7 +22,7 @@
             android:layout_marginLeft="10dp"
             android:adjustViewBounds="true"
             android:contentDescription="@null"
-            android:src="@drawable/xc_d_arrow_left_back"/>
+            android:src="@drawable/xc_d_arrow_left_white"/>
 
         <TextView
             android:id="@+id/xc_id_titlebar_left_textview"

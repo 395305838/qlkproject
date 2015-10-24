@@ -112,10 +112,10 @@ public class XCViewPagerFragment extends XCBaseFragment {
         view.setLayoutParams(ll);
         dots.add(view);
         if (i == 0) {
-            view.setBackgroundResource(R.drawable.xc_dd_fragment_viewpager_dot_focused);
+            view.setBackgroundResource(R.drawable.xc_dd_point_blue_471c87);
             last_dot_position = 0;
         } else {
-            view.setBackgroundResource(R.drawable.xc_dd_fragment_viewpager_dot_normal);
+            view.setBackgroundResource(R.drawable.xc_dd_point_gray_55000000);
         }
         qlk_id_dots.addView(view);
     }
@@ -142,8 +142,8 @@ public class XCViewPagerFragment extends XCBaseFragment {
         qlk_id_viewpager.setOnPageChangeListener(new OnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                dots.get(last_dot_position).setBackgroundResource(R.drawable.xc_dd_fragment_viewpager_dot_normal);
-                dots.get(position).setBackgroundResource(R.drawable.xc_dd_fragment_viewpager_dot_focused);
+                dots.get(last_dot_position).setBackgroundResource(R.drawable.xc_dd_point_gray_55000000);
+                dots.get(position).setBackgroundResource(R.drawable.xc_dd_point_blue_471c87);
                 last_dot_position = position;
                 currentItem = position;
 

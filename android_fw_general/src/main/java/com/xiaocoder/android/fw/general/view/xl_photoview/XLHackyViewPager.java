@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.view.roger;
+package com.xiaocoder.android.fw.general.view.xl_photoview;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

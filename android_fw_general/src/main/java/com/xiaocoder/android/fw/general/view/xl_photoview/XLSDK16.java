@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.xiaocoder.android.fw.general.view.roger;
+package com.xiaocoder.android.fw.general.view.xl_photoview;
 
 import android.annotation.TargetApi;
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.view.roger;
+package com.xiaocoder.android.fw.general.view.xl_photoview;
 
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;

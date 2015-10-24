@@ -48,7 +48,7 @@
         android:paddingTop="5dp"
         android:maxLength="200"
         android:textColor="@color/c_gray_666666"
-        android:background="@drawable/xl_dd_retange_gray"
+        android:background="@drawable/xl_dd_line_gray_bebebe_bg_white_0"
         android:textSize="16sp" />
 
     <View
@@ -83,7 +83,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/c_trans"
-            android:textColor="@drawable/xl_dd_selector_text_blue1_1988ea"
+            android:textColor="@drawable/xl_dd_selector_text_blue_1988ea"
             android:textSize="16sp" />
     </LinearLayout>
 

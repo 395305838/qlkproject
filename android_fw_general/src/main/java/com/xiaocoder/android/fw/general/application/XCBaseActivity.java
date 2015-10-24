@@ -108,7 +108,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
      */
     protected void initSlideDestroyActivity() {
 
-        back_layout = ((XCSwipeBackLayout) LayoutInflater.from(this).inflate(R.layout.swipe_back_base, null));
+        back_layout = ((XCSwipeBackLayout) LayoutInflater.from(this).inflate(R.layout.baseactivity_swipe_back, null));
 
         back_layout.attachToActivity(this);
 
@@ -177,7 +177,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
     }
 
     public void activityEndAnimation() {
-        overridePendingTransition(0, R.anim.base_slide_right_out);
+        overridePendingTransition(0, R.anim.baseactivity_slide_right_out);
     }
 
     public boolean isActivityDestroied() {
@@ -356,7 +356,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         int version = Integer.valueOf(android.os.Build.VERSION.SDK);
         if (version >= 5) {
             // overridePendingTransition(R.anim.xc_anim_right_in, R.anim.xc_anim_left_out);  //此为自定义的动画效果，下面两个为系统的动画效果
-            overridePendingTransition(R.anim.base_slide_right_in, R.anim.base_slide_remain);
+            overridePendingTransition(R.anim.baseactivity_slide_right_in, R.anim.baseactivity_slide_remain);
             //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             //overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
         }

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.xiaocoder.android.fw.general.view.roger;
+package com.xiaocoder.android.fw.general.view.xl_photoview;
 
 
 import android.content.Context;
@@ -25,9 +25,9 @@ import android.view.MotionEvent;
 import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.view.roger.XLPhotoViewAttacher.OnMatrixChangedListener;
-import com.xiaocoder.android.fw.general.view.roger.XLPhotoViewAttacher.OnPhotoTapListener;
-import com.xiaocoder.android.fw.general.view.roger.XLPhotoViewAttacher.OnViewTapListener;
+import com.xiaocoder.android.fw.general.view.xl_photoview.XLPhotoViewAttacher.OnMatrixChangedListener;
+import com.xiaocoder.android.fw.general.view.xl_photoview.XLPhotoViewAttacher.OnPhotoTapListener;
+import com.xiaocoder.android.fw.general.view.xl_photoview.XLPhotoViewAttacher.OnViewTapListener;
 
 /**
  * 如果是viewpager则需要引入XLHackyViewPager

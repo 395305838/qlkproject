@@ -34,7 +34,6 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
 
     private XCApp application;
 
-    // 用来存储设备信息和异常信息
     private Map<String, String> infos = new HashMap<String, String>();
 
     private boolean mIsShowExceptionActivity;

@@ -61,7 +61,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/c_trans"
-            android:textColor="@drawable/xl_dd_selector_text_blue1_1988ea"
+            android:textColor="@drawable/xl_dd_selector_text_blue_1988ea"
             android:textSize="16sp" />
     </LinearLayout>
 

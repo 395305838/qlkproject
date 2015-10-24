@@ -105,7 +105,7 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
 
     public void createDialog(Context context) {
         dialog = new Dialog(context, R.style.xc_s_dialog);
-        dialog.setContentView(R.layout.xc_l_view_voice_recoder_hint);
+        dialog.setContentView(R.layout.xc_l_view_recoder_voicebutton_hint);
         dialog.setCanceledOnTouchOutside(false);
         Window window = dialog.getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();

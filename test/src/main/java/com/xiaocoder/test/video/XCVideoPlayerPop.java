@@ -202,7 +202,7 @@ public class XCVideoPlayerPop implements OnErrorListener, OnCompletionListener, 
         //创建该pop
         pop_volumn_or_brightness_changed = new PopupWindow(volumn_or_brightness_changed, screenWidth / 5, screenHeight / 6);
         //控制器
-        controlView = LayoutInflater.from(context).inflate(R.layout.xc_l_view_video_play_bottom_pop, null);
+        controlView = LayoutInflater.from(context).inflate(R.layout.xc_l_view_chat_video_play_bottom_pop, null);
         options = (ImageButton) controlView.findViewById(R.id.options);
         last = (ImageButton) controlView.findViewById(R.id.last);
         pause_or_start = (ImageButton) controlView.findViewById(R.id.pause_or_start);

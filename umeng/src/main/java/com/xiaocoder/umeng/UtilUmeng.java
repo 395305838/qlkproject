@@ -1,4 +1,4 @@
-package com.qlk.umeng;
+package com.xiaocoder.umeng;
 
 import android.content.Context;
 import android.os.Bundle;
