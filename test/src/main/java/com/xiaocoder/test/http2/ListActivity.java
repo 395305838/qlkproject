@@ -1,9 +1,7 @@
 package com.xiaocoder.test.http2;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +10,10 @@ import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
 import com.xiaocoder.android.fw.general.util.Utils;
 import com.xiaocoder.middle.QlkActivity;
-import com.xiaocoder.middle.function.QlkMainActivity;
 import com.xiaocoder.middle.parse.QlkResponseHandlerBean;
 import com.xiaocoder.pulltorefresh.XCListViewFragment;
 import com.xiaocoder.test.R;
@@ -41,7 +37,7 @@ public class ListActivity extends QlkActivity {
 
     public void request() {
 
-        HashMap<String ,Object> params = new  HashMap<String,Object>();
+        HashMap<String, Object> params = new HashMap<String, Object>();
 //        XCApp.getAsyn(true, this, "http://" + MainActivity.TEST_HOST + ":8080/qlktest/listdata.json", params, new QlkHttpResponseHandler(this, list_fragment) {
         XCApp.getAsyn(true, this,
                 "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95"
@@ -96,25 +92,7 @@ public class ListActivity extends QlkActivity {
                     // 更换一个dialog样式
                     @Override
                     public void showHttpDialog() {
-                        if (httpDialog == null) {
-                            httpDialog = new XCSystemVDialog(mContext, XCBaseDialog.TRAN_STYLE);
-                            httpDialog.setCanceledOnTouchOutside(false);
-                            httpDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
-                                @Override
-                                public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                                    if (keyCode == KeyEvent.KEYCODE_BACK) {
-                                        closeHttpDialog();
-                                        XCApp.resetNetingStatus();
-                                        if (!(mContext instanceof QlkMainActivity)) {
-                                            ((XCBaseActivity) mContext).myFinish();
-                                        }
-                                    }
-                                    return false;
-                                }
-                            });
-                            httpDialog.show();
-                            XCApp.i("showHttpDialog()");
-                        }
+                        setDialogAndShow(new XCSystemVDialog(mContext, XCBaseDialog.TRAN_STYLE));
                     }
                 });
     }

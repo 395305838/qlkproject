@@ -1,5 +1,6 @@
 package com.xiaocoder.middle.parse;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.view.KeyEvent;
 
@@ -114,8 +115,12 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
      */
     @Override
     public void showHttpDialog() {
+        setDialogAndShow(new XCSystemHDialog(mContext, XCBaseDialog.TRAN_STYLE));
+    }
+
+    public final void setDialogAndShow(Dialog yourDialog) {
         if (httpDialog == null) {
-            httpDialog = new XCSystemHDialog(mContext, XCBaseDialog.TRAN_STYLE);
+            httpDialog = yourDialog;
             httpDialog.setCanceledOnTouchOutside(false);
             httpDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
                 @Override

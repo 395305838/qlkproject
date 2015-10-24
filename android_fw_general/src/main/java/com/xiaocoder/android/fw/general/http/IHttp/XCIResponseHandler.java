@@ -8,6 +8,7 @@ import org.apache.http.Header;
 /**
  * @author xiaocoder
  *         2015-1-16 下午1:55:28
+ *         http回调的handler ,业务逻辑的判断，model的解析，dialog的显示等
  */
 public interface XCIResponseHandler<T> {
 
@@ -18,19 +19,19 @@ public interface XCIResponseHandler<T> {
     void finish();
 
     /**
-     * activity是否销毁
+     * activity是否销毁，这里的Context最好传Activity的实例，这样可以判断activity是否销毁
      */
     boolean isXCActivityDestroy(Context context);
 
     void setContext(Context context);
 
     /**
-     * 在子线程运行的，所以不要有ui或toast等操作
+     * 在子线程运行的，所以不要有ui或toast等操作，可以包括一系列的打印日志，byte转json，返回结果的判断等
      */
     void parse(byte[] response_bytes);
 
     /**
-     * 子线程中运行的，所以不要有ui或toast等操作
+     * 子线程中运行的，所以不要有ui或toast等操作，在parse（）中的方法，parseWay仅处理json到model、bean的解析
      */
     T parseWay(String responseStr, byte[] response_bytes);
 

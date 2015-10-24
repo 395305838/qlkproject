@@ -1,13 +1,12 @@
 package com.xiaocoder.android.fw.general.http;
 
-import android.content.Context;
+import android.app.Activity;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 
 import java.util.Map;
@@ -78,7 +77,7 @@ public class XCHttpSend {
     /**
      * 这里改为了hashmap，便于以后更改http请求库
      */
-    public void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
+    public void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Activity context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
 
         send(HttpType.GET, needSecret, isAllowConcurrent, isShowDialog, context, urlString, map, res);
 
@@ -87,13 +86,13 @@ public class XCHttpSend {
     /**
      * 这里改为了hashmap，便于以后更改http请求库
      */
-    public void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, XCBaseActivity context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
+    public void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Activity context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
 
         send(HttpType.POST, needSecret, isAllowConcurrent, isShowDialog, context, urlString, map, res);
 
     }
 
-    private void send(HttpType type, boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Context context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
+    private void send(HttpType type, boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Activity context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
         RequestParams params = new RequestParams();
 
         for (Map.Entry<String, Object> item : map.entrySet()) {
