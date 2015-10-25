@@ -25,6 +25,8 @@ import com.xiaocoder.android_fw_general.R;
  * 右边一个textview+imageview
  * @date 2014-12-31 上午11:31:25
  */
+
+@Deprecated
 public class XCTitleCommonFragment extends XCBaseFragment {
 
     LinearLayout xc_id_titlebar_left_layout;

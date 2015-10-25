@@ -22,7 +22,7 @@ import android.widget.ProgressBar;
 import com.xiaocoder.android.fw.general.application.XCBaseFragment;
 import com.xiaocoder.android_fw_general.R;
 
-
+@Deprecated
 public class XCWebViewFragment extends XCBaseFragment {
 
     WebView qlk_id_webview;
