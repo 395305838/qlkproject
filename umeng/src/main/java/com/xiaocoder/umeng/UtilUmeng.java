@@ -31,7 +31,7 @@ import java.util.Set;
 public class UtilUmeng {
 
     /**
-     * 微信平台注册了一个包名为  com.xiaocoder.test
+     * 微信平台注册了一个包名为  com.xiaocoder.test的测试应用
      *
      * @param appID     "wxe1733b127abc3406"
      * @param appSecret "34ee5399fae0786bbe754f8b4cfadde6"

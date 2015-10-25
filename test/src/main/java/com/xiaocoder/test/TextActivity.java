@@ -5,8 +5,12 @@ import android.os.Bundle;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.io.XCIO;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
+import com.xiaocoder.android.fw.general.js_xl_encryption.aes.AesEncryptAndDecrypt;
+import com.xiaocoder.android.fw.general.js_xl_encryption.des.DesEncryptAndDecrypt;
+import com.xiaocoder.android.fw.general.js_xl_encryption.md5.UtilMd5;
 import com.xiaocoder.android.fw.general.json.XCJsonBean;
 import com.xiaocoder.android.fw.general.json.XCJsonParse;
+import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
 import com.xiaocoder.middle.QlkActivity;
 
@@ -39,13 +43,26 @@ public class TextActivity extends QlkActivity {
     @Override
     public void initWidgets() {
         test1();
-//        test2();
-        test();
+        test2();
 
     }
 
     private void test2() {
-        String str = "";
+        String one = UtilMd5.MD5Encode("123456abc");
+        String two = UtilMd5.MD5Encode2("123456abc");
+        XCApp.i(one);
+        XCApp.i(two);
+        XCApp.i(UtilString.equalsStr(one, two)); // true
+
+        String des_close = DesEncryptAndDecrypt.encodeRequestStr("today is haha 123");
+        String des_open = DesEncryptAndDecrypt.decodeResponseStr(des_close);
+        XCApp.i(des_close);
+        XCApp.i(des_open);
+
+        String aes_close = AesEncryptAndDecrypt.encodeRequestStr("computer 123 macpro");
+        String aes_open = AesEncryptAndDecrypt.decodeResponseStr(aes_close);
+        XCApp.i(aes_close);
+        XCApp.i(aes_open);
     }
 
     private void test1() {
@@ -95,7 +112,7 @@ public class TextActivity extends QlkActivity {
 
 
     public void test() {
-        final File card = XCIOAndroid.createFileInAndroid(getApplicationContext(),"card", "card.txt");
+        final File card = XCIOAndroid.createFileInAndroid(getApplicationContext(), "card", "card.txt");
 
         new Thread(new Runnable() {
 

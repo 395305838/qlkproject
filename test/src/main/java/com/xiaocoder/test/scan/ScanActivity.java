@@ -106,7 +106,6 @@ public class ScanActivity extends QlkActivity implements Callback, View.OnClickL
         manager = CameraManager.get();
         viewfinderView = (ViewfinderView) findViewById(com.xiaocoder.test.R.id.capture_viewfinder);
 
-        // 下面是加的
         hasSurface = false;
         inactivityTimer = new InactivityTimer(this);
 
@@ -163,9 +162,7 @@ public class ScanActivity extends QlkActivity implements Callback, View.OnClickL
                         isFlashOpen = false;
                         xc_id_capture_flash_imageview.setSelected(false);
                     } catch (Exception e) {
-
-                    } finally {
-
+                        e.printStackTrace();
                     }
                 }
                 onPause(); // 暂时实现连续扫描
