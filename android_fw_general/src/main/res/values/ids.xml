@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
  Copyright (C) 2008 ZXing authors
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,6 +15,12 @@
 -->
 <resources>
 
-
+    <!-- 备用 -->
+    <item name="xc_one" type="id" />
+    <item name="xc_two" type="id" />
+    <item name="xc_three" type="id" />
+    <item name="xc_four" type="id" />
+    <item name="xc_five" type="id" />
+    <item name="xc_six" type="id" />
 
 </resources>

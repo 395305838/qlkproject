@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.js_encryption.rsa;
+package com.xiaocoder.android.fw.general.js_xl_encryption.rsa;
 
 import android.text.TextUtils;
 

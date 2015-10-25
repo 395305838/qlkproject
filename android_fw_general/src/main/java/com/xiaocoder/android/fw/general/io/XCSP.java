@@ -1,6 +1,7 @@
 package com.xiaocoder.android.fw.general.io;
 
 import java.util.Map;
+import java.util.Set;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -56,11 +57,13 @@ public class XCSP {
 		return editor.commit();
 	}
 
-	/*
-	 * //该方法至少需要api_11 public boolean putStringSet(String key, Set<String>
-	 * values) { editor = sharedPreferences.edit(); editor.putStringSet(key,
-	 * values); return editor.commit(); }
-	 */
+
+	public boolean putStringSet(String key, Set<String> values) {
+		  editor = sharedPreferences.edit();
+		  editor.putStringSet(key, values);
+		  return editor.commit();
+	}
+
 
 	// =============================sharedPreferences取数据======================================================
 	public String getString(String key, String defaultValue) {
@@ -137,8 +140,9 @@ public class XCSP {
 		return sharedPreferences.getAll();
 	}
 
-	/*
-	 * //需api_11 public Set<String> getStringSet(String key , Set<String>
-	 * defValues) { return sharedPreferences.getStringSet(key, defValues); }
-	 */
+
+	public Set<String> getStringSet(String key , Set<String> defValues) {
+		return sharedPreferences.getStringSet(key, defValues);
+	}
+
 }

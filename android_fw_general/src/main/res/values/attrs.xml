@@ -2,7 +2,6 @@
 <resources>
     <!-- 自定义控件的属性 -->
     <declare-styleable name="XCImageView">
-        <!-- 文本 -->
         <attr name="xc_radio_for_width_height" format="string|reference" />
     </declare-styleable>
 
@@ -100,8 +99,4 @@
         <attr name="arc_bottom_text_size" format="dimension" />
     </declare-styleable>
 
-    <!-- 下拉刷新控件 -->
-    <declare-styleable name="XCRefreshLayout">
-        <attr name="autorefresh" format="boolean" />
-    </declare-styleable>
 </resources>

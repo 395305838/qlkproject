@@ -1,7 +1,6 @@
 package com.xiaocoder.android.fw.general.io;
 
 import android.content.Context;
-import android.os.Environment;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -69,8 +68,6 @@ public class XCLog {
         this.is_output = is_output;
         this.is_printlog = is_printlog;
     }
-
-    // --------------------------控制频率的吐司---------------------------------
 
     /**
      * 防止点击频繁, 不断的弹出
@@ -251,7 +248,7 @@ public class XCLog {
 
         } catch (Exception e) {
             e.printStackTrace();
-            // 这里不要调用e(),可能相互调用
+            // 这里不要调用e(),可能相互调用，异常
         } finally {
             if (raf != null) {
                 try {
@@ -301,5 +298,8 @@ public class XCLog {
         }
     }
 
+    /**
+     * 缓存文件达到70M就会清空
+     */
     public static long LOG_FILE_LIMIT_SIZE = 73400320; // 70M
 }

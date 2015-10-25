@@ -331,8 +331,8 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         }
     }
 
-    // 这里得重写,否则startforresult时, 无法回调到fragment中的方法 , 如果fragment中又有嵌套的话,
-    // fragmetn中的该方法也得重写
+    // 这里得重写,否则startforresult时, 无法回调到fragment中的方法 ,
+    // 如果fragment中又有嵌套的话,fragmetn中的该方法也得重写
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

@@ -1,11 +1,5 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
-        <item name="android:windowNoTitle">true</item>
-
-        <!-- Customize your theme here. -->
-    </style>
-
     <style name="XCTheme" parent="android:Theme.Holo.Light">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -17,16 +11,13 @@
         <item name="android:windowAnimationStyle">@android:style/Animation</item>
     </style>
 
-    <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-    </style>
-
+    <!-- popwindow的动画 -->
     <style name="xc_s_pop_from_down_to_up">
         <item name="android:windowEnterAnimation">@anim/xc_anim_pop_enter</item>
         <item name="android:windowExitAnimation">@anim/xc_anim_pop_exit</item>
     </style>
 
+    <!-- 透明的dialog背景-->
     <style name="xc_s_dialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
         <!-- 无边界 ,否则会出现框框的线条 -->
@@ -39,60 +30,69 @@
         <!-- 这句不能少,否则还是有边框 -->
     </style>
 
-    <!-- 线 -->
+    <!-- 水平线 红色 1dp -->
     <style name="xc_h_line_red_ff0000_1">
         <item name="android:layout_height">1dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@color/c_red_ff0000</item>
     </style>
 
+    <!-- 竖线 红色 1dp -->
     <style name="xc_v_line_red_ff0000_1">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">1dp</item>
         <item name="android:background">@color/c_red_ff0000</item>
     </style>
 
+    <!-- 水平线 灰色 1px -->
     <style name="xc_h_line_gray_bebebe_1">
         <item name="android:layout_height">1px</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@color/c_gray_bebebe</item>
     </style>
 
+    <!-- 水平线 灰色 1px -->
     <style name="xc_h_line_gray_cccccc">
         <item name="android:layout_height">1px</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@color/c_gray_cccccc</item>
     </style>
 
+    <!-- 水平线 灰色 1px -->
     <style name="xc_h_line_gray_cccccc_dp">
         <item name="android:layout_height">1dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@color/c_gray_cccccc</item>
     </style>
 
+    <!-- 水平线 灰色 1px -->
     <style name="xc_h_line_gray_e8e8e8">
         <item name="android:layout_height">0.5dp</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:background">@color/c_gray_e8e8e8</item>
     </style>
 
+    <!-- 竖线 灰色 1px -->
     <style name="xc_v_line_gray_bebebe_1px">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">1px</item>
         <item name="android:background">@color/c_gray_bebebe</item>
     </style>
 
+    <!-- 竖线 灰色 1dp -->
     <style name="xc_v_line_gray_bebebe_1dp">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">1dp</item>
         <item name="android:background">@color/c_gray_bebebe</item>
     </style>
 
+    <!-- 竖线 灰色 0.5dp -->
     <style name="xc_v_line_gray_d8d8d8">
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">0.5dp</item>
         <item name="android:background">@color/c_gray_d8d8d8</item>
     </style>
+
     <!-- 虚线 -->
     <style name="xc_h_line_point">
         <item name="android:layout_height">2dp</item>
@@ -114,6 +114,7 @@
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
     </style>
+
     <!-- radiobutton -->
     <style name="xc_main_bottom_tab_item_number">
         <item name="android:background">#f7f7f8</item>
@@ -125,6 +126,7 @@
         <item name="android:paddingTop">5dp</item>
         <item name="android:paddingBottom">5dp</item>
     </style>
+
     <!-- 视频播放的主控制器pop的动画 -->
     <style name="pop">
         <item name="android:windowEnterAnimation">@anim/xc_anim_videopopenter</item>

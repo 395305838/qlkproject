@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.js_encryption.des;
+package com.xiaocoder.android.fw.general.js_xl_encryption.des;
 
 /**
  * DES加密解密类

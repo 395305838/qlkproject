@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
+import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.io.XCIO;
 
 import java.io.File;
@@ -81,7 +82,6 @@ public class XCImageLoader implements XCIImageLoader {
      * @param context
      * @param cacheToLocalDirectory 本地缓存目录file
      */
-
     public XCImageLoader(Context context, File cacheToLocalDirectory, int defaultImageId) {
         super();
         if (context == null) {
@@ -149,9 +149,8 @@ public class XCImageLoader implements XCIImageLoader {
     @Override
     public void display(final String url, ImageView imageview, Object... obj) {
 
-        if (obj != null && obj[0] instanceof Integer) {
-            defaultImageId = (int) obj[0];
-        }
+        getParams(obj);
+
         /**
          * 先到内存中找
          */
@@ -182,7 +181,7 @@ public class XCImageLoader implements XCIImageLoader {
 
         if (url.startsWith(HTTP_HEAD)) {
             /**
-             * 如果本地缓存没有,就去网络下载
+             * 如果本地缓存没有,且是网络文件，就去网络下载
              */
             XCApp.i(TAG, url + "---to get bitmap from net");
             // 这里要用trim(),因为如果服务端是用println()发过来的,那么最后的url为url+"/r/n"
@@ -198,6 +197,12 @@ public class XCImageLoader implements XCIImageLoader {
             } else {
                 XCApp.e(this + "---" + url + "---传入的图片路径有误");
             }
+        }
+    }
+
+    public void getParams(Object[] obj) {
+        if (obj != null && obj[0] instanceof Integer) {
+            defaultImageId = (int) obj[0];
         }
     }
 
@@ -351,7 +356,7 @@ public class XCImageLoader implements XCIImageLoader {
                 // 注明:这里没有用httpclient或asynhttp框架,网络加载图片本来就耗资源且费时,而且这里也没有特殊的需求,所以用这种最轻便的网络访问方式,如有特殊的需求,再改
                 HttpURLConnection conn = null;
                 conn = (HttpURLConnection) new URL(url).openConnection();
-                conn.setRequestMethod("GET");
+                conn.setRequestMethod(XCConfig.GET);
                 conn.setConnectTimeout(10000);
                 if (HttpURLConnection.HTTP_OK == conn.getResponseCode()) {
                     InputStream in = conn.getInputStream();

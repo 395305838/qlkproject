@@ -50,4 +50,8 @@ public class XCConfig {
      */
     public static String ENCODING_GBK = "gbk";
 
+    public static String GET = "GET";
+
+    public static String POST = "POST";
+
 }

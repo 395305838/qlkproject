@@ -1,5 +1,6 @@
 package com.xiaocoder.android.fw.general.util;
 
+import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.io.XCIO;
 
 import org.apache.http.HttpResponse;
@@ -26,7 +27,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Deprecated
 public class UtilHttpOrigin {
 
     /**
@@ -45,13 +45,13 @@ public class UtilHttpOrigin {
             for (Map.Entry<String, Object> entry : requestParams.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue().toString();
-                value = URLEncoder.encode(value, "UTF-8");
+                value = URLEncoder.encode(value, XCConfig.ENCODING_UTF8);
                 sb.append(key).append("=").append(value).append("&");
             }
             sb.deleteCharAt(sb.length() - 1);
             conn = (HttpURLConnection) new URL(sb.toString()).openConnection();
         }
-        conn.setRequestMethod("GET");
+        conn.setRequestMethod(XCConfig.GET);
         conn.setConnectTimeout(10000);
         if (HttpURLConnection.HTTP_OK == conn.getResponseCode()) {
             return conn;
@@ -71,13 +71,13 @@ public class UtilHttpOrigin {
             for (Map.Entry<String, Object> entry : requestParams.entrySet()) {
                 String key = entry.getKey();
                 String value = entry.getValue().toString();
-                value = URLEncoder.encode(value, "UTF-8");
+                value = URLEncoder.encode(value,XCConfig.ENCODING_UTF8);
                 content.append(key).append("=").append(value).append("&");
             }
             content.deleteCharAt(content.length() - 1);
         }
         conn = (HttpURLConnection) new URL(urlStr).openConnection();
-        conn.setRequestMethod("POST");
+        conn.setRequestMethod(XCConfig.POST);
         conn.setConnectTimeout(10000);
         conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         conn.setRequestProperty("Content-Length", content.toString().length() + "");
@@ -114,7 +114,7 @@ public class UtilHttpOrigin {
         DefaultHttpClient client = new DefaultHttpClient();
         HttpPost post = new HttpPost(url);
         // StringEntity entity = new StringEntity(xml, "<xml>");
-        UrlEncodedFormEntity form = new UrlEncodedFormEntity(param, "UTF-8");
+        UrlEncodedFormEntity form = new UrlEncodedFormEntity(param, XCConfig.ENCODING_UTF8);
         post.setEntity(form);
         HttpResponse response = client.execute(post);
         if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
@@ -129,14 +129,14 @@ public class UtilHttpOrigin {
         DefaultHttpClient client = new DefaultHttpClient();// 拿到浏览器
         HttpPost post = new HttpPost(url); // 指定请求方式
         MultipartEntity form = new MultipartEntity();// 生成表单
-        form.addPart("filename", new StringBody(names[0], Charset.forName("UTF-8")));// 文件名
-        form.addPart("filedes", new StringBody(names[1], Charset.forName("UTF-8"))); // 文件描述
+        form.addPart("filename", new StringBody(names[0], Charset.forName(XCConfig.ENCODING_UTF8)));// 文件名
+        form.addPart("filedes", new StringBody(names[1], Charset.forName(XCConfig.ENCODING_UTF8))); // 文件描述
         form.addPart("formfile", new FileBody(file)); // 文件
         post.setEntity(form);
         HttpResponse response = client.execute(post);
         if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
             InputStream in = response.getEntity().getContent();
-            return new String(XCIO.toBytesByInputStream(in), "UTF-8");
+            return new String(XCIO.toBytesByInputStream(in), XCConfig.ENCODING_UTF8);
         }
         return null;
     }

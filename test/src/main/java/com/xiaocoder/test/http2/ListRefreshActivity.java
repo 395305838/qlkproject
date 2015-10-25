@@ -64,6 +64,7 @@ public class ListRefreshActivity extends QlkActivity {
                 if (result_boolean) {
                     List<TestModel.DataEntity.ResultEntity> result = result_bean.getData().getResult();
                     xcListRefreshLayout.setTotalPage("3");
+                    result.addAll(result);// 多加点数据
                     xcListRefreshLayout.updateListAdd(result, adapter);
                 }
             }
