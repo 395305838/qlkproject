@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.xiaocoder.android.fw.general.util.UtilString;
 
 /**
- * onUpgrade方法没实现的
+ * onUpgrade方法空实现的
  */
 public class XCDbHelper extends SQLiteOpenHelper {
 

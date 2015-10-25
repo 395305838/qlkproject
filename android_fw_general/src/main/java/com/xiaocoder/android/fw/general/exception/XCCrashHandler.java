@@ -110,9 +110,6 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
 
     }
 
-    /**
-     * 如果系统提供了默认的异常处理器，则交给系统去结束我们的程序，否则就由我们自己结束程序
-     */
     public void endException() {
 
         showToast(application, "很抱歉，程序遭遇异常，即将退出！");

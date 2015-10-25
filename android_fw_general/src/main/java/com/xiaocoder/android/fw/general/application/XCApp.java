@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
 import com.xiaocoder.android.fw.general.http.XCHttpSend;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
-import com.xiaocoder.android.fw.general.imageloader.IImageLoader.XCIImageLoader;
+import com.xiaocoder.android.fw.general.imageloader.XCIImageLoader;
 import com.xiaocoder.android.fw.general.io.XCLog;
 import com.xiaocoder.android.fw.general.io.XCSP;
 import com.xiaocoder.android.fw.general.util.UtilScreen;

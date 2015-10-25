@@ -7,8 +7,6 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.widget.ImageView;
 
-import com.xiaocoder.android.fw.general.imageloader.IImageLoader.XCIImageLoader;
-
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;

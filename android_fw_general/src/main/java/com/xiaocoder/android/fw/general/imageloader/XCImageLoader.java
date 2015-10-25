@@ -8,7 +8,6 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.imageloader.IImageLoader.XCIImageLoader;
 import com.xiaocoder.android.fw.general.io.XCIO;
 
 import java.io.File;

@@ -4,7 +4,6 @@ import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.xiaocoder.android.fw.general.imageloader.IImageLoader.XCIImageLoader;
 
 /**
  * Created by xiaocoder on 2015/10/21.

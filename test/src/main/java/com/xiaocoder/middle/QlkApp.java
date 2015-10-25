@@ -5,8 +5,8 @@ import android.content.Context;
 import com.umeng.analytics.MobclickAgent;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.exception.XCIException2Server;
 import com.xiaocoder.android.fw.general.exception.XCCrashHandler;
+import com.xiaocoder.android.fw.general.exception.XCIException2Server;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
 import com.xiaocoder.android.fw.general.imageloader.JSImageLoader;
 import com.xiaocoder.android.fw.general.imageloader.XCAsynLoader;
@@ -38,14 +38,8 @@ public class QlkApp extends XCApp {
         // sp保存文件名 与 模式
         base_sp = new XCSP(getApplicationContext(), QlkConfig.SP_FILE, Context.MODE_APPEND);// Context.MODE_MULTI_PROCESS
 
-        // 图片视频等缓存的文件夹
-        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_MOIVE_DIR);
-        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_VIDEO_DIR);
-        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_PHOTO_DIR);
-        // crash文件夹
-        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CRASH_DIR);
-        // cache文件夹
-        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CACHE_DIR);
+        // 创建文件夹
+        createDir();
 
         // 图片加载的初始化
         initImageLoader();
@@ -56,6 +50,19 @@ public class QlkApp extends XCApp {
         // 打印一些简单的设备信息
         simpleDeviceInfo();
 
+    }
+
+    private void createDir() {
+        // 应用存储日志 缓存等信息的顶层文件夹
+        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.APP_ROOT);
+        // 图片视频等缓存的文件夹
+        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_MOIVE_DIR);
+        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_VIDEO_DIR);
+        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CHAT_PHOTO_DIR);
+        // crash文件夹
+        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CRASH_DIR);
+        // cache文件夹
+        XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.CACHE_DIR);
     }
 
     private void initImageLoader() {
