@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
+@Deprecated
 public class XCListView extends PullToRefreshListView {
 
 	public XCListView(Context context) {

@@ -18,7 +18,7 @@ import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.listener.XCScrollListener;
 import com.xiaocoder.android.fw.general.util.UtilString;
-import com.xiaocoder.ptrrefresh.IRefreshHandler.XCIRefreshHandler;
+import com.xiaocoder.android.fw.general.view.IRefreshHandler.XCIRefreshHandler;
 
 import java.util.ArrayList;
 import java.util.List;

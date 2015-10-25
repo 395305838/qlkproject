@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 
+@Deprecated
 public class XCGridView extends PullToRefreshGridView{
 
 	public XCGridView(Context context) {

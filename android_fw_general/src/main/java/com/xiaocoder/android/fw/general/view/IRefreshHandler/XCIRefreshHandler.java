@@ -1,11 +1,11 @@
-package com.xiaocoder.ptrrefresh.IRefreshHandler;
+package com.xiaocoder.android.fw.general.view.IRefreshHandler;
 
 import android.view.View;
 
 /**
  * Created by xiaocoder on 2015/10/10.
  * version: 1.2.0
- * description:
+ * description: 方便以后更改下拉库
  */
 public interface XCIRefreshHandler {
     /**
