@@ -38,6 +38,8 @@ public class XCApp extends Application {
     protected static ExecutorService base_fix_threadpool;
     protected static XCLog base_log;
     protected static XCSP base_sp;
+    protected static Context base_applicationContext;
+
     /**
      * 加个接口，以后可能会改别的图片加载库，子类中传入
      */
@@ -45,6 +47,12 @@ public class XCApp extends Application {
 
     public Stack<Activity> getStack() {
         return stack;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        base_applicationContext = getApplicationContext();
     }
 
     /**
@@ -282,6 +290,10 @@ public class XCApp extends Application {
 
     public static Map<String, ?> spGetAll() {
         return base_sp.getAll();
+    }
+
+    public static Context getBase_applicationContext() {
+        return base_applicationContext;
     }
 
     /**

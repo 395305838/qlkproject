@@ -71,4 +71,7 @@ public class ImagesZoomActivity extends QlkActivity {
         });
     }
 
+    @Override
+    protected void initSlideDestroyActivity() {
+    }
 }
