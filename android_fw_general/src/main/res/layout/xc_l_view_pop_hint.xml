@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@drawable/xc_d_patient_pop"
+    android:background="@drawable/xc_d_pop_hint"
     android:paddingLeft="5dp"
     android:paddingRight="5dp">
 

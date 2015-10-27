@@ -127,10 +127,9 @@
         <item name="android:paddingBottom">5dp</item>
     </style>
 
-    <!-- 视频播放的主控制器pop的动画 -->
     <style name="pop">
-        <item name="android:windowEnterAnimation">@anim/xc_anim_videopopenter</item>
-        <item name="android:windowExitAnimation">@anim/xc_anim_videopopexit</item>
+        <item name="android:windowEnterAnimation">@anim/xc_anim_videopop_enter</item>
+        <item name="android:windowExitAnimation">@anim/xc_anim_videopop_exit</item>
     </style>
 
 </resources>

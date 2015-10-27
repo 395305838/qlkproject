@@ -48,4 +48,5 @@ dependencies {
     compile project(':ptr-lib')
     compile project(':viewpagerslider')
     compile project(':mqtt')
+    compile project(':im')
 }

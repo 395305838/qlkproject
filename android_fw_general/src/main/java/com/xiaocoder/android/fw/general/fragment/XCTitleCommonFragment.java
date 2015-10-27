@@ -246,7 +246,7 @@ public class XCTitleCommonFragment extends XCBaseFragment {
                 if (text != null) {
                     xc_id_titlebar_right3_textview_number.setText(text);
                     getBaseActivity().setViewGone(true, xc_id_titlebar_right3_textview_number);
-                    Animation animation = AnimationUtils.loadAnimation(getBaseActivity(), R.anim.xl_animation_push_down_in);
+                    Animation animation = AnimationUtils.loadAnimation(getBaseActivity(), R.anim.xl_anim_push_down_in);
                     xc_id_titlebar_right3_textview_number.startAnimation(animation);
 
                 } else {
@@ -385,7 +385,7 @@ public class XCTitleCommonFragment extends XCBaseFragment {
             if (init_bundle.getString("text3") != null) {
                 getBaseActivity().setViewGone(true, xc_id_titlebar_right3_textview_number);
                 xc_id_titlebar_right3_textview_number.setText(init_bundle.getString("text3"));
-                Animation animation = AnimationUtils.loadAnimation(getBaseActivity(), R.anim.xl_animation_push_down_in);
+                Animation animation = AnimationUtils.loadAnimation(getBaseActivity(), R.anim.xl_anim_push_down_in);
                 xc_id_titlebar_right3_textview_number.startAnimation(animation);
             } else {
                 getBaseActivity().setViewGone(false, xc_id_titlebar_right3_textview_number);

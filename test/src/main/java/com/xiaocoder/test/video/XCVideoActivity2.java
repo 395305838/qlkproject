@@ -10,7 +10,7 @@ import android.view.SurfaceView;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCBaseActivity;
-import com.xiaocoder.android_fw_general.R;
+import com.xiaocoder.im.R;
 
 
 public class XCVideoActivity2 extends XCBaseActivity {

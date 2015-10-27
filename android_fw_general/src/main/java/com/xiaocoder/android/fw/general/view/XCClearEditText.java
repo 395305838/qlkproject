@@ -38,7 +38,7 @@ public class XCClearEditText extends EditText implements OnFocusChangeListener, 
 	private void init() {
 		mClearDrawable = getCompoundDrawables()[2];
 		if (mClearDrawable == null) {
-			mClearDrawable = getResources().getDrawable(R.drawable.xc_d_cleareditview_delete);
+			mClearDrawable = getResources().getDrawable(R.drawable.xc_d_editview_delete);
 		}
 		mClearDrawable.setBounds(0, 0, mClearDrawable.getIntrinsicWidth(), mClearDrawable.getIntrinsicHeight());
 		setClearIconVisible(false);

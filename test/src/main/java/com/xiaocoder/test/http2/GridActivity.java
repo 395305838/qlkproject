@@ -138,7 +138,7 @@ public class GridActivity extends QlkActivity {
 //        grid_fragment.setAdapter(new XCAdapterTest(this, null));
         // 可以不设置Mode， 默认是不可以拉的listview
         grid_fragment.setMode(XCListViewFragment.MODE_UP_DOWN);
-        grid_fragment.setBgZeroHintInfo("数据为0", "重新加载", R.drawable.xc_d_chat_face);
+        grid_fragment.setBgZeroHintInfo("数据为0", "重新加载", R.drawable.ic_launcher);
         grid_fragment.setGridViewStyleParam(false, 1, 1, 2);
         addFragment(R.id.xc_id_model_content, grid_fragment);
         request();
