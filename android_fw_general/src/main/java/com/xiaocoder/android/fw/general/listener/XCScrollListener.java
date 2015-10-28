@@ -30,16 +30,6 @@ public class XCScrollListener implements OnScrollListener {
             case OnScrollListener.SCROLL_STATE_IDLE:
                 onSaveInstanceState = view.onSaveInstanceState(); // 每当滑动停止的时候,保存listView的状态
 
-                // int index = _end_index - _start_index;
-                // for (int i = 0; i <= index; i++) {
-                // if (view.getAdapter().getCount() < (_start_index + i + 1)) {
-                // return; // 因为有时候 visibleItemCount会变动+1,所以判断以免数组越界
-                // }
-                // View refreshview = view.getChildAt(i); // 得到局部刷新的viewtiem
-                // if (refreshview == null) {
-                // return;
-                // }
-                // }
                 break;
             case OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
                 break;

@@ -20,6 +20,7 @@ import java.util.List;
 /**
  * @author xiaocoder
  * @date 2015-1-6 下午10:50:22
+ * 图片可以触摸缩放
  */
 public class XCImagesZoomFragment extends XCBaseFragment {
 

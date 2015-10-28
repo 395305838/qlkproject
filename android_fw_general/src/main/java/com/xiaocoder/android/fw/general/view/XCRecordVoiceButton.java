@@ -41,7 +41,7 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
 
     private Dialog dialog;
     private TextView hint;
-    private TextView time;
+    private TextView time_view;
 
     public XCRecordVoiceButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -51,7 +51,7 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
         super(context, attrs);
         createDialog(context);
         hint = (TextView) dialog.findViewById(R.id.xc_id_voice_recoder_hint_textview);
-        time = (TextView) dialog.findViewById(R.id.xc_id_voice_recoder_time);
+        time_view = (TextView) dialog.findViewById(R.id.xc_id_voice_recoder_time);
         timeRunnable = new TimeRunnable();
         boundary_flag = false;
     }
@@ -89,7 +89,7 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
             int i = FAKE_TIME;
             while (!isQuitNow && i >= 0) {
                 try {
-                    timeRunnable.update(i--, time);
+                    timeRunnable.update(i--, time_view);
                     XCApp.getBase_handler().post(timeRunnable);
                     Thread.sleep(SLEEP_TIME);
                 } catch (Exception e) {
