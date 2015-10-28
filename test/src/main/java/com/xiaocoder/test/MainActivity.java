@@ -11,8 +11,8 @@ import com.xiaocoder.android.fw.general.io.XCIO;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.util.UtilActivity;
 import com.xiaocoder.android.fw.general.util.UtilString;
-import com.xiaocoder.middle.QlkConfig;
-import com.xiaocoder.middle.function.QlkMainActivity;
+import com.xiaocoder.middle.MConfig;
+import com.xiaocoder.middle.function.MMainActivity;
 import com.xiaocoder.test.anim.AnimationActivity;
 import com.xiaocoder.test.baidumap.MapActivity;
 import com.xiaocoder.test.clearcache.ClearCacheActivity;
@@ -59,7 +59,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 
-public class MainActivity extends QlkMainActivity {
+public class MainActivity extends MMainActivity {
 
     public static String TEST_HOST = "10.7.30.121";
     Button test_point_line;
@@ -133,16 +133,16 @@ public class MainActivity extends QlkMainActivity {
         XCApp.e(this, "1234567890");
         XCApp.tempPrint("android--" + System.currentTimeMillis());
 
-        XCApp.i(XCIO.getAllFilesByDirQueue(XCIOAndroid.createDirInSDCard(QlkConfig.APP_ROOT), new ArrayList<File>()));
+        XCApp.i(XCIO.getAllFilesByDirQueue(XCIOAndroid.createDirInSDCard(MConfig.APP_ROOT), new ArrayList<File>()));
 
-        XCIO.toFileByBytes(XCIOAndroid.createFileInAndroid(this, QlkConfig.APP_ROOT, "lalala.txt"), "写入的内容--1234567890987654321abc".getBytes(), true);
+        XCIO.toFileByBytes(XCIOAndroid.createFileInAndroid(this, MConfig.APP_ROOT, "lalala.txt"), "写入的内容--1234567890987654321abc".getBytes(), true);
     }
 
     @Override
     public void initWidgets() {
 
-        XCApp.i(XCConfig.TAG_TEMP, QlkConfig.CURRENT_RUN_ENVIRONMENT.toString() + "-----环境");
-        XCApp.i(XCConfig.TAG_TEMP, QlkConfig.DEBUG_CONTROL.toString() + "-----调试");
+        XCApp.i(XCConfig.TAG_TEMP, MConfig.CURRENT_RUN_ENVIRONMENT.toString() + "-----环境");
+        XCApp.i(XCConfig.TAG_TEMP, MConfig.DEBUG_CONTROL.toString() + "-----调试");
 
         test_list_refresh_layout = getViewById(R.id.test_list_refresh_layout);
 

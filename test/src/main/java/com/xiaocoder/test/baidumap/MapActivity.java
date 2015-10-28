@@ -3,11 +3,11 @@ package com.xiaocoder.test.baidumap;
 import android.os.Bundle;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.middle.function.QlkBaiduMapActivity;
+import com.xiaocoder.middle.function.MBaiduMapActivity;
 import com.xiaocoder.test.R;
 
 
-public class MapActivity extends QlkBaiduMapActivity {
+public class MapActivity extends MBaiduMapActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

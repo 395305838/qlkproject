@@ -7,15 +7,15 @@ import com.xiaocoder.android.fw.general.fragment.XCSearchRecordFragment;
 import com.xiaocoder.android.fw.general.fragment.XCTitleSearchFragment;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;
 import com.xiaocoder.android.fw.general.util.UtilActivity;
-import com.xiaocoder.middle.QlkActivity;
-import com.xiaocoder.middle.db.QlkDb;
-import com.xiaocoder.middle.db.QlkDbHelper;
+import com.xiaocoder.middle.MActivity;
+import com.xiaocoder.middle.db.MDb;
+import com.xiaocoder.middle.db.MDbHelper;
 import com.xiaocoder.test.R;
 
 /**
  * 多个界面都有搜索时，每张表记录的信息类别是不一样的
  */
-public class SearchActivity extends QlkActivity {
+public class SearchActivity extends MActivity {
 
     // 搜索历史界面
     XCSearchRecordFragment record_fragment;
@@ -35,8 +35,8 @@ public class SearchActivity extends QlkActivity {
     @Override
     public void initWidgets() {
         title_fragment = new XCTitleSearchFragment();
-        title_fragment.setDbParams(QlkDb.DB_TABLE_SEARCH_RECODER_1, QlkDbHelper.class, QlkDb.DB_SEARCH_RECODER, QlkDb.DB_VERSION_SEARCH_RECODER,
-                new String[]{QlkDb.DB_SQL_SEARCH_RECODER_1, QlkDb.DB_SQL_SEARCH_RECODER_2, QlkDb.DB_SQL_SEARCH_RECODER_3}
+        title_fragment.setDbParams(MDb.DB_TABLE_SEARCH_RECODER_1, MDbHelper.class, MDb.DB_SEARCH_RECODER, MDb.DB_VERSION_SEARCH_RECODER,
+                new String[]{MDb.DB_SQL_SEARCH_RECODER_1, MDb.DB_SQL_SEARCH_RECODER_2, MDb.DB_SQL_SEARCH_RECODER_3}
         );
         addFragment(R.id.xc_id_model_titlebar, title_fragment);
 
@@ -53,8 +53,8 @@ public class SearchActivity extends QlkActivity {
                 // 为空则创建并设置监听 , record_fragment里面的监听器可以监听键盘的显示到隐藏的状态
                 if (record_fragment == null) {
                     record_fragment = new XCSearchRecordFragment();
-                    record_fragment.setDbParams(QlkDb.DB_TABLE_SEARCH_RECODER_1, QlkDbHelper.class, QlkDb.DB_SEARCH_RECODER, QlkDb.DB_VERSION_SEARCH_RECODER,
-                            new String[]{QlkDb.DB_SQL_SEARCH_RECODER_1, QlkDb.DB_SQL_SEARCH_RECODER_2, QlkDb.DB_SQL_SEARCH_RECODER_3}
+                    record_fragment.setDbParams(MDb.DB_TABLE_SEARCH_RECODER_1, MDbHelper.class, MDb.DB_SEARCH_RECODER, MDb.DB_VERSION_SEARCH_RECODER,
+                            new String[]{MDb.DB_SQL_SEARCH_RECODER_1, MDb.DB_SQL_SEARCH_RECODER_2, MDb.DB_SQL_SEARCH_RECODER_3}
                     );
 
                     // 点击键盘中的隐藏键盘按钮

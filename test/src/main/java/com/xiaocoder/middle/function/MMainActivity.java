@@ -5,13 +5,13 @@ import android.os.Bundle;
 import com.umeng.analytics.AnalyticsConfig;
 import com.umeng.analytics.MobclickAgent;
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 
 /**
  * Created by xiaocoder on 2015/7/15.
  * 首页activity，点击两次退出
  */
-public abstract class QlkMainActivity extends QlkActivity {
+public abstract class MMainActivity extends MActivity {
 
     // 双击两次返回键退出应用
     long back_quit_time;

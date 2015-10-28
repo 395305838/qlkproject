@@ -6,7 +6,7 @@ import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
 import com.xiaocoder.android.fw.general.helper.XCTimeHelper;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
 import java.util.Timer;
@@ -14,7 +14,7 @@ import java.util.TimerTask;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class TimerActivity extends QlkActivity {
+public class TimerActivity extends MActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

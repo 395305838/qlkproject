@@ -11,9 +11,9 @@ import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
 import com.xiaocoder.android.fw.general.helper.XCDownloadHelper;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.util.UtilString;
-import com.xiaocoder.middle.QlkActivity;
-import com.xiaocoder.middle.QlkApp;
-import com.xiaocoder.middle.QlkConfig;
+import com.xiaocoder.middle.MActivity;
+import com.xiaocoder.middle.MApp;
+import com.xiaocoder.middle.MConfig;
 import com.xiaocoder.middle.parse.QlkBean;
 import com.xiaocoder.middle.parse.QlkResponseHandlerBean;
 import com.xiaocoder.test.R;
@@ -23,7 +23,7 @@ import org.apache.http.Header;
 import java.io.File;
 import java.util.HashMap;
 
-public class HttpDownLoadActivity extends QlkActivity {
+public class HttpDownLoadActivity extends MActivity {
 
     Button button;
     XCQueryDialog dialog;
@@ -71,7 +71,7 @@ public class HttpDownLoadActivity extends QlkActivity {
     private void downLoad() {
 
         XCDownloadHelper downloadHelper = new XCDownloadHelper("http://www.baidu.com"
-                , XCIOAndroid.createFileInAndroid(getApplicationContext(),QlkConfig.APP_ROOT, "downfile"));
+                , XCIOAndroid.createFileInAndroid(getApplicationContext(), MConfig.APP_ROOT, "downfile"));
 
         downloadHelper.setDownloadListener(new XCDownloadHelper.DownloadListener() {
             @Override
@@ -95,7 +95,7 @@ public class HttpDownLoadActivity extends QlkActivity {
             }
         });
 
-        QlkApp.getBase_cache_threadpool().execute(downloadHelper);
+        MApp.getBase_cache_threadpool().execute(downloadHelper);
     }
 
     @Override

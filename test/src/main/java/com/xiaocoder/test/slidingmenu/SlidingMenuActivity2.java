@@ -6,11 +6,11 @@ import android.widget.RadioGroup;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
-import com.xiaocoder.middle.function.QlkMainActivity;
+import com.xiaocoder.middle.function.MMainActivity;
 import com.xiaocoder.test.R;
 
 
-public class SlidingMenuActivity2 extends QlkMainActivity implements RadioGroup.OnCheckedChangeListener {
+public class SlidingMenuActivity2 extends MMainActivity implements RadioGroup.OnCheckedChangeListener {
 
     private SlidingMenu menu;
 

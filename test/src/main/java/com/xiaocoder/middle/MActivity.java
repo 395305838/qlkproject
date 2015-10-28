@@ -6,7 +6,7 @@ import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 /**
  * Created by xiaocoder on 2015/7/15.
  */
-public abstract class QlkActivity extends XCBaseActivity {
+public abstract class MActivity extends XCBaseActivity {
 
     @Override
     protected void onResume() {

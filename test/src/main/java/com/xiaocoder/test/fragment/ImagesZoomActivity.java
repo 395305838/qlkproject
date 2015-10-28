@@ -6,12 +6,12 @@ import android.widget.ImageView;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.fragment.XCImagesZoomFragment;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
 import java.util.ArrayList;
 
-public class ImagesZoomActivity extends QlkActivity {
+public class ImagesZoomActivity extends MActivity {
 
     XCImagesZoomFragment fragment;
 

@@ -9,12 +9,12 @@ import com.xiaocoder.android.fw.general.fragment.XCCameraPhotoFragment;
 import com.xiaocoder.android.fw.general.fragment.XCCameraPhotoFragment.OnCaremaSelectedFileListener;
 import com.xiaocoder.android.fw.general.fragment.XCLocalPhotoFragment;
 import com.xiaocoder.android.fw.general.fragment.XCLocalPhotoFragment.OnLocalSelectedFileListener;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
 import java.io.File;
 
-public class CamareActivity extends QlkActivity {
+public class CamareActivity extends MActivity {
 	XCCameraPhotoFragment camera_fragment;
 	XCLocalPhotoFragment local_fragment;
 	ImageView test_imageview;

@@ -6,7 +6,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.xiaocoder.android.fw.general.view.XCLineProgressBar;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
 import java.util.Timer;
@@ -15,7 +15,7 @@ import java.util.TimerTask;
 /**
  * Created by xiaocoder on 2015/8/18.
  */
-public class LineProgressBarActivity extends QlkActivity implements XCLineProgressBar.OnProgressBarListener {
+public class LineProgressBarActivity extends MActivity implements XCLineProgressBar.OnProgressBarListener {
 
     private Timer timer;
 

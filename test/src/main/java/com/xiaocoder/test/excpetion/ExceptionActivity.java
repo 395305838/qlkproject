@@ -2,10 +2,10 @@ package com.xiaocoder.test.excpetion;
 
 import android.os.Bundle;
 
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
-public class ExceptionActivity extends QlkActivity {
+public class ExceptionActivity extends MActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

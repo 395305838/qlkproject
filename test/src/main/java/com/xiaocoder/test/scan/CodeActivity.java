@@ -3,11 +3,11 @@ package com.xiaocoder.test.scan;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 import com.xiaocoder.zxcode.UtilGenerateCode;
 
-public class CodeActivity extends QlkActivity {
+public class CodeActivity extends MActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

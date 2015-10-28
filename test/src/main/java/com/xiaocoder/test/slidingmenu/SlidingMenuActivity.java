@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
-public class SlidingMenuActivity extends QlkActivity {
+public class SlidingMenuActivity extends MActivity {
     private SlidingMenu menu;
 
     @Override

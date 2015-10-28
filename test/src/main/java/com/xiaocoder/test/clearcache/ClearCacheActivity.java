@@ -8,13 +8,13 @@ import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCRotateDialog;
 import com.xiaocoder.android.fw.general.helper.XCCleanCacheHelper;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
-import com.xiaocoder.middle.QlkActivity;
-import com.xiaocoder.middle.QlkConfig;
+import com.xiaocoder.middle.MActivity;
+import com.xiaocoder.middle.MConfig;
 import com.xiaocoder.test.R;
 
 import java.io.File;
 
-public class ClearCacheActivity extends QlkActivity {
+public class ClearCacheActivity extends MActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class ClearCacheActivity extends QlkActivity {
     public void initWidgets() {
         clear = getViewById(R.id.clear);
         // 如果没有该dir会创建再返回，有则返回该dir
-        dir = XCIOAndroid.createDirInAndroid(getApplicationContext(), QlkConfig.APP_ROOT);
+        dir = XCIOAndroid.createDirInAndroid(getApplicationContext(), MConfig.APP_ROOT);
         helper = new XCCleanCacheHelper(new XCRotateDialog(this, XCBaseDialog.TRAN_STYLE, R.drawable.xc_d_dialog_loading_round));
     }
 

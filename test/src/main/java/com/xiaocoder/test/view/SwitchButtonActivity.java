@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.view.XCSwitchButton;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
-public class SwitchButtonActivity extends QlkActivity implements XCSwitchButton.SwitchButtonListener {
+public class SwitchButtonActivity extends MActivity implements XCSwitchButton.SwitchButtonListener {
 
     TextView txt;
     XCSwitchButton slide;

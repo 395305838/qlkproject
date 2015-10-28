@@ -5,10 +5,10 @@ import android.view.View;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.view.XCCircleProgressBar;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
-public class CircleProgressBarActivity extends QlkActivity {
+public class CircleProgressBarActivity extends MActivity {
 
     int progress = 0;
     XCCircleProgressBar progress1;

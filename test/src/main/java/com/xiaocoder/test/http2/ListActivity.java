@@ -13,7 +13,7 @@ import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
 import com.xiaocoder.android.fw.general.util.Utils;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.middle.parse.QlkResponseHandlerBean;
 import com.xiaocoder.pulltorefresh.XCListViewFragment;
 import com.xiaocoder.test.R;
@@ -25,7 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class ListActivity extends QlkActivity {
+public class ListActivity extends MActivity {
     XCListViewFragment list_fragment;
 
     @Override

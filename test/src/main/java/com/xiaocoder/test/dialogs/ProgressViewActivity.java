@@ -4,13 +4,13 @@ import android.os.Bundle;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.view.SXProgressView;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
 /**
  * Created by xiaocoder on 2015/9/14.
  */
-public class ProgressViewActivity extends QlkActivity {
+public class ProgressViewActivity extends MActivity {
 
     SXProgressView view;
 

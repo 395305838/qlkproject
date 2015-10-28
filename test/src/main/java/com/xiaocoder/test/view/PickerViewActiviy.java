@@ -4,12 +4,12 @@ import android.os.Bundle;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.view.SXPickerView;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
 import java.util.ArrayList;
 
-public class PickerViewActiviy extends QlkActivity {
+public class PickerViewActiviy extends MActivity {
 
     SXPickerView viewLeft;
     SXPickerView viewRight;

@@ -32,6 +32,9 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
     public static final int MIN_TIME = 3000; // 录音最短时间，毫秒
     public static final int MAX_TIME = 45000; // 录音最长时间,毫秒
     public static final int FAKE_TIME = 60; // 假的录音最长时间，秒
+    public static final int SLEEP_TIME = 750; // 多少毫秒减一次时间
+    public static double COMPRESS_RATIO = 0.75;
+
 
     private long start_time; // 记录录音的开始时间
     private long end_time; // 记录录音的结束时间
@@ -53,6 +56,9 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
         boundary_flag = false;
     }
 
+    /**
+     * 子线程中更新textview用的
+     */
     public class TimeRunnable implements Runnable {
 
         public void update(int time, TextView textview) {
@@ -71,6 +77,9 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
 
     TimeRunnable timeRunnable;
 
+    /**
+     * 子线程中运行的time--代码
+     */
     public class UpdateRunnable implements Runnable {
 
         public boolean isQuitNow = false;
@@ -82,7 +91,7 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
                 try {
                     timeRunnable.update(i--, time);
                     XCApp.getBase_handler().post(timeRunnable);
-                    Thread.sleep(750);
+                    Thread.sleep(SLEEP_TIME);
                 } catch (Exception e) {
                     e.printStackTrace();
                     isQuitNow = true;
@@ -154,15 +163,15 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
         return isDialogShow;
     }
 
-    public interface OnTouchRecoderListener {
-        void onTouchRecoderListener();
+    public interface OnBeforeRecoderVoiceButtonListener {
+        void onBeforeRecoderVoiceButtonListener();
     }
 
-    public void setOnTouchRecoderListener(OnTouchRecoderListener onTouchRecoderListener) {
-        this.onTouchRecoderListener = onTouchRecoderListener;
+    public void setOnBeforeRecoderVoiceButtonListener(OnBeforeRecoderVoiceButtonListener onBeforeRecoderVoiceButtonListener) {
+        this.onBeforeRecoderVoiceButtonListener = onBeforeRecoderVoiceButtonListener;
     }
 
-    OnTouchRecoderListener onTouchRecoderListener;
+    OnBeforeRecoderVoiceButtonListener onBeforeRecoderVoiceButtonListener;
 
     @Override
     public boolean onTouch(View arg0, MotionEvent event) {
@@ -175,8 +184,8 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
         final int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                if (onTouchRecoderListener != null) {
-                    onTouchRecoderListener.onTouchRecoderListener();
+                if (onBeforeRecoderVoiceButtonListener != null) {
+                    onBeforeRecoderVoiceButtonListener.onBeforeRecoderVoiceButtonListener();
                 }
                 boundary_flag = false;
                 XCApp.i("down");
@@ -310,8 +319,6 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
         }
         closetDialog();
     }
-
-    public static double COMPRESS_RATIO = 0.75;
 
     public void deleteFile(String debug) {
         if (save_file != null && save_file.exists()) {

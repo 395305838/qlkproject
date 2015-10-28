@@ -19,7 +19,7 @@ import com.xiaocoder.test.R;
 /**
  * 该类配置开发环境  ， 调试开关  ，域名 ， 路径  ，url等
  */
-public class QlkConfig {
+public class MConfig {
 
 
     // ----------------------------------以下补充接口url---------------------------------------
@@ -259,7 +259,7 @@ public class QlkConfig {
                         .discCacheFileCount(500)
                                 // 缓存的文件数量
 
-                        .discCache(new UnlimitedDiscCache(XCIOAndroid.createDirInAndroid(context, QlkConfig.CACHE_DIR)))
+                        .discCache(new UnlimitedDiscCache(XCIOAndroid.createDirInAndroid(context, MConfig.CACHE_DIR)))
                                 // 自定义缓存路径
 
                         .defaultDisplayImageOptions(DisplayImageOptions.createSimple())

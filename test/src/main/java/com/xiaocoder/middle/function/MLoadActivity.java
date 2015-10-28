@@ -17,7 +17,7 @@ import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.view.XCImageView;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
 import java.util.ArrayList;
@@ -25,7 +25,7 @@ import java.util.ArrayList;
 /**
  * app启动时的页面
  */
-public abstract class QlkLoadActivity extends QlkActivity implements OnClickListener {
+public abstract class MLoadActivity extends MActivity implements OnClickListener {
 
     public ImageView load_image;
     private ViewPager mViewPager;

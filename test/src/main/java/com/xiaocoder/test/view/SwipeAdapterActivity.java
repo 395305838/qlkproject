@@ -9,14 +9,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.swipeadapter.SwipeLayoutAdapter;
 import com.xiaocoder.test.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SwipeAdapterActivity extends QlkActivity {
+public class SwipeAdapterActivity extends MActivity {
 
     private SwipeLayoutAdapter mAdapter;
     private ListView mListView;

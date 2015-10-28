@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.util.Utils;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.middle.parse.QlkResponseHandlerModel;
 import com.xiaocoder.pulltorefresh.XCGridViewFragment;
 import com.xiaocoder.pulltorefresh.XCListViewFragment;
@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class GridActivity extends QlkActivity {
+public class GridActivity extends MActivity {
     XCGridViewFragment grid_fragment;
 
     @Override

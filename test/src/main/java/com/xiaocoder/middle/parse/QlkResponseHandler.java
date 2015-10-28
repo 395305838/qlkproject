@@ -14,7 +14,7 @@ import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
 import com.xiaocoder.android.fw.general.http.XCResponseHandler;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
-import com.xiaocoder.middle.function.QlkMainActivity;
+import com.xiaocoder.middle.function.MMainActivity;
 
 /**
  * Created by xiaocoder on 2015/8/28.
@@ -128,7 +128,7 @@ public abstract class QlkResponseHandler<T> extends XCResponseHandler<T> {
                     if (keyCode == KeyEvent.KEYCODE_BACK) {
                         closeHttpDialog();
                         XCApp.resetNetingStatus();
-                        if (!(mContext instanceof QlkMainActivity)) {
+                        if (!(mContext instanceof MMainActivity)) {
                             ((XCBaseActivity) mContext).myFinish();
                         }
                     }

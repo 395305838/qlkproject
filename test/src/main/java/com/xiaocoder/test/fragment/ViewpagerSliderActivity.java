@@ -3,14 +3,14 @@ package com.xiaocoder.test.fragment;
 import android.os.Bundle;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 import com.xiaocoder.viewpagerslider.XCViewPagerFragment;
 
 import java.util.HashMap;
 
 
-public class ViewpagerSliderActivity extends QlkActivity {
+public class ViewpagerSliderActivity extends MActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

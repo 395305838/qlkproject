@@ -5,13 +5,13 @@ import android.os.Bundle;
 import com.daimajia.slider.library.SliderLayout;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 import com.xiaocoder.viewpagerslider.XCViewPagerFragment;
 
 import java.util.HashMap;
 
-public class ViewPagerActivity extends QlkActivity {
+public class ViewPagerActivity extends MActivity {
     XCTitleCommonFragment title_fragment;
     XCViewPagerFragment fragment;
 

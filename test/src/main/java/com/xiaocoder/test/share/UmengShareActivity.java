@@ -11,10 +11,10 @@ import com.umeng.socialize.controller.UMSocialService;
 import com.umeng.socialize.sso.EmailHandler;
 import com.umeng.socialize.sso.SmsHandler;
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
-public class UmengShareActivity extends QlkActivity {
+public class UmengShareActivity extends MActivity {
     Button umeng;
     Button define;
     Button login;

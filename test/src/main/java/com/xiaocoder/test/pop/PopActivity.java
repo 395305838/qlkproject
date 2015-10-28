@@ -13,10 +13,10 @@ import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android.fw.general.pop.XCHintPopupWindow;
 import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow;
 import com.xiaocoder.android.fw.general.pop.XCReflectPopupWindow;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
-public class PopActivity extends QlkActivity {
+public class PopActivity extends MActivity {
     Button test_pop_button;
     Button test_pop_button2;
     Button test_pop_button3;

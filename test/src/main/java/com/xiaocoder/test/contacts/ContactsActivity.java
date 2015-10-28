@@ -15,12 +15,12 @@ import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.helper.XCContactHelper;
 import com.xiaocoder.android.fw.general.model.XCContactModel;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
 import java.util.List;
 
-public class ContactsActivity extends QlkActivity {
+public class ContactsActivity extends MActivity {
     ListView contacts_listview;
 
     @Override

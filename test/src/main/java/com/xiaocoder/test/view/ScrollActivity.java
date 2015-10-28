@@ -8,12 +8,12 @@ import android.view.View;
 import com.xiaocoder.android.fw.general.adapter.XCAdapterTest;
 import com.xiaocoder.android.fw.general.adapter.XCAdapterViewPager;
 import com.xiaocoder.android.fw.general.view.XCNoScrollListview;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
 import java.util.ArrayList;
 
-public class ScrollActivity extends QlkActivity {
+public class ScrollActivity extends MActivity {
 
 	ViewPager pager;
 

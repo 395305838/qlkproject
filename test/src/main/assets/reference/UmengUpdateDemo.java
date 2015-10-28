@@ -4,12 +4,12 @@ import android.os.Bundle;
 
 import com.umeng.update.UmengUpdateAgent;
 import com.umeng.update.UpdateConfig;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 
 /**
  * Created by xiaocoder on 2015/7/15.
  */
-public abstract class UmengUpdateDemo extends QlkActivity {
+public abstract class UmengUpdateDemo extends MActivity {
 
     // 双击两次返回键退出应用
     long back_quit_time;

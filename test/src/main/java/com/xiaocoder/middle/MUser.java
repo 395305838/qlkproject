@@ -10,7 +10,7 @@ import com.xiaocoder.android.fw.general.application.XCBaseActivity;
  * <p/>
  * 用户的信息，登录状态，用户刷新，注销 等统一在这里存取
  */
-public class QlkUser {
+public class MUser {
 
     public static String USER_NAME = "userName";
     public static String USER_ID = "userId";

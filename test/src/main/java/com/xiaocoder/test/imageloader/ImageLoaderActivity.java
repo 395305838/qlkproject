@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
-public class ImageLoaderActivity extends QlkActivity {
+public class ImageLoaderActivity extends MActivity {
 
     ImageView image1;
     ImageView image2;

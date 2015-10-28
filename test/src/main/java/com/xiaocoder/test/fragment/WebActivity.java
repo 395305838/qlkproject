@@ -4,10 +4,10 @@ import android.os.Bundle;
 
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.fragment.XCWebViewFragment;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
-public class WebActivity extends QlkActivity {
+public class WebActivity extends MActivity {
 	XCWebViewFragment web_view_fragment;
 	XCTitleCommonFragment title_fragment_common;
 

@@ -16,7 +16,7 @@ import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android.fw.general.view.XCSlideBar;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
 import java.util.ArrayList;
@@ -24,7 +24,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 
-public class ExpandListActivity extends QlkActivity {
+public class ExpandListActivity extends MActivity {
 
     ExpandableListView test_expandablelistview;
     MyAdapter adapter;

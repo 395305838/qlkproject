@@ -5,10 +5,10 @@ import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
-public class LinePointActivityGC extends QlkActivity {
+public class LinePointActivityGC extends MActivity {
     int i = 10;
     ImageView test_imageview;
     XCTitleCommonFragment fragment;

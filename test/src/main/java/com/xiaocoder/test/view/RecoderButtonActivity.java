@@ -4,12 +4,12 @@ import android.os.Bundle;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.view.XCRecordVoiceButton;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
 import java.io.File;
 
-public class RecoderButtonActivity extends QlkActivity {
+public class RecoderButtonActivity extends MActivity {
 
     XCRecordVoiceButton button;
 

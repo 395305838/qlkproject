@@ -11,9 +11,9 @@ import com.xiaocoder.android.fw.general.db.XCDbHelper;
  * 可能需要处理各数据库升级相关的东东
  */
 
-public class QlkDbHelper extends XCDbHelper {
+public class MDbHelper extends XCDbHelper {
 
-    public QlkDbHelper(Context context, String dbName, int version, String[] sqls) {
+    public MDbHelper(Context context, String dbName, int version, String[] sqls) {
         super(context, dbName, version, sqls);
     }
 

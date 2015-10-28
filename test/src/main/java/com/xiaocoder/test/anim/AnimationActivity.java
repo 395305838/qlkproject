@@ -6,13 +6,13 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.ImageView;
 
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
 /**
  * Created by xilinch on 2015/7/13.
  */
-public class AnimationActivity extends QlkActivity {
+public class AnimationActivity extends MActivity {
 
     private ImageView imageA;
     private ImageView imageB;

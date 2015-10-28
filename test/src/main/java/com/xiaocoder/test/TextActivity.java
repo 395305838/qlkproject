@@ -12,7 +12,7 @@ import com.xiaocoder.android.fw.general.json.XCJsonBean;
 import com.xiaocoder.android.fw.general.json.XCJsonParse;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 
 import org.json.JSONArray;
 
@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Random;
 
 
-public class TextActivity extends QlkActivity {
+public class TextActivity extends MActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

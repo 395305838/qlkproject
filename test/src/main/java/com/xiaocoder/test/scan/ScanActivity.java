@@ -38,7 +38,7 @@ import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment.RightListener;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 import com.xiaocoder.zxcode.camare.CameraManager;
 import com.xiaocoder.zxcode.decoding.CaptureActivityHandler;
@@ -52,7 +52,7 @@ import java.util.Hashtable;
 import java.util.Vector;
 
 // 二维码扫描的类
-public class ScanActivity extends QlkActivity implements Callback, View.OnClickListener, IDecode {
+public class ScanActivity extends MActivity implements Callback, View.OnClickListener, IDecode {
 
     private CaptureActivityHandler handler;
     private ViewfinderView viewfinderView;

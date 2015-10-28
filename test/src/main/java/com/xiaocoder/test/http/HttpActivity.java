@@ -6,7 +6,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.middle.parse.QlkResponseHandlerModel;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.bean.TestModel;
@@ -15,7 +15,7 @@ import org.apache.http.Header;
 
 import java.util.HashMap;
 
-public class HttpActivity extends QlkActivity {
+public class HttpActivity extends MActivity {
 
     Button button;
 

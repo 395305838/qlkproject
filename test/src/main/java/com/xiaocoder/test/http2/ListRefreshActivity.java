@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.view.IRefreshHandler.XCIRefreshHandler;
-import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.middle.parse.QlkResponseHandlerModel;
 import com.xiaocoder.ptrrefresh.XCListRefreshLayout;
 import com.xiaocoder.test.R;
@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-public class ListRefreshActivity extends QlkActivity {
+public class ListRefreshActivity extends MActivity {
 
     TestAdatpter adapter;
     XCListRefreshLayout xcListRefreshLayout;
