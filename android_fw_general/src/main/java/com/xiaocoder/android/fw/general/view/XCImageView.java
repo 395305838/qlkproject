@@ -9,9 +9,11 @@ import android.widget.ImageView;
 import com.xiaocoder.android_fw_general.R;
 
 /**
- * 用于适配用的 ， 图片可以等比例拉伸
+ * 用于适配用的 ， 图片可以按照比例拉伸
  * xmlns:xiaocoder="http://schemas.android.com/apk/res-auto"
  * android:scaleType="fitXY"
+ * android:layout_width="100dp、match"   // 宽度的值需要给
+ * android:layout_height="wrap_content"  // 长度的值不需要指定，填0也行，长度是根据宽度/radio获取的
  * xiaocoder:xc_radio_for_width_height="1.8902"   -->height = width / 1.8902
  */
 public class XCImageView extends ImageView {

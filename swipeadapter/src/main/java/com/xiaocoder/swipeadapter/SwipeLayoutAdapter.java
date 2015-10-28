@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.view.swipelayoutadapter;
+package com.xiaocoder.swipeadapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 
-import com.xiaocoder.android_fw_general.R;
 
 import java.util.List;
 

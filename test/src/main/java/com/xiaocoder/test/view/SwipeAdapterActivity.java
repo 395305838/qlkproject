@@ -9,8 +9,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.xiaocoder.android.fw.general.view.swipelayoutadapter.SwipeLayoutAdapter;
 import com.xiaocoder.middle.QlkActivity;
+import com.xiaocoder.swipeadapter.SwipeLayoutAdapter;
 import com.xiaocoder.test.R;
 
 import java.util.ArrayList;

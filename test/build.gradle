@@ -49,4 +49,5 @@ dependencies {
     compile project(':viewpagerslider')
     compile project(':mqtt')
     compile project(':im')
+    compile project(':swipeadapter')
 }

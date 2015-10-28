@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.view.swipelayoutadapter;
+package com.xiaocoder.swipeadapter;
 
 import android.view.MotionEvent;
 import android.view.View;
