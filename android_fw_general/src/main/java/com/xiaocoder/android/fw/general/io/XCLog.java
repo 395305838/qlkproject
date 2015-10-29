@@ -21,15 +21,15 @@ import java.util.Date;
  */
 public class XCLog {
 
-    public Context context;
-    public long last_time;
-    public File file;
+    private Context context;
+    private long last_time;
+    private File file;
     public static int TOAST_SHORT_TIME_GAP = 2000;
     public static int TOAST_LONG_TIME_GAP = 3000;
 
-    public boolean is_dtoast;
-    public boolean is_printlog;
-    public boolean is_output;
+    private boolean is_dtoast;
+    private boolean is_printlog;
+    private boolean is_output;
 
     public boolean is_dtoast() {
         return is_dtoast;

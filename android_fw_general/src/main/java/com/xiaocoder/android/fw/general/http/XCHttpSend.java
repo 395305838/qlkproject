@@ -92,7 +92,7 @@ public class XCHttpSend {
 
     }
 
-    private void send(HttpType type, boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Activity context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
+    public void send(HttpType type, boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Activity context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
         RequestParams params = new RequestParams();
 
         for (Map.Entry<String, Object> item : map.entrySet()) {

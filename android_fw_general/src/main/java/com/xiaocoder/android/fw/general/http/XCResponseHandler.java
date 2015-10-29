@@ -178,7 +178,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
                 XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----onSuccess()");
                 XCApp.i(XCConfig.TAG_HTTP, "onSuccess----->status code " + code);
 
-                if (headers != null) {
+                if (XCApp.getBase_log().is_OutPut() && headers != null) {
                     for (Header header : headers) {
                         XCApp.i(XCConfig.TAG_HTTP, "headers----->" + header.toString());
                     }
@@ -231,6 +231,8 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
                 XCApp.e(this.toString() + "---activity被销毁了");
                 return true;
             }
+        } else {
+            XCApp.e(this.toString() + "---activity不是XCBaseActivity的实例");
         }
         return false;
     }
