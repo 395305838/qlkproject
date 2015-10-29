@@ -1,7 +1,7 @@
 package com.xiaocoder.test.bean;
 
 
-import com.xiaocoder.middle.parse.QlkBean;
+import com.xiaocoder.middle.parse.MBean;
 
 /**
  * Created by xiaocoder on 2015/7/29.
@@ -12,7 +12,7 @@ import com.xiaocoder.middle.parse.QlkBean;
  * <p/>
  * 现在不用这个，改用model，见TestModel
  */
-public class TestBean extends QlkBean {
+public class TestBean extends MBean {
 
     public String msg = "msg";
     public String data = "data";

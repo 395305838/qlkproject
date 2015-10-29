@@ -182,7 +182,7 @@
             android:theme="@style/XCTheme"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
-            android:name=".video.XCVideoActivity2"
+            android:name="com.xiaocoder.video.XC_VideoActivity2"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@style/XCTheme" >
@@ -209,7 +209,7 @@
             -->
         </activity>
         <activity
-            android:name=".video.XCVideoActivity"
+            android:name="com.xiaocoder.video.XC_VideoActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
             android:screenOrientation="portrait"
             android:theme="@style/XCTheme" >

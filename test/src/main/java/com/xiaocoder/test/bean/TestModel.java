@@ -1,6 +1,6 @@
 package com.xiaocoder.test.bean;
 
-import com.xiaocoder.middle.parse.QlkModel;
+import com.xiaocoder.middle.parse.MModel;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import java.util.List;
  * <p/>
  * 实体model
  * <p/>
- * 该类是gsonformat插件自动生成的，不需要复制粘贴等
+ * 该Model类是gsonformat插件自动生成的
  */
-public class TestModel extends QlkModel {
+public class TestModel extends MModel {
 
     /**
      * msg : 成功

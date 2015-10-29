@@ -14,7 +14,7 @@ import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
 import com.xiaocoder.android.fw.general.util.Utils;
 import com.xiaocoder.middle.MActivity;
-import com.xiaocoder.middle.parse.QlkResponseHandlerBean;
+import com.xiaocoder.middle.parse.MResponseHandlerBean;
 import com.xiaocoder.pulltorefresh.XCListViewFragment;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.bean.TestBean;
@@ -42,7 +42,7 @@ public class ListActivity extends MActivity {
         XCApp.getAsyn(true, this,
                 "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95"
                 , params,
-                new QlkResponseHandlerBean<TestBean>(this, TestBean.class) {
+                new MResponseHandlerBean<TestBean>(this, TestBean.class) {
 
                     @Override
                     public void success(int code, Header[] headers, byte[] arg2) {

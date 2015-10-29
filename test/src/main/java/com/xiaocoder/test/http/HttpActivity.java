@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.middle.MActivity;
-import com.xiaocoder.middle.parse.QlkResponseHandlerModel;
+import com.xiaocoder.middle.parse.MResponseHandlerModel;
 import com.xiaocoder.test.R;
 import com.xiaocoder.test.bean.TestModel;
 
@@ -29,7 +29,7 @@ public class HttpActivity extends MActivity {
 
     public void request() {
         XCApp.getAsyn(true, this, url, new HashMap<String, Object>(),
-                new QlkResponseHandlerModel<TestModel>(this, TestModel.class) {
+                new MResponseHandlerModel<TestModel>(this, TestModel.class) {
 
                     @Override
                     public void success(int code, Header[] headers, byte[] arg2) {
