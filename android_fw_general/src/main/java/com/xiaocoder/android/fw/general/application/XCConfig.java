@@ -14,7 +14,7 @@ public class XCConfig {
      */
     public static String TAG_HTTP_HANDLER = "httpHandler";
     /**
-     * DB
+     * DB的相关操作记录
      */
     public static String TAG_DB = "db";
     /**
@@ -39,6 +39,11 @@ public class XCConfig {
 
 
     public static String RMB = "¥";
+
+    /**
+     * 乘号
+     */
+    public static String X =  "×";
 
     /**
      * 编码格式

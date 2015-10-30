@@ -42,7 +42,7 @@ public abstract class MResponseHandler<T> extends XCResponseHandler<T> {
         XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---yourCompanyResultRule()");
 
         /**
-         * 统一规则 用QlkModel 或 MBean
+         * 统一规则 用MModel 或 MBean
          */
         if (result_bean instanceof MIResponseInfo && (result_bean instanceof MModel || result_bean instanceof MBean)) {
 
@@ -96,10 +96,6 @@ public abstract class MResponseHandler<T> extends XCResponseHandler<T> {
 
     }
 
-
-    /**
-     * 如果不同页面的dialog不同，可以重写该方法
-     */
     @Override
     public void closeHttpDialog() {
         if (httpDialog != null && httpDialog.isShowing()) {

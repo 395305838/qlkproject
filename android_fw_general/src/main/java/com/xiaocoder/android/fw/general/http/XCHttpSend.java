@@ -62,11 +62,6 @@ public class XCHttpSend {
         return client;
     }
 
-    public enum HttpType {
-        GET, POST
-    }
-
-
     /**
      * 当isAllowConcurrent为true时：只有当前请求返回了，调用该方法后，才可以继续下一个请求，
      */
@@ -77,22 +72,22 @@ public class XCHttpSend {
     /**
      * 这里改为了hashmap，便于以后更改http请求库
      */
-    public void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Activity context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
+    public void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Activity activity, String urlString, Map<String, Object> map, XCIResponseHandler res) {
 
-        send(HttpType.GET, needSecret, isAllowConcurrent, isShowDialog, context, urlString, map, res);
+        sendAsyn(HttpType.GET, needSecret, isAllowConcurrent, isShowDialog, activity, urlString, map, res);
 
     }
 
     /**
      * 这里改为了hashmap，便于以后更改http请求库
      */
-    public void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Activity context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
+    public void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Activity activity, String urlString, Map<String, Object> map, XCIResponseHandler res) {
 
-        send(HttpType.POST, needSecret, isAllowConcurrent, isShowDialog, context, urlString, map, res);
+        sendAsyn(HttpType.POST, needSecret, isAllowConcurrent, isShowDialog, activity, urlString, map, res);
 
     }
 
-    public void send(HttpType type, boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Activity context, String urlString, Map<String, Object> map, XCIResponseHandler res) {
+    public void sendAsyn(HttpType type, boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Activity activity, String urlString, Map<String, Object> map, XCIResponseHandler res) {
         RequestParams params = new RequestParams();
 
         for (Map.Entry<String, Object> item : map.entrySet()) {
@@ -104,7 +99,7 @@ public class XCHttpSend {
         XCApp.i(XCConfig.TAG_HTTP, params.toString());
         if (isAllowConcurrent || !isNeting) {
             isNeting = true;
-            res.setContext(context);
+            res.setContext(activity);
             res.yourCompanySecret(params, client, needSecret);
             if (isShowDialog) {
                 res.showHttpDialog();
