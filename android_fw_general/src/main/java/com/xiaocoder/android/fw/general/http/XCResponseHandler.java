@@ -7,6 +7,8 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.application.XCBaseActivity;
+import com.xiaocoder.android.fw.general.http.IHttp.XCHttpModel;
+import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpEndNotify;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 import com.xiaocoder.android.fw.general.json.XCJsonParse;
@@ -61,6 +63,12 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
      * 回调的接口
      */
     public XCIHttpResult result_http;
+    /**
+     * 请求的完整信息
+     */
+    public XCHttpModel httpModel;
+
+    public XCIHttpEndNotify notify;
 
     public static int JSON = 1;
     /**
@@ -98,6 +106,16 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
     @Override
     public void setContext(Context context) {
         mContext = context;
+    }
+
+    @Override
+    public void setHttpModel(XCHttpModel httpModel) {
+        this.httpModel = httpModel;
+    }
+
+    @Override
+    public void setHttpEndNotify(XCIHttpEndNotify notify) {
+        this.notify = notify;
     }
 
     /**
@@ -140,7 +158,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
         }
 
         failure(code, headers, arg2, e);
-        finish();
+        httpEnd(httpModel, result_boolean);
     }
 
     /**
@@ -194,11 +212,18 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
                             return;
                         }
                         success(code, headers, bytes);
-                        finish();
+                        httpEnd(httpModel, result_boolean);
                     }
                 });
             }
         });
+    }
+
+    private void httpEnd(XCHttpModel httpModel, boolean result_boolean) {
+        finish();
+        if (notify != null) {
+            notify.httpEndNotify(httpModel, result_boolean);
+        }
     }
 
     /**
@@ -258,7 +283,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
 
                 if (result_bean == null) {
                     result_boolean = false;
-                    XCApp.i(XCConfig.TAG_HTTP, this.toString() + "---parse() , 解析数据失败");
+                    XCApp.e(this.toString() + "---parse() , 解析数据失败");
                     return;
                 }
 
@@ -270,7 +295,5 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
             XCApp.e("解析数据异常---" + this.toString() + "---" + e.toString());
         }
     }
-
-
 }
 

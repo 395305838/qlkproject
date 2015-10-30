@@ -62,5 +62,15 @@ public interface XCIResponseHandler<T> {
      */
     Dialog getHttpDialog();
 
+    /**
+     * 请求的相关参数
+     */
+    void setHttpModel(XCHttpModel httpModel);
+
+    /**
+     * 一个http结束时，调用该方法
+     */
+    void setHttpEndNotify(XCIHttpEndNotify notify);
+
 
 }

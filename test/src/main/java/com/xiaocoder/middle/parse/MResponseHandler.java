@@ -107,7 +107,7 @@ public abstract class MResponseHandler<T> extends XCResponseHandler<T> {
     }
 
     /**
-     * 如果不同页面的dialog不同，可以重写该方法
+     * 如果不同页面的dialog不同，可以重写showHttpDialog，然后设置dialog
      */
     @Override
     public void showHttpDialog() {

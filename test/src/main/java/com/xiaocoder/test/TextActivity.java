@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
+import java.util.concurrent.LinkedBlockingQueue;
 
 
 public class TextActivity extends MActivity {
@@ -44,6 +46,36 @@ public class TextActivity extends MActivity {
     public void initWidgets() {
         test1();
         test2();
+        test3();
+    }
+
+    private void test3() {
+        XCApp.i("UUID----" + UUID.randomUUID() + "----" + UUID.randomUUID().toString().length());
+
+        LinkedBlockingQueue<String> queue = new LinkedBlockingQueue<>();
+        queue.add("a");
+        queue.add("b");
+        queue.add("c");
+        queue.add("d");
+
+//        try {
+//            XCApp.i(queue.take()); // a  //take 类似 poll remove
+//            XCApp.i(queue.take()); // b
+//            XCApp.i(queue.take()); // c
+//            XCApp.i(queue.take()); // d
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+
+            XCApp.i(queue.peek()); //a  // peek 类似 element
+            XCApp.i(queue.peek()); //a
+            XCApp.i(queue.peek()); //a
+            XCApp.i(queue.peek()); //a
+            queue.remove("a");
+            XCApp.i(queue.peek()); //b
+            XCApp.i(queue.peek()); //b
+            XCApp.i(queue.peek()); //b
+
 
     }
 

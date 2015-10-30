@@ -1,9 +1,9 @@
-package com.xiaocoder.android.fw.general.http;
+package com.xiaocoder.android.fw.general.http.IHttp;
 
 /**
  * Created by xiaocoder on 2015/10/30.
  * version: 1.2.0
- * description:
+ * description: 请求方式
  */
 public enum HttpType {
     GET, POST

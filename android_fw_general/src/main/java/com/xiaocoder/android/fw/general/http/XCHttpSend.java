@@ -7,6 +7,8 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
+import com.xiaocoder.android.fw.general.http.IHttp.HttpType;
+import com.xiaocoder.android.fw.general.http.IHttp.XCHttpModel;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 
 import java.util.Map;
@@ -23,7 +25,7 @@ import java.util.Map;
  * 4是异步的
  * isShowDialog 是否在加载网络时显示dialog
  * isNeting 是只有当前网络请求完了, 再点击访问网络时才有效, 如果正在请求网络或者说网络访问没有结束,那么此时点击访问网络无效 , 默认是同一时刻只能有一个网络在请求
- * isAllowConcurrent 如果为true，则允许同时访问多个网络连接
+ * isFrequentlyClick 如果为true，则允许同时访问多个网络连接
  * needSecret 是否要加密
  * <p/>
  * 5 onRetry（） onStart（） onCancle（） onProgress（）
@@ -63,7 +65,7 @@ public class XCHttpSend {
     }
 
     /**
-     * 当isAllowConcurrent为true时：只有当前请求返回了，调用该方法后，才可以继续下一个请求，
+     * 当isFrequentlyClick为true时：只有当前请求返回了，调用该方法后，才可以继续下一个请求，
      */
     public void resetNetingStatus() {
         isNeting = false;
@@ -72,22 +74,19 @@ public class XCHttpSend {
     /**
      * 这里改为了hashmap，便于以后更改http请求库
      */
-    public void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Activity activity, String urlString, Map<String, Object> map, XCIResponseHandler res) {
+    public void getAsyn(boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, Activity activity, String urlString, Map<String, Object> map, XCIResponseHandler res) {
 
-        sendAsyn(HttpType.GET, needSecret, isAllowConcurrent, isShowDialog, activity, urlString, map, res);
-
-    }
-
-    /**
-     * 这里改为了hashmap，便于以后更改http请求库
-     */
-    public void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Activity activity, String urlString, Map<String, Object> map, XCIResponseHandler res) {
-
-        sendAsyn(HttpType.POST, needSecret, isAllowConcurrent, isShowDialog, activity, urlString, map, res);
+        sendAsyn(HttpType.GET, needSecret, isFrequentlyClick, isShowDialog, activity, urlString, map, res);
 
     }
 
-    public void sendAsyn(HttpType type, boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog, Activity activity, String urlString, Map<String, Object> map, XCIResponseHandler res) {
+    public void postAsyn(boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, Activity activity, String urlString, Map<String, Object> map, XCIResponseHandler res) {
+
+        sendAsyn(HttpType.POST, needSecret, isFrequentlyClick, isShowDialog, activity, urlString, map, res);
+
+    }
+
+    public void sendAsyn(HttpType httpType, boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, Activity activity, String urlString, Map<String, Object> map, XCIResponseHandler res) {
         RequestParams params = new RequestParams();
 
         for (Map.Entry<String, Object> item : map.entrySet()) {
@@ -97,19 +96,22 @@ public class XCHttpSend {
         }
 
         XCApp.i(XCConfig.TAG_HTTP, params.toString());
-        if (isAllowConcurrent || !isNeting) {
+        if (isFrequentlyClick || !isNeting) {
             isNeting = true;
             res.setContext(activity);
+            res.setHttpModel(new XCHttpModel
+                    (null, null, httpType, needSecret, isFrequentlyClick, isShowDialog, activity,
+                            urlString, map, res));
             res.yourCompanySecret(params, client, needSecret);
-            if (isShowDialog) {
+            if (isShowDialog && activity != null) {
                 res.showHttpDialog();
             }
 
             if (res instanceof AsyncHttpResponseHandler) {
-                if (type == HttpType.GET) {
+                if (httpType == HttpType.GET) {
                     XCApp.i(XCConfig.TAG_HTTP, urlString + "------>get http url");
                     client.get(urlString, params, (AsyncHttpResponseHandler) res);
-                } else if (type == HttpType.POST) {
+                } else if (httpType == HttpType.POST) {
                     XCApp.i(XCConfig.TAG_HTTP, urlString + "------>post http url");
                     client.post(urlString, params, (AsyncHttpResponseHandler) res);
                 }
