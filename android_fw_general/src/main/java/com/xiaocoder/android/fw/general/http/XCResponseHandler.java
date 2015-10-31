@@ -69,13 +69,6 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
 
     public XCIHttpNotify notify;
 
-    public static int JSON = 1;
-    /**
-     * 暂时未用到
-     */
-    public static int XML = 2;
-    public static int ELSE = 3;
-
     @Override
     public Dialog getHttpDialog() {
         return httpDialog;
@@ -92,7 +85,12 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
     }
 
     /**
-     * show_background_when_net_fail true 为展示背景和toast , false仅展示吐司
+     *
+     * @param result_http 如果为null，不会报错，仅网络请求失败时，不会回调该接口
+     * @param activity 如果是传xcactivity则会判断是否回收
+     * @param content_type 默认为JSON
+     * @param show_background_when_net_fail true 为展示背景（result_http!=null时）和toast , false仅展示吐司
+     * @param result_bean_class model的字节码文件
      */
     public XCResponseHandler(XCIHttpResult result_http,
                              Activity activity,
@@ -147,7 +145,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
 
         e.printStackTrace();
 
-        if (headers != null) {
+        if (XCApp.getBase_log().is_OutPut() && headers != null) {
             for (Header header : headers) {
                 XCApp.i(XCConfig.TAG_HTTP, "headers----->" + header.toString());
             }
@@ -290,6 +288,16 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
             result_boolean = false;
             XCApp.e("解析数据异常---" + this.toString() + "---" + e.toString());
         }
+    }
+
+    @Override
+    public void setXCHttpModel(XCHttpModel model) {
+        this.httpModel = model;
+    }
+
+    @Override
+    public XCHttpModel getXCHttpModel() {
+        return httpModel;
     }
 }
 

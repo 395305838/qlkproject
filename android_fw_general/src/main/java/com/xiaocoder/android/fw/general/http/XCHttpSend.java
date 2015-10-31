@@ -62,7 +62,7 @@ public class XCHttpSend implements XCIHttpNotify {
     }
 
     /**
-     * 当isFrequentlyClick为true时：只有当前请求返回了，调用该方法后，才可以继续下一个请求，
+     * 当isFrequentlyClick为true时：只有当前请求返回了，再调用该方法后，才可以继续下一个请求，
      */
     public void resetNetingStatus() {
         isNeting = false;

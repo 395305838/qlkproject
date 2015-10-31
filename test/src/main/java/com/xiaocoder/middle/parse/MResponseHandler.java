@@ -1,5 +1,6 @@
 package com.xiaocoder.middle.parse;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.view.KeyEvent;
@@ -26,12 +27,12 @@ import com.xiaocoder.middle.function.MMainActivity;
  */
 public abstract class MResponseHandler<T> extends XCResponseHandler<T> {
 
-    public MResponseHandler(XCIHttpResult result_http, int content_type, boolean show_background_when_net_fail, Class<T> result_bean_class) {
-        super(result_http, content_type, show_background_when_net_fail, result_bean_class);
+    public MResponseHandler(XCIHttpResult result_http,Activity activity,int content_type, boolean show_background_when_net_fail, Class<T> result_bean_class) {
+        super(result_http, activity,content_type, show_background_when_net_fail, result_bean_class);
     }
 
-    public MResponseHandler(XCIHttpResult result_http, Class<T> result_bean_class) {
-        super(result_http, result_bean_class);
+    public MResponseHandler(XCIHttpResult result_http,Activity activity, Class<T> result_bean_class) {
+        super(result_http,activity, result_bean_class);
     }
 
     /**
@@ -75,8 +76,8 @@ public abstract class MResponseHandler<T> extends XCResponseHandler<T> {
         if (oClient instanceof AsyncHttpClient) {
             // 添加header
             AsyncHttpClient client = (AsyncHttpClient) oClient;
-            client.addHeader("_v", UtilSystem.getVersionCode(mContext) + "");// 版本号，必填
-            client.addHeader("_m", UtilSystem.getMacAddress(mContext));// 设备的mac地址，选填
+            client.addHeader("_v", UtilSystem.getVersionCode(XCApp.getBase_applicationContext()) + "");// 版本号，必填
+            client.addHeader("_m", UtilSystem.getMacAddress(XCApp.getBase_applicationContext()));// 设备的mac地址，选填
             client.addHeader("_c", "2222");// JSONP的回调函数名 ,可选
             client.addHeader("_p", "1"); // 平台，必填
         } else {
@@ -111,7 +112,7 @@ public abstract class MResponseHandler<T> extends XCResponseHandler<T> {
      */
     @Override
     public void showHttpDialog() {
-        setDialogAndShow(new XCSystemHDialog(mContext, XCBaseDialog.TRAN_STYLE));
+        setDialogAndShow(new XCSystemHDialog(activity, XCBaseDialog.TRAN_STYLE));
     }
 
     public final void setDialogAndShow(Dialog yourDialog) {
@@ -124,8 +125,8 @@ public abstract class MResponseHandler<T> extends XCResponseHandler<T> {
                     if (keyCode == KeyEvent.KEYCODE_BACK) {
                         closeHttpDialog();
                         XCApp.resetNetingStatus();
-                        if (!(mContext instanceof MMainActivity)) {
-                            ((XCBaseActivity) mContext).myFinish();
+                        if (!(activity instanceof MMainActivity)) {
+                            ((XCBaseActivity) activity).myFinish();
                         }
                     }
                     return false;

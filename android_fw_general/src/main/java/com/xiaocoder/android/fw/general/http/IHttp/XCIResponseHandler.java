@@ -12,6 +12,12 @@ import org.apache.http.Header;
  *         http回调的handler ,业务逻辑的判断，json/xml2model的解析，dialog的显示等
  */
 public interface XCIResponseHandler<T> {
+
+    int JSON = 1;
+    int XML = 2;
+    int PHOTO = 3;
+    int ELSE = 4;
+
     /**
      * http请求成功，回调success方法
      */

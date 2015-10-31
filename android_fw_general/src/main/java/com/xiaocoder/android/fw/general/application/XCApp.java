@@ -333,33 +333,33 @@ public class XCApp extends Application {
     }
 
     public static void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog,
-                                Activity context, String urlString, Map<String, Object> map,
+                                String urlString, Map<String, Object> map,
                                 XCIResponseHandler res) {
-        base_xcHttpSend.postAsyn(needSecret, isAllowConcurrent, isShowDialog, context, urlString, map, res);
+        base_xcHttpSend.postAsyn(needSecret, isAllowConcurrent, isShowDialog, urlString, map, res);
     }
 
     /**
      * 加密，允许同时发出多个http请求
      */
     public static void postAsyn(boolean isShowDialog,
-                                Activity context, String urlString, Map<String, Object> map,
+                                String urlString, Map<String, Object> map,
                                 XCIResponseHandler res) {
-        base_xcHttpSend.postAsyn(true, true, isShowDialog, context, urlString, map, res);
+        base_xcHttpSend.postAsyn(true, true, isShowDialog, urlString, map, res);
     }
 
     public static void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog,
-                               Activity context, String urlString, Map<String, Object> map,
+                               String urlString, Map<String, Object> map,
                                XCIResponseHandler res) {
-        base_xcHttpSend.getAsyn(needSecret, isAllowConcurrent, isShowDialog, context, urlString, map, res);
+        base_xcHttpSend.getAsyn(needSecret, isAllowConcurrent, isShowDialog, urlString, map, res);
     }
 
     /**
      * 加密，允许同时发出多个http请求
      */
     public static void getAsyn(boolean isShowDialog,
-                               Activity context, String urlString, Map<String, Object> map,
+                               String urlString, Map<String, Object> map,
                                XCIResponseHandler res) {
-        base_xcHttpSend.getAsyn(true, true, isShowDialog, context, urlString, map, res);
+        base_xcHttpSend.getAsyn(true, true, isShowDialog, urlString, map, res);
     }
 
 }

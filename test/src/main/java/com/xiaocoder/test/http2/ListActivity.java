@@ -35,14 +35,14 @@ public class ListActivity extends MActivity {
         super.onCreate(savedInstanceState);
     }
 
+    public static String url = "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95";
+
     public void request() {
 
         HashMap<String, Object> params = new HashMap<String, Object>();
-//        XCApp.getAsyn(true, this, "http://" + MainActivity.TEST_HOST + ":8080/qlktest/listdata.json", params, new QlkHttpResponseHandler(this, list_fragment) {
-        XCApp.getAsyn(true, this,
-                "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95"
-                , params,
-                new MResponseHandlerBean<TestBean>(this, TestBean.class) {
+//        XCApp.getAsyn(true, "http://" + MainActivity.TEST_HOST + ":8080/qlktest/listdata.json", params, new QlkHttpResponseHandler(this, list_fragment) {
+        XCApp.getAsyn(true, url, params,
+                new MResponseHandlerBean<TestBean>(this, this, TestBean.class) {
 
                     @Override
                     public void success(int code, Header[] headers, byte[] arg2) {
@@ -92,7 +92,7 @@ public class ListActivity extends MActivity {
                     // 更换一个dialog样式
                     @Override
                     public void showHttpDialog() {
-                        setDialogAndShow(new XCSystemVDialog(mContext, XCBaseDialog.TRAN_STYLE));
+                        setDialogAndShow(new XCSystemVDialog(activity, XCBaseDialog.TRAN_STYLE));
                     }
                 });
     }

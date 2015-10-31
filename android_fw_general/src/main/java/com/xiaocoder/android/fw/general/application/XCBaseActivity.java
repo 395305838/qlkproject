@@ -165,9 +165,16 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
         XCApp.resetNetingStatus();
         isActivityDestroied = true;
+
         super.onDestroy();
+
         getXCApplication().delActivityFromStack(this);
 
+    }
+
+    public void myFinish() {
+        UtilInputMethod.hiddenInputMethod(this);
+        finish();
     }
 
     @Override
@@ -245,11 +252,6 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         FragmentTransaction ft = base_fm.beginTransaction();
         ft.show(fragment);
         ft.commitAllowingStateLoss();
-    }
-
-    public void myFinish() {
-        UtilInputMethod.hiddenInputMethod(this);
-        finish();
     }
 
     @SuppressWarnings("unchecked")
