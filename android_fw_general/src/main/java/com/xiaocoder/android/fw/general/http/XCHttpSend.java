@@ -5,9 +5,6 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.http.IHttp.XCHttpModel;
-import com.xiaocoder.android.fw.general.http.IHttp.XCHttpType;
-import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpNotify;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 
 import java.util.Map;
@@ -34,10 +31,7 @@ import java.util.Map;
  * 7  Adding HTTP Basic Auth credentials 见github文档
  */
 
-/**
- * 并行的请求
- */
-public class XCHttpSend implements XCIHttpNotify {
+public class XCHttpSend {
 
     private AsyncHttpClient client;
 
@@ -73,15 +67,20 @@ public class XCHttpSend implements XCIHttpNotify {
      */
     public void getAsyn(boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, String urlString, Map<String, Object> map, XCIResponseHandler resHandler) {
 
-        resHandler.setXCHttpModel(new XCHttpModel(null, null, XCHttpType.GET, needSecret, isFrequentlyClick, isShowDialog, urlString, map));
-
-        sendAsyn(resHandler);
+        launch(resHandler, new XCHttpModel(XCHttpType.GET, needSecret, isFrequentlyClick, isShowDialog, urlString, map));
 
     }
 
+
     public void postAsyn(boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, String urlString, Map<String, Object> map, XCIResponseHandler resHandler) {
 
-        resHandler.setXCHttpModel(new XCHttpModel(null, null, XCHttpType.POST, needSecret, isFrequentlyClick, isShowDialog, urlString, map));
+        launch(resHandler, new XCHttpModel(XCHttpType.POST, needSecret, isFrequentlyClick, isShowDialog, urlString, map));
+
+    }
+
+    public void launch(XCIResponseHandler resHandler, XCHttpModel model) {
+
+        resHandler.setXCHttpModel(model);
 
         sendAsyn(resHandler);
 
@@ -97,7 +96,7 @@ public class XCHttpSend implements XCIHttpNotify {
         XCHttpType httpType = model.getXcHttpType();
         String urlString = model.getUrlString();
 
-        Boolean isFrequentlyClick = model.getIsFrequentlyClick();
+        Boolean isFrequentlyClick = model.isFrequentlyClick();
 
         RequestParams params = new RequestParams();
 
@@ -131,13 +130,4 @@ public class XCHttpSend implements XCIHttpNotify {
         }
     }
 
-    @Override
-    public void startNotify(XCIResponseHandler resHandler, boolean isSuccess) {
-
-    }
-
-    @Override
-    public void endNotify(XCIResponseHandler resHandler, boolean isSuccess) {
-
-    }
 }

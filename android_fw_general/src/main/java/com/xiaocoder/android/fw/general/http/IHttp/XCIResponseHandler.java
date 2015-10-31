@@ -2,7 +2,8 @@ package com.xiaocoder.android.fw.general.http.IHttp;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
+
+import com.xiaocoder.android.fw.general.http.XCHttpModel;
 
 import org.apache.http.Header;
 
@@ -45,6 +46,13 @@ public interface XCIResponseHandler<T> {
     boolean isXCActivityDestroy(Activity activity);
 
     /**
+     * http请求的参数
+     */
+    void setXCHttpModel(XCHttpModel model);
+
+    XCHttpModel getXCHttpModel();
+
+    /**
      * 在子线程运行的，所以不要有ui或toast等操作，可以包括一系列的打印日志，byte转json，返回结果的判断等
      */
     void parse(byte[] response_bytes);
@@ -82,13 +90,9 @@ public interface XCIResponseHandler<T> {
     Dialog getHttpDialog();
 
     /**
-     * 对所有http请求的一个开始和结束的拦截
+     * 对http请求的一个开始和结束的通知
      */
     void registerNotify(XCIHttpNotify notify);
-
-    void setXCHttpModel(XCHttpModel model);
-
-    XCHttpModel getXCHttpModel();
 
 
 }

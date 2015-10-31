@@ -332,32 +332,22 @@ public class XCApp extends Application {
         base_xcHttpSend.resetNetingStatus();
     }
 
-    public static void postAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog,
-                                String urlString, Map<String, Object> map,
-                                XCIResponseHandler res) {
-        base_xcHttpSend.postAsyn(needSecret, isAllowConcurrent, isShowDialog, urlString, map, res);
+    public static void postAsyn(boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog,
+                                String urlString, Map<String, Object> map, XCIResponseHandler res) {
+        base_xcHttpSend.postAsyn(needSecret, isFrequentlyClick, isShowDialog, urlString, map, res);
     }
 
-    /**
-     * 加密，允许同时发出多个http请求
-     */
-    public static void postAsyn(boolean isShowDialog,
-                                String urlString, Map<String, Object> map,
+    public static void postAsyn(boolean isShowDialog, String urlString, Map<String, Object> map,
                                 XCIResponseHandler res) {
         base_xcHttpSend.postAsyn(true, true, isShowDialog, urlString, map, res);
     }
 
-    public static void getAsyn(boolean needSecret, boolean isAllowConcurrent, boolean isShowDialog,
-                               String urlString, Map<String, Object> map,
-                               XCIResponseHandler res) {
-        base_xcHttpSend.getAsyn(needSecret, isAllowConcurrent, isShowDialog, urlString, map, res);
+    public static void getAsyn(boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog,
+                               String urlString, Map<String, Object> map, XCIResponseHandler res) {
+        base_xcHttpSend.getAsyn(needSecret, isFrequentlyClick, isShowDialog, urlString, map, res);
     }
 
-    /**
-     * 加密，允许同时发出多个http请求
-     */
-    public static void getAsyn(boolean isShowDialog,
-                               String urlString, Map<String, Object> map,
+    public static void getAsyn(boolean isShowDialog, String urlString, Map<String, Object> map,
                                XCIResponseHandler res) {
         base_xcHttpSend.getAsyn(true, true, isShowDialog, urlString, map, res);
     }

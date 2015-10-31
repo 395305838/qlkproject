@@ -55,7 +55,7 @@ public abstract class MResponseHandler<T> extends XCResponseHandler<T> {
             }
 
         } else {
-            XCApp.e("yourCompanyResultRule()中的返回结果不是IQlkResponseInfo类型");
+            XCApp.e("yourCompanyResultRule()中的返回结果不是IQlkResponseInfo, MModel 或 Qlkean 类型");
             throw new RuntimeException("yourCompanyResultRule()中的返回结果不是IQlkResponseInfo ,MModel 或 Qlkean 类型");
         }
 

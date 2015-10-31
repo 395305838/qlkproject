@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.http.IHttp;
+package com.xiaocoder.android.fw.general.http;
 
 /**
  * Created by xiaocoder on 2015/10/30.

@@ -7,7 +7,6 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.http.IHttp.XCHttpModel;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpNotify;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
@@ -62,12 +61,13 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
      * 回调的接口
      */
     public XCIHttpResult result_http;
+
+    public XCIHttpNotify notify;
+
     /**
      * 请求的完整信息
      */
     public XCHttpModel httpModel;
-
-    public XCIHttpNotify notify;
 
     @Override
     public Dialog getHttpDialog() {
@@ -84,13 +84,22 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
         this.notify = notify;
     }
 
+    @Override
+    public void setXCHttpModel(XCHttpModel model) {
+        this.httpModel = model;
+    }
+
+    @Override
+    public XCHttpModel getXCHttpModel() {
+        return httpModel;
+    }
+
     /**
-     *
-     * @param result_http 如果为null，不会报错，仅网络请求失败时，不会回调该接口
-     * @param activity 如果是传xcactivity则会判断是否回收
-     * @param content_type 默认为JSON
+     * @param result_http                   如果为null，不会报错，仅网络请求失败时，不会回调该接口
+     * @param activity                      如果是传xcactivity则会判断是否回收
+     * @param content_type                  默认为JSON
      * @param show_background_when_net_fail true 为展示背景（result_http!=null时）和toast , false仅展示吐司
-     * @param result_bean_class model的字节码文件
+     * @param result_bean_class             model的字节码文件
      */
     public XCResponseHandler(XCIHttpResult result_http,
                              Activity activity,
@@ -140,6 +149,8 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
             return;
         }
 
+        httpBack(code, headers, arg2, e);
+
         XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----onFailure()");
         XCApp.i(XCConfig.TAG_HTTP, "onFailure----->status code " + code + "----e.toString()" + e.toString());
 
@@ -152,7 +163,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
         }
 
         failure(code, headers, arg2, e);
-        httpEnd(result_boolean);
+        httpEnd(code, headers, arg2, e);
     }
 
     /**
@@ -182,6 +193,9 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
         if (isXCActivityDestroy(activity)) {
             return;
         }
+
+        httpBack(code, headers, bytes, null);
+
         // 子线程
         XCApp.getBase_fix_threadpool().execute(new Runnable() {
             @Override
@@ -205,18 +219,25 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
                         if (isXCActivityDestroy(activity)) {
                             return;
                         }
+
                         success(code, headers, bytes);
-                        httpEnd(result_boolean);
+                        httpEnd(code, headers, bytes, null);
                     }
                 });
             }
         });
     }
 
-    private void httpEnd(boolean result_boolean) {
+    private void httpBack(int code, Header[] headers, byte[] bytes, Throwable e) {
+        if (notify != null) {
+            notify.httpBackNotify(this, code, headers, bytes, e);
+        }
+    }
+
+    private void httpEnd(int code, Header[] headers, byte[] bytes, Throwable e) {
         finish();
         if (notify != null) {
-            notify.endNotify(this, result_boolean);
+            notify.httpEndNotify(this, result_boolean, code, headers, bytes, e);
         }
     }
 
@@ -290,14 +311,5 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
         }
     }
 
-    @Override
-    public void setXCHttpModel(XCHttpModel model) {
-        this.httpModel = model;
-    }
-
-    @Override
-    public XCHttpModel getXCHttpModel() {
-        return httpModel;
-    }
 }
 
