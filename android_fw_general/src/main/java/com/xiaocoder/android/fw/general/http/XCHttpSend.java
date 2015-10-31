@@ -7,8 +7,9 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.http.IHttp.HttpType;
+import com.xiaocoder.android.fw.general.http.IHttp.XCHttpType;
 import com.xiaocoder.android.fw.general.http.IHttp.XCHttpModel;
+import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpNotify;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 
 import java.util.Map;
@@ -40,7 +41,7 @@ import java.util.Map;
  * <p/>
  * 如果项目不用该库， 可以继承该类 ，重写get 与 post等方法，然后 XCAPP.setBase_xcHttpSend()
  */
-public class XCHttpSend {
+public class XCHttpSend implements XCIHttpNotify{
 
     private AsyncHttpClient client;
 
@@ -74,19 +75,20 @@ public class XCHttpSend {
     /**
      * 这里改为了hashmap，便于以后更改http请求库
      */
-    public void getAsyn(boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, Activity activity, String urlString, Map<String, Object> map, XCIResponseHandler res) {
+    public void getAsyn(boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, String urlString, Map<String, Object> map, XCIResponseHandler res) {
 
-        sendAsyn(HttpType.GET, needSecret, isFrequentlyClick, isShowDialog, activity, urlString, map, res);
-
-    }
-
-    public void postAsyn(boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, Activity activity, String urlString, Map<String, Object> map, XCIResponseHandler res) {
-
-        sendAsyn(HttpType.POST, needSecret, isFrequentlyClick, isShowDialog, activity, urlString, map, res);
+        sendAsyn(XCHttpType.GET, needSecret, isFrequentlyClick, isShowDialog, urlString, map, res);
 
     }
 
-    public void sendAsyn(HttpType httpType, boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, Activity activity, String urlString, Map<String, Object> map, XCIResponseHandler res) {
+    public void postAsyn(boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, String urlString, Map<String, Object> map, XCIResponseHandler res) {
+
+        sendAsyn(XCHttpType.POST, needSecret, isFrequentlyClick, isShowDialog, urlString, map, res);
+
+    }
+
+    public void sendAsyn(XCHttpType xcHttpType, boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, String urlString,
+                         Map<String, Object> map, XCIResponseHandler res) {
         RequestParams params = new RequestParams();
 
         for (Map.Entry<String, Object> item : map.entrySet()) {
@@ -98,20 +100,17 @@ public class XCHttpSend {
         XCApp.i(XCConfig.TAG_HTTP, params.toString());
         if (isFrequentlyClick || !isNeting) {
             isNeting = true;
-            res.setContext(activity);
-            res.setHttpModel(new XCHttpModel
-                    (null, null, httpType, needSecret, isFrequentlyClick, isShowDialog, activity,
-                            urlString, map, res));
+            res.setXCHttpModel(new XCHttpModel(null, null, xcHttpType, needSecret, isFrequentlyClick, isShowDialog, urlString, map));
             res.yourCompanySecret(params, client, needSecret);
-            if (isShowDialog && activity != null) {
+            if (isShowDialog && res.obtainActivity() != null) {
                 res.showHttpDialog();
             }
 
             if (res instanceof AsyncHttpResponseHandler) {
-                if (httpType == HttpType.GET) {
+                if (xcHttpType == XCHttpType.GET) {
                     XCApp.i(XCConfig.TAG_HTTP, urlString + "------>get http url");
                     client.get(urlString, params, (AsyncHttpResponseHandler) res);
-                } else if (httpType == HttpType.POST) {
+                } else if (xcHttpType == XCHttpType.POST) {
                     XCApp.i(XCConfig.TAG_HTTP, urlString + "------>post http url");
                     client.post(urlString, params, (AsyncHttpResponseHandler) res);
                 }
@@ -123,4 +122,13 @@ public class XCHttpSend {
         }
     }
 
+    @Override
+    public void startNotify(XCIResponseHandler handler, boolean isSuccess) {
+
+    }
+
+    @Override
+    public void endNotify(XCIResponseHandler handler, boolean isSuccess) {
+
+    }
 }

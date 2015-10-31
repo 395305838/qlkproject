@@ -7,10 +7,10 @@ package com.xiaocoder.android.fw.general.http.IHttp;
  * <p/>
  * GO_ON: 不管line中的前一个http是否请求成功，都会执行下一个http请求
  * DELETE_ALL：前一个http请求失败了，line中的剩余http请求都不会执行且line中的剩余http任务会被清空，也会从groups中清空
- * LOOP：前一个http请求失败了，会循环该请求，直到该请求成功，才会继续下一个新的请求
+ * LOOP：前一个http请求失败了，会循环该请求，直到该请求成功，才会继续该line中的下一个新的请求
  */
 
-public enum SyncType {
+public enum XCSyncType {
     GO_ON,
     DELETE_ALL,
     LOOP

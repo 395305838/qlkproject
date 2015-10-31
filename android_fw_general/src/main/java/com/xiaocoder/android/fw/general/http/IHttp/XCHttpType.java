@@ -5,6 +5,6 @@ package com.xiaocoder.android.fw.general.http.IHttp;
  * version: 1.2.0
  * description: 请求方式
  */
-public enum HttpType {
+public enum XCHttpType {
     GET, POST
 }

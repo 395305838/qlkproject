@@ -1,5 +1,6 @@
 package com.xiaocoder.android.fw.general.http.IHttp;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 
@@ -11,19 +12,31 @@ import org.apache.http.Header;
  *         http回调的handler ,业务逻辑的判断，model的解析，dialog的显示等
  */
 public interface XCIResponseHandler<T> {
-
+    /**
+     * http请求成功，回调success方法
+     */
     void success(int code, Header[] headers, byte[] bytes);
 
+    /**
+     * http请求失败，回调failure方法
+     */
     void failure(int code, Header[] headers, byte[] bytes, Throwable e);
 
+    /**
+     * success/failure 执行完后，会调用finish方法
+     */
     void finish();
 
     /**
-     * activity是否销毁，这里的Context最好传Activity的实例，这样可以判断activity是否销毁
+     * 获取activity
      */
-    boolean isXCActivityDestroy(Context context);
+    Activity obtainActivity();
 
-    void setContext(Context context);
+    /**
+     * 如果传入的是XCActivity，则会判断activity是否销毁
+     * 如果传入的是Activity，则不会判断activity是否销毁
+     */
+    boolean isXCActivityDestroy(Activity activity);
 
     /**
      * 在子线程运行的，所以不要有ui或toast等操作，可以包括一系列的打印日志，byte转json，返回结果的判断等
@@ -41,7 +54,7 @@ public interface XCIResponseHandler<T> {
     void yourCompanySecret(Object params, Object client, boolean needSecret);
 
     /**
-     * 对返回状态码的一个判断，每个项目的认定操作成功的状态码或结构可能不同，在这里统一拦截
+     * 对返回状态码的一个判断，每个项目的认定操作成功的状态码或结构可能不同，在这里统一判断
      * <p/>
      * 即设置 result_boolean 为false 或 true
      */
@@ -63,14 +76,13 @@ public interface XCIResponseHandler<T> {
     Dialog getHttpDialog();
 
     /**
-     * 请求的相关参数
+     * 对所有http请求的一个开始和结束的拦截
      */
-    void setHttpModel(XCHttpModel httpModel);
+    void registerNotify(XCIHttpNotify notify);
 
-    /**
-     * 一个http结束时，调用该方法
-     */
-    void setHttpEndNotify(XCIHttpEndNotify notify);
+    void setXCHttpModel(XCHttpModel model);
+
+    XCHttpModel getXCHttpModel();
 
 
 }

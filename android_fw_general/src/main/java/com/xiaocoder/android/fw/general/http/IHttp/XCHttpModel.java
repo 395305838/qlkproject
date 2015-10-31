@@ -1,7 +1,5 @@
 package com.xiaocoder.android.fw.general.http.IHttp;
 
-import android.app.Activity;
-
 import java.util.Map;
 
 /**
@@ -12,60 +10,117 @@ import java.util.Map;
 public class XCHttpModel {
 
     /**
-     * 串行的时候，会用到(一般很少串行http请求)，line的唯一标识符
+     * line的唯一标识符
+     * <p/>
+     * 串行的时候，会用到(一般很少串行http请求)，
      */
-    public String lineKey;
+    private String lineKey;
     /**
+     * 串行的模式，见SyncType类
+     * <p/>
      * 串行的时候，会用到(一般很少串行http请求)
      */
-    public SyncType syncType;
+    private XCSyncType xcSyncType;
     /**
      * POST  GET
      */
-    public HttpType httpType;
+    private XCHttpType xcHttpType;
     /**
-     * 该次http请求是否加密
+     * 该次http请求是否加密，不会影响别的http请求
      */
-    public boolean needSecret;
+    private boolean needSecret;
     /**
-     * （只在非串行的情形下 设置该值才有效，即串行的时候，不考虑该值，串行的时候考虑该值无意义）
      * 是否可以频繁点击，即第一次http请求没回来，后面的（按钮点击）发送http请求无效
-     * （主要是应对如一个请求http的按钮频繁的点击）
+     * （只在并行的情形下 设置该值才有效，即串行的时候，不考虑该值，串行的时候考虑该值无意义）
+     * （主要应用场景：应对频繁点击一个带有http请求的按钮，比如验证码按钮、登录按钮、收藏按钮、购物车中的一些相关按钮等）
      */
-    public Boolean isFrequentlyClick;
+    private Boolean isFrequentlyClick;
     /**
      * 请求的过程中是否显示进度dialog
      */
-    public boolean isShowDialog;
-    /**
-     * 主要是判断该activity是否销毁用的
-     */
-    public Activity activity;
+    private boolean isShowDialog;
     /**
      * 接口地址
      */
-    public String urlString;
+    private String urlString;
     /**
-     * http参数
+     * http请求参数
      */
-    public Map<String, Object> map;
-    /**
-     * 回调的handler
-     */
-    public XCIResponseHandler res;
+    private Map<String, Object> map;
 
-    public XCHttpModel(String lineKey, SyncType syncType, HttpType httpType, boolean needSecret,
-                       Boolean isFrequentlyClick, boolean isShowDialog, Activity activity, String urlString,
-                       Map<String, Object> map, XCIResponseHandler res) {
+    public XCHttpModel(String lineKey, XCSyncType xcSyncType, XCHttpType xcHttpType, boolean needSecret,
+                       Boolean isFrequentlyClick, boolean isShowDialog, String urlString, Map<String, Object> map) {
         this.lineKey = lineKey;
-        this.syncType = syncType;
-        this.httpType = httpType;
+        this.xcSyncType = xcSyncType;
+        this.xcHttpType = xcHttpType;
         this.needSecret = needSecret;
         this.isFrequentlyClick = isFrequentlyClick;
         this.isShowDialog = isShowDialog;
-        this.activity = activity;
         this.urlString = urlString;
         this.map = map;
-        this.res = res;
+    }
+
+    public String getLineKey() {
+        return lineKey;
+    }
+
+    public void setLineKey(String lineKey) {
+        this.lineKey = lineKey;
+    }
+
+    public XCSyncType getXcSyncType() {
+        return xcSyncType;
+    }
+
+    public void setXcSyncType(XCSyncType xcSyncType) {
+        this.xcSyncType = xcSyncType;
+    }
+
+    public XCHttpType getXcHttpType() {
+        return xcHttpType;
+    }
+
+    public void setXcHttpType(XCHttpType xcHttpType) {
+        this.xcHttpType = xcHttpType;
+    }
+
+    public boolean isNeedSecret() {
+        return needSecret;
+    }
+
+    public void setNeedSecret(boolean needSecret) {
+        this.needSecret = needSecret;
+    }
+
+    public Boolean getIsFrequentlyClick() {
+        return isFrequentlyClick;
+    }
+
+    public void setIsFrequentlyClick(Boolean isFrequentlyClick) {
+        this.isFrequentlyClick = isFrequentlyClick;
+    }
+
+    public boolean isShowDialog() {
+        return isShowDialog;
+    }
+
+    public void setIsShowDialog(boolean isShowDialog) {
+        this.isShowDialog = isShowDialog;
+    }
+
+    public String getUrlString() {
+        return urlString;
+    }
+
+    public void setUrlString(String urlString) {
+        this.urlString = urlString;
+    }
+
+    public Map<String, Object> getMap() {
+        return map;
+    }
+
+    public void setMap(Map<String, Object> map) {
+        this.map = map;
     }
 }

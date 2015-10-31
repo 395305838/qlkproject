@@ -1,5 +1,6 @@
 package com.xiaocoder.android.fw.general.http;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 
@@ -8,7 +9,7 @@ import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 import com.xiaocoder.android.fw.general.http.IHttp.XCHttpModel;
-import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpEndNotify;
+import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpNotify;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 import com.xiaocoder.android.fw.general.json.XCJsonParse;
@@ -18,8 +19,7 @@ import org.apache.http.Header;
 /**
  * @author xiaocoder
  * @date 2014-12-30 下午5:04:48
- * <p/>
- * 该类的解析代码是异步的
+ * 该类是以asyn-http-android库的AsyncHttpResponseHandler为基础，如果是用别的库或者原始的thread handler，则需要重新实现
  * <p/>
  * onFinish()不能被重写，这里设置为了final. 如果需要重写，则重写finish（）方法
  * onSuccess()不能被重写，这里设置为了final，重写success（）方法
@@ -29,8 +29,7 @@ import org.apache.http.Header;
  * <p/>
  * model数据解析的代码 -->在子线程中执行的
  * <p/>
- * <p/>
- * 如果有特殊的解析需求，可以新建一个handler类重写parse() 或 parseWay方法
+ * 如果有特殊的解析需求，重写parse() 或 parseWay方法
  */
 public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler implements XCIResponseHandler<T> {
     /**
@@ -49,7 +48,8 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
      * 访问网络失败时,是否显示失败页面的背景
      */
     public boolean show_background_when_net_fail;
-    public Context mContext;
+
+    public Activity activity;
 
     /**
      * 加载中的dialog
@@ -68,7 +68,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
      */
     public XCHttpModel httpModel;
 
-    public XCIHttpEndNotify notify;
+    public XCIHttpNotify notify;
 
     public static int JSON = 1;
     /**
@@ -82,40 +82,37 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
         return httpDialog;
     }
 
+    @Override
+    public Activity obtainActivity() {
+        return activity;
+    }
+
+    @Override
+    public void registerNotify(XCIHttpNotify notify) {
+        this.notify = notify;
+    }
+
     /**
      * show_background_when_net_fail true 为展示背景和toast , false仅展示吐司
      */
     public XCResponseHandler(XCIHttpResult result_http,
+                             Activity activity,
                              int content_type,
                              boolean show_background_when_net_fail,
                              Class<T> result_bean_class
     ) {
         super();
         this.result_boolean = false;
-        this.content_type = content_type;
         this.result_http = result_http;
+        this.activity = activity;
+        this.content_type = content_type;
         this.show_background_when_net_fail = show_background_when_net_fail;
         this.result_bean_class = result_bean_class;
 
     }
 
-    public XCResponseHandler(XCIHttpResult result_http, Class<T> result_bean_class) {
-        this(result_http, JSON, true, result_bean_class);
-    }
-
-    @Override
-    public void setContext(Context context) {
-        mContext = context;
-    }
-
-    @Override
-    public void setHttpModel(XCHttpModel httpModel) {
-        this.httpModel = httpModel;
-    }
-
-    @Override
-    public void setHttpEndNotify(XCIHttpEndNotify notify) {
-        this.notify = notify;
+    public XCResponseHandler(XCIHttpResult result_http, Activity activity, Class<T> result_bean_class) {
+        this(result_http, activity, JSON, true, result_bean_class);
     }
 
     /**
@@ -142,7 +139,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
     @Override
     public final void onFailure(int code, Header[] headers, byte[] arg2, Throwable e) {
 
-        if (isXCActivityDestroy(mContext)) {
+        if (isXCActivityDestroy(activity)) {
             return;
         }
 
@@ -158,7 +155,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
         }
 
         failure(code, headers, arg2, e);
-        httpEnd(httpModel, result_boolean);
+        httpEnd(result_boolean);
     }
 
     /**
@@ -185,7 +182,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
     @Override
     public final void onSuccess(final int code, final Header[] headers, final byte[] bytes) {
 
-        if (isXCActivityDestroy(mContext)) {
+        if (isXCActivityDestroy(activity)) {
             return;
         }
         // 子线程
@@ -208,21 +205,21 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
                     @Override
                     public void run() {
                         // 增加activity是否销毁的判断
-                        if (isXCActivityDestroy(mContext)) {
+                        if (isXCActivityDestroy(activity)) {
                             return;
                         }
                         success(code, headers, bytes);
-                        httpEnd(httpModel, result_boolean);
+                        httpEnd(result_boolean);
                     }
                 });
             }
         });
     }
 
-    private void httpEnd(XCHttpModel httpModel, boolean result_boolean) {
+    private void httpEnd(boolean result_boolean) {
         finish();
         if (notify != null) {
-            notify.httpEndNotify(httpModel, result_boolean);
+            notify.endNotify(this, result_boolean);
         }
     }
 
@@ -242,17 +239,17 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
      * 主线程
      */
     @Override
-    public boolean isXCActivityDestroy(Context context) {
+    public boolean isXCActivityDestroy(Activity activity) {
 
         XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----isXCActivityDestroy()");
 
-        if (context == null) {
+        if (activity == null) {
             XCApp.e(this.toString() + "---activity被销毁了");
             return true;
         }
 
-        if (context instanceof XCBaseActivity) {
-            if (((XCBaseActivity) context).isActivityDestroied()) {
+        if (activity instanceof XCBaseActivity) {
+            if (((XCBaseActivity) activity).isActivityDestroied()) {
                 XCApp.e(this.toString() + "---activity被销毁了");
                 return true;
             }

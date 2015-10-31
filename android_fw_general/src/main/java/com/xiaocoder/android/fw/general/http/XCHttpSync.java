@@ -8,9 +8,9 @@ import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.http.IHttp.XCHttpModel;
-import com.xiaocoder.android.fw.general.http.IHttp.HttpType;
-import com.xiaocoder.android.fw.general.http.IHttp.SyncType;
-import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpEndNotify;
+import com.xiaocoder.android.fw.general.http.IHttp.XCHttpType;
+import com.xiaocoder.android.fw.general.http.IHttp.XCSyncType;
+import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpNotify;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 import com.xiaocoder.android.fw.general.util.UtilString;
 
@@ -26,7 +26,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  * version: 1.2.0
  * description: 串行的http请求
  */
-public class XCHttpSync implements XCIHttpEndNotify {
+public class XCHttpSync implements XCIHttpNotify {
 
     AsyncHttpClient client;
 
@@ -37,14 +37,14 @@ public class XCHttpSync implements XCIHttpEndNotify {
      * <p/>
      * 但是多个line之间，不一定是串行的
      */
-    ConcurrentMap<String, BlockingQueue<XCHttpModel>> group;
+    ConcurrentMap<String, BlockingQueue<XCIResponseHandler>> group;
 
     public XCHttpSync() {
         initAsynHttpClient();
     }
 
     public void initAsynHttpClient() {
-        group = new ConcurrentHashMap<String, BlockingQueue<XCHttpModel>>();
+        group = new ConcurrentHashMap<String, BlockingQueue<XCIResponseHandler>>();
         client = new AsyncHttpClient();
         client.setTimeout(10000);
     }
@@ -64,29 +64,31 @@ public class XCHttpSync implements XCIHttpEndNotify {
      * 把一个http请求数据包装为一个model，存入集合
      *
      * @param lineKey      存入到哪一个line中
-     * @param httpType     GET/POST
-     * @param syncType     串行的模式，见枚举值
+     * @param xcSyncType   串行的模式，见枚举值
+     * @param xcHttpType   GET/POST
      * @param needSecret   是否加密
      * @param isShowDialog 是否showdialog
-     * @param activity
      * @param urlString    接口地址
      * @param map          参数
      * @param res          回调handler
      */
-    public void packToLine(String lineKey, SyncType syncType, HttpType httpType, boolean needSecret, boolean isShowDialog, Activity activity, String urlString, Map<String, Object> map, XCIResponseHandler res) {
+    public void packToLine(String lineKey, XCSyncType xcSyncType, XCHttpType xcHttpType, boolean needSecret, boolean isShowDialog,
+                           String urlString, Map<String, Object> map, XCIResponseHandler res) {
 
-        if (UtilString.isBlank(lineKey) || syncType == null) {
+        if (UtilString.isBlank(lineKey) || xcSyncType == null) {
             throw new RuntimeException(this + "---packToLine(参数) 传入的参数为空");
         }
 
-        BlockingQueue<XCHttpModel> line = group.get(lineKey);
+        BlockingQueue<XCIResponseHandler> line = group.get(lineKey);
 
         if (line == null) {
-            line = new LinkedBlockingQueue<XCHttpModel>();
+            line = new LinkedBlockingQueue<XCIResponseHandler>();
             group.put(lineKey, line);
         }
 
-        line.add(new XCHttpModel(lineKey, syncType, httpType, needSecret, null, isShowDialog, activity, urlString, map, res));
+        XCHttpModel model = new XCHttpModel(lineKey, xcSyncType, xcHttpType, needSecret, null, isShowDialog, urlString, map);
+        res.setXCHttpModel(model);
+        line.add(res);
     }
 
     /**
@@ -98,7 +100,7 @@ public class XCHttpSync implements XCIHttpEndNotify {
             throw new RuntimeException(this + "---launchLine(参数) 传入的参数为空");
         }
 
-        BlockingQueue<XCHttpModel> line = group.get(lineKey);
+        BlockingQueue<XCIResponseHandler> line = group.get(lineKey);
         if (line == null) {
             XCApp.e(this + "---launchLine()中的group.get(lineKey)获取的value为null，return");
             return;
@@ -112,15 +114,26 @@ public class XCHttpSync implements XCIHttpEndNotify {
         }
 
         // 取队列中的第一个httt请求，然后删除这个请求
-        XCHttpModel model = line.poll();
-        if (model != null) {
-            send(model, model.lineKey, model.httpType, model.needSecret, model.isShowDialog, model.activity, model.urlString, model.map, model.res);
+        XCIResponseHandler handler = line.poll();
+        if (handler != null) {
+            XCHttpModel model = handler.getXCHttpModel();
+            sendSync(handler);
         } else {
             XCApp.e(this + "---launchLine()中的获取的http的model为null，return");
         }
     }
 
-    public void send(XCHttpModel model, String lineKey, HttpType type, boolean needSecret, boolean isShowDialog, Activity activity, String urlString, Map<String, Object> map, XCIResponseHandler res) {
+    public void sendSync(XCIResponseHandler res) {
+
+        XCHttpModel model = res.getXCHttpModel();
+
+        Map<String, Object> map = model.getMap();
+        boolean needSecret = model.isNeedSecret();
+        boolean isShowDialog = model.isShowDialog();
+        XCHttpType httpType = model.getXcHttpType();
+        String urlString = model.getUrlString();
+        String lineKey = model.getLineKey();
+
         RequestParams params = new RequestParams();
 
         for (Map.Entry<String, Object> item : map.entrySet()) {
@@ -130,20 +143,18 @@ public class XCHttpSync implements XCIHttpEndNotify {
         }
 
         XCApp.i(XCConfig.TAG_HTTP, params.toString());
-        res.setHttpEndNotify(this);
-        res.setHttpModel(model);
-        res.setContext(activity);
+
         res.yourCompanySecret(params, client, needSecret);
 
-        if (isShowDialog && activity != null) {
+        if (isShowDialog && res.obtainActivity() != null) {
             res.showHttpDialog();
         }
 
         if (res instanceof AsyncHttpResponseHandler) {
-            if (type == HttpType.GET) {
+            if (httpType == XCHttpType.GET) {
                 XCApp.i(XCConfig.TAG_HTTP, urlString + "------>get sync http url----" + lineKey);
                 client.get(urlString, params, (AsyncHttpResponseHandler) res);
-            } else if (type == HttpType.POST) {
+            } else if (httpType == XCHttpType.POST) {
                 XCApp.i(XCConfig.TAG_HTTP, urlString + "------>post sync http url---" + lineKey);
                 client.post(urlString, params, (AsyncHttpResponseHandler) res);
             }
@@ -152,28 +163,32 @@ public class XCHttpSync implements XCIHttpEndNotify {
         }
     }
 
+    @Override
+    public void startNotify(XCIResponseHandler handler, boolean isSuccess) {
+
+    }
 
     @Override
-    public void httpEndNotify(XCHttpModel httpModel, boolean isSuccess) {
-        if (!UtilString.isBlank(httpModel.lineKey) && httpModel.syncType != null) {
+    public void endNotify(XCIResponseHandler handler, boolean isSuccess) {
+        XCHttpModel httpModel = handler.getXCHttpModel();
+        if (!UtilString.isBlank(httpModel.getLineKey()) && httpModel.getXcSyncType() != null) {
             // 表示是串行
-            if (isSuccess || httpModel.syncType == SyncType.GO_ON) {
+            if (isSuccess || httpModel.getXcSyncType() == XCSyncType.GO_ON) {
                 // 执行下一个请求
-                launchLine(httpModel.lineKey);
+                launchLine(httpModel.getLineKey());
             } else {
-                if (httpModel.syncType == SyncType.DELETE_ALL) {
+                if (httpModel.getXcSyncType() == XCSyncType.DELETE_ALL) {
                     // 不执行后面的请求了，清空
-                    BlockingQueue<XCHttpModel> line = group.get(httpModel.lineKey);
+                    BlockingQueue<XCIResponseHandler> line = group.get(httpModel.getLineKey());
                     if (line != null) {
-                        // 清空line中的model队列
+                        // 清空line中的handler队列
                         line.clear();
                     }
                     // 移除group中的该line
-                    group.remove(httpModel.lineKey);
-                } else if (httpModel.syncType == SyncType.LOOP) {
-                    // 继续执行该httpmodel
-                    send(httpModel, httpModel.lineKey, httpModel.httpType, httpModel.needSecret,
-                            httpModel.isShowDialog, httpModel.activity, httpModel.urlString, httpModel.map, httpModel.res);
+                    group.remove(httpModel.getLineKey());
+                } else if (httpModel.getXcSyncType() == XCSyncType.LOOP) {
+                    // 继续执行该handler
+                    sendSync(handler);
                 }
             }
         }
