@@ -2,12 +2,11 @@ package com.xiaocoder.android.fw.general.http;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.application.XCBaseActivity;
+import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.http.IHttp.XCHttpModel;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpNotify;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;

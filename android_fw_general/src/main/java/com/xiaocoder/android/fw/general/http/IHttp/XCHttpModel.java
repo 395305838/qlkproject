@@ -30,9 +30,12 @@ public class XCHttpModel {
      */
     private boolean needSecret;
     /**
-     * 是否可以频繁点击，即第一次http请求没回来，后面的（按钮点击）发送http请求无效
-     * （只在并行的情形下 设置该值才有效，即串行的时候，不考虑该值，串行的时候考虑该值无意义）
-     * （主要应用场景：应对频繁点击一个带有http请求的按钮，比如验证码按钮、登录按钮、收藏按钮、购物车中的一些相关按钮等）
+     * 是否可以频繁点击
+     * 并行的情形下：如果为false，即第一次http请求没回来，后面发送的http请求无效。如果为true，则http请求无限制
+     * （主要应用场景：频繁点击一个带有http请求的按钮，比如验证码按钮、登录按钮、收藏按钮、购物车中的一些相关按钮等）
+     * <p/>
+     * 串行的情形下（很少）：该值默认为null，即使设置true、false也没有效果，即多个line之间可以并行
+     * （如果想控制多个line之间串行，可在上一个line执行完了后，再重启下一个line，endNotify()会在line执行结束后调用lineFinish()）
      */
     private Boolean isFrequentlyClick;
     /**

@@ -1,14 +1,12 @@
 package com.xiaocoder.android.fw.general.http;
 
-import android.app.Activity;
-
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.http.IHttp.XCHttpType;
 import com.xiaocoder.android.fw.general.http.IHttp.XCHttpModel;
+import com.xiaocoder.android.fw.general.http.IHttp.XCHttpType;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpNotify;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 
@@ -37,11 +35,9 @@ import java.util.Map;
  */
 
 /**
- * 默认使用了asyn-http-android库
- * <p/>
- * 如果项目不用该库， 可以继承该类 ，重写get 与 post等方法，然后 XCAPP.setBase_xcHttpSend()
+ * 并行的请求
  */
-public class XCHttpSend implements XCIHttpNotify{
+public class XCHttpSend implements XCIHttpNotify {
 
     private AsyncHttpClient client;
 
@@ -75,20 +71,34 @@ public class XCHttpSend implements XCIHttpNotify{
     /**
      * 这里改为了hashmap，便于以后更改http请求库
      */
-    public void getAsyn(boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, String urlString, Map<String, Object> map, XCIResponseHandler res) {
+    public void getAsyn(boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, String urlString, Map<String, Object> map, XCIResponseHandler resHandler) {
 
-        sendAsyn(XCHttpType.GET, needSecret, isFrequentlyClick, isShowDialog, urlString, map, res);
+        resHandler.setXCHttpModel(new XCHttpModel(null, null, XCHttpType.GET, needSecret, isFrequentlyClick, isShowDialog, urlString, map));
 
-    }
-
-    public void postAsyn(boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, String urlString, Map<String, Object> map, XCIResponseHandler res) {
-
-        sendAsyn(XCHttpType.POST, needSecret, isFrequentlyClick, isShowDialog, urlString, map, res);
+        sendAsyn(resHandler);
 
     }
 
-    public void sendAsyn(XCHttpType xcHttpType, boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, String urlString,
-                         Map<String, Object> map, XCIResponseHandler res) {
+    public void postAsyn(boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, String urlString, Map<String, Object> map, XCIResponseHandler resHandler) {
+
+        resHandler.setXCHttpModel(new XCHttpModel(null, null, XCHttpType.POST, needSecret, isFrequentlyClick, isShowDialog, urlString, map));
+
+        sendAsyn(resHandler);
+
+    }
+
+    public void sendAsyn(XCIResponseHandler resHandler) {
+
+        XCHttpModel model = resHandler.getXCHttpModel();
+
+        Map<String, Object> map = model.getMap();
+        boolean needSecret = model.isNeedSecret();
+        boolean isShowDialog = model.isShowDialog();
+        XCHttpType httpType = model.getXcHttpType();
+        String urlString = model.getUrlString();
+
+        Boolean isFrequentlyClick = model.getIsFrequentlyClick();
+
         RequestParams params = new RequestParams();
 
         for (Map.Entry<String, Object> item : map.entrySet()) {
@@ -100,19 +110,18 @@ public class XCHttpSend implements XCIHttpNotify{
         XCApp.i(XCConfig.TAG_HTTP, params.toString());
         if (isFrequentlyClick || !isNeting) {
             isNeting = true;
-            res.setXCHttpModel(new XCHttpModel(null, null, xcHttpType, needSecret, isFrequentlyClick, isShowDialog, urlString, map));
-            res.yourCompanySecret(params, client, needSecret);
-            if (isShowDialog && res.obtainActivity() != null) {
-                res.showHttpDialog();
+            resHandler.yourCompanySecret(params, client, needSecret);
+            if (isShowDialog && resHandler.obtainActivity() != null) {
+                resHandler.showHttpDialog();
             }
 
-            if (res instanceof AsyncHttpResponseHandler) {
-                if (xcHttpType == XCHttpType.GET) {
+            if (resHandler instanceof AsyncHttpResponseHandler) {
+                if (httpType == XCHttpType.GET) {
                     XCApp.i(XCConfig.TAG_HTTP, urlString + "------>get http url");
-                    client.get(urlString, params, (AsyncHttpResponseHandler) res);
-                } else if (xcHttpType == XCHttpType.POST) {
+                    client.get(urlString, params, (AsyncHttpResponseHandler) resHandler);
+                } else if (httpType == XCHttpType.POST) {
                     XCApp.i(XCConfig.TAG_HTTP, urlString + "------>post http url");
-                    client.post(urlString, params, (AsyncHttpResponseHandler) res);
+                    client.post(urlString, params, (AsyncHttpResponseHandler) resHandler);
                 }
             } else {
                 throw new RuntimeException("XCHttpAsyn中的Handler类型不匹配");
@@ -123,12 +132,12 @@ public class XCHttpSend implements XCIHttpNotify{
     }
 
     @Override
-    public void startNotify(XCIResponseHandler handler, boolean isSuccess) {
+    public void startNotify(XCIResponseHandler resHandler, boolean isSuccess) {
 
     }
 
     @Override
-    public void endNotify(XCIResponseHandler handler, boolean isSuccess) {
+    public void endNotify(XCIResponseHandler resHandler, boolean isSuccess) {
 
     }
 }

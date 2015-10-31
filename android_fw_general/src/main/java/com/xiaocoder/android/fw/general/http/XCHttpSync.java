@@ -1,7 +1,5 @@
 package com.xiaocoder.android.fw.general.http;
 
-import android.app.Activity;
-
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -9,9 +7,9 @@ import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.http.IHttp.XCHttpModel;
 import com.xiaocoder.android.fw.general.http.IHttp.XCHttpType;
-import com.xiaocoder.android.fw.general.http.IHttp.XCSyncType;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpNotify;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
+import com.xiaocoder.android.fw.general.http.IHttp.XCSyncType;
 import com.xiaocoder.android.fw.general.util.UtilString;
 
 import java.util.Map;
@@ -31,11 +29,12 @@ public class XCHttpSync implements XCIHttpNotify {
     AsyncHttpClient client;
 
     /**
-     * 可以装很多个“line” ，每个“line”即一个BlockingQueue<XCHttpModel>,line里面装了很多待请求的http任务
+     * group可以装很多个“line” ，每个“line”即一个BlockingQueue<XCIResponseHandler>队列,line里面装了很多个待请求的http任务
      * <p/>
      * 每个line里的多个http请求都是串行的
      * <p/>
-     * 但是多个line之间，不一定是串行的
+     * 但是多个line之间不影响，并行的
+     * 如果想控制多个line之间串行，可在上一个line执行完了后，再重启下一个line，endNotify()会在line执行结束后调用lineFinish()
      */
     ConcurrentMap<String, BlockingQueue<XCIResponseHandler>> group;
 
@@ -54,9 +53,9 @@ public class XCHttpSync implements XCIHttpNotify {
     }
 
     /**
-     * 获取该line存在group里的key
+     * 返回该line将存在group里的key
      */
-    public String getLineKey() {
+    public String newLineKey() {
         return UUID.randomUUID().toString();
     }
 
@@ -70,10 +69,10 @@ public class XCHttpSync implements XCIHttpNotify {
      * @param isShowDialog 是否showdialog
      * @param urlString    接口地址
      * @param map          参数
-     * @param res          回调handler
+     * @param resHandler   回调handler
      */
     public void packToLine(String lineKey, XCSyncType xcSyncType, XCHttpType xcHttpType, boolean needSecret, boolean isShowDialog,
-                           String urlString, Map<String, Object> map, XCIResponseHandler res) {
+                           String urlString, Map<String, Object> map, XCIResponseHandler resHandler) {
 
         if (UtilString.isBlank(lineKey) || xcSyncType == null) {
             throw new RuntimeException(this + "---packToLine(参数) 传入的参数为空");
@@ -87,12 +86,12 @@ public class XCHttpSync implements XCIHttpNotify {
         }
 
         XCHttpModel model = new XCHttpModel(lineKey, xcSyncType, xcHttpType, needSecret, null, isShowDialog, urlString, map);
-        res.setXCHttpModel(model);
-        line.add(res);
+        resHandler.setXCHttpModel(model);
+        line.add(resHandler);
     }
 
     /**
-     * 执行某一个line里面的http请求
+     * 执行某一个line里面的http请求集合
      */
     public void launchLine(String lineKey) {
 
@@ -107,8 +106,7 @@ public class XCHttpSync implements XCIHttpNotify {
         }
 
         if (line.size() == 0) {
-            line.clear();
-            group.remove(lineKey);
+            lineFinish(lineKey, line);
             XCApp.e(this + "---launchLine()中的group.get(lineKey)获取的value.size()为0，return");
             return;
         }
@@ -123,16 +121,25 @@ public class XCHttpSync implements XCIHttpNotify {
         }
     }
 
-    public void sendSync(XCIResponseHandler res) {
+    /**
+     * 清空line ，并从group中删除
+     */
+    public void lineFinish(String lineKey, BlockingQueue<XCIResponseHandler> line) {
+        // 清空line中的handler队列
+        line.clear();
+        // 移除group中的该line
+        group.remove(lineKey);
+    }
 
-        XCHttpModel model = res.getXCHttpModel();
+    public void sendSync(XCIResponseHandler resHandler) {
+
+        XCHttpModel model = resHandler.getXCHttpModel();
 
         Map<String, Object> map = model.getMap();
         boolean needSecret = model.isNeedSecret();
         boolean isShowDialog = model.isShowDialog();
         XCHttpType httpType = model.getXcHttpType();
         String urlString = model.getUrlString();
-        String lineKey = model.getLineKey();
 
         RequestParams params = new RequestParams();
 
@@ -144,19 +151,19 @@ public class XCHttpSync implements XCIHttpNotify {
 
         XCApp.i(XCConfig.TAG_HTTP, params.toString());
 
-        res.yourCompanySecret(params, client, needSecret);
+        resHandler.yourCompanySecret(params, client, needSecret);
 
-        if (isShowDialog && res.obtainActivity() != null) {
-            res.showHttpDialog();
+        if (isShowDialog && resHandler.obtainActivity() != null) {
+            resHandler.showHttpDialog();
         }
 
-        if (res instanceof AsyncHttpResponseHandler) {
+        if (resHandler instanceof AsyncHttpResponseHandler) {
             if (httpType == XCHttpType.GET) {
-                XCApp.i(XCConfig.TAG_HTTP, urlString + "------>get sync http url----" + lineKey);
-                client.get(urlString, params, (AsyncHttpResponseHandler) res);
+                XCApp.i(XCConfig.TAG_HTTP, urlString + "------>get sync http url----" + model.getLineKey());
+                client.get(urlString, params, (AsyncHttpResponseHandler) resHandler);
             } else if (httpType == XCHttpType.POST) {
-                XCApp.i(XCConfig.TAG_HTTP, urlString + "------>post sync http url---" + lineKey);
-                client.post(urlString, params, (AsyncHttpResponseHandler) res);
+                XCApp.i(XCConfig.TAG_HTTP, urlString + "------>post sync http url---" + model.getLineKey());
+                client.post(urlString, params, (AsyncHttpResponseHandler) resHandler);
             }
         } else {
             throw new RuntimeException("XCHttpAsyn中的Handler类型不匹配");
@@ -164,13 +171,13 @@ public class XCHttpSync implements XCIHttpNotify {
     }
 
     @Override
-    public void startNotify(XCIResponseHandler handler, boolean isSuccess) {
+    public void startNotify(XCIResponseHandler resHandler, boolean isSuccess) {
 
     }
 
     @Override
-    public void endNotify(XCIResponseHandler handler, boolean isSuccess) {
-        XCHttpModel httpModel = handler.getXCHttpModel();
+    public void endNotify(XCIResponseHandler resHandler, boolean isSuccess) {
+        XCHttpModel httpModel = resHandler.getXCHttpModel();
         if (!UtilString.isBlank(httpModel.getLineKey()) && httpModel.getXcSyncType() != null) {
             // 表示是串行
             if (isSuccess || httpModel.getXcSyncType() == XCSyncType.GO_ON) {
@@ -181,14 +188,11 @@ public class XCHttpSync implements XCIHttpNotify {
                     // 不执行后面的请求了，清空
                     BlockingQueue<XCIResponseHandler> line = group.get(httpModel.getLineKey());
                     if (line != null) {
-                        // 清空line中的handler队列
-                        line.clear();
+                        lineFinish(httpModel.getLineKey(), line);
                     }
-                    // 移除group中的该line
-                    group.remove(httpModel.getLineKey());
                 } else if (httpModel.getXcSyncType() == XCSyncType.LOOP) {
                     // 继续执行该handler
-                    sendSync(handler);
+                    sendSync(resHandler);
                 }
             }
         }

@@ -9,7 +9,7 @@ import org.apache.http.Header;
 /**
  * @author xiaocoder
  *         2015-1-16 下午1:55:28
- *         http回调的handler ,业务逻辑的判断，model的解析，dialog的显示等
+ *         http回调的handler ,业务逻辑的判断，json/xml2model的解析，dialog的显示等
  */
 public interface XCIResponseHandler<T> {
     /**
