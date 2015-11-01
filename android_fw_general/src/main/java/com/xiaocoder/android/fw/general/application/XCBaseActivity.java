@@ -178,7 +178,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
         XCApp.resetNetingStatus();
         isActivityDestroied = true;
-
+        recoderNetFailHandler = null;
         super.onDestroy();
 
         getXCApplication().delActivityFromStack(this);

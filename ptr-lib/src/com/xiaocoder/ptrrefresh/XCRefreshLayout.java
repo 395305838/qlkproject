@@ -34,9 +34,9 @@ import in.srain.cube.views.ptr.R;
  * version: 1.0
  * description: 封装了上下拉 ， 分页 ，无数据背景
  * 仅适用于 abslistview
- *
+ * <p/>
  * 可配置autorefresh属性
- * */
+ */
 abstract public class XCRefreshLayout extends FrameLayout implements View.OnClickListener {
     /**
      * 上下拉效果的控件
@@ -98,6 +98,11 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
      * 图片id
      */
     public int zero_imageview_hint;
+
+    /**
+     * 当不满一页，以及加载下一页的网络请求失败时
+     */
+    int recoderCount = 0;
 
     public XCRefreshLayout(Context context) {
         super(context);
@@ -171,7 +176,7 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
                     }
 
                     // 当前页滚动到了底部 且 不是最后一页
-                    if (isBottom() && hasNext()) {
+                    if (recoderCount != base_all_beans.size() && isBottom() && hasNext()) {
                         // 继续加载下一页
                         loading();
                     }
@@ -257,7 +262,7 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
 
     PtrUIHandler mPtrClassicHeader;
 
-    public abstract  void initHeadStyle();
+    public abstract void initHeadStyle();
 
     public PtrFrameLayout getmPtrRefreshLayout() {
         return mPtrRefreshLayout;
@@ -317,6 +322,8 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
 
     // 是否还有下一页
     protected boolean hasNext() {
+        recoderCount = base_all_beans.size();
+
         // 这里的base_currentPage代表当前已经加载到了第几页
         if (base_currentPage >= base_totalPage) {
             // 当前页大于等于总页数时，是底部

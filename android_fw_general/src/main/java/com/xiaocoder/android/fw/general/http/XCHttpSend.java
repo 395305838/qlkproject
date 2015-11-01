@@ -84,6 +84,11 @@ public class XCHttpSend {
 
     public void sendAsyn(XCIResponseHandler resHandler) {
 
+        if (resHandler == null) {
+            XCApp.e(this + "---resHandler为null");
+            return;
+        }
+
         XCHttpModel model = resHandler.getXCHttpModel();
         XCHttpType httpType = model.getXcHttpType();
         boolean needSecret = model.isNeedSecret();
