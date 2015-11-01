@@ -12,6 +12,7 @@ import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
+import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpNotify;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
 import com.xiaocoder.android.fw.general.http.XCResponseHandler;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
@@ -27,12 +28,20 @@ import com.xiaocoder.middle.function.MMainActivity;
  */
 public abstract class MResponseHandler<T> extends XCResponseHandler<T> {
 
-    public MResponseHandler(XCIHttpResult result_http,Activity activity,int content_type, boolean show_background_when_net_fail, Class<T> result_bean_class) {
-        super(result_http, activity,content_type, show_background_when_net_fail, result_bean_class);
+    public MResponseHandler(XCIHttpResult result_http, XCIHttpNotify notify, Activity activity, int content_type, boolean show_background_when_net_fail, Class<T> result_bean_class) {
+        super(result_http, notify, activity, content_type, show_background_when_net_fail, result_bean_class);
+    }
+
+    public MResponseHandler(XCIHttpResult result_http, XCIHttpNotify notify, Activity activity, Class<T> result_bean_class) {
+        super(result_http, notify, activity, result_bean_class);
     }
 
     public MResponseHandler(XCIHttpResult result_http,Activity activity, Class<T> result_bean_class) {
         super(result_http,activity, result_bean_class);
+    }
+
+    public MResponseHandler(Activity activity, Class<T> result_bean_class) {
+        super(activity, result_bean_class);
     }
 
     /**
@@ -133,7 +142,7 @@ public abstract class MResponseHandler<T> extends XCResponseHandler<T> {
                 }
             });
             httpDialog.show();
-            XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---showHttpDialog()");
+            XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---showHttpDialog()---"+httpModel);
         }
     }
 }

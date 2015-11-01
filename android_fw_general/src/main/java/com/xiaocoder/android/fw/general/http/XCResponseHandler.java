@@ -17,7 +17,7 @@ import org.apache.http.Header;
 /**
  * @author xiaocoder
  * @date 2014-12-30 下午5:04:48
- * 该类是以asyn-http-android库的AsyncHttpResponseHandler为基础，如果是用别的库或者原始的thread handler，则需要重新实现
+ * 该类是以asyn-http-android库的AsyncHttpResponseHandler为基础
  * <p/>
  * onFinish()不能被重写，这里设置为了final. 如果需要重写，则重写finish（）方法
  * onSuccess()不能被重写，这里设置为了final，重写success（）方法
@@ -80,11 +80,6 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
     }
 
     @Override
-    public void registerNotify(XCIHttpNotify notify) {
-        this.notify = notify;
-    }
-
-    @Override
     public void setXCHttpModel(XCHttpModel model) {
         this.httpModel = model;
     }
@@ -95,13 +90,15 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
     }
 
     /**
-     * @param result_http                   如果为null，不会报错，仅网络请求失败时，不会回调该接口
-     * @param activity                      如果是传xcactivity则会判断是否回收
+     * @param result_http                   如果为null，不会报错。网络请求失败时，不会回调该对象
+     * @param notify                        如果为null，不会报错。http返回与结束时，不会回调该对象
+     * @param activity                      如果为null，不会报错。
      * @param content_type                  默认为JSON
      * @param show_background_when_net_fail true 为展示背景（result_http!=null时）和toast , false仅展示吐司
      * @param result_bean_class             model的字节码文件
      */
     public XCResponseHandler(XCIHttpResult result_http,
+                             XCIHttpNotify notify,
                              Activity activity,
                              int content_type,
                              boolean show_background_when_net_fail,
@@ -110,6 +107,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
         super();
         this.result_boolean = false;
         this.result_http = result_http;
+        this.notify = notify;
         this.activity = activity;
         this.content_type = content_type;
         this.show_background_when_net_fail = show_background_when_net_fail;
@@ -117,8 +115,17 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
 
     }
 
+    public XCResponseHandler(XCIHttpResult result_http, XCIHttpNotify notify, Activity activity, Class<T> result_bean_class) {
+        this(result_http, notify, activity, JSON, true, result_bean_class);
+    }
+
     public XCResponseHandler(XCIHttpResult result_http, Activity activity, Class<T> result_bean_class) {
-        this(result_http, activity, JSON, true, result_bean_class);
+        this(result_http, null, activity, JSON, true, result_bean_class);
+    }
+
+
+    public XCResponseHandler(Activity activity, Class<T> result_bean_class) {
+        this(null, null, activity, JSON, true, result_bean_class);
     }
 
     /**
@@ -127,6 +134,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
     @Override
     public final void onFinish() {
         super.onFinish();
+        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "----onFinish()-ignore-fake");
     }
 
     /**
@@ -134,7 +142,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
      */
     @Override
     public void finish() {
-        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---onFinish()");
+        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "----finish()");
         XCApp.resetNetingStatus();
         closeHttpDialog();
     }
@@ -149,8 +157,6 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
             return;
         }
 
-        httpBack(code, headers, arg2, e);
-
         XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----onFailure()");
         XCApp.i(XCConfig.TAG_HTTP, "onFailure----->status code " + code + "----e.toString()" + e.toString());
 
@@ -162,7 +168,9 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
             }
         }
 
-        failure(code, headers, arg2, e);
+        if (httpBack(code, headers, arg2, e)) {
+            failure(code, headers, arg2, e);
+        }
         httpEnd(code, headers, arg2, e);
     }
 
@@ -194,21 +202,19 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
             return;
         }
 
-        httpBack(code, headers, bytes, null);
+        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----onSuccess()");
+        XCApp.i(XCConfig.TAG_HTTP, "onSuccess----->status code " + code);
+
+        if (XCApp.getBase_log().is_OutPut() && headers != null) {
+            for (Header header : headers) {
+                XCApp.i(XCConfig.TAG_HTTP, "headers----->" + header.toString());
+            }
+        }
 
         // 子线程
         XCApp.getBase_fix_threadpool().execute(new Runnable() {
             @Override
             public void run() {
-
-                XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----onSuccess()");
-                XCApp.i(XCConfig.TAG_HTTP, "onSuccess----->status code " + code);
-
-                if (XCApp.getBase_log().is_OutPut() && headers != null) {
-                    for (Header header : headers) {
-                        XCApp.i(XCConfig.TAG_HTTP, "headers----->" + header.toString());
-                    }
-                }
 
                 parse(bytes);
 
@@ -220,7 +226,10 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
                             return;
                         }
 
-                        success(code, headers, bytes);
+                        if (httpBack(code, headers, bytes, null)) {
+                            success(code, headers, bytes);
+                        }
+
                         httpEnd(code, headers, bytes, null);
                     }
                 });
@@ -228,14 +237,22 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
         });
     }
 
-    private void httpBack(int code, Header[] headers, byte[] bytes, Throwable e) {
+    private boolean httpBack(int code, Header[] headers, byte[] bytes, Throwable e) {
+        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this + "-----httpBack()--" + notify);
+
         if (notify != null) {
-            notify.httpBackNotify(this, code, headers, bytes, e);
+            return notify.httpBackNotify(this, result_boolean, code, headers, bytes, e);
+        } else {
+            // 继续调用后面的代码
+            return true;
         }
     }
 
     private void httpEnd(int code, Header[] headers, byte[] bytes, Throwable e) {
         finish();
+
+        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this + "-----httpEnd()--" + notify);
+
         if (notify != null) {
             notify.httpEndNotify(this, result_boolean, code, headers, bytes, e);
         }
@@ -259,11 +276,12 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
     @Override
     public boolean isXCActivityDestroy(Activity activity) {
 
-        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----isXCActivityDestroy()");
+        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----isXCActivityDestroy()---" + activity);
 
         if (activity == null) {
-            XCApp.e(this.toString() + "---activity被销毁了");
-            return true;
+            // 可以使一个与页面无关的网络请求
+            XCApp.e(this.toString() + "---传入的activity为null");
+            return false;
         }
 
         if (activity instanceof XCBaseActivity) {

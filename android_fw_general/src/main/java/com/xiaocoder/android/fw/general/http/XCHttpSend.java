@@ -67,20 +67,16 @@ public class XCHttpSend {
      */
     public void getAsyn(boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, String urlString, Map<String, Object> map, XCIResponseHandler resHandler) {
 
-        launch(resHandler, new XCHttpModel(XCHttpType.GET, needSecret, isFrequentlyClick, isShowDialog, urlString, map));
+        resHandler.setXCHttpModel(new XCHttpModel(XCHttpType.GET, needSecret, isFrequentlyClick, isShowDialog, urlString, map));
+
+        sendAsyn(resHandler);
 
     }
 
 
     public void postAsyn(boolean needSecret, boolean isFrequentlyClick, boolean isShowDialog, String urlString, Map<String, Object> map, XCIResponseHandler resHandler) {
 
-        launch(resHandler, new XCHttpModel(XCHttpType.POST, needSecret, isFrequentlyClick, isShowDialog, urlString, map));
-
-    }
-
-    public void launch(XCIResponseHandler resHandler, XCHttpModel model) {
-
-        resHandler.setXCHttpModel(model);
+        resHandler.setXCHttpModel(new XCHttpModel(XCHttpType.POST, needSecret, isFrequentlyClick, isShowDialog, urlString, map));
 
         sendAsyn(resHandler);
 
@@ -89,31 +85,42 @@ public class XCHttpSend {
     public void sendAsyn(XCIResponseHandler resHandler) {
 
         XCHttpModel model = resHandler.getXCHttpModel();
-
-        Map<String, Object> map = model.getMap();
-        boolean needSecret = model.isNeedSecret();
-        boolean isShowDialog = model.isShowDialog();
         XCHttpType httpType = model.getXcHttpType();
+        boolean needSecret = model.isNeedSecret();
+        boolean isFrequentlyClick = model.isFrequentlyClick();
+        boolean isShowDialog = model.isShowDialog();
         String urlString = model.getUrlString();
+        Map<String, Object> map = model.getMap();
 
-        Boolean isFrequentlyClick = model.isFrequentlyClick();
-
-        RequestParams params = new RequestParams();
-
-        for (Map.Entry<String, Object> item : map.entrySet()) {
-            String key = item.getKey();
-            Object value = item.getValue();
-            params.put(key, value);
-        }
-
-        XCApp.i(XCConfig.TAG_HTTP, params.toString());
         if (isFrequentlyClick || !isNeting) {
             isNeting = true;
-            resHandler.yourCompanySecret(params, client, needSecret);
+
+            /*
+             * 是否show Dialog
+             */
             if (isShowDialog && resHandler.obtainActivity() != null) {
                 resHandler.showHttpDialog();
             }
 
+            /*
+             * 转换参数
+             */
+            RequestParams params = new RequestParams();
+            for (Map.Entry<String, Object> item : map.entrySet()) {
+                String key = item.getKey();
+                Object value = item.getValue();
+                params.put(key, value);
+            }
+            XCApp.i(XCConfig.TAG_HTTP, "加密前参数---" + params.toString());
+
+            /*
+             * 加密
+             */
+            resHandler.yourCompanySecret(params, client, needSecret);
+
+            /*
+             * 发送请求
+             */
             if (resHandler instanceof AsyncHttpResponseHandler) {
                 if (httpType == XCHttpType.GET) {
                     XCApp.i(XCConfig.TAG_HTTP, urlString + "------>get http url");
@@ -121,6 +128,8 @@ public class XCHttpSend {
                 } else if (httpType == XCHttpType.POST) {
                     XCApp.i(XCConfig.TAG_HTTP, urlString + "------>post http url");
                     client.post(urlString, params, (AsyncHttpResponseHandler) resHandler);
+                } else {
+                    throw new RuntimeException("XCHttpAsyn中的XCHttpType类型不匹配");
                 }
             } else {
                 throw new RuntimeException("XCHttpAsyn中的Handler类型不匹配");

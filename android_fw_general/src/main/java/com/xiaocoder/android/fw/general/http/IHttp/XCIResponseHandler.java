@@ -89,10 +89,5 @@ public interface XCIResponseHandler<T> {
      */
     Dialog getHttpDialog();
 
-    /**
-     * 对http请求的一个开始和结束的通知
-     */
-    void registerNotify(XCIHttpNotify notify);
-
 
 }

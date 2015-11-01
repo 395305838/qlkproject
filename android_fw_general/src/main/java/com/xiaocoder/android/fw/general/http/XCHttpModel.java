@@ -93,4 +93,16 @@ public class XCHttpModel {
     public void setMap(Map<String, Object> map) {
         this.map = map;
     }
+
+    @Override
+    public String toString() {
+        return "XCHttpModel{" +
+                "xcHttpType=" + xcHttpType +
+                ", needSecret=" + needSecret +
+                ", isFrequentlyClick=" + isFrequentlyClick +
+                ", isShowDialog=" + isShowDialog +
+                ", urlString='" + urlString + '\'' +
+                ", map=" + map +
+                '}';
+    }
 }

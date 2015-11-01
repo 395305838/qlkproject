@@ -6,23 +6,26 @@ import org.apache.http.Header;
  * Created by xiaocoder on 2015/10/30.
  * version: 1.2.0
  * description: 对http请求回调的刚开始和结束的拦截
- * <p/>
- * 比如并行的时候，用httpBackNotify可判断哪个应用先回来的
- * 比如串行的时候，用httpEndNotify可判断上一个request是否结束，以及返回的状态
  */
 public interface XCIHttpNotify {
 
     /**
-     * 一个http刚刚返回，还没开始调用sucess 、 failure
+     * 一个http刚返回，还没开始调用sucess 、 failure
+     *
+     * @param httpCode    http返回的状态码
+     * @param parseResult http如果失败，该值为false
+     *                    http如果成功，再根据解析string后的状态码来判断
+     * @return 是否接下来调用success or failure
      */
-    void httpBackNotify(XCIResponseHandler resHandler, int httpCode, Header[] headers, byte[] data, Throwable e);
+    boolean httpBackNotify(XCIResponseHandler resHandler, boolean parseResult, int httpCode, Header[] headers, byte[] data, Throwable e);
 
 
     /**
      * 一个http请求完全结束后，即在调用完finish后
      *
-     * @param httpCode http返回的状态码
-     * @param parseResult 根据接口成功返回的string，解析该次操作是否是通过的
+     * @param httpCode    http返回的状态码
+     * @param parseResult http如果失败，该值为false
+     *                    http如果成功，再根据解析string后的状态码来判断
      */
     void httpEndNotify(XCIResponseHandler resHandler, boolean parseResult, int httpCode, Header[] headers, byte[] data, Throwable e);
 
