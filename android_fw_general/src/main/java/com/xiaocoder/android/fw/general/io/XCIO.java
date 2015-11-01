@@ -32,8 +32,7 @@ public class XCIO {
 
     /**
      * createFile("e:","good.txt")-->在e盘下建一个good.txt文件
-     * createFile("e:/learn/chinese"
-     * ,"englis.txt")-->在e盘下建立一个learn/chinese的二级文件夹,并建立englis.txt的文件
+     * createFile("e:/learn/chinese","englis.txt")-->在e盘下建立一个learn/chinese的二级文件夹,并建立englis.txt的文件
      */
     public static File createFile(String dirPath, String fileName) {
 
@@ -282,7 +281,8 @@ public class XCIO {
     }
 
     /**
-     * 拷贝文件用字节流即可（如果是对文本的操作，如修改，则得用字符流） ,  这里拷贝的是文件，不是文件夹
+     * 这里拷贝的是文件，不是文件夹
+     * 拷贝文件用字节流即可（如果是对文本的操作，如修改，则得用字符流）
      */
     public static void copyFile(String srcPath, String destPath) {
         InputStream in = null;
@@ -570,7 +570,7 @@ public class XCIO {
         FileWriter fw = null;
         try {
             fw = new FileWriter(file);
-            properties.store(fw, desc);//info为注释,不要写中文
+            properties.store(fw, desc);//desc为注释,不要写中文
             return properties;
         } catch (Exception e) {
             e.printStackTrace();

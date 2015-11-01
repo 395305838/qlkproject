@@ -7,8 +7,8 @@ import android.os.Handler;
 import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
-import com.xiaocoder.android.fw.general.http.XCHttpSend;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
+import com.xiaocoder.android.fw.general.http.XCHttpSend;
 import com.xiaocoder.android.fw.general.imageloader.XCIImageLoader;
 import com.xiaocoder.android.fw.general.io.XCLog;
 import com.xiaocoder.android.fw.general.io.XCSP;
@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * 1 存储activity ， 回到首页activity， 弹出指定activity等
@@ -36,6 +37,7 @@ public class XCApp extends Application {
      * 以下的涉及到路径和文件名的，在子类中初始化
      */
     protected static ExecutorService base_fix_threadpool;
+    protected static ScheduledExecutorService base_scheduled_threadpool;
     protected static XCLog base_log;
     protected static XCSP base_sp;
     protected static Context base_applicationContext;
@@ -198,6 +200,10 @@ public class XCApp extends Application {
 
     public static ExecutorService getBase_fix_threadpool() {
         return base_fix_threadpool;
+    }
+
+    public static ScheduledExecutorService getBase_scheduled_threadpool() {
+        return base_scheduled_threadpool;
     }
 
     public static void i(Object msg) {

@@ -27,19 +27,14 @@ public class MApp extends XCApp {
     public void onCreate() {
         super.onCreate();
 
-        // http解析时用到该固定线程池,基类中还有一个cache线程池
-        base_fix_threadpool = XCExecutorHelper.getExecutorHelperInstance().getFix(MConfig.THREAD_NUM);
-
-        // log(可以打印日志到控制台和文件中) 与 toast
-        base_log = new XCLog(getApplicationContext(),
-                MConfig.IS_DTOAST, MConfig.IS_OUTPUT, MConfig.IS_PRINTLOG,
-                MConfig.APP_ROOT, MConfig.LOG_FILE, MConfig.TEMP_PRINT_FILE, XCConfig.ENCODING_UTF8);
-
-        // sp保存文件名 与 模式
-        base_sp = new XCSP(getApplicationContext(), MConfig.SP_FILE, Context.MODE_APPEND);// Context.MODE_MULTI_PROCESS
-
         // 创建文件夹
         createDir();
+
+        initNumThreadPool();
+
+        initLog();
+
+        initSp();
 
         // 图片加载的初始化
         initImageLoader();
@@ -50,6 +45,24 @@ public class MApp extends XCApp {
         // 打印一些简单的设备信息
         simpleDeviceInfo();
 
+    }
+
+    private void initSp() {
+        // sp保存文件名 与 模式
+        base_sp = new XCSP(getApplicationContext(), MConfig.SP_FILE, Context.MODE_APPEND);// Context.MODE_MULTI_PROCESS
+    }
+
+    private void initLog() {
+        // log(可以打印日志到控制台和文件中) 与 toast
+        base_log = new XCLog(getApplicationContext(),
+                MConfig.IS_DTOAST, MConfig.IS_OUTPUT, MConfig.IS_PRINTLOG,
+                MConfig.APP_ROOT, MConfig.LOG_FILE, MConfig.TEMP_PRINT_FILE, XCConfig.ENCODING_UTF8);
+    }
+
+    private void initNumThreadPool() {
+        // http解析时用到该固定线程池,基类中还有一个cache线程池
+        base_fix_threadpool = XCExecutorHelper.getExecutorHelperInstance().getFix(MConfig.FIX_THREAD_NUM);
+        base_scheduled_threadpool = XCExecutorHelper.getExecutorHelperInstance().getScheduledFix(MConfig.SCHEDULE_THREAD_NUM);
     }
 
     private void createDir() {

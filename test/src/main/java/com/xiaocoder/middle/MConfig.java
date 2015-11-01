@@ -200,7 +200,11 @@ public class MConfig {
     /**
      * 固定线程池的数量
      */
-    public static int THREAD_NUM = 60;
+    public static int FIX_THREAD_NUM = 60;
+    /**
+     * schedule线程池
+     */
+    public static int SCHEDULE_THREAD_NUM = 6;
     /**
      * 默认图片加载option的配置
      */
