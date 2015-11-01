@@ -80,9 +80,4 @@ public class UmengShareActivity extends MActivity {
         });
     }
 
-    @Override
-    public void onNetRefresh() {
-
-    }
-
 }

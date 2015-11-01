@@ -21,10 +21,6 @@ public class MoveBlockActivity extends MActivity {
         super.onCreate(savedInstanceState);
     }
 
-    @Override
-    public void onNetRefresh() {
-    }
-
     @SuppressWarnings("deprecation")
     @Override
     public void initWidgets() {

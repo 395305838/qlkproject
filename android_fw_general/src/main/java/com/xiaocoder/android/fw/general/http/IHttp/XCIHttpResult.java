@@ -9,18 +9,17 @@ package com.xiaocoder.android.fw.general.http.IHttp;
 public interface XCIHttpResult {
 
     /**
-     * 访问失败的回调, 如果为true则显示无网络时的背景界面+吐司 ,false为仅显示toast
+     * 访问失败的回调,
+     *
+     * @param resHandler                    记录下这个失败的resHandler，下次重新访问
+     * @param show_background_when_net_fail 如果为true则显示无网络时的背景界面,false为显示toast
      */
-    void onNetFail(boolean show_background_when_net_fail);
+    void onNetFail(XCIResponseHandler resHandler, boolean show_background_when_net_fail);
 
     /**
      * 访问成功的回调-->显示内容视图
      */
     void onNetSuccess();
 
-    /**
-     * 访问失败后点击按钮或屏幕回调该方法，可以在该方法里刷新接口
-     */
-    void onNetRefresh();
 
 }

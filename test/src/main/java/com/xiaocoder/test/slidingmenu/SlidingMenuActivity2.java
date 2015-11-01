@@ -95,10 +95,6 @@ public class SlidingMenuActivity2 extends MMainActivity implements RadioGroup.On
     }
 
     @Override
-    public void onNetRefresh() {
-    }
-
-    @Override
     protected void initSlideDestroyActivity() {
 
     }

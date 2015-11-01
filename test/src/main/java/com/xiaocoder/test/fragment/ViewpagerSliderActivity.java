@@ -18,10 +18,6 @@ public class ViewpagerSliderActivity extends MActivity {
         super.onCreate(savedInstanceState);
     }
 
-    @Override
-    public void onNetRefresh() {
-    }
-
     XCViewPagerFragment slider;
 
     @Override

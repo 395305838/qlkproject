@@ -60,8 +60,4 @@ public class CircleProgressBarActivity extends MActivity {
 
     }
 
-    @Override
-    public void onNetRefresh() {
-
-    }
 }

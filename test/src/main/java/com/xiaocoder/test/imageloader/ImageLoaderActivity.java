@@ -20,10 +20,6 @@ public class ImageLoaderActivity extends MActivity {
         super.onCreate(savedInstanceState);
     }
 
-    @Override
-    public void onNetRefresh() {
-
-    }
 
     @Override
     public void initWidgets() {

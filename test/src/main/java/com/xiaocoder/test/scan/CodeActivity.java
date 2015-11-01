@@ -29,8 +29,4 @@ public class CodeActivity extends MActivity {
 
     }
 
-    @Override
-    public void onNetRefresh() {
-
-    }
 }

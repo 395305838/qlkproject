@@ -22,11 +22,6 @@ public class ClearCacheActivity extends MActivity {
         super.onCreate(savedInstanceState);
     }
 
-    // 无网络时,点击屏幕后回调的方法
-    @Override
-    public void onNetRefresh() {
-    }
-
     Button clear;
 
     XCCleanCacheHelper helper;

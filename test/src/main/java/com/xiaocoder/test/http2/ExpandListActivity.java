@@ -271,8 +271,4 @@ public class ExpandListActivity extends MActivity {
 
     }
 
-    @Override
-    public void onNetRefresh() {
-
-    }
 }

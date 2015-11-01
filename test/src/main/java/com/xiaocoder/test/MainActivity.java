@@ -386,8 +386,4 @@ public class MainActivity extends MMainActivity {
 
     }
 
-    @Override
-    public void onNetRefresh() {
-
-    }
 }

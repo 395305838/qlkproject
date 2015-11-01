@@ -20,10 +20,6 @@ public class PickerViewActiviy extends MActivity {
         super.onCreate(savedInstanceState);
     }
 
-    // 无网络时,点击屏幕后回调的方法
-    @Override
-    public void onNetRefresh() {
-    }
 
     @Override
     public void initWidgets() {

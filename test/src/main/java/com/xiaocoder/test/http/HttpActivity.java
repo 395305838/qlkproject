@@ -63,11 +63,6 @@ public class HttpActivity extends MActivity {
     }
 
     @Override
-    public void onNetRefresh() {
-        request();
-    }
-
-    @Override
     public void initWidgets() {
         button = getViewById(R.id.test_http);
         request();

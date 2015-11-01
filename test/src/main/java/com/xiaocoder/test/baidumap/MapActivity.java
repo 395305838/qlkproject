@@ -34,9 +34,4 @@ public class MapActivity extends MBaiduMapActivity {
     }
 
 
-    @Override
-    public void onNetRefresh() {
-
-    }
-
 }

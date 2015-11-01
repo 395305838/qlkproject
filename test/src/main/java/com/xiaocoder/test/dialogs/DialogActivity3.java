@@ -69,11 +69,6 @@ public class DialogActivity3 extends MActivity {
     }
 
     @Override
-    public void onNetRefresh() {
-
-    }
-
-    @Override
     public void onClick(View v) {
         super.onClick(v);
         switch (v.getId()) {

@@ -64,11 +64,6 @@ public class LinePointActivityGC extends MActivity {
     }
 
     @Override
-    public void onNetRefresh() {
-
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         XCApp.i(this+"--onDestroy()");

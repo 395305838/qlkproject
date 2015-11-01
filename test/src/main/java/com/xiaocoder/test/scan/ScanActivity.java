@@ -468,10 +468,6 @@ public class ScanActivity extends MActivity implements Callback, View.OnClickLis
     };
 
     @Override
-    public void onNetRefresh() {
-    }
-
-    @Override
     public void initWidgets() {
 
     }

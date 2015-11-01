@@ -153,8 +153,4 @@ public class XC_VideoActivity extends XCBaseActivity {
 
     }
 
-    @Override
-    public void onNetRefresh() {
-
-    }
 }

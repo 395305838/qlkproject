@@ -45,9 +45,5 @@ public class SwitchButtonActivity extends MActivity implements XCSwitchButton.Sw
         slide2.setSlideable(false);
     }
 
-    @Override
-    public void onNetRefresh() {
-
-    }
 }
 

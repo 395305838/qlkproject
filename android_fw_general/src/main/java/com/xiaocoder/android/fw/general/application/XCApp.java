@@ -352,4 +352,8 @@ public class XCApp extends Application {
         base_xcHttpSend.getAsyn(true, true, isShowDialog, urlString, map, res);
     }
 
+    public static void sendHttpRequest(XCIResponseHandler responseHandler) {
+        base_xcHttpSend.sendAsyn(responseHandler);
+    }
+
 }

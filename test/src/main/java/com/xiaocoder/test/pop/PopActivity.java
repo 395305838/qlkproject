@@ -32,11 +32,6 @@ public class PopActivity extends MActivity {
     }
 
     @Override
-    public void onNetRefresh() {
-
-    }
-
-    @Override
     public void initWidgets() {
 
         test_pop_button = getViewById(R.id.test_pop_button);

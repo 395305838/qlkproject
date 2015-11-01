@@ -27,10 +27,6 @@ public class CamareActivity extends MActivity {
 	}
 
 	@Override
-	public void onNetRefresh() {
-	}
-
-	@Override
 	public void initWidgets() {
 		camera_fragment = new XCCameraPhotoFragment();
 		local_fragment = new XCLocalPhotoFragment();

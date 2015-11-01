@@ -25,11 +25,6 @@ public class ScrollActivity extends MActivity {
 	}
 
 	@Override
-	public void onNetRefresh() {
-
-	}
-
-	@Override
 	public void initWidgets() {
 		pager = (ViewPager) findViewById(R.id.viewpager);
 		ArrayList<View> list = new ArrayList<View>();

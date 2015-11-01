@@ -93,12 +93,6 @@ public class GridActivity extends MActivity {
                 });
     }
 
-    // 无网络时,点击屏幕后回调的方法
-    @Override
-    public void onNetRefresh() {
-        request();
-    }
-
     class TestAdatpter extends XCBaseAdapter<TestModel.DataEntity.ResultEntity> {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {

@@ -17,10 +17,6 @@ public class RoundImageViewActivity extends XCBaseActivity {
         super.onCreate(savedInstanceState);
     }
 
-    // 无网络时,点击屏幕后回调的方法
-    @Override
-    public void onNetRefresh() {
-    }
 
     // 初始化控件
     @Override

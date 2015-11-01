@@ -29,10 +29,6 @@ public class SearchActivity extends MActivity {
     }
 
     @Override
-    public void onNetRefresh() {
-    }
-
-    @Override
     public void initWidgets() {
         title_fragment = new XCTitleSearchFragment();
         title_fragment.setDbParams(MDb.DB_TABLE_SEARCH_RECODER_1, MDbHelper.class, MDb.DB_SEARCH_RECODER, MDb.DB_VERSION_SEARCH_RECODER,

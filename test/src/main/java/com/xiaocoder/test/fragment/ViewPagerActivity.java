@@ -21,10 +21,6 @@ public class ViewPagerActivity extends MActivity {
         super.onCreate(savedInstanceState);
     }
 
-    @Override
-    public void onNetRefresh() {
-
-    }
 
     @Override
     public void initWidgets() {

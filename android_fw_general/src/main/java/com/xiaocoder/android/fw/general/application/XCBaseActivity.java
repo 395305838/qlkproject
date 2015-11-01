@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
+import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 import com.xiaocoder.android.fw.general.util.UtilInputMethod;
 import com.xiaocoder.android.fw.general.view.XCSwipeBackLayout;
 import com.xiaocoder.android_fw_general.R;
@@ -47,6 +48,12 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
     // activity是否销毁
     private boolean isActivityDestroied;
+
+    /**
+     * 记录网络失败的请求，待重刷新
+     */
+    private XCIResponseHandler recoderNetFailHandler;
+
 
     @SuppressWarnings("unchecked")
     public <T extends View> T getViewById(int id) {
@@ -118,10 +125,12 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
     public abstract void listeners();
 
-
     // 网络访问失败时, 调用该方法
     @Override
-    public void onNetFail(boolean show_background_when_net_fail) {
+    public void onNetFail(XCIResponseHandler resHandler, boolean show_background_when_net_fail) {
+
+        recoderNetFailHandler = resHandler;
+
         if (show_background_when_net_fail) {
             showNoNetLayout();
         }
@@ -156,8 +165,12 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         int id = v.getId();
         if (id == R.id.xc_id_no_net_button || id == R.id.xc_id_model_no_net) {
             // 无网络时，点击刷新
-            onNetRefresh();
+            refreshNet();
         }
+    }
+
+    public void refreshNet() {
+        XCApp.sendHttpRequest(recoderNetFailHandler);
     }
 
     @Override
@@ -189,6 +202,10 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
     public boolean isActivityDestroied() {
         return isActivityDestroied;
+    }
+
+    public XCIResponseHandler getRecoderNetFailHandler() {
+        return recoderNetFailHandler;
     }
 
     public XCApp getXCApplication() {
@@ -338,11 +355,11 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        XCApp.i(this+"---onActivityResult");
+        XCApp.i(this + "---onActivityResult");
         List<Fragment> fragments = base_fm.getFragments();
         if (fragments != null) {
             for (Fragment fragment : fragments) {
-                XCApp.i(this+"onActivityResult---" + fragment.toString());
+                XCApp.i(this + "onActivityResult---" + fragment.toString());
                 fragment.onActivityResult(requestCode, resultCode, data);
             }
         }

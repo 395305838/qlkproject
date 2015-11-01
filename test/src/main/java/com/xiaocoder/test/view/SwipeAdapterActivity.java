@@ -55,10 +55,6 @@ public class SwipeAdapterActivity extends MActivity {
 
     }
 
-    @Override
-    public void onNetRefresh() {
-
-    }
 
     //适配器
     class MyAdapater extends SwipeLayoutAdapter<String> {

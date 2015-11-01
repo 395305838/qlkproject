@@ -90,8 +90,4 @@ public class AnimationActivity extends MActivity {
         imageB.setVisibility(View.VISIBLE);
     }
 
-    @Override
-    public void onNetRefresh() {
-
-    }
 }

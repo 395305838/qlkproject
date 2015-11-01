@@ -18,9 +18,6 @@ public class WebActivity extends MActivity {
 
 	}
 
-	@Override
-	public void onNetRefresh() {
-	}
 
 	@Override
 	public void initWidgets() {

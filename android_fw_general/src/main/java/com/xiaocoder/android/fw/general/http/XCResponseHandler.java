@@ -90,11 +90,11 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
     }
 
     /**
-     * @param result_http                   如果为null，不会报错。网络请求失败时，不会回调该对象
-     * @param notify                        如果为null，不会报错。http返回与结束时，不会回调该对象
-     * @param activity                      如果为null，不会报错。
+     * @param result_http                   如果为null，不会异常
+     * @param notify                        如果为null，不会异常
+     * @param activity                      如果为null，不会异常
      * @param content_type                  默认为JSON
-     * @param show_background_when_net_fail true 为展示背景（result_http!=null时）和toast , false仅展示吐司
+     * @param show_background_when_net_fail true 为展示背景 , false弹出吐司
      * @param result_bean_class             model的字节码文件
      */
     public XCResponseHandler(XCIHttpResult result_http,
@@ -184,7 +184,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
 
         if (result_http != null) {
             // 回调访问网络失败时的界面
-            result_http.onNetFail(show_background_when_net_fail);
+            result_http.onNetFail(this,show_background_when_net_fail);
         } else {
             // 显示吐司
             XCApp.shortToast("网络有误");

@@ -47,11 +47,6 @@ public class SlidingMenuActivity extends MActivity {
     }
 
     @Override
-    public void onNetRefresh() {
-
-    }
-
-    @Override
     public void initWidgets() {
 
     }
