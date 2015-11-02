@@ -99,7 +99,7 @@ public class XCHttpSend {
 
         if (isFrequentlyClick || !isNeting) {
             isNeting = true;
-
+            XCApp.i(XCConfig.TAG_HTTP_HANDLER, model);
             /*
              * 是否show Dialog
              */

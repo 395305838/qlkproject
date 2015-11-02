@@ -36,8 +36,8 @@ public abstract class MResponseHandler<T> extends XCResponseHandler<T> {
         super(result_http, notify, activity, result_bean_class);
     }
 
-    public MResponseHandler(XCIHttpResult result_http,Activity activity, Class<T> result_bean_class) {
-        super(result_http,activity, result_bean_class);
+    public MResponseHandler(XCIHttpResult result_http, Activity activity, Class<T> result_bean_class) {
+        super(result_http, activity, result_bean_class);
     }
 
     public MResponseHandler(Activity activity, Class<T> result_bean_class) {
@@ -109,8 +109,6 @@ public abstract class MResponseHandler<T> extends XCResponseHandler<T> {
     @Override
     public void closeHttpDialog() {
         if (httpDialog != null && httpDialog.isShowing()) {
-            httpDialog.dismiss();
-            httpDialog.setOnKeyListener(null);
             httpDialog.cancel();
             XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---closeHttpDialog()");
         }
@@ -141,8 +139,8 @@ public abstract class MResponseHandler<T> extends XCResponseHandler<T> {
                     return false;
                 }
             });
-            httpDialog.show();
-            XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---showHttpDialog()---"+httpModel);
         }
+        httpDialog.show();
+        XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "---showHttpDialog()");
     }
 }
