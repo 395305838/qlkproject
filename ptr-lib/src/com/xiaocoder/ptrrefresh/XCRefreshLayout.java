@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.Button;
@@ -35,9 +36,9 @@ import in.srain.cube.views.ptr.R;
  * description: 封装了上下拉 ， 分页 ，无数据背景
  * 仅适用于 abslistview
  * <p/>
- * 可配置autorefresh属性
+ * xml可配置autorefresh属性
  */
-abstract public class XCRefreshLayout extends FrameLayout implements View.OnClickListener {
+abstract public class XCRefreshLayout extends FrameLayout implements View.OnClickListener, View.OnTouchListener {
     /**
      * 上下拉效果的控件
      */
@@ -84,7 +85,6 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
      * 数据为0时，背景上显示的文字
      */
     public TextView base_zero_textview;
-
     /**
      * 数据为0时，背景上显示的点击按钮
      */
@@ -98,11 +98,57 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
      * 图片id
      */
     public int zero_imageview_hint;
-
     /**
-     * 当不满一页，以及加载下一页的网络请求失败时
+     * 记录上一次请求是否成功
      */
-    int recoderCount = 0;
+    boolean lastRequestResult;
+    /**
+     * 监听listview是否滑动到底部
+     */
+    XCScrollListener xcScrollListener;
+    /**
+     * 监听手势上拉的距离
+     */
+    float startY = 0;
+    float endY = 0;
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                startY = event.getY();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                endY = event.getY();
+
+                if (startY - endY > 72) {
+                    checkAndLoad();
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                startY = 0;
+                endY = 0;
+                break;
+        }
+        return false;
+    }
+
+    public void checkAndLoad() {
+        if (base_totalPage <= 1 || base_isRequesting) {
+            // 如果是空数据0页或者只有1页
+            // 或者是正在访问就不去加载下一页
+            return;
+        }
+
+        if (xcScrollListener.isBottom()) {
+            // 底部
+            if (hasNext()) {
+                // 如果requestSuccess为false，即上一次请求失败，则此次页数不会加1
+                loading();
+            }
+        }
+    }
 
     public XCRefreshLayout(Context context) {
         super(context);
@@ -120,7 +166,9 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
 
     public void initLayout(Context context, AttributeSet attrs) {
         LayoutInflater mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
         inflaterLayout(mInflater);
+
         mPtrRefreshLayout = (PtrClassicFrameLayout) findViewById(R.id.xc_id_refresh_layout);
         absListView = (AbsListView) findViewById(R.id.xc_id_refresh_content_abslistview);
         mProgressBarContainer = (RelativeLayout) findViewById(R.id.xc_id_progressBar_container);
@@ -132,12 +180,23 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
 
         checkAutoRefresh(context, attrs);
 
+        setListViewTouchLisener();
+
         initZeroBgLayout();
 
     }
 
     // mInflater.inflate(R.layout.xc_l_view_grid_refresh, this, true);
     abstract public void inflaterLayout(LayoutInflater mInflater);
+
+    private void setListViewTouchLisener() {
+        absListView.setOnTouchListener(this);
+    }
+
+    @Override
+    public void setOnTouchListener(OnTouchListener l) {
+        throw new RuntimeException(this + "--listview已经设置了touchlistener");
+    }
 
     private void initZeroBgLayout() {
         base_all_beans = new ArrayList();
@@ -151,6 +210,7 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
 
         base_zero_button.setOnClickListener(this);
         base_zero_imageview.setOnClickListener(this);
+
     }
 
     public void setHandler(XCIRefreshHandler refreshHandler) {
@@ -164,24 +224,7 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
     public void registerLoadHandler() {
 
         if (mRefreshHandler.canLoad()) {
-            absListView.setOnScrollListener(new XCScrollListener() {
-                @Override
-                public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                    super.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
-
-                    if (base_totalPage <= 1 || base_isRequesting) {
-                        // 如果是空数据0页或者只有1页
-                        // 或者是正在访问就不去加载下一页
-                        return;
-                    }
-
-                    // 当前页滚动到了底部 且 不是最后一页
-                    if (recoderCount != base_all_beans.size() && isBottom() && hasNext()) {
-                        // 继续加载下一页
-                        loading();
-                    }
-                }
-            });
+            absListView.setOnScrollListener(xcScrollListener = new XCScrollListener());
         }
     }
 
@@ -298,7 +341,9 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
         if (!base_isRequesting) {
             base_isRequesting = true;
             mProgressBarContainer.setVisibility(View.VISIBLE);
-            base_currentPage = base_currentPage + 1;
+            if (lastRequestResult) {
+                base_currentPage = base_currentPage + 1;
+            }
             if (mRefreshHandler != null) {
                 mRefreshHandler.load(mPtrRefreshLayout, base_currentPage);
             } else {
@@ -308,13 +353,15 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
     }
 
     // 刷新完成,需要外部调用
-    public void completeRefresh() {
+    public void completeRefresh(boolean requestSuccess) {
 
-        mPtrRefreshLayout.refreshComplete();
+        this.lastRequestResult = requestSuccess;
 
         mProgressBarContainer.setVisibility(View.GONE);
 
         whichShow(base_all_beans.size());
+
+        mPtrRefreshLayout.refreshComplete();
 
         base_isRequesting = false;
 
@@ -322,11 +369,13 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
 
     // 是否还有下一页
     protected boolean hasNext() {
-        recoderCount = base_all_beans.size();
-
+        if (!lastRequestResult) {
+            // 如果上一次请求失败了，表示不是最后一页
+            return true;
+        }
         // 这里的base_currentPage代表当前已经加载到了第几页
         if (base_currentPage >= base_totalPage) {
-            // 当前页大于等于总页数时，是底部
+            // 当前页大于等于总页数时，即最后一页
             if (base_totalPage > 1) {
                 // 如果是空数据0页，或者只有1页，则不提示
                 XCApp.shortToast("已经是最后一页了");
@@ -344,13 +393,11 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
     }
 
     public void resetCurrentPage() {
-
         base_currentPage = 1;
-
     }
 
     public void resetCurrentPageAndList() {
-        base_currentPage = 1;
+        resetCurrentPage();
         clearWhenPageOne();
     }
 

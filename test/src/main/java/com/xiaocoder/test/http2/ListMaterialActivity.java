@@ -70,7 +70,7 @@ public class ListMaterialActivity extends MActivity {
             @Override
             public void finish() {
                 super.finish();
-                xcListRefreshLayout.completeRefresh();
+                xcListRefreshLayout.completeRefresh(result_boolean);
             }
         });
     }

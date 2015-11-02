@@ -73,7 +73,7 @@ public class GridMaterialActivity extends MActivity {
             @Override
             public void finish() {
                 super.finish();
-                xcGridRefreshLayout.completeRefresh();
+                xcGridRefreshLayout.completeRefresh(result_boolean);
             }
         });
     }

@@ -51,7 +51,7 @@ public class ListRefreshActivity extends MActivity {
     public static String url = "http://yyf.7lk.com/api/goods/category-goods-list?userId=399&token=c2a623a6f3c7d6e1a126f1655c13b3f0&_m=&catId=515&_v=1.0.0&page=1&num=20&ts=1438155912203&_c=&_p=android&sig=96702f0846e8cb5d2701f5e39f28ba95";
 
     public void reqeust() {
-        XCApp.getAsyn(true, url, new HashMap(), new MResponseHandlerModel<TestModel>(this,this, TestModel.class) {
+        XCApp.getAsyn(true, url, new HashMap(), new MResponseHandlerModel<TestModel>(null, this, TestModel.class) {
 
             @Override
             public void success(int code, Header[] headers, byte[] arg2) {
@@ -67,7 +67,7 @@ public class ListRefreshActivity extends MActivity {
             @Override
             public void finish() {
                 super.finish();
-                xcListRefreshLayout.completeRefresh();
+                xcListRefreshLayout.completeRefresh(result_boolean);
             }
         });
     }
