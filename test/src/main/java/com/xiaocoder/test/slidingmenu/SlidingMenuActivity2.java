@@ -43,12 +43,6 @@ public class SlidingMenuActivity2 extends MMainActivity implements RadioGroup.On
     }
 
     @Override
-    public void showPage() {
-        super.showPage();
-        showBottomLayout(true);
-    }
-
-    @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         hideBodyFragment();
         base_recoder_selected_tab_item = checkedId;

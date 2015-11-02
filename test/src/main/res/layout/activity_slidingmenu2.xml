@@ -23,7 +23,7 @@
         android:layout_height="56dp"
         android:layout_alignParentBottom="true"
         android:background="@color/c_gray_f9f9f9"
-        android:visibility="gone" >
+        android:visibility="visible" >
 
         <RadioGroup
             android:id="@+id/xc_id_tab_group"

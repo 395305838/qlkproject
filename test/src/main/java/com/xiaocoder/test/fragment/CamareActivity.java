@@ -39,8 +39,6 @@ public class CamareActivity extends MActivity {
 		addFragment(R.id.xc_id_fragment_test_local, local_fragment);
 		addFragment(R.id.xc_id_fragment_test_camera, camera_fragment);
 
-		showBottomLayout(true);
-
 	}
 
 	@Override

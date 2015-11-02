@@ -10,11 +10,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 import com.xiaocoder.android.fw.general.util.UtilInputMethod;
 import com.xiaocoder.android.fw.general.view.XCSwipeBackLayout;
@@ -23,7 +20,7 @@ import com.xiaocoder.android_fw_general.R;
 import java.lang.reflect.Constructor;
 import java.util.List;
 
-public abstract class XCBaseActivity extends FragmentActivity implements OnClickListener, XCIHttpResult {
+public abstract class XCBaseActivity extends FragmentActivity {
 
     public Context base_context;
 
@@ -37,14 +34,8 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
     public ViewGroup xc_id_model_layout;
     // title
     public ViewGroup xc_id_model_titlebar;
-    // bottom
-    public ViewGroup xc_id_model_bottombar;
     // content
     public ViewGroup xc_id_model_content;
-
-    // 无网络时显示的界面
-    public ViewGroup xc_id_model_no_net;
-    public Button xc_id_no_net_button;
 
     // activity是否销毁
     private boolean isActivityDestroied;
@@ -53,7 +44,6 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
      * 记录网络失败的请求，待重刷新
      */
     private XCIResponseHandler recoderNetFailHandler;
-
 
     @SuppressWarnings("unchecked")
     public <T extends View> T getViewById(int id) {
@@ -93,17 +83,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         xc_id_model_layout = getViewById(R.id.xc_id_model_layout);
         xc_id_model_titlebar = getViewById(R.id.xc_id_model_titlebar);
         xc_id_model_content = getViewById(R.id.xc_id_model_content);
-        xc_id_model_bottombar = getViewById(R.id.xc_id_model_bottombar);
-        xc_id_model_no_net = getViewById(R.id.xc_id_model_no_net);
-        xc_id_no_net_button = getViewById(R.id.xc_id_no_net_button);
 
-        // 无网络的背景
-        if (xc_id_model_no_net != null) {
-            xc_id_model_no_net.setOnClickListener(this);
-        }
-        if (xc_id_no_net_button != null) {
-            xc_id_no_net_button.setOnClickListener(this);
-        }
         initWidgets();
         listeners();
         showPage();
@@ -111,7 +91,6 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
     /**
      * 手势滑动退出activity的基类布局
-     * 想要实现向右滑动删除Activity，只需要继承该activity即可
      */
     protected void initSlideDestroyActivity() {
 
@@ -125,52 +104,10 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
 
     public abstract void listeners();
 
-    // 网络访问失败时, 调用该方法
-    @Override
-    public void onNetFail(XCIResponseHandler resHandler, boolean show_background_when_net_fail) {
-
-        recoderNetFailHandler = resHandler;
-
-        if (show_background_when_net_fail) {
-            showNoNetLayout();
-        }
-    }
-
-    public void showNoNetLayout() {
-
-        if (xc_id_model_content != null) {
-            setViewVisible(false, xc_id_model_content);
-        }
-
-        if (xc_id_model_no_net != null) {
-            setViewVisible(true, xc_id_model_no_net);
-        }
-
-    }
-
-    // 网络访问成功时访问该方法
-    @Override
-    public void onNetSuccess() {
-        showContentLayout();
-    }
-
     // 该方法不可以删除 ，防止fragment被保存
     @Override
     protected void onSaveInstanceState(Bundle outState) {
 
-    }
-
-    @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        if (id == R.id.xc_id_no_net_button || id == R.id.xc_id_model_no_net) {
-            // 无网络时，点击刷新
-            refreshNet();
-        }
-    }
-
-    public void refreshNet() {
-        XCApp.sendHttpRequest(recoderNetFailHandler);
     }
 
     @Override
@@ -182,7 +119,6 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         super.onDestroy();
 
         getXCApplication().delActivityFromStack(this);
-
     }
 
     public void myFinish() {
@@ -204,10 +140,6 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         return isActivityDestroied;
     }
 
-    public XCIResponseHandler getRecoderNetFailHandler() {
-        return recoderNetFailHandler;
-    }
-
     public XCApp getXCApplication() {
         return (XCApp) getApplication();
     }
@@ -226,12 +158,10 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         base_fm.executePendingTransactions();
     }
 
-    // 默认不添加到backstack
     public void addFragment(int layout_id, Fragment fragment, String tag) {
         addFragment(layout_id, fragment, tag, false);
     }
 
-    // 默认不添加到backstack
     public void addFragment(int layout_id, Fragment fragment) {
         addFragment(layout_id, fragment, fragment.getClass().getSimpleName(), false);
     }
@@ -246,7 +176,6 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         base_fm.executePendingTransactions();
     }
 
-    // 默认不添加到backstack
     public void replaceFragment(int layout_id, Fragment fragment, String tag) {
         replaceFragment(layout_id, fragment, tag, false);
     }
@@ -304,7 +233,7 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         }
     }
 
-    // 隐藏所有fragment , 含title和bottomfragment
+    // 隐藏所有fragment , 含title
     public void hideAllFragment() {
         List<Fragment> fragments = base_fm.getFragments();
         for (Fragment fragment : fragments) {
@@ -318,19 +247,9 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         }
     }
 
-    public void showBottomLayout(boolean isVisible) {
-        if (xc_id_model_bottombar != null) {
-            setViewGone(isVisible, xc_id_model_bottombar);
-        }
-    }
-
-    public void showContentLayout() {
+    public void showContentLayout(boolean isVisible) {
         if (xc_id_model_content != null) {
-            setViewVisible(true, xc_id_model_content);
-        }
-
-        if (xc_id_model_no_net != null) {
-            setViewVisible(false, xc_id_model_no_net);
+            setViewVisible(isVisible, xc_id_model_content);
         }
     }
 
@@ -365,10 +284,14 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         }
     }
 
-    // 在onCreate()中调用，默认在onCreate()中 只显示title和content的布局，根据需求是否重写
+    /**
+     * 在onCreate()中调用了， 显示title和content的布局
+     * <p/>
+     * 如果需要在网络没有返回时，不显示content布局，则重写showPage
+     */
     public void showPage() {
         showTitleLayout(true);
-        showContentLayout();
+        showContentLayout(true);
     }
 
     public void activityStartAnimation() {
@@ -381,4 +304,18 @@ public abstract class XCBaseActivity extends FragmentActivity implements OnClick
         }
     }
 
+    /**
+     * 刷新上一次网络失败的请求
+     */
+    public void refreshNetFailHandler() {
+        XCApp.sendHttpRequest(recoderNetFailHandler);
+    }
+
+    public XCIResponseHandler getRecoderNetFailHandler() {
+        return recoderNetFailHandler;
+    }
+
+    public void setRecoderNetFailHandler(XCIResponseHandler recoderNetFailHandler) {
+        this.recoderNetFailHandler = recoderNetFailHandler;
+    }
 }
