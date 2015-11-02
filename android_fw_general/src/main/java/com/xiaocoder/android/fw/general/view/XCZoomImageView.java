@@ -15,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.OverScroller;
 import android.widget.Scroller;
 
+import com.xiaocoder.android.fw.general.application.XCApp;
+import com.xiaocoder.android.fw.general.application.XCConfig;
+
 
 class Info {
     // 内部图片在整个窗口的位置
@@ -319,7 +322,13 @@ public class XCZoomImageView extends ImageView {
             float scaleX = mWidgetRect.width() / mImgRect.width();
             float scaleY = mWidgetRect.height() / mImgRect.height();
 
-            mScale = scaleX > scaleY ? scaleX : scaleY;
+            XCApp.i(XCConfig.TAG_TEMP, mWidgetRect.width() + "---mWidgetRect.width()," + mImgRect.width() + "-- mImgRect.width()");
+            XCApp.i(XCConfig.TAG_TEMP, mWidgetRect.height() + "---mWidgetRect.height()," + mImgRect.height() + "-- mImgRect.height()");
+            XCApp.i(XCConfig.TAG_TEMP, scaleX + "---scaleX," + scaleY + "-- scaleY");
+
+            // mScale = scaleX > scaleY ? scaleX : scaleY;
+            // 修改 by xiaocoder
+            mScale = scaleX > scaleY ? scaleY : scaleX;
 
             mAnimaMatrix.postScale(mScale, mScale, mScreenCenter.x, mScreenCenter.y);
 

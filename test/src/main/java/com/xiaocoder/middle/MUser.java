@@ -16,6 +16,8 @@ public class MUser {
     public static String USER_ID = "userId";
     public static String USER_TOKEN = "userToken";
     public static String IS_LOGIN = "isLogin";
+    public static String USER_HEAD = "userHeader";
+    public static String USER_PHONE_NUM = "userPhoneNum";
 
     public static String getUserId() {
 
@@ -33,6 +35,16 @@ public class MUser {
 
         return XCApp.spGet(USER_NAME, "");
 
+    }
+
+    public static String getUserHead() {
+
+        return XCApp.spGet(USER_HEAD, "");
+    }
+
+    public static String getUserPhoneNum() {
+
+        return XCApp.spGet(USER_PHONE_NUM, "");
     }
 
     /**
@@ -64,6 +76,18 @@ public class MUser {
 
     }
 
+    public static void putUserHeader(String userHeader) {
+
+        XCApp.spPut(USER_HEAD, userHeader);
+
+    }
+
+    public static void putUserPhoneNum(String userPhoneNum) {
+
+        XCApp.spPut(USER_PHONE_NUM, userPhoneNum);
+
+    }
+
     /**
      * 保存登录状态
      *
@@ -74,6 +98,7 @@ public class MUser {
         XCApp.spPut(IS_LOGIN, isLogin);
 
     }
+
 
     /**
      * 注销

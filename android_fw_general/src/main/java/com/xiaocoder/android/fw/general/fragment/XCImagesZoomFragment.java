@@ -96,6 +96,7 @@ public class XCImagesZoomFragment extends XCBaseFragment {
             // 创建images
 
             XCZoomImageView imageview = new XCZoomImageView(getActivity());
+            imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageview.enable();
 
             // ---------------------------加载图片-----------------------------
