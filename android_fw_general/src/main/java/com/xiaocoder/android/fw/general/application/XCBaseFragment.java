@@ -94,12 +94,10 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
         getChildFragmentManager().executePendingTransactions();
     }
 
-    // 默认不添加
     public void addChildFragment(int layout_id, Fragment fragment, String tag) {
         addChildFragment(layout_id, fragment, tag, false);
     }
 
-    // 默认不添加
     public void addChildFragment(int layout_id, Fragment fragment) {
         addChildFragment(layout_id, fragment, fragment.getClass().getSimpleName(), false);
     }

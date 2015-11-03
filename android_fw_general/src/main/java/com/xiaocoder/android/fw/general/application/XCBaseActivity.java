@@ -36,10 +36,10 @@ public abstract class XCBaseActivity extends FragmentActivity {
     public ViewGroup xc_id_model_titlebar;
     // content
     public ViewGroup xc_id_model_content;
-
-    // activity是否销毁
+    /**
+     * activity是否销毁
+     */
     private boolean isActivityDestroied;
-
     /**
      * 记录网络失败的请求，待重刷新
      */
@@ -47,10 +47,13 @@ public abstract class XCBaseActivity extends FragmentActivity {
 
     @SuppressWarnings("unchecked")
     public <T extends View> T getViewById(int id) {
+
         return (T) findViewById(id);
     }
 
-    // 别的应用调用时传进来的
+    /**
+     * 别的应用或页面调用时传进来的
+     */
     protected Uri interceptUri() {
         Intent intent = getIntent();
         if (intent != null) {
@@ -132,6 +135,9 @@ public abstract class XCBaseActivity extends FragmentActivity {
         activityEndAnimation();
     }
 
+    /**
+     * activity的退出动画
+     */
     public void activityEndAnimation() {
         overridePendingTransition(0, R.anim.baseactivity_slide_right_out);
     }
@@ -315,6 +321,9 @@ public abstract class XCBaseActivity extends FragmentActivity {
         return recoderNetFailHandler;
     }
 
+    /**
+     * 记录最近一次网络失败的请求
+     */
     public void setRecoderNetFailHandler(XCIResponseHandler recoderNetFailHandler) {
         this.recoderNetFailHandler = recoderNetFailHandler;
     }

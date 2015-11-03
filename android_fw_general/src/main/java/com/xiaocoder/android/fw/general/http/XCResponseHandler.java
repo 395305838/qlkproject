@@ -19,7 +19,7 @@ import org.apache.http.Header;
  * @date 2014-12-30 下午5:04:48
  * 该类是以asyn-http-android库的AsyncHttpResponseHandler为基础
  * <p/>
- * onFinish()不能被重写，这里设置为了final. 如果需要重写，则重写finish（）方法
+ * onFinish()不能被重写（不理会），这里设置为了final. 如果需要重写，则重写finish（）方法
  * onSuccess()不能被重写，这里设置为了final，重写success（）方法
  * onFailure()不能被重写，这里设置为了final，重写failure（）方法
  * <p/>
@@ -65,7 +65,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
     public XCIHttpNotify notify;
 
     /**
-     * 请求的完整信息
+     * 请求的完整参数
      */
     public XCHttpModel httpModel;
 
@@ -279,7 +279,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
         XCApp.i(XCConfig.TAG_HTTP_HANDLER, this.toString() + "-----isXCActivityDestroy()---" + activity);
 
         if (activity == null) {
-            // 可以使一个与页面无关的网络请求
+            // 如果是与页面无关的网络请求，可以为null
             XCApp.e(this.toString() + "---传入的activity为null");
             return false;
         }

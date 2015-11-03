@@ -171,6 +171,9 @@ public class XCApp extends Application {
         System.exit(0);
     }
 
+    /**
+     * 打印设备的基本信息
+     */
     public void simpleDeviceInfo() {
         i(UtilSystem.getDeviceId(getApplicationContext()) + "--deviceId , "
                 + UtilSystem.getVersionCode(getApplicationContext())
@@ -304,8 +307,6 @@ public class XCApp extends Application {
 
     /**
      * 图片加载
-     *
-     * @return
      */
     public static XCIImageLoader getBase_imageloader() {
         return base_imageloader;

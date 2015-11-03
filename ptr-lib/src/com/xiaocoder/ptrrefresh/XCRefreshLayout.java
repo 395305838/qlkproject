@@ -111,6 +111,7 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
      */
     float startY = 0;
     float endY = 0;
+    static float DISTANCE = 72;
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -122,7 +123,7 @@ abstract public class XCRefreshLayout extends FrameLayout implements View.OnClic
             case MotionEvent.ACTION_MOVE:
                 endY = event.getY();
 
-                if (startY - endY > 72) {
+                if (startY - endY > DISTANCE) {
                     checkAndLoad();
                 }
                 break;

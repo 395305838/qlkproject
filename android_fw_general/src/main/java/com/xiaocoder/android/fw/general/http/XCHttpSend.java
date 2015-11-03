@@ -16,25 +16,26 @@ import java.util.Map;
  * <p/>
  * 2不管是失败还是完成都会调用finish()方法
  * <p/>
- * 3下载数据可以用byte[]，而不用result_bean
- * <p/>
- * 4是异步的
+ * 3是异步的
  * isShowDialog 是否在加载网络时显示dialog
  * isNeting 是只有当前网络请求完了, 再点击访问网络时才有效, 如果正在请求网络或者说网络访问没有结束,那么此时点击访问网络无效 , 默认是同一时刻只能有一个网络在请求
  * isFrequentlyClick 如果为true，则允许同时访问多个网络连接
  * needSecret 是否要加密
  * <p/>
- * 5 onRetry（） onStart（） onCancle（） onProgress（）
+ * 4 onRetry（） onStart（） onCancle（） onProgress（）
  * <p/>
- * 6  PersistentCookieStore 见github文档
+ * 5  PersistentCookieStore 见github文档
  * <p/>
- * 7  Adding HTTP Basic Auth credentials 见github文档
+ * 6  Adding HTTP Basic Auth credentials 见github文档
  */
 
 public class XCHttpSend {
 
     private AsyncHttpClient client;
 
+    /**
+     * 上一个请求是否正在进行
+     */
     private boolean isNeting;
 
     public XCHttpSend() {
