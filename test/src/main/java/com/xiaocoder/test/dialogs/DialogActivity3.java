@@ -11,10 +11,13 @@ import com.xiaocoder.android.fw.general.dialog.XCFrameAnimHDialog;
 import com.xiaocoder.android.fw.general.dialog.XCFrameAnimVDialog;
 import com.xiaocoder.android.fw.general.dialog.XCMenuDialog;
 import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
+import com.xiaocoder.android.fw.general.dialog.XCRotateDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
 import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
+
+import java.util.ArrayList;
 
 public class DialogActivity3 extends MActivity {
 
@@ -39,6 +42,9 @@ public class DialogActivity3 extends MActivity {
     Button menu;
     XCMenuDialog menu_dialog;
 
+    Button rotate;
+    XCRotateDialog rotate_dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_dialog_activity3);
@@ -55,6 +61,7 @@ public class DialogActivity3 extends MActivity {
         animframe_v = getViewById(R.id.xc_id_dialog_animframe_v);
         query = getViewById(R.id.xc_id_dialog_query);
         menu = getViewById(R.id.xc_id_dialog_menu);
+        rotate = getViewById(R.id.xc_id_dialog_rotate);
     }
 
     @Override
@@ -66,6 +73,7 @@ public class DialogActivity3 extends MActivity {
         animframe_v.setOnClickListener(this);
         query.setOnClickListener(this);
         menu.setOnClickListener(this);
+        rotate.setOnClickListener(this);
     }
 
     @Override
@@ -93,9 +101,17 @@ public class DialogActivity3 extends MActivity {
             case R.id.xc_id_dialog_menu:
                 showMenuDialog();
                 break;
+            case R.id.xc_id_dialog_rotate:
+                showRotateDialog();
+                break;
             default:
                 break;
         }
+    }
+
+    private void showRotateDialog() {
+        rotate_dialog = new XCRotateDialog(this, XCBaseDialog.TRAN_STYLE, R.drawable.ic_launcher);
+        rotate_dialog.show();
     }
 
     private void showMenuDialog() {
@@ -154,12 +170,15 @@ public class DialogActivity3 extends MActivity {
     }
 
     private void showAnimFrameHDialog() {
-        animframe_dialog_h = new XCFrameAnimHDialog(this, XCBaseDialog.TRAN_STYLE);
+        animframe_dialog_h = new XCFrameAnimHDialog(this, XCBaseDialog.TRAN_STYLE, R.drawable.anim_framelist);
         animframe_dialog_h.show();
     }
 
     private void showAnimFrameVDialog() {
-        animframe_dialog_v = new XCFrameAnimVDialog(this, XCBaseDialog.TRAN_STYLE);
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(R.drawable.test_1);
+        list.add(R.drawable.test_2);
+        animframe_dialog_v = new XCFrameAnimVDialog(this, XCBaseDialog.TRAN_STYLE, list, 150);
         animframe_dialog_v.show();
     }
 }

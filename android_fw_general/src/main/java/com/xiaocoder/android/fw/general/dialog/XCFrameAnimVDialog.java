@@ -7,8 +7,13 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.xiaocoder.android.fw.general.application.XCApp;
+import com.xiaocoder.android.fw.general.util.UtilAnim;
 import com.xiaocoder.android_fw_general.R;
+
+import java.util.List;
 
 /**
  * Created by xiaocoder on 2015/7/15.
@@ -17,25 +22,59 @@ public class XCFrameAnimVDialog extends XCBaseDialog {
 
     public AnimationDrawable animDrawable;
 
-    public XCFrameAnimVDialog(Context context, int style) {
+    int anim_framelist_id;
+
+    List<Integer> imageIdList;
+    int timeGap;
+
+    ImageView imageView;
+
+    TextView textView;
+
+    public ImageView getImageView() {
+        return imageView;
+    }
+
+    public TextView getTextView() {
+        return textView;
+    }
+
+    public XCFrameAnimVDialog(Context context, int style, int anim_framelist_id) {
         super(context, style);
+        this.anim_framelist_id = anim_framelist_id;
+        initDialog();
+    }
+
+    public XCFrameAnimVDialog(Context context, int style, List<Integer> imageIdList, int timeGap) {
+        super(context, style);
+        this.imageIdList = imageIdList;
+        this.timeGap = timeGap;
         initDialog();
     }
 
     public void initDialog() {
 
+        Drawable drawable = getDrawable();
+
         dialogLayout = (ViewGroup) dialogInflater.inflate(R.layout.xc_l_dialog_animation_v, null);
 
-        ImageView anim_imageview = (ImageView) dialogLayout.getChildAt(0);
+        textView = (TextView) dialogLayout.findViewById(R.id.xc_id_dialog_anim_v_textview);
 
-        Drawable drawable = mContext.getResources().getDrawable(R.drawable.xc_dd_anim_framelist);
+        imageView = (ImageView) dialogLayout.findViewById(R.id.xc_id_dialog_anim_v_imageview);
 
-        anim_imageview.setImageDrawable(animDrawable = (AnimationDrawable) drawable);
-
-        // 可以在onstart()方法中判断 isRunning 与stop
+        imageView.setImageDrawable(animDrawable = (AnimationDrawable) drawable);
 
         setContentView(dialogLayout);
         setWindowLayoutStyleAttr();
+    }
+
+    // 可以在onstart()方法中判断 isRunning 与stop
+    public Drawable getDrawable() {
+        if (imageIdList == null) {
+            return mContext.getResources().getDrawable(anim_framelist_id);
+        } else {
+            return UtilAnim.getAnimationDrawable(XCApp.getBase_applicationContext(), imageIdList, timeGap);
+        }
     }
 
     public void setWindowLayoutStyleAttr() {
@@ -59,7 +98,7 @@ public class XCFrameAnimVDialog extends XCBaseDialog {
     @Override
     public void dismiss() {
         super.dismiss();
-        if(animDrawable != null){
+        if (animDrawable != null) {
             animDrawable.stop();
         }
     }

@@ -6,6 +6,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.util.UtilAnim;
 import com.xiaocoder.android_fw_general.R;
@@ -19,6 +20,19 @@ public class XCRotateDialog extends XCBaseDialog {
 
     ImageView imageview;
     Animation anim;
+    TextView textview;
+
+    public ImageView getImageview() {
+        return imageview;
+    }
+
+    public TextView getTextview() {
+        return textview;
+    }
+
+    public Animation getAnim() {
+        return anim;
+    }
 
     public XCRotateDialog(Context context, int theme, int imageViewId) {
         super(context, theme);
@@ -30,10 +44,13 @@ public class XCRotateDialog extends XCBaseDialog {
         setContentView(dialogLayout);
         setWindowLayoutStyleAttr();
 
+        textview = (TextView) dialogLayout.findViewById(R.id.xc_id_dialog_rotate_textview);
+
         anim = UtilAnim.getRatoteAnimation();
 
         imageview = (ImageView) dialogLayout.findViewById(R.id.xc_id_dialog_rotate_imageview);
         imageview.setImageResource(imageViewId);
+
     }
 
     public void setWindowLayoutStyleAttr() {

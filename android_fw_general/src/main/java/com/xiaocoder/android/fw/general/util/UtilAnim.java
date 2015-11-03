@@ -13,7 +13,7 @@ import android.view.animation.RotateAnimation;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class UtilAnim {
     /**
@@ -76,7 +76,7 @@ public class UtilAnim {
     public static Animation getRatoteAnimation() {
         // RotateAnimation animation = new RotateAnimation(0, 360, 30, 30);
         RotateAnimation animation = new RotateAnimation(0.0f, 720.0f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        animation.setDuration(7000);
+        animation.setDuration(6000);
         animation.setFillAfter(true);
         animation.setInterpolator(new LinearInterpolator());
         animation.setRepeatCount(Animation.INFINITE);
@@ -92,7 +92,7 @@ public class UtilAnim {
 	 * }
 	 */
 
-    public static AnimationDrawable getAnimationDrawable(Context context, ArrayList<Integer> list, int gap) {
+    public static AnimationDrawable getAnimationDrawable(Context context, List<Integer> list, int gap) {
         AnimationDrawable animationDrawable = new AnimationDrawable();
         animationDrawable.setOneShot(false);// 是否执行一次动画
         Resources resouces = context.getResources();

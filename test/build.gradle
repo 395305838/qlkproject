@@ -51,4 +51,5 @@ dependencies {
     compile project(':im')
     compile project(':swipeadapter')
     compile project(':video')
+    compile project(':xcview')
 }

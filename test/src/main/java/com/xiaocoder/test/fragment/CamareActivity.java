@@ -33,7 +33,7 @@ public class CamareActivity extends MActivity {
 
 		test_imageview = getViewById(R.id.test_imageview);
 //		camera_fragment.setIsAllowResizeImage(true);
-		local_fragment.setImage(com.xiaocoder.android_fw_general.R.drawable.xc_d_test_01);
+		local_fragment.setImage(R.drawable.test_1);
 		local_fragment.setIsAllowResizeImage(true);
 
 		addFragment(R.id.xc_id_fragment_test_local, local_fragment);
@@ -49,7 +49,7 @@ public class CamareActivity extends MActivity {
 			public void onCaremaSelectedFile(File file) {
 				XCApp.i(Uri.fromFile(file));
 				XCApp.i(file.getAbsolutePath());
-				XCApp.i(file.toURI().toString());
+				XCApp.i(file.toURI());
 				test_imageview.setImageURI(Uri.fromFile(file));
 			}
 		});
@@ -60,7 +60,7 @@ public class CamareActivity extends MActivity {
 			public void onLocalSelectedFile(File file) {
 				XCApp.i(Uri.fromFile(file));
 				XCApp.i(file.getAbsolutePath());
-				XCApp.i(file.toURI().toString());
+				XCApp.i(file.toURI());
 				test_imageview.setImageURI(Uri.fromFile(file));
 			}
 		});
