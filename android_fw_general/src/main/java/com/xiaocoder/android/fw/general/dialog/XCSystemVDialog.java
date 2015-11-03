@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.xiaocoder.android_fw_general.R;
 
@@ -12,6 +13,12 @@ import com.xiaocoder.android_fw_general.R;
  */
 public class XCSystemVDialog extends XCBaseDialog {
 
+    TextView textview;
+
+    public TextView getTextview() {
+        return textview;
+    }
+
     public XCSystemVDialog(Context context, int style) {
         super(context, style);
         initDialog();
@@ -19,6 +26,7 @@ public class XCSystemVDialog extends XCBaseDialog {
 
     public void initDialog() {
         dialogLayout = (ViewGroup) dialogInflater.inflate(R.layout.xc_l_dialog_system_circle_v, null);
+        textview = (TextView) dialogLayout.findViewById(R.id.xc_id_dialog_sys_v_textview);
         setContentView(dialogLayout);
         setWindowLayoutStyleAttr();
     }
