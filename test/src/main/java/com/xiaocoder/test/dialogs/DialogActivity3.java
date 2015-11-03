@@ -116,6 +116,12 @@ public class DialogActivity3 extends MActivity {
 
     private void showMenuDialog() {
         menu_dialog = new XCMenuDialog(this, XCBaseDialog.TRAN_STYLE, "菜单", new String[]{"android", "ios", "java", "switch", "c"});
+        menu_dialog.setOnDialogItemClickListener(new XCMenuDialog.OnDialogItemClickListener() {
+            @Override
+            public void onClick(View view) {
+                XCApp.shortToast(((Button) view).getText());
+            }
+        });
         menu_dialog.show();
     }
 
