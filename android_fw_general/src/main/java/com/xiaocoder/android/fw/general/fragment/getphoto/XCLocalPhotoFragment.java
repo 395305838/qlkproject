@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.fragment;
+package com.xiaocoder.android.fw.general.fragment.getphoto;
 
 import java.io.File;
 import java.io.FileOutputStream;

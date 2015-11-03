@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.xiaocoder.android.fw.general.fragment;
+package com.xiaocoder.android.fw.general.fragment.search;
 
 import android.content.Context;
 import android.os.Bundle;

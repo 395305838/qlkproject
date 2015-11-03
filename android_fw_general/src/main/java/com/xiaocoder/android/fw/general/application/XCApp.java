@@ -41,7 +41,6 @@ public class XCApp extends Application {
     protected static XCLog base_log;
     protected static XCSP base_sp;
     protected static Context base_applicationContext;
-
     /**
      * 加个接口，以后可能会改别的图片加载库，子类中传入
      */
@@ -75,6 +74,7 @@ public class XCApp extends Application {
      * 获取当前Activity（堆栈中最后一个压入的）
      */
     public Activity getCurrentActivity() {
+
         return stack.lastElement();
     }
 
@@ -114,16 +114,9 @@ public class XCApp extends Application {
     }
 
     /**
-     * 获取当前Activity（堆栈中最后一个压入的）
-     */
-    public void finishCurrentActivity() {
-        finishActivity(stack.lastElement());
-    }
-
-    /**
      * 通过class ， 结束指定类名的Activity
      */
-    public void finishActivities(Class<?> cls) {
+    public void finishActivity(Class<?> cls) {
         for (Activity activity : stack) {
             if (activity.getClass().equals(cls)) {
                 finishActivity(activity);
@@ -132,7 +125,15 @@ public class XCApp extends Application {
     }
 
     /**
-     * 关闭所有的activity,finish()会调用destroy()方法
+     * 获取当前Activity（堆栈中最后一个压入的）
+     */
+    public void finishCurrentActivity() {
+
+        finishActivity(stack.lastElement());
+    }
+
+    /**
+     * 关闭所有的activity
      */
     public void finishAllActivity() {
         for (Activity activity : stack) {

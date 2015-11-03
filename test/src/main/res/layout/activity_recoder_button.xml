@@ -30,8 +30,18 @@
             android:layout_height="40dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="60dp"
             android:text="recodervoice"
+            android:visibility="visible" />
+
+        <com.xiaocoder.android.fw.general.view.XCRecordVoiceButtonPlus
+            android:id="@+id/test_recodervoice_plus"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="120dp"
+            android:text="test_recodervoice_plus"
             android:visibility="visible" />
     </RelativeLayout>
 

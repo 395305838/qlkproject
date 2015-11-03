@@ -3,8 +3,8 @@ package com.xiaocoder.test.fragment;
 import android.os.Bundle;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.fragment.XCSearchRecordFragment;
-import com.xiaocoder.android.fw.general.fragment.XCTitleSearchFragment;
+import com.xiaocoder.android.fw.general.fragment.search.XCSearchRecordFragment;
+import com.xiaocoder.android.fw.general.fragment.search.XCTitleSearchFragment;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;
 import com.xiaocoder.android.fw.general.util.UtilActivity;
 import com.xiaocoder.middle.MActivity;
