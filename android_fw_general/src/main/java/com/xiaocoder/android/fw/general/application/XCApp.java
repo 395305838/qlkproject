@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.widget.ImageView;
 
+import com.xiaocoder.android.fw.general.helper.XCActivityHelper;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 import com.xiaocoder.android.fw.general.http.XCHttpSend;
@@ -15,11 +16,8 @@ import com.xiaocoder.android.fw.general.io.XCSP;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android.fw.general.util.UtilSystem;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Stack;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -28,8 +26,7 @@ import java.util.concurrent.ScheduledExecutorService;
  * 2 线程池    handler  图片加载  log等
  */
 public class XCApp extends Application {
-
-    private Stack<Activity> stack = new Stack<Activity>();
+    protected static XCActivityHelper base_ActivityHelper = XCActivityHelper.getActivityHelperInstance();
     protected static ExecutorService base_cache_threadpool = XCExecutorHelper.getExecutorHelperInstance().getCache();
     protected static Handler base_handler = new Handler();
     protected static XCHttpSend base_xcHttpSend = new XCHttpSend();
@@ -46,130 +43,10 @@ public class XCApp extends Application {
      */
     protected static XCIImageLoader base_imageloader;
 
-    public Stack<Activity> getStack() {
-        return stack;
-    }
-
     @Override
     public void onCreate() {
         super.onCreate();
         base_applicationContext = getApplicationContext();
-    }
-
-    /**
-     * 添加Activity到栈中
-     */
-    public void addActivityToStack(Activity activity) {
-        stack.add(activity);
-    }
-
-    /**
-     * 把Activity移出栈
-     */
-    public void delActivityFromStack(Activity activity) {
-        stack.remove(activity);
-    }
-
-    /**
-     * 获取当前Activity（堆栈中最后一个压入的）
-     */
-    public Activity getCurrentActivity() {
-
-        return stack.lastElement();
-    }
-
-    /**
-     * 判断某个acivity实例是否存在
-     */
-    public boolean isActivityExist(Class<?> cls) {
-        for (Activity activity : stack) {
-            if (activity.getClass().equals(cls)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 获取某个activity（activity不删除）
-     */
-    public List<Activity> getActivity(Class<?> cls) {
-        List<Activity> list = new ArrayList<Activity>();
-        for (Activity activity : stack) {
-            if (activity.getClass().equals(cls)) {
-                list.add(activity);
-            }
-        }
-        return list;
-    }
-
-    /**
-     * 结束指定的Activity
-     */
-    public void finishActivity(Activity activity) {
-        if (activity != null) {
-            stack.remove(activity);
-            activity.finish();
-        }
-    }
-
-    /**
-     * 通过class ， 结束指定类名的Activity
-     */
-    public void finishActivity(Class<?> cls) {
-        for (Activity activity : stack) {
-            if (activity.getClass().equals(cls)) {
-                finishActivity(activity);
-            }
-        }
-    }
-
-    /**
-     * 获取当前Activity（堆栈中最后一个压入的）
-     */
-    public void finishCurrentActivity() {
-
-        finishActivity(stack.lastElement());
-    }
-
-    /**
-     * 关闭所有的activity
-     */
-    public void finishAllActivity() {
-        for (Activity activity : stack) {
-            if (activity != null) {
-                activity.finish();// 销毁
-            }
-        }
-        stack.clear();
-    }
-
-    /**
-     * 回到首页
-     * main_activity_class 首页的activity的字节码
-     */
-    public Object toMainActivity(Class<? extends XCBaseActivity> main_activity_class) {
-        Object main_activity = null;
-
-        for (Iterator<Activity> it = stack.iterator(); it.hasNext(); ) {
-            Activity item = it.next();
-            if (item.getClass().getName().equals(main_activity_class.getName())) {
-                main_activity = item;
-                continue;
-            } else {
-                item.finish();
-                it.remove();
-            }
-        }
-        return main_activity;
-    }
-
-    /**
-     * 退出应用程序
-     */
-    public void appExit() {
-        finishAllActivity();
-        System.exit(0);
     }
 
     /**
@@ -208,6 +85,10 @@ public class XCApp extends Application {
 
     public static ScheduledExecutorService getBase_scheduled_threadpool() {
         return base_scheduled_threadpool;
+    }
+
+    public static XCActivityHelper getBase_ActivityHelper() {
+        return base_ActivityHelper;
     }
 
     public static void i(Object msg) {
@@ -362,6 +243,56 @@ public class XCApp extends Application {
 
     public static void sendHttpRequest(XCIResponseHandler responseHandler) {
         base_xcHttpSend.sendAsyn(responseHandler);
+    }
+
+    /**
+     * activity
+     */
+    public static void addActivityToStack(Activity activity) {
+        base_ActivityHelper.addActivityToStack(activity);
+    }
+
+    public static void delActivityFromStack(Activity activity) {
+        base_ActivityHelper.delActivityFromStack(activity);
+    }
+
+    public static Activity getCurrentActivity() {
+        return base_ActivityHelper.getCurrentActivity();
+    }
+
+    public static boolean isActivityExist(Class<?> cls) {
+        return base_ActivityHelper.isActivityExist(cls);
+    }
+
+    public static List<Activity> getActivity(Class<?> cls) {
+        return base_ActivityHelper.getActivity(cls);
+    }
+
+    public static void finishActivity(Activity activity) {
+        base_ActivityHelper.finishActivity(activity);
+    }
+
+    public static void finishActivity(Class<?> cls) {
+        base_ActivityHelper.finishActivity(cls);
+    }
+
+    public static void finishCurrentActivity() {
+        base_ActivityHelper.finishCurrentActivity();
+    }
+
+    public static void finishAllActivity() {
+        base_ActivityHelper.finishAllActivity();
+    }
+
+    public static Activity toActivity(Class<? extends XCBaseActivity> main_activity_class) {
+        return base_ActivityHelper.toActivity(main_activity_class);
+    }
+
+    /**
+     * 这个是可能会重写
+     */
+    public void appExit() {
+        base_ActivityHelper.appExit();
     }
 
 }

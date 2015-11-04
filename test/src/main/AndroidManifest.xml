@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.xiaocoder.test">
+    package="com.xiaocoder.test" >
 
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -722,6 +722,11 @@
         <activity
             android:name=".clearcache.ClearCacheActivity"
             android:label="@string/title_activity_clear_cache" >
+        </activity>
+        <activity
+            android:theme="@style/XCTheme"
+            android:name=".fragment.StackActivity"
+            android:label="@string/title_activity_stack" >
         </activity>
     </application>
 

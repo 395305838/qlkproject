@@ -74,7 +74,7 @@ public abstract class XCBaseActivity extends FragmentActivity {
         }
 
         // 添加到stack
-        ((XCApp) getApplication()).addActivityToStack(this);
+        XCApp.addActivityToStack(this);
         base_context = this;
         base_inflater = LayoutInflater.from(this);
         base_fm = getSupportFragmentManager();
@@ -121,7 +121,7 @@ public abstract class XCBaseActivity extends FragmentActivity {
         recoderNetFailHandler = null;
         super.onDestroy();
 
-        getXCApplication().delActivityFromStack(this);
+        XCApp.delActivityFromStack(this);
     }
 
     public void myFinish() {

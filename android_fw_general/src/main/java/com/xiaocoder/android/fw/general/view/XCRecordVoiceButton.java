@@ -176,7 +176,7 @@ public class XCRecordVoiceButton extends Button implements OnTouchListener {
     @Override
     public boolean onTouch(View arg0, MotionEvent event) {
         // 防止连续快速的点击
-        if (System.currentTimeMillis() - record_last_time < 250) {
+        if (System.currentTimeMillis() - record_last_time < 200) {
             record_last_time = System.currentTimeMillis();
             return false;
         }

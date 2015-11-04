@@ -1,6 +1,8 @@
 package com.xiaocoder.test.fragment;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.fragment.search.XCSearchRecordFragment;
@@ -22,9 +24,11 @@ public class SearchActivity2 extends MActivity {
     // 搜索title
     XCTitleSearchFragment title_fragment;
 
+    Button activity_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_search2);
         super.onCreate(savedInstanceState);
     }
 
@@ -36,6 +40,7 @@ public class SearchActivity2 extends MActivity {
         );
         addFragment(R.id.xc_id_model_titlebar, title_fragment);
 
+        activity_button = getViewById(R.id.activity_button);
     }
 
     @Override
@@ -88,6 +93,13 @@ public class SearchActivity2 extends MActivity {
             public void searchKeyDown(String key_word) {
                 XCApp.shortToast(key_word);
                 UtilActivity.myStartActivity(SearchActivity2.this, WebActivity.class);
+            }
+        });
+
+        activity_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UtilActivity.myStartActivity(SearchActivity2.this, StackActivity.class);
             }
         });
     }

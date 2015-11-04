@@ -90,10 +90,10 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
     }
 
     /**
-     * @param result_http                   如果为null，不会异常
-     * @param notify                        如果为null，不会异常
-     * @param activity                      如果为null，不会异常
-     * @param content_type                  默认为JSON
+     * @param result_http                   如果为null，不会异常，但是不会调用 有网无网的页面转换与重刷新 的功能
+     * @param notify                        如果为null，不会异常，但是不会调用 请求的并行和串行的监听方法
+     * @param activity                      如果为null，不会异常，但是不会showdialog，以及与context有关的功能都无法使用
+     * @param content_type                  默认为JSON，目前也只有JSON的判断，xml photo的类型待以后加
      * @param show_background_when_net_fail true 为展示背景 , false弹出吐司
      * @param result_bean_class             model的字节码文件
      */
@@ -184,7 +184,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
 
         if (result_http != null) {
             // 回调访问网络失败时的界面
-            result_http.onNetFail(this,show_background_when_net_fail);
+            result_http.onNetFail(this, show_background_when_net_fail);
         } else {
             // 显示吐司
             XCApp.shortToast("网络有误");

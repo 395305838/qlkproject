@@ -74,7 +74,7 @@ public class XCRecordVoiceButtonPlus extends Button implements OnTouchListener {
     /**
      * 毫秒
      */
-    public static int CLICK_LIMIT = 250;
+    public static int CLICK_LIMIT = 200;
 
     public interface OnButtonStatus {
 
