@@ -52,4 +52,8 @@ dependencies {
     compile project(':swipeadapter')
     compile project(':video')
     compile project(':xcview')
+    compile project(':dialogs')
+    compile project(':fragment')
+    compile project(':pop')
+    compile project(':views')
 }

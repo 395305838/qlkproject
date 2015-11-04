@@ -1,1 +1,1 @@
-include ':pulltorefresh', ':slidingmenu', ':viewpagerindicator', ':android_fw_general', ':test', ':baidumap', ':umeng', ':viewpagerslider', ':zxcode', ':ptr-lib', ':appdemo', ':mqtt', ':im', ':swipeadapter', ':video', ':xcview'
+include ':pulltorefresh', ':slidingmenu', ':viewpagerindicator', ':android_fw_general', ':test', ':baidumap', ':umeng', ':viewpagerslider', ':zxcode', ':ptr-lib', ':appdemo', ':mqtt', ':im', ':swipeadapter', ':video', ':xcview', ':dialogs', ':pop', ':fragment', ':views'
