@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.fragment.getphoto;
+package com.xiaocoder.android.fw.general.fragment.photo;
 
 import android.app.Activity;
 import android.content.Intent;

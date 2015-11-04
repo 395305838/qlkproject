@@ -7,7 +7,6 @@
         android:id="@+id/xc_id_fragment_photo_local_imageview"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/xc_d_fragment_album" />
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>
