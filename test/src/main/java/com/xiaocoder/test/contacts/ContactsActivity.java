@@ -12,9 +12,9 @@ import android.widget.TextView;
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
-import com.xiaocoder.android.fw.general.helper.XCContactHelper;
 import com.xiaocoder.android.fw.general.model.XCContactModel;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
+import com.xiaocoder.android.fw.general.util.UtilContacts;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
@@ -83,8 +83,7 @@ public class ContactsActivity extends MActivity {
         UtilAbsListStyle.setListViewStyle(contacts_listview, null, 1, false);
 
         // 获取联系人
-        XCContactHelper contact_helper = new XCContactHelper(this);
-        List<XCContactModel> list = contact_helper.getContacts();
+        List<XCContactModel> list = UtilContacts.getContacts(this);
         XCApp.i(list.toString());
 
         // 创建adapter

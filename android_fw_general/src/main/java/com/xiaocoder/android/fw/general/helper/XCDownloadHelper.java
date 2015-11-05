@@ -74,7 +74,7 @@ public class XCDownloadHelper implements Runnable {
         try {
             XCApp.i(tag, "----进入下载的run方法");
             HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
-            conn.setRequestMethod("GET");
+            conn.setRequestMethod(XCConfig.GET);
             conn.setConnectTimeout(10000);
             if (HttpURLConnection.HTTP_OK == conn.getResponseCode()) {
                 in = conn.getInputStream();
