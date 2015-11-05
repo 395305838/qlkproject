@@ -10,8 +10,7 @@ import com.xiaocoder.android.fw.general.fragment.search.XCTitleSearchFragment;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;
 import com.xiaocoder.android.fw.general.util.UtilActivity;
 import com.xiaocoder.middle.MActivity;
-import com.xiaocoder.middle.db.MDb;
-import com.xiaocoder.middle.db.MDbHelper;
+import com.xiaocoder.middle.MDbHelper;
 import com.xiaocoder.test.R;
 
 /**
@@ -35,8 +34,8 @@ public class SearchActivity2 extends MActivity {
     @Override
     public void initWidgets() {
         title_fragment = new XCTitleSearchFragment();
-        title_fragment.setDbParams(MDb.DB_TABLE_SEARCH_RECODER_2, MDbHelper.class, MDb.DB_SEARCH_RECODER, MDb.DB_VERSION_SEARCH_RECODER,
-                new String[]{MDb.DB_SQL_SEARCH_RECODER_1, MDb.DB_SQL_SEARCH_RECODER_2, MDb.DB_SQL_SEARCH_RECODER_3}
+        title_fragment.setDbParams(MDbHelper.DB_TABLE_SEARCH_RECODER_2, MDbHelper.class, MDbHelper.DB_SEARCH_RECODER, MDbHelper.DB_VERSION_SEARCH_RECODER,
+                new String[]{MDbHelper.DB_SQL_SEARCH_RECODER_1, MDbHelper.DB_SQL_SEARCH_RECODER_2, MDbHelper.DB_SQL_SEARCH_RECODER_3}
         );
         addFragment(R.id.xc_id_model_titlebar, title_fragment);
 
@@ -54,8 +53,8 @@ public class SearchActivity2 extends MActivity {
                 // 为空则创建并设置监听 , record_fragment里面的监听器可以监听键盘的显示到隐藏的状态
                 if (record_fragment == null) {
                     record_fragment = new XCSearchRecordFragment();
-                    record_fragment.setDbParams(MDb.DB_TABLE_SEARCH_RECODER_2, MDbHelper.class, MDb.DB_SEARCH_RECODER, MDb.DB_VERSION_SEARCH_RECODER,
-                            new String[]{MDb.DB_SQL_SEARCH_RECODER_1, MDb.DB_SQL_SEARCH_RECODER_2, MDb.DB_SQL_SEARCH_RECODER_3}
+                    record_fragment.setDbParams(MDbHelper.DB_TABLE_SEARCH_RECODER_2, MDbHelper.class, MDbHelper.DB_SEARCH_RECODER, MDbHelper.DB_VERSION_SEARCH_RECODER,
+                            new String[]{MDbHelper.DB_SQL_SEARCH_RECODER_1, MDbHelper.DB_SQL_SEARCH_RECODER_2, MDbHelper.DB_SQL_SEARCH_RECODER_3}
                     );
 
                     // 点击键盘中的隐藏键盘按钮

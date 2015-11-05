@@ -19,7 +19,13 @@ public class XCDbHelper extends SQLiteOpenHelper {
     public String mDbName;
     public int mVersion;
 
-    // 如 dbName = "**.db" ,  version = 1
+    /**
+     *
+     * @param context
+     * @param dbName "**.db"
+     * @param version 1
+     * @param sqls
+     */
     public XCDbHelper(Context context, String dbName, int version, String[] sqls) {
         super(context, dbName, null, version);
         if (UtilString.isBlank(dbName)) {
