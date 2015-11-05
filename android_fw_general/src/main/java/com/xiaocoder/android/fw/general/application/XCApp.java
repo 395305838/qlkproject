@@ -135,6 +135,14 @@ public class XCApp extends Application {
         base_log.e(context, hint);
     }
 
+    public static void itemp(Object msg) {
+        base_log.i(XCConfig.TAG_TEMP, msg);
+    }
+
+    public static void itest(Object msg) {
+        base_log.i(XCConfig.TAG_TEST, msg);
+    }
+
     public static void clearLog() {
         base_log.clearLog();
     }

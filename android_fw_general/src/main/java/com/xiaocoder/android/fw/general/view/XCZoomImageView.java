@@ -440,9 +440,9 @@ public class XCZoomImageView extends ImageView {
         if (mScale < 1) {
             scale = 1;
             mTranslate.withScale(mScale, 1);
-        } else if (mScale > MAX_SCALE) {
-            scale = MAX_SCALE;
-            mTranslate.withScale(mScale, MAX_SCALE);
+        } else if (mScale > MAX_SCALE * 4) {
+            scale = MAX_SCALE * 4;
+            mTranslate.withScale(mScale, MAX_SCALE * 4);
         }
 
         mAnimaMatrix.getValues(mValues);

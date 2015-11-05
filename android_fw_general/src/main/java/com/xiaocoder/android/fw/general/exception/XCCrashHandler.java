@@ -11,8 +11,10 @@ import android.os.Looper;
 import android.widget.Toast;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
+import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.io.XCIO;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
+import com.xiaocoder.android.fw.general.model.XCExceptionModel;
 import com.xiaocoder.android.fw.general.util.UtilDate;
 
 import java.io.FileOutputStream;
@@ -24,6 +26,7 @@ import java.lang.reflect.Field;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * 使用时记得在清单文件中注册 XLShowExceptionsActivity
@@ -34,14 +37,30 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
 
     private XCApp application;
 
+    /**
+     * 异常信息
+     */
     private Map<String, String> infos = new HashMap<String, String>();
-
+    /**
+     * 是否显示异常界面
+     */
     private boolean mIsShowExceptionActivity;
-
-    // 存储SD卡的哪个目录
+    /**
+     * 存储SD卡的哪个目录
+     */
     private String mCrashDir;
-
+    /**
+     * 异常上传接口
+     */
     XCIException2Server uploadServer;
+    /**
+     * 异常db
+     */
+    XCExceptionDao dao;
+    /**
+     * 存入数据库的时间
+     */
+    String tempTime;
 
     public void setUploadServer(XCIException2Server uploadServer) {
         this.uploadServer = uploadServer;
@@ -52,6 +71,10 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
 
     public static XCCrashHandler getInstance() {
         return INSTANCE;
+    }
+
+    public XCExceptionDao getDao() {
+        return dao;
     }
 
     public void init(boolean isInit, Context context, String crash_dir, boolean isShowExceptionActivity) {
@@ -68,6 +91,10 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
             mIsShowExceptionActivity = isShowExceptionActivity;
             mCrashDir = crash_dir;
 
+            dao = new XCExceptionDao(context, XCExceptionDbHelper.DB_TABLE_EXCEPTION, XCExceptionDbHelper.class,
+                    XCExceptionDbHelper.DB_NAME_EXCEPTION, XCExceptionDbHelper.DB_VERSION_EXCEPTION,
+                    new String[]{XCExceptionDbHelper.DB_SQL_EXCEPTION});
+
             Thread.setDefaultUncaughtExceptionHandler(this);
         }
     }
@@ -78,7 +105,7 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
      * try catch的异常是不会回调这个方法的
      */
     @Override
-    public void uncaughtException(Thread thread, Throwable ex) {
+    public synchronized void uncaughtException(Thread thread, Throwable ex) {
 
         // 收集设备参数信息
         collectDeviceInfo(application);
@@ -92,12 +119,36 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
         // 是否打开showExcpetionAcivity
         toShowExceptionActivity(info);
 
+        // 存入数据库，此时还未存userid 与 unique的
+        XCExceptionModel model = sava2DB(info);
+
         //上传到服务器
         if (uploadServer != null) {
-            uploadServer.uploadException2Server(info, ex, thread);
+            uploadServer.uploadException2Server(info, ex, thread, model, dao);
         }
 
         endException();
+
+    }
+
+    /**
+     * 存入数据库,userId在MAPP中更新
+     */
+    private XCExceptionModel sava2DB(String info) {
+
+        XCExceptionModel model = new XCExceptionModel(
+                info,
+                tempTime,
+                XCExceptionModel.UPLOAD_NO,
+                "",
+                tempTime + XCConfig.UNDERLINE + UUID.randomUUID()
+        );
+
+        if (dao != null) {
+            dao.insert(model);
+        }
+
+        return model;
 
     }
 
@@ -183,9 +234,9 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
         sb.append(result);
 
         try {
-            long timestamp = System.currentTimeMillis();
+            tempTime = System.currentTimeMillis() + "";
             String time = UtilDate.format(new Date(), UtilDate.FORMAT_LONG);
-            String fileName = "crash-" + time + "-" + timestamp + ".log";
+            String fileName = "crash-" + time + "-" + tempTime + ".log";
 
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
 
@@ -195,7 +246,7 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
 
             }
 
-            return fileName + XCIO.LINE_SEPARATOR + sb.toString();
+            return "crash=" + fileName + XCIO.LINE_SEPARATOR + sb.toString();
         } catch (Exception e) {
             e.printStackTrace();
             XCApp.e("an error occured while writing file--", e);

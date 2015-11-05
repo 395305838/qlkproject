@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.annotation.NonNull;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
@@ -20,7 +21,6 @@ public class XCSearchDao {
 
     private XCDbHelper mHelper;
     private String mTabName;
-    private Context mContext;
 
     public static String KEY_WORD = "keyword";
     public static String TIME = "time";
@@ -30,24 +30,37 @@ public class XCSearchDao {
     public static String SORT_ASC = " ASC";
 
 
-    public XCSearchDao(Context context, XCDbHelper helper, String tabName) {
-
-        mHelper = helper;
-        mContext = context;
+    public XCSearchDao(Context context, String tabName, Class<? extends XCDbHelper> dbHelper, String dbName,
+                       int version, String[] sqls) {
 
         if (UtilString.isBlank(tabName)) {
-            throw new RuntimeException("new dao时，数据库表名不能为空");
+            throw new RuntimeException(this + "--new dao时，数据库表名不能为空");
         } else {
             mTabName = tabName;
         }
 
+        mHelper = XCDbHelper.instanceHelper(context, dbHelper, dbName, version, sqls);
+
+    }
+
+    @NonNull
+    private ContentValues createContentValue(XCSearchRecordModel bean) {
+        ContentValues values = new ContentValues();
+        values.put(KEY_WORD, bean.getKey_word());
+        values.put(TIME, bean.getTime());
+        return values;
+    }
+
+    @NonNull
+    private XCSearchRecordModel createModel(Cursor c) {
+        return new XCSearchRecordModel(
+                c.getString(c.getColumnIndex(KEY_WORD)),
+                c.getString(c.getColumnIndex(TIME)));
     }
 
     public void insert(XCSearchRecordModel bean) {
         SQLiteDatabase db = mHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(KEY_WORD, bean.getKey_word());
-        values.put(TIME, bean.getTime());
+        ContentValues values = createContentValue(bean);
         long id = db.insert(mTabName, _ID, values);
         XCApp.i(XCConfig.TAG_DB, "插入的记录的id是: " + id);
         db.close();
@@ -81,9 +94,7 @@ public class XCSearchDao {
 
     public int update(XCSearchRecordModel bean) {
         SQLiteDatabase db = mHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(KEY_WORD, bean.getKey_word());
-        values.put(TIME, bean.getTime());
+        ContentValues values = createContentValue(bean);
         int rows = db.update(mTabName, values, TIME + "=?",
                 new String[]{bean.getTime() + ""});
         XCApp.i(XCConfig.TAG_DB, "更新了" + rows + "行");
@@ -97,9 +108,7 @@ public class XCSearchDao {
                 _ID + sort); // 条件为null可以查询所有,见api;ORDER
         List<XCSearchRecordModel> beans = new ArrayList<XCSearchRecordModel>();
         while (c.moveToNext()) {
-            XCSearchRecordModel bean = new XCSearchRecordModel(c.getString(c
-                    .getColumnIndex(KEY_WORD)), c.getString(c
-                    .getColumnIndex(TIME)));
+            XCSearchRecordModel bean = createModel(c);
             beans.add(bean);
         }
         c.close();
@@ -113,9 +122,7 @@ public class XCSearchDao {
                 new String[]{keyword + ""}, null, null, _ID + sort); // 条件为null可以查询所有,见api;ORDER
         List<XCSearchRecordModel> beans = new ArrayList<XCSearchRecordModel>();
         while (c.moveToNext()) {
-            XCSearchRecordModel bean = new XCSearchRecordModel(c.getString(c
-                    .getColumnIndex(KEY_WORD)), c.getString(c
-                    .getColumnIndex(TIME)));
+            XCSearchRecordModel bean = createModel(c);
             beans.add(bean);
         }
         c.close();
@@ -142,9 +149,7 @@ public class XCSearchDao {
                 null, offset + "," + len);
         List<XCSearchRecordModel> beans = new ArrayList<XCSearchRecordModel>();
         while (c.moveToNext()) {
-            XCSearchRecordModel bean = new XCSearchRecordModel(c.getString(c
-                    .getColumnIndex(KEY_WORD)), c.getString(c
-                    .getColumnIndex(TIME)));
+            XCSearchRecordModel bean = createModel(c);
             beans.add(bean);
         }
         c.close();

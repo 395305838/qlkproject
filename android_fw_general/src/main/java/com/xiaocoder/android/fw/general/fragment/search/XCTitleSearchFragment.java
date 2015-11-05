@@ -209,7 +209,7 @@ public class XCTitleSearchFragment extends XCBaseFragment {
      * @param version  数据库版本
      * @param sqls     数据库创建时，执行的sql
      */
-    public void setDbParams(String tabName,Class<? extends XCDbHelper> dbHelper, String dbName,
+    public void setDbParams(String tabName, Class<? extends XCDbHelper> dbHelper, String dbName,
                             int version, String[] sqls) {
         mDbName = dbName;
         mVersion = version;
@@ -245,21 +245,7 @@ public class XCTitleSearchFragment extends XCBaseFragment {
     }
 
     public void initDao() {
-        dao = new XCSearchDao(getBaseActivity(), instanceHelper(), mTableName);
-    }
-
-    private XCDbHelper instanceHelper() {
-        try {
-            XCApp.i(XCConfig.TAG_DB, this.toString() + "----instanceHelper()");
-            Constructor constructor = mDbHelper.getConstructor(Context.class, String.class, int.class, String[].class);
-            Object o = constructor.newInstance(getBaseActivity(), mDbName, mVersion, mSqls);
-            XCApp.i(XCConfig.TAG_DB, this.toString() + "---" + o.toString());
-            return (XCDbHelper) o;
-        } catch (Exception e) {
-            e.printStackTrace();
-            XCApp.e(getBaseActivity(), "", e);
-            return null;
-        }
+        dao = new XCSearchDao(getBaseActivity(), mTableName, mDbHelper, mDbName, mVersion, mSqls);
     }
 
     @Override

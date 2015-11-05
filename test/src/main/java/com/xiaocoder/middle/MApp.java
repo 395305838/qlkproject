@@ -6,6 +6,7 @@ import com.umeng.analytics.MobclickAgent;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.exception.XCCrashHandler;
+import com.xiaocoder.android.fw.general.exception.XCExceptionDao;
 import com.xiaocoder.android.fw.general.exception.XCIException2Server;
 import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
 import com.xiaocoder.android.fw.general.imageloader.JSImageLoader;
@@ -14,6 +15,7 @@ import com.xiaocoder.android.fw.general.imageloader.XCImageLoader;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.io.XCLog;
 import com.xiaocoder.android.fw.general.io.XCSP;
+import com.xiaocoder.android.fw.general.model.XCExceptionModel;
 import com.xiaocoder.test.R;
 
 /**
@@ -102,13 +104,32 @@ public class MApp extends XCApp {
 
         XCCrashHandler.getInstance().setUploadServer(new XCIException2Server() {
             @Override
-            public void uploadException2Server(String info, Throwable ex, Thread thread) {
+            public void uploadException2Server(String info, Throwable ex, Thread thread,
+                                               XCExceptionModel model, XCExceptionDao dao) {
                 // 将未try catch的异常信息 上传到友盟
                 MobclickAgent.reportError(getApplicationContext(), info);
+                // TODO 将该dao更新userId
+                model.setUserId("123456");
+                dao.update(model);
+
+                test(model, dao);
                 // TODO 将未try catch的异常信息 上传到公司的服务器
+
+                // TODO 如果是成功上传，则更新dao中的uploadSuccess字段为“1”
+
+                // TODO 如果上传失败，则在下次重启应用的时候，查询dao.queryUploadFail()再重新上传
 
             }
         });
+    }
+
+    public void test(XCExceptionModel model, XCExceptionDao dao) {
+        XCApp.itemp(dao.queryCount());
+        XCApp.itemp(dao.queryUploadFail(XCExceptionDao.SORT_ASC));
+        XCApp.itemp(dao.queryUploadFail(XCExceptionDao.SORT_DESC));
+        XCApp.itemp(dao.queryUploadSuccess(XCExceptionDao.SORT_DESC));
+        XCApp.itemp(dao.queryAll(XCExceptionDao.SORT_DESC));
+        XCApp.itemp(dao.queryUnique(model.getUniqueId()));
     }
 
     @Override

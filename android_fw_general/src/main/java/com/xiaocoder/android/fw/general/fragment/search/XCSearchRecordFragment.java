@@ -234,21 +234,7 @@ public class XCSearchRecordFragment extends XCBaseFragment implements AdapterVie
     }
 
     public void initDao() {
-        dao = new XCSearchDao(getBaseActivity(), instanceHelper(), mTableName);
-    }
-
-    private XCDbHelper instanceHelper() {
-        try {
-            XCApp.i(XCConfig.TAG_DB, this.toString() + "----instanceHelper()");
-            Constructor constructor = mDbHelper.getConstructor(Context.class, String.class, int.class, String[].class);
-            Object o = constructor.newInstance(getBaseActivity(), mDbName, mVersion, mSqls);
-            XCApp.i(XCConfig.TAG_DB, this.toString() + "---" + o.toString());
-            return (XCDbHelper) o;
-        } catch (Exception e) {
-            e.printStackTrace();
-            XCApp.e(getBaseActivity(), "", e);
-            return null;
-        }
+        dao = new XCSearchDao(getBaseActivity(), mTableName, mDbHelper, mDbName, mVersion, mSqls);
     }
 
     @Override

@@ -43,7 +43,12 @@ public class XCConfig {
     /**
      * 乘号
      */
-    public static String X =  "×";
+    public static String X = "×";
+
+    /**
+     * 下滑线
+     */
+    public static String UNDERLINE = "_";
 
     /**
      * 编码格式
