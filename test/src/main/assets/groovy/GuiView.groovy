@@ -14,9 +14,9 @@ public class GuiView{
         guiview.init()
     }
          
-    def frame = new JFrame("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½Ø¼ï¿½");
+    def frame = new JFrame("³õÊ¼»¯¿Ø¼þ");
     def textfield = new JTextField();
-    def button = new JButton("ï¿½ï¿½ï¿½ï¿½")
+    def button = new JButton("½âÎö")
     def area = new JTextArea(30,100);
     def scrollPane = new JScrollPane(area); 
       
@@ -62,14 +62,42 @@ public class GuiView{
     def printResult(maps , area){
          maps.each{
              key,value->
-             area.append( "${value} ${key};"+"\r\n")
+
+	     if(!key.equals("xc_id_model_layout")&&!key.equals("xc_id_model_titlebar") && !key.equals("xc_id_model_content") && !key.equals("xc_id_model_no_net")){
+		area.append( "${value} ${key};"+"\r\n") 
+	     }
+             
          }
-        area.append("\r\n");
+         
+         area.append("\r\n");
          maps.each{
            key,value->
-            area.append("${key} = getViewById(R.id.${key});"+"\r\n")
+
+	     if(!key.equals("xc_id_model_layout")&&!key.equals("xc_id_model_titlebar") && !key.equals("xc_id_model_content") && !key.equals("xc_id_model_no_net")){
+		area.append("${key} = getViewById(R.id.${key});"+"\r\n")
+	   }
+            
+         }
+         
+         area.append("\r\n");
+         maps.each{
+           key,value->
+
+	     if(!key.equals("xc_id_model_layout")&&!key.equals("xc_id_model_titlebar") && !key.equals("xc_id_model_content") && !key.equals("xc_id_model_no_net")){
+		area.append("${key} = (${value})findViewById(R.id.${key});"+"\r\n")
+	   }
+            
+         }
+         
+         area.append("\r\n");
+         maps.each{
+           key,value->
+
+	     if(!key.equals("xc_id_model_layout")&&!key.equals("xc_id_model_titlebar") && !key.equals("xc_id_model_content") && !key.equals("xc_id_model_no_net")){
+		area.append("holder.${key} = (${value})convertView.findViewById(R.id.${key});"+"\r\n")
+	   }
+            
          }
     }
 }
   
-
