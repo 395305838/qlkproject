@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
-import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
+import com.xiaocoder.views.dialog.XCBaseDialog;
+import com.xiaocoder.views.dialog.XCSystemVDialog;
 import com.xiaocoder.android.fw.general.util.Utils;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.middle.parse.MResponseHandlerBean;

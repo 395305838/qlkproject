@@ -24,7 +24,7 @@
         android:layout_below="@+id/xc_id_model_titlebar"
         android:background="@color/c_red_ff0000">
 
-        <com.xiaocoder.android.fw.general.view.XCRecordVoiceButton
+        <com.xiaocoder.views.view.XCRecordVoiceButton
             android:id="@+id/test_recodervoice"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
@@ -34,7 +34,7 @@
             android:text="recodervoice"
             android:visibility="visible" />
 
-        <com.xiaocoder.android.fw.general.view.XCRecordVoiceButtonPlus
+        <com.xiaocoder.views.view.XCRecordVoiceButtonPlus
             android:id="@+id/test_recodervoice_plus"
             android:layout_width="wrap_content"
             android:layout_height="40dp"

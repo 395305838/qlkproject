@@ -3,7 +3,7 @@ package com.xiaocoder.test.view;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.xiaocoder.android.fw.general.view.XCSwitchButton;
+import com.xiaocoder.views.view.XCSwitchButton;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 

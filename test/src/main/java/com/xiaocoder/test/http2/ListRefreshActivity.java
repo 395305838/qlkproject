@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.view.IRefreshHandler.XCIRefreshHandler;
+import com.xiaocoder.ptrrefresh.XCIRefreshHandler;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.middle.parse.MResponseHandlerModel;
 import com.xiaocoder.ptrrefresh.XCListRefreshLayout;

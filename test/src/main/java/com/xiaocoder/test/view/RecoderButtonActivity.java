@@ -8,8 +8,8 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.view.XCRecordVoiceButton;
-import com.xiaocoder.android.fw.general.view.XCRecordVoiceButtonPlus;
+import com.xiaocoder.views.view.XCRecordVoiceButton;
+import com.xiaocoder.views.view.XCRecordVoiceButtonPlus;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
@@ -39,14 +39,14 @@ public class RecoderButtonActivity extends MActivity {
 
     public void createDialog(Context context) {
         dialog2 = new Dialog(context, com.xiaocoder.android_fw_general.R.style.xc_s_dialog);
-        dialog2.setContentView(com.xiaocoder.android_fw_general.R.layout.xc_l_view_recoder_voicebutton_hint);
+        dialog2.setContentView(R.layout.xc_l_view_recoder_voicebutton_hint);
         dialog2.setCanceledOnTouchOutside(false);
         Window window = dialog2.getWindow();
         WindowManager.LayoutParams lp = window.getAttributes();
         lp.dimAmount = 0.0f;
         window.setAttributes(lp);
-        hint2 = (TextView) dialog2.findViewById(com.xiaocoder.android_fw_general.R.id.xc_id_voice_recoder_hint_textview);
-        time_view2 = (TextView) dialog2.findViewById(com.xiaocoder.android_fw_general.R.id.xc_id_voice_recoder_time);
+        hint2 = (TextView) dialog2.findViewById(R.id.xc_id_voice_recoder_hint_textview);
+        time_view2 = (TextView) dialog2.findViewById(R.id.xc_id_voice_recoder_time);
     }
 
     @Override

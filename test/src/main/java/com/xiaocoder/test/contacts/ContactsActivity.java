@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
+import com.xiaocoder.views.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.model.XCContactModel;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.android.fw.general.util.UtilContacts;

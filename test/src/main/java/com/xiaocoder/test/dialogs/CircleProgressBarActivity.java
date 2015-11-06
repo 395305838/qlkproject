@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.view.XCCircleProgressBar;
+import com.xiaocoder.views.view.XCCircleProgressBar;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 

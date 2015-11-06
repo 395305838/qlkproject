@@ -5,7 +5,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.xiaocoder.android.fw.general.view.XCLineProgressBar;
+import com.xiaocoder.views.view.XCLineProgressBar;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 

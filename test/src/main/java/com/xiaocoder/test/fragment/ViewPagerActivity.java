@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.daimajia.slider.library.SliderLayout;
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
+import com.xiaocoder.views.fragment.XCTitleCommonFragment;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 import com.xiaocoder.viewpagerslider.XCViewPagerFragment;

@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
-import com.xiaocoder.android.fw.general.pop.XCHintPopupWindow;
-import com.xiaocoder.android.fw.general.pop.XCPhotoPopupWindow;
-import com.xiaocoder.android.fw.general.pop.XCReflectPopupWindow;
+import com.xiaocoder.views.pop.XCHintPopupWindow;
+import com.xiaocoder.views.pop.XCPhotoPopupWindow;
+import com.xiaocoder.views.pop.XCReflectPopupWindow;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 

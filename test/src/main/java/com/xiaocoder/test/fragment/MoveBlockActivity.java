@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.fragment.XCMoveBlockPlusFragment;
+import com.xiaocoder.views.fragment.XCMoveBlockPlusFragment;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 

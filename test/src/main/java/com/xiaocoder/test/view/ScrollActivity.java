@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.xiaocoder.android.fw.general.adapter.XCAdapterTest;
 import com.xiaocoder.android.fw.general.adapter.XCAdapterViewPager;
-import com.xiaocoder.android.fw.general.view.XCNoScrollListview;
+import com.xiaocoder.views.view.XCNoScrollListview;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 

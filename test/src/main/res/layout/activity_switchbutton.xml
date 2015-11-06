@@ -9,7 +9,7 @@
     android:padding="10dip"
     tools:context="com.example.testlibs.MainActivity">
 
-    <com.xiaocoder.android.fw.general.view.XCSwitchButton
+    <com.xiaocoder.views.view.XCSwitchButton
         android:id="@+id/swit"
         android:layout_width="150dip"
         android:layout_height="60dip"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <com.xiaocoder.android.fw.general.view.XCSwitchButton
+    <com.xiaocoder.views.view.XCSwitchButton
         android:id="@+id/swit2"
         android:layout_width="190dip"
         android:layout_height="100dip"
@@ -31,7 +31,7 @@
         slideswitch:shapeButton="circle"
         slideswitch:themeColor="#ff0a5a00" />
 
-    <com.xiaocoder.android.fw.general.view.XCSwitchButton
+    <com.xiaocoder.views.view.XCSwitchButton
         android:id="@+id/swit3"
         android:layout_width="20dip"
         android:layout_height="50dip"
@@ -40,7 +40,7 @@
         slideswitch:shapeButton="circle"
         slideswitch:themeColor="#ff73aa00" />
 
-    <com.xiaocoder.android.fw.general.view.XCSwitchButton
+    <com.xiaocoder.views.view.XCSwitchButton
         android:id="@+id/swit4"
         android:layout_width="100dip"
         android:layout_height="120dip"
@@ -49,7 +49,7 @@
         slideswitch:shapeButton="circle"
         slideswitch:themeColor="#f200aa96" />
 
-    <com.xiaocoder.android.fw.general.view.XCSwitchButton
+    <com.xiaocoder.views.view.XCSwitchButton
         android:id="@+id/swit5"
         android:layout_width="90dip"
         android:layout_height="50dip"
@@ -58,7 +58,7 @@
         slideswitch:shapeButton="rect"
         slideswitch:themeColor="#f23331a0" />
 
-    <com.xiaocoder.android.fw.general.view.XCSwitchButton
+    <com.xiaocoder.views.view.XCSwitchButton
         android:id="@+id/swit6"
         android:layout_width="57dip"
         android:layout_height="35dip"

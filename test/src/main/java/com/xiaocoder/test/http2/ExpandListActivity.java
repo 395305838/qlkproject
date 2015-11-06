@@ -13,9 +13,9 @@ import android.widget.TextView;
 import com.xiaocoder.android.fw.general.adapter.XLBaseAdapterExpand;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
+import com.xiaocoder.views.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
-import com.xiaocoder.android.fw.general.view.XCSlideBar;
+import com.xiaocoder.views.view.XCSlideBar;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 

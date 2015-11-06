@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
-import com.xiaocoder.android.fw.general.dialog.XCRotateDialog;
+import com.xiaocoder.views.dialog.XCBaseDialog;
+import com.xiaocoder.views.dialog.XCRotateDialog;
 import com.xiaocoder.android.fw.general.helper.XCCleanCacheHelper;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.middle.MActivity;

@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 import com.xiaocoder.android.fw.general.util.UtilInputMethod;
-import com.xiaocoder.android.fw.general.view.XCSwipeBackLayout;
 import com.xiaocoder.android_fw_general.R;
 
 import java.lang.reflect.Constructor;
@@ -27,8 +26,6 @@ public abstract class XCBaseActivity extends FragmentActivity {
     public LayoutInflater base_inflater;
 
     public FragmentManager base_fm;
-
-    public XCSwipeBackLayout back_layout;
 
     // 整个layout
     public ViewGroup xc_id_model_layout;
@@ -80,8 +77,6 @@ public abstract class XCBaseActivity extends FragmentActivity {
         base_fm = getSupportFragmentManager();
         isActivityDestroied = false;
 
-        initSlideDestroyActivity();
-
         // 找到页面的布局控件
         xc_id_model_layout = getViewById(R.id.xc_id_model_layout);
         xc_id_model_titlebar = getViewById(R.id.xc_id_model_titlebar);
@@ -90,17 +85,6 @@ public abstract class XCBaseActivity extends FragmentActivity {
         initWidgets();
         listeners();
         showPage();
-    }
-
-    /**
-     * 手势滑动退出activity的基类布局
-     */
-    protected void initSlideDestroyActivity() {
-
-        back_layout = ((XCSwipeBackLayout) LayoutInflater.from(this).inflate(R.layout.baseactivity_swipe_back, null));
-
-        back_layout.attachToActivity(this);
-
     }
 
     public abstract void initWidgets();

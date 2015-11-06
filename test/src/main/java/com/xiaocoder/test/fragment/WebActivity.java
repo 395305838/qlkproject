@@ -2,8 +2,8 @@ package com.xiaocoder.test.fragment;
 
 import android.os.Bundle;
 
-import com.xiaocoder.android.fw.general.fragment.XCTitleCommonFragment;
-import com.xiaocoder.android.fw.general.fragment.XCWebViewFragment;
+import com.xiaocoder.views.fragment.XCTitleCommonFragment;
+import com.xiaocoder.views.fragment.XCWebViewFragment;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 

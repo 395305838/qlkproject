@@ -1,6 +1,7 @@
 package com.xiaocoder.middle;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -9,6 +10,7 @@ import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 import com.xiaocoder.test.R;
+import com.xiaocoder.views.view.XCSwipeBackLayout;
 
 /**
  * Created by xiaocoder on 2015/7/15.
@@ -18,6 +20,10 @@ import com.xiaocoder.test.R;
 public abstract class MActivity extends XCBaseActivity implements View.OnClickListener, XCIHttpResult {
 
     /**
+     * 向右滑动，销毁activity
+     */
+    public XCSwipeBackLayout back_layout;
+    /**
      * 无网络时显示的界面
      */
     private ViewGroup xc_id_model_no_net;
@@ -25,7 +31,17 @@ public abstract class MActivity extends XCBaseActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // 无网络背景控件
+
+        initNoNetBg();
+
+        initSlideDestroyActivity();
+
+    }
+
+    /**
+     * 无网络背景控件
+     */
+    protected void initNoNetBg() {
         xc_id_model_no_net = getViewById(R.id.xc_id_model_no_net);
 
         if (xc_id_model_no_net != null) {
@@ -93,5 +109,16 @@ public abstract class MActivity extends XCBaseActivity implements View.OnClickLi
         super.onPause();
         // 友盟统计
         MobclickAgent.onPause(this);
+    }
+
+    /**
+     * 手势滑动退出activity的基类布局
+     */
+    protected void initSlideDestroyActivity() {
+
+        back_layout = ((XCSwipeBackLayout) LayoutInflater.from(this).inflate(R.layout.baseactivity_swipe_back, null));
+
+        back_layout.attachToActivity(this);
+
     }
 }

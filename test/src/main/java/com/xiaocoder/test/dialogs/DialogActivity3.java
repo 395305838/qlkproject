@@ -5,15 +5,15 @@ import android.view.View;
 import android.widget.Button;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.dialog.SKShareDialog;
-import com.xiaocoder.android.fw.general.dialog.XCBaseDialog;
-import com.xiaocoder.android.fw.general.dialog.XCFrameAnimHDialog;
-import com.xiaocoder.android.fw.general.dialog.XCFrameAnimVDialog;
-import com.xiaocoder.android.fw.general.dialog.XCMenuDialog;
-import com.xiaocoder.android.fw.general.dialog.XCQueryDialog;
-import com.xiaocoder.android.fw.general.dialog.XCRotateDialog;
-import com.xiaocoder.android.fw.general.dialog.XCSystemHDialog;
-import com.xiaocoder.android.fw.general.dialog.XCSystemVDialog;
+import com.xiaocoder.views.dialog.SKShareDialog;
+import com.xiaocoder.views.dialog.XCBaseDialog;
+import com.xiaocoder.views.dialog.XCFrameAnimHDialog;
+import com.xiaocoder.views.dialog.XCFrameAnimVDialog;
+import com.xiaocoder.views.dialog.XCMenuDialog;
+import com.xiaocoder.views.dialog.XCQueryDialog;
+import com.xiaocoder.views.dialog.XCRotateDialog;
+import com.xiaocoder.views.dialog.XCSystemHDialog;
+import com.xiaocoder.views.dialog.XCSystemVDialog;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
