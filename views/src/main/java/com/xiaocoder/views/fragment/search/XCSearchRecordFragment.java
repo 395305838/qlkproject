@@ -22,7 +22,7 @@ import com.xiaocoder.android.fw.general.db.XCSearchDao;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.views.R;
-import com.xiaocoder.views.view.XCKeyBoardLayout;
+import com.xiaocoder.views.view.open.OPKeyBoardLayout;
 
 import java.util.List;
 
@@ -35,7 +35,7 @@ public class XCSearchRecordFragment extends XCBaseFragment implements AdapterVie
     Button xc_id_fragment_search_record_clear_button;
     // 键盘中的 关闭键盘按钮点击时 , 该layout会调用onSizeChanged方法, 这里可以监听 由 记录界面的显示状态 -->
     // 记录界面不显示状态
-    XCKeyBoardLayout xc_id_fragment_search_record_keyboard_layout;
+    OPKeyBoardLayout xc_id_fragment_search_record_keyboard_layout;
 
     XCSearchDao dao;
     SearchRecordAdapter adapter;
@@ -240,7 +240,7 @@ public class XCSearchRecordFragment extends XCBaseFragment implements AdapterVie
         xc_id_fragment_search_record_clear_button.setOnClickListener(this);
         xc_id_fragment_search_record_listview.setOnItemClickListener(this);
         xc_id_fragment_search_record_close.setOnClickListener(this);
-        xc_id_fragment_search_record_keyboard_layout.setOnResizeListener(new XCKeyBoardLayout.OnResizeListener() {
+        xc_id_fragment_search_record_keyboard_layout.setOnResizeListener(new OPKeyBoardLayout.OnResizeListener() {
             @Override
             public void OnResize(int w, int h, int oldw, int oldh) {
                 if (keyBoardStatusListener != null && 0 != oldw && 0 != oldh) {

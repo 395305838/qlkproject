@@ -1,4 +1,4 @@
-package com.xiaocoder.views.view;
+package com.xiaocoder.views.view.open;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -18,19 +18,19 @@ import com.xiaocoder.views.R;
 /**
  * 搜索栏的edittext ，有点击删除的功能
  */
-public class XCClearEditText extends EditText implements OnFocusChangeListener, TextWatcher {
+public class OPClearEditText extends EditText implements OnFocusChangeListener, TextWatcher {
 
 	private Drawable mClearDrawable;
 
-	public XCClearEditText(Context context) {
+	public OPClearEditText(Context context) {
 		this(context, null);
 	}
 
-	public XCClearEditText(Context context, AttributeSet attrs) {
+	public OPClearEditText(Context context, AttributeSet attrs) {
 		this(context, attrs, android.R.attr.editTextStyle);
 	}
 
-	public XCClearEditText(Context context, AttributeSet attrs, int defStyle) {
+	public OPClearEditText(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		init();
 	}

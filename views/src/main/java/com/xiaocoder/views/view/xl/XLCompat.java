@@ -1,4 +1,4 @@
-package com.xiaocoder.views.view.xl_photoview;
+package com.xiaocoder.views.view.xl;
 
 import android.os.Build.VERSION;
 import android.os.Build.VERSION_CODES;

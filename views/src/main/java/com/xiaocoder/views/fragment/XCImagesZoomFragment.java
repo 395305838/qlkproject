@@ -12,7 +12,7 @@ import android.widget.TextView;
 import com.xiaocoder.android.fw.general.adapter.XCAdapterViewPagerRecyle;
 import com.xiaocoder.android.fw.general.application.XCBaseFragment;
 import com.xiaocoder.views.R;
-import com.xiaocoder.views.view.XCZoomImageView;
+import com.xiaocoder.views.view.open.OPZoomImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +95,7 @@ public class XCImagesZoomFragment extends XCBaseFragment {
         for (int i = 0; i < total_images; i++) {
             // 创建images
 
-            XCZoomImageView imageview = new XCZoomImageView(getActivity());
+            OPZoomImageView imageview = new OPZoomImageView(getActivity());
             imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageview.enable();
 

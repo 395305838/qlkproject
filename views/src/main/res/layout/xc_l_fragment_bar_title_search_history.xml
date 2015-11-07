@@ -23,7 +23,7 @@
             android:layout_marginRight="10dp"
             android:src="@drawable/xc_d_search_glass" />
 
-        <com.xiaocoder.views.view.XCClearEditText
+        <com.xiaocoder.views.view.open.OPClearEditText
             android:id="@+id/xc_id_fragment_search_edittext"
             android:layout_width="0dp"
             android:layout_height="36dp"

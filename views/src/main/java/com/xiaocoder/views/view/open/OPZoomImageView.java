@@ -1,4 +1,4 @@
-package com.xiaocoder.views.view;
+package com.xiaocoder.views.view.open;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -66,7 +66,7 @@ class Info {
  * }
  * });
  */
-public class XCZoomImageView extends ImageView {
+public class OPZoomImageView extends ImageView {
 
     private final static int ANIMA_DURING = 300;
     private final static float MAX_SCALE = 2.5f;
@@ -118,17 +118,17 @@ public class XCZoomImageView extends ImageView {
 
     private float[] mValues = new float[16];
 
-    public XCZoomImageView(Context context) {
+    public OPZoomImageView(Context context) {
         super(context);
         init();
     }
 
-    public XCZoomImageView(Context context, AttributeSet attrs) {
+    public OPZoomImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public XCZoomImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public OPZoomImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -581,7 +581,7 @@ public class XCZoomImageView extends ImageView {
         @Override
         public void run() {
             if (mClickListener != null) {
-                mClickListener.onClick(XCZoomImageView.this);
+                mClickListener.onClick(OPZoomImageView.this);
             }
         }
     };

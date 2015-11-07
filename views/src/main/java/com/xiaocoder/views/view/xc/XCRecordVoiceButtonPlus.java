@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.Date;
 
 /**
- * 可以录音的button，没有布局，可以扩展
+ * 可以录音的button，可扩展
  */
 public class XCRecordVoiceButtonPlus extends Button implements OnTouchListener {
 

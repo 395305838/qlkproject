@@ -1,4 +1,4 @@
-package com.xiaocoder.views.view;
+package com.xiaocoder.views.view.open;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -14,7 +14,7 @@ import android.view.View;
 import com.xiaocoder.views.R;
 
 
-public class XCLineProgressBar extends View {
+public class OPLineProgressBar extends View {
 
     public interface OnProgressBarListener {
 
@@ -161,15 +161,15 @@ public class XCLineProgressBar extends View {
         Visible, Invisible
     }
 
-    public XCLineProgressBar(Context context) {
+    public OPLineProgressBar(Context context) {
         this(context, null);
     }
 
-    public XCLineProgressBar(Context context, AttributeSet attrs) {
+    public OPLineProgressBar(Context context, AttributeSet attrs) {
         this(context, attrs, R.attr.numberProgressBarStyle);
     }
 
-    public XCLineProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public OPLineProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         default_reached_bar_height = dp2px(1.5f);
@@ -178,25 +178,25 @@ public class XCLineProgressBar extends View {
         default_progress_text_offset = dp2px(3.0f);
 
         //load styled attributes.
-        final TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.XCLineProgressBar,
+        final TypedArray attributes = context.getTheme().obtainStyledAttributes(attrs, R.styleable.OPLineProgressBar,
                 defStyleAttr, 0);
 
-        mReachedBarColor = attributes.getColor(R.styleable.XCLineProgressBar_progress_reached_color, default_reached_color);
-        mUnreachedBarColor = attributes.getColor(R.styleable.XCLineProgressBar_progress_unreached_color, default_unreached_color);
-        mTextColor = attributes.getColor(R.styleable.XCLineProgressBar_progress_text_color, default_text_color);
-        mTextSize = attributes.getDimension(R.styleable.XCLineProgressBar_progress_text_size, default_text_size);
+        mReachedBarColor = attributes.getColor(R.styleable.OPLineProgressBar_progress_reached_color, default_reached_color);
+        mUnreachedBarColor = attributes.getColor(R.styleable.OPLineProgressBar_progress_unreached_color, default_unreached_color);
+        mTextColor = attributes.getColor(R.styleable.OPLineProgressBar_progress_text_color, default_text_color);
+        mTextSize = attributes.getDimension(R.styleable.OPLineProgressBar_progress_text_size, default_text_size);
 
-        mReachedBarHeight = attributes.getDimension(R.styleable.XCLineProgressBar_progress_reached_bar_height, default_reached_bar_height);
-        mUnreachedBarHeight = attributes.getDimension(R.styleable.XCLineProgressBar_progress_unreached_bar_height, default_unreached_bar_height);
-        mOffset = attributes.getDimension(R.styleable.XCLineProgressBar_progress_text_offset, default_progress_text_offset);
+        mReachedBarHeight = attributes.getDimension(R.styleable.OPLineProgressBar_progress_reached_bar_height, default_reached_bar_height);
+        mUnreachedBarHeight = attributes.getDimension(R.styleable.OPLineProgressBar_progress_unreached_bar_height, default_unreached_bar_height);
+        mOffset = attributes.getDimension(R.styleable.OPLineProgressBar_progress_text_offset, default_progress_text_offset);
 
-        int textVisible = attributes.getInt(R.styleable.XCLineProgressBar_progress_text_visibility, PROGRESS_TEXT_VISIBLE);
+        int textVisible = attributes.getInt(R.styleable.OPLineProgressBar_progress_text_visibility, PROGRESS_TEXT_VISIBLE);
         if (textVisible != PROGRESS_TEXT_VISIBLE) {
             mIfDrawText = false;
         }
 
-        setProgress(attributes.getInt(R.styleable.XCLineProgressBar_progress_current, 0));
-        setMax(attributes.getInt(R.styleable.XCLineProgressBar_progress_max, 100));
+        setProgress(attributes.getInt(R.styleable.OPLineProgressBar_progress_current, 0));
+        setMax(attributes.getInt(R.styleable.OPLineProgressBar_progress_max, 100));
 
         attributes.recycle();
         initializePainters();

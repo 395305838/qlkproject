@@ -1,12 +1,12 @@
-package com.xiaocoder.views.view;
+package com.xiaocoder.views.view.open;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.widget.GridView;
+import android.widget.ListView;
 
-public class XCNoScrollGridView extends GridView {
+public class OPNoScrollListview extends ListView {
 
-       public XCNoScrollGridView(Context context, AttributeSet attrs) {
+       public OPNoScrollListview(Context context, AttributeSet attrs) {
                super(context, attrs);
         }
 

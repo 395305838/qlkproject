@@ -1,4 +1,4 @@
-package com.xiaocoder.views.view.xl_photoview;
+package com.xiaocoder.views.view.xl;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

@@ -1,4 +1,4 @@
-package com.xiaocoder.views.view;
+package com.xiaocoder.views.view.sx;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -18,7 +18,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * 
+ * 仿ios的滚轮控件
  */
 public class SXPickerView extends View
 {

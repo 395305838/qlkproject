@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.xiaocoder.views.view;
+package com.xiaocoder.views.view.open;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -10,17 +10,17 @@ import android.widget.RelativeLayout;
 /**
  * 监听键盘的隐藏和显示
  */
-public class XCKeyBoardLayout extends RelativeLayout {
+public class OPKeyBoardLayout extends RelativeLayout {
 
-    public XCKeyBoardLayout(Context context) {
+    public OPKeyBoardLayout(Context context) {
         super(context);
     }
 
-    public XCKeyBoardLayout(Context context, AttributeSet attrs, int defStyle) {
+    public OPKeyBoardLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
-    public XCKeyBoardLayout(Context context, AttributeSet attrs) {
+    public OPKeyBoardLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

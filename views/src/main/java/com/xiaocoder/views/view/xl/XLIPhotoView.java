@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *******************************************************************************/
-package com.xiaocoder.views.view.xl_photoview;
+package com.xiaocoder.views.view.xl;
 
 import android.graphics.RectF;
 import android.view.View;

@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.xiaocoder.android.fw.general.adapter.XCAdapterTest;
 import com.xiaocoder.android.fw.general.adapter.XCAdapterViewPager;
-import com.xiaocoder.views.view.XCNoScrollListview;
+import com.xiaocoder.views.view.open.OPNoScrollListview;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
@@ -32,7 +32,7 @@ public class ScrollActivity extends MActivity {
 		View view2 = LayoutInflater.from(this).inflate(R.layout.viewpager_layout2, null);
 		View view3 = LayoutInflater.from(this).inflate(R.layout.viewpager_layout3, null);
 
-		XCNoScrollListview listview_refresh = (XCNoScrollListview) view3.findViewById(R.id.listview_refresh);
+		OPNoScrollListview listview_refresh = (OPNoScrollListview) view3.findViewById(R.id.listview_refresh);
 
 		// addHeadView
 		View item = LayoutInflater.from(this).inflate(R.layout.viewpager_layout3_item, null);

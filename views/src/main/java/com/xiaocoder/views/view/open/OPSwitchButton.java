@@ -1,5 +1,5 @@
 
-package com.xiaocoder.views.view;
+package com.xiaocoder.views.view.open;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -27,7 +27,7 @@ import com.xiaocoder.views.R;
 /**
  * 仿ios的button
  */
-public class XCSwitchButton extends View {
+public class OPSwitchButton extends View {
 
     public static final int SHAPE_RECT = 1;
     public static final int SHAPE_CIRCLE = 2;
@@ -60,7 +60,7 @@ public class XCSwitchButton extends View {
         public void close();
     }
 
-    public XCSwitchButton(Context context, AttributeSet attrs, int defStyleAttr) {
+    public OPSwitchButton(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         listener = null;
         paint = new Paint();
@@ -74,11 +74,11 @@ public class XCSwitchButton extends View {
         a.recycle();
     }
 
-    public XCSwitchButton(Context context, AttributeSet attrs) {
+    public OPSwitchButton(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public XCSwitchButton(Context context) {
+    public OPSwitchButton(Context context) {
         this(context, null);
     }
 

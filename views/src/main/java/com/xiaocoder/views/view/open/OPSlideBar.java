@@ -1,4 +1,4 @@
-package com.xiaocoder.views.view;
+package com.xiaocoder.views.view.open;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -17,7 +17,7 @@ import com.xiaocoder.views.R;
 /**
  * 字母滑动bar
  */
-public class XCSlideBar extends View {
+public class OPSlideBar extends View {
     private OnTouchingLetterChangedListener onTouchingLetterChangedListener;
     public static String[] b = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "#"};
     private int choose = -1;
@@ -30,15 +30,15 @@ public class XCSlideBar extends View {
         this.mTextDialog = mTextDialog;
     }
 
-    public XCSlideBar(Context context, AttributeSet attrs, int defStyle) {
+    public OPSlideBar(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
 
-    public XCSlideBar(Context context, AttributeSet attrs) {
+    public OPSlideBar(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public XCSlideBar(Context context) {
+    public OPSlideBar(Context context) {
         super(context);
     }
 

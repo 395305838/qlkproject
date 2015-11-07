@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.xiaocoder.views.view;
+package com.xiaocoder.views.view.open;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -32,7 +32,6 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.IntDef;
 import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
@@ -49,7 +48,7 @@ import java.util.ArrayList;
  *
  * @hide
  */
-public class XCCircleProgressDrawable extends Drawable implements Animatable {
+public class OPCircleProgressDrawable extends Drawable implements Animatable {
     // Maps to ProgressBar.Large style
     public static final int LARGE = 0;
     // Maps to ProgressBar default style
@@ -126,7 +125,7 @@ public class XCCircleProgressDrawable extends Drawable implements Animatable {
     private double mHeight;
     private boolean mShowArrowOnFirstStart = false;
 
-    public XCCircleProgressDrawable(Context context, View animExcutor) {
+    public OPCircleProgressDrawable(Context context, View animExcutor) {
         mAnimExcutor = animExcutor;
         mResources = context.getResources();
 

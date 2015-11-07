@@ -15,7 +15,7 @@ import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.views.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
-import com.xiaocoder.views.view.XCSlideBar;
+import com.xiaocoder.views.view.open.OPSlideBar;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 
@@ -33,7 +33,7 @@ public class ExpandListActivity extends MActivity {
     XCTitleCommonFragment title;
 
     TextView xc_id_search_slide_dialog;
-    XCSlideBar xc_id_search_slide_slidebar;
+    OPSlideBar xc_id_search_slide_slidebar;
 
 
     public TextView getTextView() {
@@ -188,7 +188,7 @@ public class ExpandListActivity extends MActivity {
     public void listeners() {
         expandAllTime();
 
-        xc_id_search_slide_slidebar.setOnTouchingLetterChangedListener(new XCSlideBar.OnTouchingLetterChangedListener() {
+        xc_id_search_slide_slidebar.setOnTouchingLetterChangedListener(new OPSlideBar.OnTouchingLetterChangedListener() {
 
             @Override
             public void onTouchingLetterChanged(String s) {

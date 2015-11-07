@@ -38,7 +38,7 @@
             android:textSize="30sp"
             android:visibility="invisible" />
 
-        <com.xiaocoder.views.view.XCSlideBar
+        <com.xiaocoder.views.view.open.OPSlideBar
             android:id="@+id/xc_id_search_slide_slidebar"
             android:layout_width="29.0dip"
             android:layout_height="fill_parent"

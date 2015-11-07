@@ -1,4 +1,4 @@
-package com.xiaocoder.views.view;
+package com.xiaocoder.views.view.sx;
 
 import android.content.Context;
 import android.content.res.TypedArray;

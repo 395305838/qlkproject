@@ -21,7 +21,7 @@ import com.xiaocoder.android.fw.general.db.XCSearchDao;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.views.R;
-import com.xiaocoder.views.view.XCClearEditText;
+import com.xiaocoder.views.view.open.OPClearEditText;
 
 import java.util.List;
 
@@ -32,7 +32,7 @@ import java.util.List;
  */
 public class XCTitleSearchFragment extends XCBaseFragment {
 
-    XCClearEditText xc_id_fragment_search_edittext;
+    OPClearEditText xc_id_fragment_search_edittext;
     TextView xc_id_fragment_search_cancle;
     XCSearchDao dao;
 

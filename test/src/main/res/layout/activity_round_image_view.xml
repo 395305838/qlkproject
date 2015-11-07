@@ -25,7 +25,7 @@
         android:orientation="vertical"
         android:visibility="invisible">
 
-        <com.xiaocoder.views.view.XCRoundedImageView
+        <com.xiaocoder.views.view.open.OPRoundedImageView
             android:id="@+id/image"
             android:src="@drawable/ic_launcher"
             android:layout_centerInParent="true"
@@ -38,7 +38,7 @@
             app:sriv_border_width="2dip"
             app:sriv_border_color="#008fea" />
 
-        <com.xiaocoder.views.view.XCRoundedImageView
+        <com.xiaocoder.views.view.open.OPRoundedImageView
             android:id="@+id/image2"
             android:layout_below="@+id/image"
             android:src="@drawable/ic_launcher"
@@ -54,7 +54,7 @@
             app:sriv_border_color="#008fea"
             app:sriv_oval="true" />
 
-        <com.xiaocoder.views.view.XCRoundedImageView
+        <com.xiaocoder.views.view.open.OPRoundedImageView
             android:id="@+id/image3"
             android:layout_below="@+id/image2"
             android:scaleType="centerCrop"

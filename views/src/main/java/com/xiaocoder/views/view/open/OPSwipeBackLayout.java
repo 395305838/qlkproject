@@ -1,4 +1,4 @@
-package com.xiaocoder.views.view;
+package com.xiaocoder.views.view.open;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -25,8 +25,8 @@ import com.xiaocoder.views.R;
 /**
  * 向右滑动删除activity
  */
-public class XCSwipeBackLayout extends FrameLayout {
-    private static final String TAG = XCSwipeBackLayout.class.getSimpleName();
+public class OPSwipeBackLayout extends FrameLayout {
+    private static final String TAG = OPSwipeBackLayout.class.getSimpleName();
     private View mContentView;
     private int mTouchSlop;
     private int downX;
@@ -40,11 +40,11 @@ public class XCSwipeBackLayout extends FrameLayout {
     private Activity mActivity;
     private List<ViewPager> mViewPagers = new LinkedList<ViewPager>();
 
-    public XCSwipeBackLayout(Context context, AttributeSet attrs) {
+    public OPSwipeBackLayout(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public XCSwipeBackLayout(Context context, AttributeSet attrs, int defStyle) {
+    public OPSwipeBackLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();

@@ -1,4 +1,4 @@
-package com.xiaocoder.views.view.xl_photoview;
+package com.xiaocoder.views.view.xl;
 
 /*******************************************************************************
  * Copyright 2011, 2012 Chris Banes.

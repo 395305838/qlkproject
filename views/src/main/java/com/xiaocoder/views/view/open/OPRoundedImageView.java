@@ -1,4 +1,4 @@
-package com.xiaocoder.views.view;
+package com.xiaocoder.views.view.open;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -52,7 +52,7 @@ import com.xiaocoder.views.R;
  sriv.setOval(true);
  *
  */
-public class XCRoundedImageView extends ImageView {
+public class OPRoundedImageView extends ImageView {
 
     public static final String TAG = "SelectableRoundedImageView";
 
@@ -88,33 +88,33 @@ public class XCRoundedImageView extends ImageView {
 
     private float[] mRadii = new float[]{0, 0, 0, 0, 0, 0, 0, 0};
 
-    public XCRoundedImageView(Context context) {
+    public OPRoundedImageView(Context context) {
         super(context);
     }
 
-    public XCRoundedImageView(Context context, AttributeSet attrs) {
+    public OPRoundedImageView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public XCRoundedImageView(Context context, AttributeSet attrs, int defStyle) {
+    public OPRoundedImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
         TypedArray a = context.obtainStyledAttributes(attrs,
-                R.styleable.XCRoundedImageView, defStyle, 0);
+                R.styleable.OPRoundedImageView, defStyle, 0);
 
-        final int index = a.getInt(R.styleable.XCRoundedImageView_android_scaleType, -1);
+        final int index = a.getInt(R.styleable.OPRoundedImageView_android_scaleType, -1);
         if (index >= 0) {
             setScaleType(sScaleTypeArray[index]);
         }
 
         mLeftTopCornerRadius = a.getDimensionPixelSize(
-                R.styleable.XCRoundedImageView_sriv_left_top_corner_radius, 0);
+                R.styleable.OPRoundedImageView_sriv_left_top_corner_radius, 0);
         mRightTopCornerRadius = a.getDimensionPixelSize(
-                R.styleable.XCRoundedImageView_sriv_right_top_corner_radius, 0);
+                R.styleable.OPRoundedImageView_sriv_right_top_corner_radius, 0);
         mLeftBottomCornerRadius = a.getDimensionPixelSize(
-                R.styleable.XCRoundedImageView_sriv_left_bottom_corner_radius, 0);
+                R.styleable.OPRoundedImageView_sriv_left_bottom_corner_radius, 0);
         mRightBottomCornerRadius = a.getDimensionPixelSize(
-                R.styleable.XCRoundedImageView_sriv_right_bottom_corner_radius, 0);
+                R.styleable.OPRoundedImageView_sriv_right_bottom_corner_radius, 0);
 
         if (mLeftTopCornerRadius < 0.0f || mRightTopCornerRadius < 0.0f
                 || mLeftBottomCornerRadius < 0.0f || mRightBottomCornerRadius < 0.0f) {
@@ -128,18 +128,18 @@ public class XCRoundedImageView extends ImageView {
                 mLeftBottomCornerRadius, mLeftBottomCornerRadius};
 
         mBorderWidth = a.getDimensionPixelSize(
-                R.styleable.XCRoundedImageView_sriv_border_width, 0);
+                R.styleable.OPRoundedImageView_sriv_border_width, 0);
         if (mBorderWidth < 0) {
             throw new IllegalArgumentException("border width cannot be negative.");
         }
 
         mBorderColor = a
-                .getColorStateList(R.styleable.XCRoundedImageView_sriv_border_color);
+                .getColorStateList(R.styleable.OPRoundedImageView_sriv_border_color);
         if (mBorderColor == null) {
             mBorderColor = ColorStateList.valueOf(DEFAULT_BORDER_COLOR);
         }
 
-        isOval = a.getBoolean(R.styleable.XCRoundedImageView_sriv_oval, false);
+        isOval = a.getBoolean(R.styleable.OPRoundedImageView_sriv_oval, false);
         a.recycle();
 
         updateDrawable();

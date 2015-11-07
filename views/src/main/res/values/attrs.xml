@@ -16,7 +16,7 @@
     </declare-styleable>
 
     <!-- 有百分比的圆圈progressdialog -->
-    <declare-styleable name="XCCircleProgressBar">
+    <declare-styleable name="OPCircleProgressBar">
         <attr name="mlpb_inner_radius" format="dimension" />
         <attr name="mlpb_background_color" format="color" />
         <attr name="mlpb_progress_color" format="color" />
@@ -41,7 +41,7 @@
     </declare-styleable>
 
     <!-- 有百分比的直线progressdialog -->
-    <declare-styleable name="XCLineProgressBar">
+    <declare-styleable name="OPLineProgressBar">
         <attr name="progress_current" format="integer" />
         <attr name="progress_max" format="integer" />
 
@@ -67,7 +67,7 @@
     </declare-styleable>
 
     <!-- 圆形图片 -->
-    <declare-styleable name="XCRoundedImageView">
+    <declare-styleable name="OPRoundedImageView">
         <attr name="sriv_left_top_corner_radius" format="dimension" />
         <attr name="sriv_right_top_corner_radius" format="dimension" />
         <attr name="sriv_left_bottom_corner_radius" format="dimension" />

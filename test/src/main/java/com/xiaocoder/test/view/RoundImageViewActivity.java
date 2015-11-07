@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCBaseActivity;
-import com.xiaocoder.views.view.XCRoundedImageView;
+import com.xiaocoder.views.view.open.OPRoundedImageView;
 import com.xiaocoder.test.R;
 
 public class RoundImageViewActivity extends XCBaseActivity {
@@ -22,7 +22,7 @@ public class RoundImageViewActivity extends XCBaseActivity {
     @Override
     public void initWidgets() {
 
-        XCRoundedImageView image3 = getViewById(R.id.image3);
+        OPRoundedImageView image3 = getViewById(R.id.image3);
         XCApp.displayImage("http://www.baidu.com/img/bdlogo.png", image3);
 
     }

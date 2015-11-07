@@ -10,7 +10,7 @@ import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 import com.xiaocoder.test.R;
-import com.xiaocoder.views.view.XCSwipeBackLayout;
+import com.xiaocoder.views.view.open.OPSwipeBackLayout;
 
 /**
  * Created by xiaocoder on 2015/7/15.
@@ -22,7 +22,7 @@ public abstract class MActivity extends XCBaseActivity implements View.OnClickLi
     /**
      * 向右滑动，销毁activity
      */
-    public XCSwipeBackLayout back_layout;
+    public OPSwipeBackLayout back_layout;
     /**
      * 无网络时显示的界面
      */
@@ -116,7 +116,7 @@ public abstract class MActivity extends XCBaseActivity implements View.OnClickLi
      */
     protected void initSlideDestroyActivity() {
 
-        back_layout = ((XCSwipeBackLayout) LayoutInflater.from(this).inflate(R.layout.baseactivity_swipe_back, null));
+        back_layout = ((OPSwipeBackLayout) LayoutInflater.from(this).inflate(R.layout.baseactivity_swipe_back, null));
 
         back_layout.attachToActivity(this);
 

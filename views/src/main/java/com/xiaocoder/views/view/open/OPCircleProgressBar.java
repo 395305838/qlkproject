@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.xiaocoder.views.view;
+package com.xiaocoder.views.view.open;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -41,7 +41,7 @@ import com.xiaocoder.views.R;
  * called before the animation is actually complete and support shadows on older
  * platforms.
  */
-public class XCCircleProgressBar extends ImageView {
+public class OPCircleProgressBar extends ImageView {
 
     private static final int KEY_SHADOW_COLOR = 0x1E000000;
     private static final int FILL_SHADOW_COLOR = 0x3D000000;
@@ -73,31 +73,31 @@ public class XCCircleProgressBar extends ImageView {
     private int mTextSize;
     private boolean mIfDrawText;
     private boolean mShowArrow;
-    private XCCircleProgressDrawable mProgressDrawable;
+    private OPCircleProgressDrawable mProgressDrawable;
     private ShapeDrawable mBgCircle;
     private boolean mCircleBackgroundEnabled;
     private int[] mColors = new int[]{Color.BLACK};
 
-    public XCCircleProgressBar(Context context) {
+    public OPCircleProgressBar(Context context) {
         super(context);
         init(context, null, 0);
 
     }
 
-    public XCCircleProgressBar(Context context, AttributeSet attrs) {
+    public OPCircleProgressBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs, 0);
 
     }
 
-    public XCCircleProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public OPCircleProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr);
     }
 
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         final TypedArray a = context.obtainStyledAttributes(
-                attrs, R.styleable.XCCircleProgressBar, defStyleAttr, 0);
+                attrs, R.styleable.OPCircleProgressBar, defStyleAttr, 0);
 //        <attr name="mlpb_inner_radius" format="dimension"/>
 //        <attr name="mlpb_background_color" format="color"/>
 //        <attr name="mlpb_progress_color" format="color"/>
@@ -121,33 +121,33 @@ public class XCCircleProgressBar extends ImageView {
         final float density = getContext().getResources().getDisplayMetrics().density;
 
         mBackGroundColor = a.getColor(
-                R.styleable.XCCircleProgressBar_mlpb_background_color, DEFAULT_CIRCLE_BG_LIGHT);
+                R.styleable.OPCircleProgressBar_mlpb_background_color, DEFAULT_CIRCLE_BG_LIGHT);
 
         mProgressColor = a.getColor(
-                R.styleable.XCCircleProgressBar_mlpb_progress_color, DEFAULT_CIRCLE_BG_LIGHT);
+                R.styleable.OPCircleProgressBar_mlpb_progress_color, DEFAULT_CIRCLE_BG_LIGHT);
         mColors = new int[]{mProgressColor};
 
         mInnerRadius = a.getDimensionPixelOffset(
-                R.styleable.XCCircleProgressBar_mlpb_inner_radius, -1);
+                R.styleable.OPCircleProgressBar_mlpb_inner_radius, -1);
 
         mProgressStokeWidth = a.getDimensionPixelOffset(
-                R.styleable.XCCircleProgressBar_mlpb_progress_stoke_width, (int) (STROKE_WIDTH_LARGE * density));
+                R.styleable.OPCircleProgressBar_mlpb_progress_stoke_width, (int) (STROKE_WIDTH_LARGE * density));
         mArrowWidth = a.getDimensionPixelOffset(
-                R.styleable.XCCircleProgressBar_mlpb_arrow_width, -1);
+                R.styleable.OPCircleProgressBar_mlpb_arrow_width, -1);
         mArrowHeight = a.getDimensionPixelOffset(
-                R.styleable.XCCircleProgressBar_mlpb_arrow_height, -1);
+                R.styleable.OPCircleProgressBar_mlpb_arrow_height, -1);
         mTextSize = a.getDimensionPixelOffset(
-                R.styleable.XCCircleProgressBar_mlpb_progress_text_size, (int) (DEFAULT_TEXT_SIZE * density));
+                R.styleable.OPCircleProgressBar_mlpb_progress_text_size, (int) (DEFAULT_TEXT_SIZE * density));
         mTextColor = a.getColor(
-                R.styleable.XCCircleProgressBar_mlpb_progress_text_color, Color.BLACK);
+                R.styleable.OPCircleProgressBar_mlpb_progress_text_color, Color.BLACK);
 
-        mShowArrow = a.getBoolean(R.styleable.XCCircleProgressBar_mlpb_show_arrow, false);
-        mCircleBackgroundEnabled = a.getBoolean(R.styleable.XCCircleProgressBar_mlpb_enable_circle_background, true);
+        mShowArrow = a.getBoolean(R.styleable.OPCircleProgressBar_mlpb_show_arrow, false);
+        mCircleBackgroundEnabled = a.getBoolean(R.styleable.OPCircleProgressBar_mlpb_enable_circle_background, true);
 
 
-        mProgress = a.getInt(R.styleable.XCCircleProgressBar_mlpb_progress, 0);
-        mMax = a.getInt(R.styleable.XCCircleProgressBar_mlpb_max, 100);
-        int textVisible = a.getInt(R.styleable.XCCircleProgressBar_mlpb_progress_text_visibility, 1);
+        mProgress = a.getInt(R.styleable.OPCircleProgressBar_mlpb_progress, 0);
+        mMax = a.getInt(R.styleable.OPCircleProgressBar_mlpb_max, 100);
+        int textVisible = a.getInt(R.styleable.OPCircleProgressBar_mlpb_progress_text_visibility, 1);
         if (textVisible != 1) {
             mIfDrawText = true;
         }
@@ -158,7 +158,7 @@ public class XCCircleProgressBar extends ImageView {
         mTextPaint.setTextSize(mTextSize);
         mTextPaint.setAntiAlias(true);
         a.recycle();
-        mProgressDrawable = new XCCircleProgressDrawable(getContext(), this);
+        mProgressDrawable = new OPCircleProgressDrawable(getContext(), this);
         super.setImageDrawable(mProgressDrawable);
     }
 
@@ -416,8 +416,8 @@ public class XCCircleProgressBar extends ImageView {
 
         @Override
         public void draw(Canvas canvas, Paint paint) {
-            final int viewWidth = XCCircleProgressBar.this.getWidth();
-            final int viewHeight = XCCircleProgressBar.this.getHeight();
+            final int viewWidth = OPCircleProgressBar.this.getWidth();
+            final int viewHeight = OPCircleProgressBar.this.getHeight();
             canvas.drawCircle(viewWidth / 2, viewHeight / 2, (mCircleDiameter / 2 + mShadowRadius),
                     mShadowPaint);
             canvas.drawCircle(viewWidth / 2, viewHeight / 2, (mCircleDiameter / 2), paint);

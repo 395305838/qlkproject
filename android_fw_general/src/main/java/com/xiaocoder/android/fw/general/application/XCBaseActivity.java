@@ -27,11 +27,18 @@ public abstract class XCBaseActivity extends FragmentActivity {
 
     public FragmentManager base_fm;
 
-    // 整个layout
+    /**
+     * 整个layout
+     */
     public ViewGroup xc_id_model_layout;
-    // title
+    /**
+     * showpage会找该id的布局，如果不用该id，不会异常，但是showpage（）就会无效
+     */
     public ViewGroup xc_id_model_titlebar;
-    // content
+    /**
+     * 1 showpage会找该id的布局，如果不用该id，不会异常，但是showpage（）就会无效
+     * 2 无网络背景会默认找该id，如果不用该id，不会异常，但是无网络背景的功能无法自动使用
+     */
     public ViewGroup xc_id_model_content;
     /**
      * activity是否销毁

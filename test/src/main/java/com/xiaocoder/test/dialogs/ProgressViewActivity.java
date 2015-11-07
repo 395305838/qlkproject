@@ -3,7 +3,7 @@ package com.xiaocoder.test.dialogs;
 import android.os.Bundle;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.views.view.SXProgressView;
+import com.xiaocoder.views.view.sx.SXProgressView;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 

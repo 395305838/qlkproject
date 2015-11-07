@@ -22,7 +22,7 @@ import com.xiaocoder.android.fw.general.util.UtilDate;
 import com.xiaocoder.views.R;
 
 /**
- * 可以录音的button，有一个布局，不可扩展
+ * 可以录音的button，内置一个布局，不可扩展，改为用 XCRecordVoiceButtonPlus
  */
 public class XCRecordVoiceButton extends Button implements OnTouchListener {
 
