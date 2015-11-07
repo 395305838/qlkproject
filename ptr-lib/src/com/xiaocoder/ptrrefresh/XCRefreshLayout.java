@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.listener.XCScrollListener;
+import com.xiaocoder.android.fw.general.function.listener.XCScrollListener;
 import com.xiaocoder.android.fw.general.util.UtilString;
 
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
 package com.xiaocoder.android.fw.general.io;
 
-import com.xiaocoder.android.fw.general.helper.XCDownloadHelper;
+import com.xiaocoder.android.fw.general.function.runnable.XCDownloadRunnable;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -180,7 +180,7 @@ public class XCIO {
         toFileByInputStream(in, file, 0, null, false);
     }
 
-    public static void toFileByInputStream(InputStream in, File file, long totalSize, XCDownloadHelper.DownloadListener listener, boolean append) {
+    public static void toFileByInputStream(InputStream in, File file, long totalSize, XCDownloadRunnable.DownloadListener listener, boolean append) {
         OutputStream os = null;
         try {
             os = new FileOutputStream(file, append);// 只会创建文件,不会创建文件夹,否则异常

@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.fragment.photo;
+package com.xiaocoder.android.fw.general.function.fragment;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,7 +32,7 @@ import com.xiaocoder.android_fw_general.R;
 
 /**
  * @author xiaocoder
- * @Description:
+ * @Description: 打开本地相册
  * @date 2015-1-6 下午10:50:22
  */
 public class XCLocalPhotoFragment extends XCBaseFragment {

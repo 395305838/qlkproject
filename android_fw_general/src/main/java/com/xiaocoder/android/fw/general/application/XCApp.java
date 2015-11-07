@@ -6,8 +6,8 @@ import android.content.Context;
 import android.os.Handler;
 import android.widget.ImageView;
 
-import com.xiaocoder.android.fw.general.helper.XCActivityHelper;
-import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
+import com.xiaocoder.android.fw.general.function.helper.XCActivityHelper;
+import com.xiaocoder.android.fw.general.function.helper.XCExecutorHelper;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 import com.xiaocoder.android.fw.general.http.XCHttpSend;
 import com.xiaocoder.android.fw.general.imageloader.XCIImageLoader;
@@ -30,6 +30,7 @@ public class XCApp extends Application {
     protected static ExecutorService base_cache_threadpool = XCExecutorHelper.getExecutorHelperInstance().getCache();
     protected static Handler base_handler = new Handler();
     protected static XCHttpSend base_xcHttpSend = new XCHttpSend();
+    protected static Context base_applicationContext;
     /**
      * 以下的涉及到路径和文件名的，在子类中初始化
      */
@@ -37,7 +38,6 @@ public class XCApp extends Application {
     protected static ScheduledExecutorService base_scheduled_threadpool;
     protected static XCLog base_log;
     protected static XCSP base_sp;
-    protected static Context base_applicationContext;
     /**
      * 加个接口，以后可能会改别的图片加载库，子类中传入
      */

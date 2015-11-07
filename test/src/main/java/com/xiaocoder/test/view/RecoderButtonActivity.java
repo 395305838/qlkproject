@@ -8,8 +8,8 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.views.view.XCRecordVoiceButton;
-import com.xiaocoder.views.view.XCRecordVoiceButtonPlus;
+import com.xiaocoder.views.view.xc.XCRecordVoiceButton;
+import com.xiaocoder.views.view.xc.XCRecordVoiceButtonPlus;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 

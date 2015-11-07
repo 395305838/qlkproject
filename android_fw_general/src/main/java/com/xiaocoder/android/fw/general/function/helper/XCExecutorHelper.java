@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.helper;
+package com.xiaocoder.android.fw.general.function.helper;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

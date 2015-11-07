@@ -8,7 +8,7 @@ import android.widget.Button;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.views.dialog.XCBaseDialog;
 import com.xiaocoder.views.dialog.XCQueryDialog;
-import com.xiaocoder.android.fw.general.helper.XCDownloadHelper;
+import com.xiaocoder.android.fw.general.function.runnable.XCDownloadRunnable;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.util.UtilString;
 import com.xiaocoder.middle.MActivity;
@@ -70,10 +70,10 @@ public class HttpDownLoadActivity extends MActivity {
 
     private void downLoad() {
 
-        XCDownloadHelper downloadHelper = new XCDownloadHelper("http://www.baidu.com"
+        XCDownloadRunnable downloadHelper = new XCDownloadRunnable("http://www.baidu.com"
                 , XCIOAndroid.createFileInAndroid(getApplicationContext(), MConfig.APP_ROOT, "downfile"));
 
-        downloadHelper.setDownloadListener(new XCDownloadHelper.DownloadListener() {
+        downloadHelper.setDownloadListener(new XCDownloadRunnable.DownloadListener() {
             @Override
             public void downloadFinished(long totalSize, File file) {
 

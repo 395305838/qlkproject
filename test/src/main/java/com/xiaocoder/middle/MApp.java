@@ -8,7 +8,7 @@ import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.exception.XCCrashHandler;
 import com.xiaocoder.android.fw.general.exception.XCExceptionDao;
 import com.xiaocoder.android.fw.general.exception.XCIException2Server;
-import com.xiaocoder.android.fw.general.helper.XCExecutorHelper;
+import com.xiaocoder.android.fw.general.function.helper.XCExecutorHelper;
 import com.xiaocoder.android.fw.general.imageloader.JSImageLoader;
 import com.xiaocoder.android.fw.general.imageloader.XCAsynLoader;
 import com.xiaocoder.android.fw.general.imageloader.XCImageLoader;

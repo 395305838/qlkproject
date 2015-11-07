@@ -1,149 +1,59 @@
-package com.xiaocoder.views.view;
+package com.xiaocoder.views.view.xc;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+
+import android.app.Dialog;
 import android.content.Context;
 import android.media.MediaRecorder;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.io.XCIOAndroid;
 import com.xiaocoder.android.fw.general.util.UtilDate;
 import com.xiaocoder.views.R;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-
 /**
- * 可以录音的button
+ * 可以录音的button，有一个布局，不可扩展
  */
-public class XCRecordVoiceButtonPlus extends Button implements OnTouchListener {
+public class XCRecordVoiceButton extends Button implements OnTouchListener {
 
     private MediaRecorder media_recorder;
-    /**
-     * 录音成功返回的文件存储在哪个目录里
-     */
-    public String save_dir;
-    /**
-     * 录音成功返回的文件
-     */
     private File save_file;
-    /**
-     * 时间的压缩参数
-     */
+
+    public static final int MIN_TIME = 3000; // 录音最短时间，毫秒
+    public static final int MAX_TIME = 45000; // 录音最长时间,毫秒
+    public static final int FAKE_TIME = 60; // 假的录音最长时间，秒
+    public static final int SLEEP_TIME = 750; // 多少毫秒减一次时间
     public static double COMPRESS_RATIO = 0.75;
-    /**
-     * 录音最短时间的限制，毫秒
-     * 会用真实的录音时间（录音开始时间-结束时间）与 MIN_TIME 比较，是否小于了录音时间的限制
-     */
-    public static  int MIN_TIME = 3000;
-    /**
-     * 录音最长时间的限制，毫秒.
-     * 会用真实的录音时间（录音开始时间-结束时间）与 MAX_TIME 比较，是否超过了录音时间的限制
-     */
-    public static  int MAX_TIME = 30000;
-    /**
-     * 每隔多少时间，time减减一次，毫秒
-     */
-    public static final int SLEEP_TIME = (int) (1000 * COMPRESS_RATIO);
-    /**
-     * 从哪一个时间开始倒计时（线程里的time--的初始值用的就是这个），秒。
-     * <p/>
-     * 有的时候可能显示的是60秒，但是真实可以录制的时间只给45秒，比如wx
-     */
-    public static final int FAKE_TIME = (int) (MAX_TIME / COMPRESS_RATIO / 1000);
-    /**
-     * 记录每次录音的开始时间
-     */
-    private long start_time;
-    /**
-     * 记录每次录音的结束时间
-     */
-    private long end_time;
-    /**
-     * 每一次按下button时，默认没有移出边界
-     */
-    boolean boundaryOut;
-    /**
-     * 防止快速点击，做了一个时间间隔的限制，及上次点击与这次点击的时间间隔必须大于 CLICK_LIMIT 毫秒，才有效
-     */
-    long record_last_time;
-    /**
-     * 毫秒
-     */
-    public static int CLICK_LIMIT = 200;
 
-    public interface OnButtonStatus {
 
-        /**
-         * 当点击button时，最先调用该方法
-         */
-        void onBeforeRecoder();
+    private long start_time; // 记录录音的开始时间
+    private long end_time; // 记录录音的结束时间
 
-        /**
-         * 每隔SLEEP_TIME秒，回调该方法一次，time初始值是FAKE_TIME
-         */
-        void onUpdateTime(int time);
+    private Dialog dialog;
+    private TextView hint;
+    private TextView time_view;
 
-        /**
-         * 刚刚触摸，这里建议 ：show你的dialog，可以给“松开发送”的提示
-         */
-        void onStartTouch();
-
-        /**
-         * 移出button范围，但没有up,这里建议：可以给“松开取消发送”的提示
-         */
-        void onMoveOut();
-
-        /**
-         * 移出button范围，但没有up，这时又移入button，没有up，这里建议：可以给“松开发送”的提示
-         */
-        void onMoveIn();
-
-        /**
-         * 结束触摸，这里建议：close你的dialog
-         * <p/>
-         * FORCE_STOP -- 每一次调用startTouch（）之前都会调用forceStop（），确保上一次的停止了
-         * CANCLE_STOP -- 在onPause（） 和 up 手势触摸移出了button之外时
-         * LESS_TIME_STOP -- 正常up手势。声音时长太短，不符合要求；可以给录音时间太短的提示
-         * OUT_TIME_STOP -- 正常up手势。声音时长太长，不符合要求；可以给录音时间超过最大时间限制的提示
-         * EXCEPTION_STOP -- 异常停止
-         * NORMAL_STOP -- 正常up手势停止，符合规则，传回file
-         */
-        void onEndTouch(RecoderStop stop);
-
-        /**
-         * 录音成功时回调，传回文件 和 时间
-         */
-        void onRecoderSuccess(File file, double time);
-
-        enum RecoderStop {
-            FORCE_STOP,
-            CANCLE_STOP,
-            LESS_TIME_STOP,
-            OUT_TIME_STOP,
-            EXCEPTION_STOP,
-            NORMAL_STOP
-        }
-    }
-
-    public OnButtonStatus listener;
-
-    public void setOnButtonStatus(OnButtonStatus listener) {
-        this.listener = listener;
-    }
-
-    public XCRecordVoiceButtonPlus(Context context, AttributeSet attrs, int defStyle) {
+    public XCRecordVoiceButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        timeRunnable = new TimeRunnable();
     }
 
-    public XCRecordVoiceButtonPlus(Context context, AttributeSet attrs) {
+    public XCRecordVoiceButton(Context context, AttributeSet attrs) {
         super(context, attrs);
+        createDialog(context);
+        hint = (TextView) dialog.findViewById(R.id.xc_id_voice_recoder_hint_textview);
+        time_view = (TextView) dialog.findViewById(R.id.xc_id_voice_recoder_time);
         timeRunnable = new TimeRunnable();
+        boundary_flag = false;
     }
 
     /**
@@ -151,17 +61,17 @@ public class XCRecordVoiceButtonPlus extends Button implements OnTouchListener {
      */
     public class TimeRunnable implements Runnable {
 
-        public void update(int time) {
+        public void update(int time, TextView textview) {
             this.time = time;
+            this.textview = textview;
         }
 
         int time;
+        TextView textview;
 
         @Override
         public void run() {
-            if (listener != null) {
-                listener.onUpdateTime(time);
-            }
+            textview.setText(time + "");
         }
     }
 
@@ -179,7 +89,7 @@ public class XCRecordVoiceButtonPlus extends Button implements OnTouchListener {
             int i = FAKE_TIME;
             while (!isQuitNow && i >= 0) {
                 try {
-                    timeRunnable.update(i--);
+                    timeRunnable.update(i--, time_view);
                     XCApp.getBase_handler().post(timeRunnable);
                     Thread.sleep(SLEEP_TIME);
                 } catch (Exception e) {
@@ -202,7 +112,17 @@ public class XCRecordVoiceButtonPlus extends Button implements OnTouchListener {
         }
     }
 
-    public XCRecordVoiceButtonPlus(Context context) {
+    public void createDialog(Context context) {
+        dialog = new Dialog(context, R.style.xc_s_dialog);
+        dialog.setContentView(R.layout.xc_l_view_recoder_voicebutton_hint);
+        dialog.setCanceledOnTouchOutside(false);
+        Window window = dialog.getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+        lp.dimAmount = 0.0f;
+        window.setAttributes(lp);
+    }
+
+    public XCRecordVoiceButton(Context context) {
         super(context);
     }
 
@@ -212,40 +132,51 @@ public class XCRecordVoiceButtonPlus extends Button implements OnTouchListener {
 
     @Override
     public void setOnTouchListener(OnTouchListener l) {
-        throw new RuntimeException(this+"-- touchlistener 已经设置了");
+        throw new RuntimeException("the listener has been setted in the class");
     }
 
-    /**
-     * dialog是否正在显示
-     */
+    // 默认没有出界
+    boolean boundary_flag;
+
+    long record_last_time;
+
     private boolean isDialogShow;
 
-    public void showDialog() {
+    public void showDialog(String hint_text) {
         setBackgroundResource(R.drawable.xc_dd_line_gray_e1e1e1_bg_gray_cccccc_8);
+        hint.setText(hint_text);
         startTime();
-        if (listener != null) {
-            listener.onStartTouch();
-        }
+        dialog.show();
         isDialogShow = true;
     }
 
-    public void closetDialog(OnButtonStatus.RecoderStop stop) {
+    public void closetDialog() {
         endTime();//该方法放前面
-        setBackgroundResource(R.drawable.xc_dd_line_gray_e1e1e1_bg_white_ffffff_8);
-        if (listener != null) {
-            listener.onEndTouch(stop);
+        if (dialog != null) {
+            dialog.dismiss();
         }
         isDialogShow = false;
+        setBackgroundResource(R.drawable.xc_dd_line_gray_e1e1e1_bg_white_ffffff_8);
     }
 
     public boolean isDialogShow() {
         return isDialogShow;
     }
 
+    public interface OnBeforeRecoderVoiceButtonListener {
+        void onBeforeRecoderVoiceButtonListener();
+    }
+
+    public void setOnBeforeRecoderVoiceButtonListener(OnBeforeRecoderVoiceButtonListener onBeforeRecoderVoiceButtonListener) {
+        this.onBeforeRecoderVoiceButtonListener = onBeforeRecoderVoiceButtonListener;
+    }
+
+    OnBeforeRecoderVoiceButtonListener onBeforeRecoderVoiceButtonListener;
+
     @Override
     public boolean onTouch(View arg0, MotionEvent event) {
         // 防止连续快速的点击
-        if (System.currentTimeMillis() - record_last_time < CLICK_LIMIT) {
+        if (System.currentTimeMillis() - record_last_time < 200) {
             record_last_time = System.currentTimeMillis();
             return false;
         }
@@ -253,13 +184,13 @@ public class XCRecordVoiceButtonPlus extends Button implements OnTouchListener {
         final int action = event.getAction();
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                if (listener != null) {
-                    listener.onBeforeRecoder();
+                if (onBeforeRecoderVoiceButtonListener != null) {
+                    onBeforeRecoderVoiceButtonListener.onBeforeRecoderVoiceButtonListener();
                 }
-                boundaryOut = false;
+                boundary_flag = false;
                 XCApp.i("down");
                 forceStop();// 确保停止了
-                showDialog();
+                showDialog("松开发送");
                 startRecording();
                 break;
             case MotionEvent.ACTION_UP:
@@ -272,22 +203,19 @@ public class XCRecordVoiceButtonPlus extends Button implements OnTouchListener {
                     XCApp.i("未出界");
                     stopRecording();
                 }
+                boundary_flag = false;
                 record_last_time = System.currentTimeMillis();
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (isOutSide(event.getX(), event.getY())) {
-                    if (!boundaryOut) {
-                        boundaryOut = true;
-                        if (listener != null) {
-                            listener.onMoveOut();
-                        }
+                    if (!boundary_flag) {
+                        hint.setText("取消发送");
+                        boundary_flag = true;
                     }
                 } else {
-                    if (boundaryOut) {
-                        boundaryOut = false;
-                        if (listener != null) {
-                            listener.onMoveIn();
-                        }
+                    if (boundary_flag) {
+                        hint.setText("松开发送");
+                        boundary_flag = false;
                     }
                 }
                 break;
@@ -305,9 +233,7 @@ public class XCRecordVoiceButtonPlus extends Button implements OnTouchListener {
         return false;
     }
 
-    /**
-     * 确保停止， 比如正在播放录音时，又按了录音键
-     */
+    // 确保停止， 比如正在播放时，又按了录音键
     public void forceStop() {
         if (media_recorder != null) {
             try {
@@ -318,13 +244,11 @@ public class XCRecordVoiceButtonPlus extends Button implements OnTouchListener {
             media_recorder.release();
             media_recorder = null;
         }
-        boundaryOut = false;
-        closetDialog(OnButtonStatus.RecoderStop.FORCE_STOP);
+        boundary_flag = false;
+        closetDialog();
     }
 
-    /**
-     * onPause（），以及出界了 的 取消录制， 并删除本地文件
-     */
+    // 取消录制， 并删除本地文件
     private void cancelRecord() {
         if (media_recorder != null) {
             try {
@@ -336,26 +260,28 @@ public class XCRecordVoiceButtonPlus extends Button implements OnTouchListener {
             media_recorder = null;
             deleteFile("cancle");
         }
-        closetDialog(OnButtonStatus.RecoderStop.CANCLE_STOP);
+        boundary_flag = false;
+        closetDialog();
     }
 
-    private void quit(final OnButtonStatus.RecoderStop stop, long time) {
+    private void lessTimeOrExceptionDialog() {
+        hint.setText("说话时间太短!");
         XCApp.getBase_handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                closetDialog(stop);
+                closetDialog();
             }
-        }, time);
+        }, 500);
     }
 
-    // 停止录制，根据文件时间的长度决定是否上传
+    // 取消录制 ， 根据文件时间的长度决定是否上传
     private void stopRecording() {
         // 是否正常停止
         boolean normal = true;
         if (media_recorder != null) {
             // 停止并释放资源
             try {
-                // 点击录制后快速松开，会报异常
+                // 点击录制后快速松开，回报异常
                 media_recorder.stop();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -367,7 +293,7 @@ public class XCRecordVoiceButtonPlus extends Button implements OnTouchListener {
             if (!normal) {
                 // 如果是异常停止
                 deleteFile("exception");
-                quit(OnButtonStatus.RecoderStop.EXCEPTION_STOP, 500);
+                lessTimeOrExceptionDialog();
                 return;
             }
         }
@@ -376,23 +302,22 @@ public class XCRecordVoiceButtonPlus extends Button implements OnTouchListener {
         float gap = end_time - start_time; // 真实时间
         // 判断文件的时间是否符合要求
         if (gap > MAX_TIME) {
-            XCApp.i("时间超时 ，删除文件");
-            // XCApp.shortToast("发送失败，每段录音的最大时间限制为" + FAKE_TIME + "秒");
+            XCApp.i("时间不符合 ，删除文件");
+            XCApp.shortToast("发送失败，每段录音的最大时间限制为" + FAKE_TIME + "秒");
             deleteFile("up max time");
-            quit(OnButtonStatus.RecoderStop.OUT_TIME_STOP, 100);
         } else if (gap < MIN_TIME) {
-            XCApp.i("时间太短 ，删除文件");
             deleteFile("down min time");
-            quit(OnButtonStatus.RecoderStop.LESS_TIME_STOP, 500);
+            lessTimeOrExceptionDialog();
+            return;
         } else {
             XCApp.i("时间符合 ，准备上传文件");
-            if (listener != null) {
+            if (file_listener != null) {
                 XCApp.i(gap + "---原始录音的buttonview中记录的时间");
-                listener.onRecoderSuccess(save_file, gap / COMPRESS_RATIO);
+                file_listener.onRecordVoiceSuccessListener(save_file, (long) (gap / COMPRESS_RATIO));
                 save_file = null;
             }
-            closetDialog(OnButtonStatus.RecoderStop.NORMAL_STOP);
         }
+        closetDialog();
     }
 
     public void deleteFile(String debug) {
@@ -402,6 +327,8 @@ public class XCRecordVoiceButtonPlus extends Button implements OnTouchListener {
             save_file = null;
         }
     }
+
+    public String save_dir; //XCConfig.CHAT_VIDEO_FILE,
 
     public void setSave_dir(String save_dir) {
         this.save_dir = save_dir;
@@ -437,8 +364,19 @@ public class XCRecordVoiceButtonPlus extends Button implements OnTouchListener {
             // 开始缓冲
             recorder.prepare();
         } catch (IOException e) {
-            XCApp.i(this + "--prepare() failed");
+            XCApp.i("prepare() failed");
         }
         return recorder;
     }
+
+    public interface OnRecordVoiceSuccessListener {
+        void onRecordVoiceSuccessListener(File file, float duration);
+    }
+
+    public void setOnRecordVoiceSuccessListener(OnRecordVoiceSuccessListener listener) {
+        this.file_listener = listener;
+    }
+
+    OnRecordVoiceSuccessListener file_listener;
+
 }

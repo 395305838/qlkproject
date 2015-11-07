@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.xiaocoder.views.view.XCImageView
+    <com.xiaocoder.views.view.xc.XCImageView
         android:id="@+id/sk_id_welcome_img"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"

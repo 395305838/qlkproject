@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.helper;
+package com.xiaocoder.android.fw.general.function.helper;
 
 import android.app.Dialog;
 

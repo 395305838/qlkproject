@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.helper.XCTimeHelper;
+import com.xiaocoder.android.fw.general.function.helper.XCTimeHelper;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 

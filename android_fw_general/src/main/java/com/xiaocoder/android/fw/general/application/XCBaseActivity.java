@@ -213,7 +213,9 @@ public abstract class XCBaseActivity extends FragmentActivity {
         return fragment;
     }
 
-    // title等别的fragment不隐藏
+    /**
+     * title等别的fragment不隐藏
+     */
     public void hideBodyFragment() {
         List<Fragment> fragments = (base_fm.getFragments());
         for (Fragment fragment : fragments) {
@@ -223,7 +225,9 @@ public abstract class XCBaseActivity extends FragmentActivity {
         }
     }
 
-    // 隐藏所有fragment , 含title
+    /**
+     * 隐藏所有fragment , 含title
+     */
     public void hideAllFragment() {
         List<Fragment> fragments = base_fm.getFragments();
         for (Fragment fragment : fragments) {
@@ -259,8 +263,10 @@ public abstract class XCBaseActivity extends FragmentActivity {
         }
     }
 
-    // 这里得重写,否则startforresult时, 无法回调到fragment中的方法 ,
-    // 如果fragment中又有嵌套的话,fragmetn中的该方法也得重写
+    /**
+     * 这里得重写,否则startforresult时, 无法回调到fragment中的方法 ,
+     * 如果fragment中又有嵌套的话,fragmetn中的该方法也得重写
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

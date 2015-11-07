@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.fragment.photo;
+package com.xiaocoder.android.fw.general.function.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -26,7 +26,7 @@ import java.util.UUID;
 
 /**
  * @author xiaocoder
- * @Description:
+ * @Description: 拍照获取图片
  * @date 2015-1-6 下午10:50:22
  */
 public class XCCameraPhotoFragment extends XCBaseFragment {

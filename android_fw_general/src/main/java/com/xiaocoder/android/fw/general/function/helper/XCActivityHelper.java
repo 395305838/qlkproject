@@ -1,6 +1,8 @@
-package com.xiaocoder.android.fw.general.helper;
+package com.xiaocoder.android.fw.general.function.helper;
 
 import android.app.Activity;
+
+import com.xiaocoder.android.fw.general.application.XCApp;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -114,8 +116,9 @@ public class XCActivityHelper {
      */
     public void finishAllActivity() {
         for (Activity activity : stack) {
+            // finishActivity(activity);//并发修改异常
             if (activity != null) {
-                activity.finish();// 销毁
+                activity.finish();
             }
         }
         stack.clear();
@@ -134,7 +137,8 @@ public class XCActivityHelper {
 
             while (true) {
 
-                if (stack.size() < 1) {
+                if (stack.isEmpty()) {
+                    XCApp.e(this + "---toActivity()的stack为null");
                     return null;
                 }
 
@@ -146,8 +150,10 @@ public class XCActivityHelper {
                 }
 
                 if (toActivity.getClass().getName().equals(activity_class.getName())) {
+                    // 这个activity是返回的，不可以删
                     break;
                 } else {
+                    // 删除activity
                     finishActivity(toActivity);
                 }
 

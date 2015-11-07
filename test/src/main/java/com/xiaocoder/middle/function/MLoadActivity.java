@@ -16,7 +16,7 @@ import android.view.animation.Animation.AnimationListener;
 import android.widget.ImageView;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.views.view.XCImageView;
+import com.xiaocoder.views.view.xc.XCImageView;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
 

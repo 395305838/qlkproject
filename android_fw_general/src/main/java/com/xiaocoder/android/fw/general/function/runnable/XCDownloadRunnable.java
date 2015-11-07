@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.helper;
+package com.xiaocoder.android.fw.general.function.runnable;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
@@ -16,7 +16,7 @@ import java.net.URL;
  * 这是个Runnable
  */
 
-public class XCDownloadHelper implements Runnable {
+public class XCDownloadRunnable implements Runnable {
 
     String tag = XCConfig.TAG_TEMP;
     String url = "";
@@ -63,7 +63,7 @@ public class XCDownloadHelper implements Runnable {
     }
 
 
-    public XCDownloadHelper(String url, File file) {
+    public XCDownloadRunnable(String url, File file) {
         this.url = url;
         this.file = file;
     }

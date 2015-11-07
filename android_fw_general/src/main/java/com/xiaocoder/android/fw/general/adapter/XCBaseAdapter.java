@@ -9,6 +9,11 @@ import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 有一个tadapter模板
+ *
+ * @param <T> T 为List集合中的model或bean的泛型
+ */
 public abstract class XCBaseAdapter<T> extends BaseAdapter {
 
     public List<T> list;
@@ -67,7 +72,7 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
 
         // 如果有多种类型,重写该方法
         // XCJsonBean bean = list.get(position);
-        // if (MyName.equals(bean.getString(bean_flag.sender))) {
+        // if (MY.equals(bean.getString(bean.sender))) {
         // return MY;
         // } else {
         // return SHE;
@@ -88,49 +93,3 @@ public abstract class XCBaseAdapter<T> extends BaseAdapter {
 
 }
 
-
-// T 为List集合中的model或bean的泛型
-
-/*
-
- //继承之后拷贝这里，重写该getView方法， 与补充ViewHolder
-
- @Override
- public View getView(int position, View convertView, ViewGroup parent) {
-
- bean = list.get(position);
-
- ViewHolder holder = null;
-
- if (convertView == null) {
-
- convertView = LayoutInflater.from(context).inflate(R.layout.id, null);//填入布局id
- holder = new ViewHolder();//创建holder对象
- holder.imageView = (ImageView)convertView.findViewById(R.id.imageview);//初始化控件
- convertView.setTag(holder); // 设置标记
-
- } else {
-
- holder = (ViewHolder)convertView.getTag(); // 获取holder
-
- }
-
- // 获取和设置控件的显示值
-
- // 加载图片
-
- return convertView;
-
- }
-
- class ViewHolder{
-
- ImageView
- TextView
-
- }
-
- public NameAdapter(Context context, List<XCJsonBean> list) {
- super(context, list);
- }
- */
