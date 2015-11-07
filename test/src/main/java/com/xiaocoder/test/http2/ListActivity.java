@@ -40,7 +40,6 @@ public class ListActivity extends MActivity {
     public void request() {
 
         HashMap<String, Object> params = new HashMap<String, Object>();
-//        XCApp.getAsyn(true, "http://" + MainActivity.TEST_HOST + ":8080/qlktest/listdata.json", params, new QlkHttpResponseHandler(this, list_fragment) {
         XCApp.getAsyn(true, url, params,
                 new MResponseHandlerBean<TestBean>(this, this, TestBean.class) {
 

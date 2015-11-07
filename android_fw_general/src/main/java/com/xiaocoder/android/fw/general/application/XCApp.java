@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.widget.ImageView;
 
+import com.xiaocoder.android.fw.general.exception.XCCrashHandler;
 import com.xiaocoder.android.fw.general.function.helper.XCActivityHelper;
 import com.xiaocoder.android.fw.general.function.helper.XCExecutorHelper;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
@@ -38,6 +39,7 @@ public class XCApp extends Application {
     protected static ScheduledExecutorService base_scheduled_threadpool;
     protected static XCLog base_log;
     protected static XCSP base_sp;
+    protected static XCCrashHandler base_crashHandler;
     /**
      * 加个接口，以后可能会改别的图片加载库，子类中传入
      */
@@ -193,6 +195,10 @@ public class XCApp extends Application {
 
     public static Context getBase_applicationContext() {
         return base_applicationContext;
+    }
+
+    public static XCCrashHandler getBase_crashHandler() {
+        return base_crashHandler;
     }
 
     /**

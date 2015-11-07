@@ -99,26 +99,28 @@ public class MApp extends XCApp {
 
     private void initCrash() {
 
-        XCCrashHandler.getInstance().init(MConfig.IS_INIT_CRASH_HANDLER,
+        base_crashHandler = XCCrashHandler.getInstance().init(MConfig.IS_INIT_CRASH_HANDLER,
                 getApplicationContext(), MConfig.CRASH_DIR, MConfig.IS_SHOW_EXCEPTION_ACTIVITY);
 
-        XCCrashHandler.getInstance().setUploadServer(new XCIException2Server() {
+        base_crashHandler.setUploadServer(new XCIException2Server() {
             @Override
             public void uploadException2Server(String info, Throwable ex, Thread thread,
                                                XCExceptionModel model, XCExceptionDao dao) {
                 // 将未try catch的异常信息 上传到友盟
                 MobclickAgent.reportError(getApplicationContext(), info);
-                // TODO 将该dao更新userId
-                model.setUserId("123456");
-                dao.update(model);
+                // TODO 判断dao是否为null，如果MConfig.IS_INIT_CRASH_HANDLER（枚举值中可设置）为false，则dao为空
+                if (dao != null) {
+                    // TODO 将该dao更新userId
+                    model.setUserId("123456");
+                    dao.update(model);
 
-                test(model, dao);
-                // TODO 将未try catch的异常信息 上传到公司的服务器
+                    test(model, dao);
+                    // TODO 将未try catch的异常信息 上传到公司的服务器
 
-                // TODO 如果是成功上传，则更新dao中的uploadSuccess字段为“1”
+                    // TODO 如果是成功上传，则更新dao中的uploadSuccess字段为“1”
 
-                // TODO 如果上传失败，则在下次重启应用的时候，查询dao.queryUploadFail()再重新上传
-
+                    // TODO 如果上传失败，则在下次重启应用的时候，查询dao.queryUploadFail()再重新上传
+                }
             }
         });
     }

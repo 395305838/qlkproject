@@ -11,7 +11,6 @@ import java.util.Stack;
 
 /**
  * Created by xiaocoder on 2015/11/4.
- * version: 1.2.0
  * description: 管理activity
  */
 public class XCActivityHelper {

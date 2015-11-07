@@ -78,7 +78,7 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
         return dao;
     }
 
-    public void init(boolean isInit, Context context, String crash_dir, boolean isShowExceptionActivity) {
+    public XCCrashHandler init(boolean isInit, Context context, String crash_dir, boolean isShowExceptionActivity) {
 
         if (isInit) {
 
@@ -98,6 +98,7 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
 
             Thread.setDefaultUncaughtExceptionHandler(this);
         }
+        return INSTANCE;
     }
 
     /**
@@ -120,7 +121,7 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
         // 是否打开showExcpetionAcivity
         toShowExceptionActivity(info);
 
-        // 存入数据库，此时还未存userid 与 unique的
+        // 存入数据库，此时还未存userid，子类中根据需要是否存储
         XCExceptionModel model = sava2DB(info);
 
         //上传到服务器
@@ -133,7 +134,7 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
     }
 
     /**
-     * 存入数据库,userId在MAPP中更新
+     * 存入数据库,userId可在MAPP中更新
      */
     private XCExceptionModel sava2DB(String info) {
 
@@ -162,12 +163,14 @@ public class XCCrashHandler implements UncaughtExceptionHandler {
 
     }
 
+    public static int QUICK_FREEZE_TIME = 2500;
+
     public void endException() {
 
         showToast(application, "很抱歉，程序遭遇异常，即将退出！");
 
         try {
-            Thread.sleep(1600);
+            Thread.sleep(QUICK_FREEZE_TIME);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
