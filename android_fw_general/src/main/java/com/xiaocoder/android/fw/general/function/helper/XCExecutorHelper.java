@@ -22,7 +22,7 @@ public class XCExecutorHelper {
     private XCExecutorHelper() {
     }
 
-    public static XCExecutorHelper getExecutorHelperInstance() {
+    public static XCExecutorHelper getInstance() {
         return executorHelper;
     }
 

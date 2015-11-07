@@ -6,7 +6,7 @@ import com.umeng.analytics.MobclickAgent;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.android.fw.general.exception.XCCrashHandler;
-import com.xiaocoder.android.fw.general.exception.XCExceptionDao;
+import com.xiaocoder.android.fw.general.db.XCExceptionDao;
 import com.xiaocoder.android.fw.general.exception.XCIException2Server;
 import com.xiaocoder.android.fw.general.function.helper.XCExecutorHelper;
 import com.xiaocoder.android.fw.general.imageloader.JSImageLoader;
@@ -63,8 +63,8 @@ public class MApp extends XCApp {
 
     private void initNumThreadPool() {
         // http解析时用到该固定线程池,基类中还有一个cache线程池
-        base_fix_threadpool = XCExecutorHelper.getExecutorHelperInstance().getFix(MConfig.FIX_THREAD_NUM);
-        base_scheduled_threadpool = XCExecutorHelper.getExecutorHelperInstance().getScheduledFix(MConfig.SCHEDULE_THREAD_NUM);
+        base_fix_threadpool = XCExecutorHelper.getInstance().getFix(MConfig.FIX_THREAD_NUM);
+        base_scheduled_threadpool = XCExecutorHelper.getInstance().getScheduledFix(MConfig.SCHEDULE_THREAD_NUM);
     }
 
     private void createDir() {

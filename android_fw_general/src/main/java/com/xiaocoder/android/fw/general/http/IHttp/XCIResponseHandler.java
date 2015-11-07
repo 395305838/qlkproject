@@ -3,7 +3,7 @@ package com.xiaocoder.android.fw.general.http.IHttp;
 import android.app.Activity;
 import android.app.Dialog;
 
-import com.xiaocoder.android.fw.general.http.XCHttpModel;
+import com.xiaocoder.android.fw.general.model.XCHttpModel;
 
 import org.apache.http.Header;
 

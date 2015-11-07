@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.exception;
+package com.xiaocoder.android.fw.general.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,7 +8,6 @@ import android.support.annotation.NonNull;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
-import com.xiaocoder.android.fw.general.db.XCDbHelper;
 import com.xiaocoder.android.fw.general.model.XCExceptionModel;
 import com.xiaocoder.android.fw.general.util.UtilString;
 
@@ -88,7 +87,7 @@ public class XCExceptionDao {
     }
 
     /**
-     * 删除与改用户有关的所有异常
+     * 删除与该用户有关的所有异常
      */
     public int delete_userid(String userId) {
         SQLiteDatabase db = mHelper.getWritableDatabase();

@@ -27,7 +27,7 @@ public class XCActivityHelper {
 
     private static XCActivityHelper activityHelper = new XCActivityHelper();
 
-    public static XCActivityHelper getActivityHelperInstance() {
+    public static XCActivityHelper getInstance() {
         return activityHelper;
     }
 

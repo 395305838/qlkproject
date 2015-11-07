@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.xiaocoder.android.fw.general.db.XCDbHelper;
+import com.xiaocoder.android.fw.general.db.XCExceptionDao;
 
 /**
  * Created by xiaocoder on 2015/11/5.

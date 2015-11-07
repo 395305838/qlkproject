@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- 谷歌的颜色 -->
+    <color name="red">#FFC93437</color>
+    <color name="blue">#FF375BF1</color>
+    <color name="yellow">#FFF7D23E</color>
+    <color name="green">#FF34A350</color>
+
     <color name="c_trans">#00000000</color>
     <color name="c_white_ffffff">#ffffff</color>
     <color name="c_black_000000">#000000</color>
@@ -15,7 +21,6 @@
     <color name="c_gray_f8f8f8">#f8f8f8</color>
     <color name="c_gray_eeeeee">#eeeeee</color>
 
-    <!-- bc202020==自定义的dialog用的背景 -->
     <color name="c_gray_bc202020">#bc202020</color>
     <color name="c_gray_e1e1e1">#e1e1e1</color>
     <color name="c_gray_ebebeb">#ebebeb</color>
@@ -28,13 +33,9 @@
     <color name="c_yellow_fdf5e8">#fdf5e8</color>
     <color name="c_purple_471c87">#471c87</color>
 
-    <!--ymz项目title背景-->
     <color name="c_blue_288de5">#288de5</color>
-    <!--ymz项目title背景-->
     <color name="c_blue_e1f2ff">#e1f2ff</color>
-    <!-- c_red_ff0032为wyd项目的title背景 -->
     <color name="c_red_e60044">#e60044</color>
-    <!-- c_gray_EAE9E6为wyd项目的搜索栏背景 -->
     <color name="c_gray_e8e8e8">#E8E8E8</color>
     <color name="c_gray_d8d8d8">#D8D8D8</color>
 

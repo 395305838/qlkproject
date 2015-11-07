@@ -26,8 +26,8 @@ import java.util.concurrent.ScheduledExecutorService;
  * 2 线程池    handler  图片加载  log等
  */
 public class XCApp extends Application {
-    protected static XCActivityHelper base_ActivityHelper = XCActivityHelper.getActivityHelperInstance();
-    protected static ExecutorService base_cache_threadpool = XCExecutorHelper.getExecutorHelperInstance().getCache();
+    protected static XCActivityHelper base_ActivityHelper = XCActivityHelper.getInstance();
+    protected static ExecutorService base_cache_threadpool = XCExecutorHelper.getInstance().getCache();
     protected static Handler base_handler = new Handler();
     protected static XCHttpSend base_xcHttpSend = new XCHttpSend();
     protected static Context base_applicationContext;

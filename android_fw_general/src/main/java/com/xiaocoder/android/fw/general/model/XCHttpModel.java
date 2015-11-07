@@ -1,4 +1,6 @@
-package com.xiaocoder.android.fw.general.http;
+package com.xiaocoder.android.fw.general.model;
+
+import com.xiaocoder.android.fw.general.http.XCHttpType;
 
 import java.util.Map;
 

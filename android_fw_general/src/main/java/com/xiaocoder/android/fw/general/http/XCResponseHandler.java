@@ -11,6 +11,7 @@ import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpNotify;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
 import com.xiaocoder.android.fw.general.json.XCJsonParse;
+import com.xiaocoder.android.fw.general.model.XCHttpModel;
 
 import org.apache.http.Header;
 
@@ -290,6 +291,7 @@ public abstract class XCResponseHandler<T> extends AsyncHttpResponseHandler impl
                 return true;
             }
         } else {
+            // 如果不是xcbaseactivity，依旧可以使用，只是不会再判断该activity是否已经销毁
             XCApp.e(this.toString() + "---activity不是XCBaseActivity的实例");
         }
         return false;
