@@ -84,7 +84,6 @@ public abstract class XCBaseActivity extends FragmentActivity {
         base_fm = getSupportFragmentManager();
         isActivityDestroied = false;
 
-        // 找到页面的布局控件
         xc_id_model_layout = getViewById(R.id.xc_id_model_layout);
         xc_id_model_titlebar = getViewById(R.id.xc_id_model_titlebar);
         xc_id_model_content = getViewById(R.id.xc_id_model_content);

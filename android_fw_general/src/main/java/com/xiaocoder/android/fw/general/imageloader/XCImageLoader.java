@@ -29,7 +29,6 @@ import java.util.concurrent.ExecutorService;
 
 /**
  * Created by xiaocoder on 2015/10/21.
- * version: 1.2.0
  * description:
  */
 public class XCImageLoader implements XCIImageLoader {

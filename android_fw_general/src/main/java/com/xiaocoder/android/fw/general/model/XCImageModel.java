@@ -2,7 +2,6 @@ package com.xiaocoder.android.fw.general.model;
 
 import java.io.Serializable;
 
-//本地图片对象
 public class XCImageModel implements Serializable {
 	private static final long serialVersionUID = -6847612368978583756L;
 

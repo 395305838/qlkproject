@@ -36,7 +36,7 @@ public class UtilInputMethod {
 	public static void hiddenInputMethod(Context context) {
 		if (((Activity) context).getCurrentFocus() != null) {
 			if (((Activity) context).getCurrentFocus().getWindowToken() != null) {
-				// 先隐藏键盘
+				// 隐藏键盘
 				((InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(((Activity) context).getCurrentFocus().getWindowToken(),
 						InputMethodManager.HIDE_NOT_ALWAYS);
 			}

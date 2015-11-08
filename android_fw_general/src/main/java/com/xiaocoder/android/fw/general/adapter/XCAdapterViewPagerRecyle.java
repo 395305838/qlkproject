@@ -17,7 +17,6 @@ public class XCAdapterViewPagerRecyle extends PagerAdapter {
         this.viewList = viewList;
     }
 
-    // 决定显示页数
     @Override
     public int getCount() {
         if (viewList != null) {

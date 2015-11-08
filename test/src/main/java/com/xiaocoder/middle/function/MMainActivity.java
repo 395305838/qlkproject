@@ -13,7 +13,6 @@ import java.util.List;
 
 /**
  * Created by xiaocoder on 2015/7/15.
- * 首页activity，点击两次退出
  */
 public abstract class MMainActivity extends MActivity {
 

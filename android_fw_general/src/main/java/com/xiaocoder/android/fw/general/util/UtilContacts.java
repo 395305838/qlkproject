@@ -12,7 +12,6 @@ import java.util.List;
 
 /**
  * Created by xiaocoder on 2015/11/4.
- * version: 1.2.0
  * description: 获取通讯录
  */
 public class UtilContacts {

@@ -8,8 +8,6 @@ import com.xiaocoder.android.fw.general.db.XCExceptionDao;
 
 /**
  * Created by xiaocoder on 2015/11/5.
- * version: 1.2.0
- * description:
  */
 public class XCExceptionDbHelper extends XCDbHelper {
     /**

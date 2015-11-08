@@ -6,7 +6,6 @@ import java.util.Map;
 
 /**
  * Created by xiaocoder on 2015/10/30.
- * version: 1.2.0
  * description:
  */
 public class XCHttpModel {

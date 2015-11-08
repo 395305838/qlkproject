@@ -7,7 +7,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * Created by xiaocoder on 2015/10/21.
- * version: 1.2.0
  * description: 第三方 universal-image-loader-1.9.0-with-sources.jar
  */
 public class XCAsynLoader implements XCIImageLoader {

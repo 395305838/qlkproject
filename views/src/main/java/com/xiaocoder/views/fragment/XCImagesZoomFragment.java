@@ -1,6 +1,7 @@
 package com.xiaocoder.views.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
@@ -20,7 +21,7 @@ import java.util.List;
 /**
  * @author xiaocoder
  * @date 2015-1-6 下午10:50:22
- * 图片可以触摸缩放
+ * 1 图片可以触摸缩放 2可以初始化选中第几张图
  */
 public class XCImagesZoomFragment extends XCBaseFragment {
 
@@ -33,6 +34,9 @@ public class XCImagesZoomFragment extends XCBaseFragment {
     int current_location = 0;
     int total_images;
 
+    public void setDefaultSelectedIndex(int defaultSelectedIndex) {
+        this.current_location = defaultSelectedIndex;
+    }
 
     public interface OnLoadImage {
         void onLoadImage(ImageView imageview, String url);
@@ -54,21 +58,6 @@ public class XCImagesZoomFragment extends XCBaseFragment {
         this.on_load_image_listener = on_load_image_listener;
     }
 
-    OnCloseListener onCloseListener;
-
-    public interface OnCloseListener {
-        void onClose();
-    }
-
-    public void setOnCloseListener(OnCloseListener onCloseListener) {
-        this.onCloseListener = onCloseListener;
-    }
-
-    public void setCurrent_location(int current_location) {
-        this.current_location = current_location ;
-
-    }
-
     // 会等父fragment的onActivityCreated完成后才会调用子fragment的onCreate()方法
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -79,48 +68,72 @@ public class XCImagesZoomFragment extends XCBaseFragment {
     public void onClick(View v) {
         if (listener != null) {
             listener.onImageClickListener((Integer) (v.getTag()));
-
         }
     }
 
     public void setData(List<String> urls) {
         this.urls = urls;
-
     }
 
-    private void createImageViewsAndDots() {
-        // 创建images
+    private void createImageViews() {
         imageviews = new ArrayList<ImageView>();
         total_images = urls.size();
         for (int i = 0; i < total_images; i++) {
             // 创建images
-
-            OPZoomImageView imageview = new OPZoomImageView(getActivity());
-            imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageview.enable();
-
-            // ---------------------------加载图片-----------------------------
+            ImageView imageview = getZoomImageView(i);
+            // 加载图片
             if (on_load_image_listener != null) {
                 on_load_image_listener.onLoadImage(imageview, urls.get(i));
-
             } else {
                 return;
             }
-            imageview.setOnClickListener(this);
-            imageview.setTag(i);
 
             imageviews.add(imageview);
         }
+    }
+
+    @NonNull
+    private OPZoomImageView getZoomImageView(int index) {
+        OPZoomImageView imageview = new OPZoomImageView(getActivity());
+        imageview.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        imageview.enable();
+        imageview.setOnClickListener(this);
+        imageview.setTag(index);
+        return imageview;
     }
 
     protected void createViewPager() {
         adapter = new XCAdapterViewPagerRecyle(imageviews);
         qlk_id_viewpager.setAdapter(adapter);
         qlk_id_viewpager.setCurrentItem(current_location);
+    }
+
+    @Override
+    public void initWidgets() {
+
+        qlk_id_viewpager = getViewById(R.id.xc_id_fragment_viewpager);
+        xc_id_fragment_viewpager_count = getViewById(R.id.xc_id_fragment_viewpager_count);
+
+        if (urls != null) {
+            total_images = urls.size();
+            createImageViews();
+            createViewPager();
+            update();
+        }
+
+    }
+
+    public void update() {
+        int index = current_location + 1;
+        xc_id_fragment_viewpager_count.setText(index + " / " + total_images);
+    }
+
+    @Override
+    public void listeners() {
         qlk_id_viewpager.setOnPageChangeListener(new OnPageChangeListener() {
             @Override
             public void onPageSelected(int position) {
-                current_location = position ;
+                current_location = position;
                 update();
             }
 
@@ -132,33 +145,6 @@ public class XCImagesZoomFragment extends XCBaseFragment {
             public void onPageScrollStateChanged(int arg0) {
             }
         });
-    }
-
-    @Override
-    public void initWidgets() {
-        qlk_id_viewpager = getViewById(R.id.xc_id_fragment_viewpager);
-        xc_id_fragment_viewpager_count = getViewById(R.id.xc_id_fragment_viewpager_count);
-
-        if (urls != null) {
-            total_images = urls.size();
-        }
-
-        update();
-
-        if (urls != null) {
-            createImageViewsAndDots();
-            createViewPager();
-        }
-    }
-
-    public void update() {
-        int index = current_location + 1;
-        xc_id_fragment_viewpager_count.setText(index + " / " + total_images);
-    }
-
-    @Override
-    public void listeners() {
-
     }
 
 }

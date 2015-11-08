@@ -12,7 +12,7 @@ public class Utils {
      */
     public static boolean isListBlank(List list) {
 
-        if (list == null || list.size() < 1) {
+        if (list == null || list.isEmpty()) {
             return true;
         }
 

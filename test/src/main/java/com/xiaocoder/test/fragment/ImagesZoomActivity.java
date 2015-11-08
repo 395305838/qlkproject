@@ -37,6 +37,7 @@ public class ImagesZoomActivity extends MActivity {
         list.add("http://www.baidu.com/img/bdlogo.png");
         list.add("http://cdn3.nflximg.net/images/3093/2043093.jpg");
         fragment.setData(list);
+        fragment.setDefaultSelectedIndex(1);
         addFragment(R.id.xc_id_model_content, fragment);
 
 

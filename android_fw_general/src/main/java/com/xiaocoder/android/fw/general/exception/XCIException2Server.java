@@ -5,8 +5,6 @@ import com.xiaocoder.android.fw.general.model.XCExceptionModel;
 
 /**
  * Created by xiaocoder on 2015/10/15.
- * version: 1.2.0
- * description:
  */
 public interface XCIException2Server {
     /**

@@ -21,7 +21,6 @@ public class XCAdapterViewPager extends PagerAdapter {
 		this.map = new HashMap<View, Boolean>();
 	}
 
-	// 决定显示页数
 	@Override
 	public int getCount() {
 		if (viewList != null) {
@@ -35,7 +34,6 @@ public class XCAdapterViewPager extends PagerAdapter {
 		return super.getItemPosition(object);
 	}
 
-	// 不必关注,此方法可以忽略
 	@Override
 	public boolean isViewFromObject(View arg0, Object arg1) {
 		return arg0 == arg1;
