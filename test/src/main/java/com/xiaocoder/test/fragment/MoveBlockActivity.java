@@ -59,7 +59,7 @@ public class MoveBlockActivity extends MActivity {
             @Override
             public void onClickMoveListener(int position, ViewGroup current_item, ImageView current_imageview, ViewGroup last_item, ImageView last_imageview) {
                 // position 为点击了第几个
-                XCApp.shortToast(position + "");
+                XCApp.shortToast(position);
             }
         });
 
@@ -67,21 +67,21 @@ public class MoveBlockActivity extends MActivity {
         plus_fragment.setOnClickMoveListener(new XCMoveBlockPlusFragment.OnClickMoveListener() {
             @Override
             public void onClickMoveListener(int position, ViewGroup current_item, ImageView current_imageview, ViewGroup last_item, ImageView last_imageview) {
-                XCApp.shortToast(position + "");
+                XCApp.shortToast(position);
             }
         });
 
         plus_fragment2.setOnClickMoveListener(new XCMoveBlockPlusFragment.OnClickMoveListener() {
             @Override
             public void onClickMoveListener(int position, ViewGroup current_item, ImageView current_imageview, ViewGroup last_item, ImageView last_imageview) {
-                XCApp.shortToast(position + "");
+                XCApp.shortToast(position);
             }
         });
 
         plus_fragment3.setOnClickMoveListener(new XCMoveBlockPlusFragment.OnClickMoveListener() {
             @Override
             public void onClickMoveListener(int position, ViewGroup current_item, ImageView current_imageview, ViewGroup last_item, ImageView last_imageview) {
-                XCApp.shortToast(position + "");
+                XCApp.shortToast(position);
             }
         });
     }

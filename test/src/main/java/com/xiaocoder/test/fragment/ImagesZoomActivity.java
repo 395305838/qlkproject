@@ -61,7 +61,7 @@ public class ImagesZoomActivity extends MActivity {
 
             @Override
             public void onImageClickListener(int position) {
-                XCApp.shortToast(position + "");
+                XCApp.shortToast(position);
             }
         });
     }

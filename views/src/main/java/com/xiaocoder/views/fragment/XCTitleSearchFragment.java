@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.xiaocoder.views.fragment.search;
+package com.xiaocoder.views.fragment;
 
 import android.content.Context;
 import android.os.Bundle;

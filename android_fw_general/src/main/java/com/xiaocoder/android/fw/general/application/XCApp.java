@@ -303,7 +303,7 @@ public class XCApp extends Application {
     }
 
     /**
-     * 这个是可能会重写
+     * 这个可能会重写
      */
     public void appExit() {
         base_ActivityHelper.appExit();

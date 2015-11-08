@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.views.fragment.search.XCSearchRecordFragment;
-import com.xiaocoder.views.fragment.search.XCTitleSearchFragment;
+import com.xiaocoder.views.fragment.XCSearchRecordFragment;
+import com.xiaocoder.views.fragment.XCTitleSearchFragment;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;
 import com.xiaocoder.android.fw.general.util.UtilActivity;
 import com.xiaocoder.middle.MActivity;

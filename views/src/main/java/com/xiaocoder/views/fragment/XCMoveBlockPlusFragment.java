@@ -18,9 +18,10 @@ import com.xiaocoder.android.fw.general.application.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.views.R;
 
-/*
+/**
  * 动态创建滑块
  */
+@Deprecated
 public class XCMoveBlockPlusFragment extends XCBaseFragment {
     // scrollview下面的linearlayout
     private LinearLayout xc_id_move_block_linearlayout;

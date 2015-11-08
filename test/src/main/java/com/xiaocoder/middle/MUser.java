@@ -18,6 +18,8 @@ public class MUser {
     public static String IS_LOGIN = "isLogin";
     public static String USER_HEAD = "userHeader";
     public static String USER_PHONE_NUM = "userPhoneNum";
+    // TODO 添加存储的字段
+
 
     public static String getUserId() {
 

@@ -29,7 +29,6 @@ public class MApp extends XCApp {
     public void onCreate() {
         super.onCreate();
 
-        // 创建文件夹
         createDir();
 
         initNumThreadPool();
@@ -38,13 +37,10 @@ public class MApp extends XCApp {
 
         initSp();
 
-        // 图片加载的初始化
         initImageLoader();
 
-        // 是否开启异常日志捕获，以及异常日志的存储路径等
         initCrash();
 
-        // 打印一些简单的设备信息
         simpleDeviceInfo();
 
     }

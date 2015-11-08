@@ -68,7 +68,7 @@ public class TimerActivity extends MActivity {
                     @Override
                     public void run() {
                         index = index + 1;
-                        XCApp.shortToast(index + "");
+                        XCApp.shortToast(index);
                     }
                 });
 

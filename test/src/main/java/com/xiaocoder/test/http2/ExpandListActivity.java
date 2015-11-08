@@ -142,7 +142,7 @@ public class ExpandListActivity extends MActivity {
         test_expandablelistview.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-                XCApp.shortToast(groupPosition + "");
+                XCApp.shortToast(groupPosition);
                 return true;
             }
         });

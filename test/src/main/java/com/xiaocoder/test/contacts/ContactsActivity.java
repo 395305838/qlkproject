@@ -84,7 +84,7 @@ public class ContactsActivity extends MActivity {
 
         // 获取联系人
         List<XCContactModel> list = UtilContacts.getContacts(this);
-        XCApp.i(list.toString());
+        XCApp.i(list);
 
         // 创建adapter
         ContactsAdapter adpater = new ContactsAdapter(this, list);

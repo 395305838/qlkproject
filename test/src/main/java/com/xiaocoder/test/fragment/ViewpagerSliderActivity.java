@@ -47,7 +47,7 @@ public class ViewpagerSliderActivity extends MActivity {
         slider.setOnImageClickListener(new XCViewPagerFragment.OnImageClickListener() {
             @Override
             public void onImageClickListener(int position) {
-                XCApp.shortToast(position + "");
+                XCApp.shortToast(position);
             }
         });
     }

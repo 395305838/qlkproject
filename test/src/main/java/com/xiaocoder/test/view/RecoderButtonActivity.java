@@ -55,7 +55,7 @@ public class RecoderButtonActivity extends MActivity {
         button.setOnRecordVoiceSuccessListener(new XCRecordVoiceButton.OnRecordVoiceSuccessListener() {
             @Override
             public void onRecordVoiceSuccessListener(File file, float duration) {
-                XCApp.shortToast(file.toString() + "---" + duration);
+                XCApp.shortToast(file + "---" + duration);
             }
         });
 
