@@ -10,7 +10,7 @@ import android.widget.AbsListView;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
 
-import com.xiaocoder.android.fw.general.adapter.XLBaseAdapterExpand;
+import com.xiaocoder.android.fw.general.function.adapter.XLBaseAdapterExpand;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCConfig;
 import com.xiaocoder.views.fragment.XCTitleCommonFragment;

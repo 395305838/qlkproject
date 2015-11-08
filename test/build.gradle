@@ -50,6 +50,6 @@ dependencies {
     compile project(':mqtt')
     compile project(':im')
     compile project(':swipeadapter')
-    compile project(':video')
+    compile project(':video_demo')
     compile project(':views')
 }

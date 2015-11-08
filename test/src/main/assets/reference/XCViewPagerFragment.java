@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 
-import com.xiaocoder.android.fw.general.adapter.XCAdapterViewPager;
+import com.xiaocoder.android.fw.general.function.adapter.XCAdapterViewPager;
 import com.xiaocoder.android.fw.general.application.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
 import com.xiaocoder.android_fw_general.R;

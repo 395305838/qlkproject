@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.adapter;
+package com.xiaocoder.android.fw.general.function.adapter;
 
 import android.support.v4.view.PagerAdapter;
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.xiaocoder.android.fw.general.adapter;
+package com.xiaocoder.android.fw.general.function.adapter;
 
 import java.util.ArrayList;
 import java.util.List;

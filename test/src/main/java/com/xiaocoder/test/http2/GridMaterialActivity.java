@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import com.xiaocoder.android.fw.general.adapter.XCBaseAdapter;
+import com.xiaocoder.android.fw.general.function.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
 import com.xiaocoder.ptrrefresh.XCIRefreshHandler;

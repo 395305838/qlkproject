@@ -5,8 +5,8 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.xiaocoder.android.fw.general.adapter.XCAdapterTest;
-import com.xiaocoder.android.fw.general.adapter.XCAdapterViewPager;
+import com.xiaocoder.android.fw.general.function.adapter.XCAdapterTest;
+import com.xiaocoder.android.fw.general.function.adapter.XCAdapterViewPager;
 import com.xiaocoder.views.view.open.OPNoScrollListview;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;

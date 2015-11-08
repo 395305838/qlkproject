@@ -10,9 +10,6 @@ import com.xiaocoder.android.fw.general.util.UtilString;
 
 import java.lang.reflect.Constructor;
 
-/**
- * onUpgrade方法空实现的
- */
 public class XCDbHelper extends SQLiteOpenHelper {
 
     public String[] mSqls;
@@ -20,9 +17,8 @@ public class XCDbHelper extends SQLiteOpenHelper {
     public int mVersion;
 
     /**
-     *
      * @param context
-     * @param dbName "**.db"
+     * @param dbName  "**.db"
      * @param version 1
      * @param sqls
      */
@@ -40,7 +36,6 @@ public class XCDbHelper extends SQLiteOpenHelper {
         mSqls = sqls;
     }
 
-    // db.execSQL("CREATE TABLE search_record_info(_id integer primary key autoincrement," + "time text," + "keyword text)");
     @Override
     public void onCreate(SQLiteDatabase db) {
 
@@ -50,11 +45,11 @@ public class XCDbHelper extends SQLiteOpenHelper {
 
     }
 
-    // db.execSQL("drop table if exists " + );
-    // onCreate(db);
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
         //  子类中实现，如数据库升级的情况
+        // db.execSQL("drop table if exists " + );
+        // onCreate(db);
     }
 
 
