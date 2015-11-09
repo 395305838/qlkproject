@@ -302,10 +302,7 @@ public class XCApp extends Application {
         return base_ActivityHelper.toActivity(main_activity_class);
     }
 
-    /**
-     * 这个可能会重写
-     */
-    public void appExit() {
+    public static void appExit() {
         base_ActivityHelper.appExit();
     }
 

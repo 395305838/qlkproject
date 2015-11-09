@@ -55,7 +55,7 @@ public abstract class MMainActivity extends MActivity {
      */
     protected void uploadException() {
         List<XCExceptionModel> xcExceptionModels = XCApp.getBase_crashHandler().getDao().queryUploadFail(XCExceptionDao.SORT_DESC);
-        // TODO 上传到服务器，每上传成功一条，更新model中的uploadSuccess
+        // TODO 上传到服务器，每上传成功一条，更新model中的uploadSuccess为“1”
     }
 
 

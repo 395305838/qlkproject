@@ -104,18 +104,11 @@ public class MApp extends XCApp {
                                                XCExceptionModel model, XCExceptionDao dao) {
                 // 将未try catch的异常信息 上传到友盟
                 MobclickAgent.reportError(getApplicationContext(), info);
-                // TODO 判断dao是否为null，如果MConfig.IS_INIT_CRASH_HANDLER（枚举值中可设置）为false，则dao为空
+                // 如果MConfig.IS_INIT_CRASH_HANDLER（枚举值中可设置）为false，则dao为空
                 if (dao != null) {
-                    // TODO 将该dao更新userId
-                    model.setUserId("123456");
+                    model.setUserId(MUser.getUserId());
                     dao.update(model);
-
-                    test(model, dao);
-                    // TODO 将未try catch的异常信息 上传到公司的服务器
-
-                    // TODO 如果是成功上传，则更新dao中的uploadSuccess字段为“1”
-
-                    // TODO 如果上传失败，则在下次重启应用的时候，查询dao.queryUploadFail()再重新上传
+                    // TODO 将异常信息在下次重启应用时，上传到服务器,如果是成功上传，则更新uploadSuccess字段为“1”
                 }
             }
         });
@@ -130,10 +123,9 @@ public class MApp extends XCApp {
         XCApp.itemp(dao.queryUnique(model.getUniqueId()));
     }
 
-    @Override
-    public void appExit() {
+    public static void exitApp() {
         // 友盟统计
-        MobclickAgent.onKillProcess(getApplicationContext());
-        super.appExit();
+        MobclickAgent.onKillProcess(base_applicationContext);
+        appExit();
     }
 }
