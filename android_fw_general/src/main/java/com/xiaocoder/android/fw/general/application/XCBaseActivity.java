@@ -13,7 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
-import com.xiaocoder.android.fw.general.util.UtilInputMethod;
+import com.xiaocoder.android.fw.general.util.UtilInput;
+import com.xiaocoder.android.fw.general.util.UtilView;
 import com.xiaocoder.android_fw_general.R;
 
 import java.lang.reflect.Constructor;
@@ -115,7 +116,7 @@ public abstract class XCBaseActivity extends FragmentActivity {
     }
 
     public void myFinish() {
-        UtilInputMethod.hiddenInputMethod(this);
+        UtilInput.hiddenInputMethod(this);
         finish();
     }
 
@@ -241,33 +242,18 @@ public abstract class XCBaseActivity extends FragmentActivity {
         }
     }
 
-    public void showTitleLayout(boolean isVisible) {
+    public void showTitleLayout(boolean isShow) {
         if (xc_id_model_titlebar != null) {
-            setViewGone(isVisible, xc_id_model_titlebar);
+            UtilView.setGone(isShow, xc_id_model_titlebar);
         }
     }
 
-    public void showContentLayout(boolean isVisible) {
+    public void showContentLayout(boolean isShow) {
         if (xc_id_model_content != null) {
-            setViewVisible(isVisible, xc_id_model_content);
+            UtilView.setVisible(isShow, xc_id_model_content);
         }
     }
 
-    public void setViewGone(boolean isGone, View view) {
-        if (isGone) {
-            view.setVisibility(View.VISIBLE);
-        } else {
-            view.setVisibility(View.GONE);
-        }
-    }
-
-    public void setViewVisible(boolean isVisible, View view) {
-        if (isVisible) {
-            view.setVisibility(View.VISIBLE);
-        } else {
-            view.setVisibility(View.INVISIBLE);
-        }
-    }
 
     /**
      * 这里得重写,否则startforresult时, 无法回调到fragment中的方法 ,

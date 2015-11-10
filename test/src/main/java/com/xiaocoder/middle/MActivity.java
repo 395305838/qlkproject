@@ -9,6 +9,7 @@ import com.umeng.analytics.MobclickAgent;
 import com.xiaocoder.android.fw.general.application.XCBaseActivity;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIHttpResult;
 import com.xiaocoder.android.fw.general.http.IHttp.XCIResponseHandler;
+import com.xiaocoder.android.fw.general.util.UtilView;
 import com.xiaocoder.test.R;
 import com.xiaocoder.views.view.open.OPSwipeBackLayout;
 
@@ -54,7 +55,7 @@ public abstract class MActivity extends XCBaseActivity implements View.OnClickLi
      */
     public void showNoNetLayout(boolean visiable) {
         if (xc_id_model_no_net != null) {
-            setViewVisible(visiable, xc_id_model_no_net);
+            UtilView.setVisible(visiable, xc_id_model_no_net);
         }
     }
 

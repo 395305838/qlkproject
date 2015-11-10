@@ -3,6 +3,7 @@ package com.xiaocoder.test.dialogs;
 import android.os.Bundle;
 
 import com.xiaocoder.android.fw.general.application.XCApp;
+import com.xiaocoder.android.fw.general.util.UtilView;
 import com.xiaocoder.views.view.sx.SXProgressView;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
@@ -34,7 +35,7 @@ public class ProgressViewActivity extends MActivity {
     }
 
     private void showProgressView() {
-        setViewVisible(true, view);
+        UtilView.setVisible(true, view);
         XCApp.getBase_cache_threadpool().execute(new Runnable() {
             @Override
             public void run() {

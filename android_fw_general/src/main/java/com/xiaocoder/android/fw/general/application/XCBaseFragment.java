@@ -9,9 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
-import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.application.XCBaseActivity;
-
 import java.util.List;
 
 /**
@@ -161,17 +158,4 @@ public abstract class XCBaseFragment extends Fragment implements OnClickListener
     public void onClick(View v) {
 
     }
-
-    public void setViewGone(boolean isGone, View view) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().setViewGone(isGone, view);
-        }
-    }
-
-    public void setViewVisible(boolean isVisible, View view) {
-        if (getBaseActivity() != null) {
-            getBaseActivity().setViewVisible(isVisible, view);
-        }
-    }
-
 }

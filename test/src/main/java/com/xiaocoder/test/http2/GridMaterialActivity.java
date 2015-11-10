@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.function.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
-import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
+import com.xiaocoder.android.fw.general.util.UtilView;
 import com.xiaocoder.ptrrefresh.XCIRefreshHandler;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.middle.parse.MResponseHandlerModel;
@@ -46,7 +46,7 @@ public class GridMaterialActivity extends MActivity {
         xcGridRefreshLayout = getViewById(R.id.xc_id_refreshlayout);
 
         gridview = (GridView) xcGridRefreshLayout.getListView();
-        UtilAbsListStyle.setGridViewStyle(gridview, false, 1, 1, 2);
+        UtilView.setGridViewStyle(gridview, false, 1, 1, 2);
 
         xcGridRefreshLayout.getListView().setAdapter(adapter);
         // http请求中获取，这里为模拟数据

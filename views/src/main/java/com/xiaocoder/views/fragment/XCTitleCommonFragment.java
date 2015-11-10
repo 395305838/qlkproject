@@ -16,6 +16,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.xiaocoder.android.fw.general.application.XCBaseFragment;
+import com.xiaocoder.android.fw.general.util.UtilView;
 import com.xiaocoder.views.R;
 
 /**
@@ -136,7 +137,7 @@ public class XCTitleCommonFragment extends XCBaseFragment {
             init_bundle.putBoolean("isCenterShow", isCenterShow);
             init_bundle.putString("title", title);
         } else {
-            getBaseActivity().setViewGone(isCenterShow, xc_id_titlebar_center_textview);
+            UtilView.setGone(isCenterShow, xc_id_titlebar_center_textview);
             xc_id_titlebar_center_textview.setText(title);
         }
     }
@@ -150,7 +151,7 @@ public class XCTitleCommonFragment extends XCBaseFragment {
             init_bundle.putBoolean("isLeftShow", isLeftShow);
             init_bundle.putString("left_text", left_text);
         } else {
-            getBaseActivity().setViewGone(isLeftShow, xc_id_titlebar_left_layout);
+            UtilView.setGone(isLeftShow, xc_id_titlebar_left_layout);
             xc_id_titlebar_left_textview.setText(left_text);
         }
     }
@@ -165,7 +166,7 @@ public class XCTitleCommonFragment extends XCBaseFragment {
             init_bundle.putBoolean("isCenterShow", isCenterShow);
             init_bundle.putInt("textview_drawable_id", textview_drawable_id);
         } else {
-            getBaseActivity().setViewGone(isCenterShow, xc_id_titlebar_center_textview);
+            UtilView.setGone(isCenterShow, xc_id_titlebar_center_textview);
             Drawable drawable = getResources().getDrawable(R.drawable.xc_d_arrow_down);
             drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
             xc_id_titlebar_center_textview.setCompoundDrawables(null, null, drawable, null);
@@ -181,7 +182,7 @@ public class XCTitleCommonFragment extends XCBaseFragment {
             init_bundle.putBoolean("isRightShow", isRightShow);
             init_bundle.putInt("right_drawable_id", right_drawable_id);
         } else {
-            getBaseActivity().setViewGone(isRightShow, xc_id_titlebar_right_layout);
+            UtilView.setGone(isRightShow, xc_id_titlebar_right_layout);
             xc_id_titlebar_right_imageview.setImageResource(right_drawable_id);
         }
     }
@@ -199,21 +200,21 @@ public class XCTitleCommonFragment extends XCBaseFragment {
             init_bundle.putInt("right2_drawable_id", right2_drawable_id);
             init_bundle.putString("text", text);
         } else {
-            getBaseActivity().setViewGone(isRight2Show, xc_id_titlebar_right2_layout);
+            UtilView.setGone(isRight2Show, xc_id_titlebar_right2_layout);
 
             if (right2_drawable_id > 0) {
                 xc_id_titlebar_right2_imageview.setBackgroundResource(right2_drawable_id);
-                getBaseActivity().setViewGone(true, xc_id_titlebar_right2_imageview);
+                UtilView.setGone(true, xc_id_titlebar_right2_imageview);
             } else {
-                getBaseActivity().setViewGone(false, xc_id_titlebar_right2_imageview);
-                getBaseActivity().setViewGone(false, xc_id_titlebar_right2_imageview_layout);
+                UtilView.setGone(false, xc_id_titlebar_right2_imageview);
+                UtilView.setGone(false, xc_id_titlebar_right2_imageview_layout);
             }
 
             if (text != null) {
-                getBaseActivity().setViewGone(true, xc_id_titlebar_right2_textview);
+                UtilView.setGone(true, xc_id_titlebar_right2_textview);
                 xc_id_titlebar_right2_textview.setText(text);
             } else {
-                getBaseActivity().setViewGone(false, xc_id_titlebar_right2_textview);
+                UtilView.setGone(false, xc_id_titlebar_right2_textview);
             }
 
         }
@@ -234,23 +235,23 @@ public class XCTitleCommonFragment extends XCBaseFragment {
         } else {
             if (getBaseActivity() != null) {
 
-                getBaseActivity().setViewGone(isRight3Show, xc_id_titlebar_right3_layout);
+                UtilView.setGone(isRight3Show, xc_id_titlebar_right3_layout);
 
                 if (right3_drawable_id > 0) {
                     xc_id_titlebar_right3_imageView.setBackgroundResource(right3_drawable_id);
-                    getBaseActivity().setViewGone(true, xc_id_titlebar_right3_imageView);
+                    UtilView.setGone(true, xc_id_titlebar_right3_imageView);
                 } else {
-                    getBaseActivity().setViewGone(false, xc_id_titlebar_right3_imageView);
+                    UtilView.setGone(false, xc_id_titlebar_right3_imageView);
                 }
 
                 if (text != null) {
                     xc_id_titlebar_right3_textview_number.setText(text);
-                    getBaseActivity().setViewGone(true, xc_id_titlebar_right3_textview_number);
+                    UtilView.setGone(true, xc_id_titlebar_right3_textview_number);
                     Animation animation = AnimationUtils.loadAnimation(getBaseActivity(), R.anim.xl_anim_push_down_in);
                     xc_id_titlebar_right3_textview_number.startAnimation(animation);
 
                 } else {
-                    getBaseActivity().setViewGone(false, xc_id_titlebar_right3_textview_number);
+                    UtilView.setGone(false, xc_id_titlebar_right3_textview_number);
 
                 }
             }
@@ -333,22 +334,22 @@ public class XCTitleCommonFragment extends XCBaseFragment {
         if (init_bundle != null) {
             // 设置是否可见
             if (init_bundle.getBoolean("isCenterShow", false)) {
-                getBaseActivity().setViewGone(true, xc_id_titlebar_center_textview);
+                UtilView.setGone(true, xc_id_titlebar_center_textview);
             }
             if (init_bundle.getBoolean("isRightShow", false)) {
-                getBaseActivity().setViewGone(true, xc_id_titlebar_right_layout);
+                UtilView.setGone(true, xc_id_titlebar_right_layout);
             }
             if (init_bundle.getBoolean("isRight2Show", false)) {
-                getBaseActivity().setViewGone(true, xc_id_titlebar_right2_layout);
+                UtilView.setGone(true, xc_id_titlebar_right2_layout);
             }
             if (init_bundle.getBoolean("isRight3Show", false)) {
-                getBaseActivity().setViewGone(true, xc_id_titlebar_right3_layout);
+                UtilView.setGone(true, xc_id_titlebar_right3_layout);
             }
             // 只有左边是默认可见的
             if (init_bundle.getBoolean("isLeftShow", false)) {
-                getBaseActivity().setViewVisible(true, xc_id_titlebar_left_layout);
+                UtilView.setVisible(true, xc_id_titlebar_left_layout);
             } else {
-                getBaseActivity().setViewVisible(false, xc_id_titlebar_left_layout);
+                UtilView.setVisible(false, xc_id_titlebar_left_layout);
             }
             // 设置内容
             xc_id_titlebar_center_textview.setText(init_bundle.getString("title"));
@@ -356,39 +357,39 @@ public class XCTitleCommonFragment extends XCBaseFragment {
             xc_id_titlebar_left_textview.setText(init_bundle.getString("left_text"));
             if (init_bundle.getInt("right2_drawable_id") > 0) {
                 xc_id_titlebar_right2_imageview.setBackgroundResource(init_bundle.getInt("right2_drawable_id"));
-                getBaseActivity().setViewGone(true, xc_id_titlebar_right2_imageview);
+                UtilView.setGone(true, xc_id_titlebar_right2_imageview);
             } else {
-                getBaseActivity().setViewGone(false, xc_id_titlebar_right2_imageview);
-                getBaseActivity().setViewGone(false, xc_id_titlebar_right2_imageview_layout);
+                UtilView.setGone(false, xc_id_titlebar_right2_imageview);
+                UtilView.setGone(false, xc_id_titlebar_right2_imageview_layout);
             }
             if (init_bundle.getInt("right3_drawable_id") > 0) {
                 xc_id_titlebar_right3_imageView.setBackgroundResource(init_bundle.getInt("right3_drawable_id"));
-                getBaseActivity().setViewGone(true, xc_id_titlebar_right3_imageView);
+                UtilView.setGone(true, xc_id_titlebar_right3_imageView);
             } else {
-                getBaseActivity().setViewGone(false, xc_id_titlebar_right3_imageView);
+                UtilView.setGone(false, xc_id_titlebar_right3_imageView);
             }
 
             if (init_bundle.getInt("textview_drawable_id") > 0) {
                 Drawable drawable = getResources().getDrawable(R.drawable.xc_d_arrow_down);
                 drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
                 xc_id_titlebar_center_textview.setCompoundDrawables(null, null, drawable, null);
-                getBaseActivity().setViewGone(true, xc_id_titlebar_center_textview);
+                UtilView.setGone(true, xc_id_titlebar_center_textview);
             }
 
             if (init_bundle.getString("text") != null) {
-                getBaseActivity().setViewGone(true, xc_id_titlebar_right2_textview);
+                UtilView.setGone(true, xc_id_titlebar_right2_textview);
                 xc_id_titlebar_right2_textview.setText(init_bundle.getString("text"));
             } else {
-                getBaseActivity().setViewGone(false, xc_id_titlebar_right2_textview);
+                UtilView.setGone(false, xc_id_titlebar_right2_textview);
             }
 
             if (init_bundle.getString("text3") != null) {
-                getBaseActivity().setViewGone(true, xc_id_titlebar_right3_textview_number);
+                UtilView.setGone(true, xc_id_titlebar_right3_textview_number);
                 xc_id_titlebar_right3_textview_number.setText(init_bundle.getString("text3"));
                 Animation animation = AnimationUtils.loadAnimation(getBaseActivity(), R.anim.xl_anim_push_down_in);
                 xc_id_titlebar_right3_textview_number.startAnimation(animation);
             } else {
-                getBaseActivity().setViewGone(false, xc_id_titlebar_right3_textview_number);
+                UtilView.setGone(false, xc_id_titlebar_right3_textview_number);
             }
 
             xc_id_titlebar_common_layout.setBackgroundColor(colorLayout);

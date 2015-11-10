@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.xiaocoder.views.fragment;
 
 import android.content.Context;
@@ -16,6 +13,7 @@ import android.widget.TextView;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCBaseFragment;
 import com.xiaocoder.android.fw.general.util.UtilScreen;
+import com.xiaocoder.android.fw.general.util.UtilView;
 import com.xiaocoder.views.R;
 
 /**
@@ -144,10 +142,10 @@ public class XCMoveBlockPlusFragment extends XCBaseFragment {
                 View xc_id_move_block_line = (View) item.findViewById(R.id.xc_id_move_block_line);
                 // textview显示的内容,null为不显示， “”与“1”显示
                 if (content == null) {
-                    setViewGone(false, xc_id_move_block_text);
+                    UtilView.setGone(false, xc_id_move_block_text);
                 } else {
                     xc_id_move_block_text.setText(content);
-                    setViewGone(true, xc_id_move_block_text);
+                    UtilView.setGone(true, xc_id_move_block_text);
                 }
 
                 if (imageUris != null && imageUris.length > 0) {
@@ -157,12 +155,12 @@ public class XCMoveBlockPlusFragment extends XCBaseFragment {
                     }
                     if (uri != null) {
                         XCApp.displayImage(uri, xc_id_move_block_imageview);
-                        setViewGone(true, xc_id_move_block_imageview);
+                        UtilView.setGone(true, xc_id_move_block_imageview);
                     } else {
-                        setViewGone(false, xc_id_move_block_imageview);
+                        UtilView.setGone(false, xc_id_move_block_imageview);
                     }
                 } else {
-                    setViewGone(false, xc_id_move_block_imageview);
+                    UtilView.setGone(false, xc_id_move_block_imageview);
                 }
                 item.setTag(position);
                 item.setOnClickListener(this);
@@ -231,9 +229,9 @@ public class XCMoveBlockPlusFragment extends XCBaseFragment {
         TextView xc_id_move_block_text = (TextView) item.findViewById(R.id.xc_id_move_block_text);
         View xc_id_move_block_line = (View) item.findViewById(R.id.xc_id_move_block_line);
         if (isHiddenBlock) {
-            setViewVisible(false, xc_id_move_block_line);
+            UtilView.setVisible(false, xc_id_move_block_line);
         } else {
-            setViewVisible(true, xc_id_move_block_line);
+            UtilView.setVisible(true, xc_id_move_block_line);
         }
         xc_id_move_block_text.setTextColor(0xff288DE5);
         record_selected_position = position;
@@ -244,7 +242,7 @@ public class XCMoveBlockPlusFragment extends XCBaseFragment {
         TextView xc_id_move_block_text = (TextView) item.findViewById(R.id.xc_id_move_block_text);
         View xc_id_move_block_line = (View) item.findViewById(R.id.xc_id_move_block_line);
         xc_id_move_block_text.setTextColor(0xff000000);
-        setViewVisible(false, xc_id_move_block_line);
+        UtilView.setVisible(false, xc_id_move_block_line);
     }
 
     @Override

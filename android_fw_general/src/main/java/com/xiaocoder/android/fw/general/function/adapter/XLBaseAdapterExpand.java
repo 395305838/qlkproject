@@ -96,16 +96,4 @@ public abstract class XLBaseAdapterExpand<E, T> extends BaseExpandableListAdapte
 
     }
 
-    public void setViewGone(boolean isGone, View view) {
-        if (context != null) {
-            ((XCBaseActivity) context).setViewGone(isGone, view);
-        }
-    }
-
-    public void setViewVisible(boolean isVisible, View view) {
-        if (context != null) {
-            ((XCBaseActivity) context).setViewVisible(isVisible, view);
-        }
-    }
-
 }

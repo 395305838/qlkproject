@@ -20,6 +20,7 @@ import com.xiaocoder.android.fw.general.db.XCDbHelper;
 import com.xiaocoder.android.fw.general.db.XCSearchDao;
 import com.xiaocoder.android.fw.general.model.XCSearchRecordModel;
 import com.xiaocoder.android.fw.general.util.UtilString;
+import com.xiaocoder.android.fw.general.util.UtilView;
 import com.xiaocoder.views.R;
 import com.xiaocoder.views.view.open.OPClearEditText;
 
@@ -232,10 +233,10 @@ public class XCTitleSearchFragment extends XCBaseFragment {
         xc_id_fragment_search_cancle = getViewById(R.id.xc_id_fragment_search_cancle);
 
         if (isCancleButtonVisiable) {
-            setViewGone(true, xc_id_fragment_search_cancle);
+            UtilView.setGone(true, xc_id_fragment_search_cancle);
             xc_id_fragment_search_cancle.setText(buttonText);
         } else {
-            setViewGone(false, xc_id_fragment_search_cancle);
+            UtilView.setGone(false, xc_id_fragment_search_cancle);
         }
 
         initDao();

@@ -22,7 +22,7 @@ import com.handmark.pulltorefresh.library.R;
 import com.xiaocoder.android.fw.general.function.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.android.fw.general.application.XCBaseFragment;
-import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
+import com.xiaocoder.android.fw.general.util.UtilView;
 import com.xiaocoder.android.fw.general.util.UtilString;
 
 import java.util.ArrayList;
@@ -120,10 +120,10 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
         base_refresh_abs_listview = getViewById(refresh_listview_id);
         base_abs_listview = base_refresh_abs_listview.getRefreshableView();
         if (base_abs_listview instanceof GridView) {
-            UtilAbsListStyle.setGridViewStyle(((GridView) base_abs_listview), show_bar, grid_space_h_dp, grid_space_v_dp, grid_line_num);
+            UtilView.setGridViewStyle(((GridView) base_abs_listview), show_bar, grid_space_h_dp, grid_space_v_dp, grid_line_num);
             ((GridView) base_abs_listview).setAdapter(base_adapter);
         } else {
-            UtilAbsListStyle.setListViewStyle(((ListView) base_abs_listview), list_divider_drawable, list_height_dp, show_bar);
+            UtilView.setListViewStyle(((ListView) base_abs_listview), list_divider_drawable, list_height_dp, show_bar);
             ((ListView) base_abs_listview).setAdapter(base_adapter);
         }
 
@@ -255,15 +255,15 @@ public abstract class XCBaseAbsListFragment<T extends AbsListView> extends XCBas
 
     public void whichShow(int size) {
         if (size > 0) {
-            setViewGone(false, base_listview_zero_bg);
-            setViewVisible(true, base_refresh_abs_listview);
+            UtilView.setGone(false, base_listview_zero_bg);
+            UtilView.setVisible(true, base_refresh_abs_listview);
         } else {
             base_zero_button.setText(zero_button_hint);
             base_zero_imageview.setImageResource(zero_imageview_hint);
             base_zero_textview.setText(zero_text_hint);
 
-            setViewGone(true, base_listview_zero_bg);
-            setViewVisible(false, base_refresh_abs_listview);
+            UtilView.setGone(true, base_listview_zero_bg);
+            UtilView.setVisible(false, base_refresh_abs_listview);
         }
     }
 

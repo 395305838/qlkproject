@@ -38,6 +38,9 @@ public class androidxml {
 	public static JScrollPane scrollPane;
 	public static String ENCODING = "utf-8";
 
+	private static String AUTHORITY_PRIVATE = "private";
+	private static String AUTHORITY_PUBLIC = "public";
+
 	public static void initUI() {
 
 		frame = new JFrame("初始化控件");
@@ -51,6 +54,7 @@ public class androidxml {
 		frame.add(button, BorderLayout.EAST);
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		area.setText("请输入xml的绝对路径 , androidStudio为ctrl+shift+c");
 
 		button.addActionListener(new ActionListener() {
 
@@ -85,8 +89,20 @@ public class androidxml {
 					String keyId = parser.getAttributeValue(null, "android:id");
 
 					if (keyId != null) {
+
+						String packageName = parser.getName();
+						int lastIndex = packageName.lastIndexOf(".");
+
+						if (lastIndex > 0) {
+							packageName = packageName.substring(lastIndex + 1);
+						}
+
+						if ("include".equals(packageName)) {
+							packageName = "ViewGroup";
+						}
+
 						map.put(keyId.substring(keyId.lastIndexOf("/") + 1,
-								keyId.length()).trim(), parser.getName());
+								keyId.length()).trim(), packageName);
 					}
 
 				} else if (event == XmlPullParser.TEXT) {
@@ -110,7 +126,8 @@ public class androidxml {
 					if (key.contains(CONMENT_KEY)) {
 						sb.append("/**" + value + "*/" + LINE);
 					} else {
-						sb.append(value + " " + key + ";" + LINE);
+						sb.append(AUTHORITY_PRIVATE + " " + value + " " + key
+								+ ";" + LINE);
 					}
 				}
 			}
@@ -140,7 +157,10 @@ public class androidxml {
 					}
 				}
 			}
-
+			sb.append(LINE);
+			sb.append(LINE);
+			sb.append("---------------------------------以下是adapter中的holder可能用到的--------------------------------");
+			sb.append(LINE);
 			sb.append(LINE);
 
 			for (Entry<String, String> entry : map.entrySet()) {
@@ -154,6 +174,40 @@ public class androidxml {
 					}
 				}
 			}
+
+			sb.append(LINE);
+
+			sb.append("public class NameHolder{" + LINE);
+			for (Entry<String, String> entry : map.entrySet()) {
+				String key = entry.getKey();
+				String value = entry.getValue();
+				if (check(key)) {
+					if (key.contains(CONMENT_KEY)) {
+						sb.append("	/**" + value + "*/" + LINE);
+					} else {
+						sb.append("	" + value + " " + key + ";" + LINE);
+					}
+				}
+			}
+			sb.append(LINE);
+			sb.append("	public NameHolder(View convertView){" + LINE + LINE);
+
+			for (Entry<String, String> entry : map.entrySet()) {
+				String key = entry.getKey();
+				String value = entry.getValue();
+				if (check(key)) {
+					if (!key.contains(CONMENT_KEY)) {
+						sb.append("		" + key + " = (" + value
+								+ ")convertView.findViewById(R.id." + key
+								+ ");" + LINE);
+					}
+				}
+			}
+
+			sb.append(LINE);
+
+			sb.append("	}" + LINE);
+			sb.append("}");
 
 			return sb.toString();
 

@@ -15,7 +15,7 @@ import com.xiaocoder.android.fw.general.application.XCApp;
  * @author xiaocoder
  * @date 2015-3-2 下午4:48:56
  */
-public class UtilInputMethod {
+public class UtilInput {
 
 	// 代码弹出输入法
 	public static void openInputMethod(EditText view, final Context context) {

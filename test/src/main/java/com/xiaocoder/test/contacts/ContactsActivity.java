@@ -13,7 +13,7 @@ import com.xiaocoder.android.fw.general.function.adapter.XCBaseAdapter;
 import com.xiaocoder.android.fw.general.application.XCApp;
 import com.xiaocoder.views.fragment.XCTitleCommonFragment;
 import com.xiaocoder.android.fw.general.model.XCContactModel;
-import com.xiaocoder.android.fw.general.util.UtilAbsListStyle;
+import com.xiaocoder.android.fw.general.util.UtilView;
 import com.xiaocoder.android.fw.general.util.UtilContacts;
 import com.xiaocoder.middle.MActivity;
 import com.xiaocoder.test.R;
@@ -80,7 +80,7 @@ public class ContactsActivity extends MActivity {
         addFragment(R.id.xc_id_model_titlebar, title);
         // listview
         contacts_listview = getViewById(R.id.contacts_list);
-        UtilAbsListStyle.setListViewStyle(contacts_listview, null, 1, false);
+        UtilView.setListViewStyle(contacts_listview, null, 1, false);
 
         // 获取联系人
         List<XCContactModel> list = UtilContacts.getContacts(this);

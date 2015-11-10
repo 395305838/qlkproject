@@ -3,6 +3,7 @@ package com.xiaocoder.android.fw.general.util;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -10,7 +11,23 @@ import android.widget.ListView;
 /**
  * Created by xiaocoder on 2015/7/24.
  */
-public class UtilAbsListStyle {
+public class UtilView {
+
+    public static void setGone(boolean isShow, View view) {
+        if (isShow) {
+            view.setVisibility(View.VISIBLE);
+        } else {
+            view.setVisibility(View.GONE);
+        }
+    }
+
+    public static void setVisible(boolean isShow, View view) {
+        if (isShow) {
+            view.setVisibility(View.VISIBLE);
+        } else {
+            view.setVisibility(View.INVISIBLE);
+        }
+    }
 
 
     public static void setGridViewStyle(GridView view, boolean show_bar, int num) {
@@ -51,6 +68,5 @@ public class UtilAbsListStyle {
         } else {
             view.setGroupIndicator(context.getResources().getDrawable(groupIndicate));
         }
-
     }
 }
